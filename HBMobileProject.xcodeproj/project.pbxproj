@@ -56,6 +56,7 @@
 		D1B6D7361D7D11D400C3E647 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		D1B6D7371D7D11D400C3E647 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		D1B6D7511D7D132600C3E647 /* CustomSources12.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CustomSources12.gif; sourceTree = "<group>"; };
+		D1B6D7541D7D136300C3E647 /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +111,7 @@
 				D1B6D7441D7D12AB00C3E647 /* Expand */,
 				D1B6D74E1D7D130700C3E647 /* Vender */,
 				D1B6D74F1D7D132600C3E647 /* Resource */,
+				D1B6D7541D7D136300C3E647 /* Note.h */,
 				D1B6D6F41D7D10C500C3E647 /* ViewController.h */,
 				D1B6D6F51D7D10C500C3E647 /* ViewController.m */,
 				D1B6D6F71D7D10C500C3E647 /* Main.storyboard */,
