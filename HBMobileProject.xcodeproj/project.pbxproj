@@ -14,6 +14,10 @@
 		D13B58941D7EEBAA005D89FA /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588E1D7EEBAA005D89FA /* CYLTabBar.m */; };
 		D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58901D7EEBAA005D89FA /* CYLTabBarController.m */; };
 		D13B58961D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58921D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m */; };
+		D13B58A41D7EF05B005D89FA /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58A31D7EF05B005D89FA /* DiscoverViewController.m */; };
+		D13B58A71D7EF084005D89FA /* FollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58A61D7EF084005D89FA /* FollowViewController.m */; };
+		D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58A91D7EF093005D89FA /* MessageViewController.m */; };
+		D13B58AD1D7EF0A1005D89FA /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58AC1D7EF0A1005D89FA /* MineViewController.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F61D7D10C500C3E647 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F51D7D10C500C3E647 /* ViewController.m */; };
@@ -81,6 +85,14 @@
 		D13B58901D7EEBAA005D89FA /* CYLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBarController.m; sourceTree = "<group>"; };
 		D13B58911D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CYLTabBarControllerExtention.h"; sourceTree = "<group>"; };
 		D13B58921D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYLTabBarControllerExtention.m"; sourceTree = "<group>"; };
+		D13B58A21D7EF05B005D89FA /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
+		D13B58A31D7EF05B005D89FA /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
+		D13B58A51D7EF084005D89FA /* FollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowViewController.h; sourceTree = "<group>"; };
+		D13B58A61D7EF084005D89FA /* FollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowViewController.m; sourceTree = "<group>"; };
+		D13B58A81D7EF093005D89FA /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		D13B58A91D7EF093005D89FA /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		D13B58AB1D7EF0A1005D89FA /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
+		D13B58AC1D7EF0A1005D89FA /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -189,6 +201,8 @@
 		D118536F1D7EC37C00D1EA92 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D13B58A21D7EF05B005D89FA /* DiscoverViewController.h */,
+				D13B58A31D7EF05B005D89FA /* DiscoverViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -246,6 +260,99 @@
 				D13B58921D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m */,
 			);
 			path = CYLTabBarController;
+			sourceTree = "<group>";
+		};
+		D13B58971D7EEF89005D89FA /* Follow */ = {
+			isa = PBXGroup;
+			children = (
+				D13B58981D7EEF89005D89FA /* Controller */,
+				D13B58991D7EEF89005D89FA /* Model */,
+				D13B589A1D7EEF89005D89FA /* Other */,
+				D13B589B1D7EEF89005D89FA /* View */,
+			);
+			path = Follow;
+			sourceTree = "<group>";
+		};
+		D13B58981D7EEF89005D89FA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D13B58A51D7EF084005D89FA /* FollowViewController.h */,
+				D13B58A61D7EF084005D89FA /* FollowViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D13B58991D7EEF89005D89FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D13B589A1D7EEF89005D89FA /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		D13B589B1D7EEF89005D89FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D13B589C1D7EEF89005D89FA /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				D13B589D1D7EEF89005D89FA /* Controller */,
+				D13B589E1D7EEF89005D89FA /* Model */,
+				D13B589F1D7EEF89005D89FA /* Other */,
+				D13B58A01D7EEF89005D89FA /* View */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		D13B589D1D7EEF89005D89FA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D13B58A81D7EF093005D89FA /* MessageViewController.h */,
+				D13B58A91D7EF093005D89FA /* MessageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D13B589E1D7EEF89005D89FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D13B589F1D7EEF89005D89FA /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		D13B58A01D7EEF89005D89FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D13B58A11D7EEFC5005D89FA /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				D118536E1D7EC37C00D1EA92 /* Discover */,
+				D13B58971D7EEF89005D89FA /* Follow */,
+				D13B589C1D7EEF89005D89FA /* Message */,
+				D1B6D7391D7D11D400C3E647 /* Mine */,
+			);
+			name = Module;
 			sourceTree = "<group>";
 		};
 		D1B6D6E21D7D10C400C3E647 = {
@@ -317,9 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				D1B6D7221D7D11D400C3E647 /* Appdelegate */,
-				D118536E1D7EC37C00D1EA92 /* Discover */,
-				D1B6D72F1D7D11D400C3E647 /* FriendCircle */,
-				D1B6D7391D7D11D400C3E647 /* Mine */,
+				D13B58A11D7EEFC5005D89FA /* Module */,
 				D1B6D7341D7D11D400C3E647 /* General */,
 				D1B6D73E1D7D11D400C3E647 /* Other */,
 			);
@@ -333,45 +438,6 @@
 				D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */,
 			);
 			path = Appdelegate;
-			sourceTree = "<group>";
-		};
-		D1B6D72F1D7D11D400C3E647 /* FriendCircle */ = {
-			isa = PBXGroup;
-			children = (
-				D1B6D7301D7D11D400C3E647 /* Controller */,
-				D1B6D7311D7D11D400C3E647 /* Model */,
-				D1B6D7321D7D11D400C3E647 /* Other */,
-				D1B6D7331D7D11D400C3E647 /* View */,
-			);
-			path = FriendCircle;
-			sourceTree = "<group>";
-		};
-		D1B6D7301D7D11D400C3E647 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D1B6D7311D7D11D400C3E647 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		D1B6D7321D7D11D400C3E647 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
-		D1B6D7331D7D11D400C3E647 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		D1B6D7341D7D11D400C3E647 /* General */ = {
@@ -413,6 +479,8 @@
 		D1B6D73A1D7D11D400C3E647 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D13B58AB1D7EF0A1005D89FA /* MineViewController.h */,
+				D13B58AC1D7EF0A1005D89FA /* MineViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -786,14 +854,18 @@
 				D1B6D79A1D7D159600C3E647 /* NSString+MJExtension.m in Sources */,
 				D13B58961D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				D1B6D7931D7D159600C3E647 /* MJProperty.m in Sources */,
+				D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */,
 				D1B6D7921D7D159600C3E647 /* MJFoundation.m in Sources */,
 				D1B6D7751D7D154700C3E647 /* NSArray+MASAdditions.m in Sources */,
 				D1B6D7741D7D154700C3E647 /* MASViewConstraint.m in Sources */,
+				D13B58A41D7EF05B005D89FA /* DiscoverViewController.m in Sources */,
 				D1B6D7731D7D154700C3E647 /* MASViewAttribute.m in Sources */,
 				D1B6D7951D7D159600C3E647 /* MJPropertyType.m in Sources */,
 				D1B6D7961D7D159600C3E647 /* NSObject+MJClass.m in Sources */,
+				D13B58AD1D7EF0A1005D89FA /* MineViewController.m in Sources */,
 				D1B6D7971D7D159600C3E647 /* NSObject+MJCoding.m in Sources */,
 				D1B6D7771D7D154700C3E647 /* View+MASAdditions.m in Sources */,
+				D13B58A71D7EF084005D89FA /* FollowViewController.m in Sources */,
 				D1B6D7941D7D159600C3E647 /* MJPropertyKey.m in Sources */,
 				D1B6D7991D7D159600C3E647 /* NSObject+MJProperty.m in Sources */,
 				D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */,
