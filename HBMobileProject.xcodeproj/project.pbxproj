@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D11853741D7EC3B900D1EA92 /* LogInViewController.m */; };
+		D13B58851D7EE009005D89FA /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58841D7EE009005D89FA /* BaseNavigationController.m */; };
+		D13B58881D7EE7A3005D89FA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58871D7EE7A3005D89FA /* HomeViewController.m */; };
+		D13B58931D7EEBAA005D89FA /* CYLPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */; };
+		D13B58941D7EEBAA005D89FA /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588E1D7EEBAA005D89FA /* CYLTabBar.m */; };
+		D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58901D7EEBAA005D89FA /* CYLTabBarController.m */; };
+		D13B58961D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58921D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F61D7D10C500C3E647 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F51D7D10C500C3E647 /* ViewController.m */; };
@@ -62,6 +68,19 @@
 		D11853731D7EC3B900D1EA92 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		D11853741D7EC3B900D1EA92 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		D11853771D7EC6AA00D1EA92 /* CommonMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
+		D13B58831D7EE009005D89FA /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		D13B58841D7EE009005D89FA /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		D13B58861D7EE7A3005D89FA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		D13B58871D7EE7A3005D89FA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		D13B588A1D7EEBAA005D89FA /* CYLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLConstants.h; sourceTree = "<group>"; };
+		D13B588B1D7EEBAA005D89FA /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
+		D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLPlusButton.m; sourceTree = "<group>"; };
+		D13B588D1D7EEBAA005D89FA /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
+		D13B588E1D7EEBAA005D89FA /* CYLTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBar.m; sourceTree = "<group>"; };
+		D13B588F1D7EEBAA005D89FA /* CYLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBarController.h; sourceTree = "<group>"; };
+		D13B58901D7EEBAA005D89FA /* CYLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBarController.m; sourceTree = "<group>"; };
+		D13B58911D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CYLTabBarControllerExtention.h"; sourceTree = "<group>"; };
+		D13B58921D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYLTabBarControllerExtention.m"; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -193,6 +212,40 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D13B58811D7ECC32005D89FA /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				D13B58831D7EE009005D89FA /* BaseNavigationController.h */,
+				D13B58841D7EE009005D89FA /* BaseNavigationController.m */,
+				D13B58861D7EE7A3005D89FA /* HomeViewController.h */,
+				D13B58871D7EE7A3005D89FA /* HomeViewController.m */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		D13B58821D7ECC44005D89FA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		D13B58891D7EEBAA005D89FA /* CYLTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				D13B588A1D7EEBAA005D89FA /* CYLConstants.h */,
+				D13B588B1D7EEBAA005D89FA /* CYLPlusButton.h */,
+				D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */,
+				D13B588D1D7EEBAA005D89FA /* CYLTabBar.h */,
+				D13B588E1D7EEBAA005D89FA /* CYLTabBar.m */,
+				D13B588F1D7EEBAA005D89FA /* CYLTabBarController.h */,
+				D13B58901D7EEBAA005D89FA /* CYLTabBarController.m */,
+				D13B58911D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.h */,
+				D13B58921D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m */,
+			);
+			path = CYLTabBarController;
 			sourceTree = "<group>";
 		};
 		D1B6D6E21D7D10C400C3E647 = {
@@ -388,18 +441,12 @@
 		D1B6D73E1D7D11D400C3E647 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				D1B6D73F1D7D11D400C3E647 /* Helpers */,
+				D13B58811D7ECC32005D89FA /* Public */,
+				D13B58821D7ECC44005D89FA /* Helper */,
 				D1B6D7401D7D11D400C3E647 /* Login */,
 				D1B6D7411D7D11D400C3E647 /* Setting */,
 			);
 			path = Other;
-			sourceTree = "<group>";
-		};
-		D1B6D73F1D7D11D400C3E647 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D1B6D7401D7D11D400C3E647 /* Login */ = {
@@ -501,6 +548,7 @@
 		D1B6D74E1D7D130700C3E647 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				D13B58891D7EEBAA005D89FA /* CYLTabBarController */,
 				D1B6D7791D7D159600C3E647 /* MJExtension */,
 				D1B6D7551D7D154700C3E647 /* Masonry */,
 			);
@@ -730,10 +778,13 @@
 				D1B6D7431D7D11D400C3E647 /* BaseViewController.m in Sources */,
 				D1B6D6F61D7D10C500C3E647 /* ViewController.m in Sources */,
 				D1B6D7981D7D159600C3E647 /* NSObject+MJKeyValue.m in Sources */,
+				D13B58851D7EE009005D89FA /* BaseNavigationController.m in Sources */,
 				D1B6D7701D7D154700C3E647 /* MASConstraint.m in Sources */,
+				D13B58941D7EEBAA005D89FA /* CYLTabBar.m in Sources */,
 				D1B6D7781D7D154700C3E647 /* ViewController+MASAdditions.m in Sources */,
 				D1B6D7721D7D154700C3E647 /* MASLayoutConstraint.m in Sources */,
 				D1B6D79A1D7D159600C3E647 /* NSString+MJExtension.m in Sources */,
+				D13B58961D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				D1B6D7931D7D159600C3E647 /* MJProperty.m in Sources */,
 				D1B6D7921D7D159600C3E647 /* MJFoundation.m in Sources */,
 				D1B6D7751D7D154700C3E647 /* NSArray+MASAdditions.m in Sources */,
@@ -746,8 +797,11 @@
 				D1B6D7941D7D159600C3E647 /* MJPropertyKey.m in Sources */,
 				D1B6D7991D7D159600C3E647 /* NSObject+MJProperty.m in Sources */,
 				D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */,
+				D13B58881D7EE7A3005D89FA /* HomeViewController.m in Sources */,
 				D1B6D6F01D7D10C500C3E647 /* main.m in Sources */,
+				D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */,
 				D1B6D76F1D7D154700C3E647 /* MASCompositeConstraint.m in Sources */,
+				D13B58931D7EEBAA005D89FA /* CYLPlusButton.m in Sources */,
 				D1B6D7761D7D154700C3E647 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

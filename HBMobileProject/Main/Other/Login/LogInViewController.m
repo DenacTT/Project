@@ -15,7 +15,7 @@
     [super viewDidLoad];
     
     //登录成功后跳转到首页
-    
+    [((AppDelegate *)AppDelegateInstance) setupHomeViewController];
     
 }
 
