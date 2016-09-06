@@ -84,25 +84,25 @@
 - (NSArray *)tabBarItemsAttributesForController
 {
     NSDictionary *discoverTabBarItemAttributes = @{
-//                                                   CYLTabBarItemTitle : @"发现",
+                                                   CYLTabBarItemTitle : @"发现",
                                                    CYLTabBarItemImage : @"home_normal",
                                                    CYLTabBarItemSelectedImage : @"home_highlight",
                                                    };
     
     NSDictionary *followTabBarItemAttributes = @{
-//                                                   CYLTabBarItemTitle : @"关注",
+                                                 CYLTabBarItemTitle : @"关注",
                                                  CYLTabBarItemImage : @"mycity_normal",
                                                  CYLTabBarItemSelectedImage : @"mycity_highlight",
                                                  };
     
     NSDictionary *messageTabBarItemAttributes = @{
-//                                                 CYLTabBarItemTitle : @"消息",
+                                                 CYLTabBarItemTitle : @"消息",
                                                   CYLTabBarItemImage : @"message_normal",
                                                   CYLTabBarItemSelectedImage : @"message_highlight",
                                                   };
     
     NSDictionary *mineTabBarItemAttributes = @{
-//                                                  CYLTabBarItemTitle : @"我的",
+                                              CYLTabBarItemTitle : @"我的",
                                                CYLTabBarItemImage : @"account_normal",
                                                CYLTabBarItemSelectedImage : @"account_highlight"
                                                };

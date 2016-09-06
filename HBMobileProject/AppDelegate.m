@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "LogInViewController.h"
+#import "ConfigTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -17,22 +19,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    window.backgroundColor = [UIColor whiteColor];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
     [self setupLoginViewController];
     
     return YES;
 }
 
 #pragma mark - setUpLoginViewController
+//登录页
 - (void)setupLoginViewController
 {
-    
+    LogInViewController *logInViewController = [[LogInViewController alloc] init];
+    [self.window setRootViewController:logInViewController];
+    [self.window setBackgroundColor:[UIColor whiteColor]];
+    [self.window makeKeyAndVisible];
 }
 
+//首页
 - (void)setupHomeViewController
 {
-    
+    ConfigTabBarController *tabBarController = [[ConfigTabBarController alloc] init];
+    [self.window setRootViewController:tabBarController.tabBarController];
+    [self.window setBackgroundColor:[UIColor whiteColor]];
+    [self.window makeKeyAndVisible];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
