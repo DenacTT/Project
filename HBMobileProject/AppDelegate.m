@@ -16,8 +16,23 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    window.backgroundColor = [UIColor whiteColor];
+    [self setupLoginViewController];
+    
     return YES;
+}
+
+#pragma mark - setUpLoginViewController
+- (void)setupLoginViewController
+{
+    
+}
+
+- (void)setupHomeViewController
+{
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

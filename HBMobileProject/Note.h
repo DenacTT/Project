@@ -63,9 +63,37 @@ HBProject
             |- Plist        //  plist 文件
             ...
     |- Vender // 第三方
+            |- MJExtension //字典-模型转换工具
+            |- Masonry //布局
 
 
 
+HBProject
+├── Main
+├── component
+├── controller
+│       ├── app.config
+│       ├── assets
+│       ├── book
+│       ├── indep
+│       ├── install
+│       ├── invitation
+│       ├── logip
+│       ├── logoutp
+│       ├── position
+│       ├──
+│       ├── require.glop
+│       └── user
+├── sql
+│       └── d
+└── support
+           ├── cache
+           ├── config
+           ├── include
+           ├── model
+           ├── templates
+           ├── templates_c
+           └── vendor
 
 
 @end
