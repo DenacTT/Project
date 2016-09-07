@@ -50,7 +50,7 @@
  */
 - (void)setupNavigationBarAppearance
 {
-    UINavigationBar *navigationBarApppearance = [UINavigationBar appearance];
+//    UINavigationBar *navigationBarApppearance = [UINavigationBar appearance];
     
     UIImage *backgroundImage = nil;
     NSDictionary *textAttributes = nil;

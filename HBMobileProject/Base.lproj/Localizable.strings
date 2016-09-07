@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  HBMobileProject
+
+  Created by HarbingWang on 16/9/7.
+  Copyright © 2016年 HarbingWang. All rights reserved.
+*/
+
+// general
+"BtnTitle_Cancle" = "取消";
+"BtnTitle_Sure" = "确定";
+
+// PublishButton
+"MakeMovie" = "拍视频";
+"TakePhoto" = "拍照片";
+

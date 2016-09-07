@@ -109,16 +109,16 @@
     UIViewController *viewController = tabBarController.selectedViewController;
     
     UIAlertController *alterController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
-    [alterController addAction:[UIAlertAction actionWithTitle:@"拍视频" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"拍视频");
+    [alterController addAction:[UIAlertAction actionWithTitle:STR(@"MakeMovie") style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"视频");
         
     }]];
     
-    [alterController addAction:[UIAlertAction actionWithTitle:@"选照片" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    [alterController addAction:[UIAlertAction actionWithTitle:STR(@"TakePhoto") style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"照片");
         
     }]];
-    [alterController addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+    [alterController addAction:[UIAlertAction actionWithTitle:STR(@"BtnTitle_Cancle") style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
     }]];
     
     [viewController presentViewController:alterController animated:YES completion:nil];
