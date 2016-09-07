@@ -20,6 +20,10 @@
 		D13B58C91D7FCD8A005D89FA /* PublishButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58C81D7FCD8A005D89FA /* PublishButton.m */; };
 		D13B58D51D7FF7F9005D89FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58D41D7FF7F9005D89FA /* ViewController.m */; };
 		D13B58D81D7FFA6F005D89FA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D13B58DA1D7FFA6F005D89FA /* Localizable.strings */; };
+		D13B58E01D8001E5005D89FA /* PublishVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58DF1D8001E5005D89FA /* PublishVideoViewController.m */; };
+		D13B58E31D800AE9005D89FA /* MakeMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58E21D800AE9005D89FA /* MakeMovieViewController.m */; };
+		D13B58E71D800B53005D89FA /* ConfigMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58E51D800B53005D89FA /* ConfigMovieViewController.m */; };
+		D13B58E81D800B53005D89FA /* ConfigMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D13B58E61D800B53005D89FA /* ConfigMovieViewController.xib */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -97,6 +101,13 @@
 		D13B58D31D7FF7F9005D89FA /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D13B58D41D7FF7F9005D89FA /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D13B58D91D7FFA6F005D89FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D13B58DE1D8001E5005D89FA /* PublishVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishVideoViewController.h; sourceTree = "<group>"; };
+		D13B58DF1D8001E5005D89FA /* PublishVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishVideoViewController.m; sourceTree = "<group>"; };
+		D13B58E11D800AE9005D89FA /* MakeMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeMovieViewController.h; sourceTree = "<group>"; };
+		D13B58E21D800AE9005D89FA /* MakeMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeMovieViewController.m; sourceTree = "<group>"; };
+		D13B58E41D800B53005D89FA /* ConfigMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigMovieViewController.h; sourceTree = "<group>"; };
+		D13B58E51D800B53005D89FA /* ConfigMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigMovieViewController.m; sourceTree = "<group>"; };
+		D13B58E61D800B53005D89FA /* ConfigMovieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigMovieViewController.xib; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -371,6 +382,13 @@
 		D13B58C31D7FCD69005D89FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D13B58DE1D8001E5005D89FA /* PublishVideoViewController.h */,
+				D13B58DF1D8001E5005D89FA /* PublishVideoViewController.m */,
+				D13B58E41D800B53005D89FA /* ConfigMovieViewController.h */,
+				D13B58E51D800B53005D89FA /* ConfigMovieViewController.m */,
+				D13B58E61D800B53005D89FA /* ConfigMovieViewController.xib */,
+				D13B58E11D800AE9005D89FA /* MakeMovieViewController.h */,
+				D13B58E21D800AE9005D89FA /* MakeMovieViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -856,6 +874,7 @@
 				D13B58D81D7FFA6F005D89FA /* Localizable.strings in Resources */,
 				D1B6D6FE1D7D10C500C3E647 /* LaunchScreen.storyboard in Resources */,
 				D1B6D6FB1D7D10C500C3E647 /* Assets.xcassets in Resources */,
+				D13B58E81D800B53005D89FA /* ConfigMovieViewController.xib in Resources */,
 				D1B6D7901D7D159600C3E647 /* Info.plist in Resources */,
 				D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */,
 			);
@@ -885,6 +904,8 @@
 				D1B6D7711D7D154700C3E647 /* MASConstraintMaker.m in Sources */,
 				D1B6D7911D7D159600C3E647 /* MJExtensionConst.m in Sources */,
 				D13B58C11D7FC725005D89FA /* HomeViewController.m in Sources */,
+				D13B58E71D800B53005D89FA /* ConfigMovieViewController.m in Sources */,
+				D13B58E31D800AE9005D89FA /* MakeMovieViewController.m in Sources */,
 				D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */,
 				D1B6D7431D7D11D400C3E647 /* BaseViewController.m in Sources */,
 				D1B6D7981D7D159600C3E647 /* NSObject+MJKeyValue.m in Sources */,
@@ -910,6 +931,7 @@
 				D1B6D7771D7D154700C3E647 /* View+MASAdditions.m in Sources */,
 				D13B58B01D7EF1F3005D89FA /* ConfigTabBarController.m in Sources */,
 				D1B6D7941D7D159600C3E647 /* MJPropertyKey.m in Sources */,
+				D13B58E01D8001E5005D89FA /* PublishVideoViewController.m in Sources */,
 				D1B6D7991D7D159600C3E647 /* NSObject+MJProperty.m in Sources */,
 				D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */,
 				D1B6D6F01D7D10C500C3E647 /* main.m in Sources */,
