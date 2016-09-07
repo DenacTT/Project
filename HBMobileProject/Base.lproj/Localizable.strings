@@ -6,9 +6,15 @@
   Copyright © 2016年 HarbingWang. All rights reserved.
 */
 
-// general
+// General
 "BtnTitle_Cancle" = "取消";
 "BtnTitle_Sure" = "确定";
+
+// TabBar
+"TabBarTitle_Home" = "首页";
+"TabBarTitle_Discover" = "发现";
+"TabBarTitle_Message" = "消息";
+"TabBarTitle_Mine" = "我";
 
 // PublishButton
 "MakeMovie" = "拍视频";
