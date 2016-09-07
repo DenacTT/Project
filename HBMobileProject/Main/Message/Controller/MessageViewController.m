@@ -10,4 +10,10 @@
 
 @implementation MessageViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+}
+
 @end

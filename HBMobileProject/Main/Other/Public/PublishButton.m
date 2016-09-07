@@ -27,12 +27,13 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.adjustsImageWhenHighlighted = NO;
+//        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+//        self.adjustsImageWhenHighlighted = NO;
     }
     return self;
 }
 
+/*
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -68,22 +69,35 @@
 {
     return -10;
 }
+ */
 
 #pragma mark - createPublishButton
 + (id)plusButton
 {
-    PublishButton *button = [[PublishButton alloc] init];
+    UIImage *buttonImage = [UIImage imageNamed:@"tabbar_compose_button"];
+    UIImage *heightImage = [UIImage imageNamed:@"tabbar_compose_button_highlighted"];
+    UIImage *iconImage = [UIImage imageNamed:@"tabbar_compose_icon_add"];
+    UIImage *heightIconImage = [UIImage imageNamed:@"tabbar_compose_icon_add"];
     
-    UIImage *buttonImage = [UIImage imageNamed:@"post_normal"];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    [button setTitle:@"发布" forState:(UIControlStateNormal)];
-    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    PublishButton *button = [PublishButton buttonWithType:(UIButtonTypeCustom)];
+    button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
+     
+    [button setImage:iconImage forState:UIControlStateNormal];
+    [button setImage:heightIconImage forState:(UIControlStateSelected)];
     
-    [button setTitle:@"选中" forState:(UIControlStateSelected)];
-    [button setTitleColor:[UIColor blueColor] forState:(UIControlStateSelected)];
+    [button setBackgroundImage:buttonImage forState:(UIControlStateNormal)];
+    [button setBackgroundImage:heightImage forState:(UIControlStateSelected)];
     
-    button.titleLabel.font = [UIFont systemFontOfSize:9.5f];
-    [button sizeToFit];
+    
+//    [button setTitle:@"发布" forState:(UIControlStateNormal)];
+//    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    
+//    [button setTitle:@"选中" forState:(UIControlStateSelected)];
+//    [button setTitleColor:[UIColor blueColor] forState:(UIControlStateSelected)];
+//    
+//    button.titleLabel.font = [UIFont systemFontOfSize:9.5f];
+//    [button sizeToFit];
     
     [button addTarget:button action:@selector(clickPublishButton) forControlEvents:(UIControlEventTouchUpInside)];
     return button;

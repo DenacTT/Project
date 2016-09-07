@@ -60,22 +60,22 @@
 
 - (NSArray *)viewControllers
 {
-    DiscoverViewController *discoverViewController = [[DiscoverViewController alloc] init];
-    UIViewController *discoverNavigationController = [[BaseNavigationController alloc] initWithRootViewController:discoverViewController];
-    
     FollowViewController *followViewController = [[FollowViewController alloc] init];
     UIViewController *followNavigationController = [[BaseNavigationController alloc] initWithRootViewController:followViewController];
     
     MessageViewController *messageViewConreoller = [[MessageViewController alloc] init];
     UIViewController *messageNavigationController = [[BaseNavigationController alloc] initWithRootViewController:messageViewConreoller];
     
+    DiscoverViewController *discoverViewController = [[DiscoverViewController alloc] init];
+    UIViewController *discoverNavigationController = [[BaseNavigationController alloc] initWithRootViewController:discoverViewController];
+    
     MineViewController *mineViewController = [[MineViewController alloc] init];
     UIViewController *mineNavigationController = [[BaseNavigationController alloc] initWithRootViewController:mineViewController];
     
     NSArray *viewControllers = @[
-                                 discoverNavigationController,
                                  followNavigationController,
                                  messageNavigationController,
+                                 discoverNavigationController,
                                  mineNavigationController
                                  ];
     return viewControllers;
@@ -83,34 +83,34 @@
 
 - (NSArray *)tabBarItemsAttributesForController
 {
-    NSDictionary *discoverTabBarItemAttributes = @{
-                                                   CYLTabBarItemTitle : @"发现",
-                                                   CYLTabBarItemImage : @"home_normal",
-                                                   CYLTabBarItemSelectedImage : @"home_highlight",
-                                                   };
-    
     NSDictionary *followTabBarItemAttributes = @{
-                                                 CYLTabBarItemTitle : @"关注",
-                                                 CYLTabBarItemImage : @"mycity_normal",
-                                                 CYLTabBarItemSelectedImage : @"mycity_highlight",
+                                                 CYLTabBarItemTitle : @"首页",
+                                                 CYLTabBarItemImage : @"tabbar_home_os7",
+                                                 CYLTabBarItemSelectedImage : @"tabbar_home_selected_os7",
                                                  };
     
     NSDictionary *messageTabBarItemAttributes = @{
                                                  CYLTabBarItemTitle : @"消息",
-                                                  CYLTabBarItemImage : @"message_normal",
-                                                  CYLTabBarItemSelectedImage : @"message_highlight",
+                                                  CYLTabBarItemImage : @"tabbar_message_center_os7",
+                                                  CYLTabBarItemSelectedImage : @"tabbar_message_center_selected_os7",
                                                   };
+    
+    NSDictionary *discoverTabBarItemAttributes = @{
+                                                   CYLTabBarItemTitle : @"发现",
+                                                   CYLTabBarItemImage : @"tabbar_discover_os7",
+                                                   CYLTabBarItemSelectedImage : @"tabbar_discover_selected_os7",
+                                                   };
     
     NSDictionary *mineTabBarItemAttributes = @{
                                               CYLTabBarItemTitle : @"我的",
-                                               CYLTabBarItemImage : @"account_normal",
-                                               CYLTabBarItemSelectedImage : @"account_highlight"
+                                               CYLTabBarItemImage : @"tabbar_profile_os7",
+                                               CYLTabBarItemSelectedImage : @"tabbar_profile_selected_os7"
                                                };
     
     NSArray *tabBarItemsAttributes = @[
-                                       discoverTabBarItemAttributes,
                                        followTabBarItemAttributes,
                                        messageTabBarItemAttributes,
+                                       discoverTabBarItemAttributes,
                                        mineTabBarItemAttributes
                                        ];
     return tabBarItemsAttributes;
@@ -118,7 +118,7 @@
 
 - (void)customTabBarAppearance:(CYLTabBarController *)tabBarController
 {
-    tabBarController.tabBarHeight = 40.f;
+    tabBarController.tabBarHeight = 44.f;
     
     // 普通状态下的文字属性
     NSMutableDictionary *normalAttrs = [NSMutableDictionary dictionary];
@@ -126,17 +126,19 @@
     
     // 选中状态下的文字属性
     NSMutableDictionary *selectedAttrs = [NSMutableDictionary dictionary];
-    selectedAttrs[NSForegroundColorAttributeName] = [UIColor blackColor];
+    selectedAttrs[NSForegroundColorAttributeName] = [UIColor darkGrayColor];
     
     // 设置文字属性
     UITabBarItem *tabBar = [UITabBarItem appearance];
     [tabBar setTitleTextAttributes:normalAttrs forState:UIControlStateNormal];
     [tabBar setTitleTextAttributes:selectedAttrs forState:UIControlStateSelected];
     
+    UITabBar *tabBarAppearance = [UITabBar appearance];
+    [tabBarAppearance setBackgroundImage:Image(@"tabbar_background_os7")];
+    
     [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
     [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setShadowImage:Image(@"tapbar_top_line")];
-    
+    [[UITabBar appearance] setShadowImage:Image(@"tabbar_background_os7")];
 }
 
 @end
