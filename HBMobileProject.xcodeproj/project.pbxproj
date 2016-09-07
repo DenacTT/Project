@@ -16,8 +16,8 @@
 		D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58A91D7EF093005D89FA /* MessageViewController.m */; };
 		D13B58AD1D7EF0A1005D89FA /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58AC1D7EF0A1005D89FA /* MineViewController.m */; };
 		D13B58B01D7EF1F3005D89FA /* ConfigTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58AF1D7EF1F3005D89FA /* ConfigTabBarController.m */; };
-		D13B58B91D7F0583005D89FA /* PublishButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58B81D7F0583005D89FA /* PublishButton.m */; };
 		D13B58C11D7FC725005D89FA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58BD1D7FC725005D89FA /* HomeViewController.m */; };
+		D13B58C91D7FCD8A005D89FA /* PublishButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58C81D7FCD8A005D89FA /* PublishButton.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F61D7D10C500C3E647 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F51D7D10C500C3E647 /* ViewController.m */; };
@@ -89,10 +89,10 @@
 		D13B58AC1D7EF0A1005D89FA /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		D13B58AE1D7EF1F3005D89FA /* ConfigTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigTabBarController.h; sourceTree = "<group>"; };
 		D13B58AF1D7EF1F3005D89FA /* ConfigTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigTabBarController.m; sourceTree = "<group>"; };
-		D13B58B71D7F0583005D89FA /* PublishButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishButton.h; sourceTree = "<group>"; };
-		D13B58B81D7F0583005D89FA /* PublishButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishButton.m; sourceTree = "<group>"; };
 		D13B58BC1D7FC725005D89FA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		D13B58BD1D7FC725005D89FA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		D13B58C71D7FCD8A005D89FA /* PublishButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishButton.h; sourceTree = "<group>"; };
+		D13B58C81D7FCD8A005D89FA /* PublishButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishButton.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -233,8 +233,6 @@
 			children = (
 				D13B58AE1D7EF1F3005D89FA /* ConfigTabBarController.h */,
 				D13B58AF1D7EF1F3005D89FA /* ConfigTabBarController.m */,
-				D13B58B71D7F0583005D89FA /* PublishButton.h */,
-				D13B58B81D7F0583005D89FA /* PublishButton.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -310,6 +308,7 @@
 				D13B589C1D7EEF89005D89FA /* Message */,
 				D118536E1D7EC37C00D1EA92 /* Discover */,
 				D1B6D7391D7D11D400C3E647 /* Mine */,
+				D13B58C21D7FCD69005D89FA /* PublishCenter */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -349,6 +348,47 @@
 			sourceTree = "<group>";
 		};
 		D13B58C01D7FC725005D89FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D13B58C21D7FCD69005D89FA /* PublishCenter */ = {
+			isa = PBXGroup;
+			children = (
+				D13B58C71D7FCD8A005D89FA /* PublishButton.h */,
+				D13B58C81D7FCD8A005D89FA /* PublishButton.m */,
+				D13B58C31D7FCD69005D89FA /* Controller */,
+				D13B58C41D7FCD69005D89FA /* Model */,
+				D13B58C51D7FCD69005D89FA /* Other */,
+				D13B58C61D7FCD69005D89FA /* View */,
+			);
+			path = PublishCenter;
+			sourceTree = "<group>";
+		};
+		D13B58C31D7FCD69005D89FA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D13B58C41D7FCD69005D89FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D13B58C51D7FCD69005D89FA /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		D13B58C61D7FCD69005D89FA /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -849,11 +889,11 @@
 				D1B6D7981D7D159600C3E647 /* NSObject+MJKeyValue.m in Sources */,
 				D1B6D7701D7D154700C3E647 /* MASConstraint.m in Sources */,
 				D13B58941D7EEBAA005D89FA /* CYLTabBar.m in Sources */,
+				D13B58C91D7FCD8A005D89FA /* PublishButton.m in Sources */,
 				D1B6D7781D7D154700C3E647 /* ViewController+MASAdditions.m in Sources */,
 				D1B6D7721D7D154700C3E647 /* MASLayoutConstraint.m in Sources */,
 				D1B6D79A1D7D159600C3E647 /* NSString+MJExtension.m in Sources */,
 				D13B58961D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
-				D13B58B91D7F0583005D89FA /* PublishButton.m in Sources */,
 				D1B6D7931D7D159600C3E647 /* MJProperty.m in Sources */,
 				D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */,
 				D1B6D7921D7D159600C3E647 /* MJFoundation.m in Sources */,

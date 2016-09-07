@@ -111,6 +111,8 @@
     UIAlertController *alterController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
     [alterController addAction:[UIAlertAction actionWithTitle:@"拍视频" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"拍视频");
+        
+        
     }]];
     
     [alterController addAction:[UIAlertAction actionWithTitle:@"选照片" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
