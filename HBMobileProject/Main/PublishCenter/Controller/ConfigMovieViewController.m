@@ -18,11 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"配置参数";
     
     UIButton *makeVideoBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     makeVideoBtn.frame = CGRectMake(20, 20, 100, 40);
     makeVideoBtn.center = self.view.center;
-    makeVideoBtn.titleLabel.text = @"拍视频";
+    makeVideoBtn.titleLabel.text = @"录制";
     makeVideoBtn.titleLabel.textColor = [UIColor whiteColor];
     makeVideoBtn.backgroundColor = [UIColor orangeColor];
     [makeVideoBtn addTarget:self action:@selector(makeVideoBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
@@ -36,16 +37,15 @@
     [self.view addSubview:dismissBtn];
 }
 
-- (void)dismissBtnClicked
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)makeVideoBtnClicked
 {
     MakeMovieViewController *vc = [[MakeMovieViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)dismissBtnClicked
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

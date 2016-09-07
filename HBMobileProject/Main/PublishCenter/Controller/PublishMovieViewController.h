@@ -1,5 +1,5 @@
 //
-//  PublishVideoViewController.h
+//  PublishMovieViewController.h
 //  HBMobileProject
 //
 //  Created by HarbingWang on 16/9/7.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PublishVideoViewController : UIViewController
+@interface PublishMovieViewController : UIViewController
 
 @end

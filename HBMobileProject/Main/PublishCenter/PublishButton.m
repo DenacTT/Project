@@ -8,7 +8,7 @@
 
 #import "PublishButton.h"
 #import "CYLTabBarController.h"
-#import "ConfigMovieViewController.h"
+#import "PublishMovieViewController.h"
 
 @interface PublishButton ()<UIActionSheetDelegate>
 {
@@ -112,7 +112,7 @@
     UIAlertController *alterController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
     [alterController addAction:[UIAlertAction actionWithTitle:STR(@"MakeMovie") style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"视频");
-        ConfigMovieViewController *vc = [[ConfigMovieViewController alloc] init];
+        PublishMovieViewController *vc = [[PublishMovieViewController alloc] init];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
         [viewController presentViewController:nav animated:YES completion:nil];
         
