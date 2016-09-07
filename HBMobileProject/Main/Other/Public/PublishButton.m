@@ -9,7 +9,7 @@
 #import "PublishButton.h"
 #import "CYLTabBarController.h"
 
-@interface PublishButton ()
+@interface PublishButton ()<UIActionSheetDelegate>
 {
     CGFloat _buttonImageHeight;
 }
@@ -108,7 +108,21 @@
     CYLTabBarController *tabBarController = [self cyl_tabBarController];
     UIViewController *viewController = tabBarController.selectedViewController;
     
-    NSLog(@"action");
+    UIAlertController *alterController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
+    [alterController addAction:[UIAlertAction actionWithTitle:@"拍视频" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"拍视频");
+    }]];
+    
+    [alterController addAction:[UIAlertAction actionWithTitle:@"选照片" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"照片");
+    }]];
+    [alterController addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+    }]];
+    
+    [viewController presentViewController:alterController animated:YES completion:nil];
 }
+
+
+
 
 @end
