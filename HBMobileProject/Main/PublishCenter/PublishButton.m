@@ -74,10 +74,10 @@
 #pragma mark - createPublishButton
 + (id)plusButton
 {
-    UIImage *buttonImage = [UIImage imageNamed:@"tabbar_compose_button"];
-    UIImage *heightImage = [UIImage imageNamed:@"tabbar_compose_button_highlighted"];
-    UIImage *iconImage = [UIImage imageNamed:@"tabbar_compose_icon_add"];
-    UIImage *heightIconImage = [UIImage imageNamed:@"tabbar_compose_icon_add"];
+    UIImage *buttonImage = Image(@"tabbar_compose_button");
+    UIImage *heightImage = Image(@"tabbar_compose_button_highlighted");
+    UIImage *iconImage = Image(@"tabbar_compose_icon_add");
+    UIImage *heightIconImage = Image(@"tabbar_compose_icon_add");
     
     PublishButton *button = [PublishButton buttonWithType:(UIButtonTypeCustom)];
     button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -112,11 +112,11 @@
     [alterController addAction:[UIAlertAction actionWithTitle:@"拍视频" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"拍视频");
         
-        
     }]];
     
     [alterController addAction:[UIAlertAction actionWithTitle:@"选照片" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"照片");
+        
     }]];
     [alterController addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
     }]];

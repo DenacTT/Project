@@ -93,6 +93,7 @@
 		D13B58BD1D7FC725005D89FA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D13B58C71D7FCD8A005D89FA /* PublishButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishButton.h; sourceTree = "<group>"; };
 		D13B58C81D7FCD8A005D89FA /* PublishButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishButton.m; sourceTree = "<group>"; };
+		D13B58CA1D7FEC74005D89FA /* PchFile.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PchFile.pch; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -634,6 +635,7 @@
 		D1B6D74B1D7D12AB00C3E647 /* Macros */ = {
 			isa = PBXGroup;
 			children = (
+				D13B58CA1D7FEC74005D89FA /* PchFile.pch */,
 				D11853771D7EC6AA00D1EA92 /* CommonMacro.h */,
 			);
 			path = Macros;
@@ -1057,6 +1059,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HBMobileProject/Expand/Macros/PchFile.pch";
 				INFOPLIST_FILE = HBMobileProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.harbingwang.github.io.HBMobileProject;
@@ -1068,6 +1071,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HBMobileProject/Expand/Macros/PchFile.pch";
 				INFOPLIST_FILE = HBMobileProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.harbingwang.github.io.HBMobileProject;

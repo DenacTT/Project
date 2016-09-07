@@ -7,7 +7,7 @@
 //
 
 #import "ConfigTabBarController.h"
-#import "CommonMacro.h"
+//#import "CommonMacro.h"
 
 @import Foundation;
 @import UIKit;
