@@ -26,7 +26,6 @@
     [dismissBtn setTitleColor:[UIColor orangeColor] forState:(UIControlStateNormal)];
     [dismissBtn addTarget:self action:@selector(makeVideoBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:dismissBtn];
-    
 }
 
 - (void)makeVideoBtnClicked
