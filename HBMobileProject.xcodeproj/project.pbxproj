@@ -17,6 +17,7 @@
 		D13B58AD1D7EF0A1005D89FA /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58AC1D7EF0A1005D89FA /* MineViewController.m */; };
 		D13B58B01D7EF1F3005D89FA /* ConfigTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58AF1D7EF1F3005D89FA /* ConfigTabBarController.m */; };
 		D13B58B91D7F0583005D89FA /* PublishButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58B81D7F0583005D89FA /* PublishButton.m */; };
+		D13B58C11D7FC725005D89FA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58BD1D7FC725005D89FA /* HomeViewController.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F61D7D10C500C3E647 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F51D7D10C500C3E647 /* ViewController.m */; };
@@ -90,6 +91,8 @@
 		D13B58AF1D7EF1F3005D89FA /* ConfigTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigTabBarController.m; sourceTree = "<group>"; };
 		D13B58B71D7F0583005D89FA /* PublishButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishButton.h; sourceTree = "<group>"; };
 		D13B58B81D7F0583005D89FA /* PublishButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishButton.m; sourceTree = "<group>"; };
+		D13B58BC1D7FC725005D89FA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		D13B58BD1D7FC725005D89FA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -303,11 +306,53 @@
 		D13B58A11D7EEFC5005D89FA /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				D13B58BA1D7FC725005D89FA /* Home */,
 				D13B589C1D7EEF89005D89FA /* Message */,
 				D118536E1D7EC37C00D1EA92 /* Discover */,
 				D1B6D7391D7D11D400C3E647 /* Mine */,
 			);
 			name = Module;
+			sourceTree = "<group>";
+		};
+		D13B58BA1D7FC725005D89FA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D13B58BB1D7FC725005D89FA /* Controller */,
+				D13B58BE1D7FC725005D89FA /* Model */,
+				D13B58BF1D7FC725005D89FA /* Other */,
+				D13B58C01D7FC725005D89FA /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D13B58BB1D7FC725005D89FA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D13B58BC1D7FC725005D89FA /* HomeViewController.h */,
+				D13B58BD1D7FC725005D89FA /* HomeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D13B58BE1D7FC725005D89FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D13B58BF1D7FC725005D89FA /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		D13B58C01D7FC725005D89FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D1B6D6E21D7D10C400C3E647 = {
@@ -797,6 +842,7 @@
 			files = (
 				D1B6D7711D7D154700C3E647 /* MASConstraintMaker.m in Sources */,
 				D1B6D7911D7D159600C3E647 /* MJExtensionConst.m in Sources */,
+				D13B58C11D7FC725005D89FA /* HomeViewController.m in Sources */,
 				D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */,
 				D1B6D7431D7D11D400C3E647 /* BaseViewController.m in Sources */,
 				D1B6D6F61D7D10C500C3E647 /* ViewController.m in Sources */,

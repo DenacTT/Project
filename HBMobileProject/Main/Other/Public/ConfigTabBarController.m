@@ -29,8 +29,8 @@
 
 #pragma mark - ConfigTabBarController
 
+#import "HomeViewController.h"
 #import "DiscoverViewController.h"
-#import "FollowViewController.h"
 #import "MessageViewController.h"
 #import "MineViewController.h"
 
@@ -60,22 +60,22 @@
 
 - (NSArray *)viewControllers
 {
-    FollowViewController *followViewController = [[FollowViewController alloc] init];
-    UIViewController *followNavigationController = [[BaseNavigationController alloc] initWithRootViewController:followViewController];
-    
-    MessageViewController *messageViewConreoller = [[MessageViewController alloc] init];
-    UIViewController *messageNavigationController = [[BaseNavigationController alloc] initWithRootViewController:messageViewConreoller];
+    HomeViewController *homeViewController = [[HomeViewController alloc] init];
+    UIViewController *homeNavigationController = [[BaseNavigationController alloc] initWithRootViewController:homeViewController];
     
     DiscoverViewController *discoverViewController = [[DiscoverViewController alloc] init];
     UIViewController *discoverNavigationController = [[BaseNavigationController alloc] initWithRootViewController:discoverViewController];
+    
+    MessageViewController *messageViewConreoller = [[MessageViewController alloc] init];
+    UIViewController *messageNavigationController = [[BaseNavigationController alloc] initWithRootViewController:messageViewConreoller];
     
     MineViewController *mineViewController = [[MineViewController alloc] init];
     UIViewController *mineNavigationController = [[BaseNavigationController alloc] initWithRootViewController:mineViewController];
     
     NSArray *viewControllers = @[
-                                 followNavigationController,
-                                 messageNavigationController,
+                                 homeNavigationController,
                                  discoverNavigationController,
+                                 messageNavigationController,
                                  mineNavigationController
                                  ];
     return viewControllers;
@@ -83,23 +83,23 @@
 
 - (NSArray *)tabBarItemsAttributesForController
 {
-    NSDictionary *followTabBarItemAttributes = @{
+    NSDictionary *homeTabBarItemAttributes = @{
                                                  CYLTabBarItemTitle : @"首页",
                                                  CYLTabBarItemImage : @"tabbar_home_os7",
                                                  CYLTabBarItemSelectedImage : @"tabbar_home_selected_os7",
                                                  };
-    
-    NSDictionary *messageTabBarItemAttributes = @{
-                                                 CYLTabBarItemTitle : @"消息",
-                                                  CYLTabBarItemImage : @"tabbar_message_center_os7",
-                                                  CYLTabBarItemSelectedImage : @"tabbar_message_center_selected_os7",
-                                                  };
     
     NSDictionary *discoverTabBarItemAttributes = @{
                                                    CYLTabBarItemTitle : @"发现",
                                                    CYLTabBarItemImage : @"tabbar_discover_os7",
                                                    CYLTabBarItemSelectedImage : @"tabbar_discover_selected_os7",
                                                    };
+    
+    NSDictionary *messageTabBarItemAttributes = @{
+                                                 CYLTabBarItemTitle : @"消息",
+                                                  CYLTabBarItemImage : @"tabbar_message_center_os7",
+                                                  CYLTabBarItemSelectedImage : @"tabbar_message_center_selected_os7",
+                                                  };
     
     NSDictionary *mineTabBarItemAttributes = @{
                                               CYLTabBarItemTitle : @"我的",
@@ -108,9 +108,9 @@
                                                };
     
     NSArray *tabBarItemsAttributes = @[
-                                       followTabBarItemAttributes,
-                                       messageTabBarItemAttributes,
+                                       homeTabBarItemAttributes,
                                        discoverTabBarItemAttributes,
+                                       messageTabBarItemAttributes,
                                        mineTabBarItemAttributes
                                        ];
     return tabBarItemsAttributes;
