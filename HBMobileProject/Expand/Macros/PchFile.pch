@@ -5,11 +5,10 @@
 //  Created by HarbingWang on 16/9/7.
 //  Copyright © 2016年 HarbingWang. All rights reserved.
 //
-//
+
+
 //#ifndef PchFile_pch
 //#define PchFile_pch
-//
-//
 //
 //
 //// Include any system framework and library headers here that should be included in all compilation units.
@@ -17,21 +16,57 @@
 //
 //#endif /* PchFile_pch */
 
-// __OBJC__这个宏,在所有的.m和.mm文件中默认就定义了这个宏
+
+
+/* __OBJC__这个宏,在所有的.m和.mm文件中默认就定义了这个宏 */
+
 #ifdef __OBJC__
 // 如果这个全局的头文件或者宏只需要在.m或者.mm文件中使用,
 // 请把该头文件或宏写到#ifdef __OBJC__ 中
+
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-
-#ifdef DEBUG
+#import <QuartzCore/QuartzCore.h>
 
 #import "CommonMacro.h"
+#import "MJExtension.h"
+//#import "UIViewExt.h"
+//#import "CountIncident.h"
+//#import "XMTools.h"
+//#import "XMUserDefault.h"
+//#import "String.h"
+//#import "MobClick.h"
+//#import "MacroUtils.h"
+//#import "UIConstants.h"
 
 
-#define NJLog(...) NSLog(__VA_ARGS__)
-#else
-#define NJLog(...)
+//#import "AFAppDotNetAPIClient.h" //数据请求
+
+#pragma mark - SQL
+//#import "DBMacro.h"
+#pragma mark - UITool
+//#import "XMUIViewTool.h"
+#pragma mark - 枚举
+//#import "Enum.h"
+#pragma mark - 系统配置
+//#import "SysConfig.h"
+#pragma mark - API
+//#import "API.h"
+
+//环信
+//#import "EMSDK.h"
+//#import "EaseUI.h"
+
+
 #endif
 
-#endif
+
+
+
+
+
+
+
+
+
+
