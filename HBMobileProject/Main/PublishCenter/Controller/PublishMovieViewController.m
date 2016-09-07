@@ -25,8 +25,7 @@
     makeVideoBtn.frame = CGRectMake(20, 20, 100, 40);
     makeVideoBtn.center = self.view.center;
     [makeVideoBtn setTitle:@"录制" forState:(UIControlStateNormal)];
-    [makeVideoBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-    [makeVideoBtn setBackgroundColor:RGB(0, 184, 108)];
+    [makeVideoBtn setTitleColor:[UIColor orangeColor] forState:(UIControlStateNormal)];
     [makeVideoBtn addTarget:self action:@selector(makeVideoBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:makeVideoBtn];
     
@@ -34,16 +33,15 @@
     uploadVideoBtn.frame = CGRectMake(20, 20, 100, 40);
     uploadVideoBtn.center = CGPointMake(self.view.center.x, self.view.center.y + 80);
     [uploadVideoBtn setTitle:@"上传" forState:(UIControlStateNormal)];
-    [uploadVideoBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-    [uploadVideoBtn setBackgroundColor:RGB(0, 184, 108)];
+    [uploadVideoBtn setTitleColor:[UIColor orangeColor] forState:(UIControlStateNormal)];
     [uploadVideoBtn addTarget:self action:@selector(uploadVideoBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:uploadVideoBtn];
     
     UIButton *dismissBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    dismissBtn.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - 40, ScreenWidth, 40);
+    dismissBtn.frame = CGRectMake(20, 20, ScreenWidth, 40);
+    dismissBtn.center = CGPointMake(self.view.center.x, self.view.center.y + 180);
     [dismissBtn setTitle:@"退出" forState:(UIControlStateNormal)];
-    [dismissBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-    dismissBtn.backgroundColor = [UIColor orangeColor];
+    [dismissBtn setTitleColor:[UIColor orangeColor] forState:(UIControlStateNormal)];
     [dismissBtn addTarget:self action:@selector(dismissBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:dismissBtn];
 }

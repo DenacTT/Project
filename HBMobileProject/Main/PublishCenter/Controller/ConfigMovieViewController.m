@@ -20,21 +20,13 @@
     
     self.title = @"配置参数";
     
-    UIButton *makeVideoBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    makeVideoBtn.frame = CGRectMake(20, 20, 100, 40);
-    makeVideoBtn.center = self.view.center;
-    makeVideoBtn.titleLabel.text = @"录制";
-    makeVideoBtn.titleLabel.textColor = [UIColor whiteColor];
-    makeVideoBtn.backgroundColor = [UIColor orangeColor];
-    [makeVideoBtn addTarget:self action:@selector(makeVideoBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:makeVideoBtn];
-    
-    UIButton *dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - 30, ScreenWidth, 30)];
-    dismissBtn.titleLabel.text = @"退出";
-    dismissBtn.titleLabel.textColor = [UIColor whiteColor];
-    dismissBtn.backgroundColor = [UIColor orangeColor];
-    [dismissBtn addTarget:self action:@selector(dismissBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
+    UIButton *dismissBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    dismissBtn.frame = CGRectMake(0, ScreenHeight-80, ScreenWidth, 40);
+    [dismissBtn setTitle:@"录制" forState:(UIControlStateNormal)];
+    [dismissBtn setTitleColor:[UIColor orangeColor] forState:(UIControlStateNormal)];
+    [dismissBtn addTarget:self action:@selector(makeVideoBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:dismissBtn];
+    
 }
 
 - (void)makeVideoBtnClicked
@@ -43,10 +35,6 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)dismissBtnClicked
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
