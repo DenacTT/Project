@@ -110,7 +110,7 @@
 - (void)qupaiSDKShowMoreMusicView:(id<QupaiSDKDelegate>)sdk viewController:(UIViewController *)viewController
 {
     MoreMusicViewController *moreMusicViewController = [[MoreMusicViewController alloc] init];
-    [viewController.navigationController pushViewController:moreMusicViewController animated:YES];
+    [viewController presentViewController:moreMusicViewController animated:YES completion:nil];
     
     _down = YES;
 }
@@ -122,7 +122,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
