@@ -49,11 +49,11 @@
     [qupai setWatermarkPosition:QupaiSDKWatermarkPositionBottomRight];
     
     /* 基础设置 */
-    // 创建录制页面
-    UIViewController *makeMovieController = [qupai createRecordViewControllerWithMinDuration:[_mineDuration.text integerValue] maxDuration:[_maxDuration.text integerValue] bitRate:[_bitRate.text integerValue]];
-    
     // 快速创建录制页面,参数默认
 //    UIViewController *makeMovieController = [qupai createRecordViewController];
+    
+    // 创建录制页面
+    UIViewController *makeMovieController = [qupai createRecordViewControllerWithMinDuration:[_mineDuration.text integerValue] maxDuration:[_maxDuration.text integerValue] bitRate:[_bitRate.text integerValue]];
     
     // 需要以 NavigationController 为父容器
     UINavigationController *makeMovieNavigationController = [[UINavigationController alloc] initWithRootViewController:makeMovieController];
@@ -80,7 +80,6 @@
     if (thumbnailPath) {
         UIImageWriteToSavedPhotosAlbum([UIImage imageWithContentsOfFile:thumbnailPath], nil, nil, nil);
     }
-    
 }
 
 // more music
@@ -88,10 +87,24 @@
 {
     // 获取本地背景音乐
     NSString *configPath = [[NSBundle mainBundle] pathForResource:_down ? @"music2" : @"music1" ofType:@"json"];
+    NSData *configData = [NSData dataWithContentsOfFile:configPath];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:configData options:NSJSONReadingAllowFragments error:nil];
+    NSArray *items = [dic objectForKey:@"music"];
     
+    NSMutableArray *array = [NSMutableArray array];
+    NSString *baseBundle = [[NSBundle mainBundle] bundlePath];
     
-    
-    return nil;
+    for (NSDictionary *item in items) {
+        NSString *path = [baseBundle stringByAppendingPathComponent:[item objectForKey:@"resourceUrl"]];
+        
+        QPEffectMusic *music = [[QPEffectMusic alloc] init];
+        music.name = item[@"name"];
+        music.eid = [item[@"id"] intValue];
+        music.musicName = [path stringByAppendingPathComponent:@"audio.mp3"];
+        music.icon = [path stringByAppendingPathComponent:@"icon.png"];
+        [array addObject:music];
+    }
+    return array;
 }
 
 - (void)qupaiSDKShowMoreMusicView:(id<QupaiSDKDelegate>)sdk viewController:(UIViewController *)viewController
