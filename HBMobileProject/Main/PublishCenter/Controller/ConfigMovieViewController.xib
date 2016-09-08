@@ -221,7 +221,7 @@
                         <rect key="frame" x="205" y="371" width="51" height="31"/>
                     </variation>
                 </switch>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nfg-I3-C5F">
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Nfg-I3-C5F">
                     <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                     <variation key="widthClass=compact" fixedFrame="YES">
                         <rect key="frame" x="205" y="407" width="51" height="31"/>
