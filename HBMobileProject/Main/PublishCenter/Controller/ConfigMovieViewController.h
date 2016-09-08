@@ -10,10 +10,10 @@
 
 @interface ConfigMovieViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *mainDuration;                // 最小时长
+@property (weak, nonatomic) IBOutlet UITextField *mineDuration;                // 最小时长
 @property (weak, nonatomic) IBOutlet UITextField *maxDuration;                 // 最大时长
 @property (weak, nonatomic) IBOutlet UITextField *bitRate;                           // 视频码率
-@property (weak, nonatomic) IBOutlet UITextField *photoQuality;                  // 第一帧图片质量
+@property (weak, nonatomic) IBOutlet UITextField *photoQuality;                  // 首帧图片质量
 
 /* 可选参数 */
 @property (weak, nonatomic) IBOutlet UISwitch *enableWaterMask;            // 是否开启水印

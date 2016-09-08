@@ -17,8 +17,8 @@
                 <outlet property="enableImportVideo" destination="veX-7r-K3c" id="Va1-vy-Xgi"/>
                 <outlet property="enableMoreMusic" destination="1oI-3n-V60" id="Uuf-LS-Koe"/>
                 <outlet property="enableWaterMask" destination="VFc-6n-WzX" id="LeK-LD-6lT"/>
-                <outlet property="mainDuration" destination="IUT-wd-RA2" id="rAa-WL-Qra"/>
                 <outlet property="maxDuration" destination="BTT-xR-kZg" id="f4D-ho-7xt"/>
+                <outlet property="mineDuration" destination="IUT-wd-RA2" id="SFU-Rz-Uwh"/>
                 <outlet property="photoQuality" destination="jHL-Hh-d70" id="fAm-tp-flE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -250,7 +250,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <variation key="widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="187" y="176" width="101" height="30"/>
+                        <rect key="frame" x="190" y="176" width="101" height="30"/>
                     </variation>
                 </textField>
             </subviews>
