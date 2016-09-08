@@ -47,11 +47,6 @@
     [self.view addSubview:dismissBtn];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.navigationController.navigationBarHidden = YES;
-}
-
 //录制
 - (void)makeVideoBtnClicked
 {
