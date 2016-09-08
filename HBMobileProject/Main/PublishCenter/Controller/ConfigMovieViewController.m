@@ -20,12 +20,12 @@
     
     self.title = @"配置参数";
     
-    UIButton *dismissBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    dismissBtn.frame = CGRectMake(0, ScreenHeight-80, ScreenWidth, 40);
-    [dismissBtn setTitle:@"录制" forState:(UIControlStateNormal)];
-    [dismissBtn setTitleColor:[UIColor orangeColor] forState:(UIControlStateNormal)];
-    [dismissBtn addTarget:self action:@selector(makeVideoBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:dismissBtn];
+//    UIButton *dismissBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+//    dismissBtn.frame = CGRectMake(0, ScreenHeight-80, ScreenWidth, 40);
+//    [dismissBtn setTitle:@"录制" forState:(UIControlStateNormal)];
+//    [dismissBtn setTitleColor:[UIColor orangeColor] forState:(UIControlStateNormal)];
+//    [dismissBtn addTarget:self action:@selector(makeVideoBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
+//    [self.view addSubview:dismissBtn];
 }
 
 - (void)makeVideoBtnClicked

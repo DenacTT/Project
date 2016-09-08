@@ -12,11 +12,312 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwf-vd-uAQ">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <color key="backgroundColor" white="0.87202878326377609" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="tYo-dv-bQ3"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="开始录制"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="tYo-dv-bQ3"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="tYo-dv-bQ3"/>
+                        </mask>
+                    </variation>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最小时长" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNe-aG-jTU">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="71" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最大时长" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-hr-A0Q">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="106" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="码       率" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6x-c8-KHe">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="140" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图片质量" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7v-ya-k3c">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="175" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加水印" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gw-1Y-JeX">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="214" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更多音乐" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Y4-bN-lLJ">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="253" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剪辑视频" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhQ-tw-vg6">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="292" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="导入功能" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaF-ne-UKu">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="331" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="美颜功能" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4w-cs-vsZ">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="370" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="前置摄像" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ED-Ij-9pU">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="406" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbQ-Xf-W2o">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="446" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMv-Fe-ppK">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="479" width="84" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8y-PL-Kmw">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="83" y="512" width="84" height="21"/>
+                    </variation>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" placeholder="最小时长" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IUT-wd-RA2">
+                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="190" y="67" width="101" height="30"/>
+                    </variation>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" placeholder="最大时长" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BTT-xR-kZg">
+                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="190" y="102" width="101" height="30"/>
+                    </variation>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2000000" borderStyle="roundedRect" placeholder="码       率" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="otj-dy-m4i">
+                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="190" y="136" width="101" height="30"/>
+                    </variation>
+                </textField>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VFc-6n-WzX">
+                    <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="205" y="209" width="51" height="31"/>
+                    </variation>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oI-3n-V60">
+                    <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="205" y="248" width="51" height="31"/>
+                    </variation>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bYM-Dk-kVz">
+                    <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="205" y="287" width="51" height="31"/>
+                    </variation>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="veX-7r-K3c">
+                    <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="205" y="326" width="51" height="31"/>
+                    </variation>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tZY-b1-nZG">
+                    <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="205" y="365" width="51" height="31"/>
+                    </variation>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nfg-I3-C5F">
+                    <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="205" y="401" width="51" height="31"/>
+                    </variation>
+                </switch>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="tNe-eq-nrh">
+                    <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="188" y="440" width="105" height="31"/>
+                    </variation>
+                </slider>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dKM-Fg-W5h">
+                    <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="188" y="473" width="105" height="31"/>
+                    </variation>
+                </slider>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8se-PK-LQr">
+                    <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="188" y="506" width="105" height="31"/>
+                    </variation>
+                </slider>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.5" borderStyle="roundedRect" placeholder="码       率" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jHL-Hh-d70">
+                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="187" y="170" width="101" height="30"/>
+                    </variation>
+                </textField>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="dwf-vd-uAQ" secondAttribute="bottom" constant="28" id="4Y4-jC-W8J"/>
+                <constraint firstAttribute="trailing" secondItem="dwf-vd-uAQ" secondAttribute="trailing" id="Fl0-I5-H4O"/>
+                <constraint firstItem="dwf-vd-uAQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xal-ed-bbH"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="219" y="807"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="dwf-vd-uAQ"/>
+                    <exclude reference="fNe-aG-jTU"/>
+                    <exclude reference="2lt-hr-A0Q"/>
+                    <exclude reference="c6x-c8-KHe"/>
+                    <exclude reference="V7v-ya-k3c"/>
+                    <exclude reference="5Gw-1Y-JeX"/>
+                    <exclude reference="1Y4-bN-lLJ"/>
+                    <exclude reference="XhQ-tw-vg6"/>
+                    <exclude reference="eaF-ne-UKu"/>
+                    <exclude reference="U4w-cs-vsZ"/>
+                    <exclude reference="2ED-Ij-9pU"/>
+                    <exclude reference="BbQ-Xf-W2o"/>
+                    <exclude reference="uMv-Fe-ppK"/>
+                    <exclude reference="h8y-PL-Kmw"/>
+                    <exclude reference="IUT-wd-RA2"/>
+                    <exclude reference="BTT-xR-kZg"/>
+                    <exclude reference="otj-dy-m4i"/>
+                    <exclude reference="VFc-6n-WzX"/>
+                    <exclude reference="1oI-3n-V60"/>
+                    <exclude reference="bYM-Dk-kVz"/>
+                    <exclude reference="veX-7r-K3c"/>
+                    <exclude reference="tZY-b1-nZG"/>
+                    <exclude reference="Nfg-I3-C5F"/>
+                    <exclude reference="tNe-eq-nrh"/>
+                    <exclude reference="dKM-Fg-W5h"/>
+                    <exclude reference="8se-PK-LQr"/>
+                    <exclude reference="jHL-Hh-d70"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="4Y4-jC-W8J"/>
+                    <exclude reference="Fl0-I5-H4O"/>
+                    <exclude reference="xal-ed-bbH"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=compact">
+                <mask key="subviews">
+                    <include reference="dwf-vd-uAQ"/>
+                    <include reference="fNe-aG-jTU"/>
+                    <include reference="2lt-hr-A0Q"/>
+                    <include reference="c6x-c8-KHe"/>
+                    <include reference="V7v-ya-k3c"/>
+                    <include reference="5Gw-1Y-JeX"/>
+                    <include reference="1Y4-bN-lLJ"/>
+                    <include reference="XhQ-tw-vg6"/>
+                    <include reference="eaF-ne-UKu"/>
+                    <include reference="U4w-cs-vsZ"/>
+                    <include reference="2ED-Ij-9pU"/>
+                    <include reference="BbQ-Xf-W2o"/>
+                    <include reference="uMv-Fe-ppK"/>
+                    <include reference="h8y-PL-Kmw"/>
+                    <include reference="IUT-wd-RA2"/>
+                    <include reference="BTT-xR-kZg"/>
+                    <include reference="otj-dy-m4i"/>
+                    <include reference="VFc-6n-WzX"/>
+                    <include reference="1oI-3n-V60"/>
+                    <include reference="bYM-Dk-kVz"/>
+                    <include reference="veX-7r-K3c"/>
+                    <include reference="tZY-b1-nZG"/>
+                    <include reference="Nfg-I3-C5F"/>
+                    <include reference="tNe-eq-nrh"/>
+                    <include reference="dKM-Fg-W5h"/>
+                    <include reference="8se-PK-LQr"/>
+                    <include reference="jHL-Hh-d70"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="4Y4-jC-W8J"/>
+                    <include reference="Fl0-I5-H4O"/>
+                    <include reference="xal-ed-bbH"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="158.5" y="738.5"/>
         </view>
     </objects>
 </document>

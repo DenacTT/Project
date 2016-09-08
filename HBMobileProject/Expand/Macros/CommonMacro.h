@@ -15,17 +15,17 @@
 // MainScreen bounds
 #define Main_Screen_Bounds [[UIScreen mainScreen] bounds]
 
-//获取设备的宽高
+// 获取设备的宽高
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 
 // String字符串
 #define STR(key) NSLocalizedString(key, nil)
 
-//字体
+// 字体
 #define Font(fontSize) [UIFont systemFontOfSize:fontSize]
 
-//图片
+// 图片
 #define Image(imageName) [UIImage imageNamed:imageName]
 
 // Color

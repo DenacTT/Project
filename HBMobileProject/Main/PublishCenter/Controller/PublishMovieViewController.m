@@ -9,6 +9,7 @@
 #import "PublishMovieViewController.h"
 #import "ConfigMovieViewController.h"
 #import "UploadMovieViewController.h"
+#import <QPSDK/QPSDK.h>
 
 @interface PublishMovieViewController ()
 
@@ -46,36 +47,45 @@
     [self.view addSubview:dismissBtn];
 }
 
+//录制
+- (void)makeVideoBtnClicked
+{
+    [self checkAuth];
+    
+    ConfigMovieViewController *configMovieViewController = [[ConfigMovieViewController alloc] initWithNibName:@"ConfigMovieViewController" bundle:nil];
+    [self.navigationController pushViewController:configMovieViewController animated:YES];
+}
+
+//上传
+- (void)uploadVideoBtnClicked
+{
+    [self checkAuth];
+    
+    UploadMovieViewController *uploadViewController = [[UploadMovieViewController alloc] init];
+    [self.navigationController pushViewController:uploadViewController animated:YES];
+}
+
+//退出页面
 - (void)dismissBtnClicked
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)makeVideoBtnClicked
+- (void)checkAuth
 {
-    ConfigMovieViewController *configVideoViewController = [[ConfigMovieViewController alloc] init];
-    [self.navigationController pushViewController:configVideoViewController animated:YES];
-}
-
-- (void)uploadVideoBtnClicked
-{
-    UploadMovieViewController *uploadViewController = [[UploadMovieViewController alloc] init];
-    [self.navigationController pushViewController:uploadViewController animated:YES];
+    [[QPAuth shared] registerAppWithKey:kQPAppKey secret:kQPAppSecret space:kQPSpace success:^(NSString *accessToken) {
+       
+        [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:UserDefaultAccessToken];
+        NSLog(@"验证成功");
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"验证失败");
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
