@@ -7,6 +7,7 @@
 //
 
 #import "MoreMusicViewController.h"
+#import <QPSDK/QPSDK.h>
 
 @interface MoreMusicViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -18,8 +19,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    //更新背景音乐的状态
-    
+     // 更多音乐有了更新,比如新下载了音乐
+    QupaiSDK *qupai = [[QupaiSDK alloc] init];
+    [qupai updateMoreMusic];
 }
 
 #pragma mark - UITableViewDataSource

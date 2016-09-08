@@ -66,7 +66,7 @@
 
 + (BOOL)string:(NSString *)string containsString:(NSString *)anotherString
 {
-    if ([string isBlankString] || [anotherString isBlankString])
+    if ([String isBlankString:string] || [String isBlankString:anotherString])
     {
         return NO;
     }
