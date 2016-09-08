@@ -119,7 +119,6 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 //触摸屏幕回收键盘
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
