@@ -7,7 +7,7 @@
 //
 
 #import "ConfigMovieViewController.h"
-#import "MakeMovieViewController.h"
+#import "MoreMusicViewController.h"
 #import <QPSDK/QPSDK.h>
 
 @interface ConfigMovieViewController ()
@@ -109,7 +109,10 @@
 
 - (void)qupaiSDKShowMoreMusicView:(id<QupaiSDKDelegate>)sdk viewController:(UIViewController *)viewController
 {
+    MoreMusicViewController *moreMusicViewController = [[MoreMusicViewController alloc] init];
+    [viewController.navigationController pushViewController:moreMusicViewController animated:YES];
     
+    _down = YES;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
