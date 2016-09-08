@@ -86,23 +86,22 @@
 - (NSArray *)qupaiSDKMusics:(id<QupaiSDKDelegate>)sdk
 {
     // 获取本地背景音乐
+    NSString *baseDir = [[NSBundle mainBundle] bundlePath];
+    
     NSString *configPath = [[NSBundle mainBundle] pathForResource:_down ? @"music2" : @"music1" ofType:@"json"];
     NSData *configData = [NSData dataWithContentsOfFile:configPath];
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:configData options:NSJSONReadingAllowFragments error:nil];
-    NSArray *items = [dic objectForKey:@"music"];
+    NSArray *items = dic[@"music"];
     
     NSMutableArray *array = [NSMutableArray array];
-    NSString *baseBundle = [[NSBundle mainBundle] bundlePath];
-    
     for (NSDictionary *item in items) {
-        NSString *path = [baseBundle stringByAppendingPathComponent:[item objectForKey:@"resourceUrl"]];
-        
-        QPEffectMusic *music = [[QPEffectMusic alloc] init];
-        music.name = item[@"name"];
-        music.eid = [item[@"id"] intValue];
-        music.musicName = [path stringByAppendingPathComponent:@"audio.mp3"];
-        music.icon = [path stringByAppendingPathComponent:@"icon.png"];
-        [array addObject:music];
+        NSString *path = [baseDir stringByAppendingPathComponent:item[@"resourceUrl"]];
+        QPEffectMusic *effect = [[QPEffectMusic alloc] init];
+        effect.name = item[@"name"];
+        effect.eid = [item[@"id"] intValue];
+        effect.musicName = [path stringByAppendingPathComponent:@"audio.mp3"];
+        effect.icon = [path stringByAppendingPathComponent:@"icon.png"];
+        [array addObject:effect];
     }
     return array;
 }
