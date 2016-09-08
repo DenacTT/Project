@@ -11,7 +11,9 @@
 #import <QPSDK/QPSDK.h>
 
 @interface ConfigMovieViewController ()
-
+{
+    BOOL _down;
+}
 @end
 
 @implementation ConfigMovieViewController
@@ -65,11 +67,30 @@
  */
 - (void)qupaiSDK:(id<QupaiSDKDelegate>)sdk compeleteVideoPath:(NSString *)videoPath thumbnailPath:(NSString *)thumbnailPath
 {
-
+    NSLog(@"视频保存路径: %@", videoPath);
+    // 推出控制器
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // 保存视频到相册
+    if (videoPath) {
+        UISaveVideoAtPathToSavedPhotosAlbum(videoPath, nil, nil, nil);
+    }
+    
+    // 保存首帧图片到相册
+    if (thumbnailPath) {
+        UIImageWriteToSavedPhotosAlbum([UIImage imageWithContentsOfFile:thumbnailPath], nil, nil, nil);
+    }
+    
 }
 
+// more music
 - (NSArray *)qupaiSDKMusics:(id<QupaiSDKDelegate>)sdk
 {
+    // 获取本地背景音乐
+    NSString *configPath = [[NSBundle mainBundle] pathForResource:_down ? @"music2" : @"music1" ofType:@"json"];
+    
+    
+    
     return nil;
 }
 

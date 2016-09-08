@@ -29,6 +29,12 @@
 		D13B58F21D8100F3005D89FA /* QPSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B58F01D8100F3005D89FA /* QPSDK.framework */; };
 		D13B58F61D8107D8005D89FA /* UserDefaultKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58F51D8107D8005D89FA /* UserDefaultKeys.m */; };
 		D13B58FC1D814485005D89FA /* watermask.png in Resources */ = {isa = PBXBuildFile; fileRef = D13B58FB1D814485005D89FA /* watermask.png */; };
+		D13B59061D814FC7005D89FA /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D13B58FF1D814FC7005D89FA /* audio.mp3 */; };
+		D13B59071D814FC7005D89FA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D13B59001D814FC7005D89FA /* icon.png */; };
+		D13B59081D814FC7005D89FA /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D13B59021D814FC7005D89FA /* audio.mp3 */; };
+		D13B59091D814FC7005D89FA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D13B59031D814FC7005D89FA /* icon.png */; };
+		D13B590A1D814FC7005D89FA /* music1.json in Resources */ = {isa = PBXBuildFile; fileRef = D13B59041D814FC7005D89FA /* music1.json */; };
+		D13B590B1D814FC7005D89FA /* music2.json in Resources */ = {isa = PBXBuildFile; fileRef = D13B59051D814FC7005D89FA /* music2.json */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -122,6 +128,12 @@
 		D13B58F51D8107D8005D89FA /* UserDefaultKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultKeys.m; sourceTree = "<group>"; };
 		D13B58F71D8107FA005D89FA /* API.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		D13B58FB1D814485005D89FA /* watermask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watermask.png; sourceTree = "<group>"; };
+		D13B58FF1D814FC7005D89FA /* audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio.mp3; sourceTree = "<group>"; };
+		D13B59001D814FC7005D89FA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		D13B59021D814FC7005D89FA /* audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio.mp3; sourceTree = "<group>"; };
+		D13B59031D814FC7005D89FA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		D13B59041D814FC7005D89FA /* music1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = music1.json; sourceTree = "<group>"; };
+		D13B59051D814FC7005D89FA /* music2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = music2.json; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -448,6 +460,35 @@
 			name = Qupai;
 			sourceTree = "<group>";
 		};
+		D13B58FD1D814FC7005D89FA /* music */ = {
+			isa = PBXGroup;
+			children = (
+				D13B58FE1D814FC7005D89FA /* Athena */,
+				D13B59011D814FC7005D89FA /* Box Clever */,
+				D13B59041D814FC7005D89FA /* music1.json */,
+				D13B59051D814FC7005D89FA /* music2.json */,
+			);
+			path = music;
+			sourceTree = "<group>";
+		};
+		D13B58FE1D814FC7005D89FA /* Athena */ = {
+			isa = PBXGroup;
+			children = (
+				D13B58FF1D814FC7005D89FA /* audio.mp3 */,
+				D13B59001D814FC7005D89FA /* icon.png */,
+			);
+			path = Athena;
+			sourceTree = "<group>";
+		};
+		D13B59011D814FC7005D89FA /* Box Clever */ = {
+			isa = PBXGroup;
+			children = (
+				D13B59021D814FC7005D89FA /* audio.mp3 */,
+				D13B59031D814FC7005D89FA /* icon.png */,
+			);
+			path = "Box Clever";
+			sourceTree = "<group>";
+		};
 		D1B6D6E21D7D10C400C3E647 = {
 			isa = PBXGroup;
 			children = (
@@ -725,6 +766,7 @@
 		D1B6D74F1D7D132600C3E647 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D13B58FD1D814FC7005D89FA /* music */,
 				D1B6D7501D7D132600C3E647 /* Images */,
 				D1B6D7521D7D132600C3E647 /* Plist */,
 			);
@@ -911,13 +953,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D13B590A1D814FC7005D89FA /* music1.json in Resources */,
+				D13B59081D814FC7005D89FA /* audio.mp3 in Resources */,
 				D13B58D81D7FFA6F005D89FA /* Localizable.strings in Resources */,
 				D1B6D6FE1D7D10C500C3E647 /* LaunchScreen.storyboard in Resources */,
 				D1B6D6FB1D7D10C500C3E647 /* Assets.xcassets in Resources */,
 				D13B58F11D8100F3005D89FA /* QPSDK.bundle in Resources */,
+				D13B59061D814FC7005D89FA /* audio.mp3 in Resources */,
 				D13B58E81D800B53005D89FA /* ConfigMovieViewController.xib in Resources */,
+				D13B59071D814FC7005D89FA /* icon.png in Resources */,
+				D13B59091D814FC7005D89FA /* icon.png in Resources */,
 				D1B6D7901D7D159600C3E647 /* Info.plist in Resources */,
 				D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */,
+				D13B590B1D814FC7005D89FA /* music2.json in Resources */,
 				D13B58FC1D814485005D89FA /* watermask.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
