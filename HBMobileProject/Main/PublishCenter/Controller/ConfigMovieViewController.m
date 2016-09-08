@@ -8,6 +8,7 @@
 
 #import "ConfigMovieViewController.h"
 #import "MakeMovieViewController.h"
+#import <QPSDK/QPSDK.h>
 
 @interface ConfigMovieViewController ()
 
@@ -18,36 +19,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"配置参数";
+    self.title = @"配置";
     
-//    UIButton *dismissBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-//    dismissBtn.frame = CGRectMake(0, ScreenHeight-80, ScreenWidth, 40);
-//    [dismissBtn setTitle:@"录制" forState:(UIControlStateNormal)];
-//    [dismissBtn setTitleColor:[UIColor orangeColor] forState:(UIControlStateNormal)];
-//    [dismissBtn addTarget:self action:@selector(makeVideoBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
-//    [self.view addSubview:dismissBtn];
 }
 
-- (void)makeVideoBtnClicked
+- (IBAction)startMakeMovie:(id)sender
 {
+    QupaiSDK *qupai = [QupaiSDK shared];
+    [qupai setDelegte:(id<QupaiSDKDelegate>)self];
+    
+    /* 基础设置 */
+    [qupai setEnableWatermark:_enableWaterMask.on];
+    [qupai setEnableMoreMusic:_enableMoreMusic.on];
+    [qupai setEnableVideoEffect:_enableEditVideo.on];
+    [qupai setEnableImport:_enableImportVideo.on];
+    [qupai setEnableBeauty:_enableBeautyFunction.on];
+
+    /* 前后置摄像头 */
+    [qupai setCameraPosition:_enableFrontCamera.on ? QupaiSDKCameraPositionFront : QupaiSDKCameraPositionBack];
+    /* TintColor */
+    [qupai setTintColor:RGB(_colorR.value, _colorG.value, _colorB.value)];
+    /* 第一帧图片质量 */
+    [qupai setThumbnailCompressionQuality:[_photoQuality.text floatValue]];
+    
+    /* 设置水印 */
+    [qupai setWatermarkImage:_enableBeautyFunction.on ? Image(@"watermask") : nil];
+    
     MakeMovieViewController *vc = [[MakeMovieViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
 }
+
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
