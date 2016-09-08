@@ -125,7 +125,6 @@
     [alterController addAction:[UIAlertAction actionWithTitle:STR(@"BtnTitle_Cancle") style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
     }]];
     
-    viewController.hidesBottomBarWhenPushed = YES;
     [viewController presentViewController:alterController animated:YES completion:nil];
 }
 

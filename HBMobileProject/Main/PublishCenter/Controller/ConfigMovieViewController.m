@@ -114,9 +114,12 @@
     _down = YES;
 }
 
+//触摸屏幕回收键盘
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self.view becomeFirstResponder];
+    for (UIView *view in self.view.subviews) {
+        [view resignFirstResponder];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
