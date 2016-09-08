@@ -32,6 +32,14 @@
 		D13B591B1D816863005D89FA /* String.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59141D816863005D89FA /* String.m */; };
 		D13B591C1D816863005D89FA /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59171D816863005D89FA /* UIImage+RoundedCorner.m */; };
 		D13B591D1D816863005D89FA /* UIView+Gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B591A1D816863005D89FA /* UIView+Gesture.m */; };
+		D13B592D1D81A305005D89FA /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D13B59241D81A305005D89FA /* audio.mp3 */; };
+		D13B592E1D81A305005D89FA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D13B59251D81A305005D89FA /* icon.png */; };
+		D13B592F1D81A305005D89FA /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D13B59271D81A305005D89FA /* audio.mp3 */; };
+		D13B59301D81A305005D89FA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D13B59281D81A305005D89FA /* icon.png */; };
+		D13B59311D81A305005D89FA /* music1.json in Resources */ = {isa = PBXBuildFile; fileRef = D13B59291D81A305005D89FA /* music1.json */; };
+		D13B59321D81A305005D89FA /* music2.json in Resources */ = {isa = PBXBuildFile; fileRef = D13B592A1D81A305005D89FA /* music2.json */; };
+		D13B59331D81A305005D89FA /* music1.json in Resources */ = {isa = PBXBuildFile; fileRef = D13B592B1D81A305005D89FA /* music1.json */; };
+		D13B59341D81A305005D89FA /* music2.json in Resources */ = {isa = PBXBuildFile; fileRef = D13B592C1D81A305005D89FA /* music2.json */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -131,6 +139,14 @@
 		D13B59171D816863005D89FA /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		D13B59191D816863005D89FA /* UIView+Gesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Gesture.h"; sourceTree = "<group>"; };
 		D13B591A1D816863005D89FA /* UIView+Gesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Gesture.m"; sourceTree = "<group>"; };
+		D13B59241D81A305005D89FA /* audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio.mp3; sourceTree = "<group>"; };
+		D13B59251D81A305005D89FA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		D13B59271D81A305005D89FA /* audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio.mp3; sourceTree = "<group>"; };
+		D13B59281D81A305005D89FA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		D13B59291D81A305005D89FA /* music1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = music1.json; sourceTree = "<group>"; };
+		D13B592A1D81A305005D89FA /* music2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = music2.json; sourceTree = "<group>"; };
+		D13B592B1D81A305005D89FA /* music1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = music1.json; sourceTree = "<group>"; };
+		D13B592C1D81A305005D89FA /* music2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = music2.json; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -484,6 +500,35 @@
 			path = UIViewCategory;
 			sourceTree = "<group>";
 		};
+		D13B59221D81A305005D89FA /* music */ = {
+			isa = PBXGroup;
+			children = (
+				D13B59231D81A305005D89FA /* Athena */,
+				D13B59261D81A305005D89FA /* Box Clever */,
+				D13B59291D81A305005D89FA /* music1.json */,
+				D13B592A1D81A305005D89FA /* music2.json */,
+			);
+			path = music;
+			sourceTree = "<group>";
+		};
+		D13B59231D81A305005D89FA /* Athena */ = {
+			isa = PBXGroup;
+			children = (
+				D13B59241D81A305005D89FA /* audio.mp3 */,
+				D13B59251D81A305005D89FA /* icon.png */,
+			);
+			path = Athena;
+			sourceTree = "<group>";
+		};
+		D13B59261D81A305005D89FA /* Box Clever */ = {
+			isa = PBXGroup;
+			children = (
+				D13B59271D81A305005D89FA /* audio.mp3 */,
+				D13B59281D81A305005D89FA /* icon.png */,
+			);
+			path = "Box Clever";
+			sourceTree = "<group>";
+		};
 		D1B6D6E21D7D10C400C3E647 = {
 			isa = PBXGroup;
 			children = (
@@ -764,6 +809,9 @@
 		D1B6D74F1D7D132600C3E647 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D13B59221D81A305005D89FA /* music */,
+				D13B592B1D81A305005D89FA /* music1.json */,
+				D13B592C1D81A305005D89FA /* music2.json */,
 				D1B6D7501D7D132600C3E647 /* Images */,
 				D1B6D7521D7D132600C3E647 /* Plist */,
 			);
@@ -951,13 +999,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D13B59311D81A305005D89FA /* music1.json in Resources */,
+				D13B592F1D81A305005D89FA /* audio.mp3 in Resources */,
 				D13B58D81D7FFA6F005D89FA /* Localizable.strings in Resources */,
 				D1B6D6FE1D7D10C500C3E647 /* LaunchScreen.storyboard in Resources */,
 				D1B6D6FB1D7D10C500C3E647 /* Assets.xcassets in Resources */,
 				D13B58F11D8100F3005D89FA /* QPSDK.bundle in Resources */,
+				D13B59341D81A305005D89FA /* music2.json in Resources */,
+				D13B592D1D81A305005D89FA /* audio.mp3 in Resources */,
 				D13B58E81D800B53005D89FA /* ConfigMovieViewController.xib in Resources */,
+				D13B592E1D81A305005D89FA /* icon.png in Resources */,
+				D13B59301D81A305005D89FA /* icon.png in Resources */,
 				D1B6D7901D7D159600C3E647 /* Info.plist in Resources */,
+				D13B59331D81A305005D89FA /* music1.json in Resources */,
 				D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */,
+				D13B59321D81A305005D89FA /* music2.json in Resources */,
 				D13B58FC1D814485005D89FA /* watermask.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
