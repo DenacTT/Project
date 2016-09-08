@@ -25,6 +25,8 @@
 		D13B58E71D800B53005D89FA /* ConfigMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58E51D800B53005D89FA /* ConfigMovieViewController.m */; };
 		D13B58E81D800B53005D89FA /* ConfigMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D13B58E61D800B53005D89FA /* ConfigMovieViewController.xib */; };
 		D13B58EB1D801985005D89FA /* UploadMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58EA1D801985005D89FA /* UploadMovieViewController.m */; };
+		D13B58F11D8100F3005D89FA /* QPSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D13B58EF1D8100F3005D89FA /* QPSDK.bundle */; };
+		D13B58F21D8100F3005D89FA /* QPSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B58F01D8100F3005D89FA /* QPSDK.framework */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -111,6 +113,8 @@
 		D13B58E61D800B53005D89FA /* ConfigMovieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigMovieViewController.xib; sourceTree = "<group>"; };
 		D13B58E91D801985005D89FA /* UploadMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadMovieViewController.h; sourceTree = "<group>"; };
 		D13B58EA1D801985005D89FA /* UploadMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadMovieViewController.m; sourceTree = "<group>"; };
+		D13B58EF1D8100F3005D89FA /* QPSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QPSDK.bundle; sourceTree = "<group>"; };
+		D13B58F01D8100F3005D89FA /* QPSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QPSDK.framework; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D13B58F21D8100F3005D89FA /* QPSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +422,15 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D13B58EE1D8100D9005D89FA /* QPSDK */ = {
+			isa = PBXGroup;
+			children = (
+				D13B58F01D8100F3005D89FA /* QPSDK.framework */,
+				D13B58EF1D8100F3005D89FA /* QPSDK.bundle */,
+			);
+			name = QPSDK;
 			sourceTree = "<group>";
 		};
 		D1B6D6E21D7D10C400C3E647 = {
@@ -681,6 +695,7 @@
 		D1B6D74E1D7D130700C3E647 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				D13B58EE1D8100D9005D89FA /* QPSDK */,
 				D13B58891D7EEBAA005D89FA /* CYLTabBarController */,
 				D1B6D7791D7D159600C3E647 /* MJExtension */,
 				D1B6D7551D7D154700C3E647 /* Masonry */,
@@ -879,6 +894,7 @@
 				D13B58D81D7FFA6F005D89FA /* Localizable.strings in Resources */,
 				D1B6D6FE1D7D10C500C3E647 /* LaunchScreen.storyboard in Resources */,
 				D1B6D6FB1D7D10C500C3E647 /* Assets.xcassets in Resources */,
+				D13B58F11D8100F3005D89FA /* QPSDK.bundle in Resources */,
 				D13B58E81D800B53005D89FA /* ConfigMovieViewController.xib in Resources */,
 				D1B6D7901D7D159600C3E647 /* Info.plist in Resources */,
 				D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */,
@@ -1095,9 +1111,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HBMobileProject/Vender",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBMobileProject/Expand/Macros/PchFile.pch";
 				INFOPLIST_FILE = HBMobileProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.harbingwang.github.io.HBMobileProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1107,9 +1128,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HBMobileProject/Vender",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBMobileProject/Expand/Macros/PchFile.pch";
 				INFOPLIST_FILE = HBMobileProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.harbingwang.github.io.HBMobileProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

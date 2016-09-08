@@ -10,6 +10,8 @@
 #import "LogInViewController.h"
 #import "ConfigTabBarController.h"
 
+#import <QPSDK/QPSDK.h>
+
 @interface AppDelegate ()
 
 @end
@@ -23,6 +25,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self setupLoginViewController];
     [self setupNavigationBarAppearance];
+    
     return YES;
 }
 
