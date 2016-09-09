@@ -1,15 +1,13 @@
 //
-//  UIImage+Categories.m
+//  StatusBarHUD.h
 //  HBMobileProject
 //
 //  Created by HarbingWang on 16/9/9.
 //  Copyright © 2016年 HarbingWang. All rights reserved.
 //
 
-#import "UIImage+Categories.h"
+#import <Foundation/Foundation.h>
 
-@implementation UIImage (Categories)
-
-
+@interface StatusBarHUD : NSObject
 
 @end

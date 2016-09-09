@@ -43,6 +43,7 @@
 		D13B59521D82DC31005D89FA /* CustomTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59511D82DC31005D89FA /* CustomTipsView.m */; };
 		D13B59561D82DD61005D89FA /* NSString+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59551D82DD61005D89FA /* NSString+Extend.m */; };
 		D13B5A5D1D82F602005D89FA /* LoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A5C1D82F602005D89FA /* LoopProgressView.m */; };
+		D13B5A601D82F901005D89FA /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A5F1D82F901005D89FA /* StatusBarHUD.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -161,6 +162,8 @@
 		D13B59551D82DD61005D89FA /* NSString+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extend.m"; sourceTree = "<group>"; };
 		D13B5A5B1D82F602005D89FA /* LoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopProgressView.h; sourceTree = "<group>"; };
 		D13B5A5C1D82F602005D89FA /* LoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopProgressView.m; sourceTree = "<group>"; };
+		D13B5A5E1D82F901005D89FA /* StatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarHUD.h; sourceTree = "<group>"; };
+		D13B5A5F1D82F901005D89FA /* StatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarHUD.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -771,6 +774,8 @@
 				D13B59511D82DC31005D89FA /* CustomTipsView.m */,
 				D13B5A5B1D82F602005D89FA /* LoopProgressView.h */,
 				D13B5A5C1D82F602005D89FA /* LoopProgressView.m */,
+				D13B5A5E1D82F901005D89FA /* StatusBarHUD.h */,
+				D13B5A5F1D82F901005D89FA /* StatusBarHUD.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1021,6 +1026,7 @@
 				D13B58E71D800B53005D89FA /* ConfigMovieViewController.m in Sources */,
 				D13B591D1D816863005D89FA /* UIView+Gesture.m in Sources */,
 				D13B5A5D1D82F602005D89FA /* LoopProgressView.m in Sources */,
+				D13B5A601D82F901005D89FA /* StatusBarHUD.m in Sources */,
 				D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */,
 				D1B6D7431D7D11D400C3E647 /* BaseViewController.m in Sources */,
 				D13B59521D82DC31005D89FA /* CustomTipsView.m in Sources */,
