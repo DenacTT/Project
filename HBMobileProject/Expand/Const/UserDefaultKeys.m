@@ -10,6 +10,6 @@
 
 @implementation UserDefaultKeys
 
-NSString * const UserDefaultAccessToken = @"accessToken"; //趣拍
-
 @end
+
+NSString * const UserDefaultAccessToken = @"accessToken"; //趣拍
