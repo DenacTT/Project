@@ -8,11 +8,105 @@
 
 #import "CustomTipsView.h"
 
+@interface CustomTipsView ()
+
+@property (nonatomic, strong) UILabel *textLabel;
+
+@end
+
 @implementation CustomTipsView
 
 - (void)showWithText:(NSString *)text
 {
+    CGSize size = [text sizeWithFont:Font(16)];
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8]; /*  正常情况下，设置父视图的alpha值，其子视图会随着父视图的alpha改变。如果要设置子视图不随父视图的alpha的改变而改变，就不能单纯的设置父视图的alpha值。这时候可以设置父视图的背景颜色。[[UIColor blackColor] colorWithAlphaComponent:0.5]。xib里也可以通过设置背景色的方式达到该效果。*/
+    self.layer.cornerRadius = 5;
+    self.layer.masksToBounds = YES;
     
+    self.width = size.width + 56.f;
+    if (self.width >= ScreenWidth - 56) {
+        self.width = ScreenWidth-56;
+    }
+    
+    self.height = 49.f;
+    self.left = (ScreenWidth - self.width) / 2;
+    self.top = (ScreenHeight - self.height) / 2 - 20.f;
+    
+    // 将提示视图添加到 Window 上
+    [[self getMainWindow] addSubview:self];
+    
+    [self layoutViews];
+    
+    _textLabel.text = text;
+    
+    
+    self.alpha = 0;
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.8f animations:^{
+        weakSelf.alpha = 1.f;
+    } completion:^(BOOL finished) {
+        [weakSelf showWithAnimation];
+    }];
+}
+
+#pragma mark - layoutViews
+- (void)layoutViews
+{
+    [self addSubview:self.textLabel];
+}
+
+- (UILabel *)textLabel
+{
+    if (!_textLabel) {
+        self.textLabel = [[UILabel alloc] init];
+        
+        _textLabel.font = Font(16);
+//        _textLabel.textColor =
+        _textLabel.height = 17+2;
+        _textLabel.width = self.width;
+        _textLabel.left = 0;
+        _textLabel.top = (self.height - _textLabel.height) / 2;
+        
+        _textLabel.textAlignment = NSTextAlignmentCenter;
+        
+//        _textLabel.layer.borderWidth = 1.0f;
+//        _textLabel.layer.borderColor = [UIColor redColor].CGColor;
+    }
+    return _textLabel;
+}
+
+#pragma mark - showWithAnimation
+- (void)showWithAnimation
+{
+    [self performSelector:@selector(animation) withObject:nil afterDelay:0.f];
+}
+
+- (void)animation
+{
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.8f animations:^{
+        weakSelf.textLabel.alpha = 0;
+        weakSelf.alpha = 0;
+    } completion:^(BOOL finished) {
+        [weakSelf removeFromSuperview];
+    }];
+}
+
+#pragma mark - getMainWindow
+- (UIWindow *)getMainWindow
+{
+    NSArray *windowArr = [[UIApplication sharedApplication] windows];
+    
+    if (windowArr && [windowArr count] > 0)
+    {
+        UIWindow *window = [windowArr objectAtIndex:0];
+        
+        if ([window isKindOfClass:[UIWindow class]])
+        {
+            return window;
+        }
+    }
+    return nil;
 }
 
 @end

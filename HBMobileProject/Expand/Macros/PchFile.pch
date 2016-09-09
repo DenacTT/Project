@@ -65,8 +65,12 @@
 #import "String.h"
 #import "UIViewExt.h"
 #import "UIView+Gesture.h"
+#import "NSString+Extend.h"
 #import "UIImage+fixOrientation.h"
 #import "UIImage+RoundedCorner.h"
+
+#pragma mark - Tools
+#import "CustomTipsView.h"
 
 //环信
 //#import "EMSDK.h"
