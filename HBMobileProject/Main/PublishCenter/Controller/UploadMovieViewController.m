@@ -22,6 +22,12 @@
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[[CustomTipsView alloc] init] showWithText:@"成功?"];
 }
 
 

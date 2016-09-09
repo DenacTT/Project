@@ -35,7 +35,7 @@
     self.alpha = 0;
     
     // 将提示视图添加到 Window 上
-    [[self getMainWindow] addSubview:self];
+    [[MPTools getMainWindow] addSubview:self];
     
     [self layoutViews];
     
@@ -90,23 +90,6 @@
     } completion:^(BOOL finished) {
         [weakSelf removeFromSuperview];
     }];
-}
-
-#pragma mark - getMainWindow
-- (UIWindow *)getMainWindow
-{
-    NSArray *windowArr = [[UIApplication sharedApplication]windows];
-    
-    if (windowArr && [windowArr count]>0)
-    {
-        UIWindow *window = [windowArr objectAtIndex:0];
-        
-        if ([window isKindOfClass:[UIWindow class]])
-        {
-            return window;
-        }
-    }
-    return nil;
 }
 
 @end

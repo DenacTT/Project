@@ -10,4 +10,22 @@
 
 @implementation MPTools
 
+/**
+ * 获取 Window
+ */
++ (UIWindow *)getMainWindow
+{
+    NSArray *windowArr = [[UIApplication sharedApplication] windows];
+    if (windowArr && [windowArr count]>0)
+    {
+        UIWindow *window = [windowArr objectAtIndex:0];
+        
+        if ([window isKindOfClass:[UIWindow class]])
+        {
+            return window;
+        }
+    }
+    return nil;
+}
+
 @end

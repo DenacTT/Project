@@ -10,4 +10,9 @@
 
 @interface MPTools : NSObject
 
+/**
+ * 获取 Window
+ */
++ (UIWindow *)getMainWindow;
+
 @end
