@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"上传视频";
+    self.title = @"上传";
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     

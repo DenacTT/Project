@@ -62,7 +62,7 @@
         backgroundImage = Image(@"navigationbar_background_tall");
         textAttributes = @{
                            NSFontAttributeName: [UIFont boldSystemFontOfSize:18],
-                           NSForegroundColorAttributeName: [UIColor blackColor],
+                           NSForegroundColorAttributeName: RGB(240, 240, 240),
                            };
     } else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0

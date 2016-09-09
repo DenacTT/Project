@@ -25,6 +25,7 @@
     }
     [super pushViewController:viewController animated:animated];
 }
+
 @end
 
 #pragma mark - ConfigTabBarController
@@ -118,7 +119,7 @@
 
 - (void)customTabBarAppearance:(CYLTabBarController *)tabBarController
 {
-    tabBarController.tabBarHeight = 44.f;
+    tabBarController.tabBarHeight = 46.f;
     
     // 普通状态下的文字属性
     NSMutableDictionary *normalAttrs = [NSMutableDictionary dictionary];
@@ -137,7 +138,7 @@
     [tabBarAppearance setBackgroundImage:Image(@"tabbar_background_os7")];
     
     [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
-    [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setBackgroundColor:RGB(240, 240, 240)];
     [[UITabBar appearance] setShadowImage:Image(@"tabbar_background_os7")];
 }
 
