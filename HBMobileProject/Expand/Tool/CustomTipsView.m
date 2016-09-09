@@ -24,13 +24,15 @@
     self.layer.masksToBounds = YES;
     
     self.width = size.width + 56.f;
-    if (self.width >= ScreenWidth - 56) {
+    if (self.width >= ScreenWidth-56) {
         self.width = ScreenWidth-56;
     }
     
     self.height = 49.f;
     self.left = (ScreenWidth - self.width) / 2;
     self.top = (ScreenHeight - self.height) / 2 - 20.f;
+    
+    self.alpha = 0;
     
     // 将提示视图添加到 Window 上
     [[self getMainWindow] addSubview:self];
@@ -39,13 +41,11 @@
     
     _textLabel.text = text;
     
-    
-    self.alpha = 0;
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.8f animations:^{
         weakSelf.alpha = 1.f;
     } completion:^(BOOL finished) {
-        [weakSelf showWithAnimation];
+        [weakSelf animat];
     }];
 }
 
@@ -61,11 +61,11 @@
         self.textLabel = [[UILabel alloc] init];
         
         _textLabel.font = Font(16);
-//        _textLabel.textColor =
+        _textLabel.textColor = [UIColor whiteColor];
         _textLabel.height = 17+2;
-        _textLabel.width = self.width;
-        _textLabel.left = 0;
         _textLabel.top = (self.height - _textLabel.height) / 2;
+        _textLabel.left = 0;
+        _textLabel.width = self.width;
         
         _textLabel.textAlignment = NSTextAlignmentCenter;
         
@@ -76,7 +76,7 @@
 }
 
 #pragma mark - showWithAnimation
-- (void)showWithAnimation
+- (void)animat
 {
     [self performSelector:@selector(animation) withObject:nil afterDelay:0.f];
 }
@@ -95,9 +95,9 @@
 #pragma mark - getMainWindow
 - (UIWindow *)getMainWindow
 {
-    NSArray *windowArr = [[UIApplication sharedApplication] windows];
+    NSArray *windowArr = [[UIApplication sharedApplication]windows];
     
-    if (windowArr && [windowArr count] > 0)
+    if (windowArr && [windowArr count]>0)
     {
         UIWindow *window = [windowArr objectAtIndex:0];
         
