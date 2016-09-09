@@ -471,16 +471,17 @@
 			name = Qupai;
 			sourceTree = "<group>";
 		};
-		D13B59121D816863005D89FA /* CheckBlankString */ = {
+		D13B59121D816863005D89FA /* String */ = {
 			isa = PBXGroup;
 			children = (
 				D13B59131D816863005D89FA /* String.h */,
 				D13B59141D816863005D89FA /* String.m */,
 			);
+			name = String;
 			path = CheckBlankString;
 			sourceTree = "<group>";
 		};
-		D13B59151D816863005D89FA /* UIImageCategory */ = {
+		D13B59151D816863005D89FA /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
 				D13B59161D816863005D89FA /* UIImage+RoundedCorner.h */,
@@ -488,15 +489,17 @@
 				D13B593E1D82602F005D89FA /* UIImage+fixOrientation.h */,
 				D13B593F1D82602F005D89FA /* UIImage+fixOrientation.m */,
 			);
+			name = UIImage;
 			path = UIImageCategory;
 			sourceTree = "<group>";
 		};
-		D13B59181D816863005D89FA /* UIViewCategory */ = {
+		D13B59181D816863005D89FA /* UIView */ = {
 			isa = PBXGroup;
 			children = (
 				D13B59191D816863005D89FA /* UIView+Gesture.h */,
 				D13B591A1D816863005D89FA /* UIView+Gesture.m */,
 			);
+			name = UIView;
 			path = UIViewCategory;
 			sourceTree = "<group>";
 		};
@@ -694,27 +697,11 @@
 		D1B6D7451D7D12AB00C3E647 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				D13B59121D816863005D89FA /* CheckBlankString */,
-				D13B59151D816863005D89FA /* UIImageCategory */,
-				D13B59181D816863005D89FA /* UIViewCategory */,
-				D1B6D7461D7D12AB00C3E647 /* Foundation */,
-				D1B6D7471D7D12AB00C3E647 /* UIKit */,
+				D13B59121D816863005D89FA /* String */,
+				D13B59151D816863005D89FA /* UIImage */,
+				D13B59181D816863005D89FA /* UIView */,
 			);
 			path = Category;
-			sourceTree = "<group>";
-		};
-		D1B6D7461D7D12AB00C3E647 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
-		D1B6D7471D7D12AB00C3E647 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UIKit;
 			sourceTree = "<group>";
 		};
 		D1B6D7481D7D12AB00C3E647 /* Const */ = {

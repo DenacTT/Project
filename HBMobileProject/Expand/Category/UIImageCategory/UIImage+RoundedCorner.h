@@ -16,10 +16,6 @@
  *  为图片切圆角
  *  避免在大量cell离屏渲染的时候拖慢fps
  *
- *  @param sizeToFit <#sizeToFit description#>
- *  @param radius    <#radius description#>
- *
- *  @return <#return value description#>
  */
 -(UIImage *)imageWithRoundedCornersAndSize:(CGSize)sizeToFit andCornerRadius:(CGFloat)radius;
 

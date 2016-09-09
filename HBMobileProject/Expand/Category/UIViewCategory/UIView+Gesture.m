@@ -4,7 +4,7 @@
 //
 //  Created by HarbingWang on 16/1/6.
 //  Copyright © 2016年 HarbingWang. All rights reserved.
-//
+//  Reference : http://www.cocoachina.com/ios/20150629/12299.html
 
 #import "UIView+Gesture.h"
 #import <objc/runtime.h>
@@ -37,6 +37,5 @@ static char const * const ObjectTagKey;
 -(void)setClick:(TapClick)click{
     objc_setAssociatedObject(self, ObjectTagKey, click, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-// linker : http://www.cocoachina.com/ios/20150629/12299.html
 
 @end

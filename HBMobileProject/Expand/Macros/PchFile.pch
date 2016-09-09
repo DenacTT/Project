@@ -34,18 +34,18 @@
 //#import "CountIncident.h"
 //#import "XMTools.h"
 //#import "XMUserDefault.h"
-//#import "String.h"
 //#import "MobClick.h"
 //#import "MacroUtils.h"
 //#import "UIConstants.h"
-
 
 //#import "AFAppDotNetAPIClient.h" //数据请求
 
 #pragma mark - SQL
 //#import "DBMacro.h"
+
 #pragma mark - UITool
 //#import "XMUIViewTool.h"
+
 #pragma mark - 枚举
 //#import "Enum.h"
 
@@ -57,6 +57,12 @@
 
 #pragma mark - UserDefault
 #import "UserDefaultKeys.h"
+
+#pragma mark - Category
+#import "String.h"
+#import "UIView+Gesture.h"
+#import "UIImage+fixOrientation.h"
+#import "UIImage+RoundedCorner.h"
 
 //环信
 //#import "EMSDK.h"
