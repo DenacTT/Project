@@ -7,12 +7,15 @@
 //
 
 #import "MoreMusicViewController.h"
+#import "MoreMusicCell.h"
 
 @interface MoreMusicViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
+
+
 
 @implementation MoreMusicViewController
 
