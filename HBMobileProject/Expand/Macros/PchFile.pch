@@ -28,6 +28,9 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+#pragma mark - Controller
+#import "BaseViewController.h"
+
 #import "CommonMacro.h"
 #import "MJExtension.h"
 //#import "UIViewExt.h"
@@ -69,6 +72,8 @@
 //#import "EMSDK.h"
 //#import "EaseUI.h"
 
+//趣拍
+#import <QPSDK/QPSDK.h>
 
 #endif
 

@@ -25,6 +25,8 @@
 
 - (void)clickRightBtn
 {
+    //右侧按钮需要添加其他点击按钮时可在子类中重写该方法实现;
+    //示例见: MoreMusicViewController
 }
 
 #pragma mark - setter
@@ -64,9 +66,15 @@
 {
     if (!_backBtn) {
         _backBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _backBtn.frame = CGRectMake(0, 20, 44, 44);
-        _backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -11, 0, 0);
-        [_backBtn setImage:Image(@"icon_back") forState:(UIControlStateNormal)];
+        _backBtn.frame = CGRectMake(0, 20, 60, 44);
+        _backBtn.titleLabel.font = Font(16.f);
+        
+        [_backBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_backBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+        
+        _backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+        [_backBtn setImage:Image(@"") forState:(UIControlStateNormal)];
+
         [_backBtn addTarget:self action:@selector(clickBackBtn) forControlEvents:(UIControlEventTouchUpInside)];
         [self.navView addSubview:_backBtn];
     }
@@ -77,7 +85,12 @@
 {
     if (!_rightBtn) {
         _rightBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _rightBtn.frame = CGRectMake(ScreenWidth-44, 20, 44, 44);
+        _rightBtn.frame = CGRectMake(ScreenWidth-60, 20, 60, 44);
+        _rightBtn.titleLabel.font = Font(16.f);
+
+        [_rightBtn setTitle:@"完成" forState:UIControlStateNormal];
+        [_rightBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+
         [_rightBtn addTarget:self action:@selector(clickRightBtn) forControlEvents:(UIControlEventTouchUpInside)];
         [self.navView addSubview:_rightBtn];
     }
