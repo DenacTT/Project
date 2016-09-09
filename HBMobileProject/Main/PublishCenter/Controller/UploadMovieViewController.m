@@ -7,6 +7,7 @@
 //
 
 #import "UploadMovieViewController.h"
+#import "YMChangeAccountSuccessView.h"
 
 @interface UploadMovieViewController ()
 
@@ -21,8 +22,8 @@
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
-    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

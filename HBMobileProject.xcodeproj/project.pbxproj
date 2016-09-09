@@ -45,6 +45,9 @@
 		D13B5A5D1D82F602005D89FA /* LoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A5C1D82F602005D89FA /* LoopProgressView.m */; };
 		D13B5A601D82F901005D89FA /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A5F1D82F901005D89FA /* StatusBarHUD.m */; };
 		D13B5A6D1D82FDAA005D89FA /* UIControl+ClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A6C1D82FDAA005D89FA /* UIControl+ClickDelay.m */; };
+		D13B5A701D82FEE0005D89FA /* YMSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A6F1D82FEE0005D89FA /* YMSuccessView.m */; };
+		D13B5A761D82FF8A005D89FA /* YMChangeAccountSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A751D82FF8A005D89FA /* YMChangeAccountSuccessView.m */; };
+		D13B5A791D830109005D89FA /* MPTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A781D830109005D89FA /* MPTools.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -167,6 +170,12 @@
 		D13B5A5F1D82F901005D89FA /* StatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarHUD.m; sourceTree = "<group>"; };
 		D13B5A6B1D82FDAA005D89FA /* UIControl+ClickDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIControl+ClickDelay.h"; path = "UIControl/UIControl+ClickDelay.h"; sourceTree = "<group>"; };
 		D13B5A6C1D82FDAA005D89FA /* UIControl+ClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+ClickDelay.m"; path = "UIControl/UIControl+ClickDelay.m"; sourceTree = "<group>"; };
+		D13B5A6E1D82FEE0005D89FA /* YMSuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSuccessView.h; sourceTree = "<group>"; };
+		D13B5A6F1D82FEE0005D89FA /* YMSuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSuccessView.m; sourceTree = "<group>"; };
+		D13B5A741D82FF8A005D89FA /* YMChangeAccountSuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMChangeAccountSuccessView.h; sourceTree = "<group>"; };
+		D13B5A751D82FF8A005D89FA /* YMChangeAccountSuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMChangeAccountSuccessView.m; sourceTree = "<group>"; };
+		D13B5A771D830109005D89FA /* MPTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTools.h; sourceTree = "<group>"; };
+		D13B5A781D830109005D89FA /* MPTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTools.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -791,12 +800,18 @@
 		D1B6D74D1D7D12AB00C3E647 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D13B5A771D830109005D89FA /* MPTools.h */,
+				D13B5A781D830109005D89FA /* MPTools.m */,
 				D13B59501D82DC30005D89FA /* CustomTipsView.h */,
 				D13B59511D82DC31005D89FA /* CustomTipsView.m */,
 				D13B5A5B1D82F602005D89FA /* LoopProgressView.h */,
 				D13B5A5C1D82F602005D89FA /* LoopProgressView.m */,
 				D13B5A5E1D82F901005D89FA /* StatusBarHUD.h */,
 				D13B5A5F1D82F901005D89FA /* StatusBarHUD.m */,
+				D13B5A6E1D82FEE0005D89FA /* YMSuccessView.h */,
+				D13B5A6F1D82FEE0005D89FA /* YMSuccessView.m */,
+				D13B5A741D82FF8A005D89FA /* YMChangeAccountSuccessView.h */,
+				D13B5A751D82FF8A005D89FA /* YMChangeAccountSuccessView.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1042,6 +1057,7 @@
 			files = (
 				D1B6D7711D7D154700C3E647 /* MASConstraintMaker.m in Sources */,
 				D13B593D1D81AAA9005D89FA /* UploadMovieCell.m in Sources */,
+				D13B5A791D830109005D89FA /* MPTools.m in Sources */,
 				D1B6D7911D7D159600C3E647 /* MJExtensionConst.m in Sources */,
 				D13B58C11D7FC725005D89FA /* HomeViewController.m in Sources */,
 				D13B58E71D800B53005D89FA /* ConfigMovieViewController.m in Sources */,
@@ -1057,6 +1073,7 @@
 				D13B59111D8162BE005D89FA /* MoreMusicViewController.m in Sources */,
 				D1B6D7701D7D154700C3E647 /* MASConstraint.m in Sources */,
 				D13B58EB1D801985005D89FA /* UploadMovieViewController.m in Sources */,
+				D13B5A761D82FF8A005D89FA /* YMChangeAccountSuccessView.m in Sources */,
 				D13B58941D7EEBAA005D89FA /* CYLTabBar.m in Sources */,
 				D13B58C91D7FCD8A005D89FA /* PublishButton.m in Sources */,
 				D13B59401D82602F005D89FA /* UIImage+fixOrientation.m in Sources */,
@@ -1068,6 +1085,7 @@
 				D1B6D7931D7D159600C3E647 /* MJProperty.m in Sources */,
 				D13B5A6D1D82FDAA005D89FA /* UIControl+ClickDelay.m in Sources */,
 				D13B58D51D7FF7F9005D89FA /* ViewController.m in Sources */,
+				D13B5A701D82FEE0005D89FA /* YMSuccessView.m in Sources */,
 				D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */,
 				D1B6D7921D7D159600C3E647 /* MJFoundation.m in Sources */,
 				D1B6D7751D7D154700C3E647 /* NSArray+MASAdditions.m in Sources */,

@@ -120,7 +120,6 @@
     
     [alterController addAction:[UIAlertAction actionWithTitle:STR(@"TakePhoto") style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"照片");
-        [[[CustomTipsView alloc] init] showWithText:@"发照片"];
     }]];
     [alterController addAction:[UIAlertAction actionWithTitle:STR(@"BtnTitle_Cancle") style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
     }]];
