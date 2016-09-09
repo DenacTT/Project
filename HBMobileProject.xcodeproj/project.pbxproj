@@ -38,6 +38,7 @@
 		D13B593D1D81AAA9005D89FA /* UploadMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B593C1D81AAA9005D89FA /* UploadMovieCell.m */; };
 		D13B59401D82602F005D89FA /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B593F1D82602F005D89FA /* UIImage+fixOrientation.m */; };
 		D13B59431D826A4A005D89FA /* MoreMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59421D826A4A005D89FA /* MoreMusicCell.m */; };
+		D13B59461D829AA8005D89FA /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59451D829AA8005D89FA /* UIViewExt.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -146,6 +147,8 @@
 		D13B593F1D82602F005D89FA /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		D13B59411D826A4A005D89FA /* MoreMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreMusicCell.h; sourceTree = "<group>"; };
 		D13B59421D826A4A005D89FA /* MoreMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreMusicCell.m; sourceTree = "<group>"; };
+		D13B59441D829AA8005D89FA /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		D13B59451D829AA8005D89FA /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -503,6 +506,8 @@
 			children = (
 				D13B59191D816863005D89FA /* UIView+Gesture.h */,
 				D13B591A1D816863005D89FA /* UIView+Gesture.m */,
+				D13B59441D829AA8005D89FA /* UIViewExt.h */,
+				D13B59451D829AA8005D89FA /* UIViewExt.m */,
 			);
 			name = UIView;
 			path = UIViewCategory;
@@ -1025,6 +1030,7 @@
 				D1B6D7751D7D154700C3E647 /* NSArray+MASAdditions.m in Sources */,
 				D1B6D7741D7D154700C3E647 /* MASViewConstraint.m in Sources */,
 				D13B58A41D7EF05B005D89FA /* DiscoverViewController.m in Sources */,
+				D13B59461D829AA8005D89FA /* UIViewExt.m in Sources */,
 				D1B6D7731D7D154700C3E647 /* MASViewAttribute.m in Sources */,
 				D1B6D7951D7D159600C3E647 /* MJPropertyType.m in Sources */,
 				D1B6D7961D7D159600C3E647 /* NSObject+MJClass.m in Sources */,

@@ -60,6 +60,7 @@
 
 #pragma mark - Category
 #import "String.h"
+#import "UIViewExt.h"
 #import "UIView+Gesture.h"
 #import "UIImage+fixOrientation.h"
 #import "UIImage+RoundedCorner.h"
