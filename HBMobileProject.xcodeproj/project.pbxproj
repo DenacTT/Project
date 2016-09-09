@@ -37,6 +37,7 @@
 		D13B593A1D81A596005D89FA /* music in Resources */ = {isa = PBXBuildFile; fileRef = D13B59371D81A596005D89FA /* music */; };
 		D13B593D1D81AAA9005D89FA /* UploadMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B593C1D81AAA9005D89FA /* UploadMovieCell.m */; };
 		D13B59401D82602F005D89FA /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B593F1D82602F005D89FA /* UIImage+fixOrientation.m */; };
+		D13B59431D826A4A005D89FA /* MoreMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59421D826A4A005D89FA /* MoreMusicCell.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -143,6 +144,8 @@
 		D13B593C1D81AAA9005D89FA /* UploadMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadMovieCell.m; sourceTree = "<group>"; };
 		D13B593E1D82602F005D89FA /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
 		D13B593F1D82602F005D89FA /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		D13B59411D826A4A005D89FA /* MoreMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreMusicCell.h; sourceTree = "<group>"; };
+		D13B59421D826A4A005D89FA /* MoreMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreMusicCell.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -450,6 +453,8 @@
 			children = (
 				D13B593B1D81AAA9005D89FA /* UploadMovieCell.h */,
 				D13B593C1D81AAA9005D89FA /* UploadMovieCell.m */,
+				D13B59411D826A4A005D89FA /* MoreMusicCell.h */,
+				D13B59421D826A4A005D89FA /* MoreMusicCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1034,6 +1039,7 @@
 				D1B6D6F01D7D10C500C3E647 /* main.m in Sources */,
 				D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */,
 				D13B58F61D8107D8005D89FA /* UserDefaultKeys.m in Sources */,
+				D13B59431D826A4A005D89FA /* MoreMusicCell.m in Sources */,
 				D1B6D76F1D7D154700C3E647 /* MASCompositeConstraint.m in Sources */,
 				D13B58931D7EEBAA005D89FA /* CYLPlusButton.m in Sources */,
 				D1B6D7761D7D154700C3E647 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,

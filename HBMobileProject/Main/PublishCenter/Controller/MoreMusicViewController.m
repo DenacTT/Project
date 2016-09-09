@@ -17,6 +17,14 @@
 
 @implementation MoreMusicViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.title = @"更多音乐";
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
      // 更多音乐有了更新,比如新下载了音乐
@@ -44,12 +52,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
