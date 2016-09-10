@@ -48,6 +48,8 @@
 		D13B5A701D82FEE0005D89FA /* YMSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A6F1D82FEE0005D89FA /* YMSuccessView.m */; };
 		D13B5A761D82FF8A005D89FA /* YMChangeAccountSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A751D82FF8A005D89FA /* YMChangeAccountSuccessView.m */; };
 		D13B5A791D830109005D89FA /* MPTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A781D830109005D89FA /* MPTools.m */; };
+		D13B5ABE1D840DF2005D89FA /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABD1D840DF2005D89FA /* Reveal.framework */; };
+		D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABF1D840E08005D89FA /* libz.tbd */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -176,6 +178,8 @@
 		D13B5A751D82FF8A005D89FA /* YMChangeAccountSuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMChangeAccountSuccessView.m; sourceTree = "<group>"; };
 		D13B5A771D830109005D89FA /* MPTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTools.h; sourceTree = "<group>"; };
 		D13B5A781D830109005D89FA /* MPTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTools.m; sourceTree = "<group>"; };
+		D13B5ABD1D840DF2005D89FA /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		D13B5ABF1D840E08005D89FA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -247,7 +251,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */,
 				D13B58F21D8100F3005D89FA /* QPSDK.framework in Frameworks */,
+				D13B5ABE1D840DF2005D89FA /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +569,7 @@
 		D1B6D6E21D7D10C400C3E647 = {
 			isa = PBXGroup;
 			children = (
+				D13B5ABF1D840E08005D89FA /* libz.tbd */,
 				D1B6D6ED1D7D10C500C3E647 /* HBMobileProject */,
 				D1B6D7071D7D10C500C3E647 /* HBMobileProjectTests */,
 				D1B6D7121D7D10C500C3E647 /* HBMobileProjectUITests */,
@@ -589,6 +596,7 @@
 				D1B6D74E1D7D130700C3E647 /* Vender */,
 				D1B6D74F1D7D132600C3E647 /* Resource */,
 				D1B6D6F71D7D10C500C3E647 /* Main.storyboard */,
+				D13B5ABD1D840DF2005D89FA /* Reveal.framework */,
 				D1B6D6FA1D7D10C500C3E647 /* Assets.xcassets */,
 				D1B6D6FC1D7D10C500C3E647 /* LaunchScreen.storyboard */,
 				D1B6D6EE1D7D10C500C3E647 /* Supporting Files */,
@@ -1266,11 +1274,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBMobileProject/Vender",
+					"$(PROJECT_DIR)/HBMobileProject",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBMobileProject/Expand/Macros/PchFile.pch";
 				INFOPLIST_FILE = HBMobileProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.harbingwang.github.io.HBMobileProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1286,6 +1296,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBMobileProject/Vender",
+					"$(PROJECT_DIR)/HBMobileProject",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBMobileProject/Expand/Macros/PchFile.pch";
 				INFOPLIST_FILE = HBMobileProject/Info.plist;
