@@ -69,7 +69,7 @@
 
 - (CGFloat)countTextWidthWithFont:(UIFont *)font height:(CGFloat)height
 {
-    CGRect rectToFit = [self boundingRectWithSize:CGSizeMake(ScreenWidth, height) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : font} context:nil];
+    CGRect rectToFit = [self boundingRectWithSize:CGSizeMake(ScreenWidth, height) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : font} context:nil];
     return rectToFit.size.width;
 }
 
