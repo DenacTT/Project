@@ -82,7 +82,7 @@
     }
 }
 
-// more music
+// music List
 - (NSArray *)qupaiSDKMusics:(id<QupaiSDKDelegate>)sdk
 {
     // 获取本地背景音乐

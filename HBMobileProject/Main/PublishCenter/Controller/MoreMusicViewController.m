@@ -28,7 +28,7 @@
     self.isUseRightBtn = YES;
     [self setupRightBtn];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenWidth-64) style:(UITableViewStylePlain)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight-64) style:(UITableViewStylePlain)];
     [self.view addSubview:_tableView];
 }
 
