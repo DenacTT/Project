@@ -52,9 +52,27 @@
 - (UIButton *)downloadBtn
 {
     if (!_downloadBtn) {
-//        _downloadBtn 
+        _downloadBtn = [[UIButton alloc] initWithFrame:CGRectMake(_nameLabel.right + 10, _nameLabel.top, 60, _nameLabel.height)];
+        [_downloadBtn setTitle:@"下载" forState:(UIControlStateNormal)];
+        [_downloadBtn addTarget:self action:@selector(downloadMovie) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _downloadBtn;
+}
+
+- (UILabel *)statusLabel
+{
+    if (!_statusLabel) {
+        _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(_downloadBtn.left, -_downloadBtn.bottom + 10, _downloadBtn.width, _downloadBtn.height)];
+        _statusLabel.backgroundColor = [UIColor orangeColor];
+        _statusLabel.textAlignment = NSTextAlignmentCenter;
+        _statusLabel.font = Font(14.f);
+    }
+    return _statusLabel;
+}
+
+- (void)downloadMovie
+{
+
 }
 
 - (void)awakeFromNib {
