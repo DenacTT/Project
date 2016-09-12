@@ -7,7 +7,6 @@
 //
 
 #import "UploadMovieViewController.h"
-#import "YMChangeAccountSuccessView.h"
 
 @interface UploadMovieViewController ()
 
