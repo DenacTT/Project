@@ -18,7 +18,7 @@
     NSArray *windowArr = [[UIApplication sharedApplication] windows];
     if (windowArr && [windowArr count]>0)
     {
-        UIWindow *window = [windowArr objectAtIndex:0];
+        UIWindow * window = [[UIApplication sharedApplication] keyWindow];
         
         if ([window isKindOfClass:[UIWindow class]])
         {

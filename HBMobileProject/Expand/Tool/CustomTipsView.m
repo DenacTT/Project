@@ -32,7 +32,7 @@
     self.left = (ScreenWidth - self.width) / 2;
     self.top = (ScreenHeight - self.height) / 2 - 20.f;
     
-    self.alpha = 0;
+    self.alpha = 0.f;
     
     // 将提示视图添加到 Window 上
     [[MPTools getMainWindow] addSubview:self];
@@ -71,6 +71,7 @@
         
 //        _textLabel.layer.borderWidth = 1.0f;
 //        _textLabel.layer.borderColor = [UIColor redColor].CGColor;
+//        [self addSubview:self.textLabel];
     }
     return _textLabel;
 }
@@ -78,7 +79,7 @@
 #pragma mark - showWithAnimation
 - (void)animat
 {
-    [self performSelector:@selector(animation) withObject:nil afterDelay:0.f];
+    [self performSelector:@selector(animation) withObject:nil afterDelay:0.5f];
 }
 
 - (void)animation
