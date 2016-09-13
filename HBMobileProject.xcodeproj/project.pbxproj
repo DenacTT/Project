@@ -43,11 +43,12 @@
 		D13B59521D82DC31005D89FA /* CustomTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59511D82DC31005D89FA /* CustomTipsView.m */; };
 		D13B59561D82DD61005D89FA /* NSString+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59551D82DD61005D89FA /* NSString+Extend.m */; };
 		D13B5A5D1D82F602005D89FA /* LoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A5C1D82F602005D89FA /* LoopProgressView.m */; };
-		D13B5A601D82F901005D89FA /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A5F1D82F901005D89FA /* StatusBarHUD.m */; };
 		D13B5A6D1D82FDAA005D89FA /* UIControl+ClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A6C1D82FDAA005D89FA /* UIControl+ClickDelay.m */; };
 		D13B5A791D830109005D89FA /* MPTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A781D830109005D89FA /* MPTools.m */; };
 		D13B5ABE1D840DF2005D89FA /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABD1D840DF2005D89FA /* Reveal.framework */; };
 		D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABF1D840E08005D89FA /* libz.tbd */; };
+		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
+		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -166,14 +167,15 @@
 		D13B59551D82DD61005D89FA /* NSString+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extend.m"; sourceTree = "<group>"; };
 		D13B5A5B1D82F602005D89FA /* LoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopProgressView.h; sourceTree = "<group>"; };
 		D13B5A5C1D82F602005D89FA /* LoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopProgressView.m; sourceTree = "<group>"; };
-		D13B5A5E1D82F901005D89FA /* StatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarHUD.h; sourceTree = "<group>"; };
-		D13B5A5F1D82F901005D89FA /* StatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarHUD.m; sourceTree = "<group>"; };
 		D13B5A6B1D82FDAA005D89FA /* UIControl+ClickDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIControl+ClickDelay.h"; path = "UIControl/UIControl+ClickDelay.h"; sourceTree = "<group>"; };
 		D13B5A6C1D82FDAA005D89FA /* UIControl+ClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+ClickDelay.m"; path = "UIControl/UIControl+ClickDelay.m"; sourceTree = "<group>"; };
 		D13B5A771D830109005D89FA /* MPTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTools.h; sourceTree = "<group>"; };
 		D13B5A781D830109005D89FA /* MPTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTools.m; sourceTree = "<group>"; };
 		D13B5ABD1D840DF2005D89FA /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		D13B5ABF1D840E08005D89FA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
+		D178C11B1D882AA400DAFCE5 /* StatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarHUD.h; sourceTree = "<group>"; };
+		D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarHUD.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -560,6 +562,16 @@
 			name = UIControl;
 			sourceTree = "<group>";
 		};
+		D178C1191D882AA400DAFCE5 /* StatusBarHUD */ = {
+			isa = PBXGroup;
+			children = (
+				D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */,
+				D178C11B1D882AA400DAFCE5 /* StatusBarHUD.h */,
+				D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */,
+			);
+			path = StatusBarHUD;
+			sourceTree = "<group>";
+		};
 		D1B6D6E21D7D10C400C3E647 = {
 			isa = PBXGroup;
 			children = (
@@ -808,8 +820,7 @@
 				D13B59511D82DC31005D89FA /* CustomTipsView.m */,
 				D13B5A5B1D82F602005D89FA /* LoopProgressView.h */,
 				D13B5A5C1D82F602005D89FA /* LoopProgressView.m */,
-				D13B5A5E1D82F901005D89FA /* StatusBarHUD.h */,
-				D13B5A5F1D82F901005D89FA /* StatusBarHUD.m */,
+				D178C1191D882AA400DAFCE5 /* StatusBarHUD */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1027,6 +1038,7 @@
 				D13B58F11D8100F3005D89FA /* QPSDK.bundle in Resources */,
 				D13B58E81D800B53005D89FA /* ConfigMovieViewController.xib in Resources */,
 				D1B6D7901D7D159600C3E647 /* Info.plist in Resources */,
+				D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */,
 				D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */,
 				D13B58FC1D814485005D89FA /* watermask.png in Resources */,
 			);
@@ -1061,7 +1073,6 @@
 				D13B58E71D800B53005D89FA /* ConfigMovieViewController.m in Sources */,
 				D13B591D1D816863005D89FA /* UIView+Gesture.m in Sources */,
 				D13B5A5D1D82F602005D89FA /* LoopProgressView.m in Sources */,
-				D13B5A601D82F901005D89FA /* StatusBarHUD.m in Sources */,
 				D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */,
 				D1B6D7431D7D11D400C3E647 /* BaseViewController.m in Sources */,
 				D13B59521D82DC31005D89FA /* CustomTipsView.m in Sources */,
@@ -1101,6 +1112,7 @@
 				D13B58E01D8001E5005D89FA /* PublishMovieViewController.m in Sources */,
 				D1B6D7991D7D159600C3E647 /* NSObject+MJProperty.m in Sources */,
 				D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */,
+				D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */,
 				D1B6D6F01D7D10C500C3E647 /* main.m in Sources */,
 				D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */,
 				D13B59431D826A4A005D89FA /* MoreMusicCell.m in Sources */,

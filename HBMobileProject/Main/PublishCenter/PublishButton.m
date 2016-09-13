@@ -120,12 +120,25 @@
     }]];
     
     [alterController addAction:[UIAlertAction actionWithTitle:STR(@"TakePhoto") style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+        // 1.
 //        [[[CustomTipsView alloc] init] showWithText:@"成功"];
         
-        LoopProgressView *view = [[LoopProgressView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-        view.center = [MPTools getMainWindow].center;
-        view.progress = 0.9;
-        [[MPTools getMainWindow] addSubview:view];
+        // 2.
+//        LoopProgressView *view = [[LoopProgressView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+//        view.center = [MPTools getMainWindow].center;
+//        view.progress = 0.9;
+//        [[MPTools getMainWindow] addSubview:view];
+        
+        // 3.
+//        [StatusBarHUD showSuccess:@"数据加载成功..."];
+//        [StatusBarHUD showError:@"数据加载失败..."];
+//        [StatusBarHUD showLoading:@"正在登陆中..."];
+//        [StatusBarHUD hide];
+//        [StatusBarHUD showText:@"这是一个自定义的状态栏提示框"];
+//        [StatusBarHUD hide];
+//        
+        [StatusBarHUD showImageName:@"" text:@"文案呢?"];
         
     }]];
     [alterController addAction:[UIAlertAction actionWithTitle:STR(@"BtnTitle_Cancle") style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
