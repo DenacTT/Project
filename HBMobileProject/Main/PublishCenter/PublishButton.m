@@ -10,6 +10,8 @@
 #import "CYLTabBarController.h"
 #import "PublishMovieViewController.h"
 
+#import "LoopProgressView.h"
+
 @interface PublishButton ()<UIActionSheetDelegate>
 {
     CGFloat _buttonImageHeight;
@@ -118,7 +120,13 @@
     }]];
     
     [alterController addAction:[UIAlertAction actionWithTitle:STR(@"TakePhoto") style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        [[[CustomTipsView alloc] init] showWithText:@"成功"];
+//        [[[CustomTipsView alloc] init] showWithText:@"成功"];
+        
+        LoopProgressView *view = [[LoopProgressView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        view.center = [MPTools getMainWindow].center;
+        view.progress = 0.9;
+        [[MPTools getMainWindow] addSubview:view];
+        
     }]];
     [alterController addAction:[UIAlertAction actionWithTitle:STR(@"BtnTitle_Cancle") style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
     }]];

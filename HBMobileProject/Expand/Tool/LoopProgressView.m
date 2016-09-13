@@ -56,7 +56,7 @@
     CGFloat to = self.progress * M_PI * 2;  // - M_PI * 0.5 为改变初始位置
     
     // 显示进度数字字号
-    int fontNum = ViewWidth / 6;
+    int fontNum = ViewWidth / 4;
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, Radius + 10, ViewWidth / 6)];
     label.center = CGPointMake(xCenter, yCenter);
@@ -80,11 +80,48 @@
         [self drawLineAniamtion:archLayer];
     });
     
+    if (self.progress > 1) {
+        self.progress = 1;
+    } else if(self.progress < 0) {
+        self.progress = 0;
+        return;
+    }
+    
+    if (self.progress > 0) {
+        
+        NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(newThread) object:nil];
+        [thread start];
+    }
 }
 
+- (void)newThread
+{
+    @autoreleasepool {
+        progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(changeTimeLabelText) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] run];
+    }
+}
+
+- (void)changeTimeLabelText
+{
+    _i += 0.01;
+    label.text = [NSString stringWithFormat:@"%.0f%%", _i * 100];
+    
+    if (_i >= self.progress) {
+        [progressTimer invalidate];
+        progressTimer = nil;
+    }
+}
+
+// 定义动画过程
 - (void)drawLineAniamtion:(CALayer *)layer
 {
-
+    CABasicAnimation *bas = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    bas.duration = self.progress;// 动画时间
+    bas.delegate = self;
+    bas.fromValue = [NSNumber numberWithInteger:0];
+    bas.toValue = [NSNumber numberWithInteger:1];
+    [layer addAnimation:bas forKey:@"key"];
 }
 
 @end
