@@ -276,8 +276,7 @@
 				D11853711D7EC37C00D1EA92 /* Other */,
 				D11853721D7EC37C00D1EA92 /* View */,
 			);
-			name = Discover;
-			path = ../Discover;
+			path = Discover;
 			sourceTree = "<group>";
 		};
 		D118536F1D7EC37C00D1EA92 /* Controller */ = {
@@ -345,7 +344,6 @@
 		D13B589C1D7EEF89005D89FA /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				D118536E1D7EC37C00D1EA92 /* Discover */,
 				D13B589D1D7EEF89005D89FA /* Controller */,
 				D13B589E1D7EEF89005D89FA /* Model */,
 				D13B58A01D7EEF89005D89FA /* View */,
@@ -388,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				D13B58BA1D7FC725005D89FA /* Home */,
+				D118536E1D7EC37C00D1EA92 /* Discover */,
 				D13B589C1D7EEF89005D89FA /* Message */,
 				D1B6D7391D7D11D400C3E647 /* Mine */,
 				D13B58C21D7FCD69005D89FA /* PublishCenter */,

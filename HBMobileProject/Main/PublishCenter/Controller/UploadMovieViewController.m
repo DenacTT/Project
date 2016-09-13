@@ -22,8 +22,9 @@
     [super viewDidLoad];
     
     self.title = @"上传";
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    [self.view addSubview:_tableView];
+    
 }
 
 #pragma mark - UITableViewDelegate
@@ -61,6 +62,7 @@
         _tableView.delegate  = self;
         _tableView.dataSource = self;
         [_tableView registerClass:[UploadMovieCell class] forCellReuseIdentifier:UploadMovieCellID];
+        [self.view addSubview:_tableView];
     }
     return _tableView;
 }

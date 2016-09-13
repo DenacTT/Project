@@ -60,18 +60,17 @@
     if (!_textLabel) {
         self.textLabel = [[UILabel alloc] init];
         
-        _textLabel.font = Font(16);
-        _textLabel.textColor = [UIColor whiteColor];
-        _textLabel.height = 17+2;
         _textLabel.top = (self.height - _textLabel.height) / 2;
         _textLabel.left = 0;
         _textLabel.width = self.width;
+        _textLabel.height = 17+2;
         
+        _textLabel.font = Font(16);
+        _textLabel.textColor = [UIColor whiteColor];
         _textLabel.textAlignment = NSTextAlignmentCenter;
         
 //        _textLabel.layer.borderWidth = 1.0f;
 //        _textLabel.layer.borderColor = [UIColor redColor].CGColor;
-//        [self addSubview:self.textLabel];
     }
     return _textLabel;
 }
