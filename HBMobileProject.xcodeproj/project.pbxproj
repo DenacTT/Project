@@ -49,6 +49,7 @@
 		D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABF1D840E08005D89FA /* libz.tbd */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
+		D178C1211D89315300DAFCE5 /* CuttingLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C1201D89315300DAFCE5 /* CuttingLine.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -176,6 +177,8 @@
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
 		D178C11B1D882AA400DAFCE5 /* StatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarHUD.h; sourceTree = "<group>"; };
 		D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarHUD.m; sourceTree = "<group>"; };
+		D178C11F1D89315300DAFCE5 /* CuttingLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuttingLine.h; sourceTree = "<group>"; };
+		D178C1201D89315300DAFCE5 /* CuttingLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuttingLine.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -820,6 +823,8 @@
 				D13B59511D82DC31005D89FA /* CustomTipsView.m */,
 				D13B5A5B1D82F602005D89FA /* LoopProgressView.h */,
 				D13B5A5C1D82F602005D89FA /* LoopProgressView.m */,
+				D178C11F1D89315300DAFCE5 /* CuttingLine.h */,
+				D178C1201D89315300DAFCE5 /* CuttingLine.m */,
 				D178C1191D882AA400DAFCE5 /* StatusBarHUD */,
 			);
 			path = Tool;
@@ -1100,6 +1105,7 @@
 				D13B58A41D7EF05B005D89FA /* DiscoverViewController.m in Sources */,
 				D13B59461D829AA8005D89FA /* UIViewExt.m in Sources */,
 				D1B6D7731D7D154700C3E647 /* MASViewAttribute.m in Sources */,
+				D178C1211D89315300DAFCE5 /* CuttingLine.m in Sources */,
 				D1B6D7951D7D159600C3E647 /* MJPropertyType.m in Sources */,
 				D1B6D7961D7D159600C3E647 /* NSObject+MJClass.m in Sources */,
 				D13B58AD1D7EF0A1005D89FA /* MineViewController.m in Sources */,

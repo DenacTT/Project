@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UILabel *filePathLabel;
 @property (nonatomic, strong) UILabel *statusLabel;
 @property (nonatomic, strong) UIButton *downloadBtn;
+@property (nonatomic, strong) CuttingLine *cuttingLine;
 
 @property (nonatomic, assign) id<UploadMovieDelegate> delegate;
 

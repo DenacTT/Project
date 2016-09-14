@@ -74,6 +74,7 @@
 #import "CustomTipsView.h"
 #import "LoopProgressView.h"
 #import "StatusBarHUD.h"
+#import "CuttingLine.h"
 
 //环信
 //#import "EMSDK.h"

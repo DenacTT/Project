@@ -20,8 +20,9 @@
         
         [self addSubview:self.nameLabel];
         [self addSubview:self.filePathLabel];
-        [self addSubview:self.statusLabel];
         [self addSubview:self.downloadBtn];
+        [self addSubview:self.statusLabel];
+        [self addSubview:self.cuttingLine];
     }
     return self;
 }
@@ -29,10 +30,10 @@
 - (UILabel *)nameLabel
 {
     if (!_nameLabel) {
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, ScreenWidth - 15 * 2 - 60, self.height / 2 - 15 * 2 - 5)];
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.top + 5, ScreenWidth - 15 * 2 - 60, 20)];
         _nameLabel.backgroundColor = [UIColor redColor];
         _nameLabel.textAlignment = NSTextAlignmentLeft;
-        _nameLabel.font = Font(12.f);
+        _nameLabel.font = Font(14.f);
     }
     return _nameLabel;
 }
@@ -55,6 +56,7 @@
         _downloadBtn = [[UIButton alloc] initWithFrame:CGRectMake(_nameLabel.right + 10, _nameLabel.top, 60, _nameLabel.height)];
         [_downloadBtn setTitle:@"下载" forState:(UIControlStateNormal)];
         [_downloadBtn addTarget:self action:@selector(downloadMovie) forControlEvents:(UIControlEventTouchUpInside)];
+        [_downloadBtn setBackgroundColor:[UIColor lightGrayColor]];
     }
     return _downloadBtn;
 }
@@ -62,12 +64,23 @@
 - (UILabel *)statusLabel
 {
     if (!_statusLabel) {
-        _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(_downloadBtn.left, -_downloadBtn.bottom + 10, _downloadBtn.width, _downloadBtn.height)];
+        _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(_downloadBtn.left, _downloadBtn.bottom + 5, _downloadBtn.width, _downloadBtn.height)];
         _statusLabel.backgroundColor = [UIColor orangeColor];
         _statusLabel.textAlignment = NSTextAlignmentCenter;
         _statusLabel.font = Font(14.f);
     }
     return _statusLabel;
+}
+
+- (CuttingLine *)cuttingLine
+{
+    if (!_cuttingLine) {
+        _cuttingLine = [[CuttingLine alloc] initWithFrame:CGRectMake(0, _filePathLabel.bottom + 4.f, ScreenWidth, 1.f)];
+        [_cuttingLine setLineWidth:1.f];
+        [_cuttingLine setStrokeColor:[UIColor lightGrayColor]];
+        [_cuttingLine setBackgroundColor:[UIColor whiteColor]];
+    }
+    return _cuttingLine;
 }
 
 - (void)downloadMovie
@@ -84,7 +97,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
 }
 
 @end
