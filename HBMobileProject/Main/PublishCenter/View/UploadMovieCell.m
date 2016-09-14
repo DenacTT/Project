@@ -72,7 +72,10 @@
 
 - (void)downloadMovie
 {
-
+    if ([self.delegate respondsToSelector:@selector(downloadMovie:)])
+    {
+        [self.delegate downloadMovie:self];
+    }
 }
 
 - (void)awakeFromNib {

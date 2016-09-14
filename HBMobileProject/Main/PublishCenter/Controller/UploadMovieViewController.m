@@ -10,7 +10,7 @@
 
 #define UploadMovieCellID @"UploadMovieCell"
 
-@interface UploadMovieViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface UploadMovieViewController ()<UITableViewDelegate, UITableViewDataSource, UploadMovieDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -24,7 +24,7 @@
     self.title = @"上传";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
+    [self.view addSubview:self.tableView];
 }
 
 #pragma mark - UITableViewDelegate
@@ -48,10 +48,17 @@
 {
     UploadMovieCell *cell = [tableView dequeueReusableCellWithIdentifier:UploadMovieCellID forIndexPath:indexPath];
     if (!cell) {
-        
+        cell = [[UploadMovieCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:UploadMovieCellID];
     }
-//    cell.delegate
+    cell.delegate = self;
     return cell;
+}
+
+#pragma mark - UploadMovieDelegate
+- (void)downloadMovie:(UITableViewCell *)cell
+{
+    NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
+    NSLog(@"%zi", indexPath.row);
 }
 
 #pragma mark - LazyLoad
@@ -62,7 +69,6 @@
         _tableView.delegate  = self;
         _tableView.dataSource = self;
         [_tableView registerClass:[UploadMovieCell class] forCellReuseIdentifier:UploadMovieCellID];
-        [self.view addSubview:_tableView];
     }
     return _tableView;
 }
