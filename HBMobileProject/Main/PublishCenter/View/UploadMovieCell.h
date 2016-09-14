@@ -23,5 +23,6 @@
 @property (nonatomic, strong) CuttingLine *cuttingLine;
 
 @property (nonatomic, assign) id<UploadMovieDelegate> delegate;
+@property (nonatomic, strong) QPUploadTask *uploadTask;
 
 @end

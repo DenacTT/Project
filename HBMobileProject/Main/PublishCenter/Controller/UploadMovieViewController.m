@@ -2,7 +2,7 @@
 //  UploadMovieViewController.m
 //  HBMobileProject
 //
-//  Created by HarbingWang on 16/9/7.
+//  Created by HarbingWang on 16/9/7.§§§§
 //  Copyright © 2016年 HarbingWang. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 @interface UploadMovieViewController ()<UITableViewDelegate, UITableViewDataSource, UploadMovieDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *taskArray;
 
 @end
 
@@ -23,19 +24,26 @@
     
     self.title = @"上传";
     self.view.backgroundColor = [UIColor whiteColor];
-    
     [self.view addSubview:self.tableView];
+    
+    [self setupData];
+}
+
+#pragma mark - setupData
+- (void)setupData
+{
+    NSArray *tasks = [[QPUploadTaskManager shared] getAllUploadTasks];
+    for (QPUploadTask *task in tasks) {
+        task.videoPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Test"];
+        [self.taskArray addObject:task];
+    }
+    NSLog(@"%zi", [self.taskArray count]);
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 55;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
 }
 
 #pragma mark - UITableViewDataSource
@@ -52,6 +60,7 @@
         cell = [[UploadMovieCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:UploadMovieCellID];
     }
     cell.delegate = self;
+    cell.uploadTask = self.taskArray[indexPath.row];
     return cell;
 }
 
@@ -60,6 +69,7 @@
 {
     NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
     NSLog(@"%zi", indexPath.row);
+    
 }
 
 #pragma mark - LazyLoad
@@ -74,6 +84,14 @@
         [_tableView registerClass:[UploadMovieCell class] forCellReuseIdentifier:UploadMovieCellID];
     }
     return _tableView;
+}
+
+- (NSMutableArray *)taskArray
+{
+    if (!_taskArray) {
+        _taskArray = [NSMutableArray array];
+    }
+    return _taskArray;
 }
 
 - (void)didReceiveMemoryWarning

@@ -27,6 +27,21 @@
     return self;
 }
 
+#pragma mark - setter
+- (void)setUploadTask:(QPUploadTask *)uploadTask
+{
+    _uploadTask = uploadTask;
+    self.nameLabel.text = uploadTask.uploadId;
+    self.filePathLabel.text = uploadTask.taskId;
+    self.statusLabel.text = [NSString stringWithFormat:@"%f", uploadTask.progress];
+    
+    if (uploadTask.uploadFinished) {
+        [self.downloadBtn setTitle:@"打开视频" forState:(UIControlStateNormal)];
+    }else{
+        [self.downloadBtn setTitle:@"上传" forState:(UIControlStateNormal)];
+    }
+}
+
 - (UILabel *)nameLabel
 {
     if (!_nameLabel) {

@@ -32,7 +32,7 @@
     CGContextRef kContext = UIGraphicsGetCurrentContext();
     
     // 1.1属性设置
-    /* 设置圆角 */
+    /* 设置线条两端为圆角 */
     CGContextSetLineCap(kContext, kCGLineCapRound);
     
     /* 设置kContext 是否允许抗锯齿 */
