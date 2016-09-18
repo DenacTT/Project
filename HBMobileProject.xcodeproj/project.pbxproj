@@ -43,10 +43,10 @@
 		D13B59521D82DC31005D89FA /* CustomTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59511D82DC31005D89FA /* CustomTipsView.m */; };
 		D13B59561D82DD61005D89FA /* NSString+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59551D82DD61005D89FA /* NSString+Extend.m */; };
 		D13B5A5D1D82F602005D89FA /* LoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A5C1D82F602005D89FA /* LoopProgressView.m */; };
-		D13B5A6D1D82FDAA005D89FA /* UIControl+ClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A6C1D82FDAA005D89FA /* UIControl+ClickDelay.m */; };
 		D13B5A791D830109005D89FA /* MPTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A781D830109005D89FA /* MPTools.m */; };
 		D13B5ABE1D840DF2005D89FA /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABD1D840DF2005D89FA /* Reveal.framework */; };
 		D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABF1D840E08005D89FA /* libz.tbd */; };
+		D15D86B61D8E484800115B73 /* UIControl+BtnClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
 		D178C1211D89315300DAFCE5 /* CuttingLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C1201D89315300DAFCE5 /* CuttingLine.m */; };
@@ -168,12 +168,12 @@
 		D13B59551D82DD61005D89FA /* NSString+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extend.m"; sourceTree = "<group>"; };
 		D13B5A5B1D82F602005D89FA /* LoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopProgressView.h; sourceTree = "<group>"; };
 		D13B5A5C1D82F602005D89FA /* LoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopProgressView.m; sourceTree = "<group>"; };
-		D13B5A6B1D82FDAA005D89FA /* UIControl+ClickDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIControl+ClickDelay.h"; path = "UIControl/UIControl+ClickDelay.h"; sourceTree = "<group>"; };
-		D13B5A6C1D82FDAA005D89FA /* UIControl+ClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+ClickDelay.m"; path = "UIControl/UIControl+ClickDelay.m"; sourceTree = "<group>"; };
 		D13B5A771D830109005D89FA /* MPTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTools.h; sourceTree = "<group>"; };
 		D13B5A781D830109005D89FA /* MPTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTools.m; sourceTree = "<group>"; };
 		D13B5ABD1D840DF2005D89FA /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		D13B5ABF1D840E08005D89FA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		D15D86B41D8E484800115B73 /* UIControl+BtnClickDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIControl+BtnClickDelay.h"; path = "UIControl/UIControl+BtnClickDelay.h"; sourceTree = "<group>"; };
+		D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+BtnClickDelay.m"; path = "UIControl/UIControl+BtnClickDelay.m"; sourceTree = "<group>"; };
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
 		D178C11B1D882AA400DAFCE5 /* StatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarHUD.h; sourceTree = "<group>"; };
 		D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarHUD.m; sourceTree = "<group>"; };
@@ -559,8 +559,8 @@
 		D13B5A671D82FD73005D89FA /* UIControl */ = {
 			isa = PBXGroup;
 			children = (
-				D13B5A6B1D82FDAA005D89FA /* UIControl+ClickDelay.h */,
-				D13B5A6C1D82FDAA005D89FA /* UIControl+ClickDelay.m */,
+				D15D86B41D8E484800115B73 /* UIControl+BtnClickDelay.h */,
+				D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */,
 			);
 			name = UIControl;
 			sourceTree = "<group>";
@@ -1096,7 +1096,6 @@
 				D13B591C1D816863005D89FA /* UIImage+RoundedCorner.m in Sources */,
 				D13B58961D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				D1B6D7931D7D159600C3E647 /* MJProperty.m in Sources */,
-				D13B5A6D1D82FDAA005D89FA /* UIControl+ClickDelay.m in Sources */,
 				D13B58D51D7FF7F9005D89FA /* ViewController.m in Sources */,
 				D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */,
 				D1B6D7921D7D159600C3E647 /* MJFoundation.m in Sources */,
@@ -1117,6 +1116,7 @@
 				D1B6D7941D7D159600C3E647 /* MJPropertyKey.m in Sources */,
 				D13B58E01D8001E5005D89FA /* PublishMovieViewController.m in Sources */,
 				D1B6D7991D7D159600C3E647 /* NSObject+MJProperty.m in Sources */,
+				D15D86B61D8E484800115B73 /* UIControl+BtnClickDelay.m in Sources */,
 				D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */,
 				D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */,
 				D1B6D6F01D7D10C500C3E647 /* main.m in Sources */,
