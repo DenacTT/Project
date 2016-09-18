@@ -69,7 +69,6 @@
 {
     NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
     NSLog(@"%zi", indexPath.row);
-    
 }
 
 #pragma mark - LazyLoad
