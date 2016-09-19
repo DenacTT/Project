@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D11853741D7EC3B900D1EA92 /* LogInViewController.m */; };
+		D12237DB1D8FD26E00B0D042 /* ExtensibleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237DA1D8FD26E00B0D042 /* ExtensibleCell.m */; };
 		D13B58931D7EEBAA005D89FA /* CYLPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */; };
 		D13B58941D7EEBAA005D89FA /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588E1D7EEBAA005D89FA /* CYLTabBar.m */; };
 		D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58901D7EEBAA005D89FA /* CYLTabBarController.m */; };
@@ -102,6 +103,8 @@
 		D11853731D7EC3B900D1EA92 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		D11853741D7EC3B900D1EA92 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		D11853771D7EC6AA00D1EA92 /* CommonMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
+		D12237D91D8FD26E00B0D042 /* ExtensibleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensibleCell.h; sourceTree = "<group>"; };
+		D12237DA1D8FD26E00B0D042 /* ExtensibleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensibleCell.m; sourceTree = "<group>"; };
 		D13B588A1D7EEBAA005D89FA /* CYLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLConstants.h; sourceTree = "<group>"; };
 		D13B588B1D7EEBAA005D89FA /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLPlusButton.m; sourceTree = "<group>"; };
@@ -312,6 +315,23 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D12237D81D8FD25200B0D042 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				D12237D91D8FD26E00B0D042 /* ExtensibleCell.h */,
+				D12237DA1D8FD26E00B0D042 /* ExtensibleCell.m */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		D12237DC1D8FD28900B0D042 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		D13B58811D7ECC32005D89FA /* Public */ = {
@@ -691,9 +711,7 @@
 			isa = PBXGroup;
 			children = (
 				D1B6D73A1D7D11D400C3E647 /* Controller */,
-				D1B6D73B1D7D11D400C3E647 /* Model */,
-				D1B6D73C1D7D11D400C3E647 /* Other */,
-				D1B6D73D1D7D11D400C3E647 /* View */,
+				D12237DC1D8FD28900B0D042 /* Model */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -703,29 +721,9 @@
 			children = (
 				D13B58AB1D7EF0A1005D89FA /* MineViewController.h */,
 				D13B58AC1D7EF0A1005D89FA /* MineViewController.m */,
+				D12237D81D8FD25200B0D042 /* Modules */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		D1B6D73B1D7D11D400C3E647 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		D1B6D73C1D7D11D400C3E647 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
-		D1B6D73D1D7D11D400C3E647 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		D1B6D73E1D7D11D400C3E647 /* Other */ = {
@@ -1100,6 +1098,7 @@
 				D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */,
 				D1B6D7921D7D159600C3E647 /* MJFoundation.m in Sources */,
 				D1B6D7751D7D154700C3E647 /* NSArray+MASAdditions.m in Sources */,
+				D12237DB1D8FD26E00B0D042 /* ExtensibleCell.m in Sources */,
 				D1B6D7741D7D154700C3E647 /* MASViewConstraint.m in Sources */,
 				D13B58A41D7EF05B005D89FA /* DiscoverViewController.m in Sources */,
 				D13B59461D829AA8005D89FA /* UIViewExt.m in Sources */,

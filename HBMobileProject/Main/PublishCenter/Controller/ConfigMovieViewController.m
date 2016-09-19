@@ -67,19 +67,38 @@
  */
 - (void)qupaiSDK:(id<QupaiSDKDelegate>)sdk compeleteVideoPath:(NSString *)videoPath thumbnailPath:(NSString *)thumbnailPath
 {
-    NSLog(@"视频保存路径: %@", videoPath);
-    // 推出控制器
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    // 保存视频到相册
+    // 保存视频和图片到临时目录
     if (videoPath) {
         UISaveVideoAtPathToSavedPhotosAlbum(videoPath, nil, nil, nil);
     }
     
-    // 保存首帧图片到相册
     if (thumbnailPath) {
         UIImageWriteToSavedPhotosAlbum([UIImage imageWithContentsOfFile:thumbnailPath], nil, nil, nil);
     }
+    
+    // 拷贝出来
+    if (videoPath && thumbnailPath) {
+        [self saveVideo:videoPath thumbnail:thumbnailPath];
+    }
+    NSLog(@"视频保存路径: %@ \n 照片保存路径: %@", videoPath, thumbnailPath);
+}
+
+// 需要将视频从临时目录中拷贝出来,因为下次录制的时候会清空临时目录,亲测!
+- (void)saveVideo:(NSString *)videoPath thumbnail:(NSString *)thumbnailPath
+{
+    NSString *doucumetPaht = [NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *testDirPath = [doucumetPaht stringByAppendingString:@"test"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:testDirPath]) {
+        // 创建目录
+        [fileManager createDirectoryAtPath:testDirPath withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+    
+    
+    
 }
 
 // music List
@@ -119,7 +138,7 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
-//触摸屏幕回收键盘
+// 触摸屏幕回收键盘
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     for (UIView *view in self.view.subviews) {
