@@ -97,8 +97,14 @@
         [fileManager createDirectoryAtPath:testDirPath withIntermediateDirectories:NO attributes:nil error:nil];
     }
     
+    NSString *testVideoPath = [testDirPath stringByAppendingPathComponent:[videoPath lastPathComponent]];
+    NSString *testThumbnailPath = [testDirPath stringByAppendingPathComponent:[thumbnailPath lastPathComponent]];
     
+    [[NSFileManager defaultManager] copyItemAtPath:videoPath toPath:testVideoPath error:nil];
+    [[NSFileManager defaultManager] copyItemAtPath:thumbnailPath toPath:testThumbnailPath error:nil];
     
+    QPUploadTask *task = [[QPUploadTaskManager shared] createUploadTaskWithVideoPath:testVideoPath thumbnailPath:testThumbnailPath];
+
 }
 
 // music List

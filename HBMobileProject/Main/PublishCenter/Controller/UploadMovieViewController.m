@@ -35,6 +35,9 @@
     NSArray *tasks = [[QPUploadTaskManager shared] getAllUploadTasks];
     for (QPUploadTask *task in tasks) {
         task.videoPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Test"];
+        
+        NSLog(@"task.videoPath %@", task.videoPath);
+        
         [self.taskArray addObject:task];
     }
     NSLog(@"%zi", [self.taskArray count]);
@@ -49,7 +52,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 100;
+    return [self.taskArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,7 +63,11 @@
         cell = [[UploadMovieCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:UploadMovieCellID];
     }
     cell.delegate = self;
-    cell.uploadTask = self.taskArray[indexPath.row];
+    if ([self.taskArray count] != 0) {
+        cell.uploadTask = self.taskArray[indexPath.row];
+    }else{
+        [[[CustomTipsView alloc] init] showWithText:@"您当前没有上传任务"];
+    }
     return cell;
 }
 
