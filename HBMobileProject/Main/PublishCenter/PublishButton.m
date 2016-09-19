@@ -138,7 +138,7 @@
 //        [StatusBarHUD showText:@"这是一个自定义的状态栏提示框"];
 //        [StatusBarHUD hide];
 //        
-        [StatusBarHUD showImageName:@"" text:@"文案呢?"];
+//        [StatusBarHUD showImageName:@"" text:@"文案呢?"];
         
     }]];
     [alterController addAction:[UIAlertAction actionWithTitle:STR(@"BtnTitle_Cancle") style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
