@@ -1,18 +1,18 @@
 //
-//  ExtensibleCell.m
+//  ExtensibleCellViewController.m
 //  HBMobileProject
 //
 //  Created by HarbingWang on 16/9/19.
 //  Copyright © 2016年 HarbingWang. All rights reserved.
 //
 
-#import "ExtensibleCell.h"
+#import "ExtensibleCellViewController.h"
 
-@interface ExtensibleCell ()
+@interface ExtensibleCellViewController ()
 
 @end
 
-@implementation ExtensibleCell
+@implementation ExtensibleCellViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

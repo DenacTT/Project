@@ -36,7 +36,7 @@ static NSString * const TableViewCellID = @"TableViewCellID";
     self.titleArr = @[].mutableCopy;
     self.classNameArr = @[].mutableCopy;
     
-    [self addCell:@"可点击展开与收缩的 Cell " className:@"ExtensibleCell"];
+    [self addCell:@"可点击展开与收缩的 Cell " className:@"ExtensibleCellViewController"];
 }
 
 - (void)addCell:(NSString *)cellTitle className:(NSString *)className

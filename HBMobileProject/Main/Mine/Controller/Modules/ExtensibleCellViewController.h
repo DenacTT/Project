@@ -1,5 +1,5 @@
 //
-//  ExtensibleCell.h
+//  ExtensibleCellViewController.h
 //  HBMobileProject
 //
 //  Created by HarbingWang on 16/9/19.
@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface ExtensibleCell : BaseViewController
+@interface ExtensibleCellViewController : BaseViewController
 
 @end
