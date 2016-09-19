@@ -133,8 +133,10 @@
         // 3.
 //        [StatusBarHUD showSuccess:@"数据加载成功..."];
 //        [StatusBarHUD showError:@"数据加载失败..."];
+        
 //        [StatusBarHUD showLoading:@"正在登陆中..."];
 //        [StatusBarHUD hide];
+        
 //        [StatusBarHUD showText:@"这是一个自定义的状态栏提示框"];
 //        [StatusBarHUD hide];
 //        

@@ -46,7 +46,7 @@
 {
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.top + 5, ScreenWidth - 15 * 2 - 60, 20)];
-        _nameLabel.backgroundColor = [UIColor redColor];
+//        _nameLabel.backgroundColor = [UIColor redColor];
         _nameLabel.textAlignment = NSTextAlignmentLeft;
         _nameLabel.font = Font(14.f);
     }
@@ -57,7 +57,7 @@
 {
     if (!_filePathLabel) {
         _filePathLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nameLabel.left, _nameLabel.bottom + 5, _nameLabel.width, _nameLabel.height)];
-        _filePathLabel.backgroundColor = [UIColor blueColor];
+//        _filePathLabel.backgroundColor = [UIColor blueColor];
         _filePathLabel.textAlignment = NSTextAlignmentLeft;
         _filePathLabel.numberOfLines = 0;
         _filePathLabel.font = Font(14.f);

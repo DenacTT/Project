@@ -63,11 +63,13 @@
         cell = [[UploadMovieCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:UploadMovieCellID];
     }
     cell.delegate = self;
+    
     if ([self.taskArray count] != 0) {
         cell.uploadTask = self.taskArray[indexPath.row];
-    }else{
-        [[[CustomTipsView alloc] init] showWithText:@"您当前没有上传任务"];
     }
+//    else{
+//        [[[CustomTipsView alloc] init] showWithText:@"您当前没有上传任务"];
+//    }
     return cell;
 }
 

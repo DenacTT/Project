@@ -8,6 +8,7 @@
 
 #import "ConfigMovieViewController.h"
 #import "MoreMusicViewController.h"
+#import "EditVideoViewController.h"
 #import <QPSDK/QPSDK.h>
 
 @interface ConfigMovieViewController ()
@@ -63,7 +64,7 @@
 
 /**
  * @param videoPath      保存拍摄好视频的存储路径
- * @param thumbnailPath  保存拍摄好视频首侦图的存储路径
+ * @param thumbnailPath  保存拍摄好视频首侦图的存储路径
  */
 - (void)qupaiSDK:(id<QupaiSDKDelegate>)sdk compeleteVideoPath:(NSString *)videoPath thumbnailPath:(NSString *)thumbnailPath
 {
@@ -83,13 +84,18 @@
         [self saveVideo:videoPath thumbnail:thumbnailPath];
     }
     NSLog(@"视频保存路径: %@ \n 照片保存路径: %@", videoPath, thumbnailPath);
+    
+    if (videoPath != nil) {
+        EditVideoViewController *vc = [[EditVideoViewController alloc] init];
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 // 需要将视频从临时目录中拷贝出来,因为下次录制的时候会清空临时目录,亲测!
 - (void)saveVideo:(NSString *)videoPath thumbnail:(NSString *)thumbnailPath
 {
     NSString *doucumetPaht = [NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *testDirPath = [doucumetPaht stringByAppendingString:@"test"];
+    NSString *testDirPath = [doucumetPaht stringByAppendingString:@"Test"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:testDirPath]) {
@@ -104,7 +110,7 @@
     [[NSFileManager defaultManager] copyItemAtPath:thumbnailPath toPath:testThumbnailPath error:nil];
     
     QPUploadTask *task = [[QPUploadTaskManager shared] createUploadTaskWithVideoPath:testVideoPath thumbnailPath:testThumbnailPath];
-
+    
 }
 
 // music List
