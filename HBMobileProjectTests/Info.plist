@@ -16,9 +16,19 @@
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+    <key>NSCameraUsageDescription</key>
+    <string>cameraDesciption</string>
+    <key>NSContactsUsageDescription</key>
+    <string>contactsDesciption</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>microphoneDesciption</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>photoLibraryDesciption</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 </dict>
 </plist>
