@@ -10,6 +10,7 @@
 		D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D11853741D7EC3B900D1EA92 /* LogInViewController.m */; };
 		D12237DB1D8FD26E00B0D042 /* ExtensibleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */; };
 		D12237DF1D8FECDE00B0D042 /* EditVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237DE1D8FECDE00B0D042 /* EditVideoViewController.m */; };
+		D12237E41D90227B00B0D042 /* LinkageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237E31D90227B00B0D042 /* LinkageTableViewController.m */; };
 		D13B58931D7EEBAA005D89FA /* CYLPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */; };
 		D13B58941D7EEBAA005D89FA /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588E1D7EEBAA005D89FA /* CYLTabBar.m */; };
 		D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58901D7EEBAA005D89FA /* CYLTabBarController.m */; };
@@ -108,6 +109,8 @@
 		D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensibleCellViewController.m; sourceTree = "<group>"; };
 		D12237DD1D8FECDE00B0D042 /* EditVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVideoViewController.h; sourceTree = "<group>"; };
 		D12237DE1D8FECDE00B0D042 /* EditVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVideoViewController.m; sourceTree = "<group>"; };
+		D12237E21D90227B00B0D042 /* LinkageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkageTableViewController.h; sourceTree = "<group>"; };
+		D12237E31D90227B00B0D042 /* LinkageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkageTableViewController.m; sourceTree = "<group>"; };
 		D13B588A1D7EEBAA005D89FA /* CYLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLConstants.h; sourceTree = "<group>"; };
 		D13B588B1D7EEBAA005D89FA /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLPlusButton.m; sourceTree = "<group>"; };
@@ -323,7 +326,7 @@
 		D12237D81D8FD25200B0D042 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				D12237E11D9010C900B0D042 /* New Group */,
+				D12237E11D9010C900B0D042 /* LinkageTableView */,
 				D12237E01D90108100B0D042 /* ExtensibleCell */,
 			);
 			path = Modules;
@@ -346,11 +349,13 @@
 			name = ExtensibleCell;
 			sourceTree = "<group>";
 		};
-		D12237E11D9010C900B0D042 /* New Group */ = {
+		D12237E11D9010C900B0D042 /* LinkageTableView */ = {
 			isa = PBXGroup;
 			children = (
+				D12237E21D90227B00B0D042 /* LinkageTableViewController.h */,
+				D12237E31D90227B00B0D042 /* LinkageTableViewController.m */,
 			);
-			name = "New Group";
+			name = LinkageTableView;
 			sourceTree = "<group>";
 		};
 		D13B58811D7ECC32005D89FA /* Public */ = {
@@ -1130,6 +1135,7 @@
 				D1B6D7961D7D159600C3E647 /* NSObject+MJClass.m in Sources */,
 				D13B58AD1D7EF0A1005D89FA /* MineViewController.m in Sources */,
 				D13B594F1D82CC88005D89FA /* UIImage+Categories.m in Sources */,
+				D12237E41D90227B00B0D042 /* LinkageTableViewController.m in Sources */,
 				D1B6D7971D7D159600C3E647 /* NSObject+MJCoding.m in Sources */,
 				D1B6D7771D7D154700C3E647 /* View+MASAdditions.m in Sources */,
 				D13B58B01D7EF1F3005D89FA /* ConfigTabBarController.m in Sources */,

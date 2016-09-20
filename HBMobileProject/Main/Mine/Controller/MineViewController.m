@@ -37,6 +37,8 @@ static NSString * const TableViewCellID = @"TableViewCellID";
     self.classNameArr = @[].mutableCopy;
     
     [self addCell:@"可点击展开与收缩的 Cell " className:@"ExtensibleCellViewController"];
+    [self addCell:@"左右两级联动的 TableView" className:@"LinkageTableViewController"];
+    
 }
 
 - (void)addCell:(NSString *)cellTitle className:(NSString *)className
