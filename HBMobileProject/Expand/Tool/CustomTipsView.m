@@ -60,7 +60,7 @@
     if (!_textLabel) {
         self.textLabel = [[UILabel alloc] init];
         
-        _textLabel.top = (self.height - _textLabel.height) / 2;
+        _textLabel.top = (self.height - _textLabel.height) / 3;
         _textLabel.left = 0;
         _textLabel.width = self.width;
         _textLabel.height = 17+2;
@@ -78,7 +78,14 @@
 #pragma mark - showWithAnimation
 - (void)animat
 {
-    [self performSelector:@selector(animation) withObject:nil afterDelay:0.5f];
+    [self performSelector:@selector(animation) withObject:nil afterDelay:1.5f];
+    
+//    __weak typeof(self) weakSelf = self;
+//    [UIView animateWithDuration:0.0 delay:2.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+//        [weakSelf animation];
+//    } completion:^(BOOL finished) {
+//    }];
+    
 }
 
 - (void)animation
@@ -90,6 +97,7 @@
     } completion:^(BOOL finished) {
         [weakSelf removeFromSuperview];
     }];
+    
 }
 
 @end

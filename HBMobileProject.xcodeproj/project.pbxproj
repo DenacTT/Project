@@ -50,6 +50,7 @@
 		D13B5ABE1D840DF2005D89FA /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABD1D840DF2005D89FA /* Reveal.framework */; };
 		D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABF1D840E08005D89FA /* libz.tbd */; };
 		D15D86B61D8E484800115B73 /* UIControl+BtnClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */; };
+		D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
 		D178C1211D89315300DAFCE5 /* CuttingLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C1201D89315300DAFCE5 /* CuttingLine.m */; };
@@ -183,6 +184,8 @@
 		D13B5ABF1D840E08005D89FA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D15D86B41D8E484800115B73 /* UIControl+BtnClickDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIControl+BtnClickDelay.h"; path = "UIControl/UIControl+BtnClickDelay.h"; sourceTree = "<group>"; };
 		D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+BtnClickDelay.m"; path = "UIControl/UIControl+BtnClickDelay.m"; sourceTree = "<group>"; };
+		D160E91B1D9158E500CAF6CC /* NSThread+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSThread+Extend.h"; path = "NSThread/NSThread+Extend.h"; sourceTree = "<group>"; };
+		D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSThread+Extend.m"; path = "NSThread/NSThread+Extend.m"; sourceTree = "<group>"; };
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
 		D178C11B1D882AA400DAFCE5 /* StatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarHUD.h; sourceTree = "<group>"; };
 		D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarHUD.m; sourceTree = "<group>"; };
@@ -326,8 +329,8 @@
 		D12237D81D8FD25200B0D042 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				D12237E11D9010C900B0D042 /* LinkageTableView */,
 				D12237E01D90108100B0D042 /* ExtensibleCell */,
+				D12237E11D9010C900B0D042 /* LinkageTableView */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -611,6 +614,15 @@
 			name = UIControl;
 			sourceTree = "<group>";
 		};
+		D160E91A1D9158B100CAF6CC /* NSThread */ = {
+			isa = PBXGroup;
+			children = (
+				D160E91B1D9158E500CAF6CC /* NSThread+Extend.h */,
+				D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */,
+			);
+			name = NSThread;
+			sourceTree = "<group>";
+		};
 		D178C1191D882AA400DAFCE5 /* StatusBarHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -795,6 +807,7 @@
 		D1B6D7451D7D12AB00C3E647 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				D160E91A1D9158B100CAF6CC /* NSThread */,
 				D13B5A671D82FD73005D89FA /* UIControl */,
 				D13B5A631D82FD39005D89FA /* UIButton */,
 				D13B59121D816863005D89FA /* String */,
@@ -1107,6 +1120,7 @@
 				D13B59521D82DC31005D89FA /* CustomTipsView.m in Sources */,
 				D13B59561D82DD61005D89FA /* NSString+Extend.m in Sources */,
 				D13B591B1D816863005D89FA /* String.m in Sources */,
+				D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */,
 				D1B6D7981D7D159600C3E647 /* NSObject+MJKeyValue.m in Sources */,
 				D13B59111D8162BE005D89FA /* MoreMusicViewController.m in Sources */,
 				D1B6D7701D7D154700C3E647 /* MASConstraint.m in Sources */,

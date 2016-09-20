@@ -167,6 +167,7 @@
     }else if (1 == buttonIndex) {
         
         [[[CustomTipsView alloc] init] showWithText:@"照片打卡"];
+        
     }
     
 }
