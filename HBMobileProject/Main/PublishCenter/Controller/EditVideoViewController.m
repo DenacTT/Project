@@ -14,6 +14,7 @@
 
 @implementation EditVideoViewController
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -22,6 +23,7 @@
     [self.rightBtn setTitle:@"发送" forState:UIControlStateNormal];
 }
 
+#pragma mark - private methods
 - (void)clickBackBtn
 {
     [self dismissViewControllerAnimated:YES completion:nil];

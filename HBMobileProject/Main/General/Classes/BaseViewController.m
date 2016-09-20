@@ -70,7 +70,7 @@
         _backBtn.titleLabel.font = Font(16.f);
         
         [_backBtn setTitle:@"取消" forState:UIControlStateNormal];
-        [_backBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+        [_backBtn setTitleColor:RGB(18, 196, 190) forState:(UIControlStateNormal)];
         
         _backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
         [_backBtn setImage:Image(@"") forState:(UIControlStateNormal)];
@@ -89,7 +89,7 @@
         _rightBtn.titleLabel.font = Font(16.f);
 
         [_rightBtn setTitle:@"完成" forState:UIControlStateNormal];
-        [_rightBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+        [_rightBtn setTitleColor:RGB(18, 196, 190) forState:(UIControlStateNormal)];
 
         [_rightBtn addTarget:self action:@selector(clickRightBtn) forControlEvents:(UIControlEventTouchUpInside)];
         [self.navView addSubview:_rightBtn];
