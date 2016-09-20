@@ -108,6 +108,7 @@
 
 - (void)clickPublishButton
 {
+    /*
     CYLTabBarController *tabBarController = [self cyl_tabBarController];
     UIViewController *viewController = tabBarController.selectedViewController;
     
@@ -147,6 +148,27 @@
     }]];
     
     [viewController presentViewController:alterController animated:YES completion:nil];
+    */
+    
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:STR(@"BtnTitle_Cancle") destructiveButtonTitle:nil otherButtonTitles:STR(@"MakeMovie"), STR(@"TakePhoto"), nil];
+    sheet.actionSheetStyle = UIActionSheetStyleDefault;
+    [sheet showInView:self];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    CYLTabBarController *tabBarController = [self cyl_tabBarController];
+    UIViewController *viewController = tabBarController.selectedViewController;
+    
+    if (0 == buttonIndex) {
+        PublishMovieViewController *vc = [[PublishMovieViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [viewController presentViewController:nav animated:YES completion:nil];
+    }else if (1 == buttonIndex) {
+        
+        [[[CustomTipsView alloc] init] showWithText:@"照片打卡"];
+    }
+    
 }
 
 @end
