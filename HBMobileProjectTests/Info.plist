@@ -37,7 +37,7 @@
 	<key>NSRemindersUsageDescription</key>
 	<string>访问提醒事项</string>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>访问资源库</string>
+	<string>访问媒体资源库</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>

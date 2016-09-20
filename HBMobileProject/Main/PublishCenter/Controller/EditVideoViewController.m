@@ -21,17 +21,24 @@
     self.isUseBackBtn = YES;
     self.isUseRightBtn = YES;
     [self.rightBtn setTitle:@"发送" forState:UIControlStateNormal];
+    
+    [self setupSubView];
 }
 
 #pragma mark - private methods
-- (void)clickBackBtn
+- (void)setupSubView
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)clickRightBtn
 {
     
+}
+
+- (void)clickBackBtn
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
