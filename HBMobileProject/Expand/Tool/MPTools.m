@@ -28,4 +28,18 @@
     return nil;
 }
 
+/*
+ * 获取根控制器
+ */
++ (UIViewController *)getRootViewController
+{
+    UIViewController *rootVC = [[self getMainWindow] rootViewController];
+    UIViewController *topVC = rootVC;
+    
+    if (topVC.presentedViewController) {
+        topVC = topVC.presentedViewController;
+    }
+    return topVC;
+}
+
 @end

@@ -15,4 +15,9 @@
  */
 + (UIWindow *)getMainWindow;
 
+/*
+ * 获取根控制器
+ */
++ (UIViewController *)getRootViewController;
+
 @end
