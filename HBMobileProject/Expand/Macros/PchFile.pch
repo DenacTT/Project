@@ -64,6 +64,7 @@
 #pragma mark - Category
 #import "String.h"
 #import "MPTools.h"
+#import "NSThread+Extend.h"
 #import "UIViewExt.h"
 #import "UIView+Gesture.h"
 #import "NSString+Extend.h"
