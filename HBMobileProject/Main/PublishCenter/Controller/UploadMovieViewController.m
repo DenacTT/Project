@@ -80,7 +80,7 @@
     NSLog(@"%zi", indexPath.row);
 }
 
-#pragma mark - LazyLoad
+#pragma mark - getter
 - (UITableView *)tableView
 {
     if (!_tableView) {
