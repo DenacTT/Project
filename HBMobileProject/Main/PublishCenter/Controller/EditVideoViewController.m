@@ -102,14 +102,15 @@
 {
     [self.textView resignFirstResponder];
     
-    self.moviePlayer = [[AVPlayerViewController alloc] init];
-    _moviePlayer.view.frame = self.view.bounds;
-    _moviePlayer.view.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:_moviePlayer.view];
+//    self.moviePlayer = [[AVPlayerViewController alloc] init];
+//    _moviePlayer.view.frame = self.view.bounds;
+//    _moviePlayer.view.backgroundColor = [UIColor blackColor];
+//    [self.view addSubview:_moviePlayer.view];
+//    
+//    self.player = [[AVPlayer alloc] initWithURL:[NSURL fileURLWithPath:self.videoPath]];
+//    _moviePlayer.player = _player;
+//    [self.player play];
     
-    self.player = [[AVPlayer alloc] initWithURL:[NSURL fileURLWithPath:self.videoPath]];
-    _moviePlayer.player = _player;
-    [self.player play];
 }
 
 
