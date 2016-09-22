@@ -15,9 +15,15 @@
  */
 + (UIWindow *)getMainWindow;
 
-/*
+/**
  * 获取根控制器
  */
 + (UIViewController *)getRootViewController;
+
+/**
+ * 获取视图所在的控制器
+ * superView = [self superView]; // self 为当前视图
+ */
++ (UIViewController *)viewControllerWithSuperView:(UIView *)superView;
 
 @end

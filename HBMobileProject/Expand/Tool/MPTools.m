@@ -42,4 +42,17 @@
     return topVC;
 }
 
+/**
+ * 获取视图所在的控制器
+ */
++ (UIViewController *)viewControllerWithSuperView:(UIView *)superView; {
+    for (UIView *next = superView; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
 @end
