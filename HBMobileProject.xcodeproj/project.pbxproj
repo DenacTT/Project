@@ -58,6 +58,7 @@
 		D17A272B1D93F7A600C00B3F /* WBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A27251D93F7A600C00B3F /* WBModel.m */; };
 		D17A272C1D93F7A600C00B3F /* WBStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A27271D93F7A600C00B3F /* WBStatusHelper.m */; };
 		D17A272D1D93F7A600C00B3F /* WBStatusLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A27291D93F7A600C00B3F /* WBStatusLayout.m */; };
+		D17A27301D93F82300C00B3F /* BiggerBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A272F1D93F82300C00B3F /* BiggerBtn.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -203,6 +204,8 @@
 		D17A27271D93F7A600C00B3F /* WBStatusHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatusHelper.m; sourceTree = "<group>"; };
 		D17A27281D93F7A600C00B3F /* WBStatusLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatusLayout.h; sourceTree = "<group>"; };
 		D17A27291D93F7A600C00B3F /* WBStatusLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatusLayout.m; sourceTree = "<group>"; };
+		D17A272E1D93F82300C00B3F /* BiggerBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiggerBtn.h; sourceTree = "<group>"; };
+		D17A272F1D93F82300C00B3F /* BiggerBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiggerBtn.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -613,6 +616,8 @@
 		D13B5A631D82FD39005D89FA /* UIButton */ = {
 			isa = PBXGroup;
 			children = (
+				D17A272E1D93F82300C00B3F /* BiggerBtn.h */,
+				D17A272F1D93F82300C00B3F /* BiggerBtn.m */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -1161,6 +1166,7 @@
 				D1B6D7721D7D154700C3E647 /* MASLayoutConstraint.m in Sources */,
 				D1B6D79A1D7D159600C3E647 /* NSString+MJExtension.m in Sources */,
 				D13B591C1D816863005D89FA /* UIImage+RoundedCorner.m in Sources */,
+				D17A27301D93F82300C00B3F /* BiggerBtn.m in Sources */,
 				D13B58961D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				D1B6D7931D7D159600C3E647 /* MJProperty.m in Sources */,
 				D13B58D51D7FF7F9005D89FA /* ViewController.m in Sources */,
