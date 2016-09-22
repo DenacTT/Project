@@ -11,9 +11,7 @@
 #define SysConfig_h
 
 /* 趣拍 */
-#define kQPAppKey @"207fd25968567db"
-#define kQPAppSecret @"19ac90bcc3df404e9eb74d1e1046c3a2"
-#define kQPSpace @"space"
-
+#define kQPAppKey @"20bd2e780712f02"
+#define kQPAppSecret @"3b04970e50d9419f8957aa724323651f"
 
 #endif /* SysConfig_h */

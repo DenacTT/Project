@@ -76,6 +76,7 @@
 #import "LoopProgressView.h"
 #import "StatusBarHUD.h"
 #import "CuttingLine.h"
+#import "AppDelegateHelper.h"
 
 //环信
 //#import "EMSDK.h"

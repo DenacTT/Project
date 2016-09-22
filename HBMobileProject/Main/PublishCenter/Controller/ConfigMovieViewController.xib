@@ -199,7 +199,8 @@
                         <action selector="dismissController:" destination="-1" eventType="touchUpInside" id="93I-H5-94g"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwf-vd-uAQ">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwf-vd-uAQ">
+                    <frame key="frameInset" minY="610" width="375" height="27"/>
                     <color key="backgroundColor" red="0.87202876806259155" green="0.87202876806259155" blue="0.87202876806259155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="63" id="tYo-dv-bQ3"/>

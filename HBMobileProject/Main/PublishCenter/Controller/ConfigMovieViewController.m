@@ -111,7 +111,7 @@
     [[NSFileManager defaultManager] copyItemAtPath:videoPath toPath:testVideoPath error:nil];
     [[NSFileManager defaultManager] copyItemAtPath:thumbnailPath toPath:testThumbnailPath error:nil];
     
-    QPUploadTask *task = [[QPUploadTaskManager shared] createUploadTaskWithVideoPath:testVideoPath thumbnailPath:testThumbnailPath];
+//    QPUploadTask *task = [[QPUploadTaskManager shared] createUploadTaskWithVideoPath:testVideoPath thumbnailPath:testThumbnailPath];
     
 }
 

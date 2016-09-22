@@ -73,14 +73,12 @@
 
 - (void)checkAuth
 {
-    [[QPAuth shared] registerAppWithKey:kQPAppKey secret:kQPAppSecret space:kQPSpace success:^(NSString *accessToken) {
+    [[QPAuth shared] registerAppWithKey:kQPAppKey secret:kQPAppSecret space:@"00000000" success:^(NSString *accessToken) {
        
         [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:UserDefaultAccessToken];
-        NSLog(@"验证成功");
         
     } failure:^(NSError *error) {
         
-        NSLog(@"验证失败");
     }];
 }
 
