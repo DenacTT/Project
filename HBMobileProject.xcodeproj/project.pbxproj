@@ -157,7 +157,7 @@
 		D17A28571D9400E000C00B3F /* privateCard_detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28521D9400E000C00B3F /* privateCard_detail@2x.png */; };
 		D17A28581D9400E000C00B3F /* privateCard_Lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28531D9400E000C00B3F /* privateCard_Lock@2x.png */; };
 		D17A28591D9400E000C00B3F /* privateCard_unLock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28541D9400E000C00B3F /* privateCard_unLock@2x.png */; };
-		D17A285D1D9402D700C00B3F /* defaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A285C1D9402D700C00B3F /* defaultImage@2x.png */; };
+		D17A285D1D9402D700C00B3F /* headImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A285C1D9402D700C00B3F /* headImage@2x.png */; };
 		D17A289B1D9404CC00C00B3F /* UMS_wechat_favorite_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28851D9404CC00C00B3F /* UMS_wechat_favorite_icon.png */; };
 		D17A289C1D9404CC00C00B3F /* UMS_wechat_favorite_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28861D9404CC00C00B3F /* UMS_wechat_favorite_icon@2x.png */; };
 		D17A289D1D9404CC00C00B3F /* UMS_wechat_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28871D9404CC00C00B3F /* UMS_wechat_icon.png */; };
@@ -203,6 +203,7 @@
 		D17A28E51D94091600C00B3F /* type_4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28DB1D94091600C00B3F /* type_4@3x.png */; };
 		D17A28E81D94098800C00B3F /* userDefaultHeadMax@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28E61D94098800C00B3F /* userDefaultHeadMax@2x.png */; };
 		D17A28E91D94098800C00B3F /* userDefaultHeadMax@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28E71D94098800C00B3F /* userDefaultHeadMax@3x.png */; };
+		D17A28EB1D940B1100C00B3F /* defaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28EA1D940B1100C00B3F /* defaultImage@2x.png */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -532,7 +533,7 @@
 		D17A28521D9400E000C00B3F /* privateCard_detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "privateCard_detail@2x.png"; sourceTree = "<group>"; };
 		D17A28531D9400E000C00B3F /* privateCard_Lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "privateCard_Lock@2x.png"; sourceTree = "<group>"; };
 		D17A28541D9400E000C00B3F /* privateCard_unLock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "privateCard_unLock@2x.png"; sourceTree = "<group>"; };
-		D17A285C1D9402D700C00B3F /* defaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultImage@2x.png"; sourceTree = "<group>"; };
+		D17A285C1D9402D700C00B3F /* headImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headImage@2x.png"; sourceTree = "<group>"; };
 		D17A28851D9404CC00C00B3F /* UMS_wechat_favorite_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UMS_wechat_favorite_icon.png; sourceTree = "<group>"; };
 		D17A28861D9404CC00C00B3F /* UMS_wechat_favorite_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UMS_wechat_favorite_icon@2x.png"; sourceTree = "<group>"; };
 		D17A28871D9404CC00C00B3F /* UMS_wechat_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UMS_wechat_icon.png; sourceTree = "<group>"; };
@@ -578,6 +579,7 @@
 		D17A28DB1D94091600C00B3F /* type_4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "type_4@3x.png"; sourceTree = "<group>"; };
 		D17A28E61D94098800C00B3F /* userDefaultHeadMax@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userDefaultHeadMax@2x.png"; sourceTree = "<group>"; };
 		D17A28E71D94098800C00B3F /* userDefaultHeadMax@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userDefaultHeadMax@3x.png"; sourceTree = "<group>"; };
+		D17A28EA1D940B1100C00B3F /* defaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultImage@2x.png"; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -1342,7 +1344,8 @@
 		D17A285B1D9402D700C00B3F /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				D17A285C1D9402D700C00B3F /* defaultImage@2x.png */,
+				D17A28EA1D940B1100C00B3F /* defaultImage@2x.png */,
+				D17A285C1D9402D700C00B3F /* headImage@2x.png */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1876,6 +1879,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17A28EB1D940B1100C00B3F /* defaultImage@2x.png in Resources */,
 				D13B593A1D81A596005D89FA /* music in Resources */,
 				D17A28A91D9404CC00C00B3F /* UMS_wechat_timeline_on@2x.png in Resources */,
 				D17A28581D9400E000C00B3F /* privateCard_Lock@2x.png in Resources */,
@@ -1910,7 +1914,7 @@
 				D13B58F11D8100F3005D89FA /* QPSDK.bundle in Resources */,
 				D17A28AC1D9404CC00C00B3F /* UMS_sina_off.png in Resources */,
 				D17A28D01D94083200C00B3F /* sex_W@2x.png in Resources */,
-				D17A285D1D9402D700C00B3F /* defaultImage@2x.png in Resources */,
+				D17A285D1D9402D700C00B3F /* headImage@2x.png in Resources */,
 				D13B58E81D800B53005D89FA /* ConfigMovieViewController.xib in Resources */,
 				D17A28A71D9404CC00C00B3F /* UMS_wechat_timeline_off@2x.png in Resources */,
 				D17A28A81D9404CC00C00B3F /* UMS_wechat_timeline_on.png in Resources */,

@@ -69,13 +69,13 @@
     [_imageView addGestureRecognizer:tap];
 }
 
-- (void)clickBack
+- (void)clickBackBtn
 {
     [self.textView resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)clickRight
+- (void)clickRightBtn
 {
     [self.textView resignFirstResponder];
     NSLog(@"\n 视频路径: %@ \n 图片路径: %@", self.videoPath, self.photoPath);
@@ -146,7 +146,7 @@
         bottomLine.backgroundColor = [UIColor colorWithRGB:0xf6f6f7ff];
         [_shareView addSubview:bottomLine];
         
-        UILabel *shareLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, _shareView.frame.size.height/2-24/2, 50, 24)];
+        UILabel *shareLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, _shareView.frame.size.height/2-24/2, 60, 24)];
         shareLabel.text = STR(@"EIVC_synchronization");
         shareLabel.font = Font(14);
         shareLabel.textColor = RGB(136, 136, 136);
@@ -220,7 +220,6 @@
         _textView.text = @"#小视频#";
         
         [_textView becomeFirstResponder];
-        
     }
     return _textView;
 }
@@ -252,11 +251,6 @@
         [_indictorView hidesWhenStopped];
     }
     return _indictorView;
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
