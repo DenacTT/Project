@@ -59,7 +59,7 @@
     NSString *str = [NSString stringWithFormat:@"%@", string];
     if ([String isBlankString:str])
     {
-            return @"";
+        return @"";
     }
     return str;
 }

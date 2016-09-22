@@ -93,9 +93,10 @@
     
 }
 
+
 -(void)privateBtnClick:(UIButton *)sender
 {
-    [self.textView resignFirstResponder];
+    
 }
 
 - (void)previewVideo:(UITapGestureRecognizer *)tap
@@ -145,7 +146,7 @@
         bottomLine.backgroundColor = [UIColor colorWithRGB:0xf6f6f7ff];
         [_shareView addSubview:bottomLine];
         
-        UILabel *shareLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, _shareView.frame.size.height/2-24/2, 60, 24)];
+        UILabel *shareLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, _shareView.frame.size.height/2-24/2, 50, 24)];
         shareLabel.text = STR(@"EIVC_synchronization");
         shareLabel.font = Font(14);
         shareLabel.textColor = RGB(136, 136, 136);
@@ -153,14 +154,14 @@
         
         CGFloat btnH = 24;
         _weixinBtn = [BiggerBtn buttonWithType:UIButtonTypeCustom];
-        _weixinBtn.frame = CGRectMake(CGRectGetMaxX(shareLabel.frame)+15, _shareView.frame.size.height/2-btnH/2, btnH, btnH);
+        _weixinBtn.frame = CGRectMake(shareLabel.right, _shareView.frame.size.height/2-btnH/2, btnH, btnH);
         [_weixinBtn setImage:Image(@"UMS_wechat_timeline_off") forState:UIControlStateNormal];
         [_weixinBtn setImage:Image(@"UMS_wechat_timeline_icon") forState:UIControlStateSelected];
         [_weixinBtn addTarget:self action:@selector(weixinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_shareView addSubview:_weixinBtn];
         
         _sinaBtn = [BiggerBtn buttonWithType:UIButtonTypeCustom];
-        _sinaBtn.frame = CGRectMake(CGRectGetMaxX(_weixinBtn.frame)+15, _shareView.frame.size.height/2-btnH/2+2, btnH, btnH);
+        _sinaBtn.frame = CGRectMake(_weixinBtn.right+5, _shareView.frame.size.height/2-btnH/2+2, btnH, btnH);
         [_sinaBtn setImage:Image(@"UMS_sina_off") forState:UIControlStateNormal];
         [_sinaBtn setImage:Image(@"UMS_sina_icon") forState:UIControlStateSelected];
         [_sinaBtn addTarget:self action:@selector(sinaBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -231,7 +232,14 @@
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(13, _mainView.frame.size.height-13-60, 60, 60)];
         _imageView.contentMode = UIViewContentModeScaleToFill;
         _imageView.clipsToBounds = YES;
-        _imageView.image = [UIImage imageWithContentsOfFile:self.photoPath];
+        
+        UIImage *image;
+        if ([String isBlankString:self.photoPath]) {
+            image = Image(@"defaultImage");
+        }else{
+            image = [UIImage imageWithContentsOfFile:self.photoPath];
+        }
+        _imageView.image = image;
     }
     return _imageView;
 }
