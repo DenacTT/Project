@@ -79,14 +79,16 @@
         UIImageWriteToSavedPhotosAlbum([UIImage imageWithContentsOfFile:thumbnailPath], nil, nil, nil);
     }
     
-    // 拷贝出来
-    if (videoPath && thumbnailPath) {
-        [self saveVideo:videoPath thumbnail:thumbnailPath];
-    }
+//    // 拷贝出来
+//    if (videoPath && thumbnailPath) {
+//        [self saveVideo:videoPath thumbnail:thumbnailPath];
+//    }
     NSLog(@"视频保存路径: %@ \n 照片保存路径: %@", videoPath, thumbnailPath);
     
     if (videoPath != nil) {
         EditVideoViewController *vc = [[EditVideoViewController alloc] init];
+        vc.videoPath = videoPath;
+        vc.photoPath = thumbnailPath;
         [self presentViewController:vc animated:YES completion:nil];
     }
 }
