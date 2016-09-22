@@ -9,7 +9,7 @@
 #import "PublishButton.h"
 #import "CYLTabBarController.h"
 #import "PublishMovieViewController.h"
-
+#import "EditVideoViewController.h"
 #import "LoopProgressView.h"
 
 @interface PublishButton ()<UIActionSheetDelegate>
@@ -166,7 +166,9 @@
         [viewController presentViewController:nav animated:YES completion:nil];
     }else if (1 == buttonIndex) {
         
-        [[[CustomTipsView alloc] init] showWithText:@"照片打卡"];
+//        [[[CustomTipsView alloc] init] showWithText:@"照片打卡"];
+        EditVideoViewController *editVideoViewController = [[EditVideoViewController alloc] init];
+        [viewController presentViewController:editVideoViewController animated:YES completion:nil];
         
     }
     

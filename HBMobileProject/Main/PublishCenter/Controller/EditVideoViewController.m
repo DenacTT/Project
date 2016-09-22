@@ -146,6 +146,7 @@
         
         UILabel *shareLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, _shareView.frame.size.height/2-24/2, 60, 24)];
         shareLabel.text = STR(@"EIVC_synchronization");
+        shareLabel.font = Font(14);
         shareLabel.textColor = RGB(136, 136, 136);
         [_shareView addSubview:shareLabel];
         
@@ -182,7 +183,7 @@
         _privateLabel = [[UILabel alloc] initWithFrame:CGRectMake(_privateBtn.right + 4, 6, 26, 12)];
         _privateLabel.text = STR(@"EIVC_publicLabel");
         _privateLabel.textColor = [UIColor lightGrayColor];
-        _privateLabel.font = [UIFont boldSystemFontOfSize:12];
+        _privateLabel.font = Font(12);
         [_privateView addSubview:_privateLabel];
     }
     return _shareView;

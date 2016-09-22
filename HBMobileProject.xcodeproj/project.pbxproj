@@ -153,6 +153,11 @@
 		D17A28491D93FAEC00C00B3F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17A28481D93FAEC00C00B3F /* SystemConfiguration.framework */; };
 		D17A284B1D93FAF400C00B3F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D17A284A1D93FAF400C00B3F /* libsqlite3.0.tbd */; };
 		D17A284E1D93FBD200C00B3F /* AppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A284D1D93FBD200C00B3F /* AppDelegateHelper.m */; };
+		D17A28551D9400E000C00B3F /* privateCard_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28501D9400E000C00B3F /* privateCard_badge@2x.png */; };
+		D17A28561D9400E000C00B3F /* privateCard_bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28511D9400E000C00B3F /* privateCard_bubble@2x.png */; };
+		D17A28571D9400E000C00B3F /* privateCard_detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28521D9400E000C00B3F /* privateCard_detail@2x.png */; };
+		D17A28581D9400E000C00B3F /* privateCard_Lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28531D9400E000C00B3F /* privateCard_Lock@2x.png */; };
+		D17A28591D9400E000C00B3F /* privateCard_unLock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28541D9400E000C00B3F /* privateCard_unLock@2x.png */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -478,6 +483,11 @@
 		D17A284A1D93FAF400C00B3F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		D17A284C1D93FBD200C00B3F /* AppDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegateHelper.h; sourceTree = "<group>"; };
 		D17A284D1D93FBD200C00B3F /* AppDelegateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateHelper.m; sourceTree = "<group>"; };
+		D17A28501D9400E000C00B3F /* privateCard_badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "privateCard_badge@2x.png"; sourceTree = "<group>"; };
+		D17A28511D9400E000C00B3F /* privateCard_bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "privateCard_bubble@2x.png"; sourceTree = "<group>"; };
+		D17A28521D9400E000C00B3F /* privateCard_detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "privateCard_detail@2x.png"; sourceTree = "<group>"; };
+		D17A28531D9400E000C00B3F /* privateCard_Lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "privateCard_Lock@2x.png"; sourceTree = "<group>"; };
+		D17A28541D9400E000C00B3F /* privateCard_unLock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "privateCard_unLock@2x.png"; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -1235,6 +1245,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D17A284F1D9400E000C00B3F /* PrivateCard */ = {
+			isa = PBXGroup;
+			children = (
+				D17A28501D9400E000C00B3F /* privateCard_badge@2x.png */,
+				D17A28511D9400E000C00B3F /* privateCard_bubble@2x.png */,
+				D17A28521D9400E000C00B3F /* privateCard_detail@2x.png */,
+				D17A28531D9400E000C00B3F /* privateCard_Lock@2x.png */,
+				D17A28541D9400E000C00B3F /* privateCard_unLock@2x.png */,
+			);
+			path = PrivateCard;
+			sourceTree = "<group>";
+		};
 		D1B6D6E21D7D10C400C3E647 = {
 			isa = PBXGroup;
 			children = (
@@ -1500,6 +1522,7 @@
 		D1B6D7501D7D132600C3E647 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D17A284F1D9400E000C00B3F /* PrivateCard */,
 				D13B58FA1D814475005D89FA /* Qupai */,
 			);
 			path = Images;
@@ -1679,6 +1702,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D13B593A1D81A596005D89FA /* music in Resources */,
+				D17A28581D9400E000C00B3F /* privateCard_Lock@2x.png in Resources */,
+				D17A28551D9400E000C00B3F /* privateCard_badge@2x.png in Resources */,
 				D13B58D81D7FFA6F005D89FA /* Localizable.strings in Resources */,
 				D13B59391D81A596005D89FA /* music1.json in Resources */,
 				D1B6D6FE1D7D10C500C3E647 /* LaunchScreen.storyboard in Resources */,
@@ -1686,9 +1711,12 @@
 				D1B6D6FB1D7D10C500C3E647 /* Assets.xcassets in Resources */,
 				D13B58F11D8100F3005D89FA /* QPSDK.bundle in Resources */,
 				D13B58E81D800B53005D89FA /* ConfigMovieViewController.xib in Resources */,
+				D17A28591D9400E000C00B3F /* privateCard_unLock@2x.png in Resources */,
 				D1B6D7901D7D159600C3E647 /* Info.plist in Resources */,
 				D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */,
+				D17A28571D9400E000C00B3F /* privateCard_detail@2x.png in Resources */,
 				D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */,
+				D17A28561D9400E000C00B3F /* privateCard_bubble@2x.png in Resources */,
 				D13B58FC1D814485005D89FA /* watermask.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
