@@ -154,15 +154,15 @@
         CGFloat btnH = 24;
         _weixinBtn = [BiggerBtn buttonWithType:UIButtonTypeCustom];
         _weixinBtn.frame = CGRectMake(CGRectGetMaxX(shareLabel.frame)+15, _shareView.frame.size.height/2-btnH/2, btnH, btnH);
-        [_weixinBtn setImage:Image(@"UMSocialSDKResourcesNew.bundle/SnsPlatform/UMS_wechat_timeline_off") forState:UIControlStateNormal];
-        [_weixinBtn setImage:Image(@"UMSocialSDKResourcesNew.bundle/SnsPlatform/UMS_wechat_timeline_icon") forState:UIControlStateSelected];
+        [_weixinBtn setImage:Image(@"UMS_wechat_timeline_off") forState:UIControlStateNormal];
+        [_weixinBtn setImage:Image(@"UMS_wechat_timeline_icon") forState:UIControlStateSelected];
         [_weixinBtn addTarget:self action:@selector(weixinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_shareView addSubview:_weixinBtn];
         
         _sinaBtn = [BiggerBtn buttonWithType:UIButtonTypeCustom];
         _sinaBtn.frame = CGRectMake(CGRectGetMaxX(_weixinBtn.frame)+15, _shareView.frame.size.height/2-btnH/2+2, btnH, btnH);
-        [_sinaBtn setImage:Image(@"UMSocialSDKResourcesNew.bundle/SnsPlatform/UMS_sina_off") forState:UIControlStateNormal];
-        [_sinaBtn setImage:Image(@"UMSocialSDKResourcesNew.bundle/SnsPlatform/UMS_sina_icon") forState:UIControlStateSelected];
+        [_sinaBtn setImage:Image(@"UMS_sina_off") forState:UIControlStateNormal];
+        [_sinaBtn setImage:Image(@"UMS_sina_icon") forState:UIControlStateSelected];
         [_sinaBtn addTarget:self action:@selector(sinaBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_shareView addSubview:_sinaBtn];
         
