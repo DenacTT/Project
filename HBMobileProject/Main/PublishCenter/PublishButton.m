@@ -12,6 +12,9 @@
 #import "EditVideoViewController.h"
 #import "LoopProgressView.h"
 
+// test
+#import "GUPImageTestController.h"
+
 @interface PublishButton ()<UIActionSheetDelegate>
 {
     CGFloat _buttonImageHeight;
@@ -161,11 +164,12 @@
     UIViewController *viewController = tabBarController.selectedViewController;
     
     if (0 == buttonIndex) {
-        PublishMovieViewController *vc = [[PublishMovieViewController alloc] init];
+//        PublishMovieViewController *vc = [[PublishMovieViewController alloc] init];
+        
+        GUPImageTestController *vc = [[GUPImageTestController alloc] init];
+        
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
         [viewController presentViewController:nav animated:YES completion:nil];
-        
-        
         
     }else if (1 == buttonIndex) {
         

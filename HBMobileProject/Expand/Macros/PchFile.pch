@@ -77,7 +77,7 @@
 #import "StatusBarHUD.h"
 #import "CuttingLine.h"
 #import "AppDelegateHelper.h"
-
+#import "GPUImage.h"
 
 //环信
 //#import "EMSDK.h"
