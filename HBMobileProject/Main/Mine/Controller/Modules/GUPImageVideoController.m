@@ -33,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     CGRect frame = [[UIScreen mainScreen] bounds];
     VideoCameraView *view = [[VideoCameraView alloc] initWithFrame:frame];
     [self.view addSubview:view];
@@ -71,7 +72,6 @@
     }];
      */
 }
-
 
 - (void)onTimer:(id)sender {
     _mLabel.text  = [NSString stringWithFormat:@"录制时间:%lds", _mLabelTime++];
