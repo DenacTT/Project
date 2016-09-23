@@ -164,6 +164,9 @@
         PublishMovieViewController *vc = [[PublishMovieViewController alloc] init];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
         [viewController presentViewController:nav animated:YES completion:nil];
+        
+        
+        
     }else if (1 == buttonIndex) {
         
 //        [[[CustomTipsView alloc] init] showWithText:@"照片打卡"];

@@ -204,6 +204,10 @@
 		D17A28E81D94098800C00B3F /* userDefaultHeadMax@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28E61D94098800C00B3F /* userDefaultHeadMax@2x.png */; };
 		D17A28E91D94098800C00B3F /* userDefaultHeadMax@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28E71D94098800C00B3F /* userDefaultHeadMax@3x.png */; };
 		D17A28EB1D940B1100C00B3F /* defaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A28EA1D940B1100C00B3F /* defaultImage@2x.png */; };
+		D17A29B71D941B1F00C00B3F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17A29B61D941B1F00C00B3F /* CoreMedia.framework */; };
+		D17A29B91D941B2C00C00B3F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17A29B81D941B2C00C00B3F /* CoreVideo.framework */; };
+		D17A29BB1D941B3200C00B3F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17A29BA1D941B3200C00B3F /* OpenGLES.framework */; };
+		D17A29BD1D941B3C00C00B3F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17A29BC1D941B3C00C00B3F /* AVFoundation.framework */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -580,6 +584,10 @@
 		D17A28E61D94098800C00B3F /* userDefaultHeadMax@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userDefaultHeadMax@2x.png"; sourceTree = "<group>"; };
 		D17A28E71D94098800C00B3F /* userDefaultHeadMax@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userDefaultHeadMax@3x.png"; sourceTree = "<group>"; };
 		D17A28EA1D940B1100C00B3F /* defaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultImage@2x.png"; sourceTree = "<group>"; };
+		D17A29B61D941B1F00C00B3F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D17A29B81D941B2C00C00B3F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		D17A29BA1D941B3200C00B3F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D17A29BC1D941B3C00C00B3F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -651,6 +659,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17A283F1D93FACB00C00B3F /* QuartzCore.framework in Frameworks */,
+				D17A29BD1D941B3C00C00B3F /* AVFoundation.framework in Frameworks */,
+				D17A29BB1D941B3200C00B3F /* OpenGLES.framework in Frameworks */,
+				D17A29B91D941B2C00C00B3F /* CoreVideo.framework in Frameworks */,
+				D17A29B71D941B1F00C00B3F /* CoreMedia.framework in Frameworks */,
 				D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */,
 				D17A284B1D93FAF400C00B3F /* libsqlite3.0.tbd in Frameworks */,
 				D17A28491D93FAEC00C00B3F /* SystemConfiguration.framework in Frameworks */,
@@ -658,7 +671,6 @@
 				D17A28451D93FAE000C00B3F /* Accelerate.framework in Frameworks */,
 				D17A28431D93FADA00C00B3F /* AssetsLibrary.framework in Frameworks */,
 				D17A28411D93FAD300C00B3F /* ImageIO.framework in Frameworks */,
-				D17A283F1D93FACB00C00B3F /* QuartzCore.framework in Frameworks */,
 				D17A283D1D93FAC400C00B3F /* CoreImage.framework in Frameworks */,
 				D17A283B1D93FAB800C00B3F /* CoreGraphics.framework in Frameworks */,
 				D17A28391D93FAAB00C00B3F /* CoreText.framework in Frameworks */,
@@ -1313,6 +1325,10 @@
 		D17A28331D93FA9400C00B3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D17A29BC1D941B3C00C00B3F /* AVFoundation.framework */,
+				D17A29BA1D941B3200C00B3F /* OpenGLES.framework */,
+				D17A29B81D941B2C00C00B3F /* CoreVideo.framework */,
+				D17A29B61D941B1F00C00B3F /* CoreMedia.framework */,
 				D17A284A1D93FAF400C00B3F /* libsqlite3.0.tbd */,
 				D17A28481D93FAEC00C00B3F /* SystemConfiguration.framework */,
 				D17A28461D93FAE600C00B3F /* MobileCoreServices.framework */,
@@ -1430,6 +1446,13 @@
 				D17A28DB1D94091600C00B3F /* type_4@3x.png */,
 			);
 			path = IdentifyImage;
+			sourceTree = "<group>";
+		};
+		D17A28F41D9416C600C00B3F /* GPUImage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GPUImage;
 			sourceTree = "<group>";
 		};
 		D1B6D6E21D7D10C400C3E647 = {
@@ -1672,6 +1695,7 @@
 		D1B6D74E1D7D130700C3E647 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				D17A28F41D9416C600C00B3F /* GPUImage */,
 				D17A27311D93F89900C00B3F /* YYKit */,
 				D17A27211D93F79700C00B3F /* WBStatusComposeText */,
 				D13B58EE1D8100D9005D89FA /* QPSDK */,
@@ -2274,7 +2298,14 @@
 				INFOPLIST_FILE = HBMobileProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HBMobileProject/Vender/GPUImage",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.harbingwang.github.io.HBMobileProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2299,7 +2330,14 @@
 				INFOPLIST_FILE = HBMobileProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HBMobileProject/Vender/GPUImage",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.harbingwang.github.io.HBMobileProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
