@@ -34,6 +34,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>App 需要访问您的相机</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App 需要访问 Microphone</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App 需要您的同意才能读取媒体资料库</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

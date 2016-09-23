@@ -13,7 +13,7 @@
 #define ProgressWidth 2.5                                   //环形进度条的圆环宽度
 #define Radius ViewWidth/2 - ProgressWidth    //环形进度条的半径
 
-@interface LoopProgressView ()
+@interface LoopProgressView ()<CAAnimationDelegate>
 {
     CAShapeLayer *archLayer;
     UILabel *label;

@@ -212,6 +212,10 @@
 		D17A2DA71D95045000C00B3F /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A2DA61D95045000C00B3F /* test@2x.png */; };
 		D17A2DAA1D9509D500C00B3F /* GUPImageVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DA91D9509D500C00B3F /* GUPImageVideoController.m */; };
 		D17A2DAD1D9509FE00C00B3F /* GUPImageTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DAC1D9509FE00C00B3F /* GUPImageTestController.m */; };
+		D17A2DB01D950A7000C00B3F /* VideoCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DAF1D950A7000C00B3F /* VideoCameraView.m */; };
+		D17A2DB21D950B5B00C00B3F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17A2DB11D950B5B00C00B3F /* Foundation.framework */; };
+		D17A2DB41D950EDA00C00B3F /* focusImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A2DB31D950EDA00C00B3F /* focusImage@2x.png */; };
+		D17A2DBA1D951C2B00C00B3F /* GPUImageBeautifyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DB91D951C2B00C00B3F /* GPUImageBeautifyFilter.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -770,6 +774,12 @@
 		D17A2DA91D9509D500C00B3F /* GUPImageVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUPImageVideoController.m; sourceTree = "<group>"; };
 		D17A2DAB1D9509FE00C00B3F /* GUPImageTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUPImageTestController.h; sourceTree = "<group>"; };
 		D17A2DAC1D9509FE00C00B3F /* GUPImageTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUPImageTestController.m; sourceTree = "<group>"; };
+		D17A2DAE1D950A7000C00B3F /* VideoCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCameraView.h; sourceTree = "<group>"; };
+		D17A2DAF1D950A7000C00B3F /* VideoCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCameraView.m; sourceTree = "<group>"; };
+		D17A2DB11D950B5B00C00B3F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D17A2DB31D950EDA00C00B3F /* focusImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "focusImage@2x.png"; sourceTree = "<group>"; };
+		D17A2DB81D951C2B00C00B3F /* GPUImageBeautifyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBeautifyFilter.h; sourceTree = "<group>"; };
+		D17A2DB91D951C2B00C00B3F /* GPUImageBeautifyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautifyFilter.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -841,11 +851,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17A29BB1D941B3200C00B3F /* OpenGLES.framework in Frameworks */,
+				D17A29B71D941B1F00C00B3F /* CoreMedia.framework in Frameworks */,
+				D17A29B91D941B2C00C00B3F /* CoreVideo.framework in Frameworks */,
+				D17A2DB21D950B5B00C00B3F /* Foundation.framework in Frameworks */,
 				D17A283F1D93FACB00C00B3F /* QuartzCore.framework in Frameworks */,
 				D17A29BD1D941B3C00C00B3F /* AVFoundation.framework in Frameworks */,
-				D17A29BB1D941B3200C00B3F /* OpenGLES.framework in Frameworks */,
-				D17A29B91D941B2C00C00B3F /* CoreVideo.framework in Frameworks */,
-				D17A29B71D941B1F00C00B3F /* CoreMedia.framework in Frameworks */,
 				D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */,
 				D17A284B1D93FAF400C00B3F /* libsqlite3.0.tbd in Frameworks */,
 				D17A28491D93FAEC00C00B3F /* SystemConfiguration.framework in Frameworks */,
@@ -1509,6 +1520,7 @@
 		D17A28331D93FA9400C00B3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D17A2DB11D950B5B00C00B3F /* Foundation.framework */,
 				D17A29BC1D941B3C00C00B3F /* AVFoundation.framework */,
 				D17A29BA1D941B3200C00B3F /* OpenGLES.framework */,
 				D17A29B81D941B2C00C00B3F /* CoreVideo.framework */,
@@ -1544,6 +1556,7 @@
 		D17A285B1D9402D700C00B3F /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D17A2DB31D950EDA00C00B3F /* focusImage@2x.png */,
 				D17A28EA1D940B1100C00B3F /* defaultImage@2x.png */,
 				D17A285C1D9402D700C00B3F /* headImage@2x.png */,
 				D17A2DA61D95045000C00B3F /* test@2x.png */,
@@ -1844,6 +1857,10 @@
 				D17A2DAC1D9509FE00C00B3F /* GUPImageTestController.m */,
 				D17A2DA81D9509D500C00B3F /* GUPImageVideoController.h */,
 				D17A2DA91D9509D500C00B3F /* GUPImageVideoController.m */,
+				D17A2DAE1D950A7000C00B3F /* VideoCameraView.h */,
+				D17A2DAF1D950A7000C00B3F /* VideoCameraView.m */,
+				D17A2DB81D951C2B00C00B3F /* GPUImageBeautifyFilter.h */,
+				D17A2DB91D951C2B00C00B3F /* GPUImageBeautifyFilter.m */,
 			);
 			name = GPUImage;
 			sourceTree = "<group>";
@@ -2260,6 +2277,7 @@
 					D1B6D6EA1D7D10C400C3E647 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = TW2KBGCT8Y;
+						ProvisioningStyle = Automatic;
 					};
 					D1B6D7031D7D10C500C3E647 = {
 						CreatedOnToolsVersion = 7.3;
@@ -2296,6 +2314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17A2DB41D950EDA00C00B3F /* focusImage@2x.png in Resources */,
 				D17A28EB1D940B1100C00B3F /* defaultImage@2x.png in Resources */,
 				D13B593A1D81A596005D89FA /* music in Resources */,
 				D17A28A91D9404CC00C00B3F /* UMS_wechat_timeline_on@2x.png in Resources */,
@@ -2412,6 +2431,7 @@
 				D17A27E41D93F89900C00B3F /* NSData+YYAdd.m in Sources */,
 				D13B59561D82DD61005D89FA /* NSString+Extend.m in Sources */,
 				D17A27F21D93F89900C00B3F /* UIApplication+YYAdd.m in Sources */,
+				D17A2DB01D950A7000C00B3F /* VideoCameraView.m in Sources */,
 				D17A28201D93F89900C00B3F /* YYTextAttribute.m in Sources */,
 				D17A28161D93F89900C00B3F /* YYTextInput.m in Sources */,
 				D17A27FA1D93F89900C00B3F /* UIImage+YYAdd.m in Sources */,
@@ -2494,6 +2514,7 @@
 				D17A281B1D93F89900C00B3F /* YYTextSelectionView.m in Sources */,
 				D17A28151D93F89900C00B3F /* YYTextEffectWindow.m in Sources */,
 				D17A272B1D93F7A600C00B3F /* WBModel.m in Sources */,
+				D17A2DBA1D951C2B00C00B3F /* GPUImageBeautifyFilter.m in Sources */,
 				D1B6D7971D7D159600C3E647 /* NSObject+MJCoding.m in Sources */,
 				D17A282F1D93F89900C00B3F /* YYThreadSafeDictionary.m in Sources */,
 				D17A27F91D93F89900C00B3F /* UIGestureRecognizer+YYAdd.m in Sources */,
@@ -2706,6 +2727,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.harbingwang.github.io.HBMobileProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;

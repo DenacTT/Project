@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoCameraView.h"
 
 @interface GUPImageVideoController : UIViewController
 
