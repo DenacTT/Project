@@ -24,12 +24,14 @@
     videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1280x720 cameraPosition:AVCaptureDevicePositionBack];
     videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     [videoCamera addAudioInputsAndOutputs];
+    
     filter = [[GPUImageSaturationFilter alloc] init];
     filteredVideoView = [[GPUImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [videoCamera addTarget:filter];
     [filter addTarget:filteredVideoView];
     [videoCamera startCameraCapture];
     [self addSomeView];
+    
     UITapGestureRecognizer *singleFingerOne = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cameraViewTapAction:)];
     singleFingerOne.numberOfTouchesRequired = 1; //手指数
     singleFingerOne.numberOfTapsRequired = 1; //tap次数

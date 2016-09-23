@@ -38,6 +38,7 @@ static NSString * const TableViewCellID = @"TableViewCellID";
     
     [self addCell:@"GPUImage Test" className:@"GUPImageTestController"];
     [self addCell:@"GPUImage Video" className:@"GUPImageVideoController"];
+    [self addCell:@"GPUImage Beauty" className:@"GPUImageBeautifyController"];
 //    [self addCell:@"Click Cell Expend" className:@"ExtensibleCellViewController"];
 //    [self addCell:@"Left Right TableView" className:@"LinkageTableViewController"];
 }
