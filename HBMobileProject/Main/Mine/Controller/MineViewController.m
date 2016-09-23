@@ -36,9 +36,10 @@ static NSString * const TableViewCellID = @"TableViewCellID";
     self.titleArr = @[].mutableCopy;
     self.classNameArr = @[].mutableCopy;
     
-    [self addCell:@"可点击展开与收缩的 Cell " className:@"ExtensibleCellViewController"];
-    [self addCell:@"左右两级联动的 TableView" className:@"LinkageTableViewController"];
-    
+    [self addCell:@"GPUImage Test" className:@"GUPImageTestController"];
+    [self addCell:@"GPUImage Video" className:@"GUPImageVideoController"];
+//    [self addCell:@"Click Cell Expend" className:@"ExtensibleCellViewController"];
+//    [self addCell:@"Left Right TableView" className:@"LinkageTableViewController"];
 }
 
 - (void)addCell:(NSString *)cellTitle className:(NSString *)className

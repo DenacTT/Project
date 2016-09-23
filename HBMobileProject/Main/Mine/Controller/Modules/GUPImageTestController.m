@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController.navigationBar setHidden:YES];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     UIImage *inputImage = [UIImage imageNamed:@"test"];
     
