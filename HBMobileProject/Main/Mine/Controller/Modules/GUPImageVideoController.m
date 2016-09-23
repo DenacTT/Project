@@ -27,17 +27,16 @@
     [super viewDidLoad];
     
     // Example 1
-//    CGRect frame = [[UIScreen mainScreen] bounds];
-//    VideoCameraView *view = [[VideoCameraView alloc] initWithFrame:frame];
-//    [self.view addSubview:view];
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    VideoCameraView *view = [[VideoCameraView alloc] initWithFrame:frame];
+    [self.view addSubview:view];
     
     // Example 2
-    CGRect aframe = [[UIScreen mainScreen] bounds];
-    VideoCameraExample *videoView = [[VideoCameraExample alloc] initWithFrame:aframe];
-    videoView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:videoView];
+//    CGRect aframe = [[UIScreen mainScreen] bounds];
+//    VideoCameraExample *videoView = [[VideoCameraExample alloc] initWithFrame:aframe];
+//    videoView.backgroundColor = [UIColor blackColor];
+//    [self.view addSubview:videoView];
 }
-
 
 - (void)didReceiveMemoryWarning
 {
