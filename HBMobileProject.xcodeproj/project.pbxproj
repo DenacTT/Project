@@ -219,6 +219,7 @@
 		D17A2DC01D9550F400C00B3F /* VideoCameraExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DBF1D9550F400C00B3F /* VideoCameraExample.m */; };
 		D17A2DC31D95614F00C00B3F /* GPUImageBeautifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */; };
 		D17A2DD01D9669D200C00B3F /* RecordVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DCF1D9669D200C00B3F /* RecordVideoController.m */; };
+		D17A2DD31D966A5400C00B3F /* PreviewVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DD21D966A5400C00B3F /* PreviewVideoView.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -789,6 +790,8 @@
 		D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautifyController.m; sourceTree = "<group>"; };
 		D17A2DCE1D9669D200C00B3F /* RecordVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordVideoController.h; sourceTree = "<group>"; };
 		D17A2DCF1D9669D200C00B3F /* RecordVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordVideoController.m; sourceTree = "<group>"; };
+		D17A2DD11D966A5400C00B3F /* PreviewVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewVideoView.h; sourceTree = "<group>"; };
+		D17A2DD21D966A5400C00B3F /* PreviewVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewVideoView.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -1884,6 +1887,8 @@
 			children = (
 				D17A2DCE1D9669D200C00B3F /* RecordVideoController.h */,
 				D17A2DCF1D9669D200C00B3F /* RecordVideoController.m */,
+				D17A2DD11D966A5400C00B3F /* PreviewVideoView.h */,
+				D17A2DD21D966A5400C00B3F /* PreviewVideoView.m */,
 			);
 			path = MakeVideo;
 			sourceTree = "<group>";
@@ -2525,6 +2530,7 @@
 				D17A28281D93F89900C00B3F /* YYDispatchQueuePool.m in Sources */,
 				D13B59461D829AA8005D89FA /* UIViewExt.m in Sources */,
 				D1B6D7731D7D154700C3E647 /* MASViewAttribute.m in Sources */,
+				D17A2DD31D966A5400C00B3F /* PreviewVideoView.m in Sources */,
 				D17A282C1D93F89900C00B3F /* YYReachability.m in Sources */,
 				D178C1211D89315300DAFCE5 /* CuttingLine.m in Sources */,
 				D1B6D7951D7D159600C3E647 /* MJPropertyType.m in Sources */,
