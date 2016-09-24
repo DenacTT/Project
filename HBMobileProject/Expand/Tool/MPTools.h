@@ -26,4 +26,10 @@
  */
 + (UIViewController *)viewControllerWithSuperView:(UIView *)superView;
 
+/**
+ *  获取视频的缩略图
+ *  @param filePath 视频的本地路径
+ *  @return 视频截图
+ */
++ (UIImage *)getThumbnailImageFromVideoPath:(NSString *)filePath;
 @end

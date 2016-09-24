@@ -55,4 +55,32 @@
     return nil;
 }
 
+/**
+ *  获取视频的缩略图
+ *
+ *  @param filePath 视频的本地路径
+ *
+ *  @return 视频截图
+ */
++ (UIImage *)getThumbnailImageFromVideoPath:(NSString *)filePath
+{
+    
+    UIImage *shotImage;
+    //视频路径URL
+    NSURL *fileURL = [NSURL URLWithString:filePath];
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:fileURL options:nil];
+    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    gen.appliesPreferredTrackTransform = YES;
+    
+    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+    NSError *error = nil;
+    CMTime actualTime;
+    
+    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    shotImage = [[UIImage alloc] initWithCGImage:image];
+    CGImageRelease(image);
+    
+    return shotImage;
+}
+
 @end
