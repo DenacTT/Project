@@ -7,6 +7,7 @@
 //
 
 #import "GUPImageTestController.h"
+#import "RecordVideoController.h"
 
 @interface GUPImageTestController ()
 
@@ -49,7 +50,11 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    RecordVideoController *vc = [[RecordVideoController alloc] init];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
