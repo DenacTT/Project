@@ -23,4 +23,12 @@
 // EditVideo
 "EIVC_synchronization" = "同步到 :";
 "EIVC_publicLabel" = "私密";
+
+// MakeVideo
 "Second" = "秒";
+"MWV_close"   = "关闭";
+"SecondThree" = "3秒";
+"SecondTen" = "10秒";
+"VideoUse" = "使用视频";
+"RePlay" = "重拍";
+"UseShortVideo" = "使用";

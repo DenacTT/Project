@@ -13,6 +13,9 @@
 		D11C449D1D9A5E1E0051BD31 /* DelayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C449C1D9A5E1E0051BD31 /* DelayView.m */; };
 		D11C44A21D9A5F020051BD31 /* DelayBtnHighGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D11C44A01D9A5F020051BD31 /* DelayBtnHighGray@2x.png */; };
 		D11C44A31D9A5F020051BD31 /* DelayBtnHighLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D11C44A11D9A5F020051BD31 /* DelayBtnHighLight@2x.png */; };
+		D11C44A61D9A60CE0051BD31 /* VideoTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44A51D9A60CE0051BD31 /* VideoTopView.m */; };
+		D11C44A81D9A61740051BD31 /* CameraChange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D11C44A71D9A61740051BD31 /* CameraChange@2x.png */; };
+		D11C44AB1D9A65880051BD31 /* CircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44AA1D9A65880051BD31 /* CircularSlider.m */; };
 		D12237DB1D8FD26E00B0D042 /* ExtensibleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */; };
 		D12237E41D90227B00B0D042 /* LinkageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237E31D90227B00B0D042 /* LinkageTableViewController.m */; };
 		D13B58931D7EEBAA005D89FA /* CYLPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */; };
@@ -284,6 +287,11 @@
 		D11C449C1D9A5E1E0051BD31 /* DelayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayView.m; sourceTree = "<group>"; };
 		D11C44A01D9A5F020051BD31 /* DelayBtnHighGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DelayBtnHighGray@2x.png"; sourceTree = "<group>"; };
 		D11C44A11D9A5F020051BD31 /* DelayBtnHighLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DelayBtnHighLight@2x.png"; sourceTree = "<group>"; };
+		D11C44A41D9A60CE0051BD31 /* VideoTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTopView.h; sourceTree = "<group>"; };
+		D11C44A51D9A60CE0051BD31 /* VideoTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTopView.m; sourceTree = "<group>"; };
+		D11C44A71D9A61740051BD31 /* CameraChange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraChange@2x.png"; sourceTree = "<group>"; };
+		D11C44A91D9A65880051BD31 /* CircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularSlider.h; sourceTree = "<group>"; };
+		D11C44AA1D9A65880051BD31 /* CircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularSlider.m; sourceTree = "<group>"; };
 		D12237D91D8FD26E00B0D042 /* ExtensibleCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensibleCellViewController.h; sourceTree = "<group>"; };
 		D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensibleCellViewController.m; sourceTree = "<group>"; };
 		D12237E21D90227B00B0D042 /* LinkageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkageTableViewController.h; sourceTree = "<group>"; };
@@ -974,6 +982,7 @@
 		D11C449F1D9A5EFD0051BD31 /* MakeVideo */ = {
 			isa = PBXGroup;
 			children = (
+				D11C44A71D9A61740051BD31 /* CameraChange@2x.png */,
 				D11C44A01D9A5F020051BD31 /* DelayBtnHighGray@2x.png */,
 				D11C44A11D9A5F020051BD31 /* DelayBtnHighLight@2x.png */,
 			);
@@ -1922,8 +1931,12 @@
 			children = (
 				D17A2DCE1D9669D200C00B3F /* RecordVideoController.h */,
 				D17A2DCF1D9669D200C00B3F /* RecordVideoController.m */,
+				D11C44A41D9A60CE0051BD31 /* VideoTopView.h */,
+				D11C44A51D9A60CE0051BD31 /* VideoTopView.m */,
 				D11C449B1D9A5E1E0051BD31 /* DelayView.h */,
 				D11C449C1D9A5E1E0051BD31 /* DelayView.m */,
+				D11C44A91D9A65880051BD31 /* CircularSlider.h */,
+				D11C44AA1D9A65880051BD31 /* CircularSlider.m */,
 				D11C44911D9911590051BD31 /* PreviewVideoView.h */,
 				D11C44921D9911590051BD31 /* PreviewVideoView.m */,
 			);
@@ -2437,6 +2450,7 @@
 				D17A28AD1D9404CC00C00B3F /* UMS_sina_off@2x.png in Resources */,
 				D17A28A31D9404CC00C00B3F /* UMS_wechat_session_icon@2x.png in Resources */,
 				D17A28E01D94091600C00B3F /* type_2@2x.png in Resources */,
+				D11C44A81D9A61740051BD31 /* CameraChange@2x.png in Resources */,
 				D17A28A11D9404CC00C00B3F /* UMS_wechat_on@2x.png in Resources */,
 				D17A28CE1D94083200C00B3F /* SCOtherSexW@3x.png in Resources */,
 				D17A28E81D94098800C00B3F /* userDefaultHeadMax@2x.png in Resources */,
@@ -2490,6 +2504,7 @@
 				D13B58C11D7FC725005D89FA /* HomeViewController.m in Sources */,
 				D13B58E71D800B53005D89FA /* ConfigMovieViewController.m in Sources */,
 				D13B591D1D816863005D89FA /* UIView+Gesture.m in Sources */,
+				D11C44AB1D9A65880051BD31 /* CircularSlider.m in Sources */,
 				D13B5A5D1D82F602005D89FA /* LoopProgressView.m in Sources */,
 				D17A28071D93F89900C00B3F /* UIButton+YYWebImage.m in Sources */,
 				D17A27F71D93F89900C00B3F /* UIDevice+YYAdd.m in Sources */,
@@ -2605,6 +2620,7 @@
 				D17A280D1D93F89900C00B3F /* YYImageCoder.m in Sources */,
 				D1B6D7941D7D159600C3E647 /* MJPropertyKey.m in Sources */,
 				D13B58E01D8001E5005D89FA /* PublishMovieViewController.m in Sources */,
+				D11C44A61D9A60CE0051BD31 /* VideoTopView.m in Sources */,
 				D17A27FB1D93F89900C00B3F /* UIScreen+YYAdd.m in Sources */,
 				D17A28181D93F89900C00B3F /* YYTextLayout.m in Sources */,
 				D1B6D7991D7D159600C3E647 /* NSObject+MJProperty.m in Sources */,
