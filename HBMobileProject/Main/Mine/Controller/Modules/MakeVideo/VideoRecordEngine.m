@@ -163,7 +163,7 @@
         }
     };
     [generator generateCGImagesAsynchronouslyForTimes:
-     [NSArray arrayWithObject:[NSValue valueWithCMTime:thumbTime]] completionHandler:generatorHandler];
+    [NSArray arrayWithObject:[NSValue valueWithCMTime:thumbTime]] completionHandler:generatorHandler];
 }
 
 #pragma mark - set、get方法

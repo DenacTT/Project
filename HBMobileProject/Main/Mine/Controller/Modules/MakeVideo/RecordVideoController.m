@@ -9,8 +9,13 @@
 #import "RecordVideoController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "VideoTopView.h"
 
-@interface RecordVideoController ()
+@interface RecordVideoController ()<VideoTopViewDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
+@property (nonatomic, strong) VideoTopView *topView;
+
+
 
 @end
 
