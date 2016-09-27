@@ -56,6 +56,7 @@
 		D13B5ABE1D840DF2005D89FA /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABD1D840DF2005D89FA /* Reveal.framework */; };
 		D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABF1D840E08005D89FA /* libz.tbd */; };
 		D15D86B61D8E484800115B73 /* UIControl+BtnClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */; };
+		D15E554E1D9AA25F0027634B /* VideoRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */; };
 		D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
@@ -368,6 +369,8 @@
 		D13B5ABF1D840E08005D89FA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D15D86B41D8E484800115B73 /* UIControl+BtnClickDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIControl+BtnClickDelay.h"; path = "UIControl/UIControl+BtnClickDelay.h"; sourceTree = "<group>"; };
 		D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+BtnClickDelay.m"; path = "UIControl/UIControl+BtnClickDelay.m"; sourceTree = "<group>"; };
+		D15E554C1D9AA25F0027634B /* VideoRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordEngine.h; sourceTree = "<group>"; };
+		D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordEngine.m; sourceTree = "<group>"; };
 		D160E91B1D9158E500CAF6CC /* NSThread+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSThread+Extend.h"; path = "NSThread/NSThread+Extend.h"; sourceTree = "<group>"; };
 		D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSThread+Extend.m"; path = "NSThread/NSThread+Extend.m"; sourceTree = "<group>"; };
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
@@ -1934,6 +1937,8 @@
 			children = (
 				D17A2DCE1D9669D200C00B3F /* RecordVideoController.h */,
 				D17A2DCF1D9669D200C00B3F /* RecordVideoController.m */,
+				D15E554C1D9AA25F0027634B /* VideoRecordEngine.h */,
+				D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */,
 				D1D26F841D9A76650080D784 /* VideoRecordEncoder.h */,
 				D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */,
 				D11C44A41D9A60CE0051BD31 /* VideoTopView.h */,
@@ -2646,6 +2651,7 @@
 				D17A27EB1D93F89900C00B3F /* NSObject+YYAddForARC.m in Sources */,
 				D13B59431D826A4A005D89FA /* MoreMusicCell.m in Sources */,
 				D1B6D76F1D7D154700C3E647 /* MASCompositeConstraint.m in Sources */,
+				D15E554E1D9AA25F0027634B /* VideoRecordEngine.m in Sources */,
 				D17A27E91D93F89900C00B3F /* NSNumber+YYAdd.m in Sources */,
 				D13B58931D7EEBAA005D89FA /* CYLPlusButton.m in Sources */,
 				D17A272C1D93F7A600C00B3F /* WBStatusHelper.m in Sources */,

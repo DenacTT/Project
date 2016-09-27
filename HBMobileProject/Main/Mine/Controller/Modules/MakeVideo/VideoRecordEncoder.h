@@ -4,7 +4,7 @@
 //
 //  Created by HarbingWang on 16/9/27.
 //  Copyright © 2016年 HarbingWang. All rights reserved.
-//  视频写入与编码的工具类
+//  数据写入与编码的工具类
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
@@ -27,7 +27,7 @@
  *
  *  @return VideoRecordEncoder的实体
  */
-+ (VideoRecordEncoder *)encoderForPath:(NSString *)path videoHeight:(CGFloat)videoHeight videoWidth:(CGFloat)videoWidth audioChannel:(int)audioChannel audioSamples:(Float64)audioRate;
++ (VideoRecordEncoder *)encoderForPath:(NSString *)path videoHeight:(NSInteger)videoHeight videoWidth:(NSInteger)videoWidth audioChannel:(int)audioChannel audioSamples:(Float64)audioRate;
 
 /**
  *  VideoRecordEncoder 初始化方法
@@ -40,7 +40,7 @@
  *
  *  @return VideoRecordEncoder的实体
  */
-- (instancetype)initVideoRecordPath:(NSString *)path videoHeight:(CGFloat)videoHeight videoWidth:(CGFloat)videoWidth  audioChannel:(int)audioChannel audioSamples:(Float64)audioRate;
+- (instancetype)initVideoRecordPath:(NSString *)path videoHeight:(NSInteger)videoHeight videoWidth:(NSInteger)videoWidth  audioChannel:(int)audioChannel audioSamples:(Float64)audioRate;
 
 /**
  * 录制完成时调用
