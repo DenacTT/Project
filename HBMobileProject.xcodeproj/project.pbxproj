@@ -256,6 +256,7 @@
 		D1B6D7981D7D159600C3E647 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D78B1D7D159600C3E647 /* NSObject+MJKeyValue.m */; };
 		D1B6D7991D7D159600C3E647 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D78D1D7D159600C3E647 /* NSObject+MJProperty.m */; };
 		D1B6D79A1D7D159600C3E647 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D78F1D7D159600C3E647 /* NSString+MJExtension.m */; };
+		D1D26F861D9A76650080D784 /* VideoRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -874,6 +875,8 @@
 		D1B6D78D1D7D159600C3E647 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
 		D1B6D78E1D7D159600C3E647 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
 		D1B6D78F1D7D159600C3E647 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		D1D26F841D9A76650080D784 /* VideoRecordEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordEncoder.h; sourceTree = "<group>"; };
+		D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordEncoder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1931,6 +1934,8 @@
 			children = (
 				D17A2DCE1D9669D200C00B3F /* RecordVideoController.h */,
 				D17A2DCF1D9669D200C00B3F /* RecordVideoController.m */,
+				D1D26F841D9A76650080D784 /* VideoRecordEncoder.h */,
+				D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */,
 				D11C44A41D9A60CE0051BD31 /* VideoTopView.h */,
 				D11C44A51D9A60CE0051BD31 /* VideoTopView.m */,
 				D11C449B1D9A5E1E0051BD31 /* DelayView.h */,
@@ -2581,6 +2586,7 @@
 				D17A28011D93F89900C00B3F /* YYDiskCache.m in Sources */,
 				D17A271F1D93F67200C00B3F /* EditVideoViewController.m in Sources */,
 				D1B6D7741D7D154700C3E647 /* MASViewConstraint.m in Sources */,
+				D1D26F861D9A76650080D784 /* VideoRecordEncoder.m in Sources */,
 				D17A28031D93F89900C00B3F /* YYMemoryCache.m in Sources */,
 				D17A280B1D93F89900C00B3F /* YYImage.m in Sources */,
 				D17A27E81D93F89900C00B3F /* NSNotificationCenter+YYAdd.m in Sources */,

@@ -10,7 +10,7 @@
 
 // 填充色值
 #define FillColor [UIColor whiteColor]
-// 为填充时的色值
+// 未填充时的色值
 #define unFillColor RGB(65, 65, 65)
 
 @interface CircularSlider : UIView
