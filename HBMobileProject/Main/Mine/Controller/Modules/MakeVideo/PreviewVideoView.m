@@ -89,7 +89,7 @@
         return nil;
     }else{
     
-        //设置录制视频保存的路径
+        //设置缩略图保存的路径
         NSString *pngPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent: @"videoThumbnail.png"];
 //        NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/videoThumbnail.png"];
         [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
