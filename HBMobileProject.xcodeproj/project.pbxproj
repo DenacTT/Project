@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D11853741D7EC3B900D1EA92 /* LogInViewController.m */; };
 		D11C44931D9911590051BD31 /* PreviewVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44921D9911590051BD31 /* PreviewVideoView.m */; };
+		D11C449A1D9A5D520051BD31 /* UIColor+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44991D9A5D520051BD31 /* UIColor+Extend.m */; };
 		D12237DB1D8FD26E00B0D042 /* ExtensibleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */; };
 		D12237E41D90227B00B0D042 /* LinkageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237E31D90227B00B0D042 /* LinkageTableViewController.m */; };
 		D13B58931D7EEBAA005D89FA /* CYLPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */; };
@@ -274,6 +275,8 @@
 		D11853771D7EC6AA00D1EA92 /* CommonMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
 		D11C44911D9911590051BD31 /* PreviewVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewVideoView.h; sourceTree = "<group>"; };
 		D11C44921D9911590051BD31 /* PreviewVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewVideoView.m; sourceTree = "<group>"; };
+		D11C44981D9A5D520051BD31 /* UIColor+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extend.h"; sourceTree = "<group>"; };
+		D11C44991D9A5D520051BD31 /* UIColor+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extend.m"; sourceTree = "<group>"; };
 		D12237D91D8FD26E00B0D042 /* ExtensibleCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensibleCellViewController.h; sourceTree = "<group>"; };
 		D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensibleCellViewController.m; sourceTree = "<group>"; };
 		D12237E21D90227B00B0D042 /* LinkageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkageTableViewController.h; sourceTree = "<group>"; };
@@ -943,6 +946,15 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D11C44971D9A5D4B0051BD31 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				D11C44981D9A5D520051BD31 /* UIColor+Extend.h */,
+				D11C44991D9A5D520051BD31 /* UIColor+Extend.m */,
+			);
+			path = UIColor;
 			sourceTree = "<group>";
 		};
 		D12237D81D8FD25200B0D042 /* Modules */ = {
@@ -2070,6 +2082,7 @@
 		D1B6D7451D7D12AB00C3E647 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				D11C44971D9A5D4B0051BD31 /* UIColor */,
 				D160E91A1D9158B100CAF6CC /* NSThread */,
 				D13B5A671D82FD73005D89FA /* UIControl */,
 				D13B5A631D82FD39005D89FA /* UIButton */,
@@ -2541,6 +2554,7 @@
 				D13B594F1D82CC88005D89FA /* UIImage+Categories.m in Sources */,
 				D17A281C1D93F89900C00B3F /* NSAttributedString+YYText.m in Sources */,
 				D12237E41D90227B00B0D042 /* LinkageTableViewController.m in Sources */,
+				D11C449A1D9A5D520051BD31 /* UIColor+Extend.m in Sources */,
 				D17A281B1D93F89900C00B3F /* YYTextSelectionView.m in Sources */,
 				D17A28151D93F89900C00B3F /* YYTextEffectWindow.m in Sources */,
 				D17A272B1D93F7A600C00B3F /* WBModel.m in Sources */,
