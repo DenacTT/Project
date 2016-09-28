@@ -57,6 +57,7 @@
 		D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABF1D840E08005D89FA /* libz.tbd */; };
 		D15D86B61D8E484800115B73 /* UIControl+BtnClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */; };
 		D15E554E1D9AA25F0027634B /* VideoRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */; };
+		D15E55541D9B698D0027634B /* VideoRecordStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55531D9B698D0027634B /* VideoRecordStatusView.m */; };
 		D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
@@ -371,6 +372,8 @@
 		D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+BtnClickDelay.m"; path = "UIControl/UIControl+BtnClickDelay.m"; sourceTree = "<group>"; };
 		D15E554C1D9AA25F0027634B /* VideoRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordEngine.h; sourceTree = "<group>"; };
 		D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordEngine.m; sourceTree = "<group>"; };
+		D15E55521D9B698D0027634B /* VideoRecordStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordStatusView.h; sourceTree = "<group>"; };
+		D15E55531D9B698D0027634B /* VideoRecordStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordStatusView.m; sourceTree = "<group>"; };
 		D160E91B1D9158E500CAF6CC /* NSThread+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSThread+Extend.h"; path = "NSThread/NSThread+Extend.h"; sourceTree = "<group>"; };
 		D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSThread+Extend.m"; path = "NSThread/NSThread+Extend.m"; sourceTree = "<group>"; };
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
@@ -1943,6 +1946,8 @@
 				D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */,
 				D11C44A41D9A60CE0051BD31 /* VideoTopView.h */,
 				D11C44A51D9A60CE0051BD31 /* VideoTopView.m */,
+				D15E55521D9B698D0027634B /* VideoRecordStatusView.h */,
+				D15E55531D9B698D0027634B /* VideoRecordStatusView.m */,
 				D11C449B1D9A5E1E0051BD31 /* DelayView.h */,
 				D11C449C1D9A5E1E0051BD31 /* DelayView.m */,
 				D11C44A91D9A65880051BD31 /* CircularSlider.h */,
@@ -2367,7 +2372,6 @@
 				TargetAttributes = {
 					D1B6D6EA1D7D10C400C3E647 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = TW2KBGCT8Y;
 						ProvisioningStyle = Automatic;
 					};
 					D1B6D7031D7D10C500C3E647 = {
@@ -2512,6 +2516,7 @@
 				D17A27F01D93F89900C00B3F /* CALayer+YYAdd.m in Sources */,
 				D17A27ED1D93F89900C00B3F /* NSString+YYAdd.m in Sources */,
 				D13B58C11D7FC725005D89FA /* HomeViewController.m in Sources */,
+				D15E55541D9B698D0027634B /* VideoRecordStatusView.m in Sources */,
 				D13B58E71D800B53005D89FA /* ConfigMovieViewController.m in Sources */,
 				D13B591D1D816863005D89FA /* UIView+Gesture.m in Sources */,
 				D11C44AB1D9A65880051BD31 /* CircularSlider.m in Sources */,
@@ -2809,7 +2814,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = TW2KBGCT8Y;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBMobileProject/Vender",
@@ -2842,7 +2847,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = TW2KBGCT8Y;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBMobileProject/Vender",

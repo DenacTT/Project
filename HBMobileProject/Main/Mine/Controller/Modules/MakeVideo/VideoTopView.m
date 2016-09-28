@@ -68,7 +68,7 @@
         tenBtn.titleLabel.font = [UIFont systemFontOfSize: 13.f];
         
         _cameraBtn = [UIButton buttonWithType: UIButtonTypeCustom];
-        [self addSubview: _cameraBtn];
+//        [self addSubview: _cameraBtn];
         [_cameraBtn setImage: [UIImage imageNamed: @"CameraChange"] forState: UIControlStateNormal];
         [_cameraBtn setImage: [UIImage imageNamed: @"CameraChange"] forState: UIControlStateHighlighted];
         _cameraBtn.frame = CGRectMake(ScreenWidth - 44, 0, 44, 44);
