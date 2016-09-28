@@ -104,8 +104,6 @@
 - (void)clickRightBtn
 {
     [self.textView resignFirstResponder];
-    NSLog(@"\n 视频路径: %@ \n 图片路径: %@", self.videoPath, self.photoPath);
-    
     
 }
 
@@ -250,14 +248,6 @@
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(13, _mainView.frame.size.height-13-60, 60, 60)];
         _imageView.contentMode = UIViewContentModeScaleToFill;
         _imageView.clipsToBounds = YES;
-        
-        UIImage *image;
-        if ([String isBlankString:self.photoPath]) {
-            image = Image(@"defaultImage");
-        }else{
-            image = [UIImage imageWithContentsOfFile:self.photoPath];
-        }
-        _imageView.image = image;
     }
     return _imageView;
 }

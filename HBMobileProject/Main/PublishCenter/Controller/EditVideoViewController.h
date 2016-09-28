@@ -10,7 +10,9 @@
 
 @interface EditVideoViewController : BaseViewController
 
-@property (nonatomic, strong) NSString *videoPath;
-@property (nonatomic, strong) NSString *photoPath;
+@property (nonatomic, strong) NSURL *videoPath;
+
+@property (nonatomic, strong) NSData *videoData;
+@property (nonatomic, strong) UIImage *thumbnailImage;
 
 @end

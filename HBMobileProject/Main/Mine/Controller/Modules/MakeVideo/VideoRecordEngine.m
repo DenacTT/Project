@@ -74,10 +74,8 @@
     if (_recordSession) {
         [_recordSession stopRunning];
     }
-    [_recordEncoder finishedRecordWithCompletionHandler:^{
-      
-        NSLog(@"视频录制完成");
-    }];
+//    [_recordEncoder finishedRecordWithCompletionHandler:^{
+//    }];
 }
 
 //开始录制

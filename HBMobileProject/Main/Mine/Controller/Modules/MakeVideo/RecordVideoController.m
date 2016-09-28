@@ -16,7 +16,7 @@
 #import "CircularSlider.h"
 #import "EditVideoViewController.h"
 
-@interface RecordVideoController ()<VideoTopViewDelegate, RecordEngineDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface RecordVideoController ()<RecordEngineDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) VideoTopView  *topView;       // 延时工具栏
 @property (nonatomic, strong) UIButton      *cameraBtn;     // 摄像头切换
@@ -42,7 +42,7 @@
 @implementation RecordVideoController
 {
     CGFloat     _recordSeconds; //已录制时间
-    NSInteger   _delaySeconds;  //延时倒计时;
+    NSInteger   _delaySeconds;  //延时倒计时
 }
 
 #pragma mark - life cycle
@@ -70,7 +70,6 @@
 {
     [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
     // 关闭录制功能
     [self.recordEngine shutdown];
 }
@@ -103,23 +102,167 @@
     self.allowRecord = YES;
 }
 
+// 开始录制
+- (void)startRecording
+{
+    // 开启录制功能
+    [self.recordEngine startUp];
+    // 开始录制
+    [self.recordEngine startCapture];
+    // 启动定时器
+    _recordSeconds = 0;
+    [self.recordTimer resumeTimer];
+    // 设置为结束状态
+    [_recordView setType:YMRecordType_StopRecord];
+}
+
+// 结束录制
+- (void)endRecording
+{
+    if (self.recordEngine.isCapturing) {
+        // 关闭录制功能
+        [self.recordEngine shutdown];
+        // 暂停录制
+        [self.recordEngine pauseCapture];
+        // 停止定时器
+        [self.recordTimer pauseTimer];
+        // 设置为可录状态
+        [self.recordView setType:YMRecordType_RecordVideo];
+        return;
+    }
+    
+}
+
+#pragma mark - NSTimer
+// 延时倒计时
+- (NSTimer *)delayTimer
+{
+    if (!_delayTimer) {
+        NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(delayTimerRun) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        _delayTimer = timer;
+    }
+    return _delayTimer;
+}
+
+- (void)delayTimerRun
+{
+    _delaySeconds --;
+    _delayLabel.text = [NSString stringWithFormat:@"%d", (int)_delaySeconds];
+    if (_delaySeconds <= 0) {
+        [self startRecording];
+        _delayLabel.hidden = YES;
+        [_delayTimer pauseTimer];
+    }
+}
+
+// 记录倒计时
+- (NSTimer *)recordTimer
+{
+    if (!_recordTimer) {
+        NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(recordTimerRun) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        _recordTimer = timer;
+    }
+    return _recordTimer;
+}
+
+- (void)recordTimerRun
+{
+    _recordSeconds += 0.1;
+    [_recordView strokeEndNumberChange];
+    if (_recordSeconds >= 11) {
+        [self endRecording];
+    }
+}
+
+#pragma  mark - 录制按钮
+- (void)onRecord:(UITapGestureRecognizer *)sender
+{
+//    [self.recordEngine startCapture];
+//    [_recordView strokeEndNumberChange];
+
+    if (_delaySeconds > 0 && !_delayLabel.hidden) {
+        [self.delayTimer pauseTimer];
+        _delayLabel.hidden = YES;
+        [_recordView setType:YMRecordType_RecordVideo];
+        return;
+    }
+    
+    if (self.recordEngine.isCapturing) {
+        [self.recordEngine pauseCapture];
+        [_recordView setType:YMRecordType_RecordVideo];
+        [_recordTimer pauseTimer];
+        return;
+    }
+    
+    // 延时播放
+    if ([_topView getDelaySecond] != 0) {
+        // 获取延时时间
+        _delaySeconds = [_topView getDelaySecond];
+        _delayLabel.hidden = NO;
+        // 开启定时器
+        [self.delayTimer resumeTimer];
+        [_recordView setType: YMRecordType_StopDelay];
+    }else{
+        
+        [self startRecording];
+    }
+}
+
+#pragma mark - button
+// 取消
+- (void)cancelRecord:(UIButton *)sender
+{
+    [self.recordEngine pauseCapture];
+    [self.recordEngine shutdown];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 #pragma mark - 使用
 - (void)useBtnClick:(UIButton *)sender
 {
-//    EditVideoViewController *vc = [[EditVideoViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    [self.recordView returnCircularStroke];
+    [self.recordTimer pauseTimer];
+    
     
     __weak typeof(self) weakSelf = self;
     [self.recordEngine stopCaptureHandler:^(UIImage *movieImage) {
         NSLog(@"videoPath : %@", weakSelf.recordEngine.videoPath);
-        weakSelf.playerVC = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:weakSelf.recordEngine.videoPath]];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playVideoFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:[weakSelf.playerVC moviePlayer]];
-        [[weakSelf.playerVC moviePlayer] prepareToPlay];
+//        weakSelf.playerVC = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:weakSelf.recordEngine.videoPath]];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playVideoFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:[weakSelf.playerVC moviePlayer]];
+//        [[weakSelf.playerVC moviePlayer] prepareToPlay];
+//        
+//        [weakSelf presentMoviePlayerViewControllerAnimated:weakSelf.playerVC];
+//        [[weakSelf.playerVC moviePlayer] play];
         
-        [weakSelf presentMoviePlayerViewControllerAnimated:weakSelf.playerVC];
-        [[weakSelf.playerVC moviePlayer] play];
+        EditVideoViewController *vc = [[EditVideoViewController alloc] init];
+        vc.videoPath = [NSURL URLWithString:weakSelf.recordEngine.videoPath];
+        vc.thumbnailImage = movieImage;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+        
     }];
     
+}
+
+//当点击Done按键或者播放完毕时调用此函数
+- (void)playVideoFinished:(NSNotification *)theNotification {
+    MPMoviePlayerController *player = [theNotification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:player];
+    [player stop];
+    [self.playerVC dismissMoviePlayerViewControllerAnimated];
+    self.playerVC = nil;
+}
+
+#pragma mark - 切换摄像头
+- (void)onCameraChange:(UIButton *)sender
+{
+    self.cameraBtn.selected = !self.cameraBtn.selected;
+    if (self.cameraBtn.selected) {
+        [self.recordEngine changeCameraInputDeviceisFront:YES];
+    }else{
+        [self.recordEngine changeCameraInputDeviceisFront:NO];
+    }
 }
 
 #pragma mark - set、get方法
@@ -137,7 +280,6 @@
         _moviePicker = [[UIImagePickerController alloc] init];
         _moviePicker.delegate = self;
         _moviePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//        _moviePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         _moviePicker.mediaTypes = @[(NSString *)kUTTypeMovie];
     }
     return _moviePicker;
@@ -188,8 +330,7 @@
         
         _delayLabel.textColor = [UIColor whiteColor];
         _delayLabel.font = Font(55.f);
-        _delayLabel.text = @"1";
-//        _delayLabel.hidden = YES;
+        _delayLabel.hidden = YES;
     }
     return _delayLabel;
 }
@@ -209,102 +350,37 @@
     return _recordView;
 }
 
-- (CircularSlider *)circularSlider
-{
-    if (!_circularSlider) {
-        _circularSlider = [[CircularSlider alloc] initWithRadius:90.f];
-        _circularSlider.width = 90.f;
-        _circularSlider.height = 90.f;
-        _circularSlider.top = _cancelBtn.center.y - _circularSlider.height/2;
-        _circularSlider.left = (ScreenWidth - _circularSlider.width)/2;
-    }
-    return _circularSlider;
-}
+//- (CircularSlider *)circularSlider
+//{
+//    if (!_circularSlider) {
+//        _circularSlider = [[CircularSlider alloc] initWithRadius:90.f];
+//        _circularSlider.width = 90.f;
+//        _circularSlider.height = 90.f;
+//        _circularSlider.top = _cancelBtn.center.y - _circularSlider.height/2;
+//        _circularSlider.left = (ScreenWidth - _circularSlider.width)/2;
+//    }
+//    return _circularSlider;
+//}
+//
+//- (UIButton *)recordBtn
+//{
+//    if (!_recordBtn) {
+//        _recordBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+//        _recordBtn.width = 80;
+//        _recordBtn.height = 80;
+//        _recordBtn.center = _circularSlider.center;
+//        [_recordBtn setImage:Image(@"RecodeButton") forState:(UIControlStateNormal)];
+//        [_recordBtn setImage:Image(@"RecordPasureButton") forState:(UIControlStateHighlighted)];
+//
+//        [_recordBtn addTarget:self action:@selector(recordAction:) forControlEvents:(UIControlEventTouchUpInside)];
+//    }
+//    return _recordBtn;
+//}
 
-- (UIButton *)recordBtn
-{
-    if (!_recordBtn) {
-        _recordBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _recordBtn.width = 80;
-        _recordBtn.height = 80;
-        _recordBtn.center = _circularSlider.center;
-        [_recordBtn setImage:Image(@"RecodeButton") forState:(UIControlStateNormal)];
-        [_recordBtn setImage:Image(@"RecordPasureButton") forState:(UIControlStateHighlighted)];
-        
-        [_recordBtn addTarget:self action:@selector(recordAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    }
-    return _recordBtn;
-}
-
-#pragma mark - NSTimer
-- (NSTimer *)delayTimer
-{
-    if (!_delayTimer) {
-        NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(delayTimerRun) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-        _delayTimer = timer;
-    }
-    return _delayTimer;
-}
-
-- (void)delayTimerRun
-{
-    _delaySeconds --;
-    _delayLabel.text = [NSString stringWithFormat:@"%d", (int)_delaySeconds];
-    if (_delaySeconds <= 0) {
-        [self.recordEngine startCapture];
-        _delayLabel.hidden = YES;
-        [_delayTimer pauseTimer];
-    }
-}
-
-#pragma mark - button
-- (void)cancelRecord:(UIButton *)sender
-{
-    [self.recordEngine shutdown];
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        _recordEngine = nil;
-//        _moviePicker = nil;
-//    }];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    
-    _recordEngine = nil;
-    _moviePicker = nil;
-}
-
-//当点击Done按键或者播放完毕时调用此函数
-- (void) playVideoFinished:(NSNotification *)theNotification {
-    MPMoviePlayerController *player = [theNotification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:player];
-    [player stop];
-    [self.playerVC dismissMoviePlayerViewControllerAnimated];
-    self.playerVC = nil;
-}
-
-- (void)onCameraChange:(UIButton *)sender
-{
-    
-    self.cameraBtn.selected = !self.cameraBtn.selected;
-    if (self.cameraBtn.selected) {
-        // 前置
-        [self.recordEngine changeCameraInputDeviceisFront:YES];
-    }else{
-        // 后置
-        [self.recordEngine changeCameraInputDeviceisFront:NO];
-    }
-}
-
-#pragma  mark - 录制按钮
-- (void)onRecord:(UITapGestureRecognizer *)sender
-{
-    [self.recordEngine startCapture];
-    [_recordView strokeEndNumberChange];
-}
-
-- (void)recordAction:(UIButton *)sender
-{
-    [self.recordEngine startCapture];
-}
+//- (void)recordAction:(UIButton *)sender
+//{
+//    [self.recordEngine startCapture];
+//}
 
 #pragma mark - Apple相册选择代理
 //选择了某个照片的回调函数/代理回调
@@ -348,8 +424,17 @@
     
 }
 
+- (void)dealloc
+{
+    [self.recordEngine shutdown];
+    [_delayTimer invalidate];
+    _delayTimer = nil;
+    [_recordTimer invalidate];
+    _recordTimer = nil;
+}
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 }
 

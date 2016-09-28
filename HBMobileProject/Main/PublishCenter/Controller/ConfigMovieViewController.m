@@ -87,8 +87,8 @@
     
     if (videoPath != nil) {
         EditVideoViewController *vc = [[EditVideoViewController alloc] init];
-        vc.videoPath = videoPath;
-        vc.photoPath = thumbnailPath;
+//        vc.videoPath = videoPath;
+//        vc.photoPath = thumbnailPath;
         [self presentViewController:vc animated:YES completion:nil];
     }
 }

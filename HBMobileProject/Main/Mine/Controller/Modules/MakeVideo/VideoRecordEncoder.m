@@ -134,6 +134,9 @@
  */
 - (void)finishedRecordWithCompletionHandler:(void (^)(void))handler
 {
+    if (handler == nil) {
+        return;
+    }
     [_writer finishWritingWithCompletionHandler:handler];
 }
 
