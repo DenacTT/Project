@@ -60,6 +60,7 @@
 		D15E55541D9B698D0027634B /* VideoRecordStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55531D9B698D0027634B /* VideoRecordStatusView.m */; };
 		D15E55571D9BA67A0027634B /* RecordPasureButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D15E55551D9BA67A0027634B /* RecordPasureButton@2x.png */; };
 		D15E55581D9BA67A0027634B /* RecodeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D15E55561D9BA67A0027634B /* RecodeButton@2x.png */; };
+		D15E555F1D9BC4350027634B /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E555E1D9BC4350027634B /* NSTimer+Addition.m */; };
 		D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
@@ -378,6 +379,8 @@
 		D15E55531D9B698D0027634B /* VideoRecordStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordStatusView.m; sourceTree = "<group>"; };
 		D15E55551D9BA67A0027634B /* RecordPasureButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordPasureButton@2x.png"; sourceTree = "<group>"; };
 		D15E55561D9BA67A0027634B /* RecodeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecodeButton@2x.png"; sourceTree = "<group>"; };
+		D15E555D1D9BC4350027634B /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
+		D15E555E1D9BC4350027634B /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
 		D160E91B1D9158E500CAF6CC /* NSThread+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSThread+Extend.h"; path = "NSThread/NSThread+Extend.h"; sourceTree = "<group>"; };
 		D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSThread+Extend.m"; path = "NSThread/NSThread+Extend.m"; sourceTree = "<group>"; };
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
@@ -1288,6 +1291,15 @@
 			name = UIControl;
 			sourceTree = "<group>";
 		};
+		D15E55591D9BC3FD0027634B /* NSTimer */ = {
+			isa = PBXGroup;
+			children = (
+				D15E555D1D9BC4350027634B /* NSTimer+Addition.h */,
+				D15E555E1D9BC4350027634B /* NSTimer+Addition.m */,
+			);
+			path = NSTimer;
+			sourceTree = "<group>";
+		};
 		D160E91A1D9158B100CAF6CC /* NSThread */ = {
 			isa = PBXGroup;
 			children = (
@@ -2141,6 +2153,7 @@
 		D1B6D7451D7D12AB00C3E647 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				D15E55591D9BC3FD0027634B /* NSTimer */,
 				D11C44971D9A5D4B0051BD31 /* UIColor */,
 				D160E91A1D9158B100CAF6CC /* NSThread */,
 				D13B5A671D82FD73005D89FA /* UIControl */,
@@ -2630,6 +2643,7 @@
 				D17A272B1D93F7A600C00B3F /* WBModel.m in Sources */,
 				D17A2DBA1D951C2B00C00B3F /* GPUImageBeautifyFilter.m in Sources */,
 				D17A2DD01D9669D200C00B3F /* RecordVideoController.m in Sources */,
+				D15E555F1D9BC4350027634B /* NSTimer+Addition.m in Sources */,
 				D1B6D7971D7D159600C3E647 /* NSObject+MJCoding.m in Sources */,
 				D17A282F1D93F89900C00B3F /* YYThreadSafeDictionary.m in Sources */,
 				D17A27F91D93F89900C00B3F /* UIGestureRecognizer+YYAdd.m in Sources */,

@@ -12,6 +12,7 @@
 #import "VideoTopView.h"
 #import "VideoRecordEngine.h"
 #import "VideoRecordStatusView.h"
+#import "NSTimer+Addition.h"
 #import "CircularSlider.h"
 #import "EditVideoViewController.h"
 
@@ -39,6 +40,10 @@
 @end
 
 @implementation RecordVideoController
+{
+    CGFloat     _recordSeconds; //已录制时间
+    NSInteger   _delaySeconds;  //延时倒计时;
+}
 
 #pragma mark - life cycle
 - (void)viewWillAppear:(BOOL)animated
@@ -98,6 +103,7 @@
     self.allowRecord = YES;
 }
 
+#pragma mark - 使用
 - (void)useBtnClick:(UIButton *)sender
 {
 //    EditVideoViewController *vc = [[EditVideoViewController alloc] init];
@@ -228,6 +234,28 @@
         [_recordBtn addTarget:self action:@selector(recordAction:) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _recordBtn;
+}
+
+#pragma mark - NSTimer
+- (NSTimer *)delayTimer
+{
+    if (!_delayTimer) {
+        NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(delayTimerRun) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        _delayTimer = timer;
+    }
+    return _delayTimer;
+}
+
+- (void)delayTimerRun
+{
+    _delaySeconds --;
+    _delayLabel.text = [NSString stringWithFormat:@"%d", (int)_delaySeconds];
+    if (_delaySeconds <= 0) {
+        [self.recordEngine startCapture];
+        _delayLabel.hidden = YES;
+        [_delayTimer pauseTimer];
+    }
 }
 
 #pragma mark - button
