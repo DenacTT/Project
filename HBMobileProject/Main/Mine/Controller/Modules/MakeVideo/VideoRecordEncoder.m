@@ -84,11 +84,11 @@
     // 数值越大,显示越精细
     NSInteger bitsPerSecond = numPixels * bitsPerPixel;
     
-    // 码率和帧率设置
+    // 码率和帧率(FPS)设置
     NSDictionary *compressionProperties = @{
                                             AVVideoAverageBitRateKey : @(bitsPerSecond),
-                                            AVVideoExpectedSourceFrameRateKey : @(30),
-                                            AVVideoAverageBitRateKey : @(30)
+                                            AVVideoExpectedSourceFrameRateKey : @(25),
+                                            AVVideoAverageBitRateKey : @(25)
                                             };
     // 输出视频压缩设置
     NSDictionary *videoCompressionSettings = @{
