@@ -21,7 +21,8 @@ typedef NS_ENUM(NSUInteger, UploadVieoStyle) {
 
 @interface RecordVideoController ()<VideoTopViewDelegate, RecordEngineDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic, strong) VideoTopView *topView;
+@property (nonatomic, strong) VideoTopView  *topView;
+@property (nonatomic, strong) UIButton      *cancelBtn;
 
 @property (strong, nonatomic) VideoRecordEngine             *recordEngine;
 @property (strong, nonatomic) CircularSlider                *circularSlider;
@@ -35,16 +36,16 @@ typedef NS_ENUM(NSUInteger, UploadVieoStyle) {
 @implementation RecordVideoController
 
 #pragma mark - life cycle
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
-    
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -53,7 +54,8 @@ typedef NS_ENUM(NSUInteger, UploadVieoStyle) {
     [[UIApplication sharedApplication] setStatusBarHidden: NO];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewDidDisappear:(BOOL)animated
+{
     [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
@@ -67,6 +69,8 @@ typedef NS_ENUM(NSUInteger, UploadVieoStyle) {
     self.view.backgroundColor = [UIColor blackColor];
     
     [self.view addSubview:self.topView];
+    [self.view addSubview:self.cancelBtn];
+    
     
     if (!_recordEngine) {
         [self.recordEngine previewLayer].frame = CGRectMake(0, 64, ScreenWidth, ScreenWidth);
@@ -106,7 +110,33 @@ typedef NS_ENUM(NSUInteger, UploadVieoStyle) {
     return _topView;
 }
 
+- (UIButton *)cancelBtn
+{
+    if (!_cancelBtn) {
+        _cancelBtn = [UIButton buttonWithType:(UIButtonTypeRoundedRect)];
+        _cancelBtn.frame = CGRectMake(15, ScreenHeight - 120, 44, 100);
+        _cancelBtn.titleLabel.font = [UIFont systemFontOfSize: 18.f];
+        [_cancelBtn setTitle:STR(@"取消") forState:(UIControlStateNormal)];
+        [_cancelBtn setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
+        [_cancelBtn setTitleColor: [UIColor whiteColor] forState: UIControlStateHighlighted];
+        
+        [_cancelBtn addTarget: self action: @selector(cancelRecord:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _cancelBtn;
+}
 
+#pragma mark - button
+- (void)cancelRecord:(UIButton *)sender
+{
+    [self.recordEngine shutdown];
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        _recordEngine = nil;
+//        _moviePicker = nil;
+//    }];
+    [self popoverPresentationController];
+    _recordEngine = nil;
+    _moviePicker = nil;
+}
 
 #pragma mark - Apple相册选择代理
 //选择了某个照片的回调函数/代理回调
@@ -138,7 +168,7 @@ typedef NS_ENUM(NSUInteger, UploadVieoStyle) {
     }
 }
 
-#pragma mark - WCLRecordEngineDelegate
+#pragma mark - RecordEngineDelegate
 - (void)recordProgress:(CGFloat)progress {
 //    if (progress >= 1) {
 //        [self recordAction:self.recordBt];
