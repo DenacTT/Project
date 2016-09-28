@@ -19,7 +19,10 @@
 
 - (instancetype)initWithRadius:(CGFloat)radius;
 
+// 开始圆周运动
 - (void)strokeEndNumberChange;
+
+// 还原
 - (void)returnCircularStroke;
 
 @end

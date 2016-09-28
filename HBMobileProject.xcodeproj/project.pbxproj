@@ -58,6 +58,8 @@
 		D15D86B61D8E484800115B73 /* UIControl+BtnClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */; };
 		D15E554E1D9AA25F0027634B /* VideoRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */; };
 		D15E55541D9B698D0027634B /* VideoRecordStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55531D9B698D0027634B /* VideoRecordStatusView.m */; };
+		D15E55571D9BA67A0027634B /* RecordPasureButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D15E55551D9BA67A0027634B /* RecordPasureButton@2x.png */; };
+		D15E55581D9BA67A0027634B /* RecodeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D15E55561D9BA67A0027634B /* RecodeButton@2x.png */; };
 		D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
@@ -374,6 +376,8 @@
 		D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordEngine.m; sourceTree = "<group>"; };
 		D15E55521D9B698D0027634B /* VideoRecordStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordStatusView.h; sourceTree = "<group>"; };
 		D15E55531D9B698D0027634B /* VideoRecordStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordStatusView.m; sourceTree = "<group>"; };
+		D15E55551D9BA67A0027634B /* RecordPasureButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordPasureButton@2x.png"; sourceTree = "<group>"; };
+		D15E55561D9BA67A0027634B /* RecodeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecodeButton@2x.png"; sourceTree = "<group>"; };
 		D160E91B1D9158E500CAF6CC /* NSThread+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSThread+Extend.h"; path = "NSThread/NSThread+Extend.h"; sourceTree = "<group>"; };
 		D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSThread+Extend.m"; path = "NSThread/NSThread+Extend.m"; sourceTree = "<group>"; };
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
@@ -994,6 +998,8 @@
 				D11C44A71D9A61740051BD31 /* CameraChange@2x.png */,
 				D11C44A01D9A5F020051BD31 /* DelayBtnHighGray@2x.png */,
 				D11C44A11D9A5F020051BD31 /* DelayBtnHighLight@2x.png */,
+				D15E55551D9BA67A0027634B /* RecordPasureButton@2x.png */,
+				D15E55561D9BA67A0027634B /* RecodeButton@2x.png */,
 			);
 			path = MakeVideo;
 			sourceTree = "<group>";
@@ -2372,6 +2378,7 @@
 				TargetAttributes = {
 					D1B6D6EA1D7D10C400C3E647 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = TW2KBGCT8Y;
 						ProvisioningStyle = Automatic;
 					};
 					D1B6D7031D7D10C500C3E647 = {
@@ -2463,12 +2470,14 @@
 				D17A289B1D9404CC00C00B3F /* UMS_wechat_favorite_icon.png in Resources */,
 				D17A28AD1D9404CC00C00B3F /* UMS_sina_off@2x.png in Resources */,
 				D17A28A31D9404CC00C00B3F /* UMS_wechat_session_icon@2x.png in Resources */,
+				D15E55581D9BA67A0027634B /* RecodeButton@2x.png in Resources */,
 				D17A28E01D94091600C00B3F /* type_2@2x.png in Resources */,
 				D11C44A81D9A61740051BD31 /* CameraChange@2x.png in Resources */,
 				D17A28A11D9404CC00C00B3F /* UMS_wechat_on@2x.png in Resources */,
 				D17A28CE1D94083200C00B3F /* SCOtherSexW@3x.png in Resources */,
 				D17A28E81D94098800C00B3F /* userDefaultHeadMax@2x.png in Resources */,
 				D1B6D7901D7D159600C3E647 /* Info.plist in Resources */,
+				D15E55571D9BA67A0027634B /* RecordPasureButton@2x.png in Resources */,
 				D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */,
 				D17A28C61D94083200C00B3F /* edit_boy_selected@2x.png in Resources */,
 				D17A28571D9400E000C00B3F /* privateCard_detail@2x.png in Resources */,
@@ -2814,7 +2823,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = TW2KBGCT8Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBMobileProject/Vender",
@@ -2847,7 +2856,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = TW2KBGCT8Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBMobileProject/Vender",

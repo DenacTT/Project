@@ -34,8 +34,35 @@
 @implementation EditVideoViewController
 
 #pragma mark - life cycle
+#pragma mark - life cycle
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+//    [[UIApplication sharedApplication] setStatusBarHidden: YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear: animated];
+//    [[UIApplication sharedApplication] setStatusBarHidden: NO];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     self.view.backgroundColor = RGB(232, 232, 232);
     self.isUseBackBtn = YES;
@@ -72,7 +99,6 @@
 - (void)clickBackBtn
 {
     [self.textView resignFirstResponder];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)clickRightBtn
@@ -103,14 +129,7 @@
 {
     [self.textView resignFirstResponder];
     
-//    self.moviePlayer = [[AVPlayerViewController alloc] init];
-//    _moviePlayer.view.frame = self.view.bounds;
-//    _moviePlayer.view.backgroundColor = [UIColor blackColor];
-//    [self.view addSubview:_moviePlayer.view];
-//    
-//    self.player = [[AVPlayer alloc] initWithURL:[NSURL fileURLWithPath:self.videoPath]];
-//    _moviePlayer.player = _player;
-//    [self.player play];
+
     
 }
 

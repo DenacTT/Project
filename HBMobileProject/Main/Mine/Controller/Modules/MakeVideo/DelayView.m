@@ -53,7 +53,7 @@
         {
             _delayImageView.image = Image(@"DelayBtnHighLight");
             _delayLabel.hidden = NO;
-            _delayLabel.text = [NSString stringWithFormat: @"3 %@",STR(@"Second")];
+            _delayLabel.text = [NSString stringWithFormat: @"10 %@",STR(@"Second")];
         }
             break;
         default:
