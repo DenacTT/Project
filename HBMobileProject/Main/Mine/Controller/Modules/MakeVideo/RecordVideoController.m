@@ -18,19 +18,14 @@
 
 @interface RecordVideoController ()<RecordEngineDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic, strong) VideoTopView  *topView;       // 延时工具栏
-@property (nonatomic, strong) UIButton      *cameraBtn;     // 摄像头切换
-@property (nonatomic, strong) UIButton      *cancelBtn;     // 取消
-@property (nonatomic, strong) UILabel       *delayLabel;    // 倒计时
-
-@property (nonatomic, strong) UIButton      *recordBtn;     // 录制按钮
-@property (strong, nonatomic) CircularSlider                *circularSlider; // 圆形进度条
-
-@property (nonatomic, strong) VideoRecordStatusView *recordView;   // 录制状态View
+@property (nonatomic, strong) VideoTopView  *topView;               // 延时工具栏
+@property (nonatomic, strong) UIButton      *cameraBtn;             // 摄像头切换
+@property (nonatomic, strong) UIButton      *cancelBtn;             // 取消
+@property (nonatomic, strong) UILabel       *delayLabel;            // 倒计时
+@property (nonatomic, strong) VideoRecordStatusView *recordView;    // 录制状态View
 
 @property (strong, nonatomic) VideoRecordEngine             *recordEngine;
 
-@property (assign, nonatomic) BOOL                          allowRecord;    //允许录制
 @property (strong, nonatomic) UIImagePickerController       *moviePicker;   //视频选择器
 @property (strong, nonatomic) MPMoviePlayerViewController   *playerVC;
 
@@ -85,21 +80,16 @@
     [self.view addSubview:self.cancelBtn];
     [self.view addSubview:self.delayLabel];
     [self.view addSubview:self.recordView];
-//    [self.view addSubview:self.circularSlider];
-//    [self.view addSubview:self.recordBtn];
     
     
     UIButton *useBtn = [UIButton buttonWithType: UIButtonTypeCustom];
-//    useBtn.frame = CGRectMake(ScreenWidth - 44 - 15, self.recordBtn.center.y-22, 44, 44);
     useBtn.frame = CGRectMake(ScreenWidth - 44 - 15, self.recordView.center.y-22, 44, 44);
     [useBtn setTitle:@"使用" forState:(UIControlStateNormal)];
     [useBtn addTarget: self action: @selector(useBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:useBtn];
+//    [self.view addSubview:useBtn];
     
     // 开启录制功能
     [self.recordEngine startUp];
-    
-    self.allowRecord = YES;
 }
 
 // 开始录制
@@ -172,6 +162,7 @@
     _recordSeconds += 0.1;
     [_recordView strokeEndNumberChange];
     if (_recordSeconds >= 11) {
+        [self resetAndUseVideo];
         [self endRecording];
     }
 }
@@ -179,9 +170,6 @@
 #pragma  mark - 录制按钮
 - (void)onRecord:(UITapGestureRecognizer *)sender
 {
-//    [self.recordEngine startCapture];
-//    [_recordView strokeEndNumberChange];
-
     if (_delaySeconds > 0 && !_delayLabel.hidden) {
         [self.delayTimer pauseTimer];
         _delayLabel.hidden = YES;
@@ -192,6 +180,7 @@
     if (self.recordEngine.isCapturing) {
         [self.recordEngine pauseCapture];
         [_recordView setType:YMRecordType_RecordVideo];
+        [self resetAndUseVideo];
         [_recordTimer pauseTimer];
         return;
     }
@@ -225,7 +214,6 @@
     [self.recordView returnCircularStroke];
     [self.recordTimer pauseTimer];
     
-    
     __weak typeof(self) weakSelf = self;
     [self.recordEngine stopCaptureHandler:^(UIImage *movieImage) {
         NSLog(@"videoPath : %@", weakSelf.recordEngine.videoPath);
@@ -243,6 +231,26 @@
         
     }];
     
+}
+
+
+- (void)resetAndUseVideo
+{
+    [self.recordView returnCircularStroke];
+    [self.recordTimer pauseTimer];
+    
+    __weak typeof(self) weakSelf = self;
+    [self.recordEngine stopCaptureHandler:^(UIImage *movieImage) {
+        NSLog(@"videoPath : %@", weakSelf.recordEngine.videoPath);
+        NSData *videData = [NSData dataWithContentsOfFile:weakSelf.recordEngine.videoPath];
+        
+        EditVideoViewController *vc = [[EditVideoViewController alloc] init];
+        vc.videoPath = [NSURL URLWithString:weakSelf.recordEngine.videoPath];
+        vc.videoData = videData;
+        vc.thumbnailImage = movieImage;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+        
+    }];
 }
 
 //当点击Done按键或者播放完毕时调用此函数
@@ -350,38 +358,6 @@
     return _recordView;
 }
 
-//- (CircularSlider *)circularSlider
-//{
-//    if (!_circularSlider) {
-//        _circularSlider = [[CircularSlider alloc] initWithRadius:90.f];
-//        _circularSlider.width = 90.f;
-//        _circularSlider.height = 90.f;
-//        _circularSlider.top = _cancelBtn.center.y - _circularSlider.height/2;
-//        _circularSlider.left = (ScreenWidth - _circularSlider.width)/2;
-//    }
-//    return _circularSlider;
-//}
-//
-//- (UIButton *)recordBtn
-//{
-//    if (!_recordBtn) {
-//        _recordBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-//        _recordBtn.width = 80;
-//        _recordBtn.height = 80;
-//        _recordBtn.center = _circularSlider.center;
-//        [_recordBtn setImage:Image(@"RecodeButton") forState:(UIControlStateNormal)];
-//        [_recordBtn setImage:Image(@"RecordPasureButton") forState:(UIControlStateHighlighted)];
-//
-//        [_recordBtn addTarget:self action:@selector(recordAction:) forControlEvents:(UIControlEventTouchUpInside)];
-//    }
-//    return _recordBtn;
-//}
-
-//- (void)recordAction:(UIButton *)sender
-//{
-//    [self.recordEngine startCapture];
-//}
-
 #pragma mark - Apple相册选择代理
 //选择了某个照片的回调函数/代理回调
 /*
@@ -413,16 +389,6 @@
     }
 }
  */
-
-#pragma mark - RecordEngineDelegate
-- (void)recordProgress:(CGFloat)progress {
-//    if (progress >= 1) {
-//        [self recordAction:self.recordBt];
-//        self.allowRecord = NO;
-//    }
-//    self.progressView.progress = progress;
-    
-}
 
 - (void)dealloc
 {

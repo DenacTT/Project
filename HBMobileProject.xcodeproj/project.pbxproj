@@ -61,6 +61,7 @@
 		D15E55571D9BA67A0027634B /* RecordPasureButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D15E55551D9BA67A0027634B /* RecordPasureButton@2x.png */; };
 		D15E55581D9BA67A0027634B /* RecodeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D15E55561D9BA67A0027634B /* RecodeButton@2x.png */; };
 		D15E555F1D9BC4350027634B /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E555E1D9BC4350027634B /* NSTimer+Addition.m */; };
+		D15E55611D9BF3F90027634B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D15E55601D9BF3F90027634B /* MediaPlayer.framework */; };
 		D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
@@ -381,6 +382,7 @@
 		D15E55561D9BA67A0027634B /* RecodeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecodeButton@2x.png"; sourceTree = "<group>"; };
 		D15E555D1D9BC4350027634B /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
 		D15E555E1D9BC4350027634B /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
+		D15E55601D9BF3F90027634B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		D160E91B1D9158E500CAF6CC /* NSThread+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSThread+Extend.h"; path = "NSThread/NSThread+Extend.h"; sourceTree = "<group>"; };
 		D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSThread+Extend.m"; path = "NSThread/NSThread+Extend.m"; sourceTree = "<group>"; };
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
@@ -897,6 +899,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D15E55611D9BF3F90027634B /* MediaPlayer.framework in Frameworks */,
+				D17A28471D93FAE600C00B3F /* MobileCoreServices.framework in Frameworks */,
 				D17A29BB1D941B3200C00B3F /* OpenGLES.framework in Frameworks */,
 				D17A29B71D941B1F00C00B3F /* CoreMedia.framework in Frameworks */,
 				D17A29B91D941B2C00C00B3F /* CoreVideo.framework in Frameworks */,
@@ -906,7 +910,6 @@
 				D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */,
 				D17A284B1D93FAF400C00B3F /* libsqlite3.0.tbd in Frameworks */,
 				D17A28491D93FAEC00C00B3F /* SystemConfiguration.framework in Frameworks */,
-				D17A28471D93FAE600C00B3F /* MobileCoreServices.framework in Frameworks */,
 				D17A28451D93FAE000C00B3F /* Accelerate.framework in Frameworks */,
 				D17A28431D93FADA00C00B3F /* AssetsLibrary.framework in Frameworks */,
 				D17A28411D93FAD300C00B3F /* ImageIO.framework in Frameworks */,
@@ -1604,6 +1607,7 @@
 		D17A28331D93FA9400C00B3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D15E55601D9BF3F90027634B /* MediaPlayer.framework */,
 				D17A2DB11D950B5B00C00B3F /* Foundation.framework */,
 				D17A29BC1D941B3C00C00B3F /* AVFoundation.framework */,
 				D17A29BA1D941B3200C00B3F /* OpenGLES.framework */,

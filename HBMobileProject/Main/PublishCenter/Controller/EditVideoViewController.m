@@ -12,6 +12,7 @@
 #import "BiggerBtn.h"
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface EditVideoViewController ()<YYTextViewDelegate>
 
@@ -26,6 +27,7 @@
 @property (nonatomic, strong) UILabel       *privateLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *indictorView;
 
+@property (nonatomic, strong) MPMoviePlayerViewController *playerVC;
 @property (nonatomic, strong) AVPlayerViewController *moviePlayer;
 @property (nonatomic, strong) AVPlayer *player;
 
@@ -127,11 +129,22 @@
 {
     [self.textView resignFirstResponder];
     
-
+    self.playerVC = [[MPMoviePlayerViewController alloc] initWithContentURL:self.videoPath];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playVideoFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:[_playerVC moviePlayer]];
+    [[_playerVC moviePlayer] prepareToPlay];
     
+    [self presentMoviePlayerViewControllerAnimated:_playerVC];
+    [[_playerVC moviePlayer] play];
 }
 
-
+//点击完成或者播放完毕时调用
+- (void)playVideoFinished:(NSNotification *)theNotification {
+    MPMoviePlayerController *player = [theNotification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:player];
+    [player stop];
+    [self.playerVC dismissMoviePlayerViewControllerAnimated];
+    self.playerVC = nil;
+}
 
 #pragma mark - YYTextViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -246,8 +259,9 @@
     if (!_imageView) {
         
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(13, _mainView.frame.size.height-13-60, 60, 60)];
-        _imageView.contentMode = UIViewContentModeScaleToFill;
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
         _imageView.clipsToBounds = YES;
+        _imageView.image = _thumbnailImage;
     }
     return _imageView;
 }
