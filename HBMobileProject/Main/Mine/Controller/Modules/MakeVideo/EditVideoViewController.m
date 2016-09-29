@@ -87,6 +87,8 @@
     tap.numberOfTapsRequired = 1;
     tap.numberOfTouchesRequired = 1;
     [_imageView addGestureRecognizer:tap];
+    
+    NSLog(@"\n 视频路径: %@ \n 时长: %.f %.2f", self.videoPath, _videoLength ,_videoLength);
 }
 
 - (void)clickBack
@@ -98,7 +100,7 @@
 - (void)clickRight
 {
     [self.textView resignFirstResponder];
-    NSLog(@"\n 视频路径: %@ \n 图片路径: %@", self.videoPath, self.thumbnailImage);
+    
     
 //    [[YMNetRequset shareInstance] setBBsDakaOfVideoWithPhotoPath:self.photoPath videoPath:self.videoPath videoLength:10 tags:nil content:nil status:0 videoUploadProgres:^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
 //        

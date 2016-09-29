@@ -80,10 +80,9 @@
     // 视频尺寸
     NSInteger numPixels = videoWidth * videoHeight;
     // 每像素比特
-    CGFloat bitsPerPixel = 6.0;
+    CGFloat bitsPerPixel = 3.0;
     // 数值越大,显示越精细
     NSInteger bitsPerSecond = numPixels * bitsPerPixel;
-    
     // 码率和帧率(FPS)设置
     NSDictionary *compressionProperties = @{
                                             AVVideoAverageBitRateKey : @(bitsPerSecond),
@@ -94,8 +93,8 @@
     NSDictionary *videoCompressionSettings = @{
                                                AVVideoCodecKey : AVVideoCodecH264,
                                                AVVideoScalingModeKey : AVVideoScalingModeResizeAspectFill,
-                                               AVVideoWidthKey : @(videoHeight),
-                                               AVVideoHeightKey : @(videoWidth),
+                                               AVVideoWidthKey : @(videoWidth),
+                                               AVVideoHeightKey : @(videoHeight),
                                                AVVideoCompressionPropertiesKey : compressionProperties
                                                };
     

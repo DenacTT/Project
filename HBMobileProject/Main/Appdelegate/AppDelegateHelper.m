@@ -24,10 +24,10 @@
     }
     
     [[QPAuth shared] registerAppWithKey:kQPAppKey secret:kQPAppSecret space:userId success:^(NSString *accessToken) {
-        NSLog(@"qupai regist success! accessToken : %@", accessToken);
+//        NSLog(@"qupai regist success! accessToken : %@", accessToken);
         
     } failure:^(NSError *error) {
-        NSLog(@"qupai regist failed! reason: %@", error.description);
+//        NSLog(@"qupai regist failed! reason: %@", error.description);
     }];
     
     /*

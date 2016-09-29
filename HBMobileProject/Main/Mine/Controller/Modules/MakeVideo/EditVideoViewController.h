@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSURL *videoPath;
 
+@property (nonatomic, assign) CGFloat videoLength;
 @property (nonatomic, strong) NSData *videoData;
 @property (nonatomic, strong) UIImage *thumbnailImage;
 

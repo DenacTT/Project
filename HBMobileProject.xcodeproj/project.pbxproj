@@ -65,6 +65,7 @@
 		D15E55791D9CC84F0027634B /* MakeVideoTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55781D9CC84F0027634B /* MakeVideoTestController.m */; };
 		D15E557E1D9CCE8B0027634B /* RecordVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E557B1D9CCE8B0027634B /* RecordVideoController.m */; };
 		D15E557F1D9CCE8B0027634B /* EditVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E557D1D9CCE8B0027634B /* EditVideoViewController.m */; };
+		D15E55821D9CE7600027634B /* GPUImageBeautifyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55811D9CE7600027634B /* GPUImageBeautifyFilter.m */; };
 		D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
@@ -231,7 +232,6 @@
 		D17A2DB01D950A7000C00B3F /* VideoCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DAF1D950A7000C00B3F /* VideoCameraView.m */; };
 		D17A2DB21D950B5B00C00B3F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17A2DB11D950B5B00C00B3F /* Foundation.framework */; };
 		D17A2DB41D950EDA00C00B3F /* focusImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A2DB31D950EDA00C00B3F /* focusImage@2x.png */; };
-		D17A2DBA1D951C2B00C00B3F /* GPUImageBeautifyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DB91D951C2B00C00B3F /* GPUImageBeautifyFilter.m */; };
 		D17A2DC01D9550F400C00B3F /* VideoCameraExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DBF1D9550F400C00B3F /* VideoCameraExample.m */; };
 		D17A2DC31D95614F00C00B3F /* GPUImageBeautifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
@@ -390,6 +390,8 @@
 		D15E557B1D9CCE8B0027634B /* RecordVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordVideoController.m; sourceTree = "<group>"; };
 		D15E557C1D9CCE8B0027634B /* EditVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVideoViewController.h; sourceTree = "<group>"; };
 		D15E557D1D9CCE8B0027634B /* EditVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVideoViewController.m; sourceTree = "<group>"; };
+		D15E55801D9CE7600027634B /* GPUImageBeautifyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBeautifyFilter.h; sourceTree = "<group>"; };
+		D15E55811D9CE7600027634B /* GPUImageBeautifyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautifyFilter.m; sourceTree = "<group>"; };
 		D160E91B1D9158E500CAF6CC /* NSThread+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSThread+Extend.h"; path = "NSThread/NSThread+Extend.h"; sourceTree = "<group>"; };
 		D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSThread+Extend.m"; path = "NSThread/NSThread+Extend.m"; sourceTree = "<group>"; };
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
@@ -823,8 +825,6 @@
 		D17A2DAF1D950A7000C00B3F /* VideoCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCameraView.m; sourceTree = "<group>"; };
 		D17A2DB11D950B5B00C00B3F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D17A2DB31D950EDA00C00B3F /* focusImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "focusImage@2x.png"; sourceTree = "<group>"; };
-		D17A2DB81D951C2B00C00B3F /* GPUImageBeautifyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBeautifyFilter.h; sourceTree = "<group>"; };
-		D17A2DB91D951C2B00C00B3F /* GPUImageBeautifyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautifyFilter.m; sourceTree = "<group>"; };
 		D17A2DBE1D9550F400C00B3F /* VideoCameraExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCameraExample.h; sourceTree = "<group>"; };
 		D17A2DBF1D9550F400C00B3F /* VideoCameraExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCameraExample.m; sourceTree = "<group>"; };
 		D17A2DC11D95614F00C00B3F /* GPUImageBeautifyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBeautifyController.h; sourceTree = "<group>"; };
@@ -1952,8 +1952,8 @@
 				D17A2DBF1D9550F400C00B3F /* VideoCameraExample.m */,
 				D17A2DC11D95614F00C00B3F /* GPUImageBeautifyController.h */,
 				D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */,
-				D17A2DB81D951C2B00C00B3F /* GPUImageBeautifyFilter.h */,
-				D17A2DB91D951C2B00C00B3F /* GPUImageBeautifyFilter.m */,
+				D15E55801D9CE7600027634B /* GPUImageBeautifyFilter.h */,
+				D15E55811D9CE7600027634B /* GPUImageBeautifyFilter.m */,
 			);
 			name = GPUImage;
 			sourceTree = "<group>";
@@ -2563,6 +2563,7 @@
 				D17A27E41D93F89900C00B3F /* NSData+YYAdd.m in Sources */,
 				D13B59561D82DD61005D89FA /* NSString+Extend.m in Sources */,
 				D17A27F21D93F89900C00B3F /* UIApplication+YYAdd.m in Sources */,
+				D15E55821D9CE7600027634B /* GPUImageBeautifyFilter.m in Sources */,
 				D17A2DB01D950A7000C00B3F /* VideoCameraView.m in Sources */,
 				D17A28201D93F89900C00B3F /* YYTextAttribute.m in Sources */,
 				D17A28161D93F89900C00B3F /* YYTextInput.m in Sources */,
@@ -2651,7 +2652,6 @@
 				D17A281B1D93F89900C00B3F /* YYTextSelectionView.m in Sources */,
 				D17A28151D93F89900C00B3F /* YYTextEffectWindow.m in Sources */,
 				D17A272B1D93F7A600C00B3F /* WBModel.m in Sources */,
-				D17A2DBA1D951C2B00C00B3F /* GPUImageBeautifyFilter.m in Sources */,
 				D15E555F1D9BC4350027634B /* NSTimer+Addition.m in Sources */,
 				D1B6D7971D7D159600C3E647 /* NSObject+MJCoding.m in Sources */,
 				D17A282F1D93F89900C00B3F /* YYThreadSafeDictionary.m in Sources */,

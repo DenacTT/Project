@@ -210,17 +210,26 @@
     
     __weak typeof(self) weakSelf = self;
     [self.recordEngine stopCaptureHandler:^(UIImage *movieImage) {
-        NSLog(@"videoPath : %@", weakSelf.recordEngine.videoPath);
-        NSData *videData = [NSData dataWithContentsOfFile:weakSelf.recordEngine.videoPath];
+        NSLog(@"videoPath : %@ \n 视频大小: %.2f M", weakSelf.recordEngine.videoPath, [weakSelf.recordEngine getfileSize:weakSelf.recordEngine.videoPath]);
         
-        EditVideoViewController *vc = [[EditVideoViewController alloc] init];
-        vc.videoPath = [NSURL fileURLWithPath:weakSelf.recordEngine.videoPath];
-        vc.videoData = videData;
-        vc.thumbnailImage = movieImage;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSString *outPutPath = weakSelf.recordEngine.videoPath;
+//            NSString *outPutPath = [self.recordEngine compressVideo:weakSelf.recordEngine.videoPath];
+            NSData *videData = [NSData dataWithContentsOfFile:outPutPath];
+            
+            EditVideoViewController *vc = [[EditVideoViewController alloc] init];
+            vc.videoPath = [NSURL fileURLWithPath:outPutPath];
+            
+            vc.videoLength = _recordSeconds;
+            vc.videoData = videData;
+            vc.thumbnailImage = movieImage;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        });
 
     }];
 }
+
 
 #pragma mark - 切换摄像头
 - (void)onCameraChange:(UIButton *)sender

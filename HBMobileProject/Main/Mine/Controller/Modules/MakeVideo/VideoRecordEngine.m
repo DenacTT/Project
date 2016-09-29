@@ -181,8 +181,8 @@
         if ([_recordSession canAddOutput:self.videoOutput]) {
             [_recordSession addOutput:self.videoOutput];
             //设置视频的分辨率
-            _cx = 720;
-            _cy = 1280;
+            _cx = 1280;
+            _cy = 720;
         }
         //添加音频输出
         if ([_recordSession canAddOutput:self.audioOutput]) {
@@ -492,7 +492,7 @@
     CFRelease(sampleBuffer);
 }
 
-//设置音频格式
+// 设置音频格式
 - (void)setAudioFormat:(CMFormatDescriptionRef)fmt {
     const AudioStreamBasicDescription *asbd = CMAudioFormatDescriptionGetStreamBasicDescription(fmt);
     _samplerate = asbd->mSampleRate;
@@ -500,7 +500,7 @@
     
 }
 
-//调整媒体数据的时间
+// 调整媒体数据的时间
 - (CMSampleBufferRef)adjustTime:(CMSampleBufferRef)sample by:(CMTime)offset {
     CMItemCount count;
     CMSampleBufferGetSampleTimingInfoArray(sample, 0, nil, &count);
@@ -514,6 +514,67 @@
     CMSampleBufferCreateCopyWithNewTiming(nil, sample, count, pInfo, &sout);
     free(pInfo);
     return sout;
+}
+
+#pragma mark - 压缩视频
+- (NSString *)compressVideo:(NSString *)videoPath
+{
+    NSURL *movieURL = [NSURL fileURLWithPath:videoPath];
+    // 通过文件的URL获取到文件资源
+    AVURLAsset *avAsset = [[AVURLAsset alloc] initWithURL:movieURL options:nil];
+    // 用 AVAssetExportSession 导出资源中的属性
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+    
+    // 压缩视频
+    if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
+        // 导出属性是否包含低分辨率
+        // 通过资源（AVURLAsset）来定义 AVAssetExportSession，得到资源属性来重新打包资源 （AVURLAsset, 将某一些属性重新定义
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:avAsset presetName:AVAssetExportPresetMediumQuality];
+        // 设置导出文件的存放路径
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
+        NSDate *date = [[NSDate alloc] init];
+        NSString *outPutPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true) lastObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"output-%@.mp4",[formatter stringFromDate:date]]];
+        exportSession.outputURL = [NSURL fileURLWithPath:outPutPath];
+//        NSLog(@"\n outPutPath %@", outPutPath);
+        NSLog(@"压缩前的大小 : %@", [NSString stringWithFormat:@"%f MB",[self getfileSize:videoPath]]);
+        CMTime start = CMTimeMakeWithSeconds(0.0, 0);
+        CMTimeRange range = CMTimeRangeMake(start, [avAsset duration]);
+        exportSession.timeRange = range;
+        
+        // 是否对网络进行优化
+        exportSession.shouldOptimizeForNetworkUse = true;
+        
+        // 转换成MP4格式
+        exportSession.outputFileType = AVFileTypeMPEG4;
+        
+        // 开始导出,导出后执行完成的block
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            
+            if ([exportSession status] == AVAssetExportSessionStatusFailed) {
+                NSLog(@"压缩失败! error :%@", exportSession.error);
+            }
+            
+            if ([exportSession status] == AVAssetExportSessionStatusCompleted) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // 更新一下显示包的大小
+                    NSLog(@"压缩后的大小 : %@", [NSString stringWithFormat:@"%f MB",[self getfileSize:outPutPath]]);
+                });
+            }
+        }];
+        
+        return outPutPath;
+        
+    } else {
+        NSLog(@"faile");
+        return nil;
+    }
+}
+
+- (CGFloat)getfileSize:(NSString *)path
+{
+    NSDictionary *outputFileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil];
+    return (CGFloat)[outputFileAttributes fileSize]/1024.00 /1024.00;
 }
 
 - (void)dealloc
