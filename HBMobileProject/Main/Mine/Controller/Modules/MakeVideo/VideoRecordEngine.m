@@ -31,7 +31,7 @@
 @property (strong, nonatomic) AVCaptureDeviceInput       *frontCameraInput; //前置摄像头输入
 @property (strong, nonatomic) AVCaptureDeviceInput       *audioMicInput;    //麦克风输入
 
-@property (copy  , nonatomic) dispatch_queue_t           captureQueue;      //录制的队列
+@property (copy  , nonatomic) dispatch_queue_t           captureQueue;      //录制队列
 @property (strong, nonatomic) AVCaptureConnection        *audioConnection;  //音频录制连接
 @property (strong, nonatomic) AVCaptureConnection        *videoConnection;  //视频录制连接
 @property (strong, nonatomic) AVCaptureVideoDataOutput   *videoOutput;      //视频输出

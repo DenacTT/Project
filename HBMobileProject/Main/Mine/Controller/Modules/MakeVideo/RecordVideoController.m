@@ -47,6 +47,7 @@
     [self.view addSubview:self.cancelBtn];
     [self.view addSubview:self.delayLabel];
     [self.view addSubview:self.recordView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -199,7 +200,6 @@
     [self.recordEngine pauseCapture];
     [self.recordEngine shutdown];
     [self dismissViewControllerAnimated:YES completion:^{
-        
     }];
 }
 
@@ -215,7 +215,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             NSString *outPutPath = weakSelf.recordEngine.videoPath;
-//            NSString *outPutPath = [self.recordEngine compressVideo:weakSelf.recordEngine.videoPath];
             NSData *videData = [NSData dataWithContentsOfFile:outPutPath];
             
             EditVideoViewController *vc = [[EditVideoViewController alloc] init];
