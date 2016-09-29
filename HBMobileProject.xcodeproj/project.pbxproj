@@ -62,11 +62,11 @@
 		D15E55581D9BA67A0027634B /* RecodeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D15E55561D9BA67A0027634B /* RecodeButton@2x.png */; };
 		D15E555F1D9BC4350027634B /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E555E1D9BC4350027634B /* NSTimer+Addition.m */; };
 		D15E55611D9BF3F90027634B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D15E55601D9BF3F90027634B /* MediaPlayer.framework */; };
+		D15E55641D9C06B70027634B /* EditVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55631D9C06B70027634B /* EditVideoViewController.m */; };
 		D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
 		D178C1211D89315300DAFCE5 /* CuttingLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C1201D89315300DAFCE5 /* CuttingLine.m */; };
-		D17A271F1D93F67200C00B3F /* EditVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A271E1D93F67200C00B3F /* EditVideoViewController.m */; };
 		D17A272A1D93F7A600C00B3F /* WBStatusComposeTextParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A27231D93F7A600C00B3F /* WBStatusComposeTextParser.m */; };
 		D17A272B1D93F7A600C00B3F /* WBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A27251D93F7A600C00B3F /* WBModel.m */; };
 		D17A272C1D93F7A600C00B3F /* WBStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A27271D93F7A600C00B3F /* WBStatusHelper.m */; };
@@ -383,6 +383,8 @@
 		D15E555D1D9BC4350027634B /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
 		D15E555E1D9BC4350027634B /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
 		D15E55601D9BF3F90027634B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		D15E55621D9C06B70027634B /* EditVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVideoViewController.h; sourceTree = "<group>"; };
+		D15E55631D9C06B70027634B /* EditVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVideoViewController.m; sourceTree = "<group>"; };
 		D160E91B1D9158E500CAF6CC /* NSThread+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSThread+Extend.h"; path = "NSThread/NSThread+Extend.h"; sourceTree = "<group>"; };
 		D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSThread+Extend.m"; path = "NSThread/NSThread+Extend.m"; sourceTree = "<group>"; };
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
@@ -390,8 +392,6 @@
 		D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarHUD.m; sourceTree = "<group>"; };
 		D178C11F1D89315300DAFCE5 /* CuttingLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuttingLine.h; sourceTree = "<group>"; };
 		D178C1201D89315300DAFCE5 /* CuttingLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuttingLine.m; sourceTree = "<group>"; };
-		D17A271D1D93F67200C00B3F /* EditVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVideoViewController.h; sourceTree = "<group>"; };
-		D17A271E1D93F67200C00B3F /* EditVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVideoViewController.m; sourceTree = "<group>"; };
 		D17A27221D93F7A600C00B3F /* WBStatusComposeTextParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatusComposeTextParser.h; sourceTree = "<group>"; };
 		D17A27231D93F7A600C00B3F /* WBStatusComposeTextParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatusComposeTextParser.m; sourceTree = "<group>"; };
 		D17A27241D93F7A600C00B3F /* WBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBModel.h; sourceTree = "<group>"; };
@@ -1198,8 +1198,6 @@
 				D13B58EA1D801985005D89FA /* UploadMovieViewController.m */,
 				D13B590F1D8162BE005D89FA /* MoreMusicViewController.h */,
 				D13B59101D8162BE005D89FA /* MoreMusicViewController.m */,
-				D17A271D1D93F67200C00B3F /* EditVideoViewController.h */,
-				D17A271E1D93F67200C00B3F /* EditVideoViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1962,6 +1960,8 @@
 			children = (
 				D17A2DCE1D9669D200C00B3F /* RecordVideoController.h */,
 				D17A2DCF1D9669D200C00B3F /* RecordVideoController.m */,
+				D15E55621D9C06B70027634B /* EditVideoViewController.h */,
+				D15E55631D9C06B70027634B /* EditVideoViewController.m */,
 				D15E554C1D9AA25F0027634B /* VideoRecordEngine.h */,
 				D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */,
 				D1D26F841D9A76650080D784 /* VideoRecordEncoder.h */,
@@ -2620,7 +2620,6 @@
 				D17A28291D93F89900C00B3F /* YYFileHash.m in Sources */,
 				D17A28131D93F89900C00B3F /* YYTextContainerView.m in Sources */,
 				D17A28011D93F89900C00B3F /* YYDiskCache.m in Sources */,
-				D17A271F1D93F67200C00B3F /* EditVideoViewController.m in Sources */,
 				D1B6D7741D7D154700C3E647 /* MASViewConstraint.m in Sources */,
 				D1D26F861D9A76650080D784 /* VideoRecordEncoder.m in Sources */,
 				D17A28031D93F89900C00B3F /* YYMemoryCache.m in Sources */,
@@ -2652,6 +2651,7 @@
 				D17A282F1D93F89900C00B3F /* YYThreadSafeDictionary.m in Sources */,
 				D17A27F91D93F89900C00B3F /* UIGestureRecognizer+YYAdd.m in Sources */,
 				D1B6D7771D7D154700C3E647 /* View+MASAdditions.m in Sources */,
+				D15E55641D9C06B70027634B /* EditVideoViewController.m in Sources */,
 				D17A280A1D93F89900C00B3F /* YYFrameImage.m in Sources */,
 				D13B58B01D7EF1F3005D89FA /* ConfigTabBarController.m in Sources */,
 				D17A27E31D93F89900C00B3F /* NSBundle+YYAdd.m in Sources */,

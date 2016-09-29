@@ -12,6 +12,7 @@
 
 @protocol RecordEngineDelegate <NSObject>
 
+@optional
 - (void)recordProgress:(CGFloat)progress;
 
 @end
@@ -40,11 +41,11 @@
 //暂停录制
 - (void)pauseCapture;
 
-//停止录制
-- (void)stopCaptureHandler:(void (^)(UIImage *movieImage))handler;
-
 //继续录制
 - (void)resumeCapture;
+
+//停止录制回调
+- (void)stopCaptureHandler:(void (^)(UIImage *movieImage))handler;
 
 //开启闪光灯
 - (void)openFlashLight;
@@ -54,6 +55,7 @@
 
 //切换前后置摄像头
 - (void)changeCameraInputDeviceisFront:(BOOL)isFront;
+
 //将mov的视频转成mp4
 - (void)changeMovToMp4:(NSURL *)mediaURL dataBlock:(void (^)(UIImage *movieImage))handler;
 

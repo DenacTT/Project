@@ -91,9 +91,6 @@
     if ([self.captureMovieFileOutput isRecording]) {//视频正在录制情况按钮禁用
         return;
     }
-    if (self.delegate && [self.delegate respondsToSelector: @selector(cameraBeforeOrAfterChange)]) {
-        [self.delegate cameraBeforeOrAfterChange];
-    }
 }
 
 - (void)onClose:(UIButton *)sender

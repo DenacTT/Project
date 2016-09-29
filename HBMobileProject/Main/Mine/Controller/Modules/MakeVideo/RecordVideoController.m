@@ -230,7 +230,6 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
         
     }];
-    
 }
 
 
@@ -245,11 +244,11 @@
         NSData *videData = [NSData dataWithContentsOfFile:weakSelf.recordEngine.videoPath];
         
         EditVideoViewController *vc = [[EditVideoViewController alloc] init];
-        vc.videoPath = [NSURL URLWithString:weakSelf.recordEngine.videoPath];
+        vc.videoPath = [NSURL fileURLWithPath:weakSelf.recordEngine.videoPath];
         vc.videoData = videData;
         vc.thumbnailImage = movieImage;
         [weakSelf.navigationController pushViewController:vc animated:YES];
-        
+
     }];
 }
 

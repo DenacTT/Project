@@ -7,17 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol VideoTopViewDelegate<NSObject>
-
-@optional
-- (void)cameraBeforeOrAfterChange;//摄像头前后切换
-
-@end
-
 
 @interface VideoTopView : UIView
 
-@property (nonatomic,weak)id<VideoTopViewDelegate>delegate;
 @property (strong,nonatomic) AVCaptureMovieFileOutput *captureMovieFileOutput;//视频输出流
 
 - (NSInteger)getDelaySecond;//获取延时时间

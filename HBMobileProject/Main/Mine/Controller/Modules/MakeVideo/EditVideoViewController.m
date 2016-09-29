@@ -7,12 +7,15 @@
 //
 
 #import "EditVideoViewController.h"
+//#import "YMNetRequset.h"
+//#import "YMManagerCardDay.h"
 #import "WBStatusComposeTextParser.h"
 #import "WBStatusLayout.h"
 #import "BiggerBtn.h"
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "RecordVideoController.h"
 
 @interface EditVideoViewController ()<YYTextViewDelegate>
 
@@ -36,35 +39,8 @@
 @implementation EditVideoViewController
 
 #pragma mark - life cycle
-#pragma mark - life cycle
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-//    [[UIApplication sharedApplication] setStatusBarHidden: YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear: animated];
-//    [[UIApplication sharedApplication] setStatusBarHidden: NO];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     self.view.backgroundColor = RGB(232, 232, 232);
     self.isUseBackBtn = YES;
@@ -72,7 +48,7 @@
     
     [self.backBtn setImage:nil forState:(UIControlStateNormal)];
     [self.backBtn setFrame:CGRectMake(6, 20, 44, 44)];
-    [self.backBtn setTitle:@"取消" forState:(UIControlStateNormal)];
+    [self.backBtn setTitle:@"返回" forState:(UIControlStateNormal)];
     [self.backBtn setTitleColor:RGB(18, 196, 190) forState:(UIControlStateNormal)];
     
     [self.rightBtn setFrame:CGRectMake(ScreenWidth-50, 20, 44, 44)];
@@ -80,6 +56,21 @@
     [self.rightBtn setTitleColor:RGB(18, 196, 190) forState:(UIControlStateNormal)];
     
     [self setUpSubViews];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = NO;
 }
 
 #pragma mark - private methods
@@ -98,17 +89,30 @@
     [_imageView addGestureRecognizer:tap];
 }
 
-- (void)clickBackBtn
-{
-    [self.textView resignFirstResponder];
-}
-
-- (void)clickRightBtn
+- (void)clickBack
 {
     [self.textView resignFirstResponder];
     
+//    RecordVideoController *recordVC = [[RecordVideoController alloc] init];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
+- (void)clickRight
+{
+//    [[YMNetRequset shareInstance] setBBsDakaOfVideoWithPhotoPath:self.photoPath videoPath:self.videoPath videoLength:10 tags:nil content:nil status:0 videoUploadProgres:^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
+//        
+//    } success:^(id object) {
+//        [YMManagerCardDay shareInstance].isTodayDaka = YES;
+//
+//    } andFail:^(id object) {
+//        
+//    }];
+    [self.textView resignFirstResponder];
+    NSLog(@"\n 视频路径: %@ \n 图片路径: %@", self.videoPath, self.thumbnailImage);
+}
+
+#pragma mark - ButtonClick
 - (void)weixinBtnClick:(BiggerBtn *)btn
 {
     
@@ -119,10 +123,9 @@
     
 }
 
-
 -(void)privateBtnClick:(UIButton *)sender
 {
-    
+    [self.textView resignFirstResponder];
 }
 
 - (void)previewVideo:(UITapGestureRecognizer *)tap
@@ -152,6 +155,17 @@
     [self.view endEditing:YES];
 }
 
+#pragma mark - setter
+- (void)setThumbnailImage:(UIImage *)thumbnailImage
+{
+    _thumbnailImage = thumbnailImage;
+}
+
+- (void)setVideoPath:(NSURL *)videoPath
+{
+    _videoPath = videoPath;
+}
+
 #pragma mark - getter
 - (UIView *)mainView
 {
@@ -178,20 +192,20 @@
         
         UILabel *shareLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, _shareView.frame.size.height/2-24/2, 60, 24)];
         shareLabel.text = STR(@"EIVC_synchronization");
-        shareLabel.font = Font(14);
         shareLabel.textColor = RGB(136, 136, 136);
+        shareLabel.font = Font(14.f);
         [_shareView addSubview:shareLabel];
         
         CGFloat btnH = 24;
         _weixinBtn = [BiggerBtn buttonWithType:UIButtonTypeCustom];
-        _weixinBtn.frame = CGRectMake(shareLabel.right, _shareView.frame.size.height/2-btnH/2, btnH, btnH);
+        _weixinBtn.frame = CGRectMake(CGRectGetMaxX(shareLabel.frame), _shareView.frame.size.height/2-btnH/2, btnH, btnH);
         [_weixinBtn setImage:Image(@"UMS_wechat_timeline_off") forState:UIControlStateNormal];
         [_weixinBtn setImage:Image(@"UMS_wechat_timeline_icon") forState:UIControlStateSelected];
         [_weixinBtn addTarget:self action:@selector(weixinBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_shareView addSubview:_weixinBtn];
         
         _sinaBtn = [BiggerBtn buttonWithType:UIButtonTypeCustom];
-        _sinaBtn.frame = CGRectMake(_weixinBtn.right+5, _shareView.frame.size.height/2-btnH/2+2, btnH, btnH);
+        _sinaBtn.frame = CGRectMake(CGRectGetMaxX(_weixinBtn.frame) + 4, _shareView.frame.size.height/2-btnH/2+2, btnH, btnH);
         [_sinaBtn setImage:Image(@"UMS_sina_off") forState:UIControlStateNormal];
         [_sinaBtn setImage:Image(@"UMS_sina_icon") forState:UIControlStateSelected];
         [_sinaBtn addTarget:self action:@selector(sinaBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -215,7 +229,7 @@
         _privateLabel = [[UILabel alloc] initWithFrame:CGRectMake(_privateBtn.right + 4, 6, 26, 12)];
         _privateLabel.text = STR(@"EIVC_publicLabel");
         _privateLabel.textColor = [UIColor lightGrayColor];
-        _privateLabel.font = Font(12);
+        _privateLabel.font = [UIFont boldSystemFontOfSize:12];
         [_privateView addSubview:_privateLabel];
     }
     return _shareView;
@@ -250,6 +264,7 @@
         _textView.text = @"#小视频#";
         
         [_textView becomeFirstResponder];
+        
     }
     return _textView;
 }
@@ -260,7 +275,8 @@
         
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(13, _mainView.frame.size.height-13-60, 60, 60)];
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
-        _imageView.clipsToBounds = YES;
+        _imageView.layer.cornerRadius = 3;
+        _imageView.layer.masksToBounds = YES;
         _imageView.image = _thumbnailImage;
     }
     return _imageView;
