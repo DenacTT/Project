@@ -13,7 +13,7 @@
 		D11C449D1D9A5E1E0051BD31 /* DelayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C449C1D9A5E1E0051BD31 /* DelayView.m */; };
 		D11C44A21D9A5F020051BD31 /* DelayBtnHighGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D11C44A01D9A5F020051BD31 /* DelayBtnHighGray@2x.png */; };
 		D11C44A31D9A5F020051BD31 /* DelayBtnHighLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D11C44A11D9A5F020051BD31 /* DelayBtnHighLight@2x.png */; };
-		D11C44A61D9A60CE0051BD31 /* VideoTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44A51D9A60CE0051BD31 /* VideoTopView.m */; };
+		D11C44A61D9A60CE0051BD31 /* VideoRecordTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44A51D9A60CE0051BD31 /* VideoRecordTopView.m */; };
 		D11C44A81D9A61740051BD31 /* CameraChange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D11C44A71D9A61740051BD31 /* CameraChange@2x.png */; };
 		D11C44AB1D9A65880051BD31 /* CircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44AA1D9A65880051BD31 /* CircularSlider.m */; };
 		D12237DB1D8FD26E00B0D042 /* ExtensibleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */; };
@@ -62,7 +62,9 @@
 		D15E55581D9BA67A0027634B /* RecodeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D15E55561D9BA67A0027634B /* RecodeButton@2x.png */; };
 		D15E555F1D9BC4350027634B /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E555E1D9BC4350027634B /* NSTimer+Addition.m */; };
 		D15E55611D9BF3F90027634B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D15E55601D9BF3F90027634B /* MediaPlayer.framework */; };
-		D15E55641D9C06B70027634B /* EditVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55631D9C06B70027634B /* EditVideoViewController.m */; };
+		D15E55791D9CC84F0027634B /* MakeVideoTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55781D9CC84F0027634B /* MakeVideoTestController.m */; };
+		D15E557E1D9CCE8B0027634B /* RecordVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E557B1D9CCE8B0027634B /* RecordVideoController.m */; };
+		D15E557F1D9CCE8B0027634B /* EditVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E557D1D9CCE8B0027634B /* EditVideoViewController.m */; };
 		D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */; };
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
@@ -232,7 +234,6 @@
 		D17A2DBA1D951C2B00C00B3F /* GPUImageBeautifyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DB91D951C2B00C00B3F /* GPUImageBeautifyFilter.m */; };
 		D17A2DC01D9550F400C00B3F /* VideoCameraExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DBF1D9550F400C00B3F /* VideoCameraExample.m */; };
 		D17A2DC31D95614F00C00B3F /* GPUImageBeautifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */; };
-		D17A2DD01D9669D200C00B3F /* RecordVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DCF1D9669D200C00B3F /* RecordVideoController.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -294,8 +295,8 @@
 		D11C449C1D9A5E1E0051BD31 /* DelayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayView.m; sourceTree = "<group>"; };
 		D11C44A01D9A5F020051BD31 /* DelayBtnHighGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DelayBtnHighGray@2x.png"; sourceTree = "<group>"; };
 		D11C44A11D9A5F020051BD31 /* DelayBtnHighLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DelayBtnHighLight@2x.png"; sourceTree = "<group>"; };
-		D11C44A41D9A60CE0051BD31 /* VideoTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTopView.h; sourceTree = "<group>"; };
-		D11C44A51D9A60CE0051BD31 /* VideoTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTopView.m; sourceTree = "<group>"; };
+		D11C44A41D9A60CE0051BD31 /* VideoRecordTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordTopView.h; sourceTree = "<group>"; };
+		D11C44A51D9A60CE0051BD31 /* VideoRecordTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordTopView.m; sourceTree = "<group>"; };
 		D11C44A71D9A61740051BD31 /* CameraChange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraChange@2x.png"; sourceTree = "<group>"; };
 		D11C44A91D9A65880051BD31 /* CircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularSlider.h; sourceTree = "<group>"; };
 		D11C44AA1D9A65880051BD31 /* CircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularSlider.m; sourceTree = "<group>"; };
@@ -383,8 +384,12 @@
 		D15E555D1D9BC4350027634B /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
 		D15E555E1D9BC4350027634B /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
 		D15E55601D9BF3F90027634B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		D15E55621D9C06B70027634B /* EditVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVideoViewController.h; sourceTree = "<group>"; };
-		D15E55631D9C06B70027634B /* EditVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVideoViewController.m; sourceTree = "<group>"; };
+		D15E55771D9CC84F0027634B /* MakeVideoTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeVideoTestController.h; sourceTree = "<group>"; };
+		D15E55781D9CC84F0027634B /* MakeVideoTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeVideoTestController.m; sourceTree = "<group>"; };
+		D15E557A1D9CCE8B0027634B /* RecordVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordVideoController.h; sourceTree = "<group>"; };
+		D15E557B1D9CCE8B0027634B /* RecordVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordVideoController.m; sourceTree = "<group>"; };
+		D15E557C1D9CCE8B0027634B /* EditVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVideoViewController.h; sourceTree = "<group>"; };
+		D15E557D1D9CCE8B0027634B /* EditVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVideoViewController.m; sourceTree = "<group>"; };
 		D160E91B1D9158E500CAF6CC /* NSThread+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSThread+Extend.h"; path = "NSThread/NSThread+Extend.h"; sourceTree = "<group>"; };
 		D160E91C1D9158E500CAF6CC /* NSThread+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSThread+Extend.m"; path = "NSThread/NSThread+Extend.m"; sourceTree = "<group>"; };
 		D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StatusBarHUD.bundle; sourceTree = "<group>"; };
@@ -824,8 +829,6 @@
 		D17A2DBF1D9550F400C00B3F /* VideoCameraExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCameraExample.m; sourceTree = "<group>"; };
 		D17A2DC11D95614F00C00B3F /* GPUImageBeautifyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBeautifyController.h; sourceTree = "<group>"; };
 		D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautifyController.m; sourceTree = "<group>"; };
-		D17A2DCE1D9669D200C00B3F /* RecordVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordVideoController.h; sourceTree = "<group>"; };
-		D17A2DCF1D9669D200C00B3F /* RecordVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordVideoController.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -1958,16 +1961,16 @@
 		D17A2DCD1D9669B100C00B3F /* MakeVideo */ = {
 			isa = PBXGroup;
 			children = (
-				D17A2DCE1D9669D200C00B3F /* RecordVideoController.h */,
-				D17A2DCF1D9669D200C00B3F /* RecordVideoController.m */,
-				D15E55621D9C06B70027634B /* EditVideoViewController.h */,
-				D15E55631D9C06B70027634B /* EditVideoViewController.m */,
+				D15E557A1D9CCE8B0027634B /* RecordVideoController.h */,
+				D15E557B1D9CCE8B0027634B /* RecordVideoController.m */,
+				D15E557C1D9CCE8B0027634B /* EditVideoViewController.h */,
+				D15E557D1D9CCE8B0027634B /* EditVideoViewController.m */,
 				D15E554C1D9AA25F0027634B /* VideoRecordEngine.h */,
 				D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */,
 				D1D26F841D9A76650080D784 /* VideoRecordEncoder.h */,
 				D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */,
-				D11C44A41D9A60CE0051BD31 /* VideoTopView.h */,
-				D11C44A51D9A60CE0051BD31 /* VideoTopView.m */,
+				D11C44A41D9A60CE0051BD31 /* VideoRecordTopView.h */,
+				D11C44A51D9A60CE0051BD31 /* VideoRecordTopView.m */,
 				D15E55521D9B698D0027634B /* VideoRecordStatusView.h */,
 				D15E55531D9B698D0027634B /* VideoRecordStatusView.m */,
 				D11C449B1D9A5E1E0051BD31 /* DelayView.h */,
@@ -1976,6 +1979,8 @@
 				D11C44AA1D9A65880051BD31 /* CircularSlider.m */,
 				D11C44911D9911590051BD31 /* PreviewVideoView.h */,
 				D11C44921D9911590051BD31 /* PreviewVideoView.m */,
+				D15E55771D9CC84F0027634B /* MakeVideoTestController.h */,
+				D15E55781D9CC84F0027634B /* MakeVideoTestController.m */,
 			);
 			path = MakeVideo;
 			sourceTree = "<group>";
@@ -2536,6 +2541,7 @@
 				D17A27EF1D93F89900C00B3F /* NSTimer+YYAdd.m in Sources */,
 				D17A272D1D93F7A600C00B3F /* WBStatusLayout.m in Sources */,
 				D17A27EE1D93F89900C00B3F /* NSThread+YYAdd.m in Sources */,
+				D15E55791D9CC84F0027634B /* MakeVideoTestController.m in Sources */,
 				D17A27FD1D93F89900C00B3F /* UITableView+YYAdd.m in Sources */,
 				D17A2DAD1D9509FE00C00B3F /* GUPImageTestController.m in Sources */,
 				D17A281F1D93F89900C00B3F /* YYTextArchiver.m in Sources */,
@@ -2594,6 +2600,7 @@
 				D17A27EA1D93F89900C00B3F /* NSObject+YYAdd.m in Sources */,
 				D1B6D79A1D7D159600C3E647 /* NSString+MJExtension.m in Sources */,
 				D13B591C1D816863005D89FA /* UIImage+RoundedCorner.m in Sources */,
+				D15E557E1D9CCE8B0027634B /* RecordVideoController.m in Sources */,
 				D17A282A1D93F89900C00B3F /* YYGestureRecognizer.m in Sources */,
 				D17A28111D93F89900C00B3F /* NSObject+YYModel.m in Sources */,
 				D17A27301D93F82300C00B3F /* BiggerBtn.m in Sources */,
@@ -2645,13 +2652,12 @@
 				D17A28151D93F89900C00B3F /* YYTextEffectWindow.m in Sources */,
 				D17A272B1D93F7A600C00B3F /* WBModel.m in Sources */,
 				D17A2DBA1D951C2B00C00B3F /* GPUImageBeautifyFilter.m in Sources */,
-				D17A2DD01D9669D200C00B3F /* RecordVideoController.m in Sources */,
 				D15E555F1D9BC4350027634B /* NSTimer+Addition.m in Sources */,
 				D1B6D7971D7D159600C3E647 /* NSObject+MJCoding.m in Sources */,
 				D17A282F1D93F89900C00B3F /* YYThreadSafeDictionary.m in Sources */,
 				D17A27F91D93F89900C00B3F /* UIGestureRecognizer+YYAdd.m in Sources */,
 				D1B6D7771D7D154700C3E647 /* View+MASAdditions.m in Sources */,
-				D15E55641D9C06B70027634B /* EditVideoViewController.m in Sources */,
+				D15E557F1D9CCE8B0027634B /* EditVideoViewController.m in Sources */,
 				D17A280A1D93F89900C00B3F /* YYFrameImage.m in Sources */,
 				D13B58B01D7EF1F3005D89FA /* ConfigTabBarController.m in Sources */,
 				D17A27E31D93F89900C00B3F /* NSBundle+YYAdd.m in Sources */,
@@ -2663,7 +2669,7 @@
 				D17A280D1D93F89900C00B3F /* YYImageCoder.m in Sources */,
 				D1B6D7941D7D159600C3E647 /* MJPropertyKey.m in Sources */,
 				D13B58E01D8001E5005D89FA /* PublishMovieViewController.m in Sources */,
-				D11C44A61D9A60CE0051BD31 /* VideoTopView.m in Sources */,
+				D11C44A61D9A60CE0051BD31 /* VideoRecordTopView.m in Sources */,
 				D17A27FB1D93F89900C00B3F /* UIScreen+YYAdd.m in Sources */,
 				D17A28181D93F89900C00B3F /* YYTextLayout.m in Sources */,
 				D1B6D7991D7D159600C3E647 /* NSObject+MJProperty.m in Sources */,

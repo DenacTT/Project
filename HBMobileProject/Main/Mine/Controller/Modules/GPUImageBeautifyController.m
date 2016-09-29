@@ -50,6 +50,7 @@
 }
 
 - (void)beautify {
+    self.beautifyButton.selected = !self.beautifyButton.selected;
     if (self.beautifyButton.selected) {
         self.beautifyButton.selected = NO;
         [self.videoCamera removeAllTargets];

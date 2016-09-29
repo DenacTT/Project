@@ -9,7 +9,7 @@
 #import "RecordVideoController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "VideoTopView.h"
+#import "VideoRecordTopView.h"
 #import "VideoRecordEngine.h"
 #import "VideoRecordStatusView.h"
 #import "NSTimer+Addition.h"
@@ -18,19 +18,15 @@
 
 @interface RecordVideoController ()<RecordEngineDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic, strong) VideoTopView  *topView;               // 延时工具栏
-@property (nonatomic, strong) UIButton      *cameraBtn;             // 摄像头切换
-@property (nonatomic, strong) UIButton      *cancelBtn;             // 取消
-@property (nonatomic, strong) UILabel       *delayLabel;            // 倒计时
+@property (nonatomic, strong) VideoRecordTopView    *topView;       // 延时工具栏
+@property (nonatomic, strong) UIButton              *cameraBtn;     // 摄像头切换
+@property (nonatomic, strong) UIButton              *cancelBtn;     // 取消按钮
+@property (nonatomic, strong) UILabel               *delayLabel;    // 倒计时Label
 @property (nonatomic, strong) VideoRecordStatusView *recordView;    // 录制状态View
+@property (strong, nonatomic) VideoRecordEngine     *recordEngine;  // 视频录制器
 
-@property (strong, nonatomic) VideoRecordEngine             *recordEngine;
-
-@property (strong, nonatomic) UIImagePickerController       *moviePicker;   //视频选择器
-@property (strong, nonatomic) MPMoviePlayerViewController   *playerVC;
-
-@property (nonatomic,weak) NSTimer * delayTimer;    //倒计时定时器
-@property (nonatomic,weak) NSTimer * recordTimer;   //录制定时器
+@property (nonatomic,weak) NSTimer *delayTimer;    //倒计时定时器
+@property (nonatomic,weak) NSTimer *recordTimer;   //录制定时器
 
 @end
 
@@ -41,11 +37,23 @@
 }
 
 #pragma mark - life cycle
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    [self.view.layer insertSublayer:[self.recordEngine previewLayer] atIndex:0];
+    [self.view addSubview:self.topView];
+    [self.view addSubview:self.cameraBtn];
+    [self.view addSubview:self.cancelBtn];
+    [self.view addSubview:self.delayLabel];
+    [self.view addSubview:self.recordView];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    // 开启录制功能
+    // 预先开启录制功能
     [self.recordEngine startUp];
 }
 
@@ -69,29 +77,90 @@
     [self.recordEngine shutdown];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor blackColor];
-    
-    [self.view.layer insertSublayer:[self.recordEngine previewLayer] atIndex:0];
-    [self.view addSubview:self.topView];
-    [self.view addSubview:self.cameraBtn];
-    [self.view addSubview:self.cancelBtn];
-    [self.view addSubview:self.delayLabel];
-    [self.view addSubview:self.recordView];
-    
-    
-    UIButton *useBtn = [UIButton buttonWithType: UIButtonTypeCustom];
-    useBtn.frame = CGRectMake(ScreenWidth - 44 - 15, self.recordView.center.y-22, 44, 44);
-    [useBtn setTitle:@"使用" forState:(UIControlStateNormal)];
-    [useBtn addTarget: self action: @selector(useBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:useBtn];
-    
-    // 开启录制功能
-    [self.recordEngine startUp];
+#pragma mark - NSTimer
+// 延时倒计时
+- (NSTimer *)delayTimer
+{
+    if (!_delayTimer) {
+        NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:1.f
+                                                           target:self
+                                                         selector:@selector(delayTimerRun)
+                                                         userInfo:nil
+                                                          repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        _delayTimer = timer;
+    }
+    return _delayTimer;
 }
 
+- (void)delayTimerRun
+{
+    _delaySeconds --;
+    _delayLabel.text = [NSString stringWithFormat:@"%d", (int)_delaySeconds];
+    if (_delaySeconds <= 0) {
+        [self startRecording];
+        _delayLabel.hidden = YES;
+        [_delayTimer pauseTimer];
+    }
+}
+
+// 录制倒计时
+- (NSTimer *)recordTimer
+{
+    if (!_recordTimer) {
+        NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:0.1f
+                                                           target:self
+                                                         selector:@selector(recordTimerRun)
+                                                         userInfo:nil
+                                                          repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        _recordTimer = timer;
+    }
+    return _recordTimer;
+}
+
+- (void)recordTimerRun
+{
+    _recordSeconds += 0.1;
+    [_recordView strokeEndNumberChange];
+    if (_recordSeconds > 10) {
+        [self resetAndUseVideo];
+        [self endRecording];
+    }
+}
+
+#pragma  mark - 录制按钮
+- (void)onRecord:(UITapGestureRecognizer *)sender
+{
+    if (_delaySeconds > 0 && !_delayLabel.hidden) {
+        [self.delayTimer pauseTimer];
+        _delayLabel.hidden = YES;
+        [_recordView setType:YMRecordType_RecordVideo];
+        return;
+    }
+    
+    if (self.recordEngine.isCapturing) {
+        [self.recordEngine pauseCapture];
+        [_recordTimer pauseTimer];
+        [_recordView setType:YMRecordType_RecordVideo];
+        [self resetAndUseVideo];
+        return;
+    }
+    
+    // 延时播放
+    if ([_topView getDelaySecond] != 0) {
+        // 获取延时时间
+        _delaySeconds = [_topView getDelaySecond];
+        _delayLabel.hidden = NO;
+        // 开启定时器
+        [self.delayTimer resumeTimer];
+        [_recordView setType: YMRecordType_StopDelay];
+    }else{
+        [self startRecording];
+    }
+}
+
+#pragma mark - 录制与暂停控制
 // 开始录制
 - (void)startRecording
 {
@@ -123,115 +192,16 @@
     
 }
 
-#pragma mark - NSTimer
-// 延时倒计时
-- (NSTimer *)delayTimer
-{
-    if (!_delayTimer) {
-        NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(delayTimerRun) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-        _delayTimer = timer;
-    }
-    return _delayTimer;
-}
-
-- (void)delayTimerRun
-{
-    _delaySeconds --;
-    _delayLabel.text = [NSString stringWithFormat:@"%d", (int)_delaySeconds];
-    if (_delaySeconds <= 0) {
-        [self startRecording];
-        _delayLabel.hidden = YES;
-        [_delayTimer pauseTimer];
-    }
-}
-
-// 记录倒计时
-- (NSTimer *)recordTimer
-{
-    if (!_recordTimer) {
-        NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(recordTimerRun) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-        _recordTimer = timer;
-    }
-    return _recordTimer;
-}
-
-- (void)recordTimerRun
-{
-    _recordSeconds += 0.1;
-    [_recordView strokeEndNumberChange];
-    if (_recordSeconds >= 11) {
-        [self resetAndUseVideo];
-        [self endRecording];
-    }
-}
-
-#pragma  mark - 录制按钮
-- (void)onRecord:(UITapGestureRecognizer *)sender
-{
-    if (_delaySeconds > 0 && !_delayLabel.hidden) {
-        [self.delayTimer pauseTimer];
-        _delayLabel.hidden = YES;
-        [_recordView setType:YMRecordType_RecordVideo];
-        return;
-    }
-    
-    if (self.recordEngine.isCapturing) {
-        [self.recordEngine pauseCapture];
-        [_recordView setType:YMRecordType_RecordVideo];
-        [self resetAndUseVideo];
-        [_recordTimer pauseTimer];
-        return;
-    }
-    
-    // 延时播放
-    if ([_topView getDelaySecond] != 0) {
-        // 获取延时时间
-        _delaySeconds = [_topView getDelaySecond];
-        _delayLabel.hidden = NO;
-        // 开启定时器
-        [self.delayTimer resumeTimer];
-        [_recordView setType: YMRecordType_StopDelay];
-    }else{
-        
-        [self startRecording];
-    }
-}
-
-#pragma mark - button
+#pragma mark - 取消
 // 取消
 - (void)cancelRecord:(UIButton *)sender
 {
     [self.recordEngine pauseCapture];
     [self.recordEngine shutdown];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-#pragma mark - 使用
-- (void)useBtnClick:(UIButton *)sender
-{
-    [self.recordView returnCircularStroke];
-    [self.recordTimer pauseTimer];
-    
-    __weak typeof(self) weakSelf = self;
-    [self.recordEngine stopCaptureHandler:^(UIImage *movieImage) {
-        NSLog(@"videoPath : %@", weakSelf.recordEngine.videoPath);
-//        weakSelf.playerVC = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:weakSelf.recordEngine.videoPath]];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playVideoFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:[weakSelf.playerVC moviePlayer]];
-//        [[weakSelf.playerVC moviePlayer] prepareToPlay];
-//        
-//        [weakSelf presentMoviePlayerViewControllerAnimated:weakSelf.playerVC];
-//        [[weakSelf.playerVC moviePlayer] play];
-        
-        EditVideoViewController *vc = [[EditVideoViewController alloc] init];
-        vc.videoPath = [NSURL URLWithString:weakSelf.recordEngine.videoPath];
-        vc.thumbnailImage = movieImage;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
         
     }];
 }
-
 
 - (void)resetAndUseVideo
 {
@@ -250,15 +220,6 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
 
     }];
-}
-
-//当点击Done按键或者播放完毕时调用此函数
-- (void)playVideoFinished:(NSNotification *)theNotification {
-    MPMoviePlayerController *player = [theNotification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:player];
-    [player stop];
-    [self.playerVC dismissMoviePlayerViewControllerAnimated];
-    self.playerVC = nil;
 }
 
 #pragma mark - 切换摄像头
@@ -282,20 +243,10 @@
     return _recordEngine;
 }
 
-- (UIImagePickerController *)moviePicker {
-    if (!_moviePicker) {
-        _moviePicker = [[UIImagePickerController alloc] init];
-        _moviePicker.delegate = self;
-        _moviePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        _moviePicker.mediaTypes = @[(NSString *)kUTTypeMovie];
-    }
-    return _moviePicker;
-}
-
-- (VideoTopView *)topView
+- (VideoRecordTopView *)topView
 {
     if (!_topView) {
-        _topView = [[VideoTopView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, 44)];
+        _topView = [[VideoRecordTopView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, 44)];
     }
     return _topView;
 }
@@ -357,40 +308,9 @@
     return _recordView;
 }
 
-#pragma mark - Apple相册选择代理
-//选择了某个照片的回调函数/代理回调
-/*
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    if ([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:(NSString*)kUTTypeMovie]) {
-        //获取视频的名称
-        NSString * videoPath=[NSString stringWithFormat:@"%@",[info objectForKey:UIImagePickerControllerMediaURL]];
-        NSRange range =[videoPath rangeOfString:@"trim."];//匹配得到的下标
-        NSString *content=[videoPath substringFromIndex:range.location+5];
-        //视频的后缀
-        NSRange rangeSuffix=[content rangeOfString:@"."];
-        NSString * suffixName=[content substringFromIndex:rangeSuffix.location+1];
-        //如果视频是mov格式的则转为MP4的
-        if ([suffixName isEqualToString:@"MOV"]) {
-            NSURL *videoUrl = [info objectForKey:UIImagePickerControllerMediaURL];
-            __weak typeof(self) weakSelf = self;
-            [self.recordEngine changeMovToMp4:videoUrl dataBlock:^(UIImage *movieImage) {
-                
-                [weakSelf.moviePicker dismissViewControllerAnimated:YES completion:^{
-                    weakSelf.playerVC = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:weakSelf.recordEngine.videoPath]];
-                    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playVideoFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:[weakSelf.playerVC moviePlayer]];
-                    [[weakSelf.playerVC moviePlayer] prepareToPlay];
-                    
-                    [weakSelf presentMoviePlayerViewControllerAnimated:weakSelf.playerVC];
-                    [[weakSelf.playerVC moviePlayer] play];
-                }];
-            }];
-        }
-    }
-}
- */
-
 - (void)dealloc
 {
+    NSLog(@"%s", __func__);
     [self.recordEngine shutdown];
     [_delayTimer invalidate];
     _delayTimer = nil;

@@ -1,5 +1,5 @@
 //
-//  VideoTopView.h
+//  VideoRecordTopView.h
 //  HBMobileProject
 //
 //  Created by HarbingWang on 16/9/27.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VideoTopView : UIView
+@interface VideoRecordTopView : UIView
 
 @property (strong,nonatomic) AVCaptureMovieFileOutput *captureMovieFileOutput;//视频输出流
 

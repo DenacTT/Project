@@ -1,15 +1,15 @@
 //
-//  VideoTopView.m
+//  VideoRecordTopView.m
 //  HBMobileProject
 //
 //  Created by HarbingWang on 16/9/27.
 //  Copyright © 2016年 HarbingWang. All rights reserved.
 //
 
-#import "VideoTopView.h"
+#import "VideoRecordTopView.h"
 #import "DelayView.h"
 
-@implementation VideoTopView
+@implementation VideoRecordTopView
 {
     UIButton    *_cameraBtn;
     UIView      *_delaySelectView;

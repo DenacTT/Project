@@ -92,14 +92,14 @@
 - (void)clickBack
 {
     [self.textView resignFirstResponder];
-    
-//    RecordVideoController *recordVC = [[RecordVideoController alloc] init];
     [self.navigationController popToRootViewControllerAnimated:YES];
-    
 }
 
 - (void)clickRight
 {
+    [self.textView resignFirstResponder];
+    NSLog(@"\n 视频路径: %@ \n 图片路径: %@", self.videoPath, self.thumbnailImage);
+    
 //    [[YMNetRequset shareInstance] setBBsDakaOfVideoWithPhotoPath:self.photoPath videoPath:self.videoPath videoLength:10 tags:nil content:nil status:0 videoUploadProgres:^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
 //        
 //    } success:^(id object) {
@@ -108,8 +108,7 @@
 //    } andFail:^(id object) {
 //        
 //    }];
-    [self.textView resignFirstResponder];
-    NSLog(@"\n 视频路径: %@ \n 图片路径: %@", self.videoPath, self.thumbnailImage);
+    
 }
 
 #pragma mark - ButtonClick
@@ -193,7 +192,7 @@
         UILabel *shareLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, _shareView.frame.size.height/2-24/2, 60, 24)];
         shareLabel.text = STR(@"EIVC_synchronization");
         shareLabel.textColor = RGB(136, 136, 136);
-        shareLabel.font = Font(14.f);
+        shareLabel.font = Font(16.f);
         [_shareView addSubview:shareLabel];
         
         CGFloat btnH = 24;
@@ -205,7 +204,7 @@
         [_shareView addSubview:_weixinBtn];
         
         _sinaBtn = [BiggerBtn buttonWithType:UIButtonTypeCustom];
-        _sinaBtn.frame = CGRectMake(CGRectGetMaxX(_weixinBtn.frame) + 4, _shareView.frame.size.height/2-btnH/2+2, btnH, btnH);
+        _sinaBtn.frame = CGRectMake(CGRectGetMaxX(_weixinBtn.frame)+4, _shareView.frame.size.height/2-btnH/2+2, btnH, btnH);
         [_sinaBtn setImage:Image(@"UMS_sina_off") forState:UIControlStateNormal];
         [_sinaBtn setImage:Image(@"UMS_sina_icon") forState:UIControlStateSelected];
         [_sinaBtn addTarget:self action:@selector(sinaBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -219,7 +218,6 @@
         _privateView.left = _shareView.width - 14 - _privateView.width;
         [_privateView addTarget:self action:@selector(privateBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_shareView addSubview:_privateView];
-        
         
         _privateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _privateBtn.frame = CGRectMake(0, 6, 12, 12);
