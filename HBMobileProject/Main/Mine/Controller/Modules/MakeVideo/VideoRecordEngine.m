@@ -79,7 +79,7 @@
 }
 
 //开始录制
-- (void) startCapture {
+- (void)startCapture {
     @synchronized(self) {
         if (!self.isCapturing) {
             //            NSLog(@"开始录制");
@@ -92,7 +92,7 @@
     }
 }
 //暂停录制
-- (void) pauseCapture {
+- (void)pauseCapture {
     @synchronized(self) {
         if (self.isCapturing) {
             //            NSLog(@"暂停录制");
@@ -102,7 +102,7 @@
     }
 }
 //继续录制
-- (void) resumeCapture {
+- (void)resumeCapture {
     @synchronized(self) {
         if (self.isPaused) {
             //            NSLog(@"继续录制");

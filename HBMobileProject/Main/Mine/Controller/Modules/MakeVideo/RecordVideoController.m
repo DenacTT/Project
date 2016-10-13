@@ -15,6 +15,7 @@
 #import "NSTimer+Addition.h"
 #import "CircularSlider.h"
 #import "EditVideoViewController.h"
+#import "GPUImageBeautifyFilter.h"
 
 @interface RecordVideoController ()<RecordEngineDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -25,6 +26,9 @@
 @property (nonatomic, strong) UILabel               *delayLabel;    // 倒计时Label
 @property (nonatomic, strong) VideoRecordStatusView *recordView;    // 录制状态View
 @property (strong, nonatomic) VideoRecordEngine     *recordEngine;  // 视频录制器
+
+@property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
+@property (nonatomic, strong) GPUImageView *filterView;
 
 @property (nonatomic,weak) NSTimer *delayTimer;    //倒计时定时器
 @property (nonatomic,weak) NSTimer *recordTimer;   //录制定时器
@@ -49,6 +53,7 @@
     [self.view addSubview:self.cancelBtn];
     [self.view addSubview:self.delayLabel];
     [self.view addSubview:self.recordView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -245,7 +250,38 @@
 #pragma mark - 美颜
 - (void)onBeautyBtnChange:(UIButton *)sender
 {
-    
+    if (_beautyBtn.selected) {
+        _beautyBtn.selected = NO;
+        [_beautyBtn setImage: [UIImage imageNamed: @"RecordIcoMackup_1"] forState: UIControlStateHighlighted];
+        
+        self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
+        self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+        self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
+        self.filterView = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenWidth)];
+            self.filterView.center = self.view.center;
+        [self.view addSubview:self.filterView];
+        [self.videoCamera addTarget:self.filterView];
+        [self.videoCamera startCameraCapture];
+        [self.videoCamera removeAllTargets];
+
+    }else {
+        _beautyBtn.selected = YES;
+        [_beautyBtn setImage: [UIImage imageNamed: @"RecordIcoMackup"] forState: UIControlStateNormal];
+        
+//        self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
+//        self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+//        self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
+//        self.filterView = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenWidth)];
+        //    self.filterView.center = self.view.center;
+//        [self.view addSubview:self.filterView];
+//        [self.videoCamera addTarget:self.filterView];
+//        [self.videoCamera startCameraCapture];
+        
+        [self.videoCamera removeAllTargets];
+//        GPUImageBeautifyFilter *beautifyFilter = [[GPUImageBeautifyFilter alloc] init];
+//        [self.videoCamera addTarget:beautifyFilter];
+//        [beautifyFilter addTarget:self.filterView];
+    }
 }
 
 #pragma mark - set、get方法
@@ -270,10 +306,10 @@
 {
     if (!_beautyBtn) {
         _beautyBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        [_cameraBtn setImage: [UIImage imageNamed: @"RecordIcoMackup"] forState: UIControlStateNormal];
-        [_cameraBtn setImage: [UIImage imageNamed: @"RecordIcoMackup_1"] forState: UIControlStateHighlighted];
-        _cameraBtn.frame = CGRectMake(ScreenWidth - 44 - 54, 20, 44, 44);
-        [_cameraBtn addTarget: self action: @selector(onBeautyBtnChange:) forControlEvents:UIControlEventTouchUpInside];
+        [_beautyBtn setImage: [UIImage imageNamed: @"RecordIcoMackup"] forState: UIControlStateNormal];
+//        [_beautyBtn setImage: [UIImage imageNamed: @"RecordIcoMackup_1"] forState: UIControlStateHighlighted];
+        _beautyBtn.frame = CGRectMake(ScreenWidth - 44 - 54, 20, 44, 44);
+        [_beautyBtn addTarget: self action: @selector(onBeautyBtnChange:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _beautyBtn;
 }
