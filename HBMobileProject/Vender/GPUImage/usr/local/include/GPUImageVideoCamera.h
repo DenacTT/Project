@@ -10,14 +10,12 @@ void setColorConversion601( GLfloat conversionMatrix[9] );
 void setColorConversion601FullRange( GLfloat conversionMatrix[9] );
 void setColorConversion709( GLfloat conversionMatrix[9] );
 
-
 //Delegate Protocal for Face Detection.
 @protocol GPUImageVideoCameraDelegate <NSObject>
 
 @optional
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 @end
-
 
 /**
  A GPUImageOutput that provides frames from either camera

@@ -49,7 +49,7 @@
         
         self.path = path;
         
-        //先把路径下的文件给删除掉，保证录制的文件是最新的
+        // 先把路径下的文件给删除掉，保证录制的文件是最新的
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
         
         // 创建路径
@@ -164,7 +164,8 @@
         }
         
         // 2> 写入状态为失败
-        if (_writer.status == AVAssetWriterStatusFailed) {
+        if (_writer.status == AVAssetWriterStatusFailed)
+        {
             NSLog(@"writer error %@", _writer.error.localizedDescription);
             return NO;
         }
@@ -172,14 +173,16 @@
         // 3> 判断是否写入视频
         if (isVideo) {
             // 视频输入是否准备接受更多的媒体数据
-            if (_videoInput.readyForMoreMediaData == YES) {
+            if (_videoInput.readyForMoreMediaData == YES)
+            {
                 // 拼接数据
                 [_videoInput appendSampleBuffer:sampleBuffer];
                 return YES;
             }
         }else{
             // 音频输入是否准备接受更多的媒体数据
-            if (_audioInput.readyForMoreMediaData) {
+            if (_audioInput.readyForMoreMediaData)
+            {
                 // 拼接数据
                 [_audioInput appendSampleBuffer:sampleBuffer];
                 return YES;

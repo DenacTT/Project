@@ -27,8 +27,8 @@
     self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
     self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
-    self.filterView = [[GPUImageView alloc] initWithFrame:self.view.frame];
-    self.filterView.center = self.view.center;
+    self.filterView = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, ScreenWidth)];
+//    self.filterView.center = self.view.center;
     
     [self.view addSubview:self.filterView];
     [self.videoCamera addTarget:self.filterView];
@@ -41,6 +41,7 @@
     [self.beautifyButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.beautifyButton addTarget:self action:@selector(beautify) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.beautifyButton];
+    
     [self.beautifyButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view).offset(-20);
         make.width.equalTo(@100);
@@ -55,8 +56,7 @@
         self.beautifyButton.selected = NO;
         [self.videoCamera removeAllTargets];
         [self.videoCamera addTarget:self.filterView];
-    }
-    else {
+    }else {
         self.beautifyButton.selected = YES;
         [self.videoCamera removeAllTargets];
         GPUImageBeautifyFilter *beautifyFilter = [[GPUImageBeautifyFilter alloc] init];

@@ -19,6 +19,7 @@
 @interface RecordVideoController ()<RecordEngineDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) VideoRecordTopView    *topView;       // 延时工具栏
+@property (nonatomic, strong) UIButton              *beautyBtn;     // 美颜功能
 @property (nonatomic, strong) UIButton              *cameraBtn;     // 摄像头切换
 @property (nonatomic, strong) UIButton              *cancelBtn;     // 取消按钮
 @property (nonatomic, strong) UILabel               *delayLabel;    // 倒计时Label
@@ -43,11 +44,11 @@
     
     [self.view.layer insertSublayer:[self.recordEngine previewLayer] atIndex:0];
     [self.view addSubview:self.topView];
+    [self.view addSubview:self.beautyBtn];
     [self.view addSubview:self.cameraBtn];
     [self.view addSubview:self.cancelBtn];
     [self.view addSubview:self.delayLabel];
     [self.view addSubview:self.recordView];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -241,6 +242,12 @@
     }
 }
 
+#pragma mark - 美颜
+- (void)onBeautyBtnChange:(UIButton *)sender
+{
+    
+}
+
 #pragma mark - set、get方法
 - (VideoRecordEngine *)recordEngine {
     if (!_recordEngine) {
@@ -257,6 +264,18 @@
         _topView = [[VideoRecordTopView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, 44)];
     }
     return _topView;
+}
+
+- (UIButton *)beautyBtn
+{
+    if (!_beautyBtn) {
+        _beautyBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        [_cameraBtn setImage: [UIImage imageNamed: @"RecordIcoMackup"] forState: UIControlStateNormal];
+        [_cameraBtn setImage: [UIImage imageNamed: @"RecordIcoMackup_1"] forState: UIControlStateHighlighted];
+        _cameraBtn.frame = CGRectMake(ScreenWidth - 44 - 54, 20, 44, 44);
+        [_cameraBtn addTarget: self action: @selector(onBeautyBtnChange:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _beautyBtn;
 }
 
 - (UIButton *)cameraBtn

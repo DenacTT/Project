@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D103BB9A1DAF3D900009DF88 /* GPUVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D103BB991DAF3D900009DF88 /* GPUVideoViewController.m */; };
+		D103BB9F1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D103BB9D1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png */; };
+		D103BBA21DAF8BA20009DF88 /* RecordIcoMackup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D103BBA11DAF8BA20009DF88 /* RecordIcoMackup@2x.png */; };
 		D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D11853741D7EC3B900D1EA92 /* LogInViewController.m */; };
 		D11C44931D9911590051BD31 /* PreviewVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44921D9911590051BD31 /* PreviewVideoView.m */; };
 		D11C449A1D9A5D520051BD31 /* UIColor+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44991D9A5D520051BD31 /* UIColor+Extend.m */; };
@@ -284,6 +287,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D103BB981DAF3D900009DF88 /* GPUVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUVideoViewController.h; sourceTree = "<group>"; };
+		D103BB991DAF3D900009DF88 /* GPUVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUVideoViewController.m; sourceTree = "<group>"; };
+		D103BB9D1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordIcoMackup_1@2x.png"; sourceTree = "<group>"; };
+		D103BBA11DAF8BA20009DF88 /* RecordIcoMackup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordIcoMackup@2x.png"; sourceTree = "<group>"; };
 		D11853731D7EC3B900D1EA92 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		D11853741D7EC3B900D1EA92 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		D11853771D7EC6AA00D1EA92 /* CommonMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
@@ -1009,6 +1016,8 @@
 				D11C44A11D9A5F020051BD31 /* DelayBtnHighLight@2x.png */,
 				D15E55551D9BA67A0027634B /* RecordPasureButton@2x.png */,
 				D15E55561D9BA67A0027634B /* RecodeButton@2x.png */,
+				D103BB9D1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png */,
+				D103BBA11DAF8BA20009DF88 /* RecordIcoMackup@2x.png */,
 			);
 			path = MakeVideo;
 			sourceTree = "<group>";
@@ -1954,6 +1963,8 @@
 				D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */,
 				D15E55801D9CE7600027634B /* GPUImageBeautifyFilter.h */,
 				D15E55811D9CE7600027634B /* GPUImageBeautifyFilter.m */,
+				D103BB981DAF3D900009DF88 /* GPUVideoViewController.h */,
+				D103BB991DAF3D900009DF88 /* GPUVideoViewController.m */,
 			);
 			name = GPUImage;
 			sourceTree = "<group>";
@@ -2469,6 +2480,7 @@
 				D17A28A51D9404CC00C00B3F /* UMS_wechat_timeline_icon@2x.png in Resources */,
 				D17A289F1D9404CC00C00B3F /* UMS_wechat_off.png in Resources */,
 				D17A289C1D9404CC00C00B3F /* UMS_wechat_favorite_icon@2x.png in Resources */,
+				D103BB9F1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png in Resources */,
 				D17A28E31D94091600C00B3F /* type_3@3x.png in Resources */,
 				D17A289E1D9404CC00C00B3F /* UMS_wechat_icon@2x.png in Resources */,
 				D1B6D6FB1D7D10C500C3E647 /* Assets.xcassets in Resources */,
@@ -2507,6 +2519,7 @@
 				D17A28A41D9404CC00C00B3F /* UMS_wechat_timeline_icon.png in Resources */,
 				D17A28561D9400E000C00B3F /* privateCard_bubble@2x.png in Resources */,
 				D17A28E11D94091600C00B3F /* type_2@3x.png in Resources */,
+				D103BBA21DAF8BA20009DF88 /* RecordIcoMackup@2x.png in Resources */,
 				D17A28A21D9404CC00C00B3F /* UMS_wechat_session_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2541,6 +2554,7 @@
 				D17A27EF1D93F89900C00B3F /* NSTimer+YYAdd.m in Sources */,
 				D17A272D1D93F7A600C00B3F /* WBStatusLayout.m in Sources */,
 				D17A27EE1D93F89900C00B3F /* NSThread+YYAdd.m in Sources */,
+				D103BB9A1DAF3D900009DF88 /* GPUVideoViewController.m in Sources */,
 				D15E55791D9CC84F0027634B /* MakeVideoTestController.m in Sources */,
 				D17A27FD1D93F89900C00B3F /* UITableView+YYAdd.m in Sources */,
 				D17A2DAD1D9509FE00C00B3F /* GUPImageTestController.m in Sources */,

@@ -372,6 +372,7 @@
         [backCamera unlockForConfiguration];
     }
 }
+
 //关闭闪光灯
 - (void)closeFlashLight {
     AVCaptureDevice *backCamera = [self backCamera];
@@ -451,7 +452,7 @@
         CFRetain(sampleBuffer);
         if (_timeOffset.value > 0) {
             CFRelease(sampleBuffer);
-            //根据得到的timeOffset调整
+            // 根据得到的timeOffset调整
             sampleBuffer = [self adjustTime:sampleBuffer by:_timeOffset];
         }
         // 记录暂停上一次录制的时间
