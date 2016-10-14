@@ -34,7 +34,6 @@
         
         _delaySelectView.hidden = YES;
         
-        
         CGFloat space = (_delaySelectView.width - 3*44) / 2;
         // 关闭按钮
         UIButton * closeBtn = [UIButton buttonWithType: UIButtonTypeRoundedRect];
@@ -67,12 +66,12 @@
         tenBtn.frame = CGRectMake(threeBtn.right + space, 0, 44, 44);
         tenBtn.titleLabel.font = [UIFont systemFontOfSize: 13.f];
         
-        _cameraBtn = [UIButton buttonWithType: UIButtonTypeCustom];
-//        [self addSubview: _cameraBtn];
-        [_cameraBtn setImage: [UIImage imageNamed: @"CameraChange"] forState: UIControlStateNormal];
-        [_cameraBtn setImage: [UIImage imageNamed: @"CameraChange"] forState: UIControlStateHighlighted];
-        _cameraBtn.frame = CGRectMake(ScreenWidth - 44, 0, 44, 44);
-        [_cameraBtn addTarget: self action: @selector(onCameraChange:) forControlEvents:UIControlEventTouchUpInside];
+//        _cameraBtn = [UIButton buttonWithType: UIButtonTypeCustom];
+////        [self addSubview: _cameraBtn];
+//        [_cameraBtn setImage: [UIImage imageNamed: @"CameraChange"] forState: UIControlStateNormal];
+//        [_cameraBtn setImage: [UIImage imageNamed: @"CameraChange"] forState: UIControlStateHighlighted];
+//        _cameraBtn.frame = CGRectMake(ScreenWidth - 44, 0, 44, 44);
+//        [_cameraBtn addTarget: self action: @selector(onCameraChange:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
