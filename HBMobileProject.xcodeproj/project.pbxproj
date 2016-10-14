@@ -10,6 +10,7 @@
 		D103BB9A1DAF3D900009DF88 /* GPUVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D103BB991DAF3D900009DF88 /* GPUVideoViewController.m */; };
 		D103BB9F1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D103BB9D1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png */; };
 		D103BBA21DAF8BA20009DF88 /* RecordIcoMackup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D103BBA11DAF8BA20009DF88 /* RecordIcoMackup@2x.png */; };
+		D103BBA61DB0D0560009DF88 /* GPUVideoTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = D103BBA51DB0D0560009DF88 /* GPUVideoTestController.m */; };
 		D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D11853741D7EC3B900D1EA92 /* LogInViewController.m */; };
 		D11C44931D9911590051BD31 /* PreviewVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44921D9911590051BD31 /* PreviewVideoView.m */; };
 		D11C449A1D9A5D520051BD31 /* UIColor+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44991D9A5D520051BD31 /* UIColor+Extend.m */; };
@@ -291,6 +292,8 @@
 		D103BB991DAF3D900009DF88 /* GPUVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUVideoViewController.m; sourceTree = "<group>"; };
 		D103BB9D1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordIcoMackup_1@2x.png"; sourceTree = "<group>"; };
 		D103BBA11DAF8BA20009DF88 /* RecordIcoMackup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordIcoMackup@2x.png"; sourceTree = "<group>"; };
+		D103BBA41DB0D0560009DF88 /* GPUVideoTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUVideoTestController.h; sourceTree = "<group>"; };
+		D103BBA51DB0D0560009DF88 /* GPUVideoTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUVideoTestController.m; sourceTree = "<group>"; };
 		D11853731D7EC3B900D1EA92 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		D11853741D7EC3B900D1EA92 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		D11853771D7EC6AA00D1EA92 /* CommonMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
@@ -951,6 +954,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D103BBA31DB07BD50009DF88 /* GPUVideo */ = {
+			isa = PBXGroup;
+			children = (
+				D103BB981DAF3D900009DF88 /* GPUVideoViewController.h */,
+				D103BB991DAF3D900009DF88 /* GPUVideoViewController.m */,
+				D103BBA41DB0D0560009DF88 /* GPUVideoTestController.h */,
+				D103BBA51DB0D0560009DF88 /* GPUVideoTestController.m */,
+			);
+			name = GPUVideo;
+			sourceTree = "<group>";
+		};
 		D118536E1D7EC37C00D1EA92 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -1027,6 +1041,7 @@
 			children = (
 				D17A2DCD1D9669B100C00B3F /* MakeVideo */,
 				D17A2DA11D94E35300C00B3F /* GPUImage */,
+				D103BBA31DB07BD50009DF88 /* GPUVideo */,
 				D12237E01D90108100B0D042 /* ExtensibleCell */,
 				D12237E11D9010C900B0D042 /* LinkageTableView */,
 			);
@@ -1783,8 +1798,8 @@
 				D17A2CF81D94D4A500C00B3F /* GPUImageAverageColor.h */,
 				D17A2CF91D94D4A500C00B3F /* GPUImageAverageLuminanceThresholdFilter.h */,
 				D17A2CFA1D94D4A500C00B3F /* GPUImageBilateralFilter.h */,
-				D17A2CFB1D94D4A500C00B3F /* GPUImageBoxBlurFilter.h */,
 				D17A2CFC1D94D4A500C00B3F /* GPUImageBrightnessFilter.h */,
+				D17A2CFB1D94D4A500C00B3F /* GPUImageBoxBlurFilter.h */,
 				D17A2CFD1D94D4A500C00B3F /* GPUImageBuffer.h */,
 				D17A2CFE1D94D4A500C00B3F /* GPUImageBulgeDistortionFilter.h */,
 				D17A2CFF1D94D4A500C00B3F /* GPUImageCannyEdgeDetectionFilter.h */,
@@ -1963,8 +1978,6 @@
 				D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */,
 				D15E55801D9CE7600027634B /* GPUImageBeautifyFilter.h */,
 				D15E55811D9CE7600027634B /* GPUImageBeautifyFilter.m */,
-				D103BB981DAF3D900009DF88 /* GPUVideoViewController.h */,
-				D103BB991DAF3D900009DF88 /* GPUVideoViewController.m */,
 			);
 			name = GPUImage;
 			sourceTree = "<group>";
@@ -2709,6 +2722,7 @@
 				D17A272C1D93F7A600C00B3F /* WBStatusHelper.m in Sources */,
 				D17A27E51D93F89900C00B3F /* NSDate+YYAdd.m in Sources */,
 				D1B6D7761D7D154700C3E647 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				D103BBA61DB0D0560009DF88 /* GPUVideoTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

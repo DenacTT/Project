@@ -1,5 +1,6 @@
 #import "GPUImageFilter.h"
 
+#pragma mark - 美白滤镜
 @interface GPUImageBrightnessFilter : GPUImageFilter
 {
     GLint brightnessUniform;

@@ -23,11 +23,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor blackColor];
     
-    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
+    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh cameraPosition:AVCaptureDevicePositionFront];
     self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
+    
     self.filterView = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, ScreenWidth)];
+    _filterView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill; /* 填充模式*/
 //    self.filterView.center = self.view.center;
     
     [self.view addSubview:self.filterView];
@@ -48,10 +51,9 @@
         make.height.equalTo(@40);
         make.centerX.equalTo(self.view);
     }];
-
 }
 
-- (void)beautify {
+- (void)beautify{
     if (self.beautifyButton.selected) {
         self.beautifyButton.selected = NO;
         [self.videoCamera removeAllTargets];

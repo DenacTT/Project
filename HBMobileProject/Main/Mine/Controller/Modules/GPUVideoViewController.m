@@ -8,148 +8,77 @@
 
 #import "GPUVideoViewController.h"
 #import "GPUImage.h"
-#import <AssetsLibrary/ALAssetsLibrary.h>
 #import "GPUImageBeautifyFilter.h"
+#import "Masonry.h"
 
 @interface GPUVideoViewController ()
-@property (nonatomic , strong) GPUImageVideoCamera *videoCamera;
-@property (nonatomic , strong) GPUImageOutput<GPUImageInput> *filter;
-@property (nonatomic , strong) GPUImageMovieWriter *movieWriter;
-@property (nonatomic , strong) GPUImageView *filterView;
 
-@property (nonatomic , strong) UIButton *mButton;
-@property (nonatomic , strong) UILabel  *mLabel;
-@property (nonatomic , assign) long     mLabelTime;
-@property (nonatomic , strong) NSTimer  *mTimer;
 
-@property (nonatomic , strong) CADisplayLink *mDisplayLink;
+
+@property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
+@property (nonatomic, strong) GPUImageView *captureVideoPreview;
 
 @end
 
 @implementation GPUVideoViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.navigationController.navigationBarHidden = YES;
+    self.view.backgroundColor = [UIColor blackColor];
     
-    _videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionBack];
-    _videoCamera.outputImageOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    // 创建视频源
+    // SessionPreset:屏幕分辨率，AVCaptureSessionPresetHigh 会自适应高分辨率
+    // cameraPosition:摄像头方向
+    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh cameraPosition:AVCaptureDevicePositionFront];
+    _videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     
-//    _filter = [[GPUImageSepiaFilter alloc] init];
-    _filter = [[GPUImageBeautifyFilter alloc] init];
+    // 创建最终预览View
+    self.captureVideoPreview = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenWidth)];
+    _captureVideoPreview.fillMode = kGPUImageFillModePreserveAspectRatioAndFill; /* 填充模式*/
+    [self.view insertSubview:_captureVideoPreview atIndex:0];
     
-    _filterView = [[GPUImageView alloc] initWithFrame:self.view.frame];
-    self.view = _filterView;
+    // 设置处理链
+    [_videoCamera addTarget:_captureVideoPreview];
     
-    _mButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 50, 50)];
-    [_mButton setTitle:@"录制" forState:UIControlStateNormal];
-    [_mButton sizeToFit];
-    [self.view addSubview:_mButton];
-    [_mButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    _mLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 20, 50, 100)];
-    _mLabel.hidden = YES;
-    _mLabel.textColor = [UIColor whiteColor];
-    [self.view addSubview:_mLabel];
-    
-    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(10, 40, 100, 40)];
-    [slider addTarget:self action:@selector(updateSliderValue:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:slider];
-    
-    [_videoCamera addTarget:_filter];
-    [_filter addTarget:_filterView];
+    // 必须调用startCameraCapture，底层才会把采集到的视频源，渲染到GPUImageView中，就能显示了。
+    // 开始采集视频
     [_videoCamera startCameraCapture];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidChangeStatusBarOrientationNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        _videoCamera.outputImageOrientation = [UIApplication sharedApplication].statusBarOrientation;
-    }];
+    UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(10, ScreenHeight - 60, 40, 40)];
+    switchBtn.on = NO;
+    [switchBtn addTarget:self action:@selector(openBeautifyFilter:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:switchBtn];
+}
+
+- (void)openBeautifyFilter:(UISwitch *)sender {
     
-    self.mDisplayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displaylink:)];
-    [self.mDisplayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-
-    
-}
-
-- (void)displaylink:(CADisplayLink *)displaylink {
-    NSLog(@"test");
-}
-
-- (void)onTimer:(id)sender {
-    _mLabel.text  = [NSString stringWithFormat:@"录制时间:%lds", _mLabelTime++];
-    [_mLabel sizeToFit];
-}
-
-- (void)onClick:(UIButton *)sender {
-    NSString *pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie4.m4v"];
-    NSURL *movieURL = [NSURL fileURLWithPath:pathToMovie];
-    if([sender.currentTitle isEqualToString:@"录制"]) {
-        [sender setTitle:@"结束" forState:UIControlStateNormal];
-        NSLog(@"Start recording");
-        unlink([pathToMovie UTF8String]); // 如果已经存在文件，AVAssetWriter会有异常，删除旧文件
-        _movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:movieURL size:CGSizeMake(480.0, 640.0)];
-        _movieWriter.encodingLiveVideo = YES;
-        [_filter addTarget:_movieWriter];
-        _videoCamera.audioEncodingTarget = _movieWriter;
-        [_movieWriter startRecording];
+    // 切换美颜效果原理：移除之前所有处理链，重新设置处理链
+    if (sender.on) {
         
-        _mLabelTime = 0;
-        _mLabel.hidden = NO;
-        [self onTimer:nil];
-        _mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
-    }else{
-        [sender setTitle:@"录制" forState: UIControlStateNormal];
-        NSLog(@"End recording");
-        _mLabel.hidden = YES;
-        if (_mTimer) {
-            [_mTimer invalidate];
-        }
-        [_filter removeTarget:_movieWriter];
-        _videoCamera.audioEncodingTarget = nil;
-        [_movieWriter finishRecording];
+        // 移除之前所有处理链
+        [_videoCamera removeAllTargets];
         
-        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(pathToMovie))
-        {
-            [library writeVideoAtPathToSavedPhotosAlbum:movieURL completionBlock:^(NSURL *assetURL, NSError *error)
-             {
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                     
-                     if (error) {
-                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存失败" message:nil
-                                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                         [alert show];
-                     } else {
-                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存成功" message:nil
-                                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                         [alert show];
-                     }
-                 });
-             }];
-        }
+        // 创建美颜滤镜
+        GPUImageBeautifyFilter *beautifyFilter = [[GPUImageBeautifyFilter alloc] init];
         
+        // 设置GPUImage处理链，从数据源 => 滤镜 => 最终界面效果
+        [_videoCamera addTarget:beautifyFilter];
+        [beautifyFilter addTarget:_captureVideoPreview];
+    } else {
+        // 移除之前所有处理链
+        [_videoCamera removeAllTargets];
+        [_videoCamera addTarget:_captureVideoPreview];
     }
 }
 
-//- (void)updateSliderValue:(id)sender
-//{
-////    [(GPUImageSepiaFilter *)_filter setIntensity:[(UISlider *)sender value]];
-//}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
 
 @end

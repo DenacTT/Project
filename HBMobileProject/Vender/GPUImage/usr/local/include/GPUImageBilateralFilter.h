@@ -1,5 +1,6 @@
 #import "GPUImageGaussianBlurFilter.h"
 
+#pragma mark - 磨皮滤镜
 @interface GPUImageBilateralFilter : GPUImageGaussianBlurFilter
 {
     CGFloat firstDistanceNormalizationFactorUniform;

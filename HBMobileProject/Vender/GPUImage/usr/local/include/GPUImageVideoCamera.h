@@ -25,13 +25,13 @@ void setColorConversion709( GLfloat conversionMatrix[9] );
     NSUInteger numberOfFramesCaptured;
     CGFloat totalFrameTimeDuringCapture;
     
-    AVCaptureSession *_captureSession;
-    AVCaptureDevice *_inputCamera;
-    AVCaptureDevice *_microphone;
-    AVCaptureDeviceInput *videoInput;
-	AVCaptureVideoDataOutput *videoOutput;
+    AVCaptureSession    *_captureSession;    // 捕获会话
+    AVCaptureDevice     *_inputCamera;       // 摄像头设备
+    AVCaptureDevice     *_microphone;        // 麦克风设备
+    AVCaptureDeviceInput        *videoInput; // 视频输入
+	AVCaptureVideoDataOutput    *videoOutput;// 视频输出
 
-    BOOL capturePaused;
+    BOOL capturePaused;                      // 捕获暂停
     GPUImageRotationMode outputRotation, internalRotation;
     dispatch_semaphore_t frameRenderingSemaphore;
         
@@ -138,6 +138,7 @@ void setColorConversion709( GLfloat conversionMatrix[9] );
 
 /** This flips between the front and rear cameras
  */
+// 切换摄像头
 - (void)rotateCamera;
 
 /// @name Benchmarking

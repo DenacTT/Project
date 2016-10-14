@@ -106,8 +106,7 @@ NSString *const kGPUImageBeautifyFragmentShaderString = SHADER_STRING
     return self;
 }
 
-#pragma mark -
-#pragma mark GPUImageInput protocol
+#pragma mark - GPUImageInput protocol
 
 - (void)newFrameReadyAtTime:(CMTime)frameTime atIndex:(NSInteger)textureIndex;
 {
