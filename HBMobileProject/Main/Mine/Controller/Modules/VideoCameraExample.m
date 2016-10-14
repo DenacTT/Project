@@ -29,7 +29,7 @@
         return nil;
     }
     mainScreenFrame = frame;
-    _videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1280x720 cameraPosition:AVCaptureDevicePositionBack];
+    _videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1280x720 cameraPosition:AVCaptureDevicePositionFront];
     _videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     [_videoCamera addAudioInputsAndOutputs];
     
@@ -110,28 +110,28 @@
             [self compressVideo];
         });
         
-        //        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-        //        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(pathToMovie))
-        //        {
-        //            [library writeVideoAtPathToSavedPhotosAlbum:movieURL completionBlock:^(NSURL *assetURL, NSError *error)
-        //             {
-        //                 dispatch_async(dispatch_get_main_queue(), ^{
-        //
-        //                     if (error) {
-        //                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存失败" message:nil
-        //                                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        //                         [alert show];
-        //                     } else {
-        //                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存成功" message:nil
-        //                                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        //                         [alert show];
-        //
-        //
-        //
-        //                     }
-        //                 });
-        //             }];
-        //        }
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(pathToMovie))
+        {
+            [library writeVideoAtPathToSavedPhotosAlbum:movieURL completionBlock:^(NSURL *assetURL, NSError *error)
+             {
+                 dispatch_async(dispatch_get_main_queue(), ^{
+
+                     if (error) {
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存失败" message:nil
+                                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                         [alert show];
+                     } else {
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存成功" message:nil
+                                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                         [alert show];
+
+
+
+                     }
+                 });
+             }];
+        }
         
     }
 }

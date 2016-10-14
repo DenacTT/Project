@@ -18,8 +18,9 @@
 #import "CircularSlider.h"
 
 #import "EditVideoViewController.h"
+#import <AssetsLibrary/ALAssetsLibrary.h>
 
-@interface GPUVideoViewController ()
+@interface GPUVideoViewController ()<GPUImageMovieWriterDelegate>
 
 @property (nonatomic, strong) VideoRecordTopView    *topView;       // 延时工具栏
 @property (nonatomic, strong) UIButton              *beautyBtn;     // 美颜功能
@@ -185,7 +186,7 @@
 - (void)endRecording
 {
     if (self.videoCamera.isRunning) {
-        // 关闭录制功能
+        // 关闭录制
         [self.videoCamera stopCameraCapture];
         // 停止定时器
         [self.recordTimer pauseTimer];
@@ -194,6 +195,119 @@
         return;
     }
     
+}
+
+- (void)resetAndUseVideo
+{
+    [self.recordView returnCircularStroke];
+    [self.recordTimer pauseTimer];
+
+    NSString *pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"];
+    NSURL *movieURL = [NSURL fileURLWithPath:pathToMovie];
+    unlink([pathToMovie UTF8String]); // 如果已经存在文件，AVAssetWriter会有异常，删除旧文件
+    _movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:movieURL size:CGSizeMake(1280.0, 720.0)];
+    _movieWriter.encodingLiveVideo = YES;
+    [_videoCamera addTarget:_movieWriter];
+    
+    // 结束录制状态
+    if (self.recordView.recordType == YMRecordType_RecordVideo)
+    {
+    
+        [_videoCamera removeTarget:_movieWriter];
+        _videoCamera.audioEncodingTarget = nil;
+        [_movieWriter finishRecording];
+        NSLog(@"Stop recording");
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.recordEngine compressVideo:pathToMovie];
+        });
+        
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(pathToMovie))
+        {
+            [library writeVideoAtPathToSavedPhotosAlbum:movieURL completionBlock:^(NSURL *assetURL, NSError *error)
+             {
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     
+                     if (error) {
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存失败" message:nil
+                                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                         [alert show];
+                     } else {
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存成功" message:nil
+                                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                         [alert show];
+                         
+                         
+                         
+                     }
+                 });
+             }];
+        }
+        
+        
+    // 录制状态
+    }else if (self.recordView.recordType == YMRecordType_StopRecord){
+
+        
+        _videoCamera.audioEncodingTarget = _movieWriter;
+        _movieWriter.delegate = self;
+        [_movieWriter startRecording];
+ 
+        NSLog(@"Start recording");
+
+    }
+    
+    
+    /*
+    
+    [self.recordEngine stopCaptureHandler:^(UIImage *movieImage) {
+        NSLog(@"videoPath : %@ \n 视频大小: %.2f M", weakSelf.recordEngine.videoPath, [weakSelf.recordEngine getfileSize:weakSelf.recordEngine.videoPath]);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSString *outPutPath = weakSelf.recordEngine.videoPath;
+            NSData *videData = [NSData dataWithContentsOfFile:outPutPath];
+            
+            EditVideoViewController *vc = [[EditVideoViewController alloc] init];
+            vc.videoPath = [NSURL fileURLWithPath:outPutPath];
+            
+            vc.videoLength = _recordSeconds;
+            vc.videoData = videData;
+            vc.thumbnailImage = movieImage;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        });
+        
+    }];
+     */
+    
+}
+
+- (void)movieRecordingCompleted
+{
+    EditVideoViewController *vc = [[EditVideoViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    [_movieWriter finishRecordingWithCompletionHandler:^{
+    }];
+}
+
+#pragma mark - 取消
+- (void)cancelRecord:(UIButton *)sender
+{
+    [self.recordEngine pauseCapture];
+    [self.videoCamera stopCameraCapture];
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
+}
+
+#pragma mark - 切换摄像头
+- (void)onCameraChange:(UIButton *)sender
+{
+    [self.videoCamera rotateCamera];
+    self.cameraBtn.selected = !self.cameraBtn.selected;
 }
 
 #pragma mark - NSTimer
@@ -246,115 +360,6 @@
         [self resetAndUseVideo];
         [self endRecording];
     }
-}
-
-- (void)resetAndUseVideo
-{
-    [self.recordView returnCircularStroke];
-    [self.recordTimer pauseTimer];
-
-    NSString *pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"];
-    NSURL *movieURL = [NSURL fileURLWithPath:pathToMovie];
-    
-    unlink([pathToMovie UTF8String]); // 如果已经存在文件，AVAssetWriter会有异常，删除旧文件
-    
-    __weak typeof(self) weakSelf = self;
-    
-    // 结束录制状态
-    if (self.recordView.recordType == YMRecordType_StopRecord)
-    {
-    
-        [_videoCamera removeTarget:_movieWriter];
-        _videoCamera.audioEncodingTarget = nil;
-        [_movieWriter finishRecordingWithCompletionHandler:^{
-            EditVideoViewController *vc = [[EditVideoViewController alloc] init];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        }];
-        
-        NSLog(@"Stop recording");
-        
-    // 录制状态
-    }else if (self.recordView.recordType == YMRecordType_RecordVideo){
-
-        _movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:movieURL size:CGSizeMake(1280.0, 720.0)];
-        _movieWriter.encodingLiveVideo = YES;
-        [_videoCamera addTarget:_movieWriter];
-        _videoCamera.audioEncodingTarget = _movieWriter;
-        [_movieWriter startRecording];
-        
-        
-        
-        NSLog(@"Start recording");
-        
-        
-        
-    }
-        
-        
-//        __weak typeof(self) weakSelf = self;
-//        [_movieWriter finishRecordingWithCompletionHandler:^{
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                
-//                NSString *outPutPath = weakSelf.recordEngine.videoPath;
-//                NSData *videData = [NSData dataWithContentsOfFile:outPutPath];
-//                
-//                EditVideoViewController *vc = [[EditVideoViewController alloc] init];
-//                
-//                //            vc.videoPath = [NSURL fileURLWithPath:outPutPath];
-//                //            vc.videoLength = _recordSeconds;
-//                //            vc.videoData = videData;
-//                //            vc.thumbnailImage = movieImage;
-//                [weakSelf.navigationController pushViewController:vc animated:YES];
-//            });
-//            
-//        }];
-
-    
-    
-    
-    
-    
-    /*
-    
-    [self.recordEngine stopCaptureHandler:^(UIImage *movieImage) {
-        NSLog(@"videoPath : %@ \n 视频大小: %.2f M", weakSelf.recordEngine.videoPath, [weakSelf.recordEngine getfileSize:weakSelf.recordEngine.videoPath]);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            NSString *outPutPath = weakSelf.recordEngine.videoPath;
-            NSData *videData = [NSData dataWithContentsOfFile:outPutPath];
-            
-            EditVideoViewController *vc = [[EditVideoViewController alloc] init];
-            vc.videoPath = [NSURL fileURLWithPath:outPutPath];
-            
-            vc.videoLength = _recordSeconds;
-            vc.videoData = videData;
-            vc.thumbnailImage = movieImage;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        });
-        
-    }];
-     */
-
-}
-
-
-
-#pragma mark - 取消
-- (void)cancelRecord:(UIButton *)sender
-{
-    [self.recordEngine pauseCapture];
-    [self.videoCamera stopCameraCapture];
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
-}
-
-#pragma mark - 切换摄像头
-- (void)onCameraChange:(UIButton *)sender
-{
-    [self.videoCamera rotateCamera];
-    self.cameraBtn.selected = !self.cameraBtn.selected;
 }
 
 #pragma mark - set、get方法

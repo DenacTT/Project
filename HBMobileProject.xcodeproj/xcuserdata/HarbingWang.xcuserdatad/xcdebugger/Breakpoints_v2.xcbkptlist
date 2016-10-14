@@ -20,27 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HBMobileProject/Main/Mine/Controller/Modules/GPUVideoViewController.m"
-            timestampString = "498144258.27324"
+            timestampString = "498144968.580516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
-            landmarkName = "-resetAndUseVideo"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HBMobileProject/Main/Mine/Controller/Modules/GPUVideoViewController.m"
-            timestampString = "498144258.27324"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "-resetAndUseVideo"
             landmarkType = "7">
          </BreakpointContent>
