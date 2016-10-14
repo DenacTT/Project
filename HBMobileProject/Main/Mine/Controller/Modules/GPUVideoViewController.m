@@ -97,14 +97,11 @@
     // 开始采集视频
     [_videoCamera startCameraCapture];
     
-    UISwitch *switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(10, ScreenHeight - 60, 40, 40)];
-    switchBtn.on = NO;
-    [switchBtn addTarget:self action:@selector(openBeautifyFilter:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:switchBtn];
 }
 
 - (void)openBeautifyFilter:(UIButton *)sender {
     
+    [_beautyBtn setImage: [UIImage imageNamed: @"RecordIcoMackup_1"] forState: UIControlStateNormal];
     self.beautyBtn.selected = !self.beautyBtn.selected;
     // 切换美颜效果原理：移除之前所有处理链，重新设置处理链
     if (sender.selected) {
@@ -157,7 +154,6 @@
 }
 
 #pragma mark - 取消
-// 取消
 - (void)cancelRecord:(UIButton *)sender
 {
     [self.recordEngine pauseCapture];
@@ -172,7 +168,12 @@
     self.cameraBtn.selected = !self.cameraBtn.selected;
     if (self.cameraBtn.selected) {
         
+        
+        
+        
+        
     }else{
+    
         
     }
 }
@@ -259,11 +260,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
-}
-
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
