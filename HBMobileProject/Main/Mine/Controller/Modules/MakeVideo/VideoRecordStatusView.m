@@ -9,6 +9,12 @@
 #import "VideoRecordStatusView.h"
 #import "CircularSlider.h"
 
+@interface VideoRecordStatusView ()
+
+@property (atomic, assign) YMRecordType recordType;
+
+@end
+
 @implementation VideoRecordStatusView
 {
     CircularSlider *_slider;    //进度圆动画
@@ -45,7 +51,9 @@
             _circleView.height = 50;
             _circleView.layer.cornerRadius = _circleView.width/2;
             _circleView.backgroundColor = [UIColor redColor];
+            
         }
+            self.recordType = YMRecordType_RecordVideo;
             break;
         case YMRecordType_StopDelay:
         {
@@ -54,6 +62,7 @@
             _circleView.layer.cornerRadius = 8;
             _circleView.backgroundColor = [UIColor whiteColor];
         }
+            self.recordType = YMRecordType_StopDelay;
             break;
         case YMRecordType_StopRecord:
         {
@@ -62,6 +71,7 @@
             _circleView.layer.cornerRadius = 8;
             _circleView.backgroundColor = [UIColor redColor];
         }
+            self.recordType = YMRecordType_StopRecord;
             break;
             
         default:

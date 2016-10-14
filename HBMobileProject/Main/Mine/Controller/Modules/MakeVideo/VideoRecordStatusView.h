@@ -16,6 +16,8 @@ typedef NS_ENUM(NSInteger,YMRecordType) {
 
 @interface VideoRecordStatusView : UIView
 
+@property (atomic, assign, readonly) YMRecordType recordType;   // 录制状态
+
 - (void)strokeEndNumberChange;  //开始圆周运动
 - (void)returnCircularStroke;   //还原
 - (void)setType:(YMRecordType)type;
