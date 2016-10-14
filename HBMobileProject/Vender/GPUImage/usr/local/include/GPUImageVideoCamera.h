@@ -30,8 +30,8 @@ void setColorConversion709( GLfloat conversionMatrix[9] );
     AVCaptureDevice     *_microphone;        // 麦克风设备
     AVCaptureDeviceInput        *videoInput; // 视频输入
 	AVCaptureVideoDataOutput    *videoOutput;// 视频输出
-
-    BOOL capturePaused;                      // 捕获暂停
+    
+    BOOL capturePaused;                      // 暂停
     GPUImageRotationMode outputRotation, internalRotation;
     dispatch_semaphore_t frameRenderingSemaphore;
         
@@ -67,6 +67,7 @@ void setColorConversion709( GLfloat conversionMatrix[9] );
 @property(readonly) AVCaptureDevice *inputCamera;
 
 /// This determines the rotation applied to the output image, based on the source material
+// 输出图像的方向
 @property(readwrite, nonatomic) UIInterfaceOrientation outputImageOrientation;
 
 /// These properties determine whether or not the two camera orientations should be mirrored. By default, both are NO.
@@ -83,17 +84,20 @@ void setColorConversion709( GLfloat conversionMatrix[9] );
  @param sessionPreset Session preset to use
  @param cameraPosition Camera to capture from
  */
+// 初始化会话
 - (id)initWithSessionPreset:(NSString *)sessionPreset cameraPosition:(AVCaptureDevicePosition)cameraPosition;
 
 /** Add audio capture to the session. Adding inputs and outputs freezes the capture session momentarily, so you
     can use this method to add the audio inputs and outputs early, if you're going to set the audioEncodingTarget 
     later. Returns YES is the audio inputs and outputs were added, or NO if they had already been added.
  */
+// 添加视频/音频捕获到会话
 - (BOOL)addAudioInputsAndOutputs;
 
 /** Remove the audio capture inputs and outputs from this session. Returns YES if the audio inputs and outputs
     were removed, or NO is they hadn't already been added.
  */
+// 将视频/音频捕获从会话中移除
 - (BOOL)removeAudioInputsAndOutputs;
 
 /** Tear down the capture session
@@ -102,34 +106,33 @@ void setColorConversion709( GLfloat conversionMatrix[9] );
 
 /// @name Manage the camera video stream
 
-/** Start camera capturing
- */
+// 开始
 - (void)startCameraCapture;
 
-/** Stop camera capturing
- */
+// 停止
 - (void)stopCameraCapture;
 
-/** Pause camera capturing
- */
+// 暂停
 - (void)pauseCameraCapture;
 
-/** Resume camera capturing
- */
+// 继续会话
 - (void)resumeCameraCapture;
 
 /** Process a video sample
  @param sampleBuffer Buffer to process
  */
+// 视频处理
 - (void)processVideoSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 
 /** Process an audio sample
  @param sampleBuffer Buffer to process
  */
+// 音频处理
 - (void)processAudioSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 
 /** Get the position (front, rear) of the source camera
  */
+// 摄像头方向
 - (AVCaptureDevicePosition)cameraPosition;
 
 /** Get the AVCaptureConnection of the source camera

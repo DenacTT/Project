@@ -34,7 +34,7 @@
         
         _delaySelectView.hidden = YES;
         
-        CGFloat space = (_delaySelectView.width - 3*44) / 2;
+        CGFloat space = (_delaySelectView.width - 3*44) / 3;
         // 关闭按钮
         UIButton * closeBtn = [UIButton buttonWithType: UIButtonTypeRoundedRect];
         [_delaySelectView addSubview: closeBtn];

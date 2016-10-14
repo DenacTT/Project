@@ -17,6 +17,8 @@
 #import "NSTimer+Addition.h"
 #import "CircularSlider.h"
 
+#import "EditVideoViewController.h"
+
 @interface GPUVideoViewController ()
 
 @property (nonatomic, strong) VideoRecordTopView    *topView;       // 延时工具栏
@@ -96,7 +98,6 @@
     // 必须调用startCameraCapture，底层才会把采集到的视频源，渲染到GPUImageView中，就能显示了。
     // 开始采集视频
     [_videoCamera startCameraCapture];
-    
 }
 
 #pragma mark - 美颜
@@ -124,6 +125,7 @@
         // 移除之前所有处理链
         [_videoCamera removeAllTargets];
         [_videoCamera addTarget:_captureVideoPreview];
+        
     }
     
 }
@@ -138,11 +140,11 @@
         return;
     }
     
-    if (self.recordEngine.isCapturing) {
+    if (self.videoCamera.isRunning) {
         [self.recordEngine pauseCapture];
         [_recordTimer pauseTimer];
         [_recordView setType:YMRecordType_RecordVideo];
-//        [self resetAndUseVideo];
+        [self resetAndUseVideo];
         return;
     }
     
@@ -155,9 +157,126 @@
         [self.delayTimer resumeTimer];
         [_recordView setType: YMRecordType_StopDelay];
     }else{
-//        [self startRecording];
+        [self startRecording];
     }
 }
+
+#pragma mark - 录制与暂停控制
+// 开始录制
+- (void)startRecording
+{
+    // 开启录制功能
+    [self.recordEngine startUp];
+    // 开始录制
+    [self.recordEngine startCapture];
+    // 启动定时器
+    _recordSeconds = 0;
+    [self.recordTimer resumeTimer];
+    // 设置为结束状态
+    [_recordView setType:YMRecordType_StopRecord];
+}
+
+// 结束录制
+- (void)endRecording
+{
+    if (self.recordEngine.isCapturing) {
+        // 关闭录制功能
+        [self.recordEngine shutdown];
+        // 暂停录制
+        [self.recordEngine pauseCapture];
+        // 停止定时器
+        [self.recordTimer pauseTimer];
+        // 设置为可录状态
+        [self.recordView setType:YMRecordType_RecordVideo];
+        return;
+    }
+    
+}
+
+#pragma mark - NSTimer
+// 延时倒计时
+- (NSTimer *)delayTimer
+{
+    if (!_delayTimer) {
+        NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:1.f
+                                                           target:self
+                                                         selector:@selector(delayTimerRun)
+                                                         userInfo:nil
+                                                          repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        _delayTimer = timer;
+    }
+    return _delayTimer;
+}
+
+- (void)delayTimerRun
+{
+    _delaySeconds --;
+    _delayLabel.text = [NSString stringWithFormat:@"%d", (int)_delaySeconds];
+    if (_delaySeconds <= 0) {
+        [self startRecording];
+        _delayLabel.hidden = YES;
+        [_delayTimer pauseTimer];
+    }
+}
+
+// 录制倒计时
+- (NSTimer *)recordTimer
+{
+    if (!_recordTimer) {
+        NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:0.1f
+                                                           target:self
+                                                         selector:@selector(recordTimerRun)
+                                                         userInfo:nil
+                                                          repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        _recordTimer = timer;
+    }
+    return _recordTimer;
+}
+
+- (void)recordTimerRun
+{
+    _recordSeconds += 0.1;
+    [_recordView strokeEndNumberChange];
+    if (_recordSeconds > 10) {
+        [self resetAndUseVideo];
+        [self endRecording];
+    }
+}
+
+- (void)resetAndUseVideo
+{
+    [self.recordView returnCircularStroke];
+    [self.recordTimer pauseTimer];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    /*
+    
+    [self.recordEngine stopCaptureHandler:^(UIImage *movieImage) {
+        NSLog(@"videoPath : %@ \n 视频大小: %.2f M", weakSelf.recordEngine.videoPath, [weakSelf.recordEngine getfileSize:weakSelf.recordEngine.videoPath]);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSString *outPutPath = weakSelf.recordEngine.videoPath;
+            NSData *videData = [NSData dataWithContentsOfFile:outPutPath];
+            
+            EditVideoViewController *vc = [[EditVideoViewController alloc] init];
+            vc.videoPath = [NSURL fileURLWithPath:outPutPath];
+            
+            vc.videoLength = _recordSeconds;
+            vc.videoData = videData;
+            vc.thumbnailImage = movieImage;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        });
+        
+    }];
+     */
+
+}
+
+
 
 #pragma mark - 取消
 - (void)cancelRecord:(UIButton *)sender
