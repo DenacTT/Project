@@ -118,12 +118,18 @@
                  dispatch_async(dispatch_get_main_queue(), ^{
 
                      if (error) {
-                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存失败" message:nil
-                                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存失败"
+                                                                         message:nil
+                                                                        delegate:nil
+                                                               cancelButtonTitle:@"OK"
+                                                               otherButtonTitles:nil];
                          [alert show];
                      } else {
-                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存成功" message:nil
-                                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"视频保存成功"
+                                                                         message:nil
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"OK"
+                                                               otherButtonTitles:nil];
                          [alert show];
 
 
