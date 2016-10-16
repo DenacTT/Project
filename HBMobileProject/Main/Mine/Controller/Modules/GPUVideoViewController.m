@@ -101,6 +101,8 @@
     // 必须调用startCameraCapture，底层才会把采集到的视频源，渲染到GPUImageView中，就能显示了。
     // 开始采集视频
     [_videoCamera startCameraCapture];
+    
+    
 }
 
 #pragma mark - 美颜
@@ -177,7 +179,7 @@
     [_recordView setType:YMRecordType_StopRecord];
     
     
-    // 初始化媒体写入对象 movieWriter
+    // 初始化媒体写入对象
     NSString *pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"];
     NSURL *movieURL = [NSURL fileURLWithPath:pathToMovie];
     unlink([pathToMovie UTF8String]); // 如果已经存在文件，AVAssetWriter会有异常，删除旧文件
@@ -213,11 +215,9 @@
 
     NSString *pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"];
     NSURL *movieURL = [NSURL fileURLWithPath:pathToMovie];
-    unlink([pathToMovie UTF8String]); // 如果已经存在文件，AVAssetWriter会有异常，删除旧文件
     _movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:movieURL size:CGSizeMake(ScreenWidth, ScreenWidth)];
 //    _movieWriter.encodingLiveVideo = YES;
 //    [_videoCamera addTarget:_movieWriter];
-    
     
     [_videoCamera removeTarget:_movieWriter];
     _videoCamera.audioEncodingTarget = nil;
@@ -230,7 +230,6 @@
     }];
     NSLog(@"Stop recording");
     
-
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(pathToMovie))
     {
@@ -286,7 +285,6 @@
 
 - (void)movieRecordingCompleted
 {
-   
     __weak typeof(self) weakSelf = self;
     [_movieWriter finishRecordingWithCompletionHandler:^{
         EditVideoViewController *vc = [[EditVideoViewController alloc] init];
