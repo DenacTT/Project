@@ -12,6 +12,7 @@
 		D103BBA21DAF8BA20009DF88 /* RecordIcoMackup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D103BBA11DAF8BA20009DF88 /* RecordIcoMackup@2x.png */; };
 		D103BBA61DB0D0560009DF88 /* GPUVideoTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = D103BBA51DB0D0560009DF88 /* GPUVideoTestController.m */; };
 		D103BBB11DB380BD0009DF88 /* HBRedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D103BBB01DB380BD0009DF88 /* HBRedDotView.m */; };
+		D103BBBF1DB9F7700009DF88 /* CustomPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D103BBBE1DB9F7700009DF88 /* CustomPopView.m */; };
 		D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D11853741D7EC3B900D1EA92 /* LogInViewController.m */; };
 		D11C44931D9911590051BD31 /* PreviewVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44921D9911590051BD31 /* PreviewVideoView.m */; };
 		D11C449A1D9A5D520051BD31 /* UIColor+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44991D9A5D520051BD31 /* UIColor+Extend.m */; };
@@ -23,6 +24,9 @@
 		D11C44AB1D9A65880051BD31 /* CircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44AA1D9A65880051BD31 /* CircularSlider.m */; };
 		D12237DB1D8FD26E00B0D042 /* ExtensibleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */; };
 		D12237E41D90227B00B0D042 /* LinkageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237E31D90227B00B0D042 /* LinkageTableViewController.m */; };
+		D12A85D11DC725E9004834E0 /* MultiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A85D01DC725E9004834E0 /* MultiViewController.m */; };
+		D12A85D41DC72917004834E0 /* TextBarCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A85D31DC72917004834E0 /* TextBarCollectionCell.m */; };
+		D12A85D71DC72931004834E0 /* NormalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A85D61DC72931004834E0 /* NormalTableViewCell.m */; };
 		D13B58931D7EEBAA005D89FA /* CYLPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */; };
 		D13B58941D7EEBAA005D89FA /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588E1D7EEBAA005D89FA /* CYLTabBar.m */; };
 		D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58901D7EEBAA005D89FA /* CYLTabBarController.m */; };
@@ -297,6 +301,8 @@
 		D103BBA51DB0D0560009DF88 /* GPUVideoTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUVideoTestController.m; sourceTree = "<group>"; };
 		D103BBAF1DB380BD0009DF88 /* HBRedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBRedDotView.h; sourceTree = "<group>"; };
 		D103BBB01DB380BD0009DF88 /* HBRedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBRedDotView.m; sourceTree = "<group>"; };
+		D103BBBD1DB9F7700009DF88 /* CustomPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPopView.h; sourceTree = "<group>"; };
+		D103BBBE1DB9F7700009DF88 /* CustomPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPopView.m; sourceTree = "<group>"; };
 		D11853731D7EC3B900D1EA92 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		D11853741D7EC3B900D1EA92 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		D11853771D7EC6AA00D1EA92 /* CommonMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
@@ -317,6 +323,12 @@
 		D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensibleCellViewController.m; sourceTree = "<group>"; };
 		D12237E21D90227B00B0D042 /* LinkageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkageTableViewController.h; sourceTree = "<group>"; };
 		D12237E31D90227B00B0D042 /* LinkageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkageTableViewController.m; sourceTree = "<group>"; };
+		D12A85CF1DC725E9004834E0 /* MultiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiViewController.h; sourceTree = "<group>"; };
+		D12A85D01DC725E9004834E0 /* MultiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiViewController.m; sourceTree = "<group>"; };
+		D12A85D21DC72917004834E0 /* TextBarCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBarCollectionCell.h; sourceTree = "<group>"; };
+		D12A85D31DC72917004834E0 /* TextBarCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBarCollectionCell.m; sourceTree = "<group>"; };
+		D12A85D51DC72931004834E0 /* NormalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalTableViewCell.h; sourceTree = "<group>"; };
+		D12A85D61DC72931004834E0 /* NormalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalTableViewCell.m; sourceTree = "<group>"; };
 		D13B588A1D7EEBAA005D89FA /* CYLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLConstants.h; sourceTree = "<group>"; };
 		D13B588B1D7EEBAA005D89FA /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLPlusButton.m; sourceTree = "<group>"; };
@@ -1042,6 +1054,7 @@
 		D12237D81D8FD25200B0D042 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D12A85CE1DC725CE004834E0 /* Multiview */,
 				D17A2DCD1D9669B100C00B3F /* MakeVideo */,
 				D17A2DA11D94E35300C00B3F /* GPUImage */,
 				D103BBA31DB07BD50009DF88 /* GPUVideo */,
@@ -1075,6 +1088,19 @@
 				D12237E31D90227B00B0D042 /* LinkageTableViewController.m */,
 			);
 			name = LinkageTableView;
+			sourceTree = "<group>";
+		};
+		D12A85CE1DC725CE004834E0 /* Multiview */ = {
+			isa = PBXGroup;
+			children = (
+				D12A85CF1DC725E9004834E0 /* MultiViewController.h */,
+				D12A85D01DC725E9004834E0 /* MultiViewController.m */,
+				D12A85D21DC72917004834E0 /* TextBarCollectionCell.h */,
+				D12A85D31DC72917004834E0 /* TextBarCollectionCell.m */,
+				D12A85D51DC72931004834E0 /* NormalTableViewCell.h */,
+				D12A85D61DC72931004834E0 /* NormalTableViewCell.m */,
+			);
+			path = Multiview;
 			sourceTree = "<group>";
 		};
 		D13B58811D7ECC32005D89FA /* Public */ = {
@@ -2242,6 +2268,8 @@
 				D13B5A781D830109005D89FA /* MPTools.m */,
 				D13B59501D82DC30005D89FA /* CustomTipsView.h */,
 				D13B59511D82DC31005D89FA /* CustomTipsView.m */,
+				D103BBBD1DB9F7700009DF88 /* CustomPopView.h */,
+				D103BBBE1DB9F7700009DF88 /* CustomPopView.m */,
 				D13B5A5B1D82F602005D89FA /* LoopProgressView.h */,
 				D13B5A5C1D82F602005D89FA /* LoopProgressView.m */,
 				D178C11F1D89315300DAFCE5 /* CuttingLine.h */,
@@ -2577,6 +2605,7 @@
 				D17A27FD1D93F89900C00B3F /* UITableView+YYAdd.m in Sources */,
 				D17A2DAD1D9509FE00C00B3F /* GUPImageTestController.m in Sources */,
 				D17A281F1D93F89900C00B3F /* YYTextArchiver.m in Sources */,
+				D12A85D41DC72917004834E0 /* TextBarCollectionCell.m in Sources */,
 				D17A27F01D93F89900C00B3F /* CALayer+YYAdd.m in Sources */,
 				D17A27ED1D93F89900C00B3F /* NSString+YYAdd.m in Sources */,
 				D13B58C11D7FC725005D89FA /* HomeViewController.m in Sources */,
@@ -2666,6 +2695,7 @@
 				D17A280B1D93F89900C00B3F /* YYImage.m in Sources */,
 				D17A27E81D93F89900C00B3F /* NSNotificationCenter+YYAdd.m in Sources */,
 				D103BBB11DB380BD0009DF88 /* HBRedDotView.m in Sources */,
+				D12A85D71DC72931004834E0 /* NormalTableViewCell.m in Sources */,
 				D13B58A41D7EF05B005D89FA /* DiscoverViewController.m in Sources */,
 				D17A28281D93F89900C00B3F /* YYDispatchQueuePool.m in Sources */,
 				D13B59461D829AA8005D89FA /* UIViewExt.m in Sources */,
@@ -2695,6 +2725,7 @@
 				D13B58B01D7EF1F3005D89FA /* ConfigTabBarController.m in Sources */,
 				D17A27E31D93F89900C00B3F /* NSBundle+YYAdd.m in Sources */,
 				D17A28141D93F89900C00B3F /* YYTextDebugOption.m in Sources */,
+				D103BBBF1DB9F7700009DF88 /* CustomPopView.m in Sources */,
 				D13B594C1D829C3D005D89FA /* UserDefaultKeys.m in Sources */,
 				D17A28101D93F89900C00B3F /* YYWebImageOperation.m in Sources */,
 				D17A280F1D93F89900C00B3F /* YYWebImageManager.m in Sources */,
@@ -2715,6 +2746,7 @@
 				D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */,
 				D17A2DAA1D9509D500C00B3F /* GUPImageVideoController.m in Sources */,
 				D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */,
+				D12A85D11DC725E9004834E0 /* MultiViewController.m in Sources */,
 				D1B6D6F01D7D10C500C3E647 /* main.m in Sources */,
 				D17A28231D93F89900C00B3F /* YYTextRunDelegate.m in Sources */,
 				D17A281A1D93F89900C00B3F /* YYTextMagnifier.m in Sources */,

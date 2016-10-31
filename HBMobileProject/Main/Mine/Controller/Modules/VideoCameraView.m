@@ -288,6 +288,4 @@
     return (CGFloat)[outputFileAttributes fileSize]/1024.00 /1024.00;
 }
 
-
-
 @end
