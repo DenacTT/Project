@@ -14,7 +14,7 @@
 {
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        self.backgroundColor = [UIColor blackColor];
+        
     }
     return self;
 }

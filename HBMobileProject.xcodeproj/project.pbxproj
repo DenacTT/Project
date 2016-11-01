@@ -27,6 +27,7 @@
 		D12A85D11DC725E9004834E0 /* MultiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A85D01DC725E9004834E0 /* MultiViewController.m */; };
 		D12A85D41DC72917004834E0 /* TextBarCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A85D31DC72917004834E0 /* TextBarCollectionCell.m */; };
 		D12A85D71DC72931004834E0 /* NormalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A85D61DC72931004834E0 /* NormalTableViewCell.m */; };
+		D12C34971DC772150025252C /* ArrowIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D12C34961DC772150025252C /* ArrowIcon@2x.png */; };
 		D13B58931D7EEBAA005D89FA /* CYLPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */; };
 		D13B58941D7EEBAA005D89FA /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B588E1D7EEBAA005D89FA /* CYLTabBar.m */; };
 		D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58901D7EEBAA005D89FA /* CYLTabBarController.m */; };
@@ -329,6 +330,7 @@
 		D12A85D31DC72917004834E0 /* TextBarCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBarCollectionCell.m; sourceTree = "<group>"; };
 		D12A85D51DC72931004834E0 /* NormalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalTableViewCell.h; sourceTree = "<group>"; };
 		D12A85D61DC72931004834E0 /* NormalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalTableViewCell.m; sourceTree = "<group>"; };
+		D12C34961DC772150025252C /* ArrowIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArrowIcon@2x.png"; sourceTree = "<group>"; };
 		D13B588A1D7EEBAA005D89FA /* CYLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLConstants.h; sourceTree = "<group>"; };
 		D13B588B1D7EEBAA005D89FA /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		D13B588C1D7EEBAA005D89FA /* CYLPlusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLPlusButton.m; sourceTree = "<group>"; };
@@ -1040,6 +1042,7 @@
 		D11C449F1D9A5EFD0051BD31 /* MakeVideo */ = {
 			isa = PBXGroup;
 			children = (
+				D12C34961DC772150025252C /* ArrowIcon@2x.png */,
 				D11C44A71D9A61740051BD31 /* CameraChange@2x.png */,
 				D11C44A01D9A5F020051BD31 /* DelayBtnHighGray@2x.png */,
 				D11C44A11D9A5F020051BD31 /* DelayBtnHighLight@2x.png */,
@@ -2514,6 +2517,7 @@
 				D17A28AF1D9404CC00C00B3F /* UMS_sina_on@2x.png in Resources */,
 				D17A28DF1D94091600C00B3F /* type_1@3x.png in Resources */,
 				D17A28DE1D94091600C00B3F /* type_1@2x.png in Resources */,
+				D12C34971DC772150025252C /* ArrowIcon@2x.png in Resources */,
 				D17A28C71D94083200C00B3F /* edit_girl_normal@2x.png in Resources */,
 				D17A289D1D9404CC00C00B3F /* UMS_wechat_icon.png in Resources */,
 				D13B59391D81A596005D89FA /* music1.json in Resources */,

@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TextBarCollectionCellDelegate <NSObject>
+
+- (void)rightButtonClick:(UITableViewCell *)cell;
+- (void)selectButtonIndex:(NSInteger )index didSelected:(UITableViewCell *)cell;
+
+@end
+
 @interface TextBarCollectionCell : UITableViewCell
+
+@property (nonatomic, assign) id<TextBarCollectionCellDelegate>delegate;
 
 @end

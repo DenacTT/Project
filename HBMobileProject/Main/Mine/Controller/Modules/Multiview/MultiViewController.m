@@ -10,7 +10,7 @@
 #import "TextBarCollectionCell.h"
 #import "NormalTableViewCell.h"
 
-@interface MultiViewController ()
+@interface MultiViewController ()<TextBarCollectionCellDelegate>
 
 @property (nonatomic, strong) UITableView *multiTableView;
 
@@ -25,9 +25,10 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
     [self.view addSubview:self.multiTableView];
     
+    [_multiTableView registerClass:[TextBarCollectionCell class] forCellReuseIdentifier:TextBarCollectionCellID];
+    [_multiTableView registerClass:[NormalTableViewCell class] forCellReuseIdentifier:NormalTableViewCellID];
 }
 
 #pragma mark - Tableview DataSource
@@ -46,43 +47,56 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UITableViewCell *cell = nil;
-    
+
     if (indexPath.section==0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:TextBarCollectionCellID forIndexPath:indexPath];
-        TextBarCollectionCell *collectionCell = (TextBarCollectionCell *)cell;
-        
+        TextBarCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:TextBarCollectionCellID];
+        if (cell == nil) {
+            cell = [[TextBarCollectionCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:TextBarCollectionCellID];
+        }
+        cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
         
     }else{
+    
+        NormalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NormalTableViewCellID];
+        if (cell == nil) {
+            cell = [[NormalTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NormalTableViewCellID];
+        }
         
-        cell = [tableView dequeueReusableCellWithIdentifier:NormalTableViewCellID forIndexPath:indexPath];
-        NormalTableViewCell *normalCell = (NormalTableViewCell *)cell;
-        
+        return cell;
         
     }
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
-        return 180.f;
+        return 188.f;
     }else{
         return 160.f;
     }
+}
+
+#pragma mark - TextBarCollectionCellDelegate
+- (void)rightButtonClick:(UITableViewCell *)cell
+{
+    NSLog(@"rightButton");
+}
+
+- (void)selectButtonIndex:(NSInteger)index didSelected:(UITableViewCell *)cell
+{
+    NSLog(@"selectButtonIndex %zi", index);
 }
 
 #pragma mark - getter
 - (UITableView *)multiTableView
 {
     if (!_multiTableView) {
-        _multiTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:(UITableViewStyleGrouped)];
+        _multiTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:(UITableViewStylePlain)];
         _multiTableView.delegate = self;
         _multiTableView.dataSource = self;
-        
-        [_multiTableView registerClass:[TextBarCollectionCell class] forCellReuseIdentifier:TextBarCollectionCellID];
-        [_multiTableView registerClass:[NormalTableViewCell class] forCellReuseIdentifier:NormalTableViewCellID];
+        _multiTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _multiTableView;
 }
