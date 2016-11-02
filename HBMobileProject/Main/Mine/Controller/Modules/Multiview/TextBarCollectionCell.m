@@ -14,12 +14,12 @@ const CGFloat collectionCellHeight = 95;
 const CGFloat collectionCellWidth = 150;
 const CGFloat kMargin = 10;
 
-@interface TextBarCollectionCell ()<UIGestureRecognizerDelegate>
+@interface TextBarCollectionCell ()
 
 @property (nonatomic, strong) UILabel *headTitle;
 @property (nonatomic, strong) UIButton *rightButton;
 
-@property (nonatomic, strong) UIScrollView *collectionView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIButton *moreButton;
 
 @property (nonatomic, strong) UIView *bottomLine;
@@ -35,10 +35,10 @@ const CGFloat kMargin = 10;
         [self addSubview:self.headTitle];
         [self addSubview:self.rightButton];
         
-        [self addSubview:self.collectionView];
+        [self addSubview:self.scrollView];
         [self addSubview:self.bottomLine];
         
-        [_collectionView addSubview:_moreButton];
+        [_scrollView addSubview:_moreButton];
     }
     return self;
 }
@@ -61,15 +61,15 @@ const CGFloat kMargin = 10;
 
 #pragma mark - getter
 
-- (UIScrollView *)collectionView
+- (UIScrollView *)scrollView
 {
-    if (!_collectionView) {
-        _collectionView = [[UIScrollView alloc] initWithFrame:CGRectMake(15, 55, ScreenWidth-15*2, collectionCellHeight)];
-        _collectionView.showsVerticalScrollIndicator = NO;
-        _collectionView.showsHorizontalScrollIndicator = NO;
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(15, 55, ScreenWidth-15*2, collectionCellHeight)];
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
         
-        _collectionView.contentSize = CGSizeMake(ImageCount*(collectionCellWidth+kMargin) + 85, collectionCellHeight);
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _scrollView.contentSize = CGSizeMake(ImageCount*(collectionCellWidth+kMargin) + 85, collectionCellHeight);
+        _scrollView.backgroundColor = [UIColor whiteColor];
         
         
         for (int i = 0; i < ImageCount; i++) {
@@ -83,7 +83,7 @@ const CGFloat kMargin = 10;
             [button setContentMode:(UIViewContentModeScaleAspectFill)];
             
             [button addTarget:self action:@selector(selectButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-            [_collectionView addSubview:button];
+            [_scrollView addSubview:button];
             
             if (i==ImageCount-1)
             {
@@ -96,13 +96,13 @@ const CGFloat kMargin = 10;
                 [_moreButton setTitleColor:RGB(102, 102, 102) forState:(UIControlStateNormal)];
                 
                 [_moreButton addTarget:self action:@selector(rightButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-                [_collectionView addSubview:_moreButton];
+                [_scrollView addSubview:_moreButton];
             }
             
         }
         
     }
-    return _collectionView;
+    return _scrollView;
 }
 
 - (UIButton *)rightButton
@@ -127,7 +127,7 @@ const CGFloat kMargin = 10;
 - (UIView *)bottomLine
 {
     if (!_bottomLine) {
-        _bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, _collectionView.bottom+30, ScreenWidth, 8)];
+        _bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, _scrollView.bottom+30, ScreenWidth, 8)];
         _bottomLine.backgroundColor = RGB(243, 243, 247);
     }
     return _bottomLine;

@@ -244,6 +244,7 @@
 		D17A2DB41D950EDA00C00B3F /* focusImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D17A2DB31D950EDA00C00B3F /* focusImage@2x.png */; };
 		D17A2DC01D9550F400C00B3F /* VideoCameraExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DBF1D9550F400C00B3F /* VideoCameraExample.m */; };
 		D17A2DC31D95614F00C00B3F /* GPUImageBeautifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */; };
+		D17D68A91DC9C8BB004A0B33 /* YMTextBarGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D17D68A81DC9C8BB004A0B33 /* YMTextBarGroupCell.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
 		D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B6D6F71D7D10C500C3E647 /* Main.storyboard */; };
@@ -856,6 +857,8 @@
 		D17A2DBF1D9550F400C00B3F /* VideoCameraExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCameraExample.m; sourceTree = "<group>"; };
 		D17A2DC11D95614F00C00B3F /* GPUImageBeautifyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBeautifyController.h; sourceTree = "<group>"; };
 		D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautifyController.m; sourceTree = "<group>"; };
+		D17D68A71DC9C8BB004A0B33 /* YMTextBarGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMTextBarGroupCell.h; sourceTree = "<group>"; };
+		D17D68A81DC9C8BB004A0B33 /* YMTextBarGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMTextBarGroupCell.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1B6D6EF1D7D10C500C3E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1B6D6F11D7D10C500C3E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -1100,6 +1103,8 @@
 				D12A85D01DC725E9004834E0 /* MultiViewController.m */,
 				D12A85D21DC72917004834E0 /* TextBarCollectionCell.h */,
 				D12A85D31DC72917004834E0 /* TextBarCollectionCell.m */,
+				D17D68A71DC9C8BB004A0B33 /* YMTextBarGroupCell.h */,
+				D17D68A81DC9C8BB004A0B33 /* YMTextBarGroupCell.m */,
 				D12A85D51DC72931004834E0 /* NormalTableViewCell.h */,
 				D12A85D61DC72931004834E0 /* NormalTableViewCell.m */,
 			);
@@ -2687,6 +2692,7 @@
 				D17A28091D93F89900C00B3F /* YYAnimatedImageView.m in Sources */,
 				D17A28221D93F89900C00B3F /* YYTextRubyAnnotation.m in Sources */,
 				D1B6D7751D7D154700C3E647 /* NSArray+MASAdditions.m in Sources */,
+				D17D68A91DC9C8BB004A0B33 /* YMTextBarGroupCell.m in Sources */,
 				D17A28021D93F89900C00B3F /* YYKVStorage.m in Sources */,
 				D12237DB1D8FD26E00B0D042 /* ExtensibleCellViewController.m in Sources */,
 				D17A28251D93F89900C00B3F /* YYLabel.m in Sources */,

@@ -9,6 +9,7 @@
 #import "MultiViewController.h"
 #import "TextBarCollectionCell.h"
 #import "NormalTableViewCell.h"
+#import "YMTextBarGroupCell.h"
 
 @interface MultiViewController ()<TextBarCollectionCellDelegate>
 
@@ -17,6 +18,7 @@
 @end
 
 static NSString * const TextBarCollectionCellID = @"TextBarCollectionCellID";
+static NSString * const YMTextBarGroupCellID = @"YMTextBarGroupCellID";
 static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
 
 @implementation MultiViewController
@@ -26,20 +28,19 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.multiTableView];
-    
-    [_multiTableView registerClass:[TextBarCollectionCell class] forCellReuseIdentifier:TextBarCollectionCellID];
-    [_multiTableView registerClass:[NormalTableViewCell class] forCellReuseIdentifier:NormalTableViewCellID];
 }
 
 #pragma mark - Tableview DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     if (section==0) {
+        return 1;
+    }else if(section==1){
         return 1;
     }else{
         return 10;
@@ -57,6 +58,16 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
         
+    }else if (indexPath.section == 1){
+        
+        YMTextBarGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:YMTextBarGroupCellID];
+        if (cell==nil) {
+            cell = [[YMTextBarGroupCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:YMTextBarGroupCellID];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+        
     }else{
     
         NormalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NormalTableViewCellID];
@@ -72,6 +83,8 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
+        return 188.f;
+    }else if (indexPath.section==0) {
         return 188.f;
     }else{
         return 160.f;
@@ -97,6 +110,9 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
         _multiTableView.delegate = self;
         _multiTableView.dataSource = self;
         _multiTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_multiTableView registerClass:[TextBarCollectionCell class] forCellReuseIdentifier:TextBarCollectionCellID];
+        [_multiTableView registerClass:[YMTextBarGroupCell class] forCellReuseIdentifier:YMTextBarGroupCellID];
+        [_multiTableView registerClass:[NormalTableViewCell class] forCellReuseIdentifier:NormalTableViewCellID];
     }
     return _multiTableView;
 }
