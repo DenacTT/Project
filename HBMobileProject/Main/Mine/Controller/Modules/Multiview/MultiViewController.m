@@ -10,8 +10,9 @@
 #import "TextBarCollectionCell.h"
 #import "NormalTableViewCell.h"
 #import "YMTextBarGroupCell.h"
+#import "YMTextBarGroupView.h"
 
-@interface MultiViewController ()<TextBarCollectionCellDelegate>
+@interface MultiViewController ()<TextBarCollectionCellDelegate, YMTextBarGroupCellDelegate>
 
 @property (nonatomic, strong) UITableView *multiTableView;
 
@@ -65,7 +66,8 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
             cell = [[YMTextBarGroupCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:YMTextBarGroupCellID];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        cell.contentView.transform = CGAffineTransformMakeRotation(-M_PI/2);
+        cell.delegate = self;
         return cell;
         
     }else{
@@ -84,7 +86,7 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
 {
     if (indexPath.section==0) {
         return 188.f;
-    }else if (indexPath.section==0) {
+    }else if (indexPath.section==1) {
         return 188.f;
     }else{
         return 160.f;
@@ -100,6 +102,13 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
 - (void)selectButtonIndex:(NSInteger)index didSelected:(UITableViewCell *)cell
 {
     NSLog(@"selectButtonIndex %zi", index);
+}
+
+#pragma mark - YMTextBarGroupCellDelegate
+- (void)moreGroupButtonClick:(UITableViewCell *)cell
+{
+    YMTextBarGroupView *groupView = [[YMTextBarGroupView alloc] init];
+    [self.navigationController pushViewController:groupView animated:YES];
 }
 
 #pragma mark - getter
