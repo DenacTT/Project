@@ -80,6 +80,7 @@
 		D178C11D1D882AA400DAFCE5 /* StatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D178C11A1D882AA400DAFCE5 /* StatusBarHUD.bundle */; };
 		D178C11E1D882AA400DAFCE5 /* StatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */; };
 		D178C1211D89315300DAFCE5 /* CuttingLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D178C1201D89315300DAFCE5 /* CuttingLine.m */; };
+		D178CBB41DCC90C400D14560 /* MsgList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D178CBB31DCC90C400D14560 /* MsgList.plist */; };
 		D17A272A1D93F7A600C00B3F /* WBStatusComposeTextParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A27231D93F7A600C00B3F /* WBStatusComposeTextParser.m */; };
 		D17A272B1D93F7A600C00B3F /* WBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A27251D93F7A600C00B3F /* WBModel.m */; };
 		D17A272C1D93F7A600C00B3F /* WBStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A27271D93F7A600C00B3F /* WBStatusHelper.m */; };
@@ -430,6 +431,7 @@
 		D178C11C1D882AA400DAFCE5 /* StatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarHUD.m; sourceTree = "<group>"; };
 		D178C11F1D89315300DAFCE5 /* CuttingLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuttingLine.h; sourceTree = "<group>"; };
 		D178C1201D89315300DAFCE5 /* CuttingLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuttingLine.m; sourceTree = "<group>"; };
+		D178CBB31DCC90C400D14560 /* MsgList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MsgList.plist; sourceTree = "<group>"; };
 		D17A27221D93F7A600C00B3F /* WBStatusComposeTextParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatusComposeTextParser.h; sourceTree = "<group>"; };
 		D17A27231D93F7A600C00B3F /* WBStatusComposeTextParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatusComposeTextParser.m; sourceTree = "<group>"; };
 		D17A27241D93F7A600C00B3F /* WBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBModel.h; sourceTree = "<group>"; };
@@ -2347,6 +2349,7 @@
 		D1B6D7521D7D132600C3E647 /* Plist */ = {
 			isa = PBXGroup;
 			children = (
+				D178CBB31DCC90C400D14560 /* MsgList.plist */,
 				D1B6D6FF1D7D10C500C3E647 /* Info.plist */,
 			);
 			path = Plist;
@@ -2536,6 +2539,7 @@
 				D17A28C81D94083200C00B3F /* edit_girl_selected@2x.png in Resources */,
 				D17A28AF1D9404CC00C00B3F /* UMS_sina_on@2x.png in Resources */,
 				D17A28DF1D94091600C00B3F /* type_1@3x.png in Resources */,
+				D178CBB41DCC90C400D14560 /* MsgList.plist in Resources */,
 				D17A28DE1D94091600C00B3F /* type_1@2x.png in Resources */,
 				D12C34971DC772150025252C /* ArrowIcon@2x.png in Resources */,
 				D17A28C71D94083200C00B3F /* edit_girl_normal@2x.png in Resources */,
