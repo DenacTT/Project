@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextBarGroupModel.h"
 
 @protocol TextBarCollectionCellDelegate <NSObject>
 
@@ -16,6 +17,8 @@
 @end
 
 @interface TextBarCollectionCell : UITableViewCell
+
+@property (nonatomic, strong) TextBarGroupModel *groupModel;
 
 @property (nonatomic, assign) id<TextBarCollectionCellDelegate>delegate;
 

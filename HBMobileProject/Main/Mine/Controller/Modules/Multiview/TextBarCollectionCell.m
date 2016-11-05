@@ -43,6 +43,18 @@ const CGFloat kMargin = 10;
     return self;
 }
 
+#pragma mark - setter
+- (void)setGroupModel:(TextBarGroupModel *)groupModel
+{
+    _groupModel = groupModel;
+    if (groupModel) {
+        
+        
+        
+    }
+}
+
+
 #pragma mark - buttonClick
 
 - (void)selectButtonAction:(UIButton *)button
@@ -81,6 +93,8 @@ const CGFloat kMargin = 10;
             
             [button setImage:Image(@"defaultImage") forState:(UIControlStateNormal)];
             [button setContentMode:(UIViewContentModeScaleAspectFill)];
+            
+            
             
             [button addTarget:self action:@selector(selectButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
             [_scrollView addSubview:button];

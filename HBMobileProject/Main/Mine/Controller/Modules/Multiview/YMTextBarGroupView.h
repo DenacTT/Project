@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextBarGroupModel.h"
 
 @interface YMTextBarGroupView : UITableViewController
+
+@property (nonatomic, strong) TextBarGroupModel *groupModel;
 
 @end
