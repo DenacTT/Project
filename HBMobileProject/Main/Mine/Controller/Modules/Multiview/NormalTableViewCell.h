@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextBarGroupModel.h"
 
 @interface NormalTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) TextBarGroupModel *groupModel;
 
 @end

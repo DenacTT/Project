@@ -41,13 +41,23 @@
     return self;
 }
 
+#pragma mark - setter
+- (void)setGroupModel:(TextBarGroupModel *)groupModel
+{
+    _groupModel = groupModel;
+    if (groupModel) {
+        
+        
+    }
+}
+
 #pragma mark - ButtonClick
 - (void)readDetail:(UIButton *)sender
 {
     
 }
 
-#pragma mark - setter
+#pragma mark - getter
 - (UIView *)topLine
 {
     if (!_topLine) {
@@ -124,11 +134,11 @@
 - (UIButton *)moreBtn
 {
     if (!_moreBtn) {
-        _moreBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _moreBtn.frame = CGRectMake(_descLabel.left, _descLabel.bottom+13, 60, 14);
+        _moreBtn = [UIButton buttonWithType:(UIButtonTypeSystem)];
+        _moreBtn.frame = CGRectMake(_headImage.left, _descLabel.bottom+11, 60, 16);
+        _moreBtn.titleLabel.font = Font(14.f);
         [_moreBtn setTitle:@"查看详情" forState:(UIControlStateNormal)];
-        //[_moreBtn setTintColor:RGB(74, 144, 226)];
-        [_moreBtn.titleLabel setFont:Font(14)];
+        [_moreBtn setTintColor:RGB(74, 144, 226)];
         
         [_moreBtn addTarget:self action:@selector(readDetail:) forControlEvents:(UIControlEventTouchUpInside)];
     }

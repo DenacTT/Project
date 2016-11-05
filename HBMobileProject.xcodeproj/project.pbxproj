@@ -65,6 +65,10 @@
 		D13B5A791D830109005D89FA /* MPTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B5A781D830109005D89FA /* MPTools.m */; };
 		D13B5ABE1D840DF2005D89FA /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABD1D840DF2005D89FA /* Reveal.framework */; };
 		D13B5AC01D840E08005D89FA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B5ABF1D840E08005D89FA /* libz.tbd */; };
+		D140C9111DCDDB9F00EF48EA /* YMDataAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9101DCDDB9F00EF48EA /* YMDataAdapter.m */; };
+		D140C9141DCDDEC100EF48EA /* PasteTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9131DCDDEC100EF48EA /* PasteTagModel.m */; };
+		D140C9171DCDDF7000EF48EA /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9161DCDDF7000EF48EA /* UserInfoModel.m */; };
+		D140C91A1DCDDFEA00EF48EA /* UserTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9191DCDDFEA00EF48EA /* UserTagModel.m */; };
 		D15D86B61D8E484800115B73 /* UIControl+BtnClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */; };
 		D15E554E1D9AA25F0027634B /* VideoRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */; };
 		D15E55541D9B698D0027634B /* VideoRecordStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55531D9B698D0027634B /* VideoRecordStatusView.m */; };
@@ -403,6 +407,14 @@
 		D13B5A781D830109005D89FA /* MPTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTools.m; sourceTree = "<group>"; };
 		D13B5ABD1D840DF2005D89FA /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		D13B5ABF1D840E08005D89FA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		D140C90F1DCDDB9F00EF48EA /* YMDataAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMDataAdapter.h; sourceTree = "<group>"; };
+		D140C9101DCDDB9F00EF48EA /* YMDataAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMDataAdapter.m; sourceTree = "<group>"; };
+		D140C9121DCDDEC100EF48EA /* PasteTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasteTagModel.h; sourceTree = "<group>"; };
+		D140C9131DCDDEC100EF48EA /* PasteTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasteTagModel.m; sourceTree = "<group>"; };
+		D140C9151DCDDF7000EF48EA /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		D140C9161DCDDF7000EF48EA /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		D140C9181DCDDFEA00EF48EA /* UserTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTagModel.h; sourceTree = "<group>"; };
+		D140C9191DCDDFEA00EF48EA /* UserTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTagModel.m; sourceTree = "<group>"; };
 		D15D86B41D8E484800115B73 /* UIControl+BtnClickDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIControl+BtnClickDelay.h"; path = "UIControl/UIControl+BtnClickDelay.h"; sourceTree = "<group>"; };
 		D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+BtnClickDelay.m"; path = "UIControl/UIControl+BtnClickDelay.m"; sourceTree = "<group>"; };
 		D15E554C1D9AA25F0027634B /* VideoRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordEngine.h; sourceTree = "<group>"; };
@@ -1360,6 +1372,15 @@
 			name = UIControl;
 			sourceTree = "<group>";
 		};
+		D140C90E1DCDDB7500EF48EA /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				D140C90F1DCDDB9F00EF48EA /* YMDataAdapter.h */,
+				D140C9101DCDDB9F00EF48EA /* YMDataAdapter.m */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
 		D15E55591D9BC3FD0027634B /* NSTimer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1404,6 +1425,12 @@
 			children = (
 				D1B6A8151DCDBE9500833681 /* TextBarGroupModel.h */,
 				D1B6A8161DCDBE9500833681 /* TextBarGroupModel.m */,
+				D140C9121DCDDEC100EF48EA /* PasteTagModel.h */,
+				D140C9131DCDDEC100EF48EA /* PasteTagModel.m */,
+				D140C9151DCDDF7000EF48EA /* UserInfoModel.h */,
+				D140C9161DCDDF7000EF48EA /* UserInfoModel.m */,
+				D140C9181DCDDFEA00EF48EA /* UserTagModel.h */,
+				D140C9191DCDDFEA00EF48EA /* UserTagModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2170,18 +2197,20 @@
 		D1B6D7341D7D11D400C3E647 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				D1B6D7351D7D11D400C3E647 /* Classes */,
+				D140C90E1DCDDB7500EF48EA /* Adapter */,
+				D1B6D7351D7D11D400C3E647 /* Class */,
 				D1B6D7381D7D11D400C3E647 /* Views */,
 			);
 			path = General;
 			sourceTree = "<group>";
 		};
-		D1B6D7351D7D11D400C3E647 /* Classes */ = {
+		D1B6D7351D7D11D400C3E647 /* Class */ = {
 			isa = PBXGroup;
 			children = (
 				D1B6D7361D7D11D400C3E647 /* BaseViewController.h */,
 				D1B6D7371D7D11D400C3E647 /* BaseViewController.m */,
 			);
+			name = Class;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -2634,9 +2663,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1B6D7711D7D154700C3E647 /* MASConstraintMaker.m in Sources */,
+				D140C9171DCDDF7000EF48EA /* UserInfoModel.m in Sources */,
 				D13B593D1D81AAA9005D89FA /* UploadMovieCell.m in Sources */,
 				D17A27F11D93F89900C00B3F /* YYCGUtilities.m in Sources */,
 				D13B5A791D830109005D89FA /* MPTools.m in Sources */,
+				D140C91A1DCDDFEA00EF48EA /* UserTagModel.m in Sources */,
 				D1B6D7911D7D159600C3E647 /* MJExtensionConst.m in Sources */,
 				D17A27F51D93F89900C00B3F /* UIColor+YYAdd.m in Sources */,
 				D17A27EF1D93F89900C00B3F /* NSTimer+YYAdd.m in Sources */,
@@ -2677,6 +2708,7 @@
 				D17A281E1D93F89900C00B3F /* UIPasteboard+YYText.m in Sources */,
 				D17A28081D93F89900C00B3F /* UIImageView+YYWebImage.m in Sources */,
 				D17A280C1D93F89900C00B3F /* YYImageCache.m in Sources */,
+				D140C9111DCDDB9F00EF48EA /* YMDataAdapter.m in Sources */,
 				D13B591B1D816863005D89FA /* String.m in Sources */,
 				D160E91D1D9158E500CAF6CC /* NSThread+Extend.m in Sources */,
 				D17A27EC1D93F89900C00B3F /* NSObject+YYAddForKVO.m in Sources */,
@@ -2774,6 +2806,7 @@
 				D17A28101D93F89900C00B3F /* YYWebImageOperation.m in Sources */,
 				D17A280F1D93F89900C00B3F /* YYWebImageManager.m in Sources */,
 				D17A2DC01D9550F400C00B3F /* VideoCameraExample.m in Sources */,
+				D140C9141DCDDEC100EF48EA /* PasteTagModel.m in Sources */,
 				D17A280D1D93F89900C00B3F /* YYImageCoder.m in Sources */,
 				D1B6D7941D7D159600C3E647 /* MJPropertyKey.m in Sources */,
 				D13B58E01D8001E5005D89FA /* PublishMovieViewController.m in Sources */,

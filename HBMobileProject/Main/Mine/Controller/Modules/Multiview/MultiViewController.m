@@ -10,10 +10,13 @@
 #import "TextBarCollectionCell.h"
 #import "NormalTableViewCell.h"
 #import "YMTextBarGroupView.h"
+#import "TextBarGroupModel.h"
 
 @interface MultiViewController ()<TextBarCollectionCellDelegate>
 
+@property (nonatomic, strong) YMDataAdapter *dataAdapter;
 @property (nonatomic, strong) UITableView *multiTableView;
+@property (nonatomic, strong) NSArray *dataSource;
 
 @end
 
@@ -25,8 +28,16 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self loadData];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.multiTableView];
+}
+
+#pragma mark - CustoMethods
+- (void)loadData
+{
+    self.dataAdapter = [[YMDataAdapter alloc] init];
+    self.dataSource = [_dataAdapter getLocalMsgListData];
 }
 
 #pragma mark - Tableview DataSource
@@ -40,7 +51,7 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
     if (section==0) {
         return 1;
     }else{
-        return 10;
+        return self.dataSource.count;
     }
 }
 
@@ -61,6 +72,7 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
         if (cell == nil) {
             cell = [[NormalTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NormalTableViewCellID];
         }
+        cell.groupModel = self.dataSource[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -105,6 +117,9 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
         _multiTableView.delegate = self;
         _multiTableView.dataSource = self;
         _multiTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _multiTableView.showsVerticalScrollIndicator = NO;
+        _multiTableView.showsHorizontalScrollIndicator = NO;
+        
         [_multiTableView registerClass:[TextBarCollectionCell class] forCellReuseIdentifier:TextBarCollectionCellID];
         [_multiTableView registerClass:[NormalTableViewCell class] forCellReuseIdentifier:NormalTableViewCellID];
     }
