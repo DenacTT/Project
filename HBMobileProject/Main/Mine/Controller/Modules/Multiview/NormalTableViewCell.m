@@ -17,7 +17,7 @@
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UILabel *descLabel;
 @property (nonatomic, strong) UIButton *moreBtn;
-@property (nonatomic, strong) UIImageView *descImg;
+@property (nonatomic, strong) UIImageView *descImage;
 @property (nonatomic, strong) UIView *bottomLine;
 
 @end
@@ -35,10 +35,16 @@
         [self addSubview:self.timeLabel];
         [self addSubview:self.descLabel];
         [self addSubview:self.moreBtn];
-        [self addSubview:self.descImg];
+        [self addSubview:self.descImage];
         [self addSubview:self.bottomLine];
     }
     return self;
+}
+
+#pragma mark - ButtonClick
+- (void)readDetail:(UIButton *)sender
+{
+    
 }
 
 #pragma mark - setter
@@ -54,17 +60,111 @@
 - (UIImageView *)headImage
 {
     if (!_headImage) {
-        _headImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, _topLine.bottom+15, 35, 35)];
+        _headImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, _topLine.bottom+15, 35, 35)];
         
         _headImage.layer.borderWidth = 0.5;
         _headImage.layer.borderColor = RGBA(0, 0, 0, 0.1).CGColor;
         _headImage.layer.masksToBounds = YES;
         _headImage.layer.cornerRadius  = _headImage.width/2;
         
-        _headImage.image = Image(@"defaultImage");
-        
+        _headImage.image = Image(@"headImage");
     }
     return _headImage;
+}
+
+- (UILabel *)nickNameLabel
+{
+    if (!_nickNameLabel) {
+        _nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_headImage.right+6, _headImage.center.y-5, 40, 14)];
+        _nickNameLabel.text = @"昵称";
+        _nickNameLabel.width = [self textWidth:_nickNameLabel.text];
+        _nickNameLabel.font = Font(14);
+        _nickNameLabel.textColor = RGB(50, 50, 50);
+        _nickNameLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _nickNameLabel;
+}
+
+- (UILabel *)isNewLabel
+{
+    if (!_isNewLabel) {
+        _isNewLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nickNameLabel.right+6, _headImage.center.y-4, 40, 12)];
+        _isNewLabel.text = @"NEW";
+        _isNewLabel.font = Font(12);
+        _isNewLabel.textColor = RGB(240, 65, 47);
+        _isNewLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _isNewLabel;
+}
+
+- (UILabel *)timeLabel
+{
+    if (!_timeLabel) {
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-115, _headImage.center.y-4, 100, 15)];
+        _timeLabel.text = @"2016年11月11日";
+        _timeLabel.font = Font(12);
+        _timeLabel.textColor = RGB(136, 136, 136);
+        _timeLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _timeLabel;
+}
+
+- (UILabel *)descLabel
+{
+    if (!_descLabel) {
+        _descLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, _headImage.bottom+15, ScreenWidth-15*2, 100)];
+        _descLabel.numberOfLines = 0;
+        _descLabel.text = @"拍摄人像时背景的选择很重要，如果运用得当可以很好的衬托画面的气氛，复杂的背景容易分散观赏 者的注意力，因此拍摄时应尽量选择简洁协调的背景，这样可以更好的突出被摄者。如果在室内拍摄，采 用平视的角度，可以优先考虑使用墙壁或背景布，采用俯视的角度可以考虑使用床单或地板。如果在室外 拍摄，可以考虑使用大光圈虚化背景，或寻找漂亮的建筑外墙，密集的花丛，还可以通过仰视以蓝天为背 景，或俯视拍摄以草地为背景。 总之，只要在选取背景方面以简洁为原则，总能够找到合适的拍摄场景与角度。";
+        _descLabel.font = Font(14);
+        _descLabel.textColor = RGB(50, 50, 50);
+    }
+    return _descLabel;
+}
+
+- (UIButton *)moreBtn
+{
+    if (!_moreBtn) {
+        _moreBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        _moreBtn.frame = CGRectMake(_descLabel.left, _descLabel.bottom+13, 60, 14);
+        [_moreBtn setTitle:@"查看详情" forState:(UIControlStateNormal)];
+        //[_moreBtn setTintColor:RGB(74, 144, 226)];
+        [_moreBtn.titleLabel setFont:Font(14)];
+        
+        [_moreBtn addTarget:self action:@selector(readDetail:) forControlEvents:(UIControlEventTouchUpInside)];
+    }
+    return _moreBtn;
+}
+
+- (UIImageView *)descImage
+{
+    if (!_descImage) {
+        
+        _descImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, _moreBtn.bottom+13, ScreenWidth-15*2, ScreenWidth-15*2)];
+        _descImage.image = Image(@"test");
+        
+        [_descImage setContentMode:(UIViewContentModeScaleAspectFill)];
+        [_descImage.layer setMasksToBounds:YES];
+        
+    }
+    return _descImage;
+}
+
+- (UIView *)bottomLine
+{
+    if (!_bottomLine) {
+        _bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, _descImage.bottom+30, ScreenWidth, 0.5)];
+        _bottomLine.backgroundColor = RGB(170, 170, 170);
+    }
+    return _bottomLine;
+}
+
+- (CGFloat)textWidth:(NSString*)string
+{
+    CGSize contantSize = CGSizeMake(ScreenWidth-115-50, MAXFLOAT);
+    NSDictionary *dic = @{NSFontAttributeName : [UIFont systemFontOfSize:14.f]};
+    CGRect rect = [string boundingRectWithSize:contantSize options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    CGFloat width = rect.size.width;
+    return width;
 }
 
 @end

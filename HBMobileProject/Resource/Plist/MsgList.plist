@@ -6,13 +6,13 @@
 		<key>createTime</key>
 		<real>1478244503477</real>
 		<key>desc</key>
-		<string>对方水电费水电费水的点点滴滴多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多的点点滴滴多多多多多多多多多多多多多多多多多多多多多多多多的点点滴滴多多多多多多多多多多多多多多多多多多多多电费是</string>
+		<string>拍摄人像时背景的选择很重要，如果运用得当可以很好的衬托画面的气氛，复杂的背景容易分散观赏 者的注意力，因此拍摄时应尽量选择简洁协调的背景，这样可以更好的突出被摄者。如果在室内拍摄，采 用平视的角度，可以优先考虑使用墙壁或背景布，采用俯视的角度可以考虑使用床单或地板。如果在室外 拍摄，可以考虑使用大光圈虚化背景，或寻找漂亮的建筑外墙，密集的花丛，还可以通过仰视以蓝天为背 景，或俯视拍摄以草地为背景。 总之，只要在选取背景方面以简洁为原则，总能够找到合适的拍摄场景与角度。</string>
 		<key>expireTime</key>
 		<real>1479454103448</real>
 		<key>id</key>
 		<integer>203</integer>
 		<key>imgUrl</key>
-		<string>http://images.sq.iyunmai.com/sq/20161028/20161028180818822.jpg</string>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_2.jpg</string>
 		<key>key</key>
 		<string>mq_system_announcement_203</string>
 		<key>pasteTag</key>
@@ -31,7 +31,7 @@
 		<key>systemNotificationMessageType</key>
 		<integer>0</integer>
 		<key>title</key>
-		<string>的点点滴滴多多多多多</string>
+		<string>一、利用简洁的背景突出人物</string>
 		<key>type</key>
 		<integer>0</integer>
 		<key>usersInfo</key>
@@ -41,20 +41,20 @@
 			<key>id</key>
 			<integer>999983914</integer>
 			<key>realName</key>
-			<string>456789</string>
+			<string>人像摄影爱好者</string>
 		</dict>
 	</dict>
 	<dict>
 		<key>createTime</key>
 		<real>1478244411656</real>
 		<key>desc</key>
-		<string>对方水电费水电费水电费是</string>
+		<string>简洁的背景能够使人像在画面中更加突出，但画面少了故事性，不能够很好地交代画面中人物的环 境，因此只合适拍摄写真类人像作品。如果希望画面更有可读性，应该根据拍摄意图或是被摄者的特点去 选择背景，可以尽量选择比较具有美感的风景或是有内容的环境作为背景来丰富、充实画面。 尤其是使用广角镜头拍摄人像时，这一点尤其重要，因此广角镜头会纳入较多画面的环境，因此背景 的选择就显得更加重要。 另外还需要注意的要合理安排人物在画面中的位置，以得到具有美感且能突出人物特点的照片。</string>
 		<key>expireTime</key>
 		<real>1479454011288</real>
 		<key>id</key>
 		<integer>202</integer>
 		<key>imgUrl</key>
-		<string>http://images.sq.iyunmai.com/sq/20161028/20161028180818822.jpg</string>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_3.jpg</string>
 		<key>key</key>
 		<string>mq_system_announcement_202</string>
 		<key>readType</key>
@@ -64,7 +64,7 @@
 		<key>systemNotificationMessageType</key>
 		<integer>0</integer>
 		<key>title</key>
-		<string>格子君测试</string>
+		<string>二、利用富有感染力的背景营造美感画面</string>
 		<key>type</key>
 		<integer>0</integer>
 		<key>userTag</key>
@@ -92,13 +92,13 @@
 		<key>createTime</key>
 		<real>1478229296660</real>
 		<key>desc</key>
-		<string>对方水电费水电费水电费是</string>
+		<string>如前所述，光圈越大(如f/1.8、f/2.4)，光圈数值越小，景深越小;光圈越小(如f/18、f/22)，光圈 数值越大，景深越大。要想获得浅景深的照片，首先应考虑使用大光圈进行拍摄。大光圈在人像摄影和人体艺术摄影中起着非常重要的作用，可得到浅景深的美丽虚化效果，同时，它还可以帮助我们在环境光线较差的情况下， 保证获得更高的快门速度。</string>
 		<key>expireTime</key>
 		<real>1479438896604</real>
 		<key>id</key>
 		<integer>201</integer>
 		<key>imgUrl</key>
-		<string>http://images.sq.iyunmai.com/test%2Fdaka%2F20161103%2F1478139954426-21-0.0-0.0-0.0-3-2-1.jpg</string>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_4.jpg</string>
 		<key>key</key>
 		<string>mq_system_announcement_201</string>
 		<key>readType</key>
@@ -108,7 +108,7 @@
 		<key>systemNotificationMessageType</key>
 		<integer>0</integer>
 		<key>title</key>
-		<string>iOS测试1</string>
+		<string>三、选用大光圈获得浅景深</string>
 		<key>type</key>
 		<integer>0</integer>
 		<key>userTag</key>
@@ -136,13 +136,13 @@
 		<key>createTime</key>
 		<real>1478227928079</real>
 		<key>desc</key>
-		<string>对方水电费水电费水电费是</string>
+		<string>想要获得浅景深，让背景得到虚化，最简单的方法就是在模特和背景距离保持不变的情况下，让相机 靠近模特，这样可以轻易获得浅景深的效果，人物较突出，背景也得到了自然虚化。 拍摄时要注意前景不 能是杂乱的景物，因为当相机靠近模特时，前景在画面中也会表现地较为清晰。</string>
 		<key>expireTime</key>
 		<real>1479437527939</real>
 		<key>id</key>
 		<integer>200</integer>
 		<key>imgUrl</key>
-		<string>http://images.sq.iyunmai.com/sq/20161028/20161028180818822.jpg</string>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_5.jpg</string>
 		<key>key</key>
 		<string>mq_system_announcement_200</string>
 		<key>readType</key>
@@ -152,7 +152,7 @@
 		<key>systemNotificationMessageType</key>
 		<integer>0</integer>
 		<key>title</key>
-		<string>iOS测试</string>
+		<string>四、靠近被摄者获得浅景深</string>
 		<key>type</key>
 		<integer>0</integer>
 		<key>userTag</key>
@@ -180,13 +180,13 @@
 		<key>createTime</key>
 		<real>1478244503477</real>
 		<key>desc</key>
-		<string>对方水电费水电费水的点点滴滴多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多的点点滴滴多多多多多多多多多多多多多多多多多多多多多多多多的点点滴滴多多多多多多多多多多多多多多多多多多多多电费是</string>
+		<string>想要获得浅景深，让背景得到虚化，最简单的方法就是在模特和背景距离保持不变的情况下，让相机 靠近模特，这样可以轻易获得浅景深的效果，人物较突出，背景也得到了自然虚化。 拍摄时要注意前景不 能是杂乱的景物，因为当相机靠近模特时，前景在画面中也会表现地较为清晰。 改变模特与背景间的距离，也是获得浅景深的方法之一，安排模特与背景保持一定的距离(可以不必 靠近模特)，也一样可以获得完美的浅景深效果。简单来说，模特离背景越远，就越容易形成浅景深，从 而获得更大的虚化效果。</string>
 		<key>expireTime</key>
 		<real>1479454103448</real>
 		<key>id</key>
 		<integer>203</integer>
 		<key>imgUrl</key>
-		<string>http://images.sq.iyunmai.com/sq/20161028/20161028180818822.jpg</string>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_6.jpg</string>
 		<key>key</key>
 		<string>mq_system_announcement_203</string>
 		<key>pasteTag</key>
@@ -205,7 +205,7 @@
 		<key>systemNotificationMessageType</key>
 		<integer>0</integer>
 		<key>title</key>
-		<string>的点点滴滴多多多多多</string>
+		<string>五、让背景远离被摄体获得浅景深</string>
 		<key>type</key>
 		<integer>0</integer>
 		<key>usersInfo</key>
@@ -222,13 +222,13 @@
 		<key>createTime</key>
 		<real>1478244411656</real>
 		<key>desc</key>
-		<string>对方水电费水电费水电费是</string>
+		<string>三分法构图可分为横向三分法和纵向三分法两种。在拍摄人像时，将画面横、竖平均分为三等分，每 一条分割线上都可放置人物主体躯干，而将人物的脸部或眼睛置于其4个交汇点中的一个点上，则能够更加 鲜明地突出人物主体。</string>
 		<key>expireTime</key>
 		<real>1479454011288</real>
 		<key>id</key>
 		<integer>202</integer>
 		<key>imgUrl</key>
-		<string>http://images.sq.iyunmai.com/sq/20161028/20161028180818822.jpg</string>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_7.jpg</string>
 		<key>key</key>
 		<string>mq_system_announcement_202</string>
 		<key>readType</key>
@@ -238,7 +238,141 @@
 		<key>systemNotificationMessageType</key>
 		<integer>0</integer>
 		<key>title</key>
-		<string>格子君测试</string>
+		<string>六、让人物成为视觉中心的三分构图法</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>男神榜</string>
+			<key>type</key>
+			<integer>1</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=1&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=1&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983914%2F9999839141478230917945.jpg</string>
+			<key>id</key>
+			<integer>999983914</integer>
+			<key>realName</key>
+			<string>456789</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478244411656</real>
+		<key>desc</key>
+		<string>曲线构图分为S形构图和C形构图。在拍摄女性人 像时经常利用S形或C形构图来表现她们身体的柔美与 性感。 其中最常用的是S型构图，C形构图在表现女性柔美 身材方面也具有很好的表现效果，只是相对S形构图表 现力度要弱些。 通常当身材姣好的女性自然站立时，就能够从侧面 拍摄到漂亮的S形曲线，而如果采用正面拍摄的角度， 则需要模特稍稍倾侧身体。除了这两种角度外，还可以 通过趴姿形成更加性感的S形曲线。</string>
+		<key>expireTime</key>
+		<real>1479454011288</real>
+		<key>id</key>
+		<integer>202</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_8.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_202</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>七、表现女性身材柔感的曲线构图法</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>男神榜</string>
+			<key>type</key>
+			<integer>1</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=1&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=1&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983914%2F9999839141478230917945.jpg</string>
+			<key>id</key>
+			<integer>999983914</integer>
+			<key>realName</key>
+			<string>456789</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478244411656</real>
+		<key>desc</key>
+		<string>斜线构图在人像摄影中经常用到。当人物的身姿或肢体动作以斜线的方式出现在画面中，并占据足够 大的空间时，就形成了斜线构图方式。
+
+　　斜线构图所产生的拉 伸效果，对于表现女性修长 的身材或者对拍摄对象身 材方面的缺陷进行美化具 有非常不错的效果。利用这 种构图方法拍摄人像时，模 特至少要有一只脚的脚背 要绷直，从而使身体的线条 从腿部延伸至脚背，以起到 拉长身体线条的作用。</string>
+		<key>expireTime</key>
+		<real>1479454011288</real>
+		<key>id</key>
+		<integer>202</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_9.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_202</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>八、拉伸人物身材美感的斜线构图法</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>男神榜</string>
+			<key>type</key>
+			<integer>1</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=1&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=1&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983914%2F9999839141478230917945.jpg</string>
+			<key>id</key>
+			<integer>999983914</integer>
+			<key>realName</key>
+			<string>456789</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478244411656</real>
+		<key>desc</key>
+		<string>三角形构图是人像摄影中一种典型的构图形式，分为正三角形、倒三角形和斜三角形3种。拍摄时利用 人物主体的肢体或动作姿态来组合构成三角形。这种构图具有一种极强的稳定感和向上的冲击力，人物的 脸部作为视觉中心通常位于三角形的顶端。</string>
+		<key>expireTime</key>
+		<real>1479454011288</real>
+		<key>id</key>
+		<integer>202</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_10.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_202</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>九、表现画面稳定感的三角形构图法</string>
 		<key>type</key>
 		<integer>0</integer>
 		<key>userTag</key>
@@ -266,13 +400,13 @@
 		<key>createTime</key>
 		<real>1478229296660</real>
 		<key>desc</key>
-		<string>对方水电费水电费水电费是</string>
+		<string>横画幅构图被人们广泛地应用主要是因为横画幅符合人们的视觉习惯和生理特点，因为人的双眼是水平的，很多物体也都是在水平方向上进行延伸的。比较适合人物与环境的人像摄影，也可用于拍摄群体人像等。</string>
 		<key>expireTime</key>
 		<real>1479438896604</real>
 		<key>id</key>
 		<integer>201</integer>
 		<key>imgUrl</key>
-		<string>http://images.sq.iyunmai.com/test%2Fdaka%2F20161103%2F1478139954426-21-0.0-0.0-0.0-3-2-1.jpg</string>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_11.jpg</string>
 		<key>key</key>
 		<string>mq_system_announcement_201</string>
 		<key>readType</key>
@@ -282,7 +416,7 @@
 		<key>systemNotificationMessageType</key>
 		<integer>0</integer>
 		<key>title</key>
-		<string>iOS测试1</string>
+		<string>十、横画幅拍摄人像</string>
 		<key>type</key>
 		<integer>0</integer>
 		<key>userTag</key>
@@ -310,7 +444,51 @@
 		<key>createTime</key>
 		<real>1478227928079</real>
 		<key>desc</key>
-		<string>对方水电费水电费水电费是</string>
+		<string>竖画幅也就是竖长方形构图，呈上下伸展，这种画幅模式也是拍摄人像常用的一种构图方式。竖画幅更加强调画面中的垂直因素，以及画面的纵深度，无论是拍摄全身人像还是半身人像，都可以使用这种画幅。</string>
+		<key>expireTime</key>
+		<real>1479437527939</real>
+		<key>id</key>
+		<integer>200</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_12.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_200</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>十一、横画幅拍摄人像</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>女神榜</string>
+			<key>type</key>
+			<integer>2</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983916%2F9999839161469186310040.jpg</string>
+			<key>id</key>
+			<integer>999983916</integer>
+			<key>realName</key>
+			<string>由来</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478227928079</real>
+		<key>desc</key>
+		<string>俯视角度拍摄即照相机镜头处在正常视平线之上，由高处向下拍摄被摄体。这种角度拍摄人物时，人物的身体将被压缩，出现上大下小的变形效果，头部被夸大，身体部分被缩小，人物从而会表现得更加可爱、俏皮。如果拍摄时面部与相机的角度小于90°，则能够轻松拍摄出小脸美女照片，而眼睛也会显得比平常看上去更大。俯视也是常见的“睡美人” 拍摄角度，拍摄时要注意使画面向高调靠近。</string>
 		<key>expireTime</key>
 		<real>1479437527939</real>
 		<key>id</key>
@@ -326,7 +504,363 @@
 		<key>systemNotificationMessageType</key>
 		<integer>0</integer>
 		<key>title</key>
-		<string>iOS测试</string>
+		<string>十二、俯视拍摄人像</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>女神榜</string>
+			<key>type</key>
+			<integer>2</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983916%2F9999839161469186310040.jpg</string>
+			<key>id</key>
+			<integer>999983916</integer>
+			<key>realName</key>
+			<string>由来</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478227928079</real>
+		<key>desc</key>
+		<string>仰视拍摄是指相机处于被摄人物的下方，由下往上拍摄。画面效果有夸张高度的作用，空间透视效果更加强烈。拍摄人像时，会使距离镜头近的下半身部分变大，而距离镜头较远的脸相比之下被缩小了。采用这种角度拍摄的人像通常看上去会比平常更 高大、挺拔、修长，因此如果要表现男性坚毅的气质，或女性修长的身姿，可以采用这种角度。</string>
+		<key>expireTime</key>
+		<real>1479437527939</real>
+		<key>id</key>
+		<integer>200</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_13.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_200</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>十三、仰视拍摄人像</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>女神榜</string>
+			<key>type</key>
+			<integer>2</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983916%2F9999839161469186310040.jpg</string>
+			<key>id</key>
+			<integer>999983916</integer>
+			<key>realName</key>
+			<string>由来</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478227928079</real>
+		<key>desc</key>
+		<string>留白其实是一个很容易理解的概念，白就是指空白，留白显然就是在构图时，给画面留出一定的空白。形象地说，画面中的空白和文章中的标点符号起着相似的作用。但在摄影中留白并不一定就是实际意义上的 空白，它可以是大片同色调或者同类型的景物，例如天空、大海、山峰、草原、土地……
+
+　　留白可以使得画面在视觉中更加舒适自然，拍摄者可以利用留白更好地控制画面节奏与情绪，烘托意境，给观赏者留下更大的想象空间，使得观赏者的视点留在画面之内而情感却充斥于其外延之上。
+
+　　在人像摄影中，作为主体的人像，应被安排在画面中最能吸引人注意的位置，如黄金分割点附近。构图时适当的留白，给观赏者以想象的空间。</string>
+		<key>expireTime</key>
+		<real>1479437527939</real>
+		<key>id</key>
+		<integer>200</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_14.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_200</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>十四、利用环境留白渲染画面气氛</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>女神榜</string>
+			<key>type</key>
+			<integer>2</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983916%2F9999839161469186310040.jpg</string>
+			<key>id</key>
+			<integer>999983916</integer>
+			<key>realName</key>
+			<string>由来</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478227928079</real>
+		<key>desc</key>
+		<string>如前所述，在一幅摄影作品中，主体实像与空白部分是互为依存的。空白部分既可以衬托、说明主体，同时还可以对主体形象进行补充、强化。在人物视线前方留白，可以补充主体人物的视线空间，寻求画面的平衡。</string>
+		<key>expireTime</key>
+		<real>1479437527939</real>
+		<key>id</key>
+		<integer>200</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_15.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_200</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>十五、人物视线方向留白延伸画面空间感</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>女神榜</string>
+			<key>type</key>
+			<integer>2</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983916%2F9999839161469186310040.jpg</string>
+			<key>id</key>
+			<integer>999983916</integer>
+			<key>realName</key>
+			<string>由来</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478227928079</real>
+		<key>desc</key>
+		<string>恰当、巧妙地运用陪体，可以更好地表现画面中的意境或故事情节，以及强化要表现的主题等。这些道具可以是一簇鲜花、一把吉他、一个玩具、 一双鞋子或一把雨伞等。不过使用的道具要符合拍 摄对象的性别、年龄、性格和喜好等特征，只有适合的道具才能起到辅助主体表现效果的作用。</string>
+		<key>expireTime</key>
+		<real>1479437527939</real>
+		<key>id</key>
+		<integer>200</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_16.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_200</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>十六、利用陪体辅助表达人物气质</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>女神榜</string>
+			<key>type</key>
+			<integer>2</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983916%2F9999839161469186310040.jpg</string>
+			<key>id</key>
+			<integer>999983916</integer>
+			<key>realName</key>
+			<string>由来</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478227928079</real>
+		<key>desc</key>
+		<string>对方水电费水电费水电费是</string>
+		<key>expireTime</key>
+		<real>1479437527939</real>
+		<key>id</key>
+		<integer>200</integer>
+		<key>imgUrl</key>
+		<string>远景画面的特点是空间大，景物层次多，主体形象矮小，陪衬景物多，能够在很大范围内全面地表现 环境。拍摄远景在很大程度上是要表现画面的整体气势，正如绘画理论中提到的“远取其势”，所以拍摄者要从大处着眼，以气势取胜。在人像摄影中，远景则涵盖了被摄人物脚部在内的整个身体面貌，同时背景环境非常大。拍摄时，人物形象与背景环境相结合，两者都能得到适当表现。但应该特别注意，人物与背景之间的搭配关系。</string>
+		<key>key</key>
+		<string>mq_system_announcement_200</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>十七、远景景别表现人物与环境</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>女神榜</string>
+			<key>type</key>
+			<integer>2</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983916%2F9999839161469186310040.jpg</string>
+			<key>id</key>
+			<integer>999983916</integer>
+			<key>realName</key>
+			<string>由来</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478227928079</real>
+		<key>desc</key>
+		<string>中景人像拍摄的是膝盖以上的形象，除了表现人物面部表情外，也更为重视人物手部动作，拍摄时要注意被摄者的摆姿，这样可以进一步展现被摄人物的内心状态。使用中景拍摄，画面的空间面积 进一步扩大，有利于表现人物的肢体表达，构图也更富于变化。拍摄中景人像时，还要注意被摄者的神情。</string>
+		<key>expireTime</key>
+		<real>1479437527939</real>
+		<key>id</key>
+		<integer>200</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_18.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_200</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>十八、中景景别表现人 物神情与姿态</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>女神榜</string>
+			<key>type</key>
+			<integer>2</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983916%2F9999839161469186310040.jpg</string>
+			<key>id</key>
+			<integer>999983916</integer>
+			<key>realName</key>
+			<string>由来</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478227928079</real>
+		<key>desc</key>
+		<string>近景人像一般拍摄的是人物腰部以上的形象，能够使读者对被摄人物产生比较强烈的印象。需要注意的是，最好使用中长焦镜头，避免可能产生的透视变形的现象，同时也可以起到虚化背景来美化画面的效果。近景有利于表现人物的面部表情，拍摄时可以突出被摄者的眼睛，眼睛是心灵的窗户。眼神交流是沟通表达的一种方式，刻画有感染力的眼神，可以使观赏者深刻体会到人物瞬间的表情、情绪等，更好地产生共鸣。</string>
+		<key>expireTime</key>
+		<real>1479437527939</real>
+		<key>id</key>
+		<integer>200</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_19.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_200</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>十九、近景景别表现人物面部表情</string>
+		<key>type</key>
+		<integer>0</integer>
+		<key>userTag</key>
+		<dict>
+			<key>name</key>
+			<string>女神榜</string>
+			<key>type</key>
+			<integer>2</integer>
+			<key>typeValue</key>
+			<integer>0</integer>
+			<key>url</key>
+			<string>http://sq13t.iyunmai.com/api/ios/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1;http://sq13t.iyunmai.com/api/android/query/hotgroup/bbscard-rank-list.json?type=2&amp;rows=10&amp;versionCode=1</string>
+		</dict>
+		<key>usersInfo</key>
+		<dict>
+			<key>avatarUrl</key>
+			<string>http://yunmai-images.oss-cn-qingdao.aliyuncs.com/avatar%2F999983916%2F9999839161469186310040.jpg</string>
+			<key>id</key>
+			<integer>999983916</integer>
+			<key>realName</key>
+			<string>由来</string>
+		</dict>
+	</dict>
+	<dict>
+		<key>createTime</key>
+		<real>1478227928079</real>
+		<key>desc</key>
+		<string>特写是很多人像拍摄者喜爱的拍摄方式之一。虽然拍摄特写看似简单，但其中构图与对人像局部的选择方式也是多种多样的，例如，常见的特写拍摄方式是拍摄人物的面部，主要表现眼睛、嘴唇。此外也可以将拍摄的重点放在表现人像的其他局部，如表现手、脚、腿、臀部等位置。很显然特写表现的局部会赋予画面不同的气氛。现在在商业人像广告中，常有手模、脚模、腿模、胸模，在拍摄这些模特时，最常使用的景别就是特写。</string>
+		<key>expireTime</key>
+		<real>1479437527939</real>
+		<key>id</key>
+		<integer>200</integer>
+		<key>imgUrl</key>
+		<string>http://photocdn.sohu.com/20150715/mp22857278_1436943137160_20.jpg</string>
+		<key>key</key>
+		<string>mq_system_announcement_200</string>
+		<key>readType</key>
+		<integer>0</integer>
+		<key>systemAnnouncementMessageType</key>
+		<integer>4</integer>
+		<key>systemNotificationMessageType</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>二十、特写景别表现人物身体局部</string>
 		<key>type</key>
 		<integer>0</integer>
 		<key>userTag</key>

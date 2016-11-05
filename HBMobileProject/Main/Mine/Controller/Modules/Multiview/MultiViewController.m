@@ -61,6 +61,7 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
         if (cell == nil) {
             cell = [[NormalTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NormalTableViewCellID];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 }
@@ -70,7 +71,7 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
     if (indexPath.section==0) {
         return 188.f;
     }else{
-        return 160.f;
+        return 580.f;
     }
 }
 
