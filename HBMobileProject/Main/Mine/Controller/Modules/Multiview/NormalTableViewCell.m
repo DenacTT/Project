@@ -8,7 +8,7 @@
 
 #import "NormalTableViewCell.h"
 #import "UILabel+Multiline.h"
-#imp
+
 
 @interface NormalTableViewCell ()
 
