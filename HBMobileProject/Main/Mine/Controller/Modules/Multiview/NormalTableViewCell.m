@@ -8,6 +8,7 @@
 
 #import "NormalTableViewCell.h"
 #import "UILabel+Multiline.h"
+#imp
 
 @interface NormalTableViewCell ()
 
@@ -56,8 +57,26 @@
     _groupModel = groupModel;
     if (groupModel) {
         
+//        self.headImage
         
+        self.nickNameLabel.text = [NSString stringWithFormat:@"%@", groupModel.usersInfo.realName];
         
+        if (groupModel.readType==YMSysReadTypeUnRead) {
+            self.isNewLabel.hidden = NO;
+        }else{
+            self.isNewLabel.hidden = YES;
+        }
+        
+        self.timeLabel.text = [NSString stringWithFormat:@"%f", groupModel.createTime];
+        
+        self.descLabel.text = [NSString stringWithFormat:@"【%@】%@", groupModel.title, groupModel.desc];
+        
+        self.moreBtn.top = self.descLabel.bottom+13;
+        self.descImage.top = self.moreBtn.bottom+13;
+        
+//        self.descImage
+        
+        self.bottomLine.top = self.descImage.bottom+30;
     }
 }
 
