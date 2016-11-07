@@ -13,4 +13,6 @@
 
 @property (nonatomic, strong) TextBarGroupModel *groupModel;
 
++ (CGFloat)cellHeightWithModel:(TextBarGroupModel *)model;
+
 @end

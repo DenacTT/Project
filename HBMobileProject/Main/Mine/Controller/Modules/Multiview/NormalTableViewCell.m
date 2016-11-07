@@ -41,6 +41,12 @@
     return self;
 }
 
+#pragma mark - method
++ (CGFloat)cellHeightWithModel:(TextBarGroupModel *)model
+{
+    
+}
+
 #pragma mark - setter
 - (void)setGroupModel:(TextBarGroupModel *)groupModel
 {

@@ -281,6 +281,7 @@
 		D1B6D7991D7D159600C3E647 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D78D1D7D159600C3E647 /* NSObject+MJProperty.m */; };
 		D1B6D79A1D7D159600C3E647 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D78F1D7D159600C3E647 /* NSString+MJExtension.m */; };
 		D1D26F861D9A76650080D784 /* VideoRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */; };
+		D1D7B58B1DD01F0C0008EAC9 /* UILabel+Multiline.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D7B58A1DD01F0C0008EAC9 /* UILabel+Multiline.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -942,6 +943,8 @@
 		D1B6D78F1D7D159600C3E647 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
 		D1D26F841D9A76650080D784 /* VideoRecordEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordEncoder.h; sourceTree = "<group>"; };
 		D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordEncoder.m; sourceTree = "<group>"; };
+		D1D7B5891DD01F0C0008EAC9 /* UILabel+Multiline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Multiline.h"; sourceTree = "<group>"; };
+		D1D7B58A1DD01F0C0008EAC9 /* UILabel+Multiline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Multiline.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2283,6 +2286,7 @@
 		D1B6D7451D7D12AB00C3E647 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				D1D7B5851DD01D4B0008EAC9 /* UILabel */,
 				D15E55591D9BC3FD0027634B /* NSTimer */,
 				D11C44971D9A5D4B0051BD31 /* UIColor */,
 				D160E91A1D9158B100CAF6CC /* NSThread */,
@@ -2457,6 +2461,15 @@
 				D1B6D78F1D7D159600C3E647 /* NSString+MJExtension.m */,
 			);
 			path = MJExtension;
+			sourceTree = "<group>";
+		};
+		D1D7B5851DD01D4B0008EAC9 /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				D1D7B5891DD01F0C0008EAC9 /* UILabel+Multiline.h */,
+				D1D7B58A1DD01F0C0008EAC9 /* UILabel+Multiline.m */,
+			);
+			path = UILabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2796,6 +2809,7 @@
 				D17A282F1D93F89900C00B3F /* YYThreadSafeDictionary.m in Sources */,
 				D17A27F91D93F89900C00B3F /* UIGestureRecognizer+YYAdd.m in Sources */,
 				D1B6D7771D7D154700C3E647 /* View+MASAdditions.m in Sources */,
+				D1D7B58B1DD01F0C0008EAC9 /* UILabel+Multiline.m in Sources */,
 				D15E557F1D9CCE8B0027634B /* EditVideoViewController.m in Sources */,
 				D17A280A1D93F89900C00B3F /* YYFrameImage.m in Sources */,
 				D13B58B01D7EF1F3005D89FA /* ConfigTabBarController.m in Sources */,
