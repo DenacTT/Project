@@ -7,6 +7,7 @@
 //
 
 #import "NormalTableViewCell.h"
+#import "UILabel+Multiline.h"
 
 @interface NormalTableViewCell ()
 
@@ -44,7 +45,9 @@
 #pragma mark - method
 + (CGFloat)cellHeightWithModel:(TextBarGroupModel *)model
 {
-    
+    NSString *text = [NSString stringWithFormat:@"【%@】%@", model.title, model.desc];
+    CGSize textSize = [UILabel sizeWithText:text lines:0 font:[UIFont systemFontOfSize:14.f] andLineSpacing:7.f constrainedToSize:CGSizeMake(ScreenWidth-15*2, MAXFLOAT)];
+    return 8+15+35+15+textSize.height+13+14+13+(ScreenWidth-15*2)+30;
 }
 
 #pragma mark - setter
@@ -54,13 +57,16 @@
     if (groupModel) {
         
         
+        
     }
 }
 
 #pragma mark - ButtonClick
 - (void)readDetail:(UIButton *)sender
 {
-    
+    if ([self.delegate respondsToSelector:@selector(readDetail:)]) {
+        [self.delegate readDetail:self];
+    }
 }
 
 #pragma mark - getter

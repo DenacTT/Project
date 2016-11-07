@@ -54,14 +54,35 @@
         return CGSizeZero;
     }
     
-    self.labelTextSize =
+    self.labelTextSize = [self calculateSizeWithText:text lines:lines font:self.font andLineSpacing:lineSpacing constrainedToSize:constrainerSize];
     
+    if ([self isSingleLineTextHeight:self.labelTextSize.height font:self.font]) {
+        [self setSingleLine:YES];
+    }else{
+        [self setSingleLine:NO];
+    }
+    
+    // 设置文字的属性
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:lineSpacing];
+    [paragraphStyle setLineBreakMode:(NSLineBreakByTruncatingTail)]; // 结尾以...方式省略
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    [self setAttributedText:attributedString];
+    
+    self.bounds = CGRectMake(0, 0, self.labelTextSize.width, self.labelTextSize.height);
+    [self adjustLabelContent];
+    return self.frame.size;
 }
 
 #pragma mark - 计算文本占用的size
 + (CGSize)sizeWithText:(NSString *)text lines:(NSInteger)lines font:(UIFont *)font andLineSpacing:(CGFloat)lineSpacing constrainedToSize:(CGSize)constrainerSize
 {
-    
+    UILabel *label = [[UILabel alloc] init];
+    label.font = font;
+    [label setText:text lines:lines andLineSpacing:lineSpacing constrainedToSize:constrainerSize];
+    return label.frame.size;
 }
 
 #pragma mark - 私有方法

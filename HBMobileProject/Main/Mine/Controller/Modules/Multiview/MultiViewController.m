@@ -12,7 +12,7 @@
 #import "YMTextBarGroupView.h"
 #import "TextBarGroupModel.h"
 
-@interface MultiViewController ()<TextBarCollectionCellDelegate>
+@interface MultiViewController ()<TextBarCollectionCellDelegate, NormalTableViewCellDelegate>
 
 @property (nonatomic, strong) YMDataAdapter *dataAdapter;
 @property (nonatomic, strong) UITableView *multiTableView;
@@ -83,8 +83,16 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
     if (indexPath.section==0) {
         return 188.f;
     }else{
-        return 580.f;
+        TextBarGroupModel *model = self.dataSource[indexPath.row];
+        return [NormalTableViewCell cellHeightWithModel:model];
+//        return 580.f;
     }
+}
+
+#pragma mark - NormalTableViewCellDelegate
+- (void)readDetail:(UITableViewCell *)cell
+{
+    NSLog(@"详情页");
 }
 
 #pragma mark - TextBarCollectionCellDelegate

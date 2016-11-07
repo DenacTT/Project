@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "TextBarGroupModel.h"
 
+@protocol NormalTableViewCellDelegate <NSObject>
+
+- (void)readDetail:(UITableViewCell *)cell;
+
+@end
+
 @interface NormalTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) TextBarGroupModel *groupModel;
+@property (nonatomic, assign) id<NormalTableViewCellDelegate>delegate;
 
 + (CGFloat)cellHeightWithModel:(TextBarGroupModel *)model;
 
