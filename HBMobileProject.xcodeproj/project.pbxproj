@@ -84,6 +84,7 @@
 		D13DDC871DD16F5300B3AD5B /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D13DDC721DD16F5300B3AD5B /* UIImageView+WebCache.m */; };
 		D13DDC881DD16F5300B3AD5B /* UIView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D13DDC741DD16F5300B3AD5B /* UIView+WebCache.m */; };
 		D13DDC891DD16F5300B3AD5B /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D13DDC761DD16F5300B3AD5B /* UIView+WebCacheOperation.m */; };
+		D13DDC8D1DD181C900B3AD5B /* TimeFormatTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D13DDC8C1DD181C900B3AD5B /* TimeFormatTool.m */; };
 		D140C9111DCDDB9F00EF48EA /* YMDataAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9101DCDDB9F00EF48EA /* YMDataAdapter.m */; };
 		D140C9141DCDDEC100EF48EA /* PasteTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9131DCDDEC100EF48EA /* PasteTagModel.m */; };
 		D140C9171DCDDF7000EF48EA /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9161DCDDF7000EF48EA /* UserInfoModel.m */; };
@@ -471,6 +472,8 @@
 		D13DDC741DD16F5300B3AD5B /* UIView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCache.m"; sourceTree = "<group>"; };
 		D13DDC751DD16F5300B3AD5B /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		D13DDC761DD16F5300B3AD5B /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		D13DDC8B1DD181C900B3AD5B /* TimeFormatTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeFormatTool.h; sourceTree = "<group>"; };
+		D13DDC8C1DD181C900B3AD5B /* TimeFormatTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeFormatTool.m; sourceTree = "<group>"; };
 		D140C90F1DCDDB9F00EF48EA /* YMDataAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMDataAdapter.h; sourceTree = "<group>"; };
 		D140C9101DCDDB9F00EF48EA /* YMDataAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMDataAdapter.m; sourceTree = "<group>"; };
 		D140C9121DCDDEC100EF48EA /* PasteTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasteTagModel.h; sourceTree = "<group>"; };
@@ -1495,6 +1498,15 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		D13DDC8A1DD181C900B3AD5B /* TimeFormatTool */ = {
+			isa = PBXGroup;
+			children = (
+				D13DDC8B1DD181C900B3AD5B /* TimeFormatTool.h */,
+				D13DDC8C1DD181C900B3AD5B /* TimeFormatTool.m */,
+			);
+			path = TimeFormatTool;
+			sourceTree = "<group>";
+		};
 		D140C90E1DCDDB7500EF48EA /* Adapter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2458,6 +2470,7 @@
 		D1B6D74D1D7D12AB00C3E647 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D13DDC8A1DD181C900B3AD5B /* TimeFormatTool */,
 				D13B5A771D830109005D89FA /* MPTools.h */,
 				D13B5A781D830109005D89FA /* MPTools.m */,
 				D13B59501D82DC30005D89FA /* CustomTipsView.h */,
@@ -2937,6 +2950,7 @@
 				D13DDC781DD16F5300B3AD5B /* NSData+ImageContentType.m in Sources */,
 				D17A27301D93F82300C00B3F /* BiggerBtn.m in Sources */,
 				D17A28261D93F89900C00B3F /* YYTextView.m in Sources */,
+				D13DDC8D1DD181C900B3AD5B /* TimeFormatTool.m in Sources */,
 				D17A28321D93F89900C00B3F /* YYWeakProxy.m in Sources */,
 				D17A27FC1D93F89900C00B3F /* UIScrollView+YYAdd.m in Sources */,
 				D17A28271D93F89900C00B3F /* YYAsyncLayer.m in Sources */,

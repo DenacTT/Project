@@ -81,6 +81,7 @@
 #import "Masonry.h"
 #import "YMDataAdapter.h"
 #import "UIImageView+WebCache.h"
+#import "TimeFormatTool.h"
 //环信
 //#import "EMSDK.h"
 //#import "EaseUI.h"

@@ -72,6 +72,7 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
         if (cell == nil) {
             cell = [[NormalTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NormalTableViewCellID];
         }
+        cell.delegate = self;
         cell.groupModel = self.dataSource[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -83,10 +84,15 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
     if (indexPath.section==0) {
         return 188.f;
     }else{
-//        TextBarGroupModel *model = self.dataSource[indexPath.row];
         return [NormalTableViewCell cellHeightWithModel:self.dataSource[indexPath.row]];
-//        return 580.f;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TextBarGroupModel *model = self.dataSource[indexPath.row];
+    model.readType = YMSysReadTypeReaded;
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationFade)];
 }
 
 #pragma mark - NormalTableViewCellDelegate

@@ -8,6 +8,7 @@
 
 #import "NormalTableViewCell.h"
 #import "UILabel+Multiline.h"
+#import "TimeFormatTool.h"
 
 @interface NormalTableViewCell ()
 
@@ -68,7 +69,7 @@
         }
         self.isNewLabel.left = self.nickNameLabel.right+6;
         
-        self.timeLabel.text = [NSString stringWithFormat:@"%f", groupModel.createTime];
+        self.timeLabel.text = [TimeFormatTool setTime:groupModel.createTime];
         
         NSString *text = [NSString stringWithFormat:@"【%@】%@", groupModel.title, groupModel.desc];
         [self.descLabel setText:text lines:0 andLineSpacing:7.f constrainedToSize:CGSizeMake(ScreenWidth-15*2, MAXFLOAT)];
