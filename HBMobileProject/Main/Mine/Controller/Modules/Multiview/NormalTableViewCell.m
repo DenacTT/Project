@@ -9,7 +9,6 @@
 #import "NormalTableViewCell.h"
 #import "UILabel+Multiline.h"
 
-
 @interface NormalTableViewCell ()
 
 @property (nonatomic, strong) UIView *topLine;
@@ -57,24 +56,28 @@
     _groupModel = groupModel;
     if (groupModel) {
         
-//        self.headImage
+        [self.headImage sd_setImageWithURL:[NSURL URLWithString:groupModel.usersInfo.avatarUrl] placeholderImage:Image(@"headImage")];
         
         self.nickNameLabel.text = [NSString stringWithFormat:@"%@", groupModel.usersInfo.realName];
+        self.nickNameLabel.width = [self textWidth:_nickNameLabel.text];
         
         if (groupModel.readType==YMSysReadTypeUnRead) {
             self.isNewLabel.hidden = NO;
         }else{
             self.isNewLabel.hidden = YES;
         }
+        self.isNewLabel.left = self.nickNameLabel.right+6;
         
         self.timeLabel.text = [NSString stringWithFormat:@"%f", groupModel.createTime];
         
-        self.descLabel.text = [NSString stringWithFormat:@"【%@】%@", groupModel.title, groupModel.desc];
+        NSString *text = [NSString stringWithFormat:@"【%@】%@", groupModel.title, groupModel.desc];
+        [self.descLabel setText:text lines:0 andLineSpacing:7.f constrainedToSize:CGSizeMake(ScreenWidth-15*2, MAXFLOAT)];
         
+        self.descLabel.top = self.headImage.bottom+15;
         self.moreBtn.top = self.descLabel.bottom+13;
         self.descImage.top = self.moreBtn.bottom+13;
         
-//        self.descImage
+        [self.descImage sd_setImageWithURL:[NSURL URLWithString:groupModel.imgUrl] placeholderImage:Image(@"test")];
         
         self.bottomLine.top = self.descImage.bottom+30;
     }
@@ -118,7 +121,6 @@
     if (!_nickNameLabel) {
         _nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_headImage.right+6, _headImage.center.y-5, 40, 14)];
         _nickNameLabel.text = @"昵称";
-        _nickNameLabel.width = [self textWidth:_nickNameLabel.text];
         _nickNameLabel.font = Font(14);
         _nickNameLabel.textColor = RGB(50, 50, 50);
         _nickNameLabel.textAlignment = NSTextAlignmentLeft;
@@ -155,7 +157,7 @@
     if (!_descLabel) {
         _descLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, _headImage.bottom+15, ScreenWidth-15*2, 100)];
         _descLabel.numberOfLines = 0;
-        _descLabel.text = @"拍摄人像时背景的选择很重要，如果运用得当可以很好的衬托画面的气氛，复杂的背景容易分散观赏 者的注意力，因此拍摄时应尽量选择简洁协调的背景，这样可以更好的突出被摄者。如果在室内拍摄，采 用平视的角度，可以优先考虑使用墙壁或背景布，采用俯视的角度可以考虑使用床单或地板。如果在室外 拍摄，可以考虑使用大光圈虚化背景，或寻找漂亮的建筑外墙，密集的花丛，还可以通过仰视以蓝天为背 景，或俯视拍摄以草地为背景。 总之，只要在选取背景方面以简洁为原则，总能够找到合适的拍摄场景与角度。";
+        _descLabel.text = @"拍摄人像时背景的选择很重要，如果运用得当可以很好的衬托画面的气氛，复杂的背景容易分散观赏 者的注意力，因此拍摄时应尽量选择简洁协调的背景，这样可以更好的突出被摄者。如果在室内拍摄，采 用平视的角度，可以优先考虑使用墙壁或背景布，采用俯视的角度可以考虑使用床单或地板。如果在室外 拍摄，可以考虑使用大光圈虚化背景，或寻找漂亮的建筑外墙，密集的花丛，还可以通过仰视以蓝天为背景，或俯视拍摄以草地为背景。 总之，只要在选取背景方面以简洁为原则，总能够找到合适的拍摄场景与角度。";
         _descLabel.font = Font(14);
         _descLabel.textColor = RGB(50, 50, 50);
     }

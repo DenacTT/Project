@@ -18,7 +18,7 @@
 @property (nonatomic, assign) CGSize labelTextSize; // 属性不能是 textSize;
 
 /**
- *  设置文本多行可控间距显示
+ *  设置多行文本可控间距显示
  *
  *  @param  text    文本
  *  @param  lines    行数 lines = 0 不限制行数,文本显示不足 lines 时正常显示,超过 lines 时结尾部分的内容以...方式省略.

@@ -83,8 +83,8 @@ static NSString * const NormalTableViewCellID = @"NormalTableViewCellID";
     if (indexPath.section==0) {
         return 188.f;
     }else{
-        TextBarGroupModel *model = self.dataSource[indexPath.row];
-        return [NormalTableViewCell cellHeightWithModel:model];
+//        TextBarGroupModel *model = self.dataSource[indexPath.row];
+        return [NormalTableViewCell cellHeightWithModel:self.dataSource[indexPath.row]];
 //        return 580.f;
     }
 }
