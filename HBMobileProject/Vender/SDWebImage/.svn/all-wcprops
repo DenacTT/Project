@@ -1,0 +1,245 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage
+END
+MKAnnotationView+WebCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/MKAnnotationView+WebCache.h
+END
+SDImageCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDImageCache.h
+END
+SDWebImageDecoder.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageDecoder.h
+END
+MKAnnotationView+WebCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/MKAnnotationView+WebCache.m
+END
+SDImageCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDImageCache.m
+END
+SDWebImageDecoder.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageDecoder.m
+END
+SDWebImageManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageManager.h
+END
+UIView+WebCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIView+WebCache.h
+END
+UIButton+WebCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIButton+WebCache.h
+END
+SDWebImageDownloaderOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageDownloaderOperation.h
+END
+SDWebImageManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageManager.m
+END
+UIImageView+WebCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIImageView+WebCache.h
+END
+UIImage+WebP.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIImage+WebP.h
+END
+UIView+WebCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIView+WebCache.m
+END
+UIButton+WebCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIButton+WebCache.m
+END
+SDWebImageDownloaderOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageDownloaderOperation.m
+END
+UIImageView+WebCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIImageView+WebCache.m
+END
+UIImage+WebP.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIImage+WebP.m
+END
+NSImage+WebCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/NSImage+WebCache.h
+END
+SDImageCacheConfig.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDImageCacheConfig.h
+END
+NSData+ImageContentType.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/NSData+ImageContentType.h
+END
+NSImage+WebCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/NSImage+WebCache.m
+END
+UIView+WebCacheOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIView+WebCacheOperation.h
+END
+SDWebImageDownloader.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageDownloader.h
+END
+SDImageCacheConfig.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDImageCacheConfig.m
+END
+NSData+ImageContentType.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/NSData+ImageContentType.m
+END
+SDWebImageDownloader.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageDownloader.m
+END
+UIView+WebCacheOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIView+WebCacheOperation.m
+END
+SDWebImage.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImage.h
+END
+UIImageView+HighlightedWebCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIImageView+HighlightedWebCache.h
+END
+SDWebImageCompat.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageCompat.h
+END
+UIImageView+HighlightedWebCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIImageView+HighlightedWebCache.m
+END
+UIImage+MultiFormat.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIImage+MultiFormat.h
+END
+SDWebImagePrefetcher.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImagePrefetcher.h
+END
+SDWebImageCompat.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageCompat.m
+END
+UIImage+GIF.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIImage+GIF.h
+END
+UIImage+MultiFormat.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIImage+MultiFormat.m
+END
+SDWebImagePrefetcher.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImagePrefetcher.m
+END
+UIImage+GIF.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/yunmai-ios/!svn/ver/5331/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/UIImage+GIF.m
+END
+SDWebImageOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/yunmai-ios/!svn/ver/5182/yunmai-ios/tags/20161022/XiaoMai-IOS/SDWebImage/SDWebImageOperation.h
+END
