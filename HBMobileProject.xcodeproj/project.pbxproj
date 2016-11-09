@@ -90,6 +90,8 @@
 		D140C9171DCDDF7000EF48EA /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9161DCDDF7000EF48EA /* UserInfoModel.m */; };
 		D140C91A1DCDDFEA00EF48EA /* UserTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9191DCDDFEA00EF48EA /* UserTagModel.m */; };
 		D14AA46A1DD1D6B300E1A46D /* LYCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA4681DD1D6B300E1A46D /* LYCustomView.m */; };
+		D14AA4701DD2CBF800E1A46D /* BBSListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA46F1DD2CBF800E1A46D /* BBSListViewController.m */; };
+		D14AA4731DD2CC5D00E1A46D /* BBSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA4721DD2CC5D00E1A46D /* BBSCell.m */; };
 		D15D86B61D8E484800115B73 /* UIControl+BtnClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */; };
 		D15E554E1D9AA25F0027634B /* VideoRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */; };
 		D15E55541D9B698D0027634B /* VideoRecordStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55531D9B698D0027634B /* VideoRecordStatusView.m */; };
@@ -485,6 +487,10 @@
 		D140C9191DCDDFEA00EF48EA /* UserTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTagModel.m; sourceTree = "<group>"; };
 		D14AA4681DD1D6B300E1A46D /* LYCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCustomView.m; sourceTree = "<group>"; };
 		D14AA4691DD1D6B300E1A46D /* LYCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCustomView.h; sourceTree = "<group>"; };
+		D14AA46E1DD2CBF800E1A46D /* BBSListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSListViewController.h; sourceTree = "<group>"; };
+		D14AA46F1DD2CBF800E1A46D /* BBSListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSListViewController.m; sourceTree = "<group>"; };
+		D14AA4711DD2CC5D00E1A46D /* BBSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSCell.h; sourceTree = "<group>"; };
+		D14AA4721DD2CC5D00E1A46D /* BBSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSCell.m; sourceTree = "<group>"; };
 		D15D86B41D8E484800115B73 /* UIControl+BtnClickDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIControl+BtnClickDelay.h"; path = "UIControl/UIControl+BtnClickDelay.h"; sourceTree = "<group>"; };
 		D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+BtnClickDelay.m"; path = "UIControl/UIControl+BtnClickDelay.m"; sourceTree = "<group>"; };
 		D15E554C1D9AA25F0027634B /* VideoRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordEngine.h; sourceTree = "<group>"; };
@@ -1523,6 +1529,10 @@
 		D14AA4671DD1CF6100E1A46D /* BBSView */ = {
 			isa = PBXGroup;
 			children = (
+				D14AA46E1DD2CBF800E1A46D /* BBSListViewController.h */,
+				D14AA46F1DD2CBF800E1A46D /* BBSListViewController.m */,
+				D14AA4711DD2CC5D00E1A46D /* BBSCell.h */,
+				D14AA4721DD2CC5D00E1A46D /* BBSCell.m */,
 			);
 			path = BBSView;
 			sourceTree = "<group>";
@@ -2920,6 +2930,7 @@
 				D17A27FA1D93F89900C00B3F /* UIImage+YYAdd.m in Sources */,
 				D17A27E21D93F89900C00B3F /* NSArray+YYAdd.m in Sources */,
 				D17A27F41D93F89900C00B3F /* UIBezierPath+YYAdd.m in Sources */,
+				D14AA4701DD2CBF800E1A46D /* BBSListViewController.m in Sources */,
 				D17A281E1D93F89900C00B3F /* UIPasteboard+YYText.m in Sources */,
 				D17A28081D93F89900C00B3F /* UIImageView+YYWebImage.m in Sources */,
 				D17A280C1D93F89900C00B3F /* YYImageCache.m in Sources */,
@@ -2973,6 +2984,7 @@
 				D13B58D51D7FF7F9005D89FA /* ViewController.m in Sources */,
 				D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */,
 				D1B6D7921D7D159600C3E647 /* MJFoundation.m in Sources */,
+				D14AA4731DD2CC5D00E1A46D /* BBSCell.m in Sources */,
 				D17A282E1D93F89900C00B3F /* YYThreadSafeArray.m in Sources */,
 				D17A27E61D93F89900C00B3F /* NSDictionary+YYAdd.m in Sources */,
 				D17A282B1D93F89900C00B3F /* YYKeychain.m in Sources */,
