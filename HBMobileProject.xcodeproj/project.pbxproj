@@ -89,6 +89,7 @@
 		D140C9141DCDDEC100EF48EA /* PasteTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9131DCDDEC100EF48EA /* PasteTagModel.m */; };
 		D140C9171DCDDF7000EF48EA /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9161DCDDF7000EF48EA /* UserInfoModel.m */; };
 		D140C91A1DCDDFEA00EF48EA /* UserTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9191DCDDFEA00EF48EA /* UserTagModel.m */; };
+		D14AA46A1DD1D6B300E1A46D /* LYCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA4681DD1D6B300E1A46D /* LYCustomView.m */; };
 		D15D86B61D8E484800115B73 /* UIControl+BtnClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */; };
 		D15E554E1D9AA25F0027634B /* VideoRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */; };
 		D15E55541D9B698D0027634B /* VideoRecordStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55531D9B698D0027634B /* VideoRecordStatusView.m */; };
@@ -482,6 +483,8 @@
 		D140C9161DCDDF7000EF48EA /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		D140C9181DCDDFEA00EF48EA /* UserTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTagModel.h; sourceTree = "<group>"; };
 		D140C9191DCDDFEA00EF48EA /* UserTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTagModel.m; sourceTree = "<group>"; };
+		D14AA4681DD1D6B300E1A46D /* LYCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCustomView.m; sourceTree = "<group>"; };
+		D14AA4691DD1D6B300E1A46D /* LYCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCustomView.h; sourceTree = "<group>"; };
 		D15D86B41D8E484800115B73 /* UIControl+BtnClickDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIControl+BtnClickDelay.h"; path = "UIControl/UIControl+BtnClickDelay.h"; sourceTree = "<group>"; };
 		D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+BtnClickDelay.m"; path = "UIControl/UIControl+BtnClickDelay.m"; sourceTree = "<group>"; };
 		D15E554C1D9AA25F0027634B /* VideoRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordEngine.h; sourceTree = "<group>"; };
@@ -1162,6 +1165,7 @@
 				D103BBA31DB07BD50009DF88 /* GPUVideo */,
 				D12237E01D90108100B0D042 /* ExtensibleCell */,
 				D12237E11D9010C900B0D042 /* LinkageTableView */,
+				D14AA4671DD1CF6100E1A46D /* BBSView */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1514,6 +1518,13 @@
 				D140C9101DCDDB9F00EF48EA /* YMDataAdapter.m */,
 			);
 			path = Adapter;
+			sourceTree = "<group>";
+		};
+		D14AA4671DD1CF6100E1A46D /* BBSView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BBSView;
 			sourceTree = "<group>";
 		};
 		D15E55591D9BC3FD0027634B /* NSTimer */ = {
@@ -2470,6 +2481,8 @@
 		D1B6D74D1D7D12AB00C3E647 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D14AA4681DD1D6B300E1A46D /* LYCustomView.m */,
+				D14AA4691DD1D6B300E1A46D /* LYCustomView.h */,
 				D13DDC8A1DD181C900B3AD5B /* TimeFormatTool */,
 				D13B5A771D830109005D89FA /* MPTools.h */,
 				D13B5A781D830109005D89FA /* MPTools.m */,
@@ -2982,6 +2995,7 @@
 				D17A27E81D93F89900C00B3F /* NSNotificationCenter+YYAdd.m in Sources */,
 				D103BBB11DB380BD0009DF88 /* HBRedDotView.m in Sources */,
 				D12A85D71DC72931004834E0 /* NormalTableViewCell.m in Sources */,
+				D14AA46A1DD1D6B300E1A46D /* LYCustomView.m in Sources */,
 				D13B58A41D7EF05B005D89FA /* DiscoverViewController.m in Sources */,
 				D17A28281D93F89900C00B3F /* YYDispatchQueuePool.m in Sources */,
 				D13B59461D829AA8005D89FA /* UIViewExt.m in Sources */,
