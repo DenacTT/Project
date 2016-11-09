@@ -44,6 +44,7 @@ static NSString * const TableViewCellID = @"TableViewCellID";
 //    [self addCell:@"Click Cell Expend" className:@"ExtensibleCellViewController"];
 //    [self addCell:@"Left Right TableView" className:@"LinkageTableViewController"];
     [self addCell:@"TableView" className:@"MultiViewController"];
+    [self addCell:@"BBSTableView" className:@"BBSListViewController"];
 }
 
 - (void)addCell:(NSString *)cellTitle className:(NSString *)className

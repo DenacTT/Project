@@ -69,7 +69,7 @@
         _backBtn.frame = CGRectMake(0, 20, 60, 44);
         _backBtn.titleLabel.font = Font(16.f);
         
-        [_backBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_backBtn setTitle:@"返回" forState:UIControlStateNormal];
         [_backBtn setTitleColor:RGB(18, 196, 190) forState:(UIControlStateNormal)];
         
         _backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);

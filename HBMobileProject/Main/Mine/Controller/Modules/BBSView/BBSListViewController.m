@@ -61,15 +61,14 @@ static NSString * const BBSCellID = @"BBSCell";
 #pragma mark - getter
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight-64)style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight-64)style:UITableViewStylePlain];
         [_tableView registerClass:[BBSCell class] forCellReuseIdentifier:BBSCellID];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget: self refreshingAction: @selector(loadMoreData)];
-        _tableView.hidden = YES;
+        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget: self refreshingAction: @selector(loadMoreData)];
     }
     return _tableView;
 }
@@ -82,6 +81,15 @@ static NSString * const BBSCellID = @"BBSCell";
         [_indictorView hidesWhenStopped];
     }
     return _indictorView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = NO;
 }
 
 @end

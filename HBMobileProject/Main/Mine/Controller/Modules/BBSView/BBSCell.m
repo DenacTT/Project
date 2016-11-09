@@ -7,18 +7,31 @@
 //
 
 #import "BBSCell.h"
+#import "BBSCellTopView.h"
+
+@interface BBSCell ()
+
+@property (nonatomic, strong) BBSCellTopView *topView;
+
+@end
 
 @implementation BBSCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        [self addSubview:self.topView];
+    }
+    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (BBSCellTopView *)topView
+{
+    if (!_topView) {
+        _topView = [[BBSCellTopView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 54.5)];
+    }
+    return _topView;
 }
 
 @end
