@@ -9,25 +9,30 @@
 #import "BBSListViewController.h"
 #import "BBSCell.h"
 #import "MJRefresh.h"
+#import "DMHeartFlyView.h"
 
 static NSString * const BBSCellID = @"BBSCell";
 
-@interface BBSListViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface BBSListViewController ()<UITableViewDelegate, UITableViewDataSource, BBSCellTopViewDelegate, BBSCellOperateViewDelegate>
 
+@property (nonatomic, strong) BBSCell *cell;
 @property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) UIActivityIndicatorView *indictorView;
 
 @end
 
 @implementation BBSListViewController
-
+{
+    CGFloat _heartSize;
+    NSTimer *_burstTimer;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.isUseBackBtn = YES;
     self.titleLabel.text = @"热门";
+    _heartSize = 36;
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.indictorView];
 }
@@ -46,12 +51,28 @@ static NSString * const BBSCellID = @"BBSCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 400;
+    return 619;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BBSCell *cell = [tableView dequeueReusableCellWithIdentifier:BBSCellID forIndexPath:indexPath];
-    return cell;
+    _cell = [tableView dequeueReusableCellWithIdentifier:BBSCellID forIndexPath:indexPath];
+    _cell.operateView.delegate = self;
+    return _cell;
+}
+
+- (void)clickZan
+{
+//    [self showTheLove];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.35 target:self selector:@selector(showTheLove) userInfo:nil repeats:YES];
+}
+
+-(void)showTheLove{
+    DMHeartFlyView* heart = [[DMHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, _heartSize, _heartSize)];
+    [_cell addSubview:heart];
+//    CGPoint fountainSource = _cell.operateView.zanBtn.center;
+//    CGPointMake(_cell.operateView.zanBtn.center.x, _cell.operateView.zanBtn.center.y);
+    heart.center = _cell.operateView.zanBtn.center;
+    [heart animateInView:self.view];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -63,7 +84,7 @@ static NSString * const BBSCellID = @"BBSCell";
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight-64)style:UITableViewStylePlain];
         [_tableView registerClass:[BBSCell class] forCellReuseIdentifier:BBSCellID];
-//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.dataSource = self;

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BBSCellTopViewDelegate <NSObject>
+
+- (void)headButtonClick:(UITableViewCell *)cell;
+
+@end
+
 @interface BBSCellTopView : UIView
 
 @property (nonatomic, strong) UIButton  *headImageBtn;      // 头像
@@ -17,5 +23,8 @@
 
 @property (nonatomic, strong) UIButton  *followBtn;         // 私密,关注按钮
 @property (nonatomic, strong) UIButton  *moreActionBtn;     // 更多操作:举报.
+@property (nonatomic, strong) UIView    *bottomLine;        // 底部线条
+
+@property (nonatomic, weak) id <BBSCellTopViewDelegate>delegate;
 
 @end

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BBSCellTopView.h"
+#import "BBSCellOperateView.h"
 
 @interface BBSCell : UITableViewCell
+
+@property (nonatomic, strong) BBSCellTopView *headView;
+
+@property (nonatomic,strong) BBSCellOperateView *operateView;
 
 @end
