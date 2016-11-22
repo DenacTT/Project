@@ -7,7 +7,35 @@
 //
 
 #import "BBSCellOperateView.h"
+#import "UIImage+Categories.h"
+
 #define kBounds [UIScreen mainScreen].bounds.size
+#define kHeartCount 10
+#define kZanWH 25.f
+#define kXOffSet 20.f
+#define kYOffSet 60.f
+#define kButtonH 25.f
+#define kThumbImgWH kButtonH/2
+#define kNumLabelH kButtonH/2
+#define kNumFont [UIFont systemFontOfSize:13.f]
+
+@interface ZanImageView ()
+@end
+
+@implementation ZanImageView
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.image = [UIImage imageNamed:@"bbs_zanClicked"];
+        UIImage *newImage = [self.image imageWithColor:RGB(255, 81, 81)];
+        self.image = newImage;
+    }
+    return self;
+}
+
+@end
 
 @interface BBSCellOperateView ()
 
@@ -35,9 +63,10 @@
 #pragma mark - ButtonClick
 - (void)onZanBtnClick:(UIButton *)sender
 {
-    NSLog(@"赞赞赞");
+//    NSLog(@"赞赞赞");
 //    [self praise];
     if ([self.delegate respondsToSelector:@selector(clickZan)]) {
+        [self showWithAnimation];
         [self.delegate clickZan];
     };
 }
@@ -50,6 +79,85 @@
 - (void)onShareBtnClick:(UIButton *)sender
 {
     NSLog(@"分享");
+}
+
+#pragma mark - 点赞动画效果
+- (void)showWithAnimation {
+
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    scaleAnimation.toValue = [NSNumber numberWithFloat:1.6];
+    scaleAnimation.autoreverses = YES;
+    scaleAnimation.repeatCount = 1;
+    scaleAnimation.duration = 0.25;
+    scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut];
+    [self.zanBtn.imageView.layer addAnimation:scaleAnimation forKey:@"scale"];
+    
+    for (int i = 0; i < kHeartCount; i++) {
+        [self createSmallZan];
+    }
+    
+}
+
+-(int)getRandomNumber:(int)from to:(int)to
+{
+    return (int)(from + (arc4random() % (to - from + 1)));
+}
+
+- (void)createSmallZan {
+    
+    
+    CGFloat x = [self getRandomNumber:self.zanBtn.center.x-15 to:self.zanBtn.center.x];
+    CGFloat y = [self getRandomNumber:self.zanBtn.top to:self.zanBtn.center.y*4];
+    CGPoint center = CGPointMake(x, y);
+    
+    UIImageView *zanImgView = [[ZanImageView alloc] init];
+    zanImgView.center = center;
+    zanImgView.alpha = 0.9f;
+    zanImgView.bounds = CGRectMake(0.f, 0.f, 0.f, 0.f);
+    
+    // 向上移动
+    NSInteger i = arc4random_uniform(2);
+    NSInteger direction = 1 - (2*i);
+    
+    UIBezierPath *bezPath = [UIBezierPath bezierPath];
+    [bezPath moveToPoint:center];
+    
+    CGPoint cPoint1 = CGPointMake([self getRandomNumber:10 to:center.x - kXOffSet*direction], -kYOffSet);
+    CGPoint cPoint2 = CGPointMake([self getRandomNumber:5 to:center.x + kXOffSet*direction], -kYOffSet);
+    CGPoint endPoint = CGPointMake(center.x-15, center.y-ScreenWidth-30);
+    // 运动路径
+    [bezPath addCurveToPoint:endPoint controlPoint1:cPoint1 controlPoint2:cPoint2];
+    
+    // 创建关键帧动画
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    animation.path = bezPath.CGPath;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    animation.duration = 2.f;
+    animation.removedOnCompletion = YES;
+    [zanImgView.layer addAnimation:animation forKey:nil];
+    
+    // 先向上移动一小段距离
+    CGFloat transY = [self getRandomNumber:-10.f to:-50.f];
+    [UIView animateWithDuration:0.1f animations:^{
+        zanImgView.transform = CGAffineTransformMakeTranslation(0.f, transY);
+    }];
+    
+    // 弹簧效果弹出
+    [UIView animateWithDuration:0.2f delay:0.1f usingSpringWithDamping:0.5f initialSpringVelocity:50.f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        CGFloat w = [self getRandomNumber:10 to:30];
+        zanImgView.bounds = CGRectMake(0, 0, w, w);
+    } completion:NULL];
+    
+    // 渐隐消失
+    [UIView animateKeyframesWithDuration:2.f delay:0.f options:0.f animations:^{
+        [self addSubview:zanImgView];
+        [UIView addKeyframeWithRelativeStartTime:3/4.f relativeDuration:1/4.f animations:^{
+            zanImgView.alpha = 0.6f;
+        }];
+    } completion:^(BOOL finished) {
+        [zanImgView removeFromSuperview];
+    }];
 }
 
 
@@ -80,8 +188,6 @@
     [UIView setAnimationDelegate:self];
     [UIView commitAnimations];
 }
-
-
 
 - (void)onAnimationComplete:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context{
     
@@ -116,7 +222,7 @@
         _zanBtn.frame = CGRectMake(0, 0, ScreenWidth/3, 45);
         
         [_zanBtn setImage:Image(@"bbs_zanNormal") forState:(UIControlStateNormal)];
-        [_zanBtn setImage:Image(@"bbs_zanClicked") forState:(UIControlStateHighlighted)];
+        [_zanBtn setImage:Image(@"bbs_zanClicked") forState:(UIControlStateSelected)];
         
         [_zanBtn setTitle:@"100" forState:(UIControlStateNormal)];
         [_zanBtn setTitleColor:[UIColor lightGrayColor] forState:(UIControlStateNormal)];

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@interface ZanImageView : UIImageView
+
+@end
+
 @protocol BBSCellOperateViewDelegate <NSObject>
 
 - (void)clickZan;

@@ -191,6 +191,24 @@
     return img;
 }
 
+- (UIImage *)imageWithColor:(UIColor *)color
+{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGContextTranslateCTM(ctx, 0, self.size.height);
+    CGContextScaleCTM(ctx, 1.0, -1.0);
+    CGContextSetBlendMode(ctx, kCGBlendModeNormal);
+    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
+    CGContextClipToMask(ctx, rect, self.CGImage);
+    [color setFill];
+    CGContextFillRect(ctx, rect);
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 #pragma mark - 模糊效果图片
 + (UIImage *)gaussianBlurImage:(UIImage *)image andInputRadius:(CGFloat)radius
 {

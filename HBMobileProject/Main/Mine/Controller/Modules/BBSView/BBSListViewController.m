@@ -60,10 +60,9 @@ static NSString * const BBSCellID = @"BBSCell";
     return _cell;
 }
 
-- (void)clickZan
-{
+- (void)clickZan {
 //    [self showTheLove];
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.35 target:self selector:@selector(showTheLove) userInfo:nil repeats:YES];
+//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.35 target:self selector:@selector(showTheLove) userInfo:nil repeats:YES];
 }
 
 -(void)showTheLove{

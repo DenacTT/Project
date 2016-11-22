@@ -60,6 +60,15 @@ typedef enum {
 
 + (UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size;
 
+/**
+ *  绘制不同颜色图片
+ *
+ *  @param color 先绘制的图片颜色
+ *
+ *  @return 绘制好的图片
+ */
+- (UIImage *)imageWithColor:(UIColor *)color;
+
 #pragma mark - 模糊效果图片
 + (UIImage *)gaussianBlurImage:(UIImage *)image andInputRadius:(CGFloat)radius;
 + (UIImage *)gaussianBlurImageWithColor:(UIColor *)color andSize:(CGSize)size andInputRadius:(CGFloat)radius;
