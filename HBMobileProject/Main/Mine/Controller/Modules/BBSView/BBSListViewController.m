@@ -61,6 +61,7 @@ static NSString * const BBSCellID = @"BBSCell";
 }
 
 - (void)clickZan {
+    [self.tableView reloadData];
 //    [self showTheLove];
 //    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.35 target:self selector:@selector(showTheLove) userInfo:nil repeats:YES];
 }

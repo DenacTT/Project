@@ -90,6 +90,7 @@
 		D140C9141DCDDEC100EF48EA /* PasteTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9131DCDDEC100EF48EA /* PasteTagModel.m */; };
 		D140C9171DCDDF7000EF48EA /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9161DCDDF7000EF48EA /* UserInfoModel.m */; };
 		D140C91A1DCDDFEA00EF48EA /* UserTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D140C9191DCDDFEA00EF48EA /* UserTagModel.m */; };
+		D1421E9C1DED7D4700E94BB1 /* ZanAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1421E9B1DED7D4700E94BB1 /* ZanAnimationView.m */; };
 		D14AA46A1DD1D6B300E1A46D /* LYCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA4681DD1D6B300E1A46D /* LYCustomView.m */; };
 		D14AA4701DD2CBF800E1A46D /* BBSListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA46F1DD2CBF800E1A46D /* BBSListViewController.m */; };
 		D14AA4731DD2CC5D00E1A46D /* BBSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA4721DD2CC5D00E1A46D /* BBSCell.m */; };
@@ -513,6 +514,8 @@
 		D140C9161DCDDF7000EF48EA /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		D140C9181DCDDFEA00EF48EA /* UserTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTagModel.h; sourceTree = "<group>"; };
 		D140C9191DCDDFEA00EF48EA /* UserTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTagModel.m; sourceTree = "<group>"; };
+		D1421E9A1DED7D4700E94BB1 /* ZanAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZanAnimationView.h; sourceTree = "<group>"; };
+		D1421E9B1DED7D4700E94BB1 /* ZanAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZanAnimationView.m; sourceTree = "<group>"; };
 		D14AA4681DD1D6B300E1A46D /* LYCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCustomView.m; sourceTree = "<group>"; };
 		D14AA4691DD1D6B300E1A46D /* LYCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCustomView.h; sourceTree = "<group>"; };
 		D14AA46E1DD2CBF800E1A46D /* BBSListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSListViewController.h; sourceTree = "<group>"; };
@@ -1602,6 +1605,8 @@
 				D14AA4761DD2D0EF00E1A46D /* BBSCellTopView.m */,
 				D12A2E781DD323AC00D12F4A /* BBSCellOperateView.h */,
 				D12A2E791DD323AC00D12F4A /* BBSCellOperateView.m */,
+				D1421E9A1DED7D4700E94BB1 /* ZanAnimationView.h */,
+				D1421E9B1DED7D4700E94BB1 /* ZanAnimationView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3125,6 +3130,7 @@
 				D17A28131D93F89900C00B3F /* YYTextContainerView.m in Sources */,
 				D17A28011D93F89900C00B3F /* YYDiskCache.m in Sources */,
 				D1B6D7741D7D154700C3E647 /* MASViewConstraint.m in Sources */,
+				D1421E9C1DED7D4700E94BB1 /* ZanAnimationView.m in Sources */,
 				D1D26F861D9A76650080D784 /* VideoRecordEncoder.m in Sources */,
 				D17A28031D93F89900C00B3F /* YYMemoryCache.m in Sources */,
 				D17A280B1D93F89900C00B3F /* YYImage.m in Sources */,
