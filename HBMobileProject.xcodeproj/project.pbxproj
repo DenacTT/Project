@@ -2567,8 +2567,8 @@
 			isa = PBXGroup;
 			children = (
 				D13DDC8A1DD181C900B3AD5B /* TimeFormatTool */,
-				D14AA4681DD1D6B300E1A46D /* LYCustomView.m */,
 				D14AA4691DD1D6B300E1A46D /* LYCustomView.h */,
+				D14AA4681DD1D6B300E1A46D /* LYCustomView.m */,
 				D13B5A771D830109005D89FA /* MPTools.h */,
 				D13B5A781D830109005D89FA /* MPTools.m */,
 				D13B59501D82DC30005D89FA /* CustomTipsView.h */,

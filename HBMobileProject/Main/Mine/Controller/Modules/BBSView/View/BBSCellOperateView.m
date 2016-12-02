@@ -53,9 +53,11 @@
         [self addSubview:self.lineA];
         [self addSubview:self.lineB];
         [self addSubview:self.zanBtn];
+        [self.zanBtn addSubview:self.zanImage];
         [self addSubview:self.commentBtn];
         [self addSubview:self.shareBtn];
         [self addSubview:self.bottomLine];
+        
     }
     return self;
 }
@@ -81,7 +83,7 @@
     if (sender.selected) {
         if ([self.delegate respondsToSelector:@selector(clickZan)]) {
             [self showWithAnimation3];
-            [self.delegate clickZan];
+//            [self.delegate clickZan];
         };
     }
     
@@ -95,6 +97,75 @@
 - (void)onShareBtnClick:(UIButton *)sender
 {
     NSLog(@"分享");
+}
+
+#pragma mark - 点赞动画 3
+- (void)showWithAnimation3 {
+    
+    // 效果1 (该动画在实现代理方法 clickZan (reloadTableView) 的情况下不会执行,具体原因暂不知悉,有待考究)
+    //    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    //    scaleAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    //    scaleAnimation.toValue = [NSNumber numberWithFloat:1.5];
+    //    scaleAnimation.autoreverses = YES;
+    //    scaleAnimation.repeatCount = 1;
+    //    scaleAnimation.duration = 0.25;
+    //    scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut];
+    //    [self.zanBtn.imageView.layer addAnimation:scaleAnimation forKey:@"scale"];
+    
+    // 可动画的属性 :frame,center,bounds alpha,background,tranform
+    
+    // 关于 transform
+    //位移
+    //参1：与自身对比
+    //参2：x轴偏移量
+    //参2：y轴偏移量
+    //self.animationView.transform = CGAffineTransformTranslate(self.animationView.transform, 10, 50)
+    
+    //缩放
+    //参2：x轴缩放比例
+    //参3：y轴缩放比例
+    //self.animationView.transform = CGAffineTransformScale(self.animationView.transform, 0.5, 0.5);
+    
+    //旋转
+    //参2：旋转角度
+    //self.animationView.transform = CGAffineTransformRotate(self.animationView.transform, CGFloat(M_PI))
+    
+    // 效果2
+    [UIView animateWithDuration:0 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+        self.zanBtn.alpha = 0;
+        self.zanBtn.imageView.transform = CGAffineTransformMakeScale(0.4, 0.4);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+            self.zanBtn.alpha = 1;
+            self.zanBtn.imageView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.1 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+                self.zanBtn.imageView.transform = CGAffineTransformMakeScale(0.9, 0.9);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.1 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+                    self.zanBtn.imageView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                } completion:^(BOOL finished) {
+                    
+                }];
+            }];
+        }];
+    }];
+    
+
+    
+
+//    
+//    [_zanImage.layer setValue:@(0) forKeyPath:@"position.y"];
+//    [UIView animateWithDuration:1.3 animations:^{
+//        [_zanImage.layer setValue:@(-150) forKeyPath:@"position.y"];
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+
+    
+    
+    
+    
 }
 
 #pragma mark - 点赞动画效果 2
@@ -173,41 +244,6 @@
     return (int)(from + (arc4random() % (to - from + 1)));
 }
 
-#pragma mark - 点赞动画 3
-- (void)showWithAnimation3 {
-    
-    // 效果1 (该动画在实现代理方法 clickZan 的情况下不会执行,具体原因暂时不知悉,有待考究)
-    //    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    //    scaleAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-    //    scaleAnimation.toValue = [NSNumber numberWithFloat:1.5];
-    //    scaleAnimation.autoreverses = YES;
-    //    scaleAnimation.repeatCount = 1;
-    //    scaleAnimation.duration = 0.25;
-    //    scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut];
-    //    [self.zanBtn.imageView.layer addAnimation:scaleAnimation forKey:@"scale"];
-    
-    // 效果2 
-    [UIView animateWithDuration:0 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
-        self.zanBtn.alpha = 0;
-        self.zanBtn.imageView.transform = CGAffineTransformMakeScale(0.4, 0.4);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
-            self.zanBtn.alpha = 1;
-            self.zanBtn.imageView.transform = CGAffineTransformMakeScale(1.1, 1.1);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.1 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
-                self.zanBtn.imageView.transform = CGAffineTransformMakeScale(0.9, 0.9);
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.1 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
-                    self.zanBtn.imageView.transform = CGAffineTransformMakeScale(1.0, 1.0);
-                } completion:^(BOOL finished) {
-                    
-                }];
-            }];
-        }];
-    }];
-}
-
 #pragma mark - 点赞动画 1
 - (void)praise{
     UIImageView *imageView = [[UIImageView alloc] init];
@@ -276,6 +312,14 @@
         [_zanBtn addTarget:self action:@selector(onZanBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _zanBtn;
+}
+
+- (UIImageView *)zanImage {
+    if (!_zanImage) {
+        _zanImage = [[UIImageView alloc] initWithFrame:_zanBtn.imageView.bounds];
+        _zanImage.image = Image(@"bbs_zanClicked");
+    }
+    return _zanImage;
 }
 
 - (UIButton *)commentBtn

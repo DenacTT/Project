@@ -20,9 +20,10 @@
 
 @interface BBSCellOperateView : UIView
 
-@property (nonatomic,strong) UIButton *zanBtn;
-@property (nonatomic,strong) UIButton *commentBtn;
-@property (nonatomic,strong) UIButton *shareBtn;
+@property (nonatomic, strong) UIButton *zanBtn;
+@property (nonatomic, strong) UIButton *commentBtn;
+@property (nonatomic, strong) UIButton *shareBtn;
+@property (nonatomic, strong) UIImageView *zanImage;
 
 @property (nonatomic, weak) id<BBSCellOperateViewDelegate>delegate;
 
