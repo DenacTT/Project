@@ -56,6 +56,7 @@ static NSString * const BBSCellID = @"BBSCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     _cell = [tableView dequeueReusableCellWithIdentifier:BBSCellID forIndexPath:indexPath];
+    _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     _cell.operateView.delegate = self;
     return _cell;
 }

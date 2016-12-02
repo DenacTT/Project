@@ -68,10 +68,19 @@
 //    [self praise];
     
     // 动画2
+//    sender.selected = !sender.selected;
+//    if (sender.selected) {
+//        if ([self.delegate respondsToSelector:@selector(clickZan)]) {
+//            [self showWithAnimation2];
+//            [self.delegate clickZan];
+//        };
+//    }
+    
+    // 动画3
     sender.selected = !sender.selected;
     if (sender.selected) {
         if ([self.delegate respondsToSelector:@selector(clickZan)]) {
-            [self showWithAnimation];
+            [self showWithAnimation3];
             [self.delegate clickZan];
         };
     }
@@ -88,11 +97,12 @@
     NSLog(@"分享");
 }
 
-#pragma mark - 点赞动画效果 1
-- (void)showWithAnimation {
+#pragma mark - 点赞动画效果 2
+- (void)showWithAnimation2 {
     
     [UIView animateWithDuration:0.2 animations:^{
         self.zanBtn.imageView.transform = CGAffineTransformMakeScale(1.4, 1.4);
+        
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.3 animations:^{
             self.zanBtn.imageView.transform = CGAffineTransformMakeScale(1, 1);
@@ -105,22 +115,6 @@
             }
         }];
     }];
-    
-//    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-//    scaleAnimation.fromValue = [NSNumber numberWithFloat:1.0];
-//    scaleAnimation.toValue = [NSNumber numberWithFloat:1.5];
-//    scaleAnimation.autoreverses = YES;
-//    scaleAnimation.repeatCount = 1;
-//    scaleAnimation.duration = 0.25;
-//    scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut];
-//    [self.zanBtn.imageView.layer addAnimation:scaleAnimation forKey:@"scale"];
-//    
-//    for (int i = 0; i < kHeartCount; i++) {
-//        CGFloat x = [self getRandomNumber:self.zanBtn.center.x-15 to:self.zanBtn.center.x];
-//        CGFloat y = [self getRandomNumber:self.zanBtn.top to:self.zanBtn.center.y*4];
-//        CGPoint center = CGPointMake(x, y);
-//        [self createSmallZanWithCenter:center];
-//    }
 }
 
 - (void)createSmallZanWithCenter:(CGPoint)center {
@@ -177,6 +171,41 @@
 - (int)getRandomNumber:(int)from to:(int)to
 {
     return (int)(from + (arc4random() % (to - from + 1)));
+}
+
+#pragma mark - 点赞动画 3
+- (void)showWithAnimation3 {
+    
+    // 效果1 (该动画在实现代理方法 clickZan 的情况下不会执行,具体原因暂时不知悉,有待考究)
+    //    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    //    scaleAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    //    scaleAnimation.toValue = [NSNumber numberWithFloat:1.5];
+    //    scaleAnimation.autoreverses = YES;
+    //    scaleAnimation.repeatCount = 1;
+    //    scaleAnimation.duration = 0.25;
+    //    scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut];
+    //    [self.zanBtn.imageView.layer addAnimation:scaleAnimation forKey:@"scale"];
+    
+    // 效果2 
+    [UIView animateWithDuration:0 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+        self.zanBtn.alpha = 0;
+        self.zanBtn.imageView.transform = CGAffineTransformMakeScale(0.4, 0.4);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+            self.zanBtn.alpha = 1;
+            self.zanBtn.imageView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.1 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+                self.zanBtn.imageView.transform = CGAffineTransformMakeScale(0.9, 0.9);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.1 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+                    self.zanBtn.imageView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                } completion:^(BOOL finished) {
+                    
+                }];
+            }];
+        }];
+    }];
 }
 
 #pragma mark - 点赞动画 1

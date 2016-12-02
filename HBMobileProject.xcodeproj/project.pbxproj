@@ -308,6 +308,7 @@
 		D1B6D79A1D7D159600C3E647 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D78F1D7D159600C3E647 /* NSString+MJExtension.m */; };
 		D1D26F861D9A76650080D784 /* VideoRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */; };
 		D1D7B58B1DD01F0C0008EAC9 /* UILabel+Multiline.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D7B58A1DD01F0C0008EAC9 /* UILabel+Multiline.m */; };
+		D1E8982B1DF017F500B71A69 /* heart_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1E8982A1DF017F500B71A69 /* heart_big@2x.png */; };
 		D1FDDA6D1DD30FA200203B91 /* bbs_cardNum_0.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA561DD30FA200203B91 /* bbs_cardNum_0.png */; };
 		D1FDDA6E1DD30FA200203B91 /* bbs_cardNum_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA571DD30FA200203B91 /* bbs_cardNum_1.png */; };
 		D1FDDA6F1DD30FA200203B91 /* bbs_cardNum_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA581DD30FA200203B91 /* bbs_cardNum_2.png */; };
@@ -1054,6 +1055,7 @@
 		D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordEncoder.m; sourceTree = "<group>"; };
 		D1D7B5891DD01F0C0008EAC9 /* UILabel+Multiline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Multiline.h"; sourceTree = "<group>"; };
 		D1D7B58A1DD01F0C0008EAC9 /* UILabel+Multiline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Multiline.m"; sourceTree = "<group>"; };
+		D1E8982A1DF017F500B71A69 /* heart_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_big@2x.png"; sourceTree = "<group>"; };
 		D1FDDA561DD30FA200203B91 /* bbs_cardNum_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_0.png; sourceTree = "<group>"; };
 		D1FDDA571DD30FA200203B91 /* bbs_cardNum_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_1.png; sourceTree = "<group>"; };
 		D1FDDA581DD30FA200203B91 /* bbs_cardNum_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_2.png; sourceTree = "<group>"; };
@@ -2732,6 +2734,7 @@
 				D1FDDA6A1DD30FA200203B91 /* bbs_zanClicked@2x.png */,
 				D1FDDA6B1DD30FA200203B91 /* bbs_zanNormal@2x.png */,
 				D1FDDA6C1DD30FA200203B91 /* bbs_zanPerson@2x.png */,
+				D1E8982A1DF017F500B71A69 /* heart_big@2x.png */,
 			);
 			path = BBSImage;
 			sourceTree = "<group>";
@@ -2878,6 +2881,7 @@
 				D17A28CC1D94083200C00B3F /* SCOtherSexM@3x.png in Resources */,
 				D1FDDA761DD30FA200203B91 /* bbs_cardNum_9.png in Resources */,
 				D1B6D6FE1D7D10C500C3E647 /* LaunchScreen.storyboard in Resources */,
+				D1E8982B1DF017F500B71A69 /* heart_big@2x.png in Resources */,
 				D17A28C91D94083200C00B3F /* master_man_head_icon@2x.png in Resources */,
 				D13B59381D81A596005D89FA /* music2.json in Resources */,
 				D17A28AA1D9404CC00C00B3F /* UMS_sina_icon.png in Resources */,
