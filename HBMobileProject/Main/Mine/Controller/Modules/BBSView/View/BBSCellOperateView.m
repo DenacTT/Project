@@ -53,7 +53,7 @@
         [self addSubview:self.lineA];
         [self addSubview:self.lineB];
         [self addSubview:self.zanBtn];
-        [self.zanBtn addSubview:self.zanImage];
+//        [self.zanBtn addSubview:self.zanImage];
         [self addSubview:self.commentBtn];
         [self addSubview:self.shareBtn];
         [self addSubview:self.bottomLine];
@@ -150,19 +150,6 @@
             }];
         }];
     }];
-    
-
-    
-
-//    
-//    [_zanImage.layer setValue:@(0) forKeyPath:@"position.y"];
-//    [UIView animateWithDuration:1.3 animations:^{
-//        [_zanImage.layer setValue:@(-150) forKeyPath:@"position.y"];
-//    } completion:^(BOOL finished) {
-//        
-//    }];
-
-    
     
     
     

@@ -37,7 +37,6 @@
 		D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58A91D7EF093005D89FA /* MessageViewController.m */; };
 		D13B58AD1D7EF0A1005D89FA /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58AC1D7EF0A1005D89FA /* MineViewController.m */; };
 		D13B58B01D7EF1F3005D89FA /* ConfigTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58AF1D7EF1F3005D89FA /* ConfigTabBarController.m */; };
-		D13B58C11D7FC725005D89FA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58BD1D7FC725005D89FA /* HomeViewController.m */; };
 		D13B58C91D7FCD8A005D89FA /* PublishButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58C81D7FCD8A005D89FA /* PublishButton.m */; };
 		D13B58D51D7FF7F9005D89FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58D41D7FF7F9005D89FA /* ViewController.m */; };
 		D13B58D81D7FFA6F005D89FA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D13B58DA1D7FFA6F005D89FA /* Localizable.strings */; };
@@ -306,9 +305,10 @@
 		D1B6D7981D7D159600C3E647 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D78B1D7D159600C3E647 /* NSObject+MJKeyValue.m */; };
 		D1B6D7991D7D159600C3E647 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D78D1D7D159600C3E647 /* NSObject+MJProperty.m */; };
 		D1B6D79A1D7D159600C3E647 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D78F1D7D159600C3E647 /* NSString+MJExtension.m */; };
+		D1C6FC201DF2AA1C00A375B3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C6FC1F1DF2AA1C00A375B3 /* HomeViewController.m */; };
 		D1D26F861D9A76650080D784 /* VideoRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */; };
 		D1D7B58B1DD01F0C0008EAC9 /* UILabel+Multiline.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D7B58A1DD01F0C0008EAC9 /* UILabel+Multiline.m */; };
-		D1E8982B1DF017F500B71A69 /* heart_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1E8982A1DF017F500B71A69 /* heart_big@2x.png */; };
+		D1E8982B1DF017F500B71A69 /* BBS_DoubleClick_Heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1E8982A1DF017F500B71A69 /* BBS_DoubleClick_Heart@2x.png */; };
 		D1FDDA6D1DD30FA200203B91 /* bbs_cardNum_0.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA561DD30FA200203B91 /* bbs_cardNum_0.png */; };
 		D1FDDA6E1DD30FA200203B91 /* bbs_cardNum_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA571DD30FA200203B91 /* bbs_cardNum_1.png */; };
 		D1FDDA6F1DD30FA200203B91 /* bbs_cardNum_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA581DD30FA200203B91 /* bbs_cardNum_2.png */; };
@@ -413,8 +413,6 @@
 		D13B58AC1D7EF0A1005D89FA /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		D13B58AE1D7EF1F3005D89FA /* ConfigTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigTabBarController.h; sourceTree = "<group>"; };
 		D13B58AF1D7EF1F3005D89FA /* ConfigTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigTabBarController.m; sourceTree = "<group>"; };
-		D13B58BC1D7FC725005D89FA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		D13B58BD1D7FC725005D89FA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D13B58C71D7FCD8A005D89FA /* PublishButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishButton.h; sourceTree = "<group>"; };
 		D13B58C81D7FCD8A005D89FA /* PublishButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishButton.m; sourceTree = "<group>"; };
 		D13B58CA1D7FEC74005D89FA /* PchFile.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PchFile.pch; sourceTree = "<group>"; };
@@ -1051,11 +1049,13 @@
 		D1B6D78D1D7D159600C3E647 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
 		D1B6D78E1D7D159600C3E647 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
 		D1B6D78F1D7D159600C3E647 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		D1C6FC1E1DF2AA1C00A375B3 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		D1C6FC1F1DF2AA1C00A375B3 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D1D26F841D9A76650080D784 /* VideoRecordEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordEncoder.h; sourceTree = "<group>"; };
 		D1D26F851D9A76650080D784 /* VideoRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecordEncoder.m; sourceTree = "<group>"; };
 		D1D7B5891DD01F0C0008EAC9 /* UILabel+Multiline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Multiline.h"; sourceTree = "<group>"; };
 		D1D7B58A1DD01F0C0008EAC9 /* UILabel+Multiline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Multiline.m"; sourceTree = "<group>"; };
-		D1E8982A1DF017F500B71A69 /* heart_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_big@2x.png"; sourceTree = "<group>"; };
+		D1E8982A1DF017F500B71A69 /* BBS_DoubleClick_Heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BBS_DoubleClick_Heart@2x.png"; sourceTree = "<group>"; };
 		D1FDDA561DD30FA200203B91 /* bbs_cardNum_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_0.png; sourceTree = "<group>"; };
 		D1FDDA571DD30FA200203B91 /* bbs_cardNum_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_1.png; sourceTree = "<group>"; };
 		D1FDDA581DD30FA200203B91 /* bbs_cardNum_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_2.png; sourceTree = "<group>"; };
@@ -1375,8 +1375,8 @@
 		D13B58BB1D7FC725005D89FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D13B58BC1D7FC725005D89FA /* HomeViewController.h */,
-				D13B58BD1D7FC725005D89FA /* HomeViewController.m */,
+				D1C6FC1E1DF2AA1C00A375B3 /* HomeViewController.h */,
+				D1C6FC1F1DF2AA1C00A375B3 /* HomeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2734,7 +2734,7 @@
 				D1FDDA6A1DD30FA200203B91 /* bbs_zanClicked@2x.png */,
 				D1FDDA6B1DD30FA200203B91 /* bbs_zanNormal@2x.png */,
 				D1FDDA6C1DD30FA200203B91 /* bbs_zanPerson@2x.png */,
-				D1E8982A1DF017F500B71A69 /* heart_big@2x.png */,
+				D1E8982A1DF017F500B71A69 /* BBS_DoubleClick_Heart@2x.png */,
 			);
 			path = BBSImage;
 			sourceTree = "<group>";
@@ -2881,7 +2881,7 @@
 				D17A28CC1D94083200C00B3F /* SCOtherSexM@3x.png in Resources */,
 				D1FDDA761DD30FA200203B91 /* bbs_cardNum_9.png in Resources */,
 				D1B6D6FE1D7D10C500C3E647 /* LaunchScreen.storyboard in Resources */,
-				D1E8982B1DF017F500B71A69 /* heart_big@2x.png in Resources */,
+				D1E8982B1DF017F500B71A69 /* BBS_DoubleClick_Heart@2x.png in Resources */,
 				D17A28C91D94083200C00B3F /* master_man_head_icon@2x.png in Resources */,
 				D13B59381D81A596005D89FA /* music2.json in Resources */,
 				D17A28AA1D9404CC00C00B3F /* UMS_sina_icon.png in Resources */,
@@ -3037,7 +3037,6 @@
 				D12A85D41DC72917004834E0 /* TextBarCollectionCell.m in Sources */,
 				D17A27F01D93F89900C00B3F /* CALayer+YYAdd.m in Sources */,
 				D17A27ED1D93F89900C00B3F /* NSString+YYAdd.m in Sources */,
-				D13B58C11D7FC725005D89FA /* HomeViewController.m in Sources */,
 				D15E55541D9B698D0027634B /* VideoRecordStatusView.m in Sources */,
 				D17D68AF1DC9D3C1004A0B33 /* YMTextBarGroupView.m in Sources */,
 				D13B58E71D800B53005D89FA /* ConfigMovieViewController.m in Sources */,
@@ -3077,6 +3076,7 @@
 				D17A2DC31D95614F00C00B3F /* GPUImageBeautifyController.m in Sources */,
 				D17A27E71D93F89900C00B3F /* NSKeyedUnarchiver+YYAdd.m in Sources */,
 				D13B59111D8162BE005D89FA /* MoreMusicViewController.m in Sources */,
+				D1C6FC201DF2AA1C00A375B3 /* HomeViewController.m in Sources */,
 				D1B6D7701D7D154700C3E647 /* MASConstraint.m in Sources */,
 				D17A28301D93F89900C00B3F /* YYTimer.m in Sources */,
 				D17A28001D93F89900C00B3F /* YYCache.m in Sources */,

@@ -25,6 +25,8 @@
 
 @property (nonatomic,strong) YYLabel *commentBLabel;
 
+@property (nonatomic,strong) UIImageView *heartImage;
+
 @end
 
 @implementation BBSCell
@@ -35,6 +37,7 @@
         
         [self addSubview:self.headView];
         [self addSubview:self.bbsContentView];
+        [self.bbsContentView addSubview:self.heartImage];
         [self addSubview:self.operateView];
         [self addSubview:self.zanLabel];
         [self addSubview:self.contentLabel];
@@ -44,6 +47,53 @@
         [self addSubview:self.bottomView];
     }
     return self;
+}
+
+#pragma mark - methods
+#pragma mark - 双击显示动画
+- (void)doubleTap:(UIGestureRecognizer*)gestureRecognizer
+{
+    NSLog(@"-----doubleTap-----");
+    [self showBigHeartAnimation];
+}
+- (void)showBigHeartAnimation {
+    
+    _heartImage.alpha = 0;
+    [UIView animateWithDuration:0 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+        self.heartImage.alpha = 0;
+        self.heartImage.transform = CGAffineTransformMakeScale(0.0, 0.0);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+            self.heartImage.alpha = 1;
+            self.heartImage.transform = CGAffineTransformMakeScale(0.9, 0.9);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.1 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+                self.heartImage.transform = CGAffineTransformMakeScale(0.8, 0.8);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.1 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+                    self.heartImage.transform = CGAffineTransformMakeScale(0.84, 0.84);
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.2 delay:0.4 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+                        self.heartImage.alpha = 0;
+                        self.heartImage.transform = CGAffineTransformMakeScale(0.3, 0.3);
+                    } completion:^(BOOL finished) {
+                        [self showSmallHeartAnimation];
+                    }];
+                }];
+            }];
+        }];
+    }];
+}
+
+- (void)showSmallHeartAnimation {
+    self.heartImage.alpha = 0;
+    [UIView animateWithDuration:0.3 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+        self.heartImage.alpha = 1;
+        self.heartImage.frame = CGRectMake(-self.heartImage.center.x + 10, -self.heartImage.center.y + 50, 60, 60);
+        self.heartImage.transform = CGAffineTransformMakeRotation(5);
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 #pragma mark - getter
@@ -58,7 +108,10 @@
 -(UIView *)bbsContentView{
     if (!_bbsContentView) {
         _bbsContentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headView.bottom, ScreenWidth, ScreenWidth)];
-        _bbsContentView.backgroundColor = [UIColor yellowColor];
+//        _bbsContentView.backgroundColor = [UIColor yellowColor];
+        UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTap:)];
+        [doubleTapGestureRecognizer setNumberOfTapsRequired:2];
+        [_bbsContentView addGestureRecognizer:doubleTapGestureRecognizer];
     }
     return _bbsContentView;
 }
@@ -118,6 +171,15 @@
         _commentBLabel.backgroundColor = [UIColor orangeColor];
     }
     return _commentBLabel;
+}
+
+- (UIImageView *)heartImage {
+    if (!_heartImage) {
+        _heartImage = [[UIImageView alloc] initWithFrame:CGRectMake((ScreenWidth-120)/2, (ScreenWidth-120)/2, 120, 120)];
+        _heartImage.image = Image(@"BBS_DoubleClick_Heart");
+        _heartImage.alpha = 0;
+    }
+    return _heartImage;
 }
 
 @end
