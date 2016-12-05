@@ -31,7 +31,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 
 - (void)initData {
     
-    [self addClassName:@"BBSListViewController" withTitle:@"BBSTableView"];
+    [self addClassName:@"StroeMainViewController" withTitle:@"商城"];
 }
 
 - (void)addClassName:(NSString *)className withTitle:(NSString *)title {

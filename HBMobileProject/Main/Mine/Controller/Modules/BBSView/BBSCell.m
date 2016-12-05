@@ -86,14 +86,8 @@
 }
 
 - (void)showSmallHeartAnimation {
-    self.heartImage.alpha = 0;
-    [UIView animateWithDuration:0.3 delay:0 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
-        self.heartImage.alpha = 1;
-        self.heartImage.frame = CGRectMake(-self.heartImage.center.x + 10, -self.heartImage.center.y + 50, 60, 60);
-        self.heartImage.transform = CGAffineTransformMakeRotation(5);
-    } completion:^(BOOL finished) {
-        
-    }];
+    
+    // CGAffineTransformMakeTranslation
 }
 
 #pragma mark - getter
