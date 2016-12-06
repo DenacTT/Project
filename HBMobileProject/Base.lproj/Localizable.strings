@@ -32,3 +32,6 @@
 "VideoUse" = "使用视频";
 "RePlay" = "重拍";
 "UseShortVideo" = "使用";
+
+// HomeStoreViewController
+"store.homeStore.title" = "商城";

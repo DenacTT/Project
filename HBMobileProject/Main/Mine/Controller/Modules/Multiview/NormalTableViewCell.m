@@ -188,7 +188,6 @@
         
         [_descImage setContentMode:(UIViewContentModeScaleAspectFill)];
         [_descImage.layer setMasksToBounds:YES];
-        
     }
     return _descImage;
 }
