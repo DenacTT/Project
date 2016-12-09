@@ -94,6 +94,8 @@
 		D14AA4701DD2CBF800E1A46D /* BBSListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA46F1DD2CBF800E1A46D /* BBSListViewController.m */; };
 		D14AA4731DD2CC5D00E1A46D /* BBSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA4721DD2CC5D00E1A46D /* BBSCell.m */; };
 		D14AA4771DD2D0EF00E1A46D /* BBSCellTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA4761DD2D0EF00E1A46D /* BBSCellTopView.m */; };
+		D153E2151DF95EE1007AEAB7 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D153E2141DF95EE1007AEAB7 /* GoodsModel.m */; };
+		D153E2181DF95FC9007AEAB7 /* StoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D153E2171DF95FC9007AEAB7 /* StoreDetailViewController.m */; };
 		D15D86B61D8E484800115B73 /* UIControl+BtnClickDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */; };
 		D15E554E1D9AA25F0027634B /* VideoRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E554D1D9AA25F0027634B /* VideoRecordEngine.m */; };
 		D15E55541D9B698D0027634B /* VideoRecordStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = D15E55531D9B698D0027634B /* VideoRecordStatusView.m */; };
@@ -325,6 +327,7 @@
 		D1F115891DF6A44D001288FB /* place_goods_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1F115861DF6A44D001288FB /* place_goods_normal@2x.png */; };
 		D1F1158A1DF6A44D001288FB /* place_goods_rush@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1F115871DF6A44D001288FB /* place_goods_rush@2x.png */; };
 		D1F1158B1DF6A44D001288FB /* place_icon_price@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1F115881DF6A44D001288FB /* place_icon_price@2x.png */; };
+		D1FC4B8D1DF8425800DFDA2F /* YMTimeCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1FC4B8C1DF8425800DFDA2F /* YMTimeCountView.m */; };
 		D1FDDA6D1DD30FA200203B91 /* bbs_cardNum_0.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA561DD30FA200203B91 /* bbs_cardNum_0.png */; };
 		D1FDDA6E1DD30FA200203B91 /* bbs_cardNum_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA571DD30FA200203B91 /* bbs_cardNum_1.png */; };
 		D1FDDA6F1DD30FA200203B91 /* bbs_cardNum_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA581DD30FA200203B91 /* bbs_cardNum_2.png */; };
@@ -539,6 +542,10 @@
 		D14AA4721DD2CC5D00E1A46D /* BBSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSCell.m; sourceTree = "<group>"; };
 		D14AA4751DD2D0EF00E1A46D /* BBSCellTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSCellTopView.h; sourceTree = "<group>"; };
 		D14AA4761DD2D0EF00E1A46D /* BBSCellTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSCellTopView.m; sourceTree = "<group>"; };
+		D153E2131DF95EE1007AEAB7 /* GoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsModel.h; path = Model/GoodsModel.h; sourceTree = "<group>"; };
+		D153E2141DF95EE1007AEAB7 /* GoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsModel.m; path = Model/GoodsModel.m; sourceTree = "<group>"; };
+		D153E2161DF95FC9007AEAB7 /* StoreDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreDetailViewController.h; sourceTree = "<group>"; };
+		D153E2171DF95FC9007AEAB7 /* StoreDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreDetailViewController.m; sourceTree = "<group>"; };
 		D15D86B41D8E484800115B73 /* UIControl+BtnClickDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIControl+BtnClickDelay.h"; path = "UIControl/UIControl+BtnClickDelay.h"; sourceTree = "<group>"; };
 		D15D86B51D8E484800115B73 /* UIControl+BtnClickDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIControl+BtnClickDelay.m"; path = "UIControl/UIControl+BtnClickDelay.m"; sourceTree = "<group>"; };
 		D15E554C1D9AA25F0027634B /* VideoRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecordEngine.h; sourceTree = "<group>"; };
@@ -1094,6 +1101,8 @@
 		D1F115861DF6A44D001288FB /* place_goods_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place_goods_normal@2x.png"; sourceTree = "<group>"; };
 		D1F115871DF6A44D001288FB /* place_goods_rush@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place_goods_rush@2x.png"; sourceTree = "<group>"; };
 		D1F115881DF6A44D001288FB /* place_icon_price@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place_icon_price@2x.png"; sourceTree = "<group>"; };
+		D1FC4B8B1DF8425800DFDA2F /* YMTimeCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMTimeCountView.h; sourceTree = "<group>"; };
+		D1FC4B8C1DF8425800DFDA2F /* YMTimeCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMTimeCountView.m; sourceTree = "<group>"; };
 		D1FDDA561DD30FA200203B91 /* bbs_cardNum_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_0.png; sourceTree = "<group>"; };
 		D1FDDA571DD30FA200203B91 /* bbs_cardNum_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_1.png; sourceTree = "<group>"; };
 		D1FDDA581DD30FA200203B91 /* bbs_cardNum_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_2.png; sourceTree = "<group>"; };
@@ -2606,6 +2615,8 @@
 		D1B6D74D1D7D12AB00C3E647 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D1FC4B8B1DF8425800DFDA2F /* YMTimeCountView.h */,
+				D1FC4B8C1DF8425800DFDA2F /* YMTimeCountView.m */,
 				D13DDC8A1DD181C900B3AD5B /* TimeFormatTool */,
 				D14AA4691DD1D6B300E1A46D /* LYCustomView.h */,
 				D14AA4681DD1D6B300E1A46D /* LYCustomView.m */,
@@ -2766,6 +2777,8 @@
 			children = (
 				D1CB2DBB1DF595180092DA1A /* HomeStoreViewController.h */,
 				D1CB2DBC1DF595180092DA1A /* HomeStoreViewController.m */,
+				D153E2161DF95FC9007AEAB7 /* StoreDetailViewController.h */,
+				D153E2171DF95FC9007AEAB7 /* StoreDetailViewController.m */,
 				D1F1157B1DF69F71001288FB /* View */,
 				D1F1157C1DF69F7D001288FB /* Model */,
 			);
@@ -2838,6 +2851,8 @@
 		D1F1157C1DF69F7D001288FB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D153E2131DF95EE1007AEAB7 /* GoodsModel.h */,
+				D153E2141DF95EE1007AEAB7 /* GoodsModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3201,6 +3216,7 @@
 				D1CB2DC41DF595180092DA1A /* OrderStoreViewController.m in Sources */,
 				D15E55821D9CE7600027634B /* GPUImageBeautifyFilter.m in Sources */,
 				D17A2DB01D950A7000C00B3F /* VideoCameraView.m in Sources */,
+				D1FC4B8D1DF8425800DFDA2F /* YMTimeCountView.m in Sources */,
 				D17A28201D93F89900C00B3F /* YYTextAttribute.m in Sources */,
 				D17A28161D93F89900C00B3F /* YYTextInput.m in Sources */,
 				D17A27FA1D93F89900C00B3F /* UIImage+YYAdd.m in Sources */,
@@ -3264,6 +3280,7 @@
 				D13B58D51D7FF7F9005D89FA /* ViewController.m in Sources */,
 				D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */,
 				D1B6D7921D7D159600C3E647 /* MJFoundation.m in Sources */,
+				D153E2151DF95EE1007AEAB7 /* GoodsModel.m in Sources */,
 				D14AA4731DD2CC5D00E1A46D /* BBSCell.m in Sources */,
 				D17A282E1D93F89900C00B3F /* YYThreadSafeArray.m in Sources */,
 				D17A27E61D93F89900C00B3F /* NSDictionary+YYAdd.m in Sources */,
@@ -3287,6 +3304,7 @@
 				D17A28031D93F89900C00B3F /* YYMemoryCache.m in Sources */,
 				D17A280B1D93F89900C00B3F /* YYImage.m in Sources */,
 				D17A27E81D93F89900C00B3F /* NSNotificationCenter+YYAdd.m in Sources */,
+				D153E2181DF95FC9007AEAB7 /* StoreDetailViewController.m in Sources */,
 				D103BBB11DB380BD0009DF88 /* HBRedDotView.m in Sources */,
 				D12A85D71DC72931004834E0 /* NormalTableViewCell.m in Sources */,
 				D14AA46A1DD1D6B300E1A46D /* LYCustomView.m in Sources */,

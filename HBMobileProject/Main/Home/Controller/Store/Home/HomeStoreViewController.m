@@ -10,6 +10,7 @@
 #import "UIColor+Extend.h"
 #import "HomeStoreViewCell.h"
 #import "HomeStoreHeadView.h"
+#import "StoreDetailViewController.h"
 
 static NSString * const HomeStoreViewCellID = @"HomeStoreViewCellID";
 static NSString * const HomeStoreHeadViewID = @"HomeStoreHeadViewID";
@@ -48,7 +49,7 @@ static NSString * const HomeStoreHeadViewID = @"HomeStoreHeadViewID";
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     HomeStoreHeadView *headReusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HomeStoreHeadViewID forIndexPath:indexPath];
-    
+    [headReusableView initData];
     return headReusableView;
 }
 
@@ -59,7 +60,9 @@ static NSString * const HomeStoreHeadViewID = @"HomeStoreHeadViewID";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%zi", indexPath.item);
+    
+    StoreDetailViewController *detailViewController = [[StoreDetailViewController alloc] init];
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 #pragma mark - getter

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GoodsModel.h"
 
 @interface HomeStoreHeadView : UICollectionReusableView
+
+@property (nonatomic, strong) GoodsModel *model;
+
+- (void)initData;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "HomeStoreHeadView.h"
+#import "YMTimeCountView.h"
 
 #define kLeftMargin 32
 #define kBackGroundColor RGB(245, 108, 153)
@@ -15,6 +16,7 @@
 
 @property (nonatomic, strong) UILabel *runshLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) YMTimeCountView *timeCountView;
 @property (nonatomic, strong) UIButton *startBtn;
 @property (nonatomic, strong) UILabel *nextLabel;
 
@@ -33,7 +35,8 @@
         self.backgroundColor = kBackGroundColor;
         
         [self addSubview:self.runshLabel];
-        [self addSubview:self.timeLabel];
+//        [self addSubview:self.timeLabel];
+        [self addSubview:self.timeCountView];
         [self addSubview:self.startBtn];
         [self addSubview:self.nextLabel];
         
@@ -46,7 +49,13 @@
 }
 
 #pragma mark - setter
+- (void)setModel:(GoodsModel *)model {
+    _model = model;
+}
 
+- (void)initData {
+    [self.timeCountView runTimerWithRushStartTime:1481212800];
+}
 
 #pragma mark - getter
 - (UILabel *)runshLabel {
@@ -71,10 +80,18 @@
     return _timeLabel;
 }
 
+- (YMTimeCountView *)timeCountView {
+    if (!_timeCountView) {
+        _timeCountView = [[YMTimeCountView alloc] initWithFrame:CGRectMake(kLeftMargin,  _runshLabel.bottom+6, 108, 32)];
+//        _timeCountView.rushStartTime = 1481212800;
+    }
+    return _timeCountView;
+}
+
 - (UIButton *)startBtn {
     if (!_startBtn) {
         _startBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _startBtn.frame = CGRectMake(kLeftMargin, _timeLabel.bottom+6, 90, 30);
+        _startBtn.frame = CGRectMake(kLeftMargin, _timeCountView.bottom+6, 90, 30);
         _startBtn.backgroundColor = RGBA(255, 255, 255, 0.6);
         
         _startBtn.layer.masksToBounds = YES;
