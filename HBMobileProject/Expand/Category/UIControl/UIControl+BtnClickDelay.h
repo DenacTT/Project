@@ -11,7 +11,10 @@
 
 @interface UIControl (BtnClickDelay)
 
-// 延迟时间
-@property (nonatomic, assign) NSTimeInterval eventInterval;
+/** 延迟时间 */
+@property(nonatomic)NSTimeInterval jp_acceptEventInterval;
+
+/** 是否接受延迟 */
+@property(nonatomic)BOOL jp_ignoreEvent;
 
 @end
