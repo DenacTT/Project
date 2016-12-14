@@ -130,7 +130,7 @@
                         self.minuesLabel.text   = @"00";
                         self.secondsLabel.text  = @"00";
                     });
-                    self.timeStopBlock();
+//                    self.timeStopBlock();
                 }
                 
             });

@@ -34,4 +34,9 @@
 "UseShortVideo" = "使用";
 
 // HomeStoreViewController
-"store.homeStore.title" = "商城";
+"store.homeStore.title"     = "商城";
+"store.order.title"         = "我的订单";
+"store.order.all"           = "全部";
+"store.order.waitPay"       = "待支付";
+"store.order.waitTakeOver"  = "待收货";
+"store.order.haveTakeOver"  = "已收货";
