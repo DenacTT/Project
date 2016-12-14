@@ -9,12 +9,19 @@
 #import "OrderTableView.h"
 #import "UIColor+Extend.h"
 #import "OrderTableViewCell.h"
+#import "MJRefresh.h"
 
 static NSString * const OrderTableViewCellID = @"OrderTableViewCellID";
 
 @interface OrderTableView ()<UITableViewDelegate, UITableViewDataSource, OrderTableViewCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) UIActivityIndicatorView *indictorView;
+
+@property (nonatomic, strong) NSMutableArray *dataArr;
+
+@property (nonatomic, assign) NSInteger page;
 
 @end
 
@@ -23,6 +30,9 @@ static NSString * const OrderTableViewCellID = @"OrderTableViewCellID";
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
+        
+        self.page = 0;
+        [self.indictorView startAnimating];
         
         [self addSubview:self.tableView];
     }
@@ -37,6 +47,20 @@ static NSString * const OrderTableViewCellID = @"OrderTableViewCellID";
 - (void)initDataWithOrderModel:(OrderModel *)orderModel {
     
     NSLog(@"%zi", orderModel.status);
+    
+}
+
+- (void)loadNetData {
+    
+    if (self.page == 0) {
+        [self.indictorView startAnimating];
+    }
+    self.page++;
+    [self requestOrderListWithPage:self.page];
+}
+
+- (void)requestOrderListWithPage:(NSInteger)page {
+    
 }
 
 #pragma mark - OrderTableViewCellDelegate
@@ -66,10 +90,8 @@ static NSString * const OrderTableViewCellID = @"OrderTableViewCellID";
     OrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:OrderTableViewCellID forIndexPath:indexPath];
     cell.delegate = self;
     
-    OrderModel *model = [[OrderModel alloc] init];
-    model.status = 2;
-    cell.orderModel = model;
-    cell.orderDetail.orderModel = model;
+    cell.orderModel = self.orderModel;
+    cell.orderDetail.orderModel = self.orderModel;
     
     return cell;
 }
@@ -85,7 +107,10 @@ static NSString * const OrderTableViewCellID = @"OrderTableViewCellID";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerClass:[OrderTableViewCell class] forCellReuseIdentifier:OrderTableViewCellID];
+        
+        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget: self refreshingAction: @selector(loadNetData)];
     }
     return _tableView;
 }

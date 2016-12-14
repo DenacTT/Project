@@ -82,6 +82,7 @@
         OrderModel *model = [[OrderModel alloc] init];
         model.status = i;
         [tableView initDataWithOrderModel:model];
+        tableView.orderModel = model;
         
         [_comScrollView addSubview:tableView];
         [_comViewArr addObject:tableView];
@@ -99,8 +100,8 @@
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
     NSInteger index = targetContentOffset->x / ScreenWidth;
-    [self scrollToIndex:index];
     [_topBarTool scrollToIndex:index];
+    [self scrollToIndex:index];
 }
 
 #pragma mark - getter

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderModel.h"
 
 typedef void(^SelectItem)(NSInteger item);
 
@@ -19,5 +20,7 @@ typedef void(^SelectItem)(NSInteger item);
 - (id)initWithFrame:(CGRect)frame items:(NSArray *)items selectIndex:(NSInteger)selectedIndex select:(SelectItem)selectBlock;
 
 - (void)scrollToIndex:(NSInteger)index;
+
+- (void)initDataWithModel:(OrderModel *)model;
 
 @end

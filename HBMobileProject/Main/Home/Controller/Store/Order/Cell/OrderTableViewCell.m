@@ -24,6 +24,8 @@
 
 @property (nonatomic, strong) UIButton *orderButton;//订单操作
 
+@property (nonatomic, strong) UIView *bottomLine;
+
 @end
 
 @implementation OrderTableViewCell
@@ -31,12 +33,15 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         [self.contentView addSubview:self.topView];
         [self.contentView addSubview:self.orderNumber];
         [self.contentView addSubview:self.orderStatus];
         [self.contentView addSubview:self.orderDetail];
         [self.contentView addSubview:self.totalAmount];
         [self.contentView addSubview:self.orderButton];
+        [self.contentView addSubview:self.bottomLine];
     }
     return self;
 }
@@ -46,7 +51,7 @@
     _orderModel = orderModel;
     
     _orderNumber.text = [NSString stringWithFormat:@"订单编号 %zi", orderModel.orderNo];
-    _totalAmount.text = [NSString stringWithFormat:@"总金额 %zi 元(含运费 20 元)", orderModel.totalPrice];
+    _totalAmount.text = [NSString stringWithFormat:@"总金额 %zi 元(含运费 %zi 元)", orderModel.totalPrice, orderModel.dispatchCost];
     
     [_orderButton changeBtnStyleWihtOrderStatus:orderModel.status];
     [self changeLabelStyleWithOrderStatus:orderModel.status];
@@ -89,12 +94,13 @@
             _orderStatus.textColor = RGB(248, 68, 68);
             break;
         case OrderStatusWaitReceive:
-            _orderStatus.text = @"已收货";
+            _orderStatus.text = @"待收货";
             _orderStatus.textColor = RGB(74, 144, 226);
             break;
         case OrderStatusHaveReceived:
             _orderStatus.text = @"已收货";
             _orderStatus.textColor = RGB(102, 102, 102);
+            break;
         case OrderStatusHaveCanceled:
             _orderStatus.text = @"已取消";
             _orderStatus.textColor = RGB(102, 102, 102);
@@ -119,7 +125,7 @@
         _orderNumber.font = Font(14);
         _orderNumber.textColor = RGB(102, 102, 102);
         _orderNumber.textAlignment = NSTextAlignmentLeft;
-        _orderNumber.text = @"订单编号 20161031112255332000";
+        _orderNumber.text = @"";
     }
     return _orderNumber;
 }
@@ -127,7 +133,7 @@
 - (UILabel *)orderStatus {
     if (!_orderStatus) {
         _orderStatus = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-15-45, (40-14)/2+10, 45, 14)];
-        _orderStatus.text = @"已收货";
+        _orderStatus.text = @"";
         _orderStatus.font = Font(14);
         _orderStatus.textColor = RGB(248, 68, 68);
         _orderStatus.textAlignment = NSTextAlignmentRight;
@@ -145,7 +151,7 @@
 - (UILabel *)totalAmount {
     if (!_totalAmount) {
         _totalAmount = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, _orderDetail.bottom+(45-14)/2, ScreenWidth-15*2-80, 14)];
-        _totalAmount.text = @"总金额 49999 元(含运费 20 元)";
+        _totalAmount.text = @"";
         _totalAmount.font = Font(14);
         _totalAmount.textColor = RGB(50, 50, 50);
         _totalAmount.textAlignment = NSTextAlignmentLeft;
@@ -160,6 +166,14 @@
         [_orderButton addTarget:self action:@selector(buttonClicked:) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _orderButton;
+}
+
+- (UIView *)bottomLine {
+    if (!_bottomLine) {
+        _bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, _totalAmount.center.y+45/2+0.5, ScreenWidth, 0.5)];
+        _bottomLine.backgroundColor = RGB(170, 170, 170);
+    }
+    return _bottomLine;
 }
 
 @end

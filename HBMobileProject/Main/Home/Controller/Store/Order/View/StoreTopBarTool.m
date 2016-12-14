@@ -15,11 +15,15 @@
 
 @property (nonatomic, strong) UIScrollView *barScrollView;
 
-@property (nonatomic, strong) UIButton *lastBtn;
+@property (nonatomic, strong) UIButton *lastBtn;    //持续选中的button
 
 @property (nonatomic, strong) UILabel *scrollLine;
 
-@property (nonatomic, strong) UILabel *redPoint;
+@property (nonatomic, strong) UILabel *bottomLine;
+
+@property (nonatomic, strong) UILabel *waitPayPoint; //待支付提示红点
+
+@property (nonatomic, strong) UILabel *waitReceivePoint;  //待收货提示红点
 
 @property (nonatomic, assign) NSInteger selectedIndex;
 
@@ -50,6 +54,19 @@
     return self;
 }
 
+- (void)initDataWithModel:(OrderModel *)model {
+    switch (model.status) {
+        case OrderStatusWaitPay:
+            self.waitPayPoint.text = [NSString stringWithFormat:@"%zi", model.status];
+            break;
+        case OrderStatusWaitReceive:
+            self.waitReceivePoint.text = [NSString stringWithFormat:@"%zi", model.status];
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)initSubViews {
     
     self.barScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
@@ -72,6 +89,14 @@
             [itemBtn addTarget:self action:@selector(selectedItem:) forControlEvents:(UIControlEventTouchUpInside)];
             [_barScrollView addSubview:itemBtn];
             
+            if (i == 1) {
+                self.waitPayPoint = [self createCountViewWithReferenceView:itemBtn];
+                [self addSubview:_waitPayPoint];
+            }else if (i == 2) {
+                self.waitReceivePoint = [self createCountViewWithReferenceView:itemBtn];
+                [self addSubview:_waitReceivePoint];
+            }
+            
             if (i == 0) {
                 [self selectedItem:itemBtn];
             }
@@ -80,11 +105,15 @@
         }
     }
     
-    _scrollLine = [[UILabel alloc] initWithFrame:CGRectMake(0, _barScrollView.height-2, _itemWidth, 2)];
+    _scrollLine = [[UILabel alloc] initWithFrame:CGRectMake(0, _barScrollView.height-2.5, _itemWidth, 2)];
     _scrollLine.backgroundColor = RGB(66, 206, 205);
     [_barScrollView addSubview:_scrollLine];
     
+    _bottomLine = [[UILabel alloc] initWithFrame:CGRectMake(0, _barScrollView.height-0.5, ScreenWidth, 0.5)];
+    _bottomLine.backgroundColor = RGBA(136, 136, 136, 0.5);
+    
     [self addSubview:_barScrollView];
+    [self addSubview:_bottomLine];
     
     [self scrollToIndex:_selectedIndex];
 }
@@ -123,6 +152,18 @@
     if (self.selectBlock) {
         self.selectBlock(button.tag);
     }
+}
+
+- (UILabel *)createCountViewWithReferenceView:(UIButton *)view {
+    UILabel *redPoint = [[UILabel alloc] initWithFrame:CGRectMake(view.center.x+20, view.center.y-15, 13, 13)];
+    redPoint.backgroundColor = RGB(248, 68, 68);
+    redPoint.text = @"9";
+    redPoint.font = Font(10);
+    redPoint.textColor = RGB(255, 255, 255);
+    redPoint.textAlignment = NSTextAlignmentCenter;
+    redPoint.layer.cornerRadius = redPoint.width/2;
+    redPoint.layer.masksToBounds = YES;
+    return redPoint;
 }
 
 - (void)scrollLineAnimationWithButton:(UIButton *)button {

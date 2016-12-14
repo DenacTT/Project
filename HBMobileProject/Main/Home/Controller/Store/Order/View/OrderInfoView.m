@@ -45,7 +45,8 @@
     _orderModel = orderModel;
     
     [_goodsImg sd_setImageWithURL:[NSURL URLWithString:orderModel.listOfGoodsInfo.imgUrl] placeholderImage:Image(@"place_goods_normal") options:(SDWebImageRetryFailed)];
-    _goodsName.text = orderModel.listOfGoodsInfo.name;
+    //_goodsName.text = orderModel.listOfGoodsInfo.name;
+    _goodsName.text = @"好轻 2 智能体脂称 深空灰";
     _goodsMoney.text = [NSString stringWithFormat:@"单价 %zi 元", orderModel.listOfGoodsInfo.price];
     _goodsNum.text = [NSString stringWithFormat:@"数量 %zi", orderModel.listOfGoodsInfo.num];
     
@@ -75,7 +76,7 @@
 
 - (UILabel *)goodsName {
     if (!_goodsName) {
-        _goodsName = [[UILabel alloc] initWithFrame:CGRectMake(_goodsImg.right+15, 50-6-5-14, kLabelWidth, 14)];
+        _goodsName = [[UILabel alloc] initWithFrame:CGRectMake(_goodsImg.right+17, 50-6-5-14, kLabelWidth, 14)];
         _goodsName.text = @"好轻 2 智能体脂称 深空灰";
         _goodsName.font = Font(14);
         _goodsName.textColor = RGB(50, 50, 50);

@@ -15,6 +15,8 @@
 
 @property (nonatomic, assign) NSInteger totalPrice;
 
+@property (nonatomic, assign) NSInteger dispatchCost;
+
 @property (nonatomic, assign) OrderStatus status;
 
 @property (nonatomic, strong) GoodsInfoModel *listOfGoodsInfo;
@@ -26,6 +28,7 @@
          {
              "orderNo": 20161031112255332000,
              "totalPrice": 500,
+             "dispatchCost":"20",
              "status": 1,	#1.未支付 2:待收货 3:待完成 4已取消
              "listOfGoodsInfo": [
                                  {
