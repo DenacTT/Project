@@ -42,11 +42,6 @@
 
 @implementation ConfigTabBarController
 
-/**
- *  @author HarbingWang, 16-09-06 20:09:51
- *
- *  loadTabBarController
- */
 - (CYLTabBarController *)tabBarController
 {
     if (_tabBarController == nil)

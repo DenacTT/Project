@@ -42,7 +42,6 @@ typedef NS_ENUM(NSInteger, OrderStatus) {
     OrderStatusHaveCanceled = 4,    // 已取消
 };
 
-
 // 当前是否debug模式
 #ifdef DEBUG
 #  define isDebug 1

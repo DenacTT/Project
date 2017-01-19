@@ -161,24 +161,23 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     CYLTabBarController *tabBarController = [self cyl_tabBarController];
-    UIViewController *viewController = tabBarController.selectedViewController;
+//    UIViewController *viewController = tabBarController.selectedViewController;
     
     if (0 == buttonIndex) {
 //        PublishMovieViewController *vc = [[PublishMovieViewController alloc] init];
         
-        GUPImageTestController *vc = [[GUPImageTestController alloc] init];
-        
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-        [viewController presentViewController:nav animated:YES completion:nil];
-        
+//        GUPImageTestController *vc = [[GUPImageTestController alloc] init];
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//        [viewController presentViewController:nav animated:YES completion:nil];
+
+        NSLog(@"视频");
     }else if (1 == buttonIndex) {
         
 //        [[[CustomTipsView alloc] init] showWithText:@"照片打卡"];
-        EditVideoViewController *editVideoViewController = [[EditVideoViewController alloc] init];
-        [viewController presentViewController:editVideoViewController animated:YES completion:nil];
-        
+//        EditVideoViewController *editVideoViewController = [[EditVideoViewController alloc] init];
+//        [viewController presentViewController:editVideoViewController animated:YES completion:nil];
+        NSLog(@"照片");
     }
-    
 }
 
 @end

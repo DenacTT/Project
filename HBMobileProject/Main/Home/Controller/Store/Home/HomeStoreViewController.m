@@ -62,7 +62,9 @@ static NSString * const HomeStoreHeadViewID = @"HomeStoreHeadViewID";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     StoreDetailViewController *detailViewController = [[StoreDetailViewController alloc] init];
+    detailViewController.title = @"产品详情";
     [self.navigationController pushViewController:detailViewController animated:YES];
+    
 }
 
 #pragma mark - getter

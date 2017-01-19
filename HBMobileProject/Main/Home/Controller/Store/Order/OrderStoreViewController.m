@@ -34,7 +34,6 @@
     self.isUseBackBtn    = NO;
     
     [self initSubViews];
-    [self loadNetData];
     [self initDatas];
 }
 
@@ -56,11 +55,6 @@
     
     [self.view addSubview:self.topBarTool];
     [self.view addSubview:self.comScrollView];
-}
-
-- (void)loadNetData {
-    
-    
 }
 
 #pragma mark - initDatas
@@ -92,7 +86,7 @@
 - (void)scrollToIndex:(NSInteger)index {
     
     if (index < self.itemTitle.count) {
-        [_comScrollView setContentOffset:CGPointMake(index * ScreenWidth, _comScrollView.contentOffset.y)];
+        [_comScrollView setContentOffset:CGPointMake(index * ScreenWidth, _comScrollView.contentOffset.y) animated:YES];
     }
 }
 

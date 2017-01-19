@@ -36,16 +36,18 @@ static NSString * const TableViewCellID = @"TableViewCellID";
     self.titleArr = @[].mutableCopy;
     self.classNameArr = @[].mutableCopy;
     
-    [self addCell:@"GPUImage Test" className:@"GUPImageTestController"];
-    [self addCell:@"GPUImage Video" className:@"GUPImageVideoController"];
-    [self addCell:@"GPUImage Beauty" className:@"GPUImageBeautifyController"];
-    [self addCell:@"RecordVideo Exapmle" className:@"MakeVideoTestController"];
-    [self addCell:@"GPUImage VideoRecord" className:@"GPUVideoTestController"];
-//    [self addCell:@"Click Cell Expend" className:@"ExtensibleCellViewController"];
+//    [self addCell:@"GPUImage Test" className:@"GUPImageTestController"];
+//    [self addCell:@"GPUImage Video" className:@"GUPImageVideoController"];
+//    [self addCell:@"GPUImage Beauty" className:@"GPUImageBeautifyController"];
+//    [self addCell:@"RecordVideo Exapmle" className:@"MakeVideoTestController"];
+//    [self addCell:@"GPUImage VideoRecord" className:@"GPUVideoTestController"];
+    
 //    [self addCell:@"Left Right TableView" className:@"LinkageTableViewController"];
-    [self addCell:@"TableView" className:@"MultiViewController"];
-    [self addCell:@"BBSTableView" className:@"BBSListViewController"];
-    [self addCell:@"BBSListViewController" className:@"BBSTableView"];
+    
+    [self addCell:@"TableView01" className:@"MultiViewController"];
+    [self addCell:@"TableView02" className:@"BBSListViewController"];
+    [self addCell:@"商城" className:@"StroeMainViewController"];
+//    [self addCell:@"Click Cell Expend" className:@"ExtensibleCellViewController"];
 }
 
 - (void)addCell:(NSString *)cellTitle className:(NSString *)className
