@@ -54,7 +54,7 @@
 }
 
 - (void)initData {
-    [self.timeCountView runTimerWithRushStartTime:1481212800];
+    [self.timeCountView runTimerWithRushStartTime:1484969930];
 }
 
 #pragma mark - getter
@@ -83,7 +83,6 @@
 - (YMTimeCountView *)timeCountView {
     if (!_timeCountView) {
         _timeCountView = [[YMTimeCountView alloc] initWithFrame:CGRectMake(kLeftMargin,  _runshLabel.bottom+6, 108, 32)];
-//        _timeCountView.rushStartTime = 1481212800;
     }
     return _timeCountView;
 }
@@ -117,7 +116,7 @@
 - (UIImageView *)runshGoodsImg {
     if (!_runshGoodsImg) {
         _runshGoodsImg = [[UIImageView alloc] initWithFrame:CGRectMake(ScreenWidth-36-154, 18, 154, 154)];
-        _runshGoodsImg.image = Image(@"place_goods_rush");
+        _runshGoodsImg.image = Image(@"defaultImage");
         
         _runshGoodsImg.contentMode = UIViewContentModeScaleAspectFill;
         _runshGoodsImg.layer.masksToBounds = YES;
@@ -138,7 +137,7 @@
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_placeIconImg.left, _placeIconImg.top+15, _placeIconImg.width, 32)];
         _priceLabel.text = @"109";
         _priceLabel.font = [UIFont fontWithName:@"miso-bold" size:32];
-        _priceLabel.textColor = kBackGroundColor;
+        _priceLabel.textColor = [UIColor whiteColor];
         _priceLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _priceLabel;
@@ -149,7 +148,7 @@
         _priceUnitLabel = [[UILabel alloc] initWithFrame:CGRectMake(_priceLabel.left, _priceLabel.bottom, _priceLabel.width, 10)];
         _priceUnitLabel.text = @"元";
         _priceUnitLabel.font = Font(10);
-        _priceUnitLabel.textColor = kBackGroundColor;
+        _priceUnitLabel.textColor = [UIColor whiteColor];
         _priceUnitLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _priceUnitLabel;
