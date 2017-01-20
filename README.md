@@ -19,8 +19,8 @@
 
 [YMTimeCountView](https://github.com/HarbingWang/Project/tree/master/HBMobileProject/Expand/Tool/TimeCountView "YMTimeCountView") 封装的抢购活动倒计时View
 
-[![倒计时]](http://harbingwang.github.io/)
-[baidu]:https://github.com/HarbingWang/Project/blob/master/HBMobileProject/ImageFile/store.gif "商城倒计时动画"
+[![倒计时](https://github.com/HarbingWang/Project/blob/master/HBMobileProject/ImageFile/store.gif "商城倒计时动画")](http://harbingwang.github.io/)
+
 
 分类目录
 -----------
