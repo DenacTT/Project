@@ -32,7 +32,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 - (void)initData {
     
     [self addClassName:@"ExtensibleCellViewController" withTitle:@"可扩展tableView01"];
-    
+    [self addClassName:@"YMActionSheetViewController" withTitle:@"仿微信ActionSheet"];
     
 }
 

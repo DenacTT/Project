@@ -18,17 +18,17 @@
     // space 是上传视频时为每一个用户创建的文件夹名，建议设置为用户的uuid（最大支持32位，如获取的uuid大于32位请自行处理）。例如：A用户的uuid是110001，在paas平台的空间中为A用户生成一个110001的文件夹存放A用户上传的内容。
     // 注册成功后就取得了对指定文件夹的上传权限，并取得 accessToken
     
-    NSString *userId = 0;
-    if (userId == 0) {
-        userId = @"99999999";
-    }
+//    NSString *userId = 0;
+//    if (userId == 0) {
+//        userId = @"99999999";
+//    }
     
-    [[QPAuth shared] registerAppWithKey:kQPAppKey secret:kQPAppSecret space:userId success:^(NSString *accessToken) {
+//    [[QPAuth shared] registerAppWithKey:kQPAppKey secret:kQPAppSecret space:userId success:^(NSString *accessToken) {
 //        NSLog(@"qupai regist success! accessToken : %@", accessToken);
         
-    } failure:^(NSError *error) {
+//    } failure:^(NSError *error) {
 //        NSLog(@"qupai regist failed! reason: %@", error.description);
-    }];
+//    }];
     
     /*
      常见错误码

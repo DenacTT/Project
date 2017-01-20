@@ -49,7 +49,6 @@
 		D11F30361E0BF28200ED620C /* tab_strore_car_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D11F30181E0BF28100ED620C /* tab_strore_car_normal@2x.png */; };
 		D11F30371E0BF28200ED620C /* wechat_pay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D11F30191E0BF28100ED620C /* wechat_pay@2x.png */; };
 		D11F30381E0BF28200ED620C /* zhifubao_pay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D11F301A1E0BF28100ED620C /* zhifubao_pay@2x.png */; };
-		D12237DB1D8FD26E00B0D042 /* ExtensibleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */; };
 		D12237E41D90227B00B0D042 /* LinkageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12237E31D90227B00B0D042 /* LinkageTableViewController.m */; };
 		D12A2E7A1DD323AC00D12F4A /* BBSCellOperateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A2E791DD323AC00D12F4A /* BBSCellOperateView.m */; };
 		D12A85D11DC725E9004834E0 /* MultiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A85D01DC725E9004834E0 /* MultiViewController.m */; };
@@ -70,8 +69,6 @@
 		D13B58E71D800B53005D89FA /* ConfigMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58E51D800B53005D89FA /* ConfigMovieViewController.m */; };
 		D13B58E81D800B53005D89FA /* ConfigMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D13B58E61D800B53005D89FA /* ConfigMovieViewController.xib */; };
 		D13B58EB1D801985005D89FA /* UploadMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B58EA1D801985005D89FA /* UploadMovieViewController.m */; };
-		D13B58F11D8100F3005D89FA /* QPSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D13B58EF1D8100F3005D89FA /* QPSDK.bundle */; };
-		D13B58F21D8100F3005D89FA /* QPSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13B58F01D8100F3005D89FA /* QPSDK.framework */; };
 		D13B59111D8162BE005D89FA /* MoreMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59101D8162BE005D89FA /* MoreMusicViewController.m */; };
 		D13B591C1D816863005D89FA /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B59171D816863005D89FA /* UIImage+RoundedCorner.m */; };
 		D13B591D1D816863005D89FA /* UIView+Gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = D13B591A1D816863005D89FA /* UIView+Gesture.m */; };
@@ -355,6 +352,9 @@
 		D1F144791E31AE3000238223 /* BiggerBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F144781E31AE3000238223 /* BiggerBtn.m */; };
 		D1F1447D1E31AE4000238223 /* UIColor+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F1447C1E31AE4000238223 /* UIColor+Extend.m */; };
 		D1F144801E31AF0300238223 /* UILabel+Expand.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F1447F1E31AF0300238223 /* UILabel+Expand.m */; };
+		D1F144851E31FA7300238223 /* YMActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F144831E31FA7300238223 /* YMActionSheetViewController.m */; };
+		D1F144861E31FA7300238223 /* YMActionSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1F144841E31FA7300238223 /* YMActionSheetViewController.xib */; };
+		D1F1448A1E31FAAF00238223 /* ExtensibleCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F144891E31FAAF00238223 /* ExtensibleCellViewController.m */; };
 		D1FDDA6D1DD30FA200203B91 /* bbs_cardNum_0.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA561DD30FA200203B91 /* bbs_cardNum_0.png */; };
 		D1FDDA6E1DD30FA200203B91 /* bbs_cardNum_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA571DD30FA200203B91 /* bbs_cardNum_1.png */; };
 		D1FDDA6F1DD30FA200203B91 /* bbs_cardNum_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA581DD30FA200203B91 /* bbs_cardNum_2.png */; };
@@ -453,8 +453,6 @@
 		D11F30181E0BF28100ED620C /* tab_strore_car_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_strore_car_normal@2x.png"; sourceTree = "<group>"; };
 		D11F30191E0BF28100ED620C /* wechat_pay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_pay@2x.png"; sourceTree = "<group>"; };
 		D11F301A1E0BF28100ED620C /* zhifubao_pay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhifubao_pay@2x.png"; sourceTree = "<group>"; };
-		D12237D91D8FD26E00B0D042 /* ExtensibleCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensibleCellViewController.h; sourceTree = "<group>"; };
-		D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensibleCellViewController.m; sourceTree = "<group>"; };
 		D12237E21D90227B00B0D042 /* LinkageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkageTableViewController.h; sourceTree = "<group>"; };
 		D12237E31D90227B00B0D042 /* LinkageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkageTableViewController.m; sourceTree = "<group>"; };
 		D12A2E781DD323AC00D12F4A /* BBSCellOperateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSCellOperateView.h; sourceTree = "<group>"; };
@@ -494,8 +492,6 @@
 		D13B58E61D800B53005D89FA /* ConfigMovieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigMovieViewController.xib; sourceTree = "<group>"; };
 		D13B58E91D801985005D89FA /* UploadMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadMovieViewController.h; sourceTree = "<group>"; };
 		D13B58EA1D801985005D89FA /* UploadMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadMovieViewController.m; sourceTree = "<group>"; };
-		D13B58EF1D8100F3005D89FA /* QPSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QPSDK.bundle; sourceTree = "<group>"; };
-		D13B58F01D8100F3005D89FA /* QPSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QPSDK.framework; sourceTree = "<group>"; };
 		D13B58F31D8105A7005D89FA /* SysConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysConfig.h; sourceTree = "<group>"; };
 		D13B58F71D8107FA005D89FA /* API.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		D13B590F1D8162BE005D89FA /* MoreMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreMusicViewController.h; sourceTree = "<group>"; };
@@ -1167,6 +1163,11 @@
 		D1F1447C1E31AE4000238223 /* UIColor+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extend.m"; sourceTree = "<group>"; };
 		D1F1447E1E31AF0300238223 /* UILabel+Expand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Expand.h"; sourceTree = "<group>"; };
 		D1F1447F1E31AF0300238223 /* UILabel+Expand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Expand.m"; sourceTree = "<group>"; };
+		D1F144821E31FA7300238223 /* YMActionSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMActionSheetViewController.h; sourceTree = "<group>"; };
+		D1F144831E31FA7300238223 /* YMActionSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMActionSheetViewController.m; sourceTree = "<group>"; };
+		D1F144841E31FA7300238223 /* YMActionSheetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YMActionSheetViewController.xib; sourceTree = "<group>"; };
+		D1F144881E31FAAF00238223 /* ExtensibleCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensibleCellViewController.h; sourceTree = "<group>"; };
+		D1F144891E31FAAF00238223 /* ExtensibleCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensibleCellViewController.m; sourceTree = "<group>"; };
 		D1FDDA561DD30FA200203B91 /* bbs_cardNum_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_0.png; sourceTree = "<group>"; };
 		D1FDDA571DD30FA200203B91 /* bbs_cardNum_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_1.png; sourceTree = "<group>"; };
 		D1FDDA581DD30FA200203B91 /* bbs_cardNum_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bbs_cardNum_2.png; sourceTree = "<group>"; };
@@ -1217,7 +1218,6 @@
 				D17A28391D93FAAB00C00B3F /* CoreText.framework in Frameworks */,
 				D17A28371D93FAA100C00B3F /* CoreFoundation.framework in Frameworks */,
 				D17A28351D93FA9400C00B3F /* UIKit.framework in Frameworks */,
-				D13B58F21D8100F3005D89FA /* QPSDK.framework in Frameworks */,
 				D17A2CEC1D94D48B00C00B3F /* libGPUImage.a in Frameworks */,
 				DCBDAA5C0147AAC746F956EB /* libPods-HBMobileProject.a in Frameworks */,
 			);
@@ -1397,7 +1397,6 @@
 				D17A2DCD1D9669B100C00B3F /* MakeVideo */,
 				D17A2DA11D94E35300C00B3F /* GPUImage */,
 				D103BBA31DB07BD50009DF88 /* GPUVideo */,
-				D12237E01D90108100B0D042 /* ExtensibleCell */,
 				D12237E11D9010C900B0D042 /* LinkageTableView */,
 				D14AA4671DD1CF6100E1A46D /* BBSView */,
 			);
@@ -1410,15 +1409,6 @@
 			);
 			name = Model;
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		D12237E01D90108100B0D042 /* ExtensibleCell */ = {
-			isa = PBXGroup;
-			children = (
-				D12237D91D8FD26E00B0D042 /* ExtensibleCellViewController.h */,
-				D12237DA1D8FD26E00B0D042 /* ExtensibleCellViewController.m */,
-			);
-			name = ExtensibleCell;
 			sourceTree = "<group>";
 		};
 		D12237E11D9010C900B0D042 /* LinkageTableView */ = {
@@ -1545,8 +1535,8 @@
 			children = (
 				D1C6FC1E1DF2AA1C00A375B3 /* HomeViewController.h */,
 				D1C6FC1F1DF2AA1C00A375B3 /* HomeViewController.m */,
-				D1CB2DB91DF595050092DA1A /* Store */,
 				D1CB2DB31DF592650092DA1A /* Modules */,
+				D1CB2DB91DF595050092DA1A /* Store */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1624,15 +1614,6 @@
 				D13B59421D826A4A005D89FA /* MoreMusicCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		D13B58EE1D8100D9005D89FA /* QPSDK */ = {
-			isa = PBXGroup;
-			children = (
-				D13B58F01D8100F3005D89FA /* QPSDK.framework */,
-				D13B58EF1D8100F3005D89FA /* QPSDK.bundle */,
-			);
-			name = QPSDK;
 			sourceTree = "<group>";
 		};
 		D13B59151D816863005D89FA /* UIImageCategory */ = {
@@ -2462,7 +2443,6 @@
 		D1B6D6E21D7D10C400C3E647 = {
 			isa = PBXGroup;
 			children = (
-				D13B5ABF1D840E08005D89FA /* libz.tbd */,
 				D1B6D6ED1D7D10C500C3E647 /* HBMobileProject */,
 				D1B6D7071D7D10C500C3E647 /* HBMobileProjectTests */,
 				D1B6D7121D7D10C500C3E647 /* HBMobileProjectUITests */,
@@ -2489,9 +2469,6 @@
 				D1B6D7441D7D12AB00C3E647 /* Expand */,
 				D1B6D74E1D7D130700C3E647 /* Vender */,
 				D1B6D74F1D7D132600C3E647 /* Resource */,
-				D1B6D6F71D7D10C500C3E647 /* Main.storyboard */,
-				D1B6D6FA1D7D10C500C3E647 /* Assets.xcassets */,
-				D1B6D6FC1D7D10C500C3E647 /* LaunchScreen.storyboard */,
 				D1B6D6EE1D7D10C500C3E647 /* Supporting Files */,
 			);
 			path = HBMobileProject;
@@ -2500,7 +2477,11 @@
 		D1B6D6EE1D7D10C500C3E647 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D1B6D6F71D7D10C500C3E647 /* Main.storyboard */,
+				D1B6D6FA1D7D10C500C3E647 /* Assets.xcassets */,
+				D1B6D6FC1D7D10C500C3E647 /* LaunchScreen.storyboard */,
 				D13B58DA1D7FFA6F005D89FA /* Localizable.strings */,
+				D13B5ABF1D840E08005D89FA /* libz.tbd */,
 				D1B6D6EF1D7D10C500C3E647 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -2696,7 +2677,6 @@
 				D17A28F41D9416C600C00B3F /* GPUImage */,
 				D17A27311D93F89900C00B3F /* YYKit */,
 				D17A27211D93F79700C00B3F /* WBStatusComposeText */,
-				D13B58EE1D8100D9005D89FA /* QPSDK */,
 				D13B58891D7EEBAA005D89FA /* CYLTabBarController */,
 				D1B6D7791D7D159600C3E647 /* MJExtension */,
 				D1B6D7551D7D154700C3E647 /* Masonry */,
@@ -2802,6 +2782,8 @@
 		D1CB2DB31DF592650092DA1A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D1F144871E31FAAF00238223 /* ExtensibleCell */,
+				D1F144811E31FA5300238223 /* YMActionSheet */,
 			);
 			name = Modules;
 			path = ..;
@@ -2993,6 +2975,27 @@
 				D1F1447C1E31AE4000238223 /* UIColor+Extend.m */,
 			);
 			path = UIColorCategory;
+			sourceTree = "<group>";
+		};
+		D1F144811E31FA5300238223 /* YMActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				D1F144821E31FA7300238223 /* YMActionSheetViewController.h */,
+				D1F144831E31FA7300238223 /* YMActionSheetViewController.m */,
+				D1F144841E31FA7300238223 /* YMActionSheetViewController.xib */,
+			);
+			name = YMActionSheet;
+			path = Model/YMActionSheet;
+			sourceTree = "<group>";
+		};
+		D1F144871E31FAAF00238223 /* ExtensibleCell */ = {
+			isa = PBXGroup;
+			children = (
+				D1F144881E31FAAF00238223 /* ExtensibleCellViewController.h */,
+				D1F144891E31FAAF00238223 /* ExtensibleCellViewController.m */,
+			);
+			name = ExtensibleCell;
+			path = Model/ExtensibleCell;
 			sourceTree = "<group>";
 		};
 		D1FDDA551DD30C0100203B91 /* BBSImage */ = {
@@ -3194,7 +3197,6 @@
 				D11F30381E0BF28200ED620C /* zhifubao_pay@2x.png in Resources */,
 				D17A289E1D9404CC00C00B3F /* UMS_wechat_icon@2x.png in Resources */,
 				D1B6D6FB1D7D10C500C3E647 /* Assets.xcassets in Resources */,
-				D13B58F11D8100F3005D89FA /* QPSDK.bundle in Resources */,
 				D17A28AC1D9404CC00C00B3F /* UMS_sina_off.png in Resources */,
 				D11F301D1E0BF28100ED620C /* next_rush_icon@2x.png in Resources */,
 				D1FDDA711DD30FA200203B91 /* bbs_cardNum_4.png in Resources */,
@@ -3236,6 +3238,7 @@
 				D11F30221E0BF28100ED620C /* place_goods_normal@2x.png in Resources */,
 				D15E55581D9BA67A0027634B /* RecodeButton@2x.png in Resources */,
 				D17A28E01D94091600C00B3F /* type_2@2x.png in Resources */,
+				D1F144861E31FA7300238223 /* YMActionSheetViewController.xib in Resources */,
 				D11C44A81D9A61740051BD31 /* CameraChange@2x.png in Resources */,
 				D1BA1E5A1E1E435E00FE4DCB /* tapbar_top_line@2x.png in Resources */,
 				D11F30241E0BF28100ED620C /* place_icon-price@2x.png in Resources */,
@@ -3453,7 +3456,6 @@
 				D1B6D7751D7D154700C3E647 /* NSArray+MASAdditions.m in Sources */,
 				D17A28021D93F89900C00B3F /* YYKVStorage.m in Sources */,
 				D1B6A8171DCDBE9500833681 /* TextBarGroupModel.m in Sources */,
-				D12237DB1D8FD26E00B0D042 /* ExtensibleCellViewController.m in Sources */,
 				D1F1447D1E31AE4000238223 /* UIColor+Extend.m in Sources */,
 				D17A28251D93F89900C00B3F /* YYLabel.m in Sources */,
 				D17A28291D93F89900C00B3F /* YYFileHash.m in Sources */,
@@ -3528,6 +3530,7 @@
 				D17A281D1D93F89900C00B3F /* NSParagraphStyle+YYText.m in Sources */,
 				D17A28061D93F89900C00B3F /* MKAnnotationView+YYWebImage.m in Sources */,
 				D1F144531E31A7D200238223 /* HBRedDotView.m in Sources */,
+				D1F144851E31FA7300238223 /* YMActionSheetViewController.m in Sources */,
 				D17A27F61D93F89900C00B3F /* UIControl+YYAdd.m in Sources */,
 				D13DDC831DD16F5300B3AD5B /* UIImage+GIF.m in Sources */,
 				D1F144591E31AC9600238223 /* UILabel+Multiline.m in Sources */,
@@ -3543,6 +3546,7 @@
 				D17A281A1D93F89900C00B3F /* YYTextMagnifier.m in Sources */,
 				D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */,
 				D17A27EB1D93F89900C00B3F /* NSObject+YYAddForARC.m in Sources */,
+				D1F1448A1E31FAAF00238223 /* ExtensibleCellViewController.m in Sources */,
 				D13B59431D826A4A005D89FA /* MoreMusicCell.m in Sources */,
 				D1B6D76F1D7D154700C3E647 /* MASCompositeConstraint.m in Sources */,
 				D15E554E1D9AA25F0027634B /* VideoRecordEngine.m in Sources */,

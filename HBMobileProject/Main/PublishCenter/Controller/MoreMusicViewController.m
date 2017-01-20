@@ -47,13 +47,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)clickRightBtn
-{
-    // 更多音乐有了更新,比如新下载了音乐
-    QupaiSDK *qupai = [[QupaiSDK alloc] init];
-    [qupai updateMoreMusic];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+//- (void)clickRightBtn
+//{
+//    // 更多音乐有了更新,比如新下载了音乐
+//    QupaiSDK *qupai = [[QupaiSDK alloc] init];
+//    [qupai updateMoreMusic];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

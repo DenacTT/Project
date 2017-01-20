@@ -9,7 +9,7 @@
 #import "PublishMovieViewController.h"
 #import "ConfigMovieViewController.h"
 #import "UploadMovieViewController.h"
-#import <QPSDK/QPSDK.h>
+//#import <QPSDK/QPSDK.h>
 
 @interface PublishMovieViewController ()
 
@@ -73,13 +73,13 @@
 
 - (void)checkAuth
 {
-    [[QPAuth shared] registerAppWithKey:kQPAppKey secret:kQPAppSecret space:@"00000000" success:^(NSString *accessToken) {
-       
-        [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:UserDefaultAccessToken];
-        
-    } failure:^(NSError *error) {
-        
-    }];
+//    [[QPAuth shared] registerAppWithKey:kQPAppKey secret:kQPAppSecret space:@"00000000" success:^(NSString *accessToken) {
+    
+//        [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:UserDefaultAccessToken];
+//        
+//    } failure:^(NSError *error) {
+//        
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -160,7 +160,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    CYLTabBarController *tabBarController = [self cyl_tabBarController];
+//    CYLTabBarController *tabBarController = [self cyl_tabBarController];
 //    UIViewController *viewController = tabBarController.selectedViewController;
     
     if (0 == buttonIndex) {

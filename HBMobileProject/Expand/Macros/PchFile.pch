@@ -87,7 +87,7 @@
 //#import "EaseUI.h"
 
 //趣拍
-#import <QPSDK/QPSDK.h>
+//#import <QPSDK/QPSDK.h>
 
 #endif
 

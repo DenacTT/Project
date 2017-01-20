@@ -26,22 +26,22 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     
-    [self setupData];
+//    [self setupData];
 }
 
 #pragma mark - setupData
-- (void)setupData
-{
-    NSArray *tasks = [[QPUploadTaskManager shared] getAllUploadTasks];
-    for (QPUploadTask *task in tasks) {
-        task.videoPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Test"];
-        
-        NSLog(@"task.videoPath %@", task.videoPath);
-        
-        [self.taskArray addObject:task];
-    }
-    NSLog(@"%zi", [self.taskArray count]);
-}
+//- (void)setupData
+//{
+//    NSArray *tasks = [[QPUploadTaskManager shared] getAllUploadTasks];
+//    for (QPUploadTask *task in tasks) {
+//        task.videoPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Test"];
+//        
+//        NSLog(@"task.videoPath %@", task.videoPath);
+//        
+//        [self.taskArray addObject:task];
+//    }
+//    NSLog(@"%zi", [self.taskArray count]);
+//}
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,7 +65,7 @@
     cell.delegate = self;
     
     if ([self.taskArray count] != 0) {
-        cell.uploadTask = self.taskArray[indexPath.row];
+//        cell.uploadTask = self.taskArray[indexPath.row];
     }
 //    else{
 //        [[[CustomTipsView alloc] init] showWithText:@"您当前没有上传任务"];
