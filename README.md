@@ -1,6 +1,6 @@
-
-###　　　　　　　　　　　　    		　　　　　　　　　　　　 Author:光影织梦
-###　　　　        　　　　　 		  HomePages: http://harbingwang.github.io/
+***
+###	Author:光影织梦
+###	HomePages: http://harbingwang.github.io/
 
 ===========================
 
@@ -27,4 +27,5 @@
 - UIView+LayoutMethods：视图布局相关的分类;
 
 > `MarkDown`语法请参考:[README](https://github.com/guodongxiaren/README)
+
 [回到顶部](#readme)
