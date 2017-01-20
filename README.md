@@ -1,8 +1,6 @@
-### PersonalProject
-
 ****
-###　　　　　　　　　　　　    　 Author:光影织梦
-###　　　　        　　　　　   HomePages: http://harbingwang.github.io/
+###　　　　　　　　　　　　    		　 Author:光影织梦
+###　　　　        　　　　　 		  HomePages: http://harbingwang.github.io/
 
 ===========================
 
@@ -25,7 +23,7 @@
 分类目录
 -----------
 [UIViewCategory](https://github.com/HarbingWang/Project/tree/master/HBMobileProject/Expand/Category/UIViewCategory)
-* UIView+Gesture：为视图添加单击手势,单击事件可在 block 块中完成
-- UIView+LayoutMethods：视图布局相关的分类
+* UIView+Gesture：为视图添加单击手势,单击事件可在 block 块中完成;
+- UIView+LayoutMethods：视图布局相关的分类;
 
 > `MarkDown`语法请参考:[README](https://github.com/guodongxiaren/README)
