@@ -1,10 +1,5 @@
-
-###	Author`光影织梦`
-###	HomePage`http://harbingwang.github.io/`
-
+###	[光影织梦](http://harbingwang.github.io/)
 ===========================
-
-
 
 ##目录
 * [工具类目录](#工具类目录)
