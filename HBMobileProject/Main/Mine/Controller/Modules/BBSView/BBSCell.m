@@ -11,7 +11,7 @@
 
 @interface BBSCell ()
 
-@property (nonatomic,strong) UIView *bbsContentView;
+@property (nonatomic,strong) UIImageView *bbsContentView;
 
 @property (nonatomic,strong) UIView *bottomView;
 
@@ -53,7 +53,6 @@
 #pragma mark - 双击显示动画
 - (void)doubleTap:(UIGestureRecognizer*)gestureRecognizer
 {
-    NSLog(@"-----doubleTap-----");
     [self showBigHeartAnimation];
 }
 - (void)showBigHeartAnimation {
@@ -77,17 +76,12 @@
                         self.heartImage.alpha = 0;
                         self.heartImage.transform = CGAffineTransformMakeScale(0.3, 0.3);
                     } completion:^(BOOL finished) {
-                        [self showSmallHeartAnimation];
+                        
                     }];
                 }];
             }];
         }];
     }];
-}
-
-- (void)showSmallHeartAnimation {
-    
-    // CGAffineTransformMakeTranslation
 }
 
 #pragma mark - getter
@@ -99,10 +93,11 @@
     return _headView;
 }
 
--(UIView *)bbsContentView{
+-(UIImageView *)bbsContentView{
     if (!_bbsContentView) {
-        _bbsContentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headView.bottom, ScreenWidth, ScreenWidth)];
-//        _bbsContentView.backgroundColor = [UIColor yellowColor];
+        _bbsContentView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.headView.bottom, ScreenWidth, ScreenWidth)];
+        _bbsContentView.image = Image(@"defaultImage");
+        
         UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTap:)];
         [doubleTapGestureRecognizer setNumberOfTapsRequired:2];
         [_bbsContentView addGestureRecognizer:doubleTapGestureRecognizer];
