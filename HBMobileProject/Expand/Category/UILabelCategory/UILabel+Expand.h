@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UILabel (Expand)
+
 - (void)setLineSpace:(NSInteger)lineSpace;
 
 @end
