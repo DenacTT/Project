@@ -23,7 +23,7 @@
 
 [![倒计时](https://github.com/HarbingWang/ImgaeRepo/blob/master/store.gif "商城倒计时动画")](http://harbingwang.github.io/)
 
-[老人与少年](http://music.163.com/#/share/45641031/1049327331)
+<embed src="//music.163.com/style/swf/widget.swf?sid=26418207&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
 
 分类目录
 -----------
