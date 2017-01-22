@@ -17,13 +17,9 @@
 -----------
 [YMActionSheet](https://github.com/HarbingWang/Project/tree/master/HBMobileProject/Expand/Tool/YMActionSheet "YMActionSheet") 仿微信的自定义ActionSheet
 
-[![ActionSheet](http://upload-images.jianshu.io/upload_images/1362362-bfe54ec74f27e8ab.jpg "这只是一张图片而已")](http://harbingwang.github.io/)
-
 [YMTimeCountView](https://github.com/HarbingWang/Project/tree/master/HBMobileProject/Expand/Tool/TimeCountView "YMTimeCountView") 封装的抢购活动倒计时View
 
 [![倒计时](https://github.com/HarbingWang/ImgaeRepo/blob/master/store.gif "商城倒计时动画")](http://harbingwang.github.io/)
-
-<embed src="//music.163.com/style/swf/widget.swf?sid=26418207&type=2&auto=1&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
 
 分类目录
 -----------
