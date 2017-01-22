@@ -10,18 +10,18 @@
 
 @class YMActionSheet;
 
-typedef void(^ActionSheetDidSelectBlock)(YMActionSheet *actionSheet, NSInteger index);
+typedef void(^SelectBlock)(YMActionSheet *actionSheet, NSInteger index);
 
 
 @interface YMActionSheet : UIView
 
 // Creat YMActionSheet with a Block;
-- (instancetype)actionSheetViewWithTitle:(NSString *)title
++ (instancetype)actionSheetViewWithTitle:(NSString *)title
                              cancelTitle:(NSString *)cancelTitle
                         destructiveTitle:(NSString *)destructiveTitle
                              otherTitles:(NSArray  *)otherTitles
                              otherImages:(NSArray  *)otherImages
-                             selectBlock:(ActionSheetDidSelectBlock)selectBlock;
+                             selectBlock:(SelectBlock)selectBlock;
 
 - (void)show;
 
