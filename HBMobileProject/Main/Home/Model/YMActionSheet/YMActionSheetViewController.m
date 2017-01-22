@@ -20,8 +20,16 @@
     
 }
 - (IBAction)normalActionSheet:(UIButton *)sender {
-    NSLog(@"actionSheet");
     
+    YMActionSheet *actionSheet = [YMActionSheet actionSheetViewWithTitle:@"温馨提示"
+                                                             cancelTitle:@"取消"
+                                                        destructiveTitle:@"确定"
+                                                             otherTitles:@[@"第一项", @"第二项"]
+                                                             otherImages:@[[UIImage imageNamed:@"UMS_wechat_session_icon"], [UIImage imageNamed:@"UMS_wechat_timeline_icon"]]
+                                                             selectBlock:^(YMActionSheet *actionSheet, NSInteger index) {
+                                                                 NSLog(@"%zi", index);
+                                                             }];
+    [actionSheet show];
 }
 
 @end
