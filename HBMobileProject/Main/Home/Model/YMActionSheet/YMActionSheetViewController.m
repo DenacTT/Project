@@ -29,6 +29,7 @@
                                                              selectBlock:^(YMActionSheet *actionSheet, NSInteger index) {
                                                                  NSLog(@"%zi", index);
                                                              }];
+    actionSheet.otherActionItemAlignment = YMOtherActionItemAlignmentCenter;
     [actionSheet show];
 }
 

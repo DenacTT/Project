@@ -28,6 +28,8 @@
 
 @interface YMActionSheet ()
 
+@property (nonatomic, weak) id<YMActionSheetDelegate>delegate;
+
 @property (nonatomic, copy) SelectBlock selectBlock;
 
 @property (nonatomic, weak) UIView *coverView;
@@ -48,7 +50,6 @@
 @property (nonatomic, strong) UIImage *highlightedImage;
 
 @end
-
 
 @implementation YMActionSheet
 
@@ -84,6 +85,42 @@
         _otherImages = otherImages;
         _selectBlock = selectBlock;
         
+        [self setupCoverView];
+        [self setupActionSheet];
+    }
+    return self;
+}
+
+#pragma mark - Delegate
++ (instancetype)actionSheetViewWithTitle:(NSString *)title
+                             cancelTitle:(NSString *)cancelTitle
+                        destructiveTitle:(NSString *)destructiveTitle
+                             otherTitles:(NSArray  *)otherTitles
+                             otherImages:(NSArray  *)otherImages
+                                delegate:(id<YMActionSheetDelegate>)delegate
+{
+    return [[self alloc] initWithTitle:title
+                           cancelTitle:cancelTitle
+                      destructiveTitle:destructiveTitle
+                           otherTitles:otherTitles
+                           otherImages:otherImages
+                              delegate:delegate];
+}
+
+- (instancetype)initWithTitle:(NSString *)title
+                  cancelTitle:(NSString *)cancelTitle
+             destructiveTitle:(NSString *)destructiveTitle
+                  otherTitles:(NSArray  *)otherTitles
+                  otherImages:(NSArray  *)otherImages
+                     delegate:(id<YMActionSheetDelegate>)delegate
+{
+    if (self = [super initWithFrame:SCREEN_BOUNDS]) {
+        _title            = title;
+        _cancleTitle      = cancelTitle;
+        _destructiveTitle = destructiveTitle;
+        _otherTitles      = otherTitles;
+        _otherImages      = otherImages;
+        _delegate         = delegate;
         [self setupCoverView];
         [self setupActionSheet];
     }
@@ -157,12 +194,9 @@
                 [otherBtn setBackgroundImage:self.normalImage forState:UIControlStateNormal];
                 [otherBtn setBackgroundImage:self.highlightedImage forState:UIControlStateHighlighted];
                 [otherBtn addTarget:self action:@selector(didSelectActionSheet:) forControlEvents:UIControlEventTouchUpInside];
-                
                 [otherBtn addSubview:({
-                    
                     UIView *otherItem = [[UIView alloc] init];
                     otherItem.backgroundColor = [UIColor clearColor];
-                    
                     CGSize maxTitleSize = [self maxSizeInString:_otherTitles];
                     if (_otherImages && _otherImages.count > 0) {
                         UIImageView *icon = [[UIImageView alloc] init];
@@ -301,6 +335,37 @@
                      } completion:^(BOOL finished) {
                          [self removeFromSuperview];
                      }];
+}
+
+#pragma mark - OtherMethods
+- (void)setOtherActionItemAlignment:(YMOtherActionItemAlignment)otherActionItemAlignment {
+    _otherActionItemAlignment = otherActionItemAlignment;
+    if (otherActionItemAlignment) {
+        
+        switch (otherActionItemAlignment) {
+            case YMOtherActionItemAlignmentLeft:
+                for (UIView *actionItem in self.otherActionItems) {
+                    UILabel *title = [actionItem viewWithTag:1];
+                    title.textAlignment = NSTextAlignmentLeft;
+                    CGRect newFrame = actionItem.frame;
+                    newFrame.origin.x = 10;
+                    actionItem.frame = newFrame;
+                }
+                break;
+            case YMOtherActionItemAlignmentCenter:
+                for (UIView *actionItem in self.otherActionItems) {
+                    UILabel *title = [actionItem viewWithTag:1];
+                    title.textAlignment = NSTextAlignmentCenter;
+                    CGRect newFrame = actionItem.frame;
+                    newFrame.origin.x = self.frame.size.width * 0.5 - newFrame.size.width * 0.5;
+                    actionItem.frame = newFrame;
+                }
+                break;
+            default:
+                break;
+        }
+        
+    }
 }
 
 #pragma mark - PreviteMethod
