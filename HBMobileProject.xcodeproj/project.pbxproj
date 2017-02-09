@@ -285,6 +285,8 @@
 		D17A2DC01D9550F400C00B3F /* VideoCameraExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DBF1D9550F400C00B3F /* VideoCameraExample.m */; };
 		D17A2DC31D95614F00C00B3F /* GPUImageBeautifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */; };
 		D17D68AF1DC9D3C1004A0B33 /* YMTextBarGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = D17D68AE1DC9D3C1004A0B33 /* YMTextBarGroupView.m */; };
+		D19179FF1E4C916C00AE8281 /* ShowHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D19179FE1E4C916C00AE8281 /* ShowHUD.m */; };
+		D1917A031E4C92F800AE8281 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D1917A021E4C92F800AE8281 /* MBProgressHUD.m */; };
 		D1A70DD91DFFA5450090AAD0 /* StoreTopBarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A70DD81DFFA5450090AAD0 /* StoreTopBarTool.m */; };
 		D1A70DE61DFFDF780090AAD0 /* OrderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A70DE51DFFDF780090AAD0 /* OrderTableView.m */; };
 		D1A70DE91DFFEE5B0090AAD0 /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A70DE81DFFEE5B0090AAD0 /* OrderModel.m */; };
@@ -1027,6 +1029,10 @@
 		D17A2DC21D95614F00C00B3F /* GPUImageBeautifyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautifyController.m; sourceTree = "<group>"; };
 		D17D68AD1DC9D3C1004A0B33 /* YMTextBarGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMTextBarGroupView.h; sourceTree = "<group>"; };
 		D17D68AE1DC9D3C1004A0B33 /* YMTextBarGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMTextBarGroupView.m; sourceTree = "<group>"; };
+		D19179FD1E4C916C00AE8281 /* ShowHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowHUD.h; sourceTree = "<group>"; };
+		D19179FE1E4C916C00AE8281 /* ShowHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowHUD.m; sourceTree = "<group>"; };
+		D1917A011E4C92F800AE8281 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		D1917A021E4C92F800AE8281 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D1A70DD71DFFA5450090AAD0 /* StoreTopBarTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreTopBarTool.h; sourceTree = "<group>"; };
 		D1A70DD81DFFA5450090AAD0 /* StoreTopBarTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreTopBarTool.m; sourceTree = "<group>"; };
 		D1A70DE41DFFDF780090AAD0 /* OrderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableView.h; sourceTree = "<group>"; };
@@ -2440,6 +2446,24 @@
 			path = MakeVideo;
 			sourceTree = "<group>";
 		};
+		D19179FC1E4C916400AE8281 /* ShowHUD */ = {
+			isa = PBXGroup;
+			children = (
+				D19179FD1E4C916C00AE8281 /* ShowHUD.h */,
+				D19179FE1E4C916C00AE8281 /* ShowHUD.m */,
+			);
+			path = ShowHUD;
+			sourceTree = "<group>";
+		};
+		D1917A001E4C92F200AE8281 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				D1917A011E4C92F800AE8281 /* MBProgressHUD.h */,
+				D1917A021E4C92F800AE8281 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		D1B6D6E21D7D10C400C3E647 = {
 			isa = PBXGroup;
 			children = (
@@ -2660,6 +2684,7 @@
 		D1B6D74D1D7D12AB00C3E647 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D19179FC1E4C916400AE8281 /* ShowHUD */,
 				D1F1443A1E30F90000238223 /* YMActionSheet */,
 				D1F1443E1E31A71800238223 /* TimeCountView */,
 				D13DDC8A1DD181C900B3AD5B /* TimeFormatTool */,
@@ -2673,6 +2698,7 @@
 		D1B6D74E1D7D130700C3E647 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				D1917A001E4C92F200AE8281 /* MBProgressHUD */,
 				D13DDC4D1DD16F5300B3AD5B /* SDWebImage */,
 				D17A28F41D9416C600C00B3F /* GPUImage */,
 				D17A27311D93F89900C00B3F /* YYKit */,
@@ -3517,6 +3543,7 @@
 				D17A28101D93F89900C00B3F /* YYWebImageOperation.m in Sources */,
 				D17A280F1D93F89900C00B3F /* YYWebImageManager.m in Sources */,
 				D17A2DC01D9550F400C00B3F /* VideoCameraExample.m in Sources */,
+				D1917A031E4C92F800AE8281 /* MBProgressHUD.m in Sources */,
 				D140C9141DCDDEC100EF48EA /* PasteTagModel.m in Sources */,
 				D12A2E7A1DD323AC00D12F4A /* BBSCellOperateView.m in Sources */,
 				D17A280D1D93F89900C00B3F /* YYImageCoder.m in Sources */,
@@ -3546,6 +3573,7 @@
 				D17A281A1D93F89900C00B3F /* YYTextMagnifier.m in Sources */,
 				D13B58951D7EEBAA005D89FA /* CYLTabBarController.m in Sources */,
 				D17A27EB1D93F89900C00B3F /* NSObject+YYAddForARC.m in Sources */,
+				D19179FF1E4C916C00AE8281 /* ShowHUD.m in Sources */,
 				D1F1448A1E31FAAF00238223 /* ExtensibleCellViewController.m in Sources */,
 				D13B59431D826A4A005D89FA /* MoreMusicCell.m in Sources */,
 				D1B6D76F1D7D154700C3E647 /* MASCompositeConstraint.m in Sources */,

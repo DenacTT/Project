@@ -303,6 +303,9 @@
     if (_selectBlock) {
         _selectBlock(self, button.tag);
     }
+    if ([_delegate respondsToSelector:@selector(actionSheet:didSelectSheet:)]) {
+        [_delegate actionSheet:self didSelectSheet:button.tag];
+    }
     [self dismiss];
 }
 
