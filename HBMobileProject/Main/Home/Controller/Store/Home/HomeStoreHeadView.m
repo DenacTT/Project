@@ -8,6 +8,7 @@
 
 #import "HomeStoreHeadView.h"
 #import "YMTimeCountView.h"
+#import "UIButton+Touch.h"
 
 #define kLeftMargin 32
 #define kBackGroundColor RGB(245, 108, 153)
@@ -57,6 +58,11 @@
     [self.timeCountView runTimerWithRushStartTime:1484969930];
 }
 
+#pragma mark - startRush
+- (void)startRush:(UIButton *)sender {
+    [YMUITipsView showTips:@"活动尚未开始噢~"];
+}
+
 #pragma mark - getter
 - (UILabel *)runshLabel {
     if (!_runshLabel) {
@@ -93,11 +99,15 @@
         _startBtn.frame = CGRectMake(kLeftMargin, _timeCountView.bottom+6, 90, 30);
         _startBtn.backgroundColor = RGBA(255, 255, 255, 0.6);
         
+        _startBtn.timeInterval = 1;//设置延时,防止用户多次点击
+        
         _startBtn.layer.masksToBounds = YES;
         _startBtn.layer.cornerRadius = 4.f;
         
         [_startBtn setTitle:@"即将开始" forState:(UIControlStateNormal)];
         [_startBtn.titleLabel setTintColor:kBackGroundColor];
+        
+        [_startBtn addTarget:self action:@selector(startRush:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _startBtn;
 }

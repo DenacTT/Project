@@ -11,6 +11,11 @@
 		D103BB9F1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D103BB9D1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png */; };
 		D103BBA21DAF8BA20009DF88 /* RecordIcoMackup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D103BBA11DAF8BA20009DF88 /* RecordIcoMackup@2x.png */; };
 		D103BBA61DB0D0560009DF88 /* GPUVideoTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = D103BBA51DB0D0560009DF88 /* GPUVideoTestController.m */; };
+		D1052DF61E69487300BCA261 /* UIButton+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = D1052DF51E69487300BCA261 /* UIButton+Touch.m */; };
+		D1052DFB1E694E5300BCA261 /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1052DFA1E694E5300BCA261 /* UserDetailViewController.m */; };
+		D1052DFE1E69516E00BCA261 /* YMUITipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1052DFD1E69516E00BCA261 /* YMUITipsView.m */; };
+		D1052E011E696F5E00BCA261 /* tapbar_top_line_noshow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1052DFF1E696F5E00BCA261 /* tapbar_top_line_noshow@2x.png */; };
+		D1052E021E696F5E00BCA261 /* tapbar_top_line_noshow_plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1052E001E696F5E00BCA261 /* tapbar_top_line_noshow_plus@3x.png */; };
 		D11853751D7EC3B900D1EA92 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D11853741D7EC3B900D1EA92 /* LogInViewController.m */; };
 		D11C44931D9911590051BD31 /* PreviewVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C44921D9911590051BD31 /* PreviewVideoView.m */; };
 		D11C449D1D9A5E1E0051BD31 /* DelayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D11C449C1D9A5E1E0051BD31 /* DelayView.m */; };
@@ -411,6 +416,14 @@
 		D103BBA11DAF8BA20009DF88 /* RecordIcoMackup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecordIcoMackup@2x.png"; sourceTree = "<group>"; };
 		D103BBA41DB0D0560009DF88 /* GPUVideoTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUVideoTestController.h; sourceTree = "<group>"; };
 		D103BBA51DB0D0560009DF88 /* GPUVideoTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUVideoTestController.m; sourceTree = "<group>"; };
+		D1052DF41E69487300BCA261 /* UIButton+Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Touch.h"; sourceTree = "<group>"; };
+		D1052DF51E69487300BCA261 /* UIButton+Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Touch.m"; sourceTree = "<group>"; };
+		D1052DF91E694E5300BCA261 /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
+		D1052DFA1E694E5300BCA261 /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
+		D1052DFC1E69516E00BCA261 /* YMUITipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMUITipsView.h; sourceTree = "<group>"; };
+		D1052DFD1E69516E00BCA261 /* YMUITipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMUITipsView.m; sourceTree = "<group>"; };
+		D1052DFF1E696F5E00BCA261 /* tapbar_top_line_noshow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tapbar_top_line_noshow@2x.png"; sourceTree = "<group>"; };
+		D1052E001E696F5E00BCA261 /* tapbar_top_line_noshow_plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tapbar_top_line_noshow_plus@3x.png"; sourceTree = "<group>"; };
 		D11853731D7EC3B900D1EA92 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		D11853741D7EC3B900D1EA92 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		D11853771D7EC6AA00D1EA92 /* CommonMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
@@ -1360,6 +1373,8 @@
 		D11F2FFC1E0BF28100ED620C /* StoreImage */ = {
 			isa = PBXGroup;
 			children = (
+				D1052DFF1E696F5E00BCA261 /* tapbar_top_line_noshow@2x.png */,
+				D1052E001E696F5E00BCA261 /* tapbar_top_line_noshow_plus@3x.png */,
 				D1BA1E591E1E435E00FE4DCB /* tapbar_top_line@2x.png */,
 				D11F2FFD1E0BF28100ED620C /* address_ texture@2x.png */,
 				D11F2FFE1E0BF28100ED620C /* address_edit@2x.png */,
@@ -1646,6 +1661,8 @@
 				D1F1445F1E31ACF300238223 /* UIView+HandyAutoLayout.m */,
 				D1F144601E31ACF300238223 /* UIView+LayoutMethods.h */,
 				D1F144611E31ACF300238223 /* UIView+LayoutMethods.m */,
+				D1052DFC1E69516E00BCA261 /* YMUITipsView.h */,
+				D1052DFD1E69516E00BCA261 /* YMUITipsView.m */,
 			);
 			path = UIViewCategory;
 			sourceTree = "<group>";
@@ -1722,6 +1739,8 @@
 			children = (
 				D14AA46E1DD2CBF800E1A46D /* BBSListViewController.h */,
 				D14AA46F1DD2CBF800E1A46D /* BBSListViewController.m */,
+				D1052DF91E694E5300BCA261 /* UserDetailViewController.h */,
+				D1052DFA1E694E5300BCA261 /* UserDetailViewController.m */,
 				D14AA4711DD2CC5D00E1A46D /* BBSCell.h */,
 				D14AA4721DD2CC5D00E1A46D /* BBSCell.m */,
 				D14AA4741DD2D0B600E1A46D /* View */,
@@ -2990,6 +3009,8 @@
 			children = (
 				D1F144771E31AE3000238223 /* BiggerBtn.h */,
 				D1F144781E31AE3000238223 /* BiggerBtn.m */,
+				D1052DF41E69487300BCA261 /* UIButton+Touch.h */,
+				D1052DF51E69487300BCA261 /* UIButton+Touch.m */,
 			);
 			path = UIButtonCategory;
 			sourceTree = "<group>";
@@ -3163,6 +3184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1052E011E696F5E00BCA261 /* tapbar_top_line_noshow@2x.png in Resources */,
 				D17A2DB41D950EDA00C00B3F /* focusImage@2x.png in Resources */,
 				D1FDDA7C1DD30FA200203B91 /* bbs_moreAction@2x.png in Resources */,
 				D17A28EB1D940B1100C00B3F /* defaultImage@2x.png in Resources */,
@@ -3187,6 +3209,7 @@
 				D11C44A21D9A5F020051BD31 /* DelayBtnHighGray@2x.png in Resources */,
 				D11F30291E0BF28100ED620C /* store_color_selected@2x.png in Resources */,
 				D11F301B1E0BF28100ED620C /* address_ texture@2x.png in Resources */,
+				D1052E021E696F5E00BCA261 /* tapbar_top_line_noshow_plus@3x.png in Resources */,
 				D1FDDA7D1DD30FA200203B91 /* bbs_noneVoice@2x.png in Resources */,
 				D17A28DC1D94091600C00B3F /* type_110@2x.png in Resources */,
 				D13B58D81D7FFA6F005D89FA /* Localizable.strings in Resources */,
@@ -3431,6 +3454,7 @@
 				D13B58941D7EEBAA005D89FA /* CYLTabBar.m in Sources */,
 				D13B58C91D7FCD8A005D89FA /* PublishButton.m in Sources */,
 				D13B59401D82602F005D89FA /* UIImage+fixOrientation.m in Sources */,
+				D1052DF61E69487300BCA261 /* UIButton+Touch.m in Sources */,
 				D17A284E1D93FBD200C00B3F /* AppDelegateHelper.m in Sources */,
 				D1CB2DC81DF595360092DA1A /* StroeMainViewController.m in Sources */,
 				D13DDC851DD16F5300B3AD5B /* UIImage+WebP.m in Sources */,
@@ -3501,12 +3525,14 @@
 				D12A85D71DC72931004834E0 /* NormalTableViewCell.m in Sources */,
 				D1A70DF81E0008B00090AAD0 /* UIButton+OrderButton.m in Sources */,
 				D13B58A41D7EF05B005D89FA /* DiscoverViewController.m in Sources */,
+				D1052DFE1E69516E00BCA261 /* YMUITipsView.m in Sources */,
 				D17A28281D93F89900C00B3F /* YYDispatchQueuePool.m in Sources */,
 				D13B59461D829AA8005D89FA /* UIViewExt.m in Sources */,
 				D1B6D7731D7D154700C3E647 /* MASViewAttribute.m in Sources */,
 				D11C44931D9911590051BD31 /* PreviewVideoView.m in Sources */,
 				D17A282C1D93F89900C00B3F /* YYReachability.m in Sources */,
 				D1B6D7951D7D159600C3E647 /* MJPropertyType.m in Sources */,
+				D1052DFB1E694E5300BCA261 /* UserDetailViewController.m in Sources */,
 				D13DDC801DD16F5300B3AD5B /* SDWebImageManager.m in Sources */,
 				D17A28241D93F89900C00B3F /* YYTextUtilities.m in Sources */,
 				D17A28311D93F89900C00B3F /* YYTransaction.m in Sources */,

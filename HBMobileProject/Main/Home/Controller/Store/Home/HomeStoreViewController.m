@@ -36,6 +36,10 @@ static NSString * const HomeStoreHeadViewID = @"HomeStoreHeadViewID";
     [self.view addSubview:self.collectionView];
 }
 
+- (void)clickBackBtn {
+    
+}
+
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -63,6 +67,7 @@ static NSString * const HomeStoreHeadViewID = @"HomeStoreHeadViewID";
     
     StoreDetailViewController *detailViewController = [[StoreDetailViewController alloc] init];
     detailViewController.title = @"产品详情";
+    detailViewController.tabBarController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailViewController animated:YES];
     
 }
@@ -89,6 +94,15 @@ static NSString * const HomeStoreHeadViewID = @"HomeStoreHeadViewID";
         [_collectionView registerClass:[HomeStoreHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HomeStoreHeadViewID];
     }
     return _collectionView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (NSMutableArray *)dataArr {

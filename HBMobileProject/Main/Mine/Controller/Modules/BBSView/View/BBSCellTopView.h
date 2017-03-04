@@ -11,7 +11,7 @@
 @protocol BBSCellTopViewDelegate <NSObject>
 
 @optional
-- (void)headButtonClick:(UITableViewCell *)cell;
+- (void)headButtonClick;
 
 @end
 

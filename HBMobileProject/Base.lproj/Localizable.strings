@@ -6,6 +6,8 @@
   Copyright © 2016年 HarbingWang. All rights reserved.
 */
 
+"alert_str_serverError" = "抱歉,服务器异常！";
+
 // General
 "BtnTitle_Cancle" = "取消";
 "BtnTitle_Sure" = "确定";

@@ -92,15 +92,14 @@ typedef enum {
               duration:(NSTimeInterval)sec
                 inView:(UIView *)view;
 
-
-
-
 + (instancetype)showTextOnly:(NSString *)text
              configParameter:(ConfigShowHUDBlock)config
                       inView:(UIView *)view;
+
 + (instancetype)showText:(NSString *)text
          configParameter:(ConfigShowHUDBlock)config
                   inView:(UIView *)view;
+
 + (instancetype)showCustomView:(ConfigShowHUDCustomViewBlock)viewBlock
                configParameter:(ConfigShowHUDBlock)config
                         inView:(UIView *)view;

@@ -7,6 +7,7 @@
 //
 
 #import "BBSCellTopView.h"
+#import "UIButton+Touch.h"
 
 @implementation BBSCellTopView
 
@@ -28,9 +29,8 @@
 #pragma mark - ButtonClick
 - (void)headClick
 {
-    NSLog(@"点击头像");
-    if ([self.delegate respondsToSelector:@selector(headButtonClick:)]) {
-        
+    if ([self.delegate respondsToSelector:@selector(headButtonClick)]) {
+        [self.delegate headButtonClick];
     }
 }
 
@@ -39,9 +39,24 @@
     NSLog(@"更多操作");
 }
 
-- (void)followBtnClick
+- (void)followBtnClick:(UIButton *)sender
 {
-    NSLog(@"关注");
+    NSLog(@"关注(设置了点击延时)");
+    [self showWithAnimation:sender];
+}
+
+- (void)showWithAnimation:(UIButton *)sender{
+    CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    popAnimation.duration = 0.4;
+    popAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f, 0.01f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1f, 1.1f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9f, 0.9f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DIdentity]];
+    popAnimation.keyTimes = @[@0.5f, @0.5f, @0.75f, @1.0f];
+    popAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [sender.layer addAnimation:popAnimation forKey:nil];
 }
 
 #pragma mark - getter
@@ -50,6 +65,8 @@
     if (!_headImageBtn) {
         _headImageBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         _headImageBtn.frame = CGRectMake(15, self.center.y-34/2, 34, 34);
+        
+        _headImageBtn.timeInterval = 1.5;
         
         _headImageBtn.layer.cornerRadius = _headImageBtn.size.width/2;
         _headImageBtn.layer.masksToBounds = YES;
@@ -104,6 +121,9 @@
         _followBtn = [UIButton buttonWithType:(UIButtonTypeSystem)];
         _followBtn.frame = CGRectMake(ScreenWidth-25-20-60, (54.5-25)/2, 60, 25);
         
+        _followBtn.isIgnoreEvent = NO;
+        _followBtn.timeInterval = 3;//分类中设置点击延时,点击一次后3秒内不循序再次点击.
+        
         _followBtn.layer.cornerRadius = 3.f;
         _followBtn.layer.masksToBounds = YES;
         _followBtn.layer.borderWidth = 1.f;
@@ -115,10 +135,12 @@
         [_followBtn.titleLabel setTintColor:RGB(37, 201, 152)];
         [_followBtn.titleLabel setFont:Font(12.f)];
         
-        [_followBtn addTarget:self action:@selector(followBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        [_followBtn addTarget:self action:@selector(followBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _followBtn;
 }
+
+
 
 - (UIButton *)moreActionBtn
 {

@@ -72,16 +72,18 @@
 #import "UIImage+RoundedCorner.h"
 
 #pragma mark - Tools
-#import "CustomTipsView.h"
-#import "LoopProgressView.h"
+#import "CustomTipsView.h"//自定义提示框
+#import "LoopProgressView.h"//圆形进度条
 #import "StatusBarHUD.h"
-#import "CuttingLine.h"
+#import "YMUITipsView.h"
+#import "CuttingLine.h"//分割线
 #import "AppDelegateHelper.h"
 #import "GPUImage.h"
 #import "Masonry.h"
-#import "YMDataAdapter.h"
+#import "YMDataAdapter.h"//数据请求类
 #import "UIImageView+WebCache.h"
-#import "TimeFormatTool.h"
+#import "TimeFormatTool.h"//时间转换工具类
+
 //环信
 //#import "EMSDK.h"
 //#import "EaseUI.h"

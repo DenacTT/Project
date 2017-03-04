@@ -9,7 +9,7 @@
 #import "BBSListViewController.h"
 #import "BBSCell.h"
 #import "MJRefresh.h"
-#import "DMHeartFlyView.h"
+#import "UserDetailViewController.h"
 
 static NSString * const BBSCellID = @"BBSCell";
 
@@ -58,26 +58,23 @@ static NSString * const BBSCellID = @"BBSCell";
     _cell = [tableView dequeueReusableCellWithIdentifier:BBSCellID forIndexPath:indexPath];
     _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     _cell.operateView.delegate = self;
+    _cell.headView.delegate = self;
     return _cell;
-}
-
-- (void)clickZan {
-    [self.tableView reloadData];
-//    [self showTheLove];
-//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.35 target:self selector:@selector(showTheLove) userInfo:nil repeats:YES];
-}
-
--(void)showTheLove{
-    DMHeartFlyView* heart = [[DMHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, _heartSize, _heartSize)];
-    [_cell addSubview:heart];
-//    CGPoint fountainSource = _cell.operateView.zanBtn.center;
-//    CGPointMake(_cell.operateView.zanBtn.center.x, _cell.operateView.zanBtn.center.y);
-    heart.center = _cell.operateView.zanBtn.center;
-    [heart animateInView:self.view];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - BBSCellTopViewDelegate
+- (void)headButtonClick {
+    UserDetailViewController *userDetail = [[UserDetailViewController alloc] init];
+    [self.navigationController pushViewController:userDetail animated:YES];
+}
+
+#pragma mark - BBSCellOperateViewDelegate
+- (void)clickZan {
+    [self.tableView reloadData];
 }
 
 #pragma mark - getter
