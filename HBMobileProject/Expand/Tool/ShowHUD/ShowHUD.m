@@ -49,19 +49,19 @@
 
 - (void)hide
 {
-    [_hud hide:YES];
+    [_hud hideAnimated:YES];
 }
 
 - (void)show:(BOOL)show
 {
     // 根据属性判断是否要显示文本
     if (_text != nil && _text.length != 0) {
-        _hud.labelText = _text;
+        _hud.label.text = _text;
     }
     
     // 设置文本字体
     if (_textFont) {
-        _hud.labelFont = _textFont;
+        _hud.label.font = _textFont;
     }
     
     // 如果设置这个属性,则只显示文本
@@ -100,7 +100,7 @@
         _hud.margin = _margin;
     }
     
-    [_hud show:show];
+    [_hud showAnimated:show];
 }
 
 #pragma mark - HUD代理方法
@@ -240,7 +240,7 @@
 
 - (void)dealloc
 {
-    ShowHUD_DLog(@"资源释放了,没有泄露^_^");
+//    ShowHUD_DLog(@"资源释放了,没有泄露^_^");
 }
 
 @end

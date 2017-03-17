@@ -31,9 +31,9 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 
 - (void)initData {
     
-    [self addClassName:@"ExtensibleCellViewController" withTitle:@"可扩展tableView01"];
-    [self addClassName:@"YMActionSheetViewController" withTitle:@"仿微信ActionSheet"];
-    
+    [self addClassName:@"ExtensibleCellViewController" withTitle:@"ExtensibleTableView"];
+    [self addClassName:@"YMActionSheetViewController" withTitle:@"CustomActionSheet"];
+    [self addClassName:@"DataFilterViewController" withTitle:@"DataFilter"];
 }
 
 - (void)addClassName:(NSString *)className withTitle:(NSString *)title {
