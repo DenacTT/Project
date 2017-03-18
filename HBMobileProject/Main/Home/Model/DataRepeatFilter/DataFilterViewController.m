@@ -27,21 +27,22 @@ static NSString * const DataFilterViewCell = @"DataFilterViewCell";
     self.titleLabel.text = @"数据排重";
     self.isUseBackBtn = YES;
     self.isUseRightBtn = YES;
-    
     [self setupSubView];
-//    [self loadData];
-    [self loaDataModel];
+    
+    [self loadData];
+    //[self loaDataModel];
 }
 
+// 简单结构的排重对象
 - (void)loadData {
 
-    // 简单结构的排重对象
     // self.originArr = @[@1, @2, @3, @1, @2, @3, @4];
-    // self.originArr = @[@"iPhone5", @"iPhone5", @"iPhoneSE", @"iPhone6", @"iPhone6", @"iPhone6s", @"iPhone6s",  @"iPhone8", @"iPadMini", @"macBookPro", @"macBookPro", @"iMac"];
+    self.originArr = @[@"iPhone5", @"iPhone5", @"iPhoneSE", @"iPhone6", @"iPhone6", @"iPhone6s", @"iPhone6s",  @"iPhone8", @"iPadMini", @"macBookPro", @"macBookPro", @"iMac"];
 }
 
+// 复杂结构的排重对象
 - (void)loaDataModel {
-    // 复杂结构的排重对象
+    
     NSArray *array = @[@{@"name": @"iPhone5",
                          @"id": @(001)
                          },
@@ -99,7 +100,7 @@ static NSString * const DataFilterViewCell = @"DataFilterViewCell";
     
     // 简单结构的排重对象
     // 1.利用 NSArray 的 containsObject 方法
-    // [self filterMethodOne];
+     [self filterMethodOne];
     
     // 2.利用 NSDictionary 的 allValues 方法
     // [self filterMethodTwo];
@@ -114,7 +115,7 @@ static NSString * const DataFilterViewCell = @"DataFilterViewCell";
     // [self filterMethodFive];
     
     // 复杂结构的排重对象可以通过特征值(id/createTime 等)排重
-    [self filterMethodSix];
+    // [self filterMethodSix];
 }
 
 #pragma mark - 排重方法
@@ -203,13 +204,14 @@ static NSString * const DataFilterViewCell = @"DataFilterViewCell";
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:DataFilterViewCell];
     
     // 简单
-//    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.originArr[indexPath.row]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.originArr[indexPath.row]];
     
     // 复杂
+    /*
     ProductModel *model = self.originArr[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", model.name];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", model.id];
-    
+    */
     return cell;
 }
 
