@@ -1,13 +1,15 @@
 //
-//  DataFilterViewController.h
+//  UITableView+Extend.h
 //  HBMobileProject
 //
 //  Created by HarbingWang on 17/3/18.
 //  Copyright © 2017年 HarbingWang. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface DataFilterViewController : BaseViewController
+@interface UITableView (Extend)
+
+- (void)reloadDataWithAnimate:(BOOL)animate;
 
 @end

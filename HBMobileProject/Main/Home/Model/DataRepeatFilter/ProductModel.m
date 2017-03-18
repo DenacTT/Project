@@ -1,13 +1,13 @@
 //
-//  DataFilterViewController.h
+//  ProductModel.m
 //  HBMobileProject
 //
 //  Created by HarbingWang on 17/3/18.
 //  Copyright © 2017年 HarbingWang. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "ProductModel.h"
 
-@interface DataFilterViewController : BaseViewController
+@implementation ProductModel
 
 @end

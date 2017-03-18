@@ -18,11 +18,11 @@
 + (void)showTips:(NSString *)tips;
 
 //tips小窗口提示
-+ (void)showSuccessTitle:(NSString *)title Top:(CGFloat)top;
++ (void)showTipsTitle:(NSString *)title top:(CGFloat)top;
 
-+ (void)showSuccessTitle:(NSString *)title Top:(CGFloat)top Success:(void (^)(BOOL success))goCancel;
++ (void)showTipsTitle:(NSString *)title top:(CGFloat)top success:(void (^)(BOOL success))goCancel;
 
 //请求成功提示
-+ (void)showImageTitle:(NSString *)title;
++ (void)showImage:(NSString *)imageName title:(NSString *)title;
 
 @end

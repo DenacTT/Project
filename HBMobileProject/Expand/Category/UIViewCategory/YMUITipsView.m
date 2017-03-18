@@ -34,7 +34,7 @@
 }
 
 //tips小窗口提示
-+ (void)showSuccessTitle:(NSString *)title Top:(CGFloat)top
++ (void)showTipsTitle:(NSString *)title top:(CGFloat)top
 {
     UIView * tipsView = [UIView new];
     [myWindow() addSubview: tipsView];
@@ -81,7 +81,7 @@
     }];
 }
 
-+ (void)showSuccessTitle:(NSString *)title Top:(CGFloat)top Success:(void (^)(BOOL))goCancel
++ (void)showTipsTitle:(NSString *)title top:(CGFloat)top success:(void (^)(BOOL success))goCancel
 {
     UIView *tipsView = [UIView new];
     [myWindow() addSubview: tipsView];
@@ -122,7 +122,7 @@
                             options: UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseIn
                          animations:^{
                              weakView.alpha = 1.f;
-                         } completion: ^(BOOL finished){
+                         } completion: ^(BOOL finishe){
                              {
                                  [UIView animateWithDuration: 0.5f delay: 1.f options: UIViewAnimationOptionCurveEaseOut animations:^{
                                      weakView.alpha = 0.f;
@@ -136,10 +136,10 @@
     }];
 }
 
-+ (void)showImageTitle:(NSString *)title
++ (void)showImage:(NSString *)imageName title:(NSString *)title
 {
     UIWindow * window = [[UIApplication sharedApplication].delegate window];
-    UIImage* imageDone = [UIImage imageNamed: @"success_tips"];
+    UIImage* imageDone = [UIImage imageNamed:imageName];
     UILabel* labelDoneTxt = [[UILabel alloc] init];
     UIImageView* imgSCDone = [[UIImageView alloc] initWithImage: imageDone];
     UIView * success = [[UIView alloc] init];

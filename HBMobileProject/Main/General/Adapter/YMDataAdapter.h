@@ -13,4 +13,7 @@
 // 获取本地 plist 文件数据
 - (id)getLocalMsgListData;
 
+// 获取测试数据
+- (NSArray *)getTestData;
+
 @end

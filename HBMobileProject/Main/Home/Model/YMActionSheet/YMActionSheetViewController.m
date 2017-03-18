@@ -55,19 +55,20 @@
 }
 
 - (IBAction)customTipsAction:(UIButton *)sender {
-    [YMUITipsView showSuccessTitle:@"客从何处来" Top:ScreenHeight];
+    [YMUITipsView showTipsTitle:@"客从何处来" top:ScreenHeight];
 }
 
 - (IBAction)custom01:(id)sender {
-    [YMUITipsView showSuccessTitle:@"    客从何处来 \n\n 风里藏着秘密，遇山 散了 \n 花里喃着耳语，迎雾 没了 \n 怀里拥着温度，沾露 凉了 \n 手里攥着船票，入水 化了 " Top:ScreenHeight Success:^(BOOL success) {
+    [YMUITipsView showTipsTitle:@"    客从何处来 \n\n 风里藏着秘密，遇山 散了 \n 花里喃着耳语，迎雾 没了 \n 怀里拥着温度，沾露 凉了 \n 手里攥着船票，入水 化了 " top:ScreenHeight success:^(BOOL success) {
         NSLog(@"完成回调");
-        [YMUITipsView showImageTitle:@"加载成功"];
+//        [YMUITipsView showImage:@"success_tips" title:@"回调完成"];
     }];
 }
 
 - (IBAction)custom02:(id)sender {
-    [YMUITipsView showImageTitle:@"加载成功"];
+    [YMUITipsView showImage:@"success_tips" title:@"回调完成"];
 }
+
 
 
 @end

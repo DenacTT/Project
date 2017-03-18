@@ -23,7 +23,9 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"首页";
+    self.titleLabel.text = @"首页";
+//    self.isUseBackBtn = YES;
+//    self.isUseRightBtn = YES;
     [self.view addSubview:self.tableView];
     
     [self initData];
@@ -74,7 +76,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 #pragma mark - setter
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:(UITableViewStylePlain)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.navView.bottom, ScreenWidth, ScreenHeight-self.navView.height) style:(UITableViewStylePlain)];
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;

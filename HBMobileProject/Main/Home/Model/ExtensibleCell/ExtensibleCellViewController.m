@@ -17,7 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.titleLabel.text = @"可扩展的TableView";
+    self.isUseBackBtn = YES;
+    self.isUseRightBtn = YES;
     
 }
 
