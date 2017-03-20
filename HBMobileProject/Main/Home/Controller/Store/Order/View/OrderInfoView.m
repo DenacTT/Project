@@ -50,7 +50,7 @@
     _goodsMoney.text = [NSString stringWithFormat:@"单价 %zi 元", orderModel.listOfGoodsInfo.price];
     _goodsNum.text = [NSString stringWithFormat:@"数量 %zi", orderModel.listOfGoodsInfo.num];
     
-    if (orderModel.status == OrderStatusHaveCanceled) {
+    if (orderModel.status == OrderStatusHaveCel) {
         _goodsMoney.textColor = RGB(170, 170, 170);
         _goodsName.textColor = RGB(170, 170, 170);
         _goodsNum.textColor = RGB(170, 170, 170);

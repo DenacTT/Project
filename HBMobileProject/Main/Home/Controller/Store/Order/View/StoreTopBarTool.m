@@ -59,7 +59,7 @@
         case OrderStatusWaitPay:
             self.waitPayPoint.text = [NSString stringWithFormat:@"%zi", model.status];
             break;
-        case OrderStatusWaitReceive:
+        case OrderStatusWaitRec:
             self.waitReceivePoint.text = [NSString stringWithFormat:@"%zi", model.status];
             break;
         default:

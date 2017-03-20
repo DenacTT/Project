@@ -36,6 +36,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
     [self addClassName:@"ExtensibleCellViewController" withTitle:@"ExtensibleTableView"];
     [self addClassName:@"YMActionSheetViewController" withTitle:@"CustomActionSheet"];
     [self addClassName:@"DataFilterViewController" withTitle:@"DataFilter"];
+    [self addClassName:@"KVCCollectionOperators" withTitle:@"KVCCollectionOperators"];
 }
 
 - (void)addClassName:(NSString *)className withTitle:(NSString *)title {

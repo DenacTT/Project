@@ -35,13 +35,13 @@
             [self setTitle:@"立即支付" forState:(UIControlStateNormal)];
             self.layer.borderColor = RGB(248, 68, 68).CGColor;
             break;
-        case OrderStatusWaitReceive:
+        case OrderStatusWaitRec:
             [self setTitleColor:RGB(74, 144, 226) forState:(UIControlStateNormal)];
             [self setTitle:@"查看物流" forState:(UIControlStateNormal)];
             self.layer.borderColor = RGB(74, 144, 226).CGColor;
             break;
-        case OrderStatusHaveReceived:
-        case OrderStatusHaveCanceled:    
+        case OrderStatusHaveRec:
+        case OrderStatusHaveCel:    
             [self setTitleColor:RGB(50, 50, 50) forState:(UIControlStateNormal)];
             [self setTitle:@"删除订单" forState:(UIControlStateNormal)];
             self.layer.borderColor = RGB(170, 170, 170).CGColor;

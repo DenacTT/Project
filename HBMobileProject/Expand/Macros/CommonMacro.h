@@ -34,13 +34,20 @@
 #define RandomColor RGB(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-
 typedef NS_ENUM(NSInteger, OrderStatus) {
-    OrderStatusWaitPay = 1,         // 待支付
-    OrderStatusWaitReceive = 2,     // 待收货
-    OrderStatusHaveReceived = 3,    // 已收货
-    OrderStatusHaveCanceled = 4,    // 已取消
+    OrderStatusWaitPay = 1,     // 待支付
+    OrderStatusWaitRec = 2,     // 待收货
+    OrderStatusHaveRec = 3,     // 已收货
+    OrderStatusHaveCel = 4,     // 已取消
 };
+
+//typedef enum : NSInteger {
+//    OrderStatusWaitPay = 1,     // 待支付
+//    OrderStatusWaitRec = 2,     // 待收货
+//    OrderStatusHaveRec = 3,     // 已收货
+//    OrderStatusHaveCel = 4,     // 已取消
+//}OrderStatus;
+
 
 // 当前是否debug模式
 #ifdef DEBUG
@@ -51,7 +58,7 @@ typedef NS_ENUM(NSInteger, OrderStatus) {
 
 //重写NSLog,Debug模式下打印日志和当前行数
 #if DEBUG
-#define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d content:%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d content: %s", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 #else
 #define NSLog(FORMAT, ...) nil
 #endif

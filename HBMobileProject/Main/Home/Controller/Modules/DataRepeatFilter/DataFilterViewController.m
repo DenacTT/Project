@@ -4,7 +4,7 @@
 //
 //  Created by HarbingWang on 17/3/18.
 //  Copyright © 2017年 HarbingWang. All rights reserved.
-//
+//  https://github.com/HarbingWang/Project/tree/master/HBMobileProject/Main/Home/Model/DataRepeatFilter
 
 #import "DataFilterViewController.h"
 #import "ProductModel.h"
@@ -31,9 +31,18 @@ static NSString * const DataFilterViewCell = @"DataFilterViewCell";
     
     [self loadData];
     //[self loaDataModel];
+    
+//    // runtime 获取某个类的方法名
+//    unsigned int count = 0;
+//    Method *methods = class_copyMethodList([NSArray class], &count);
+//    for (int i = 0; i < count; i++) {
+//        Method method = methods[i];
+//        SEL methodSel = method_getName(method);
+//        NSLog(@"%@", NSStringFromSelector(methodSel));
+//    }
 }
 
-// 简单结构的排重对象
+// 单一结构的排重对象
 - (void)loadData {
 
     // self.originArr = @[@1, @2, @3, @1, @2, @3, @4];
@@ -98,9 +107,9 @@ static NSString * const DataFilterViewCell = @"DataFilterViewCell";
 
 - (void)clickRightBtn {
     
-    // 简单结构的排重对象
+    // 单一结构的排重对象
     // 1.利用 NSArray 的 containsObject 方法
-     [self filterMethodOne];
+    [self filterMethodOne];
     
     // 2.利用 NSDictionary 的 allValues 方法
     // [self filterMethodTwo];
@@ -152,7 +161,7 @@ static NSString * const DataFilterViewCell = @"DataFilterViewCell";
     [self.tableView reloadDataWithAnimate:YES];
 }
 
-// 4.利用 KVC 的 valueForKeyPath 方法
+// 4.利用 KVC Collection Operators(集合操作) 的 valueForKeyPath 方法
 - (void)filterMethodFour {
     
     NSArray *arr = [self.originArr valueForKeyPath:@"@distinctUnionOfObjects.self"];
@@ -177,6 +186,7 @@ static NSString * const DataFilterViewCell = @"DataFilterViewCell";
     self.originArr = [NSArray arrayWithArray:arr];
     [self.tableView reloadDataWithAnimate:YES];
 }
+
 
 // 复杂结构时可以通过特征值(id/createTime等)排重
 - (void)filterMethodSix {
@@ -203,7 +213,7 @@ static NSString * const DataFilterViewCell = @"DataFilterViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:DataFilterViewCell];
     
-    // 简单
+    // 单一
     cell.textLabel.text = [NSString stringWithFormat:@"%@", self.originArr[indexPath.row]];
     
     // 复杂

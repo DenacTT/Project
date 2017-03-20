@@ -56,7 +56,7 @@
     [_orderButton changeBtnStyleWihtOrderStatus:orderModel.status];
     [self changeLabelStyleWithOrderStatus:orderModel.status];
     
-    if (orderModel.status == OrderStatusHaveCanceled) {
+    if (orderModel.status == OrderStatusHaveCel) {
         _orderNumber.textColor = RGB(170, 170, 170);
         _totalAmount.textColor = RGB(170, 170, 170);
     }
@@ -71,13 +71,13 @@
                 [self.delegate payMoneyWithModel:_orderModel];
             }
             break;
-        case OrderStatusWaitReceive:
+        case OrderStatusWaitRec:
             if ([self.delegate respondsToSelector:@selector(lookAtLogisticsWithModel:)]) {
                 [self.delegate lookAtLogisticsWithModel:_orderModel];
             }
             break;
-        case OrderStatusHaveReceived:
-        case OrderStatusHaveCanceled:
+        case OrderStatusHaveRec:
+        case OrderStatusHaveCel:
             if ([self.delegate respondsToSelector:@selector(deleteOrderWithModel:)]) {
                 [self.delegate deleteOrderWithModel:_orderModel];
             }
@@ -93,15 +93,15 @@
             _orderStatus.text = @"待支付";
             _orderStatus.textColor = RGB(248, 68, 68);
             break;
-        case OrderStatusWaitReceive:
+        case OrderStatusWaitRec:
             _orderStatus.text = @"待收货";
             _orderStatus.textColor = RGB(74, 144, 226);
             break;
-        case OrderStatusHaveReceived:
+        case OrderStatusHaveRec:
             _orderStatus.text = @"已收货";
             _orderStatus.textColor = RGB(102, 102, 102);
             break;
-        case OrderStatusHaveCanceled:
+        case OrderStatusHaveCel:
             _orderStatus.text = @"已取消";
             _orderStatus.textColor = RGB(102, 102, 102);
             break;
