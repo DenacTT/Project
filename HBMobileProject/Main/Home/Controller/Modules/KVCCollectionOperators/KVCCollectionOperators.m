@@ -47,13 +47,13 @@
     // **Notice:** 所有的集合操作,除了`@count`外,其他都需要有右边的keyPath(一般为属性名),`@count`右边的`keyPath`可写可不写.
     
     NSArray *product = @[productA, productB, productC, productD];
-    NSNumber *count = [product valueForKeyPath:@"@count.price"];
-    NSNumber *avg = [product valueForKeyPath:@"@avg.price"];
-    NSNumber *max = [product valueForKeyPath:@"@max.price"];
-    NSNumber *min = [product valueForKeyPath:@"@min.price"];
-    NSNumber *sum = [product valueForKeyPath:@"@sum.price"];
-    
-    NSLog(@"count:%@, avg:%@, max:%@, min:%@, sum:%@", count, avg, max, min, sum);
+//    NSNumber *count = [product valueForKeyPath:@"@count.price"];
+//    NSNumber *avg = [product valueForKeyPath:@"@avg.price"];
+//    NSNumber *max = [product valueForKeyPath:@"@max.price"];
+//    NSNumber *min = [product valueForKeyPath:@"@min.price"];
+//    NSNumber *sum = [product valueForKeyPath:@"@sum.price"];
+//    
+//    NSLog(@"count:%@, avg:%@, max:%@, min:%@, sum:%@", count, avg, max, min, sum);
     
     // Noti:若操作对象(数组/集合)内的元素本身就是 NSNumber 对象,那么可以这样写.
 //    NSArray *array = @[@(productA.price), @(productB.price), @(productC.price), @(productD.price)];
@@ -96,10 +96,41 @@
     NSArray *uppercaseStrArr = [arr valueForKeyPath:@"uppercaseString"];
     NSLog(@"%@", uppercaseStrArr);// 输出: IPOD,IPHONE,IMAC,"IPHONE8 PLUS"
     
-    // 从输出我们不难看出,`[arr valueForKeyPath:@"uppercaseString"]`相当于数组中每个元素都执行了`uppercaseString`方法,并将返回的对象放到了一个数组中返回.当然了,除了可以执行`uppercaseString`外,也可以执行NSString的其他方法:`length`,`md5String`
+    // 从输出我们不难看出,`[arr valueForKeyPath:@"uppercaseString"]`相当于数组中每个元素都执行了`uppercaseString`方法,并将返回的对象放到了一个数组中返回.当然了,除了可以执行`uppercaseString`外,也可以执行集合中对象的其他实例方法:`length`,`md5String` and so on...
     NSArray *lengthArr = [arr valueForKeyPath:@"length"];
     NSLog(@"%@", lengthArr);// 输出: 4,6,4,12
     
+    // 2.如上所述,对数组快速求和,求平均值,求最大值,最小值.
+    NSArray *priceArr = @[@99, @199, @299, @99];
+    NSNumber *count = [priceArr valueForKeyPath:@"@count"];
+    NSNumber *avg = [priceArr valueForKeyPath:@"@avg.self"];
+    NSNumber *max = [priceArr valueForKeyPath:@"@max.self"];
+    NSNumber *min = [priceArr valueForKeyPath:@"@min.self"];
+    NSNumber *sum = [priceArr valueForKeyPath:@"@sum.self"];
+    NSLog(@"count:%@, avg:%@, max:%@, min:%@, sum:%@", count, avg, max, min, sum);
+    
+    // 当然,也能指定输出类型, for example:
+//    NSNumber *count = [priceArr valueForKeyPath:@"@count"];
+//    NSNumber *avg = [priceArr valueForKeyPath:@"@avg.floatValue"];
+//    NSNumber *max = [priceArr valueForKeyPath:@"@max.floatValue"];
+//    NSNumber *min = [priceArr valueForKeyPath:@"@min.floatValue"];
+//    NSNumber *sum = [priceArr valueForKeyPath:@"@sum.floatValue"];
+//    NSLog(@"count:%@, avg:%@, max:%@, min:%@, sum:%@", count, avg, max, min, sum);
+    
+    // 3.剔除数组中的重复元素
+    NSLog(@"%@", [priceArr valueForKeyPath:@"@distinctUnionOfObjects.self"]);
+    
+    // 4.根据 keypath 路径快速找到 key 对应的值, for example:
+    NSArray *array = @[@{@"name" : @"iPod", @"price" : @99},
+                       @{@"name" : @"iPhone", @"price" : @199},
+                       @{@"name" : @"iPhone", @"price" : @299},
+                       @{@"name" : @"iPhone", @"price" : @299},
+                       ];
+    NSLog(@"%@", [array valueForKeyPath:@"name"]);// 注意:name 前面没有@符号,这不是集合运算符
+    
+    // 这样,我们就能很快得到字典key值`name`对应的value值所组成的数组,这种方式显然比 for 循环来的直接,高效.
+    // 当然,也能使用 KVC Collection Operators 来剔除重复的数值:
+    NSLog(@"%@", [array valueForKeyPath:@"@distinctUnionOfObjects.price"]);
     
     
     // runtime 获取类的方法
