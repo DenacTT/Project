@@ -6,10 +6,15 @@ FMDB 的缺点: 由于其使用的是 OC 的语法封装,因此只能在 iOS 项
 
 ##### 二.FMDB 使用说明
 FMDB同时兼容ARC和非ARC工程，会自动根据工程配置来调整相关的内存管理代码。
+
 FMDB 三个主要的常用类:
+
 `FMDatabase`: 代表一个 SQLite 数据库,用于执行 SQLite 语句;
+
 `FMResultSet`: 代表 FMDatabase 的一个 SQL 查询的结果集;
+
 `FMDatabaseQueue`: 如果你想在多个线程上执行数据库查询和更新的操作, 这个类会很有用.下面的”线程安全”部分,会重点介绍它;
+
 
 
 
@@ -51,22 +56,24 @@ if (![db open]) {
 - (BOOL)executeUpdate:(NSString*)sql withArgumentsInArray:(NSArray *)arguments
 ```
 **说明**: 除了`SELECT`外的SQL操作,都被视为更新操作.包括`CREATE`, `UPDATE`, `INSERT`, `ALTER`, `COMMIT`, `BEGIN`, `DETACH`, `DELETE`, `DROP`, `END`, `EXPLAIN`, `VACUUM`, and `REPLACE`等.
-> 
-// 示例1
+
+> // 示例1
 [db executeUpdate:@"CREATE TABLE IF NOT EXISTS 'UserInfoTable' (Id integer NOT NULL primary key autoincrement,name text DEFAULT 0,age integer DEFAULT 0)"];
 
 // 示例2
 `-executeUpdate:`使用标准的 SQL 语句,参数用?来占位,参数必须是对象类型,不能是 int,double,bool 等基本数据类型;
-[db executeUpdate:@"UPDATE UserInfoTable SET name = ? WHERE Id = ?", userInfo.name, @(userInfo.id).description];
+`[db executeUpdate:@"UPDATE UserInfoTable SET name = ? WHERE Id = ?", userInfo.name, @(userInfo.id).description];`
 
 // 示例3
-`-executeUpdateWithFormat:`使用字符串的格式化构建 SQL 语句,参数用%@、%d等来占位.
-[db executeUpdateWithFormat:@"INSERT INTO UserInfoTable (name, age) values (%@,%d);", userInfo.name, userInfo.age];
+`-executeUpdateWithFormat:`使用字符串的格式化构建 SQL 语句,参数用`%@`、`%d`等来占位.
+`[db executeUpdateWithFormat:@"INSERT INTO UserInfoTable (name, age) values (%@,%d);", userInfo.name, userInfo.age];`
 
 // 示例4
-`-executeUpdate:withArgumentsInArray:`也可以把对应的参数装到数组里面传进去,SQL语句中的参数用 ? 代替.
+`-executeUpdate:withArgumentsInArray:`也可以把对应的参数装到数组里面传进去,SQL语句中的参数用` ? `代替.
+```
 NSArray *sqlArr = @[userInfo.name, @(userInfo.age)];
 [db executeUpdate:@"INSERT INTO UserInfoTable (name,age) values (?,?)" withArgumentsInArray:sqlArr];
+```
 
 ###### 4.执行查询操作
 使用 `-executeQuery...` 方法来执行数据库的查询操作,查询结果返回`FMResultSet`对象;
@@ -133,7 +140,7 @@ FMResultSet *res = [db executeQuery:@"SELECT name(*) FROM UserInfoDTable"];
 - (id)objectForColumnName:(NSString *)columnName;
 - (id)objectForColumnIndex:(int)columnIdx
 ```
-更多关于FMResultSet的使用方法可以参考[FMResultSet Class Reference](http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html#//api/name/kvcMagic:)
+⑤更多关于FMResultSet的使用方法参考 [FMResultSet Class Reference](http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html#//api/name/kvcMagic:)
 
 ###### 5.关闭数据库
 当完成了数据库的查询以及更新操作,**必须调用`close`语句关闭 FMDatabase 连接**,释放SQLite 使用的资源.
@@ -243,11 +250,11 @@ BOOL success = [db executeUpdate:@"INSERT INTO authors (identifier, name, date, 
 
 2.我们可以调用 `executeUpdate:` 方法来将 ? 所指代的具体参数传进去,如示例语句;
 
-3.尤其值得注意的是,参数必须是`NSobject`的子类,所以像 `int` ,`double`, `bool` 等基本类型的数据,需要封装成对应的包装类才行,如示例中的 `identifier` 字段,需要通过 `@(identifier)` 或者 `[NSNumber numberWithInt:identifier]` 转换成 `NSNumber` 对象
+3.尤其值得注意的是,参数必须是`NSobject`的子类,所以像 `int` ,`double`, `bool` 等基本类型的数据,需要封装成对应的包装类才行,如示例中的 `identifier` 字段,需要通过 `@(identifier)` 或者 `[NSNumber numberWithInt:identifier]` 转换成 `NSNumber` 对象;
 
-4.SQL 中的 NULL 值需要以 [NSNull null] 类型传进去.例如实例中的`comment`字段,为空时我们可以通过 `comment ?: [NSNull null]` 语法进行处理;`Likewise, SQL NULL values should be inserted as [NSNull null]. For example, in the case of comment which might be nil (and is in this example), you can use the comment ?: [NSNull null] syntax, which will insert the string if comment is not nil, but will insert [NSNull null] if it is nil.` 
+4.SQL 中的 NULL 值需要以 [NSNull null] 类型传进去.例如实例中的`comment`字段,为空时我们可以通过 `comment ?: [NSNull null]` 语法进行处理;`Likewise, SQL NULL values should be inserted as [NSNull null]. For example, in the case of comment which might be nil (and is in this example), you can use the comment ?: [NSNull null] syntax, which will insert the string if comment is not nil, but will insert [NSNull null] if it is nil.`;
 
-5.`-execute*WithFormat:` 方法内部会将参数转换为合适的类型,以下修饰符都是可以使用的: %@, %c, %s, %d, %D, %i, %u, %U, %hi, %hu, %qi, %qu, %f, %g, %ld, %lu, %lld和 %llu. 使用不支持的占位符,将有可能引起崩溃或未定义的行为.如果需要在 SQL 语句中使用字符 `%` ,需要使用 `%%`
+5.`-execute*WithFormat:` 方法内部会将参数转换为合适的类型,以下修饰符都是可以使用的: %@, %c, %s, %d, %D, %i, %u, %U, %hi, %hu, %qi, %qu, %f, %g, %ld, %lu, %lld和 %llu. 使用不支持的占位符,将有可能引起崩溃或未定义的行为.如果需要在 SQL 语句中使用字符 `%` ,需要使用 `%%`;
 
 
 ##### 八.参考及引用文献:
