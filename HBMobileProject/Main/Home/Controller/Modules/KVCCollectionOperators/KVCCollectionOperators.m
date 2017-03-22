@@ -102,35 +102,35 @@
     
     // 2.如上所述,对数组快速求和,求平均值,求最大值,最小值.
     NSArray *priceArr = @[@99, @199, @299, @99];
-    NSNumber *count = [priceArr valueForKeyPath:@"@count"];
-    NSNumber *avg = [priceArr valueForKeyPath:@"@avg.self"];
-    NSNumber *max = [priceArr valueForKeyPath:@"@max.self"];
-    NSNumber *min = [priceArr valueForKeyPath:@"@min.self"];
-    NSNumber *sum = [priceArr valueForKeyPath:@"@sum.self"];
-    NSLog(@"count:%@, avg:%@, max:%@, min:%@, sum:%@", count, avg, max, min, sum);
+//    NSNumber *count = [priceArr valueForKeyPath:@"@count"];
+//    NSNumber *avg = [priceArr valueForKeyPath:@"@avg.self"];
+//    NSNumber *max = [priceArr valueForKeyPath:@"@max.self"];
+//    NSNumber *min = [priceArr valueForKeyPath:@"@min.self"];
+//    NSNumber *sum = [priceArr valueForKeyPath:@"@sum.self"];
+//    NSLog(@"count:%@, avg:%@, max:%@, min:%@, sum:%@", count, avg, max, min, sum);
     
     // 当然,也能指定输出类型, for example:
-//    NSNumber *count = [priceArr valueForKeyPath:@"@count"];
-//    NSNumber *avg = [priceArr valueForKeyPath:@"@avg.floatValue"];
-//    NSNumber *max = [priceArr valueForKeyPath:@"@max.floatValue"];
-//    NSNumber *min = [priceArr valueForKeyPath:@"@min.floatValue"];
-//    NSNumber *sum = [priceArr valueForKeyPath:@"@sum.floatValue"];
-//    NSLog(@"count:%@, avg:%@, max:%@, min:%@, sum:%@", count, avg, max, min, sum);
+    NSNumber *count = [priceArr valueForKeyPath:@"@count"];
+    NSNumber *avg = [priceArr valueForKeyPath:@"@avg.floatValue"];
+    NSNumber *max = [priceArr valueForKeyPath:@"@max.floatValue"];
+    NSNumber *min = [priceArr valueForKeyPath:@"@min.floatValue"];
+    NSNumber *sum = [priceArr valueForKeyPath:@"@sum.floatValue"];
+    NSLog(@"count:%@, avg:%@, max:%@, min:%@, sum:%@", count, avg, max, min, sum);
     
     // 3.剔除数组中的重复元素
     NSLog(@"%@", [priceArr valueForKeyPath:@"@distinctUnionOfObjects.self"]);
     
     // 4.根据 keypath 路径快速找到 key 对应的值, for example:
-    NSArray *array = @[@{@"name" : @"iPod", @"price" : @99},
+     NSArray *array = @[@{@"name" : @"iPod", @"price" : @99},
                        @{@"name" : @"iPhone", @"price" : @199},
                        @{@"name" : @"iPhone", @"price" : @299},
                        @{@"name" : @"iPhone", @"price" : @299},
                        ];
-    NSLog(@"%@", [array valueForKeyPath:@"name"]);// 注意:name 前面没有@符号,这不是集合运算符
+     NSLog(@"%@", [array valueForKeyPath:@"name"]);// 注意:name 前面没有@符号,这不是集合运算符
     
-    // 这样,我们就能很快得到字典key值`name`对应的value值所组成的数组,这种方式显然比 for 循环来的直接,高效.
-    // 当然,也能使用 KVC Collection Operators 来剔除重复的数值:
-    NSLog(@"%@", [array valueForKeyPath:@"@distinctUnionOfObjects.price"]);
+     // 这样,我们就能很快得到字典key值`name`对应的value值所组成的数组,这种方式显然比 for 循环来的直接,高效.
+     // 当然,也能使用 KVC Collection Operators 来剔除重复的数值:
+     NSLog(@"%@", [array valueForKeyPath:@"@distinctUnionOfObjects.price"]);
     
     
     // runtime 获取类的方法

@@ -37,6 +37,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
     [self addClassName:@"YMActionSheetViewController" withTitle:@"CustomActionSheet"];
     [self addClassName:@"DataFilterViewController" withTitle:@"DataFilter"];
     [self addClassName:@"KVCCollectionOperators" withTitle:@"KVCCollectionOperators"];
+    [self addClassName:@"FMDBViewController" withTitle:@"FMDBStudyDemo"];
 }
 
 - (void)addClassName:(NSString *)className withTitle:(NSString *)title {
