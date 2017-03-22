@@ -12,13 +12,12 @@ FMDB 三个主要的常用类:
 `FMDatabaseQueue`: 如果你想在多个线程上执行数据库查询和更新的操作, 这个类会很有用.下面的”线程安全”部分,会重点介绍它.
 
 ##### 三.FMDB 创建及使用方法
-
 - 首先需要将 FMDB 从 [Github](https://github.com/ccgus/fmdb) 上下载下来,然后将文件拖入工程中(支持 CocoaPods);
 - 在工程中添加`libsqlite3.tbd`依赖;
 - #import "FMDB.h" 引入头文件;
 
 ###### 1.创建数据库
-可以通过指定 SQLite 数据库文件的路径来创建一个 FMDatabase ,路径可以是以下几种方式中的任何一种:
+通过指定 SQLite 数据库文件的路径来创建一个 FMDatabase ,路径可以是以下几种方式中的任何一种:
 - 一个完整的文件路径,如果文件不存在,会自动创建` A file system path. The file does not have to exist on disk. If it does not exist, it is created for you. `
 - 一个空字符串(@""),会自动在缓存区创建一个空的数据库, FMDatabase 连接关闭时,数据库会被自动删除`An empty string (@""). An empty database is created at a temporary location. This database is deleted with the FMDatabase connection is closed.`
 - 路径为 NULL ,会在内存中创建一个数据库,同样地, FMDatabase 连接关闭时,数据库会被自动删除`NULL. An in-memory database is created. This database will be destroyed with the FMDatabase connection is closed.`
@@ -79,24 +78,21 @@ NSArray *sqlArr = @[userInfo.name, @(userInfo.age)];
 FMResultSet *set = [db executeQuery:@"SELECT * FROM UserInfoDTable"];
 ```
 **注意以下几点:** 
-1.为了遍历查询结果,需要使用 while() 语句遍历;
+①为了遍历查询结果,需要使用 while() 语句遍历;
 ```
 while ([set next]) {
   // 从每条记录中获取值
 }
 ```
-
-2.即使操作结果只有一行,也需要先调用 FMResultSet 的 next 方法.
+②即使操作结果只有一行,也需要先调用 FMResultSet 的 next 方法.
 ```
 FMResultSet *res = [db executeQuery:@"SELECT name(*) FROM UserInfoDTable"];
   while ([set next]) {
   NSString *name = [set stringForColumn:@"name"];
 }
 ```
-
-3.通常情况下,不需要关闭 FMResultSet, 因为相关的数据库关闭时,FMResultSet 也会被自动关闭。 `Typically, there's no need to -close an FMResultSet yourself, since that happens when either the result set is deallocated, or the parent database is closed.`
-
-4.FMResultSet 提供了很多获取不同类型数据的方法:
+③通常情况下,不需要关闭 FMResultSet, 因为相关的数据库关闭时,FMResultSet 也会被自动关闭。 `Typically, there's no need to -close an FMResultSet yourself, since that happens when either the result set is deallocated, or the parent database is closed.`
+④FMResultSet 提供了很多获取不同类型数据的方法:
 ```
 // 获取下一个记录
 - (BOOL)next;
@@ -240,8 +236,11 @@ BOOL success = [db executeUpdate:@"INSERT INTO authors (identifier, name, date, 
 ```
 
 1.通常来讲,可以使用标准的 SQL 语句,用 ? 表示执行语句的参数,例如: `INSERT INTO myTable VALUES (?, ?, ?, ?)`;
+
 2.我们可以调用 `executeUpdate:` 方法来将 ? 所指代的具体参数传进去,如示例语句;
+
 3.尤其值得注意的是,参数必须是`NSobject`的子类,所以像 `int` ,`double`, `bool` 等基本类型的数据,需要封装成对应的包装类才行,如示例中的 `identifier` 字段,需要通过 `@(identifier)` 或者 `[NSNumber numberWithInt:identifier]` 转换成 `NSNumber` 对象
+
 4.SQL 中的 NULL 值需要以 [NSNull null] 类型传进去.例如实例中的`comment`字段,为空时我们可以通过 `comment ?: [NSNull null]` 语法进行处理;`Likewise, SQL NULL values should be inserted as [NSNull null]. For example, in the case of comment which might be nil (and is in this example), you can use the comment ?: [NSNull null] syntax, which will insert the string if comment is not nil, but will insert [NSNull null] if it is nil.` 
 
 5.`-execute*WithFormat:` 方法内部会将参数转换为合适的类型,以下修饰符都是可以使用的: %@, %c, %s, %d, %D, %i, %u, %U, %hi, %hu, %qi, %qu, %f, %g, %ld, %lu, %lld和 %llu. 使用不支持的占位符,将有可能引起崩溃或未定义的行为.如果需要在 SQL 语句中使用字符 `%` ,需要使用 `%%`
