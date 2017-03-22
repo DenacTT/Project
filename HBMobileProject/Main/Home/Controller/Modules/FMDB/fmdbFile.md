@@ -1,15 +1,17 @@
-###FMDB学习笔记
+### FMDB学习笔记
 
 ##### 一.FMDB 简介
 SQLite是一个轻量级的关系型数据库,在使用的时候只需要加入`libsqlite3.tbd`的依赖并引入`sqlite3.h`头文件即可. 但是,原生的`SQLite API`在使用上相当的不友好. 因此, [FMDB](https://github.com/ccgus/fmdb) 用 OC 的方式对其C语言的API进行了封装,使用起来比原生的 API 优雅了很多,同时,相较于 Apple 自带的 CoreDada 框架,也更加灵活. 此外, FMDB 还提供了多线程安全的操作数据库的方法,能够有效地防止数据读取的混乱.
-FMDB 的缺陷: 由于其使用的是 OC 的语法封装,因此只能在 iOS 项目中使用,在跨平台操作的时候存在一定的局限性.
+FMDB 的缺点: 由于其使用的是 OC 的语法封装,因此只能在 iOS 项目中使用,在跨平台操作的时候存在一定的局限性.
 
 ##### 二.FMDB 使用说明
 FMDB同时兼容ARC和非ARC工程，会自动根据工程配置来调整相关的内存管理代码。
 FMDB 三个主要的常用类:
 `FMDatabase`: 代表一个 SQLite 数据库,用于执行 SQLite 语句;
 `FMResultSet`: 代表 FMDatabase 的一个 SQL 查询的结果集;
-`FMDatabaseQueue`: 如果你想在多个线程上执行数据库查询和更新的操作, 这个类会很有用.下面的”线程安全”部分,会重点介绍它.
+`FMDatabaseQueue`: 如果你想在多个线程上执行数据库查询和更新的操作, 这个类会很有用.下面的”线程安全”部分,会重点介绍它;
+
+
 
 
 ##### 三.FMDB 创建及使用方法
@@ -27,7 +29,7 @@ FMDB 三个主要的常用类:
 NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"UserInfo.db"];
 FMDatabase *db = [FMDatabase databaseWithPath:filePath];
 ```
-**注意: 这里创建了数据库,并不会打开数据库,打开数据库需要接下来的操作.**
+> **注意: 这里创建了数据库,并不会打开数据库,打开数据库需要接下来的操作.**
 
 ###### 2.打开数据库
 使用`open`语句打开数据库,打开成功返回 YES, 打开失败返回 NO, 示例如下:
@@ -49,7 +51,7 @@ if (![db open]) {
 - (BOOL)executeUpdate:(NSString*)sql withArgumentsInArray:(NSArray *)arguments
 ```
 **说明**: 除了`SELECT`外的SQL操作,都被视为更新操作.包括`CREATE`, `UPDATE`, `INSERT`, `ALTER`, `COMMIT`, `BEGIN`, `DETACH`, `DELETE`, `DROP`, `END`, `EXPLAIN`, `VACUUM`, and `REPLACE`等.
-```
+> 
 // 示例1
 [db executeUpdate:@"CREATE TABLE IF NOT EXISTS 'UserInfoTable' (Id integer NOT NULL primary key autoincrement,name text DEFAULT 0,age integer DEFAULT 0)"];
 
@@ -65,7 +67,6 @@ if (![db open]) {
 `-executeUpdate:withArgumentsInArray:`也可以把对应的参数装到数组里面传进去,SQL语句中的参数用 ? 代替.
 NSArray *sqlArr = @[userInfo.name, @(userInfo.age)];
 [db executeUpdate:@"INSERT INTO UserInfoTable (name,age) values (?,?)" withArgumentsInArray:sqlArr];
-```
 
 ###### 4.执行查询操作
 使用 `-executeQuery...` 方法来执行数据库的查询操作,查询结果返回`FMResultSet`对象;
