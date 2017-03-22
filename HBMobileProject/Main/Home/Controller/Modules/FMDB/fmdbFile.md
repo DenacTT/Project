@@ -1,4 +1,4 @@
-FMDB笔记
+###FMDB学习笔记
 
 ##### 一.FMDB 简介
 SQLite是一个轻量级的关系型数据库,在使用的时候只需要加入`libsqlite3.tbd`的依赖并引入`sqlite3.h`头文件即可. 但是,原生的`SQLite API`在使用上相当的不友好. 因此, [FMDB](https://github.com/ccgus/fmdb) 用 OC 的方式对其C语言的API进行了封装,使用起来比原生的 API 优雅了很多,同时,相较于 Apple 自带的 CoreDada 框架,也更加灵活. 此外, FMDB 还提供了多线程安全的操作数据库的方法,能够有效地防止数据读取的混乱.
@@ -10,6 +10,7 @@ FMDB 三个主要的常用类:
 `FMDatabase`: 代表一个 SQLite 数据库,用于执行 SQLite 语句;
 `FMResultSet`: 代表 FMDatabase 的一个 SQL 查询的结果集;
 `FMDatabaseQueue`: 如果你想在多个线程上执行数据库查询和更新的操作, 这个类会很有用.下面的”线程安全”部分,会重点介绍它.
+
 
 ##### 三.FMDB 创建及使用方法
 - 首先需要将 FMDB 从 [Github](https://github.com/ccgus/fmdb) 上下载下来,然后将文件拖入工程中(支持 CocoaPods);
@@ -49,18 +50,18 @@ if (![db open]) {
 ```
 **说明**: 除了`SELECT`外的SQL操作,都被视为更新操作.包括`CREATE`, `UPDATE`, `INSERT`, `ALTER`, `COMMIT`, `BEGIN`, `DETACH`, `DELETE`, `DROP`, `END`, `EXPLAIN`, `VACUUM`, and `REPLACE`等.
 ```
-- 示例1
+// 示例1
 [db executeUpdate:@"CREATE TABLE IF NOT EXISTS 'UserInfoTable' (Id integer NOT NULL primary key autoincrement,name text DEFAULT 0,age integer DEFAULT 0)"];
 
-- 示例2
+// 示例2
 `-executeUpdate:`使用标准的 SQL 语句,参数用?来占位,参数必须是对象类型,不能是 int,double,bool 等基本数据类型;
 [db executeUpdate:@"UPDATE UserInfoTable SET name = ? WHERE Id = ?", userInfo.name, @(userInfo.id).description];
 
-- 示例3
+// 示例3
 `-executeUpdateWithFormat:`使用字符串的格式化构建 SQL 语句,参数用%@、%d等来占位.
 [db executeUpdateWithFormat:@"INSERT INTO UserInfoTable (name, age) values (%@,%d);", userInfo.name, userInfo.age];
 
-- 示例4
+// 示例4
 `-executeUpdate:withArgumentsInArray:`也可以把对应的参数装到数组里面传进去,SQL语句中的参数用 ? 代替.
 NSArray *sqlArr = @[userInfo.name, @(userInfo.age)];
 [db executeUpdate:@"INSERT INTO UserInfoTable (name,age) values (?,?)" withArgumentsInArray:sqlArr];
@@ -77,7 +78,9 @@ NSArray *sqlArr = @[userInfo.name, @(userInfo.age)];
 ```
 FMResultSet *set = [db executeQuery:@"SELECT * FROM UserInfoDTable"];
 ```
+
 **注意以下几点:** 
+
 ①为了遍历查询结果,需要使用 while() 语句遍历;
 ```
 while ([set next]) {
@@ -244,6 +247,7 @@ BOOL success = [db executeUpdate:@"INSERT INTO authors (identifier, name, date, 
 4.SQL 中的 NULL 值需要以 [NSNull null] 类型传进去.例如实例中的`comment`字段,为空时我们可以通过 `comment ?: [NSNull null]` 语法进行处理;`Likewise, SQL NULL values should be inserted as [NSNull null]. For example, in the case of comment which might be nil (and is in this example), you can use the comment ?: [NSNull null] syntax, which will insert the string if comment is not nil, but will insert [NSNull null] if it is nil.` 
 
 5.`-execute*WithFormat:` 方法内部会将参数转换为合适的类型,以下修饰符都是可以使用的: %@, %c, %s, %d, %D, %i, %u, %U, %hi, %hu, %qi, %qu, %f, %g, %ld, %lu, %lld和 %llu. 使用不支持的占位符,将有可能引起崩溃或未定义的行为.如果需要在 SQL 语句中使用字符 `%` ,需要使用 `%%`
+
 
 ##### 八.参考及引用文献:
 - [FMDB官方文档](https://github.com/ccgus/fmdb)
