@@ -87,7 +87,7 @@ static NSString * const BBSCellID = @"BBSCell";
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget: self refreshingAction: @selector(loadMoreData)];
+        _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget: self refreshingAction: @selector(loadMoreData)];
     }
     return _tableView;
 }

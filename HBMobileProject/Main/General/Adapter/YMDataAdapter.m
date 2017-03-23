@@ -11,8 +11,8 @@
 
 @implementation YMDataAdapter
 
-- (id)getLocalMsgListData
-{
+- (id)getLocalMsgListData {
+    
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"MsgList" ofType:@"plist"];
     NSArray *arr = [[NSArray alloc] initWithContentsOfFile:plistPath];
     //NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
@@ -24,6 +24,14 @@
     }
     
     return dataArr;
+}
+
++ (void)requestCommentsDataSuccess:(RequestSuccess)success fail:(RequestFail)fail {
+    
+    NSString *commentsPlist = [[NSBundle mainBundle] pathForResource:@"UserCommentsMsg" ofType:@"plist"];
+    NSArray *arr = [[NSArray alloc] initWithContentsOfFile:commentsPlist];
+    
+    success(arr);
 }
 
 - (NSArray *)getTestData {

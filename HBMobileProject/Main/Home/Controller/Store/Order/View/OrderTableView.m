@@ -110,7 +110,7 @@ static NSString * const OrderTableViewCellID = @"OrderTableViewCellID";
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerClass:[OrderTableViewCell class] forCellReuseIdentifier:OrderTableViewCellID];
         
-        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget: self refreshingAction: @selector(loadNetData)];
+        self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget: self refreshingAction: @selector(loadNetData)];
     }
     return _tableView;
 }

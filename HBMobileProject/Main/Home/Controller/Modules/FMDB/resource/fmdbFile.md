@@ -57,18 +57,18 @@ if (![db open]) {
 ```
 **说明**: 除了`SELECT`外的SQL操作,都被视为更新操作.包括`CREATE`, `UPDATE`, `INSERT`, `ALTER`, `COMMIT`, `BEGIN`, `DETACH`, `DELETE`, `DROP`, `END`, `EXPLAIN`, `VACUUM`, and `REPLACE`等.
 
-> // 示例1
-[db executeUpdate:@"CREATE TABLE IF NOT EXISTS 'UserInfoTable' (Id integer NOT NULL primary key autoincrement,name text DEFAULT 0,age integer DEFAULT 0)"];
+示例1
+`[db executeUpdate:@"CREATE TABLE IF NOT EXISTS 'UserInfoTable' (Id integer NOT NULL primary key autoincrement,name text DEFAULT 0,age integer DEFAULT 0)"];`
 
-// 示例2
+示例2
 `-executeUpdate:`使用标准的 SQL 语句,参数用?来占位,参数必须是对象类型,不能是 int,double,bool 等基本数据类型;
 `[db executeUpdate:@"UPDATE UserInfoTable SET name = ? WHERE Id = ?", userInfo.name, @(userInfo.id).description];`
 
-// 示例3
+示例3
 `-executeUpdateWithFormat:`使用字符串的格式化构建 SQL 语句,参数用`%@`、`%d`等来占位.
 `[db executeUpdateWithFormat:@"INSERT INTO UserInfoTable (name, age) values (%@,%d);", userInfo.name, userInfo.age];`
 
-// 示例4
+示例4
 `-executeUpdate:withArgumentsInArray:`也可以把对应的参数装到数组里面传进去,SQL语句中的参数用` ? `代替.
 ```
 NSArray *sqlArr = @[userInfo.name, @(userInfo.age)];
@@ -233,7 +233,6 @@ FMDatabaseQueue使用事务的方法:
 
 #### 七.附相关参数说明:
 
-示例代码:
 ```
 NSInteger identifier = 42;
 NSString *name = @"Liam O'Flaherty (\"the famous Irish author\")";

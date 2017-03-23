@@ -83,6 +83,7 @@
 #import "Masonry.h"
 #import "YMDataAdapter.h"//数据请求类
 #import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
 #import "TimeFormatTool.h"//时间转换工具类
 
 //环信
