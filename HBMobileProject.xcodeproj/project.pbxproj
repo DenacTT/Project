@@ -315,6 +315,7 @@
 		D1A70DEC1DFFF1FE0090AAD0 /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A70DEB1DFFF1FE0090AAD0 /* OrderTableViewCell.m */; };
 		D1A70DEF1DFFF5DB0090AAD0 /* OrderInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A70DEE1DFFF5DB0090AAD0 /* OrderInfoView.m */; };
 		D1A70DF81E0008B00090AAD0 /* UIButton+OrderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A70DF71E0008B00090AAD0 /* UIButton+OrderButton.m */; };
+		D1AA484C1E83AF8F00C532EF /* YTKKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AA484B1E83AF8F00C532EF /* YTKKeyValueStore.m */; };
 		D1B6A8171DCDBE9500833681 /* TextBarGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6A8161DCDBE9500833681 /* TextBarGroupModel.m */; };
 		D1B6D6F01D7D10C500C3E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6EF1D7D10C500C3E647 /* main.m */; };
 		D1B6D6F31D7D10C500C3E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B6D6F21D7D10C500C3E647 /* AppDelegate.m */; };
@@ -1094,6 +1095,8 @@
 		D1A70DEE1DFFF5DB0090AAD0 /* OrderInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderInfoView.m; sourceTree = "<group>"; };
 		D1A70DF61E0008B00090AAD0 /* UIButton+OrderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+OrderButton.h"; sourceTree = "<group>"; };
 		D1A70DF71E0008B00090AAD0 /* UIButton+OrderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+OrderButton.m"; sourceTree = "<group>"; };
+		D1AA484A1E83AF8F00C532EF /* YTKKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKKeyValueStore.h; sourceTree = "<group>"; };
+		D1AA484B1E83AF8F00C532EF /* YTKKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKKeyValueStore.m; sourceTree = "<group>"; };
 		D1B6A8151DCDBE9500833681 /* TextBarGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBarGroupModel.h; sourceTree = "<group>"; };
 		D1B6A8161DCDBE9500833681 /* TextBarGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBarGroupModel.m; sourceTree = "<group>"; };
 		D1B6D6EB1D7D10C400C3E647 /* HBMobileProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBMobileProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2616,6 +2619,15 @@
 			path = YMActionSheet;
 			sourceTree = "<group>";
 		};
+		D1AA48491E83AF8F00C532EF /* YTKKeyValueStore */ = {
+			isa = PBXGroup;
+			children = (
+				D1AA484A1E83AF8F00C532EF /* YTKKeyValueStore.h */,
+				D1AA484B1E83AF8F00C532EF /* YTKKeyValueStore.m */,
+			);
+			path = YTKKeyValueStore;
+			sourceTree = "<group>";
+		};
 		D1B6D6E21D7D10C400C3E647 = {
 			isa = PBXGroup;
 			children = (
@@ -2810,6 +2822,7 @@
 		D1B6D7491D7D12AB00C3E647 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
+				D1AA48491E83AF8F00C532EF /* YTKKeyValueStore */,
 				D1BF0F831E825C2D002D4385 /* DataServer */,
 			);
 			path = DataBase;
@@ -3708,6 +3721,7 @@
 				D1917A031E4C92F800AE8281 /* MBProgressHUD.m in Sources */,
 				D140C9141DCDDEC100EF48EA /* PasteTagModel.m in Sources */,
 				D12A2E7A1DD323AC00D12F4A /* BBSCellOperateView.m in Sources */,
+				D1AA484C1E83AF8F00C532EF /* YTKKeyValueStore.m in Sources */,
 				D17A280D1D93F89900C00B3F /* YYImageCoder.m in Sources */,
 				D1B6D7941D7D159600C3E647 /* MJPropertyKey.m in Sources */,
 				D13B58E01D8001E5005D89FA /* PublishMovieViewController.m in Sources */,

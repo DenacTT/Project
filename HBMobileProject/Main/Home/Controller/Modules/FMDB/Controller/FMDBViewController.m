@@ -79,7 +79,7 @@ static NSString * const CommentsViewCell = @"CommentsViewCell";
 
 - (void)clickRightBtn {
     
-    [[YMActionSheet actionSheetViewWithTitle:@"数据操作" cancelTitle:@"取消" destructiveTitle:nil otherTitles:@[@"创建数据库", @"插入单条数据", @"批量插入数据", @"查询所有数据", @"UserId查询数据", @"删除数据库", @"多线程操作"] otherImages:nil delegate:self] show];
+    [[YMActionSheet actionSheetViewWithTitle:@"数据操作" cancelTitle:@"取消" destructiveTitle:nil otherTitles:@[@"创建数据库", @"插入单条数据", @"批量插入数据", @"查询所有数据", @"UserId查询数据", @"删除全部数据", @"多线程操作"] otherImages:nil delegate:self] show];
 }
 
 #pragma mark - YMActionSheetDelegate

@@ -38,7 +38,7 @@
     self = [super init];
     if (self) {
         _db = [[FMDatabase alloc] initWithPath:self.filePath];
-        _queue = [FMDatabaseQueue databaseQueueWithPath:self.filePath];
+        _queue = [FMDatabaseQueue databaseQueueWithPath:self.filePath];//串行队列
     }
     return self;
 }
