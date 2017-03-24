@@ -170,9 +170,6 @@ static NSString * const CommentsViewCell = @"CommentsViewCell";
     
     [self.dataArr removeAllObjects];
     [[YMCommentDB shareInstance] multithread:[@100 integerValue]];
-    NSArray *arr = [[YMCommentDB shareInstance] quaryAllCommentsData];
-    [self.dataArr setArray:arr];
-    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource

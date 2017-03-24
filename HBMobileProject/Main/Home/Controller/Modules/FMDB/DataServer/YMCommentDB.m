@@ -159,7 +159,7 @@
     NSMutableArray *dataArr = [NSMutableArray array];
     
     [self.db open];
-    FMResultSet *res = [self.db executeQuery:Select_ByUserId_CommentsTable, @(userId)];
+    FMResultSet *res = [self.db executeQuery:Select_Comment_ByUserId, @(userId)];
     while ([res next]) {
         NSDictionary *dic = [res resultDictionary];
         ComModel *model = [ComModel mj_objectWithKeyValues:dic];
@@ -169,6 +169,35 @@
     [self.db close];
     
     return dataArr;
+}
+
+// 分页查询
+- (NSArray *)getCommentsListWithRange:(NSRange)range {
+    
+    NSMutableArray *dataArr = [NSMutableArray array];
+    [self.db open];
+    FMResultSet *res = [self.db executeQuery:Select_CommentList_WithRange, range.location, range.length];
+    while ([res next]) {
+        NSDictionary *dic = [res resultDictionary];
+        ComModel *model = [ComModel mj_objectWithKeyValues:dic];
+        [dataArr addObject:model];
+    }
+    return dataArr;
+}
+
+// 查询数据是否存在
+- (BOOL)isExistWithId:(NSString *)idStr {
+    BOOL isExist = NO;
+    
+    FMResultSet *res = [self.db executeQuery:Select_Comment_WithId];
+    while ([res next]) {
+        if ([res stringForColumn:@"Id"]) {
+            isExist = YES;
+        } else {
+            isExist = NO;
+        }
+    }
+    return isExist;
 }
 
 #pragma mark - 删除

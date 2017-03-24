@@ -16,7 +16,11 @@ NSString * const Insert_CommentsTable = @"INSERT OR REPLACE INTO YMCommentDB (my
 
 NSString * const Select_AllData_CommentsTable = @"SELECT * from YMCommentDB";
 
-NSString * const Select_ByUserId_CommentsTable = @"SELECT * from YMCommentDB where myUserId = ? ORDER by createTime desc";
+NSString * const Select_Comment_ByUserId = @"SELECT * from YMCommentDB where myUserId = ? ORDER by createTime desc";
+
+NSString * const Select_CommentList_WithRange = @"SELECT * FROM UserInfoDB LIMIT %lu, %lu";
+
+NSString * const Select_Comment_WithId = @"SELECT * FROM UserInfoDB WHERE Id = ?";
 
 NSString * const Update_CommentsTable = @"UPDATE YMCommentDB SET readType = ? WHERE Id = ?";
 

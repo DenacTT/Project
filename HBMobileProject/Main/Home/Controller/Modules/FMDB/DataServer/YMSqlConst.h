@@ -17,9 +17,13 @@ extern NSString * const Create_CommentsTable;// 创建数据库
 
 extern NSString * const Insert_CommentsTable;// 插入数据库
 
-extern NSString * const Select_AllData_CommentsTable;//查询全部数据
+extern NSString * const Select_AllData_CommentsTable;// 查询全部数据
 
-extern NSString * const Select_ByUserId_CommentsTable;// 通过 UserId 查询数据库
+extern NSString * const Select_Comment_ByUserId;// 通过 UserId 查询数据库
+
+extern NSString * const Select_CommentList_WithRange;// 分页查询
+
+extern NSString * const Select_Comment_WithId;// 查询数据是否已经存在
 
 extern NSString * const Update_CommentsTable;// 修改数据库
 
