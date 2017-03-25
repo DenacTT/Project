@@ -67,6 +67,22 @@
                         <action selector="customTipsAction:" destination="-1" eventType="touchUpInside" id="Jgr-bz-PgD"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OS6-mC-p3z">
+                    <rect key="frame" x="0.0" y="356" width="375" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="AlterBar"/>
+                    <connections>
+                        <action selector="alterBarAction:" destination="-1" eventType="touchUpInside" id="uuu-HE-5fi"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncP-DP-HVx">
+                    <rect key="frame" x="0.0" y="394" width="375" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="JHCustomAlertView"/>
+                    <connections>
+                        <action selector="customAlterViewAction:" destination="-1" eventType="touchUpInside" id="avH-2I-mCP"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <point key="canvasLocation" x="35.5" y="54.5"/>

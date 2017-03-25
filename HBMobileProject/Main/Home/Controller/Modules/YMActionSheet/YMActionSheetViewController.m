@@ -10,6 +10,8 @@
 #import "YMActionSheet.h"
 #import "ShowHUD.h"
 #import "YMUITipsView.h"
+#import "JHAlertBar.h"
+#import "JHCustomAlertView.h"
 
 @implementation YMActionSheetViewController
 
@@ -42,6 +44,7 @@
 }
 
 // 仅仅显示文本,延时3秒后消失
+
 - (IBAction)showHud01:(id)sender {
     [ShowHUD showTextOnly:@"加载失败" configParameter:^(ShowHUD *config) {
         config.animationStyle  = Fade;      // 设置动画方式
@@ -69,6 +72,15 @@
     [YMUITipsView showImage:@"success_tips" title:@"回调完成"];
 }
 
+- (IBAction)alterBarAction:(id)sender {
+    [JHAlertBar barWithIconName:@"" noticeWord:@"提示信息" backgroundColor:[UIColor redColor]];
+}
 
+- (IBAction)customAlterViewAction:(id)sender {
+    JHCustomAlertView *alter = [[JHCustomAlertView alloc] initWithTitle:@"温馨提示" andMessage:@"需要展示的消息" andItemsArr:@[@"1", @"2", @"3"] andClickIndexBlock:^(NSInteger index) {
+        
+    }];
+    [alter show];
+}
 
 @end

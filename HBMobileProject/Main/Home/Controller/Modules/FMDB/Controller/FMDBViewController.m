@@ -19,6 +19,8 @@ static NSString * const CommentsViewCell = @"CommentsViewCell";
 
 @property (nonatomic, strong) NSMutableArray *dataArr;
 
+@property (nonatomic, assign) NSInteger currentPage;
+
 @end
 
 @implementation FMDBViewController
@@ -27,6 +29,7 @@ static NSString * const CommentsViewCell = @"CommentsViewCell";
     [super viewDidLoad];
     self.isUseBackBtn  = YES;
     self.isUseRightBtn = YES;
+    self.currentPage = 0;
     
     // 添加子视图
     [self setupSubView];
@@ -47,17 +50,35 @@ static NSString * const CommentsViewCell = @"CommentsViewCell";
             ComModel *model = [ComModel mj_objectWithKeyValues:dic];
             [weakSelf.dataArr addObject:model];
         }
-        // 请求成功,将数据缓存到本地数据库中
-        
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView reloadData];
         
+        // 请求成功. 缓存至数据库.
+        // ...
+        
     } fail:^(id object) {
         
-        // 请求失败就从数据库中获取缓存数据
+        // 请求失败. 就从数据库中获取缓存数据
         [weakSelf.tableView.mj_header endRefreshing];
         [YMUITipsView showTips:@"数据请求失败~"];
     }];
+}
+
+- (void)loadMoreData {
+    NSLog(@"上拉加载");
+    /*
+    _currentPage ++;
+    NSRange range = NSMakeRange(_currentPage * 10, 10);
+    if ([[[YMCommentDB shareInstance] getCommentsListWithRange:range] count]) {
+        [_dataArr addObjectsFromArray:[[YMCommentDB shareInstance] getCommentsListWithRange:range]];
+        [_tableView reloadData];
+        [_tableView.mj_footer endRefreshing];
+        NSLog(@"数据库加载%lu条更多数据",[[[YMCommentDB shareInstance] getCommentsListWithRange:range] count]);
+    }else{
+        //数据库没更多数据时再网络请求
+        [self getTableViewDataWithPage:_currentPage];
+    }
+     */
 }
 
 - (void)setupSubView

@@ -1,16 +1,21 @@
 //
-//  HomeViewController.m
+//  AnimationViewController.m
 //  HBMobileProject
 //
-//  Created by HarbingWang on 16/12/3.
-//  Copyright © 2016年 HarbingWang. All rights reserved.
+//  Created by HarbingWang on 17/3/24.
+//  Copyright © 2017年 HarbingWang. All rights reserved.
 //
 
-#import "HomeViewController.h"
+#import "AnimationViewController.h"
+#import "UIBezierPathDemo.h"
 
-static NSString * const HomeViewCell = @"HomeViewCell";
+@interface AnimationViewController ()
 
-@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>
+@end
+
+static NSString * const AnimaitonViewCell = @"AnimaitonViewCell";
+
+@interface AnimationViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -19,13 +24,12 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 
 @end
 
-@implementation HomeViewController
+@implementation AnimationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLabel.text = @"首页";
-//    self.isUseBackBtn = YES;
-//    self.isUseRightBtn = YES;
+    self.isUseBackBtn = YES;
+    self.titleLabel.text = @"动画";
     [self.view addSubview:self.tableView];
     
     [self initData];
@@ -33,12 +37,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 
 - (void)initData {
     
-    [self addClassName:@"AnimationViewController" withTitle:@"AnimationDemo"];
-    [self addClassName:@"ChartViewController" withTitle:@"ChartView"];
-    [self addClassName:@"DataFilterViewController" withTitle:@"DataFilter"];
-    [self addClassName:@"FMDBViewController" withTitle:@"FMDBStudyDemo"];
-    [self addClassName:@"KVCCollectionOperators" withTitle:@"KVCCollectionOperators"];
-    [self addClassName:@"YMActionSheetViewController" withTitle:@"CustomActionSheet"];
+    [self addClassName:@"UIBezierPathDemo" withTitle:@"UIBezierPath"];
     
 }
 
@@ -58,7 +57,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HomeViewCell forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AnimaitonViewCell forIndexPath:indexPath];
     cell.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = self.titleArr[indexPath.row];
     return cell;
@@ -85,7 +84,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:HomeViewCell];
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:AnimaitonViewCell];
     }
     return _tableView;
 }
@@ -103,5 +102,6 @@ static NSString * const HomeViewCell = @"HomeViewCell";
     }
     return _titleArr;
 }
+
 
 @end
