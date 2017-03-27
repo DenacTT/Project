@@ -139,6 +139,8 @@
 		D14602921E855ADB0065E127 /* YMLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D14602901E855ADB0065E127 /* YMLineChart.m */; };
 		D14602951E855B2F0065E127 /* YMChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D14602941E855B2F0065E127 /* YMChart.m */; };
 		D14602991E8610A30065E127 /* UIBezierPathDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D14602981E8610A30065E127 /* UIBezierPathDemo.m */; };
+		D146029D1E864BAF0065E127 /* CGContextRefDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D146029C1E864BAF0065E127 /* CGContextRefDemo.m */; };
+		D14602A01E865E160065E127 /* UIBezierPathView.m in Sources */ = {isa = PBXBuildFile; fileRef = D146029F1E865E160065E127 /* UIBezierPathView.m */; };
 		D14798981E827FBB001553A0 /* YMCommentDB.m in Sources */ = {isa = PBXBuildFile; fileRef = D14798971E827FBB001553A0 /* YMCommentDB.m */; };
 		D14AA4701DD2CBF800E1A46D /* BBSListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA46F1DD2CBF800E1A46D /* BBSListViewController.m */; };
 		D14AA4731DD2CC5D00E1A46D /* BBSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D14AA4721DD2CC5D00E1A46D /* BBSCell.m */; };
@@ -672,6 +674,10 @@
 		D14602941E855B2F0065E127 /* YMChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMChart.m; sourceTree = "<group>"; };
 		D14602971E8610A30065E127 /* UIBezierPathDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBezierPathDemo.h; sourceTree = "<group>"; };
 		D14602981E8610A30065E127 /* UIBezierPathDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBezierPathDemo.m; sourceTree = "<group>"; };
+		D146029B1E864BAF0065E127 /* CGContextRefDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGContextRefDemo.h; sourceTree = "<group>"; };
+		D146029C1E864BAF0065E127 /* CGContextRefDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGContextRefDemo.m; sourceTree = "<group>"; };
+		D146029E1E865E160065E127 /* UIBezierPathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBezierPathView.h; sourceTree = "<group>"; };
+		D146029F1E865E160065E127 /* UIBezierPathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBezierPathView.m; sourceTree = "<group>"; };
 		D14798961E827FBB001553A0 /* YMCommentDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMCommentDB.h; sourceTree = "<group>"; };
 		D14798971E827FBB001553A0 /* YMCommentDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMCommentDB.m; sourceTree = "<group>"; };
 		D14AA46E1DD2CBF800E1A46D /* BBSListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSListViewController.h; sourceTree = "<group>"; };
@@ -1926,6 +1932,7 @@
 				D146028D1E85524C0065E127 /* AnimationViewController.h */,
 				D146028E1E85524C0065E127 /* AnimationViewController.m */,
 				D14602961E86105F0065E127 /* UIBezierPathDemo */,
+				D146029A1E864B9C0065E127 /* CGContextRef */,
 			);
 			path = AnimationDemo;
 			sourceTree = "<group>";
@@ -1969,9 +1976,20 @@
 			children = (
 				D14602971E8610A30065E127 /* UIBezierPathDemo.h */,
 				D14602981E8610A30065E127 /* UIBezierPathDemo.m */,
+				D146029E1E865E160065E127 /* UIBezierPathView.h */,
+				D146029F1E865E160065E127 /* UIBezierPathView.m */,
 			);
 			name = UIBezierPathDemo;
 			path = BaseGroup;
+			sourceTree = "<group>";
+		};
+		D146029A1E864B9C0065E127 /* CGContextRef */ = {
+			isa = PBXGroup;
+			children = (
+				D146029B1E864BAF0065E127 /* CGContextRefDemo.h */,
+				D146029C1E864BAF0065E127 /* CGContextRefDemo.m */,
+			);
+			path = CGContextRef;
 			sourceTree = "<group>";
 		};
 		D14AA4671DD1CF6100E1A46D /* BBSView */ = {
@@ -3710,6 +3728,7 @@
 				D1B6D7911D7D159600C3E647 /* MJExtensionConst.m in Sources */,
 				D1F144751E31AE1900238223 /* NSTimer+Addition.m in Sources */,
 				D1F144521E31A7D200238223 /* CuttingLine.m in Sources */,
+				D14602A01E865E160065E127 /* UIBezierPathView.m in Sources */,
 				D1932B0A1E7D3C6C0037FC00 /* YMActionSheetViewController.m in Sources */,
 				D17A27F51D93F89900C00B3F /* UIColor+YYAdd.m in Sources */,
 				D17A27EF1D93F89900C00B3F /* NSTimer+YYAdd.m in Sources */,
@@ -3789,6 +3808,7 @@
 				D14602461E853E490065E127 /* ChartViewController.m in Sources */,
 				D13DDC851DD16F5300B3AD5B /* UIImage+WebP.m in Sources */,
 				D146028B1E854CC00065E127 /* JHTableDataRowModel.m in Sources */,
+				D146029D1E864BAF0065E127 /* CGContextRefDemo.m in Sources */,
 				D1F1443D1E30F93900238223 /* YMActionSheet.m in Sources */,
 				D17A28121D93F89900C00B3F /* YYClassInfo.m in Sources */,
 				D17A28041D93F89900C00B3F /* _YYWebImageSetter.m in Sources */,
