@@ -4,7 +4,7 @@
 //
 //  Created by HarbingWang on 17/3/25.
 //  Copyright © 2017年 HarbingWang. All rights reserved.
-//
+//  http://www.jianshu.com/p/b561e208f51f
 
 #import "UIBezierPathDemo.h"
 #import "UIBezierPathView.h"
@@ -18,20 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.isUseBackBtn  = YES;
-    self.isUseRightBtn = YES;
-    [self.rightBtn setTitle:@"开始" forState:UIControlStateNormal];
-    
-    /*
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navView.bottom, ScreenWidth, ScreenHeight)];
-    scrollView.contentSize = CGSizeMake(ScreenWidth, ScreenHeight*2);
-    scrollView.showsVerticalScrollIndicator = NO;
-    scrollView.showsHorizontalScrollIndicator = NO;
-    [self.view addSubview:scrollView];
-    */
     
     UIBezierPathView *bezView = [[UIBezierPathView alloc] initWithFrame:CGRectMake(0, self.navView.bottom, ScreenWidth, ScreenHeight)];
     bezView.backgroundColor = [UIColor whiteColor];
-    //[scrollView addSubview:bezView];
     [self.view addSubview:bezView];
     
     // 本文乃 UIBezierPath 学习笔记,采用 MarkDown 语法书写.具体转至UIBezierPathView.m文件中查看
@@ -182,30 +171,5 @@
      *******************************************************/
 }
 
-- (void)clickRightBtn {
-    CALayer *layer        = [CALayer layer];
-    layer.frame           = CGRectMake(0, 50, 100, 100);
-    layer.backgroundColor = [UIColor redColor].CGColor;
-    
-    UIButton *btna = [[UIButton alloc]init];
-    btna.layer.frame =CGRectMake(0, 50, 100, 100);
-    
-    // 终点位置
-    CGPoint endPosition = CGPointMake(layer.position.x, layer.position.y + 200);
-    
-    // 动画
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
-    animation.fromValue         = [NSValue valueWithCGPoint:layer.position];
-    animation.toValue           = [NSValue valueWithCGPoint:endPosition];
-    animation.timingFunction    = [CAMediaTimingFunction functionWithControlPoints:0.00 :0.00 :1.00 :1.00];
-    layer.position              = endPosition;
-    animation.duration          = 1.f;
-    
-    // 添加动画
-    [layer addAnimation:animation forKey:nil];
-    
-    // 添加layer
-    [self.view.layer addSublayer:layer];
-}
 
 @end

@@ -29,7 +29,7 @@ static NSString * const AnimaitonViewCell = @"AnimaitonViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.isUseBackBtn = YES;
-    self.titleLabel.text = @"动画";
+    self.titleLabel.text = @"动画学习Demo";
     [self.view addSubview:self.tableView];
     
     [self initData];
@@ -38,6 +38,7 @@ static NSString * const AnimaitonViewCell = @"AnimaitonViewCell";
 - (void)initData {
     
     [self addClassName:@"UIBezierPathDemo" withTitle:@"UIBezierPath"];
+    [self addClassName:@"CAShapeLayerDemo" withTitle:@"CAShapeLayer"];
     
 }
 

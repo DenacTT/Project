@@ -83,6 +83,7 @@
     //[[UIColor lightGrayColor] setFill];
     [path8 closePath];
     [path8 stroke];
+    [path8 fill];
     
     // 8. 绘制竖直虚线
     UIBezierPath *verticalLinePath = [UIBezierPath bezierPath];
@@ -91,19 +92,18 @@
     [verticalLinePath moveToPoint: CGPointMake(5, 0)];
     [verticalLinePath addLineToPoint: CGPointMake(5, ScreenHeight*2)];
     [verticalLinePath stroke];
-    [verticalLinePath fill];
     
     // 9.绘制二次贝塞尔曲线
     UIBezierPath *path9 = [UIBezierPath bezierPath];
-    [path9 moveToPoint:CGPointMake(200, 500)];
-    [path9 addQuadCurveToPoint:CGPointMake(250, 550) controlPoint:CGPointMake(300, 500)];
+    [path9 moveToPoint:CGPointMake(250, 450)];
+    [path9 addQuadCurveToPoint:CGPointMake(350, 450) controlPoint:CGPointMake(300, 550)];
     [path9 stroke];
     
     // 10.绘制三次贝塞尔曲线
-    
-    
-    
-    
+    UIBezierPath *path10 = [UIBezierPath bezierPath];
+    [path10 moveToPoint:CGPointMake(50, 550)];
+    [path10 addCurveToPoint:CGPointMake(300, 550) controlPoint1:CGPointMake(150, 450) controlPoint2:CGPointMake(250, 600)];
+    [path10 stroke];
     
     
     // 由于UIBezierPath绘制出来的是矢量图形(即layer路径)并不能真正的展示出来,因此,想让它显示在图层上,需要设置线条颜色,有以下方法:
