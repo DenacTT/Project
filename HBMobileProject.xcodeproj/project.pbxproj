@@ -339,6 +339,8 @@
 		D1932B0A1E7D3C6C0037FC00 /* YMActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1932B051E7D3C6C0037FC00 /* YMActionSheetViewController.m */; };
 		D1932B0B1E7D3C6C0037FC00 /* YMActionSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1932B061E7D3C6C0037FC00 /* YMActionSheetViewController.xib */; };
 		D1977FD01E829DCA00FAE86D /* YMSqlConst.m in Sources */ = {isa = PBXBuildFile; fileRef = D1977FCF1E829DCA00FAE86D /* YMSqlConst.m */; };
+		D1A5D8551E8CDD1400455F0C /* SBAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D8541E8CDD1400455F0C /* SBAnimator.m */; };
+		D1A5D8581E8CDD7500455F0C /* SBAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D8571E8CDD7500455F0C /* SBAnimationView.m */; };
 		D1A70DD91DFFA5450090AAD0 /* StoreTopBarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A70DD81DFFA5450090AAD0 /* StoreTopBarTool.m */; };
 		D1A70DE61DFFDF780090AAD0 /* OrderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A70DE51DFFDF780090AAD0 /* OrderTableView.m */; };
 		D1A70DE91DFFEE5B0090AAD0 /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A70DE81DFFEE5B0090AAD0 /* OrderModel.m */; };
@@ -1175,6 +1177,10 @@
 		D1932B061E7D3C6C0037FC00 /* YMActionSheetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YMActionSheetViewController.xib; sourceTree = "<group>"; };
 		D1977FCE1E829DCA00FAE86D /* YMSqlConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSqlConst.h; sourceTree = "<group>"; };
 		D1977FCF1E829DCA00FAE86D /* YMSqlConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSqlConst.m; sourceTree = "<group>"; };
+		D1A5D8531E8CDD1400455F0C /* SBAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAnimator.h; sourceTree = "<group>"; };
+		D1A5D8541E8CDD1400455F0C /* SBAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAnimator.m; sourceTree = "<group>"; };
+		D1A5D8561E8CDD7500455F0C /* SBAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAnimationView.h; sourceTree = "<group>"; };
+		D1A5D8571E8CDD7500455F0C /* SBAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAnimationView.m; sourceTree = "<group>"; };
 		D1A70DD71DFFA5450090AAD0 /* StoreTopBarTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreTopBarTool.h; sourceTree = "<group>"; };
 		D1A70DD81DFFA5450090AAD0 /* StoreTopBarTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreTopBarTool.m; sourceTree = "<group>"; };
 		D1A70DE41DFFDF780090AAD0 /* OrderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableView.h; sourceTree = "<group>"; };
@@ -2852,6 +2858,13 @@
 			path = YMActionSheet;
 			sourceTree = "<group>";
 		};
+		D1A5D8521E8CDCD200455F0C /* CustomSubView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomSubView;
+			sourceTree = "<group>";
+		};
 		D1AA48491E83AF8F00C532EF /* YTKKeyValueStore */ = {
 			isa = PBXGroup;
 			children = (
@@ -2870,6 +2883,11 @@
 				D1AD50251E8A7AF000682EA8 /* SBHomeHeadView.m */,
 				D1AD50281E8A7AF000682EA8 /* SBHomeViewCell.h */,
 				D1AD50291E8A7AF000682EA8 /* SBHomeViewCell.m */,
+				D1A5D8561E8CDD7500455F0C /* SBAnimationView.h */,
+				D1A5D8571E8CDD7500455F0C /* SBAnimationView.m */,
+				D1A5D8531E8CDD1400455F0C /* SBAnimator.h */,
+				D1A5D8541E8CDD1400455F0C /* SBAnimator.m */,
+				D1A5D8521E8CDCD200455F0C /* CustomSubView */,
 				D11558691E8B958800AD40B9 /* Model */,
 			);
 			path = SmartBand;
@@ -3885,6 +3903,7 @@
 				D146029D1E864BAF0065E127 /* CGContextRefDemo.m in Sources */,
 				D1F1443D1E30F93900238223 /* YMActionSheet.m in Sources */,
 				D17A28121D93F89900C00B3F /* YYClassInfo.m in Sources */,
+				D1A5D8581E8CDD7500455F0C /* SBAnimationView.m in Sources */,
 				D17A28041D93F89900C00B3F /* _YYWebImageSetter.m in Sources */,
 				D17A282D1D93F89900C00B3F /* YYSentinel.m in Sources */,
 				D17A27FE1D93F89900C00B3F /* UITextField+YYAdd.m in Sources */,
@@ -4002,6 +4021,7 @@
 				D1F144511E31A7D200238223 /* CustomTipsView.m in Sources */,
 				D17A27E31D93F89900C00B3F /* NSBundle+YYAdd.m in Sources */,
 				D1283B5F1E8108B100376B91 /* FMDatabaseAdditions.m in Sources */,
+				D1A5D8551E8CDD1400455F0C /* SBAnimator.m in Sources */,
 				D13DDC7A1DD16F5300B3AD5B /* SDImageCache.m in Sources */,
 				D17A28141D93F89900C00B3F /* YYTextDebugOption.m in Sources */,
 				D13B594C1D829C3D005D89FA /* UserDefaultKeys.m in Sources */,

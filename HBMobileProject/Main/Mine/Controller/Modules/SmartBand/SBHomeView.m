@@ -63,7 +63,8 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
 {
     SBHomeHeadView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SBHomeHeadViewID forIndexPath:indexPath];
     SBHomeModel *model = [[SBHomeModel alloc] init];
-    model.calsNum = 12078;
+    model.calsNum = 6789;
+    model.stepNum = 12078;
     model.mileNum = 10.99;
     model.timeNum = 629;
     [headView setValue:model];

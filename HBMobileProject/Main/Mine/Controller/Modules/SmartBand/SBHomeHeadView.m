@@ -7,14 +7,14 @@
 //
 
 #import "SBHomeHeadView.h"
+#import "SBAnimationView.h"
 
 #define ItemW 188
 #define SBSpoonBoldFont [UIFont fontWithName:@"Spoon-Bold" size:21]
 #define SBSpoonRegularFont [UIFont fontWithName:@"Spoon-Regular" size:60]
 @interface SBHomeHeadView ()
 
-@property (nonatomic, strong) UIView  *calsView;  //卡路里消耗展示
-@property (nonatomic, strong) UIView  *calsCircle;//卡路里目标进度
+@property (nonatomic, strong) SBAnimationView *calsView;  //卡路里消耗展示
 @property (nonatomic, strong) UILabel *topText;   //顶部文案
 @property (nonatomic, strong) UILabel *btmText;   //底部文案
 @property (nonatomic, strong) UILabel *totalCals; //卡路里总消耗值
@@ -33,6 +33,10 @@
 @property (nonatomic, strong) UIView *duraView;
 @property (nonatomic, strong) UIImageView *duraImg;
 @property (nonatomic, strong) UILabel *duraNum;
+
+// testBtn
+@property (nonatomic, strong) UIButton *startBtn;
+
 @end
 
 @implementation SBHomeHeadView
@@ -52,7 +56,6 @@
 - (void)setupSubView {
     
     [self addSubview:self.calsView];
-    [self.calsView addSubview:self.calsCircle];
     [self.calsView addSubview:self.topText];
     [self.calsView addSubview:self.btmText];
     [self.calsView addSubview:self.totalCals];
@@ -68,16 +71,18 @@
     [self addSubview:self.duraView];
     [self.duraView addSubview:self.duraImg];
     [self.duraView addSubview:self.duraNum];
+    
+    [self addSubview:self.startBtn];
 }
 
 - (void)setValue:(SBHomeModel *)model {
-    [self.stepNum setText:[NSString stringWithFormat:@"%zi", model.calsNum]];
+    [self.stepNum setText:[NSString stringWithFormat:@"%zi", model.stepNum]];
     
     NSString *hour = [NSString stringWithFormat:@"%zi", model.timeNum / 60];
     NSString *mint = [NSString stringWithFormat:@"%zi", model.timeNum % 60];
     [self.duraNum setText:[NSString stringWithFormat:@"%@:%@", hour, mint]];
     
-    NSString *timeStr = [NSString stringWithFormat:@"%zi", model.mileNum];
+    NSString *timeStr = [NSString stringWithFormat:@"%.2f", model.mileNum];
     NSString *string  = [timeStr stringByAppendingString:@"km"];
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:string];
     [attStr addAttribute:NSFontAttributeName value:SBSpoonBoldFont range:NSMakeRange(0, timeStr.length)];
@@ -85,31 +90,18 @@
     [self.mileNum setAttributedText:attStr];
 }
 
-#pragma mark - Getter(卡路里消耗等子控件)
-- (UIView *)calsView {
-    if (!_calsView) {
-        
-        _calsView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.bounds)-188/2, CGRectGetMinY(self.bounds)+20, 188, 188)];
-    }
-    return _calsView;
+- (void)startAnimation {
+    
+    
 }
 
-- (UIView *)calsCircle {
-    if (!_calsCircle) {
-        
-        CAShapeLayer *layer = [CAShapeLayer layer];
-        layer.frame = CGRectMake(0, 0, _calsView.width, _calsView.height);
-        layer.lineWidth = 2.f;
-        layer.fillColor = [UIColor clearColor].CGColor;
-        layer.strokeColor = RGBA(255, 255, 255, 0.2).CGColor;
-        
-        UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:layer.frame];
-        layer.path = path.CGPath;
-        [path stroke];
-        
-        [_calsView.layer addSublayer:layer];
+#pragma mark - Getter(卡路里消耗等子控件)
+- (SBAnimationView *)calsView {
+    if (!_calsView) {
+        _calsView = [[SBAnimationView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.bounds)-188/2, CGRectGetMinY(self.bounds)+20, 188, 188)];
+        [_calsView createCircularLayer];
     }
-    return _calsCircle;
+    return _calsView;
 }
 
 - (UILabel *)topText {
@@ -195,7 +187,7 @@
 
 - (UILabel *)mileNum {
     if (!_mileNum) {
-        _mileNum = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.mileView.bounds), self.mileImg.bottom+6, self.mileView.width, 21)];
+        _mileNum = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.mileView.bounds)-15, self.mileImg.bottom+6, self.mileView.width+30, 21)];
         [self setNumLabel:_mileNum];
 //        _mileNum.backgroundColor = [UIColor whiteColor];
     }
@@ -237,6 +229,19 @@
     label.layer.shadowColor = RGBA(0, 0, 0, 0.2).CGColor;
     label.layer.shadowOffset = CGSizeMake(0, 2);
     label.layer.shadowOpacity = 0.3;
+}
+
+- (UIButton *)startBtn {
+    if (!_startBtn) {
+        _startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _startBtn.frame = CGRectMake(ScreenWidth-50, 0, 40, 40);
+        _startBtn.backgroundColor = RGBA(255, 255, 255, 0.5);
+        _startBtn.layer.masksToBounds = YES;
+        _startBtn.layer.cornerRadius = 20;
+        
+        [_startBtn addTarget:self action:@selector(startAnimation) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _startBtn;
 }
 
 @end

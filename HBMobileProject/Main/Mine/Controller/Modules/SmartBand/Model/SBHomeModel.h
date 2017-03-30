@@ -31,9 +31,11 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign) NSInteger weightNum;
 
-@property (nonatomic, assign) NSInteger mileNum;
+@property (nonatomic, assign) CGFloat mileNum;
 
 @property (nonatomic, assign) NSInteger timeNum;
+
+@property (nonatomic, assign) NSInteger stepNum;
 
 - (void)initData;
 
