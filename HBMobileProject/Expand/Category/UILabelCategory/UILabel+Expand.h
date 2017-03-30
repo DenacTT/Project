@@ -12,4 +12,8 @@
 
 - (void)setLineSpace:(NSInteger)lineSpace;
 
+- (void)setLabelTextFont:(UIFont *)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment;
+
+- (void)setLabelText:(NSString *)text font:(UIFont *)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment;
+
 @end

@@ -21,4 +21,19 @@
         [self sizeToFit];
     }
 }
+
+- (void)setLabelTextFont:(UIFont *)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment {
+    self.font = font;
+    self.textColor = textColor;
+    self.textAlignment = textAlignment;
+}
+
+- (void)setLabelText:(NSString *)text font:(UIFont *)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment {
+    self.text = [NSString stringWithFormat:@"%@", text];
+    self.font = font;
+    self.textColor = textColor;
+    self.textAlignment = textAlignment;
+}
+
+
 @end

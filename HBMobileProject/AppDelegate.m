@@ -9,8 +9,7 @@
 #import "AppDelegate.h"
 #import "LogInViewController.h"
 #import "ConfigTabBarController.h"
-
-//#import <QPSDK/QPSDK.h>
+#import "AppDelegateHelper.h"
 
 @interface AppDelegate ()
 

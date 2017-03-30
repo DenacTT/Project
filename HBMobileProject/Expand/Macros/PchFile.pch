@@ -65,6 +65,7 @@
 #import "String.h"
 #import "MPTools.h"
 #import "NSThread+Extend.h"
+#import "UILabel+Expand.h"
 #import "UIViewExt.h"
 #import "UIView+Gesture.h"
 #import "NSString+Extend.h"

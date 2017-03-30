@@ -34,6 +34,8 @@
 #import "MessageViewController.h"
 #import "MineViewController.h"
 
+#import "SBHomeView.h"
+
 @interface ConfigTabBarController ()
 
 @property (nonatomic, readwrite, strong) CYLTabBarController *tabBarController;
@@ -58,8 +60,11 @@
     HomeViewController *homeViewController = [[HomeViewController alloc] init];
     UIViewController *homeNavigationController = [[BaseNavigationController alloc] initWithRootViewController:homeViewController];
     
-    DiscoverViewController *discoverViewController = [[DiscoverViewController alloc] init];
-    UIViewController *discoverNavigationController = [[BaseNavigationController alloc] initWithRootViewController:discoverViewController];
+//    DiscoverViewController *discoverViewController = [[DiscoverViewController alloc] init];
+//    UIViewController *discoverNavigationController = [[BaseNavigationController alloc] initWithRootViewController:discoverViewController];
+    
+    SBHomeView *sbHomeViewController = [[SBHomeView  alloc] init];
+    UIViewController *discoverNavigationController = [[BaseNavigationController alloc] initWithRootViewController:sbHomeViewController];
     
     MessageViewController *messageViewConreoller = [[MessageViewController alloc] init];
     UIViewController *messageNavigationController = [[BaseNavigationController alloc] initWithRootViewController:messageViewConreoller];
