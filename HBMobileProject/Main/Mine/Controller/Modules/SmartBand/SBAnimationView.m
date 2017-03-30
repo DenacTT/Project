@@ -55,7 +55,7 @@
 //        [self animateViewWithProgress:progress];
 //    }
 //}
-//
+
 //- (void)animateViewWithProgress:(CGFloat)progress {
 //    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0.7 options:0 animations:^{
 //        [self layoutIfNeeded];
