@@ -32,7 +32,7 @@
  @abstract The current velocity value.
  @discussion Set before animation start to account for initial velocity. Expressed in change of value units per second.
  */
-@property (copy, nonatomic) id velocity;
+@property (copy, nonatomic) id velocity;//速度
 
 /**
  @abstract The effective bounciness.

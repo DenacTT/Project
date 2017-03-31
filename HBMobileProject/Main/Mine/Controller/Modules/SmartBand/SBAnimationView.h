@@ -14,14 +14,11 @@
 @property (nonatomic, assign) CGFloat lineWidth;
 
 // 进度条颜色
-@property (nonatomic, strong) UIColor *lineColor;
+@property (nonatomic, strong) UIColor *strokeColor;
 
 // 进度
 @property (nonatomic, assign) CGFloat progress;
 
-// 创建圆形Layer
-- (void)createCircularLayer;
-
-- (void)setStrokeEnd:(CGFloat)strokeEnd animation:(BOOL)animation;
+- (void)setStrokeEnd:(CGFloat)strokeEnd animated:(BOOL)animated;
 
 @end

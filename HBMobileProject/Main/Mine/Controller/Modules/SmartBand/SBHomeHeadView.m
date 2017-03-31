@@ -91,17 +91,33 @@
 }
 
 - (void)startAnimation {
-    
-    
+    CGFloat endValue = (float)(1+arc4random()%99)/100;//1以内的随机数
+    NSLog(@"%.2f",endValue);
+    [self.calsView setStrokeEnd:endValue animated:YES];
 }
 
 #pragma mark - Getter(卡路里消耗等子控件)
 - (SBAnimationView *)calsView {
     if (!_calsView) {
         _calsView = [[SBAnimationView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.bounds)-188/2, CGRectGetMinY(self.bounds)+20, 188, 188)];
-        [_calsView createCircularLayer];
+        _calsView.lineWidth = 4.f;
+        [self createCalsCycleLayer];
     }
     return _calsView;
+}
+
+// 绘制卡路里消耗目标进度条底部圆圈
+- (void)createCalsCycleLayer {
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.frame = CGRectMake(CGRectGetMinX(self.calsView.bounds)+1, CGRectGetMinY(self.calsView.bounds)+1, self.calsView.width-4, self.calsView.height-4);
+    layer.lineWidth = 2.f;
+    layer.fillColor = [UIColor clearColor].CGColor;
+    layer.strokeColor = RGBA(255, 255, 255, 0.2).CGColor;
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:layer.frame];
+    layer.path = path.CGPath;
+    
+    [self.calsView.layer addSublayer:layer];
 }
 
 - (UILabel *)topText {

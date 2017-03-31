@@ -7,10 +7,12 @@
 //
 
 #import "SBAnimationView.h"
+#import "POP.h"
+#import "StrokeCircleLayerConfigure.h"
 
 @interface SBAnimationView ()
 
-@property (nonatomic, strong) UIView *animationView;
+@property(nonatomic) CAShapeLayer *circleLayer;
 
 @end
 
@@ -18,34 +20,53 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self setupSubView];
+        [self addCircleLayer];
     }
     return self;
 }
 
-- (void)setupSubView {
-    
-    [self addSubview:self.animationView];
+#pragma mark - Property Setters
+- (void)setStrokeColor:(UIColor *)strokeColor
+{
+    self.circleLayer.strokeColor = strokeColor.CGColor;
+    _strokeColor = strokeColor;
 }
 
-// 创建圆形Layer
-- (void)createCircularLayer {
-    CAShapeLayer *layer = [CAShapeLayer layer];
-    layer.frame = self.bounds;
-    layer.lineWidth = 2.f;
-    layer.fillColor = [UIColor clearColor].CGColor;
-    layer.strokeColor = RGBA(255, 255, 255, 0.2).CGColor;
-    
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:layer.frame];
-    layer.path = path.CGPath;
-    
-    [self.layer addSublayer:layer];
-}
-
-- (void)setStrokeEnd:(CGFloat)strokeEnd animation:(BOOL)animation {
-    if (animation) {
-        
+#pragma mark - Instance Methods
+- (void)setStrokeEnd:(CGFloat)strokeEnd animated:(BOOL)animated {
+    if (animated) {
+        [self animateToStrokeEnd:strokeEnd];
+        return;
     }
+}
+
+#pragma mark - Private Instance methods
+- (void)addCircleLayer {
+    
+    self.circleLayer = [CAShapeLayer layer];
+    self.circleLayer.strokeEnd = 0;//初始化的时候设置为0,只呈现底色
+    
+    StrokeCircleLayerConfigure *config = [[StrokeCircleLayerConfigure alloc] init];
+    config.circleCenter                = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    config.radius                      = CGRectGetWidth(self.bounds)/2-4;
+    config.lineWidth                   = 4.f;
+    
+    config.strokeColor                 = [UIColor whiteColor];
+    config.startAngle                  = 1.5*M_PI;  //12点钟位置开始
+    config.endAngle                    = 1.5*M_PI+2*M_PI;
+    config.clockWise                   = YES;       //顺时针方向绘制
+    
+    [config configCAShapeLayer:self.circleLayer];
+    [self.layer addSublayer:self.circleLayer];
+}
+
+- (void)animateToStrokeEnd:(CGFloat)strokeEnd {
+    
+    POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
+    strokeAnimation.toValue = @(strokeEnd);
+    strokeAnimation.springBounciness = 12.f;
+    strokeAnimation.removedOnCompletion = NO;
+    [self.circleLayer pop_addAnimation:strokeAnimation forKey:@"layerStrokeAnimation"];
 }
 
 #pragma mark - Setter
@@ -64,13 +85,4 @@
 //}
 
 #pragma mark - Getter
-- (UIView *)animationView {
-    if (!_animationView) {
-        _animationView = [[UIView alloc] initWithFrame:self.bounds];
-        _animationView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-        _animationView.backgroundColor = [UIColor clearColor];
-    }
-    return _animationView;
-}
-
 @end
