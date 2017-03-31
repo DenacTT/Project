@@ -7,31 +7,32 @@
 //
 
 #import "SBHomeHeadView.h"
-#import "SBAnimationView.h"
+#import "CircleProgressView.h"
+#import "CircleView.h"
 
 #define ItemW 188
 #define SBSpoonBoldFont [UIFont fontWithName:@"Spoon-Bold" size:21]
 #define SBSpoonRegularFont [UIFont fontWithName:@"Spoon-Regular" size:60]
 @interface SBHomeHeadView ()
 
-@property (nonatomic, strong) SBAnimationView *calsView;  //卡路里消耗展示
+@property (nonatomic, strong) CircleProgressView *calsProgress;  //卡路里消耗进度
 @property (nonatomic, strong) UILabel *topText;   //顶部文案
 @property (nonatomic, strong) UILabel *btmText;   //底部文案
 @property (nonatomic, strong) UILabel *totalCals; //卡路里总消耗值
 
 // 步数 step
+@property (nonatomic, strong) CircleProgressView *stepProgress;
 @property (nonatomic, strong) UIView *stepView;
-@property (nonatomic, strong) UIImageView *stepImg;
 @property (nonatomic, strong) UILabel *stepNum;
 
 // 里程 mileage
+@property (nonatomic, strong) CircleProgressView *mileProgress;
 @property (nonatomic, strong) UIView *mileView;
-@property (nonatomic, strong) UIImageView *mileImg;
 @property (nonatomic, strong) UILabel *mileNum;
 
 // 时长 duration
+@property (nonatomic, strong) CircleProgressView *duraProgress;
 @property (nonatomic, strong) UIView *duraView;
-@property (nonatomic, strong) UIImageView *duraImg;
 @property (nonatomic, strong) UILabel *duraNum;
 
 // testBtn
@@ -55,21 +56,21 @@
 #pragma mark - 布局子控件
 - (void)setupSubView {
     
-    [self addSubview:self.calsView];
-    [self.calsView addSubview:self.topText];
-    [self.calsView addSubview:self.btmText];
-    [self.calsView addSubview:self.totalCals];
+    [self addSubview:self.calsProgress];
+    [self.calsProgress addSubview:self.topText];
+    [self.calsProgress addSubview:self.btmText];
+    [self.calsProgress addSubview:self.totalCals];
     
     [self addSubview:self.stepView];
-    [self.stepView addSubview:self.stepImg];
+    [self.stepView addSubview:self.stepProgress];
     [self.stepView addSubview:self.stepNum];
     
     [self addSubview:self.mileView];
-    [self.mileView addSubview:self.mileImg];
+    [self.mileView addSubview:self.mileProgress];
     [self.mileView addSubview:self.mileNum];
     
     [self addSubview:self.duraView];
-    [self.duraView addSubview:self.duraImg];
+    [self.duraView addSubview:self.duraProgress];
     [self.duraView addSubview:self.duraNum];
     
     [self addSubview:self.startBtn];
@@ -91,38 +92,39 @@
 }
 
 - (void)startAnimation {
-    CGFloat endValue = (float)(1+arc4random()%99)/100;//1以内的随机数
+    //test
+    CGFloat endValue = (float)(1+arc4random()%99)/100;
     NSLog(@"%.2f",endValue);
-    [self.calsView setStrokeEnd:endValue animated:YES];
+    [self.calsProgress setStrokeEnd:endValue   animated:YES];
+    [self.stepProgress setStrokeEnd:endValue/2 animated:YES];
+    [self.mileProgress setStrokeEnd:endValue*2 animated:YES];
+    [self.duraProgress setStrokeEnd:endValue/3 animated:YES];
 }
 
 #pragma mark - Getter(卡路里消耗等子控件)
-- (SBAnimationView *)calsView {
-    if (!_calsView) {
-        _calsView = [[SBAnimationView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.bounds)-188/2, CGRectGetMinY(self.bounds)+20, 188, 188)];
-        _calsView.lineWidth = 4.f;
-        [self createCalsCycleLayer];
-    }
-    return _calsView;
-}
+- (CircleProgressView *)calsProgress {
+    if (!_calsProgress) {
 
-// 绘制卡路里消耗目标进度条底部圆圈
-- (void)createCalsCycleLayer {
-    CAShapeLayer *layer = [CAShapeLayer layer];
-    layer.frame = CGRectMake(CGRectGetMinX(self.calsView.bounds)+1, CGRectGetMinY(self.calsView.bounds)+1, self.calsView.width-4, self.calsView.height-4);
-    layer.lineWidth = 2.f;
-    layer.fillColor = [UIColor clearColor].CGColor;
-    layer.strokeColor = RGBA(255, 255, 255, 0.2).CGColor;
-    
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:layer.frame];
-    layer.path = path.CGPath;
-    
-    [self.calsView.layer addSublayer:layer];
+        CGRect frame = CGRectMake(CGRectGetMidX(self.bounds)-188/2, CGRectGetMinY(self.bounds)+10, 188, 188);
+        _calsProgress = [CircleProgressView circleProgressViewWithFrame:frame
+                                                          lineWidth:4.f
+                                                          lineColor:[UIColor whiteColor]
+                                                          clockWise:YES
+                                                         startAngle:1.5*M_PI];
+        
+//        _calsProgress.startAngle = M_PI;
+//        _calsProgress.endAngle = 2*M_PI;
+//        _calsProgress.lineWidth = 8.f;
+//        _calsProgress.bgLineWidth = 7.f;
+        _calsProgress.isNeedBackground = YES;
+        [_calsProgress makeConfigEffective];
+    }
+    return _calsProgress;
 }
 
 - (UILabel *)topText {
     if (!_topText) {
-        _topText = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_calsView.bounds), 32, ItemW, 14)];
+        _topText = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_calsProgress.bounds), 32, ItemW, 14)];
         [_topText setLabelText:@"Total Calories"
                           font:Font(14)
                      textColor:RGBA(255, 255, 255, 0.8)
@@ -133,7 +135,7 @@
 
 - (UILabel *)btmText {
     if (!_btmText) {
-        _btmText = [[UILabel alloc] initWithFrame:CGRectMake(_topText.left, CGRectGetMaxY(_calsView.bounds)-32-16, ItemW, 16)];
+        _btmText = [[UILabel alloc] initWithFrame:CGRectMake(_topText.left, CGRectGetMaxY(_calsProgress.bounds)-32-16, ItemW, 16)];
         [_btmText setLabelText:@"Cals"
                           font:Font(16)
                      textColor:RGBA(255, 255, 255, 0.8)
@@ -161,23 +163,32 @@
 // 步数
 - (UIView *)stepView {
     if (!_stepView) {
-        _stepView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.bounds)-35-60-50, self.calsView.bottom+21, 60, 77)];
+        _stepView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.bounds)-35-60-50, self.calsProgress.bottom+21, 60, 77)];
 //        _stepView.backgroundColor = [UIColor orangeColor];
     }
     return _stepView;
 }
 
-- (UIImageView *)stepImg {
-    if (!_stepImg) {
-        _stepImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.stepView.bounds)-25, CGRectGetMinY(self.stepView.bounds), 50, 50)];
-        _stepImg.backgroundColor = [UIColor orangeColor];
+- (CircleProgressView *)stepProgress {
+    if (!_stepProgress) {
+        CGRect frame = CGRectMake(CGRectGetMidX(self.stepView.bounds)-25, CGRectGetMinY(self.stepView.bounds), 50, 50);
+        _stepProgress = [CircleProgressView circleProgressViewWithFrame:frame
+                                                              lineWidth:3.f
+                                                              lineColor:RGB(180, 219, 246)
+                                                              clockWise:YES
+                                                             startAngle:1.5*M_PI];
+        _stepProgress.isNeedBackground = YES;
+        _stepProgress.isNeedBgImg      = YES;
+        _stepProgress.bgLineWidth      = 2.f;
+        _stepProgress.bgImgName        = @"step";
+        [_stepProgress makeConfigEffective];
     }
-    return _stepImg;
+    return _stepProgress;
 }
 
 - (UILabel *)stepNum {
     if (!_stepNum) {
-        _stepNum = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.stepView.bounds), self.stepImg.bottom+6, self.stepView.width, 21)];
+        _stepNum = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.stepView.bounds), self.stepProgress.bottom+6, self.stepView.width, 21)];
         [self setNumLabel:_stepNum];
 //        _stepNum.backgroundColor = [UIColor whiteColor];
     }
@@ -193,17 +204,26 @@
     return _mileView;
 }
 
-- (UIImageView *)mileImg {
-    if (!_mileImg) {
-        _mileImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.mileView.bounds)-25, CGRectGetMinY(self.mileView.bounds), 50, 50)];
-        _mileImg.backgroundColor = [UIColor orangeColor];
+- (CircleProgressView *)mileProgress {
+    if (!_mileProgress) {
+        CGRect frame = CGRectMake(CGRectGetMidX(self.mileView.bounds)-25, CGRectGetMinY(self.mileView.bounds), 50, 50);
+        _mileProgress = [CircleProgressView circleProgressViewWithFrame:frame
+                                                              lineWidth:3.f
+                                                              lineColor:RGB(180, 219, 246)
+                                                              clockWise:YES
+                                                             startAngle:1.5*M_PI];
+        _mileProgress.isNeedBackground = YES;
+        _mileProgress.isNeedBgImg      = YES;
+        _mileProgress.bgLineWidth      = 2.f;
+        _mileProgress.bgImgName        = @"location";
+        [_mileProgress makeConfigEffective];
     }
-    return _mileImg;
+    return _mileProgress;
 }
 
 - (UILabel *)mileNum {
     if (!_mileNum) {
-        _mileNum = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.mileView.bounds)-15, self.mileImg.bottom+6, self.mileView.width+30, 21)];
+        _mileNum = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.mileView.bounds)-15, self.mileProgress.bottom+6, self.mileView.width+30, 21)];
         [self setNumLabel:_mileNum];
 //        _mileNum.backgroundColor = [UIColor whiteColor];
     }
@@ -219,17 +239,26 @@
     return _duraView;
 }
 
-- (UIImageView *)duraImg {
-    if (!_duraImg) {
-        _duraImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.duraView.bounds)-25, CGRectGetMinY(self.duraView.bounds), 50, 50)];
-        _duraImg.backgroundColor = [UIColor orangeColor];
+- (CircleProgressView *)duraProgress {
+    if (!_duraProgress) {
+        CGRect frame  = CGRectMake(CGRectGetMidX(self.duraView.bounds)-25, CGRectGetMinY(self.duraView.bounds), 50, 50);
+        _duraProgress = [CircleProgressView circleProgressViewWithFrame:frame
+                                                              lineWidth:3.f
+                                                              lineColor:RGB(180, 219, 246)
+                                                              clockWise:YES
+                                                             startAngle:1.5*M_PI];
+        _duraProgress.isNeedBackground = YES;
+        _duraProgress.isNeedBgImg      = YES;
+        _duraProgress.bgLineWidth      = 2.f;
+        _duraProgress.bgImgName        = @"duration";
+        [_duraProgress makeConfigEffective];
     }
-    return _duraImg;
+    return _duraProgress;
 }
 
 - (UILabel *)duraNum {
     if (!_duraNum) {
-        _duraNum = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.duraView.bounds), self.duraImg.bottom+6, self.duraView.width, 21)];
+        _duraNum = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.duraView.bounds), self.duraProgress.bottom+6, self.duraView.width, 21)];
         [self setNumLabel:_duraNum];
 //        _duraNum.backgroundColor = [UIColor whiteColor];
     }

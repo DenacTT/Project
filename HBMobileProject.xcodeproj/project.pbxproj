@@ -339,7 +339,7 @@
 		D1932B0A1E7D3C6C0037FC00 /* YMActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1932B051E7D3C6C0037FC00 /* YMActionSheetViewController.m */; };
 		D1932B0B1E7D3C6C0037FC00 /* YMActionSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1932B061E7D3C6C0037FC00 /* YMActionSheetViewController.xib */; };
 		D1977FD01E829DCA00FAE86D /* YMSqlConst.m in Sources */ = {isa = PBXBuildFile; fileRef = D1977FCF1E829DCA00FAE86D /* YMSqlConst.m */; };
-		D1A5D8581E8CDD7500455F0C /* SBAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D8571E8CDD7500455F0C /* SBAnimationView.m */; };
+		D1A5D8581E8CDD7500455F0C /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D8571E8CDD7500455F0C /* CircleProgressView.m */; };
 		D1A5D88E1E8CF50F00455F0C /* POPAnimatableProperty.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D85D1E8CF50F00455F0C /* POPAnimatableProperty.mm */; };
 		D1A5D88F1E8CF50F00455F0C /* POPAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D85F1E8CF50F00455F0C /* POPAnimation.mm */; };
 		D1A5D8901E8CF50F00455F0C /* POPAnimationEvent.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D8611E8CF50F00455F0C /* POPAnimationEvent.mm */; };
@@ -422,8 +422,8 @@
 		D1F04F911E8D29DB00FBC1EF /* StrokeCircleLayerConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F04F901E8D29DB00FBC1EF /* StrokeCircleLayerConfigure.m */; };
 		D1F04F941E8D4E5A00FBC1EF /* FillCircleLayerConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F04F931E8D4E5A00FBC1EF /* FillCircleLayerConfigure.m */; };
 		D1F04F971E8D52B400FBC1EF /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F04F961E8D52B400FBC1EF /* CircleView.m */; };
-		D1F04F9D1E8DF6EE00FBC1EF /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = D1F04F991E8DF6EE00FBC1EF /* easing.c */; };
-		D1F04F9E1E8DF6EE00FBC1EF /* YXEasing.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F04F9C1E8DF6EE00FBC1EF /* YXEasing.m */; };
+		D1F04FA91E8E459300FBC1EF /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = D1F04FA51E8E459300FBC1EF /* easing.c */; };
+		D1F04FAA1E8E459300FBC1EF /* YXEasing.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F04FA81E8E459300FBC1EF /* YXEasing.m */; };
 		D1F1157F1DF69FE9001288FB /* HomeStoreViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F1157E1DF69FE9001288FB /* HomeStoreViewCell.m */; };
 		D1F1443D1E30F93900238223 /* YMActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F1443C1E30F93900238223 /* YMActionSheet.m */; };
 		D1F144411E31A71800238223 /* YMTimeCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F144401E31A71800238223 /* YMTimeCountView.m */; };
@@ -1201,8 +1201,8 @@
 		D1932B061E7D3C6C0037FC00 /* YMActionSheetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YMActionSheetViewController.xib; sourceTree = "<group>"; };
 		D1977FCE1E829DCA00FAE86D /* YMSqlConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSqlConst.h; sourceTree = "<group>"; };
 		D1977FCF1E829DCA00FAE86D /* YMSqlConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSqlConst.m; sourceTree = "<group>"; };
-		D1A5D8561E8CDD7500455F0C /* SBAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBAnimationView.h; path = HBMobileProject/Main/Mine/Controller/Modules/SmartBand/SBAnimationView.h; sourceTree = SOURCE_ROOT; };
-		D1A5D8571E8CDD7500455F0C /* SBAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBAnimationView.m; path = HBMobileProject/Main/Mine/Controller/Modules/SmartBand/SBAnimationView.m; sourceTree = SOURCE_ROOT; };
+		D1A5D8561E8CDD7500455F0C /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircleProgressView.h; path = HBMobileProject/Main/Mine/Controller/Modules/SmartBand/CircleProgressView.h; sourceTree = SOURCE_ROOT; };
+		D1A5D8571E8CDD7500455F0C /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CircleProgressView.m; path = HBMobileProject/Main/Mine/Controller/Modules/SmartBand/CircleProgressView.m; sourceTree = SOURCE_ROOT; };
 		D1A5D85A1E8CF50F00455F0C /* POP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POP.h; sourceTree = "<group>"; };
 		D1A5D85B1E8CF50F00455F0C /* POPAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAction.h; sourceTree = "<group>"; };
 		D1A5D85C1E8CF50F00455F0C /* POPAnimatableProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimatableProperty.h; sourceTree = "<group>"; };
@@ -1379,10 +1379,10 @@
 		D1F04F931E8D4E5A00FBC1EF /* FillCircleLayerConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillCircleLayerConfigure.m; sourceTree = "<group>"; };
 		D1F04F951E8D52B400FBC1EF /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
 		D1F04F961E8D52B400FBC1EF /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
-		D1F04F991E8DF6EE00FBC1EF /* easing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = easing.c; sourceTree = "<group>"; };
-		D1F04F9A1E8DF6EE00FBC1EF /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easing.h; sourceTree = "<group>"; };
-		D1F04F9B1E8DF6EE00FBC1EF /* YXEasing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEasing.h; sourceTree = "<group>"; };
-		D1F04F9C1E8DF6EE00FBC1EF /* YXEasing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEasing.m; sourceTree = "<group>"; };
+		D1F04FA51E8E459300FBC1EF /* easing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = easing.c; sourceTree = "<group>"; };
+		D1F04FA61E8E459300FBC1EF /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easing.h; sourceTree = "<group>"; };
+		D1F04FA71E8E459300FBC1EF /* YXEasing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEasing.h; sourceTree = "<group>"; };
+		D1F04FA81E8E459300FBC1EF /* YXEasing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEasing.m; sourceTree = "<group>"; };
 		D1F1157D1DF69FE9001288FB /* HomeStoreViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeStoreViewCell.h; sourceTree = "<group>"; };
 		D1F1157E1DF69FE9001288FB /* HomeStoreViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeStoreViewCell.m; sourceTree = "<group>"; };
 		D1F1443B1E30F93900238223 /* YMActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMActionSheet.h; sourceTree = "<group>"; };
@@ -3280,10 +3280,6 @@
 		D1B6D74E1D7D130700C3E647 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
-				D1F04F991E8DF6EE00FBC1EF /* easing.c */,
-				D1F04F9A1E8DF6EE00FBC1EF /* easing.h */,
-				D1F04F9B1E8DF6EE00FBC1EF /* YXEasing.h */,
-				D1F04F9C1E8DF6EE00FBC1EF /* YXEasing.m */,
 				D1F04F981E8DF6E800FBC1EF /* Easing */,
 				D1A5D8591E8CF50F00455F0C /* pop */,
 				D11558651E8B90B500AD40B9 /* Animations */,
@@ -3508,8 +3504,8 @@
 		D1F04F8B1E8D282400FBC1EF /* SBAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				D1A5D8561E8CDD7500455F0C /* SBAnimationView.h */,
-				D1A5D8571E8CDD7500455F0C /* SBAnimationView.m */,
+				D1A5D8561E8CDD7500455F0C /* CircleProgressView.h */,
+				D1A5D8571E8CDD7500455F0C /* CircleProgressView.m */,
 				D1F04F951E8D52B400FBC1EF /* CircleView.h */,
 				D1F04F961E8D52B400FBC1EF /* CircleView.m */,
 				D1F04F8F1E8D29DB00FBC1EF /* StrokeCircleLayerConfigure.h */,
@@ -3525,6 +3521,10 @@
 		D1F04F981E8DF6E800FBC1EF /* Easing */ = {
 			isa = PBXGroup;
 			children = (
+				D1F04FA51E8E459300FBC1EF /* easing.c */,
+				D1F04FA61E8E459300FBC1EF /* easing.h */,
+				D1F04FA71E8E459300FBC1EF /* YXEasing.h */,
+				D1F04FA81E8E459300FBC1EF /* YXEasing.m */,
 			);
 			path = Easing;
 			sourceTree = "<group>";
@@ -4018,7 +4018,7 @@
 				D146028F1E85524C0065E127 /* AnimationViewController.m in Sources */,
 				D12A85D41DC72917004834E0 /* TextBarCollectionCell.m in Sources */,
 				D17A27F01D93F89900C00B3F /* CALayer+YYAdd.m in Sources */,
-				D1F04F9D1E8DF6EE00FBC1EF /* easing.c in Sources */,
+				D1F04FA91E8E459300FBC1EF /* easing.c in Sources */,
 				D17A27ED1D93F89900C00B3F /* NSString+YYAdd.m in Sources */,
 				D15E55541D9B698D0027634B /* VideoRecordStatusView.m in Sources */,
 				D17D68AF1DC9D3C1004A0B33 /* YMTextBarGroupView.m in Sources */,
@@ -4092,7 +4092,7 @@
 				D146029D1E864BAF0065E127 /* CGContextRefDemo.m in Sources */,
 				D1F1443D1E30F93900238223 /* YMActionSheet.m in Sources */,
 				D17A28121D93F89900C00B3F /* YYClassInfo.m in Sources */,
-				D1A5D8581E8CDD7500455F0C /* SBAnimationView.m in Sources */,
+				D1A5D8581E8CDD7500455F0C /* CircleProgressView.m in Sources */,
 				D17A28041D93F89900C00B3F /* _YYWebImageSetter.m in Sources */,
 				D1A5D8991E8CF50F00455F0C /* POPGeometry.mm in Sources */,
 				D17A282D1D93F89900C00B3F /* YYSentinel.m in Sources */,
@@ -4111,7 +4111,7 @@
 				D17A27EA1D93F89900C00B3F /* NSObject+YYAdd.m in Sources */,
 				D1B6D79A1D7D159600C3E647 /* NSString+MJExtension.m in Sources */,
 				D1F144711E31ADEC00238223 /* NSThread+Extend.m in Sources */,
-				D1F04F9E1E8DF6EE00FBC1EF /* YXEasing.m in Sources */,
+				D1F04FAA1E8E459300FBC1EF /* YXEasing.m in Sources */,
 				D13B591C1D816863005D89FA /* UIImage+RoundedCorner.m in Sources */,
 				D15E557E1D9CCE8B0027634B /* RecordVideoController.m in Sources */,
 				D17A282A1D93F89900C00B3F /* YYGestureRecognizer.m in Sources */,

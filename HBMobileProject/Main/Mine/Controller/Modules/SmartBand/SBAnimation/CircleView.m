@@ -78,36 +78,71 @@
     return ((M_PI * (degree))/ 180.f);
 }
 
+#pragma mark - Instance Methods
+- (void)strokeStart:(CGFloat)value animationType:(AHEasingFunction)func animated:(BOOL)animated duration:(CGFloat)duration {
+    
+    // 异常处理
+    if (value <= 0) {
+        value = 0;
+    }else if (value >= 1){
+        value = 1.0f;
+    }
+    
+    if (animated) {
+        
+        // CAKeyframeAnimation
+        CAKeyframeAnimation *keyAnimation = [CAKeyframeAnimation animation];
+        keyAnimation.keyPath              = @"strokeStart";
+        keyAnimation.duration             = duration;
+        keyAnimation.values               = [YXEasing calculateFrameFromValue:self.circleLayer.strokeStart
+                                                                      toValue:value
+                                                                         func:func
+                                                                   frameCount:duration * 60];
+        // Start animation
+        self.circleLayer.strokeStart = value;
+        [self.circleLayer addAnimation:keyAnimation forKey:nil];
+        
+    } else {
+        
+        // DisalbeActions
+        //事务嵌套,用于设置动画变化过程是否显示,默认为YES不显示
+        [CATransaction setDisableActions:YES];
+        self.circleLayer.strokeStart = value;
+        [CATransaction setDisableActions:NO];
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- (void)strokeEnd:(CGFloat)value animationType:(AHEasingFunction)func animated:(BOOL)animated duration:(CGFloat)duration {
+    
+    // 异常处理
+    if (value <= 0) {
+        value = 0;
+    }else if (value >= 1){
+        value = 1.0f;
+    }
+    
+    if (animated) {
+        
+        // CAKeyframeAnimation
+        CAKeyframeAnimation *keyAnimation = [CAKeyframeAnimation animation];
+        keyAnimation.keyPath              = @"strokeEnd";
+        keyAnimation.duration             = duration;
+        keyAnimation.values               = [YXEasing calculateFrameFromValue:self.circleLayer.strokeStart
+                                                                      toValue:value
+                                                                         func:func
+                                                                   frameCount:duration * 60];
+        // Start animation
+        self.circleLayer.strokeStart = value;
+        [self.circleLayer addAnimation:keyAnimation forKey:nil];
+        
+    } else {
+        
+        // DisalbeActions
+        //事务嵌套,用于设置动画变化过程是否显示,默认为YES不显示
+        [CATransaction setDisableActions:YES];
+        self.circleLayer.strokeStart = value;
+        [CATransaction setDisableActions:NO];
+    }
+}
 
 @end

@@ -15,7 +15,7 @@
 /**
  *  线条宽度
  */
-@property (nonatomic) CGFloat lineWidth;
+@property (nonatomic, assign) CGFloat lineWidth;
 
 /**
  *  线条填充色
