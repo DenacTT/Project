@@ -18,6 +18,7 @@
             self.mainText = @"725 Cals";
             self.subText  = @"3 Workouts";
             self.calsNum  = 725;
+            self.exeProgress = 0.7;
         }
             break;
         case SBHomeCellType_HeartRate:

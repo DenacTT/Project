@@ -424,6 +424,8 @@
 		D1F04F971E8D52B400FBC1EF /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F04F961E8D52B400FBC1EF /* CircleView.m */; };
 		D1F04FA91E8E459300FBC1EF /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = D1F04FA51E8E459300FBC1EF /* easing.c */; };
 		D1F04FAA1E8E459300FBC1EF /* YXEasing.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F04FA81E8E459300FBC1EF /* YXEasing.m */; };
+		D1F04FAD1E8E8F0800FBC1EF /* SBSleepInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F04FAC1E8E8F0800FBC1EF /* SBSleepInfoView.m */; };
+		D1F04FB01E8E922C00FBC1EF /* SBWeightInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F04FAF1E8E922C00FBC1EF /* SBWeightInfoView.m */; };
 		D1F1157F1DF69FE9001288FB /* HomeStoreViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F1157E1DF69FE9001288FB /* HomeStoreViewCell.m */; };
 		D1F1443D1E30F93900238223 /* YMActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F1443C1E30F93900238223 /* YMActionSheet.m */; };
 		D1F144411E31A71800238223 /* YMTimeCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F144401E31A71800238223 /* YMTimeCountView.m */; };
@@ -1383,6 +1385,10 @@
 		D1F04FA61E8E459300FBC1EF /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easing.h; sourceTree = "<group>"; };
 		D1F04FA71E8E459300FBC1EF /* YXEasing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEasing.h; sourceTree = "<group>"; };
 		D1F04FA81E8E459300FBC1EF /* YXEasing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEasing.m; sourceTree = "<group>"; };
+		D1F04FAB1E8E8F0800FBC1EF /* SBSleepInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSleepInfoView.h; sourceTree = "<group>"; };
+		D1F04FAC1E8E8F0800FBC1EF /* SBSleepInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSleepInfoView.m; sourceTree = "<group>"; };
+		D1F04FAE1E8E922C00FBC1EF /* SBWeightInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBWeightInfoView.h; sourceTree = "<group>"; };
+		D1F04FAF1E8E922C00FBC1EF /* SBWeightInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBWeightInfoView.m; sourceTree = "<group>"; };
 		D1F1157D1DF69FE9001288FB /* HomeStoreViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeStoreViewCell.h; sourceTree = "<group>"; };
 		D1F1157E1DF69FE9001288FB /* HomeStoreViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeStoreViewCell.m; sourceTree = "<group>"; };
 		D1F1443B1E30F93900238223 /* YMActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMActionSheet.h; sourceTree = "<group>"; };
@@ -2948,6 +2954,10 @@
 		D1A5D8521E8CDCD200455F0C /* CustomSubView */ = {
 			isa = PBXGroup;
 			children = (
+				D1F04FAB1E8E8F0800FBC1EF /* SBSleepInfoView.h */,
+				D1F04FAC1E8E8F0800FBC1EF /* SBSleepInfoView.m */,
+				D1F04FAE1E8E922C00FBC1EF /* SBWeightInfoView.h */,
+				D1F04FAF1E8E922C00FBC1EF /* SBWeightInfoView.m */,
 			);
 			path = CustomSubView;
 			sourceTree = "<group>";
@@ -4005,6 +4015,7 @@
 				D17A27EF1D93F89900C00B3F /* NSTimer+YYAdd.m in Sources */,
 				D17A272D1D93F7A600C00B3F /* WBStatusLayout.m in Sources */,
 				D17A27EE1D93F89900C00B3F /* NSThread+YYAdd.m in Sources */,
+				D1F04FB01E8E922C00FBC1EF /* SBWeightInfoView.m in Sources */,
 				D1F144691E31AD3E00238223 /* NSString+Extend.m in Sources */,
 				D1A5D88E1E8CF50F00455F0C /* POPAnimatableProperty.mm in Sources */,
 				D103BB9A1DAF3D900009DF88 /* GPUVideoViewController.m in Sources */,
@@ -4129,6 +4140,7 @@
 				D13B58961D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				D17A28051D93F89900C00B3F /* CALayer+YYWebImage.m in Sources */,
 				D1B6D7931D7D159600C3E647 /* MJProperty.m in Sources */,
+				D1F04FAD1E8E8F0800FBC1EF /* SBSleepInfoView.m in Sources */,
 				D13B58AA1D7EF093005D89FA /* MessageViewController.m in Sources */,
 				D1B6D7921D7D159600C3E647 /* MJFoundation.m in Sources */,
 				D1F144801E31AF0300238223 /* UILabel+Expand.m in Sources */,

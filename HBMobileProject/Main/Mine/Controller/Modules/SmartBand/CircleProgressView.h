@@ -35,6 +35,7 @@
 // 背景线条颜色
 @property (nonatomic, strong) UIColor *bgLineColor;
 
+
 // 是否需要背景图片
 @property (nonatomic, assign) BOOL isNeedBgImg;
 

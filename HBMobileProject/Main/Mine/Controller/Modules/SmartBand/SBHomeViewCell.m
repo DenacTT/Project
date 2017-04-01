@@ -7,13 +7,23 @@
 //
 
 #import "SBHomeViewCell.h"
-#import "NSAttributedString+YYText.h"
+#import "SBSleepInfoView.h"
+#import "SBWeightInfoView.h"
 
 #define UnitCals    @"Cals"
 #define UnitMinute  @"min"
 #define UnitHour    @"h"
 #define UnitWeight  @"kg"
 #define UnitKm      @"km"
+
+@interface SBHomeViewCell ()
+
+@property (nonatomic, strong) UIView  *exeProgs;    //锻炼Progress
+@property (nonatomic, strong) UILabel *progressLab; //显示当前进度
+@property (nonatomic, strong) SBSleepInfoView *sleProgs;//睡眠进度
+@property (nonatomic, strong) SBWeightInfoView *weigProgs;//体重进度
+
+@end
 
 @implementation SBHomeViewCell
 
@@ -25,6 +35,11 @@
         [self.contentView addSubview:self.imageView];
         [self.contentView addSubview:self.mainText];
         [self.contentView addSubview:self.subText];
+        
+        [self.contentView addSubview:self.exeProgs];
+        [self.contentView addSubview:self.progressLab];
+        [self.contentView addSubview:self.sleProgs];
+        [self.contentView addSubview:self.weigProgs];
     }
     return self;
 }
@@ -33,28 +48,55 @@
 - (void)setValue:(SBHomeModel *)model {
     
 //    self.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"SBHomeCellType_%zi@2x", model.cellType+1]];
+    
     self.subText.text  = [NSString stringWithFormat:@"%@", model.subText];//append
     switch (model.cellType) {
         case SBHomeCellType_Exercise:
+        {
             self.mainText.attributedText = [self attributedNumStr:[NSString stringWithFormat:@"%zi ", model.calsNum] unitStr:UnitCals];
+            self.exeProgs.hidden    = NO;
+            self.progressLab.hidden = NO;
+            self.sleProgs.hidden    = YES;
+            self.weigProgs.hidden   = YES;
+            self.progressLab.frame  = CGRectMake(self.exeProgs.left, self.exeProgs.top, self.exeProgs.width*model.exeProgress, self.exeProgs.height);
+            
+        }
             break;
         case SBHomeCellType_HeartRate:
+        {
             self.mainText.attributedText = [self attributedNumStr:[NSString stringWithFormat:@"%zi/", model.heartRate] unitStr:UnitMinute];
+            self.exeProgs.hidden    = YES;
+            self.progressLab.hidden = YES;
+            self.sleProgs.hidden    = YES;
+            self.weigProgs.hidden   = YES;
+        }
             break;
         case SBHomeCellType_SleepTime:
         {
             self.mainText.attributedText = [self attributedSleepTime:model.sleepTime];
+            self.exeProgs.hidden    = YES;
+            self.progressLab.hidden = YES;
+            self.sleProgs.hidden    = NO;
+            self.weigProgs.hidden   = YES;
         }
             break;
         case SBHomeCellType_BodyWeight:
+        {
             self.mainText.attributedText = [self attributedNumStr:[NSString stringWithFormat:@"%zi ", model.weightNum] unitStr:UnitWeight];
+            self.exeProgs.hidden    = YES;
+            self.progressLab.hidden = YES;
+            self.sleProgs.hidden    = YES;
+            self.weigProgs.hidden   = NO;
+            [self.weigProgs setValue:model];
+        }
             break;
         default:
             break;
     }
 }
 
-#pragma mark - 富文本
+#pragma mark - Private methods
+// 富文本
 - (NSMutableAttributedString *)attributedNumStr:(NSString *)numStr unitStr:(NSString *)unitStr {
     
     NSString *originString = [numStr stringByAppendingString:unitStr];
@@ -85,7 +127,7 @@
     if (!_imageView) {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.bounds)-90/2, 27, 90, 90)];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        _imageView.backgroundColor = RGB(64, 159, 232);
+//        _imageView.backgroundColor = RGBA(64, 159, 232, 0.5);
     }
     return _imageView;
 }
@@ -111,5 +153,47 @@
     }
     return _subText;
 }
+
+// 锻炼
+- (UIView *)exeProgs {
+    if (!_exeProgs) {
+        _exeProgs = [[UIView alloc] initWithFrame:CGRectMake(self.imageView.left+3, self.imageView.bottom-4-6, self.imageView.width-3*2, 6)];
+        _exeProgs.backgroundColor = RGBA(92, 184, 236, 0.2);
+        _exeProgs.layer.masksToBounds = YES;
+        _exeProgs.layer.cornerRadius  = 3;
+        _exeProgs.hidden = YES;
+    }
+    return _exeProgs;
+}
+
+- (UILabel *)progressLab {
+    if (!_progressLab) {
+        _progressLab = [[UILabel alloc] initWithFrame:CGRectMake(self.imageView.left+3, self.imageView.bottom-4-6, self.imageView.width-3*2, 6)];
+        _progressLab.backgroundColor = RGB(92, 184, 236);
+        _progressLab.layer.masksToBounds = YES;
+        _progressLab.layer.cornerRadius  = 3;
+        _progressLab.hidden = YES;
+    }
+    return _progressLab;
+}
+
+// 睡眠
+- (SBSleepInfoView *)sleProgs {
+    if (!_sleProgs) {
+        _sleProgs = [[SBSleepInfoView alloc] initWithFrame:CGRectMake(self.imageView.left-10, self.imageView.bottom-14-8-14-10, 110, 8+14+10)];
+        _sleProgs.hidden = YES;
+    }
+    return _sleProgs;
+}
+
+// 体重
+- (SBWeightInfoView *)weigProgs {
+    if (!_weigProgs) {
+        _weigProgs = [[SBWeightInfoView alloc] initWithFrame:CGRectMake(self.imageView.center.x-122/2, self.imageView.top+4, 122, 73)];
+        _weigProgs.hidden = YES;
+    }
+    return _weigProgs;
+}
+
 
 @end

@@ -37,6 +37,10 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign) NSInteger stepNum;
 
+@property (nonatomic, assign) CGFloat exeProgress;
+
+@property (nonatomic, assign) CGFloat weightProgress;
+
 - (void)initData;
 
 @end

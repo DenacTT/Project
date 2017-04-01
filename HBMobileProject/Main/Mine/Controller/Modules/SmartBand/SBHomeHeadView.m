@@ -97,8 +97,8 @@
     NSLog(@"%.2f",endValue);
     [self.calsProgress setStrokeEnd:endValue   animated:YES];
     [self.stepProgress setStrokeEnd:endValue/2 animated:YES];
-    [self.mileProgress setStrokeEnd:endValue*2 animated:YES];
-    [self.duraProgress setStrokeEnd:endValue/3 animated:YES];
+    [self.mileProgress setStrokeEnd:endValue/3 animated:YES];
+    [self.duraProgress setStrokeEnd:endValue/4 animated:NO];
 }
 
 #pragma mark - Getter(卡路里消耗等子控件)

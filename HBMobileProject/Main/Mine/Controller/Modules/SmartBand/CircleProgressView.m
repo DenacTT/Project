@@ -16,8 +16,9 @@
 @interface CircleProgressView ()
 
 @property (nonatomic, strong) CAShapeLayer *bgCircleLayer;
-@property (nonatomic, strong) CAShapeLayer *circleLayer;
 
+@property (nonatomic, strong) CAShapeLayer *circleLayer;
+///背景图片
 @property (nonatomic, strong) UIImageView  *bgImageView;
 
 @end
@@ -74,6 +75,7 @@
         if (self.bgImgName == nil) {
             return;
         }
+        self.bgImageView.hidden = NO;
         self.bgImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", self.bgImgName]];
     }
 }
@@ -81,12 +83,20 @@
 - (void)setStrokeEnd:(CGFloat)strokeEnd animated:(BOOL)animated {
     if (animated) {
         [self animateToStrokeEnd:strokeEnd];
-        return;
+    }else{
+        self.circleLayer.strokeEnd = strokeEnd;
     }
 }
 
-#pragma mark - Private Instance methods
+#pragma mark - Private methods
 - (void)addCircleLayer {
+    
+    // 背景图片
+    self.bgImageView = [[UIImageView alloc] init];
+    self.bgImageView.frame = self.bounds;
+    self.bgImageView.contentMode = UIViewContentModeCenter;
+    self.bgImageView.hidden = YES;
+    [self addSubview:self.bgImageView];
     
     // 进度layer层
     self.circleLayer = [CAShapeLayer layer];
@@ -98,10 +108,6 @@
     self.bgCircleLayer = [CAShapeLayer layer];
     self.bgCircleLayer.frame = self.bounds;
     [self.layer addSublayer:self.bgCircleLayer];
-    
-    self.bgImageView = [[UIImageView alloc] init];
-    self.bgImageView.frame = self.bounds;
-    [self addSubview:self.bgImageView];
 }
 
 - (void)animateToStrokeEnd:(CGFloat)strokeEnd {
@@ -110,7 +116,7 @@
     POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
     strokeAnimation.toValue = @(strokeEnd);
     strokeAnimation.springSpeed = 2;
-    strokeAnimation.springBounciness = 12.f;
+    strokeAnimation.springBounciness = 4.f;
     strokeAnimation.removedOnCompletion = NO;
     [self.circleLayer pop_addAnimation:strokeAnimation forKey:@"layerStrokeAnimation"];
 }
