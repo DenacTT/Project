@@ -13,10 +13,11 @@
 #define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 #define RGB(r,g,b) RGBA(r,g,b,1.0f)
 
-@interface CircleProgressView ()
+@interface CircleProgressView ()<POPAnimationDelegate>
 
+///背景层layer
 @property (nonatomic, strong) CAShapeLayer *bgCircleLayer;
-
+///进度层layer
 @property (nonatomic, strong) CAShapeLayer *circleLayer;
 ///背景图片
 @property (nonatomic, strong) UIImageView  *bgImageView;
@@ -80,7 +81,7 @@
     }
 }
 
-- (void)setStrokeEnd:(CGFloat)strokeEnd animated:(BOOL)animated {
+- (void)setStrokeEnd:(CGFloat)strokeEnd animated:(BOOL)animated{
     if (animated) {
         [self animateToStrokeEnd:strokeEnd];
     }else{
@@ -114,11 +115,49 @@
     
     // facebook pop 动画
     POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
+    strokeAnimation.delegate = self;
     strokeAnimation.toValue = @(strokeEnd);
     strokeAnimation.springSpeed = 2;
     strokeAnimation.springBounciness = 4.f;
     strokeAnimation.removedOnCompletion = NO;
     [self.circleLayer pop_addAnimation:strokeAnimation forKey:@"layerStrokeAnimation"];
+    
+//    strokeAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+//        if (finished) {
+//        }
+//    };
+}
+
+#pragma mark - POPAnimationDelegate
+// 动画开始
+- (void)pop_animationDidStart:(POPAnimation *)anim
+{
+    NSLog(@"pop_animationDidStart");
+}
+
+// 动画值动态改变
+- (void)pop_animationDidApply:(POPAnimation *)anim
+{
+//    NSLog(@"pop_animationDidApply");
+}
+
+// 动画到达终点值
+- (void)pop_animationDidReachToValue:(POPAnimation *)anim
+{
+    NSLog(@"pop_animationDidReachToValue");
+}
+
+// 动画结束
+- (void)pop_animationDidStop:(POPAnimation *)anim finished:(BOOL)finished
+{
+    NSLog(@"pop_animationDidStop");
+    if (finished) {
+        if (self.isNeedCallBack) {
+            if (self.finishedBlock) {
+                self.finishedBlock();
+            }
+        }
+    }
 }
 
 @end

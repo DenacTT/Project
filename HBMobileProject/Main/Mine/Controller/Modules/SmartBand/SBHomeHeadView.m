@@ -99,6 +99,10 @@
     [self.stepProgress setStrokeEnd:endValue/2 animated:YES];
     [self.mileProgress setStrokeEnd:endValue/3 animated:YES];
     [self.duraProgress setStrokeEnd:endValue/4 animated:NO];
+    
+    [self.calsProgress setFinishedBlock:^{
+        [YMUITipsView showTips:@"动画完成回调"];
+    }];
 }
 
 #pragma mark - Getter(卡路里消耗等子控件)
@@ -116,6 +120,7 @@
 //        _calsProgress.endAngle = 2*M_PI;
 //        _calsProgress.lineWidth = 8.f;
 //        _calsProgress.bgLineWidth = 7.f;
+        _calsProgress.isNeedCallBack   = YES;
         _calsProgress.isNeedBackground = YES;
         [_calsProgress makeConfigEffective];
     }
@@ -180,7 +185,7 @@
         _stepProgress.isNeedBackground = YES;
         _stepProgress.isNeedBgImg      = YES;
         _stepProgress.bgLineWidth      = 2.f;
-        _stepProgress.bgImgName        = @"step";
+        _stepProgress.bgImgName        = @"sb_home_step";
         [_stepProgress makeConfigEffective];
     }
     return _stepProgress;
@@ -215,7 +220,7 @@
         _mileProgress.isNeedBackground = YES;
         _mileProgress.isNeedBgImg      = YES;
         _mileProgress.bgLineWidth      = 2.f;
-        _mileProgress.bgImgName        = @"location";
+        _mileProgress.bgImgName        = @"sb_home_distence";
         [_mileProgress makeConfigEffective];
     }
     return _mileProgress;
@@ -250,7 +255,7 @@
         _duraProgress.isNeedBackground = YES;
         _duraProgress.isNeedBgImg      = YES;
         _duraProgress.bgLineWidth      = 2.f;
-        _duraProgress.bgImgName        = @"duration";
+        _duraProgress.bgImgName        = @"sb_home_time";
         [_duraProgress makeConfigEffective];
     }
     return _duraProgress;

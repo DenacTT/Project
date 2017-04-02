@@ -14,7 +14,7 @@
 /**
  *  线条宽度
  */
-@property (nonatomic)         CGFloat   lineWidth;
+@property (nonatomic, assign) CGFloat lineWidth;
 
 /**
  *  线条颜色
@@ -24,22 +24,26 @@
 /**
  *  YES,顺时针.NO逆时针
  */
-@property (nonatomic)         BOOL      clockWise;
+@property (nonatomic, assign) BOOL clockWise;
 
 /**
  *  起始角度, 1.5*M_PI 为12点钟方向.
  */
-@property (nonatomic)         CGFloat   startAngle;
+@property (nonatomic, assign) CGFloat startAngle;
 
 /**
- *  便利构造器方法
+ *  Start strokeEnd animation.
+ *
+ *  @param value    StrokeEnd value, range is [0, 1].
+ *  @param func     Easing function point.
+ *  @param animated Animated or not.
+ *  @param duration The animation's duration.
  */
-+ (instancetype)circleViewWithFrame:(CGRect)frame lineWidth:(CGFloat)width lineColor:(UIColor *)color
-                          clockWise:(BOOL)clockWise startAngle:(CGFloat)angle;
+- (void)strokeEnd:(CGFloat)value animationType:(AHEasingFunction)func animated:(BOOL)animated duration:(CGFloat)duration;
 
 /**
  *  Start strokeStart animation.
- *  开始 strokeStart 动画
+ *
  *  @param value    StrokeEnd value, range is [0, 1].
  *  @param func     Easing function point.
  *  @param animated Animated or not.
@@ -48,13 +52,16 @@
 - (void)strokeStart:(CGFloat)value animationType:(AHEasingFunction)func animated:(BOOL)animated duration:(CGFloat)duration;
 
 /**
- *  Start strokeEnd animation.
- *  开始 strokeEnd 动画
- *  @param value    StrokeEnd value, range is [0, 1].
- *  @param func     Easing function point.
- *  @param animated Animated or not.
- *  @param duration The animation's duration.
+ *  Convenient constructor.
+ *
+ *  @param frame     View frame.
+ *  @param width     Line width.
+ *  @param color     Line color.
+ *  @param clockWise Clockwise or not.
+ *  @param angle     Start angle, range is 0°~360°.
+ *
+ *  @return CircleView instance.
  */
-- (void)strokeEnd:(CGFloat)value animationType:(AHEasingFunction)func animated:(BOOL)animated duration:(CGFloat)duration;
-
++ (instancetype)circleViewWithFrame:(CGRect)frame lineWidth:(CGFloat)width lineColor:(UIColor *)color
+                          clockWise:(BOOL)clockWise startAngle:(CGFloat)angle;
 @end

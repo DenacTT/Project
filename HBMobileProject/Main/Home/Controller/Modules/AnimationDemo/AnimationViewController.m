@@ -39,6 +39,7 @@ static NSString * const AnimaitonViewCell = @"AnimaitonViewCell";
     
     [self addClassName:@"UIBezierPathDemo" withTitle:@"UIBezierPath"];
     [self addClassName:@"CAShapeLayerDemo" withTitle:@"CAShapeLayer"];
+    [self addClassName:@"CABaseAnimationDemo" withTitle:@"CABaseAnimation"];
     
 }
 

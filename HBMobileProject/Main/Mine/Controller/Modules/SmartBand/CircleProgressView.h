@@ -42,6 +42,13 @@
 // 背景图片name
 @property (nonatomic, strong) NSString *bgImgName;
 
+
+// 是否需要动画完成后的回调
+@property (nonatomic, assign) BOOL isNeedCallBack;
+
+// 动画完成回调 block
+@property (nonatomic, copy) void (^finishedBlock)();
+
 /**
  *  便利构造器方法
  */
@@ -56,6 +63,7 @@
  *  开始 strokeEnd 动画
  *  @param value    StrokeEnd value, range is [0, 1].
  *  @param animated Animated or not.
+ *  @param finished call back
  */
 - (void)setStrokeEnd:(CGFloat)strokeEnd animated:(BOOL)animated;
 

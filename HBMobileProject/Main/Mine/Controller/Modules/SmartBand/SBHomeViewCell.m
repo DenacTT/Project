@@ -47,7 +47,7 @@
 #pragma mark - Setter
 - (void)setValue:(SBHomeModel *)model {
     
-//    self.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"SBHomeCellType_%zi@2x", model.cellType+1]];
+    self.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"sb_home_cell_type0%zi@2x", model.cellType+1]];
     
     self.subText.text  = [NSString stringWithFormat:@"%@", model.subText];//append
     switch (model.cellType) {

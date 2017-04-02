@@ -7,10 +7,16 @@
 //
 
 #import "CAShapeLayerDemo.h"
+#import "LXCircleAnimationView.h"
+#import "CircleView.h"
 
 @interface CAShapeLayerDemo ()
 
 @property (nonatomic, strong) CAShapeLayer *shapLayer;
+
+@property (nonatomic, strong) LXCircleAnimationView *circleProgressView;
+
+@property (nonatomic, strong) CircleView *circleView;
 
 @end
 
@@ -93,27 +99,46 @@
      
      **********************/
     
-    // 创建 CAShapeLayer
-    self.shapLayer = [CAShapeLayer layer];
-    _shapLayer.frame = CGRectMake(50, 100, 200, 200);
-    _shapLayer.lineWidth = 2.f;
-    _shapLayer.fillColor = [UIColor whiteColor].CGColor;
-    _shapLayer.strokeColor = [UIColor orangeColor].CGColor;
+//    // 创建 CAShapeLayer
+//    self.shapLayer = [CAShapeLayer layer];
+//    _shapLayer.frame = CGRectMake(50, 100, 200, 200);
+//    _shapLayer.lineWidth = 2.f;
+//    _shapLayer.fillColor = [UIColor whiteColor].CGColor;
+//    _shapLayer.strokeColor = [UIColor orangeColor].CGColor;
+//    
+//    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:_shapLayer.frame];
+//    _shapLayer.path = path.CGPath;
+//    [self.view.layer addSublayer:_shapLayer];
+//    
+//    // 设置 stock 起点
+//    _shapLayer.strokeStart = 0;
+//    _shapLayer.strokeEnd = 0.75;
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:_shapLayer.frame];
-    _shapLayer.path = path.CGPath;
-    [self.view.layer addSublayer:_shapLayer];
+    self.view.backgroundColor = [UIColor blackColor];
+    self.circleProgressView = [[LXCircleAnimationView alloc] initWithFrame:CGRectMake(40.f, 70.f, ScreenWidth - 80.f, ScreenWidth - 80.f)];
+    self.circleProgressView.bgImage = [UIImage imageNamed:@"sb_home_star@2x"];
+    //调用此方法
+    self.circleProgressView.percent = 88.f;
+    [self.view addSubview:self.circleProgressView];
     
-    // 设置 stock 起点
-    _shapLayer.strokeStart = 0;
-    _shapLayer.strokeEnd = 0.75;
     
+    self.circleView = [CircleView circleViewWithFrame:CGRectMake(self.view.center.x-50, 400, 100, 100)
+                                             lineWidth:2
+                                             lineColor:[UIColor grayColor]
+                                             clockWise:YES
+                                            startAngle:0];
+    [self.view addSubview:_circleView];
 }
 
 - (void)clickRightBtn {
     _shapLayer.strokeStart = 0;
     _shapLayer.strokeEnd = 0;
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(repeatCycle) userInfo:nil repeats:YES];
+    
+    CGFloat percent        = arc4random() % 100 / 100.f;
+    CGFloat anotherPercent = arc4random() % 100 / 100.f;
+    CGFloat largePercent   = (percent < anotherPercent ? anotherPercent : percent);
+    [self.circleView strokeEnd:largePercent animationType:ElasticEaseInOut animated:YES duration:2.f];
 }
 
 - (void)repeatCycle {
@@ -123,22 +148,5 @@
     self.shapLayer.strokeStart = MIN(oneValue, twoValue);
     self.shapLayer.strokeEnd = MAX(oneValue, twoValue);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end
