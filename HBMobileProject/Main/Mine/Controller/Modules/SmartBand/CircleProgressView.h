@@ -43,14 +43,18 @@
 @property (nonatomic, strong) NSString *bgImgName;
 
 
-// 是否需要动画完成后的回调
-@property (nonatomic, assign) BOOL isNeedCallBack;
-
 // 动画完成回调 block
 @property (nonatomic, copy) void (^finishedBlock)();
 
 /**
  *  便利构造器方法
+ *  @param frame        frame
+ *  @param lineWidth    线条宽度
+ *  @param lineColor    线条颜色
+ *  @param clockWise    绘制方向,默认是顺时针方向, YES;
+ *  @param startAngle   开始绘制的角度,默认是12点钟方向所在角度,即 1.5*M_PI
+ *  
+ *  return a CircleProgressView instance
  */
 + (instancetype)circleProgressViewWithFrame:(CGRect)frame lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor clockWise:(BOOL)clockWise startAngle:(CGFloat)startAngle;
 
@@ -61,9 +65,8 @@
 
 /**
  *  开始 strokeEnd 动画
- *  @param value    StrokeEnd value, range is [0, 1].
- *  @param animated Animated or not.
- *  @param finished call back
+ *  @param value    StrokeEnd value,取值范围0~1
+ *  @param animated 是否需要动画
  */
 - (void)setStrokeEnd:(CGFloat)strokeEnd animated:(BOOL)animated;
 

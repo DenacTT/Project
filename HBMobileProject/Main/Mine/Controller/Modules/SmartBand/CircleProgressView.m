@@ -12,14 +12,15 @@
 
 #define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 #define RGB(r,g,b) RGBA(r,g,b,1.0f)
+#define DegreesToRadians(x) (M_PI*(x)/180.0) //把角度转换成PI的方式
 
 @interface CircleProgressView ()<POPAnimationDelegate>
 
-///背景层layer
+// 背景层layer
 @property (nonatomic, strong) CAShapeLayer *bgCircleLayer;
-///进度层layer
+// 进度层layer
 @property (nonatomic, strong) CAShapeLayer *circleLayer;
-///背景图片
+// 背景图片
 @property (nonatomic, strong) UIImageView  *bgImageView;
 
 @end
@@ -111,9 +112,9 @@
     [self.layer addSublayer:self.bgCircleLayer];
 }
 
+#pragma mark - 以 facebook pop 动画显示,带弹簧效果
 - (void)animateToStrokeEnd:(CGFloat)strokeEnd {
     
-    // facebook pop 动画
     POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
     strokeAnimation.delegate = self;
     strokeAnimation.toValue = @(strokeEnd);
@@ -152,12 +153,34 @@
 {
     NSLog(@"pop_animationDidStop");
     if (finished) {
-        if (self.isNeedCallBack) {
-            if (self.finishedBlock) {
-                self.finishedBlock();
-            }
+        if (self.finishedBlock) {
+            self.finishedBlock();
         }
     }
 }
+
+#pragma mark - 以关键帧动画显示,不带弹簧效果
+//- (void)animationWithKeyframeAnimation {
+//    
+//    // 设置动画属性
+//    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+//    pathAnimation.calculationMode = kCAAnimationPaced;
+//    pathAnimation.fillMode = kCAFillModeForwards;
+//    pathAnimation.removedOnCompletion = NO;
+//    pathAnimation.duration = 1.f;
+//    pathAnimation.repeatCount = 1;
+//    
+//    CGFloat startAngle = DegreesToRadians(self.startAngle);
+//    CGFloat endAngle   = DegreesToRadians(self.endAngle);
+//    
+//    // 设置动画路径
+//    CGMutablePathRef path = CGPathCreateMutable();
+//    CGPathAddArc(path, NULL, self.width / 2, self.height / 2, CGRectGetWidth(self.bounds)/2, startAngle, endAngle, 0);
+//    pathAnimation.path = path;
+//    CGPathRelease(path);
+//    
+//    self.circleLayer.cornerRadius = self.circleLayer.frame.size.height / 2;
+//    [self.circleLayer addAnimation:pathAnimation forKey:@"moveMarker"];
+//}
 
 @end

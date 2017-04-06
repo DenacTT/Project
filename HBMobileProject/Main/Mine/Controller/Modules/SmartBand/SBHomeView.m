@@ -7,7 +7,7 @@
 //
 
 #import "SBHomeView.h"
-
+#import "SBStatusView.h"
 #import "SBHomeHeadView.h"
 #import "SBHomeViewCell.h"
 #import "SBHomeModel.h"
@@ -25,6 +25,7 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
 @property (nonatomic, strong) UIView *horLine;//水平分割线
 @property (nonatomic, strong) UIView *verLine;//垂直分割线
 @property (nonatomic, strong) UIView *bgView; //背景占位图
+@property (nonatomic, strong) SBStatusView *statusView;//顶部状态栏
 
 @end
 
@@ -34,9 +35,10 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
 - (void)viewDidLoad {
     [self.view addSubview:self.bgView];
     
-    [self.bgView addSubview:self.navView];
-    [self.bgView addSubview:self.topLine];
-    [self.bgView addSubview:self.sbCollectionView];
+    [self.bgView  addSubview:self.navView];
+    [self.bgView  addSubview:self.topLine];
+    [self.navView addSubview:self.statusView];
+    [self.bgView  addSubview:self.sbCollectionView];
     
     [self.sbCollectionView addSubview:self.horLine];
     [self.sbCollectionView addSubview:self.verLine];
@@ -144,6 +146,14 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
     return _navView;
 }
 
+- (SBStatusView *)statusView {
+    if (!_statusView) {
+        _statusView = [[SBStatusView alloc] initWithFrame:self.navView.bounds];
+        _statusView.backgroundColor = [UIColor clearColor];
+    }
+    return _statusView;
+}
+
 - (UIView *)topLine {
     if (!_topLine) {
         _topLine = [[UIView alloc]initWithFrame:CGRectMake(0, 63.5, ScreenWidth, .5f)];
@@ -179,6 +189,5 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
     }
     return _verLine;
 }
-
 
 @end

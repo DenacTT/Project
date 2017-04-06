@@ -66,6 +66,7 @@
 		D1283B621E8108B100376B91 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D1283B5D1E8108B100376B91 /* FMResultSet.m */; };
 		D1283B641E81099400376B91 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1283B631E81099400376B91 /* libsqlite3.tbd */; };
 		D1283B651E810B4900376B91 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1283B631E81099400376B91 /* libsqlite3.tbd */; };
+		D128BB9D1E90A96B004E8307 /* CAAnimation.md in Sources */ = {isa = PBXBuildFile; fileRef = D128BB9C1E90A96B004E8307 /* CAAnimation.md */; };
 		D12A2E7A1DD323AC00D12F4A /* BBSCellOperateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A2E791DD323AC00D12F4A /* BBSCellOperateView.m */; };
 		D12A85D11DC725E9004834E0 /* MultiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A85D01DC725E9004834E0 /* MultiViewController.m */; };
 		D12A85D41DC72917004834E0 /* TextBarCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D12A85D31DC72917004834E0 /* TextBarCollectionCell.m */; };
@@ -479,6 +480,23 @@
 		D1FDDA831DD30FA200203B91 /* bbs_zanPerson@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA6C1DD30FA200203B91 /* bbs_zanPerson@2x.png */; };
 		D1FDDA851DD3118400203B91 /* headImageDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1FDDA841DD3118400203B91 /* headImageDefault@2x.png */; };
 		DCBDAA5C0147AAC746F956EB /* libPods-HBMobileProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D027696519CAB0C2B7F18ACF /* libPods-HBMobileProject.a */; };
+		F20A66E51E95EF200060EB34 /* sb_home_syn_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20A66E41E95EF200060EB34 /* sb_home_syn_icon@2x.png */; };
+		F20A66E71E9601D10060EB34 /* sb_home_syn_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20A66E61E9601D10060EB34 /* sb_home_syn_success@2x.png */; };
+		F20A66ED1E960BDC0060EB34 /* HomePopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20A66EC1E960BDC0060EB34 /* HomePopViewController.m */; };
+		F2274E331E959BEC00FE8940 /* UIViewAnimation.md in Sources */ = {isa = PBXBuildFile; fileRef = F2274E321E959BEC00FE8940 /* UIViewAnimation.md */; };
+		F2274E361E959C0800FE8940 /* UIViewAnimationDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = F2274E351E959C0800FE8940 /* UIViewAnimationDemo.m */; };
+		F2274E391E95A40100FE8940 /* SBStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2274E381E95A40100FE8940 /* SBStatusView.m */; };
+		F2274E3B1E95AFAA00FE8940 /* sb_home_battery_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2274E3A1E95AFAA00FE8940 /* sb_home_battery_icon@2x.png */; };
+		F2274E451E95B44C00FE8940 /* addSubUser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2274E3D1E95B44C00FE8940 /* addSubUser@2x.png */; };
+		F2274E461E95B44C00FE8940 /* familyAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2274E3E1E95B44C00FE8940 /* familyAdd@2x.png */; };
+		F2274E471E95B44C00FE8940 /* familyBoy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2274E3F1E95B44C00FE8940 /* familyBoy@2x.png */; };
+		F2274E481E95B44C00FE8940 /* familyGirl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2274E401E95B44C00FE8940 /* familyGirl@2x.png */; };
+		F2274E491E95B44C00FE8940 /* familyUser_boy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2274E411E95B44C00FE8940 /* familyUser_boy@2x.png */; };
+		F2274E4A1E95B44C00FE8940 /* familyVisitor_boy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2274E421E95B44C00FE8940 /* familyVisitor_boy@2x.png */; };
+		F2274E4B1E95B44C00FE8940 /* YMEditHead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2274E431E95B44C00FE8940 /* YMEditHead@2x.png */; };
+		F2274E4C1E95B44C00FE8940 /* YMRegisterHead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2274E441E95B44C00FE8940 /* YMRegisterHead@2x.png */; };
+		F2274E4E1E95B50A00FE8940 /* sb_home_unconnect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2274E4D1E95B50A00FE8940 /* sb_home_unconnect@2x.png */; };
+		F25CA2311E91C54C00802425 /* CALayer.md in Sources */ = {isa = PBXBuildFile; fileRef = F25CA2301E91C54C00802425 /* CALayer.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -580,6 +598,7 @@
 		D1283B5C1E8108B100376B91 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		D1283B5D1E8108B100376B91 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		D1283B631E81099400376B91 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		D128BB9C1E90A96B004E8307 /* CAAnimation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CAAnimation.md; sourceTree = "<group>"; };
 		D12A2E781DD323AC00D12F4A /* BBSCellOperateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSCellOperateView.h; sourceTree = "<group>"; };
 		D12A2E791DD323AC00D12F4A /* BBSCellOperateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSCellOperateView.m; sourceTree = "<group>"; };
 		D12A85CF1DC725E9004834E0 /* MultiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiViewController.h; sourceTree = "<group>"; };
@@ -1485,6 +1504,26 @@
 		D1FDDA6B1DD30FA200203B91 /* bbs_zanNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_zanNormal@2x.png"; sourceTree = "<group>"; };
 		D1FDDA6C1DD30FA200203B91 /* bbs_zanPerson@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_zanPerson@2x.png"; sourceTree = "<group>"; };
 		D1FDDA841DD3118400203B91 /* headImageDefault@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headImageDefault@2x.png"; sourceTree = "<group>"; };
+		F20A66E41E95EF200060EB34 /* sb_home_syn_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sb_home_syn_icon@2x.png"; sourceTree = "<group>"; };
+		F20A66E61E9601D10060EB34 /* sb_home_syn_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sb_home_syn_success@2x.png"; sourceTree = "<group>"; };
+		F20A66EB1E960BDC0060EB34 /* HomePopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePopViewController.h; sourceTree = "<group>"; };
+		F20A66EC1E960BDC0060EB34 /* HomePopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePopViewController.m; sourceTree = "<group>"; };
+		F2274E321E959BEC00FE8940 /* UIViewAnimation.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = UIViewAnimation.md; sourceTree = "<group>"; };
+		F2274E341E959C0800FE8940 /* UIViewAnimationDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAnimationDemo.h; sourceTree = "<group>"; };
+		F2274E351E959C0800FE8940 /* UIViewAnimationDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAnimationDemo.m; sourceTree = "<group>"; };
+		F2274E371E95A40100FE8940 /* SBStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBStatusView.h; path = CustomSubView/SBStatusView.h; sourceTree = "<group>"; };
+		F2274E381E95A40100FE8940 /* SBStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBStatusView.m; path = CustomSubView/SBStatusView.m; sourceTree = "<group>"; };
+		F2274E3A1E95AFAA00FE8940 /* sb_home_battery_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sb_home_battery_icon@2x.png"; sourceTree = "<group>"; };
+		F2274E3D1E95B44C00FE8940 /* addSubUser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addSubUser@2x.png"; sourceTree = "<group>"; };
+		F2274E3E1E95B44C00FE8940 /* familyAdd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "familyAdd@2x.png"; sourceTree = "<group>"; };
+		F2274E3F1E95B44C00FE8940 /* familyBoy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "familyBoy@2x.png"; sourceTree = "<group>"; };
+		F2274E401E95B44C00FE8940 /* familyGirl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "familyGirl@2x.png"; sourceTree = "<group>"; };
+		F2274E411E95B44C00FE8940 /* familyUser_boy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "familyUser_boy@2x.png"; sourceTree = "<group>"; };
+		F2274E421E95B44C00FE8940 /* familyVisitor_boy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "familyVisitor_boy@2x.png"; sourceTree = "<group>"; };
+		F2274E431E95B44C00FE8940 /* YMEditHead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YMEditHead@2x.png"; sourceTree = "<group>"; };
+		F2274E441E95B44C00FE8940 /* YMRegisterHead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YMRegisterHead@2x.png"; sourceTree = "<group>"; };
+		F2274E4D1E95B50A00FE8940 /* sb_home_unconnect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sb_home_unconnect@2x.png"; sourceTree = "<group>"; };
+		F25CA2301E91C54C00802425 /* CALayer.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CALayer.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2131,9 +2170,11 @@
 			children = (
 				D146028D1E85524C0065E127 /* AnimationViewController.h */,
 				D146028E1E85524C0065E127 /* AnimationViewController.m */,
+				F25CA22F1E91C53F00802425 /* CALayer */,
 				D1B706001E88F2B4002A7D95 /* UIBezerPath */,
 				D1B705FF1E88F264002A7D95 /* CAShapeLayer */,
 				D1EDDBCA1E8F96B300BE79B1 /* CABaseAnimation */,
+				F2274E311E957C1600FE8940 /* UIViewAnimation */,
 				D146029A1E864B9C0065E127 /* CGContextRef */,
 				D12F028F1E8F7BBB00E9276F /* ScoreDemo */,
 			);
@@ -3015,6 +3056,8 @@
 				D1F04FAC1E8E8F0800FBC1EF /* SBSleepInfoView.m */,
 				D1F04FAE1E8E922C00FBC1EF /* SBWeightInfoView.h */,
 				D1F04FAF1E8E922C00FBC1EF /* SBWeightInfoView.m */,
+				F20A66EB1E960BDC0060EB34 /* HomePopViewController.h */,
+				F20A66EC1E960BDC0060EB34 /* HomePopViewController.m */,
 			);
 			path = CustomSubView;
 			sourceTree = "<group>";
@@ -3099,6 +3142,8 @@
 			children = (
 				D1AD50261E8A7AF000682EA8 /* SBHomeView.h */,
 				D1AD50271E8A7AF000682EA8 /* SBHomeView.m */,
+				F2274E371E95A40100FE8940 /* SBStatusView.h */,
+				F2274E381E95A40100FE8940 /* SBStatusView.m */,
 				D1AD50241E8A7AF000682EA8 /* SBHomeHeadView.h */,
 				D1AD50251E8A7AF000682EA8 /* SBHomeHeadView.m */,
 				D1AD50281E8A7AF000682EA8 /* SBHomeViewCell.h */,
@@ -3386,6 +3431,7 @@
 				D1FDDA551DD30C0100203B91 /* BBSImage */,
 				D11C449F1D9A5EFD0051BD31 /* MakeVideo */,
 				D17A28D11D94091600C00B3F /* IdentifyImage */,
+				F2274E3C1E95B44C00FE8940 /* Family */,
 				D17A28B81D94083200C00B3F /* Sex */,
 				D17A28831D9404CC00C00B3F /* UMImages */,
 				D17A285B1D9402D700C00B3F /* Other */,
@@ -3572,6 +3618,7 @@
 		D1EDDBCA1E8F96B300BE79B1 /* CABaseAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				D128BB9C1E90A96B004E8307 /* CAAnimation.md */,
 				D1EDDBCB1E8F96D800BE79B1 /* CABaseAnimationDemo.h */,
 				D1EDDBCC1E8F96D800BE79B1 /* CABaseAnimationDemo.m */,
 			);
@@ -3609,6 +3656,10 @@
 		D1F04FD01E8F44A500FBC1EF /* SBHomeImage */ = {
 			isa = PBXGroup;
 			children = (
+				F20A66E61E9601D10060EB34 /* sb_home_syn_success@2x.png */,
+				F20A66E41E95EF200060EB34 /* sb_home_syn_icon@2x.png */,
+				F2274E4D1E95B50A00FE8940 /* sb_home_unconnect@2x.png */,
+				F2274E3A1E95AFAA00FE8940 /* sb_home_battery_icon@2x.png */,
 				D1F04FD11E8F44A500FBC1EF /* sb_home_add_new_family@2x.png */,
 				D1F04FD21E8F44A500FBC1EF /* sb_home_band@2x.png */,
 				D1F04FD31E8F44A500FBC1EF /* sb_home_cell_type01@2x.png */,
@@ -3783,6 +3834,39 @@
 			path = BBSImage;
 			sourceTree = "<group>";
 		};
+		F2274E311E957C1600FE8940 /* UIViewAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				F2274E321E959BEC00FE8940 /* UIViewAnimation.md */,
+				F2274E341E959C0800FE8940 /* UIViewAnimationDemo.h */,
+				F2274E351E959C0800FE8940 /* UIViewAnimationDemo.m */,
+			);
+			path = UIViewAnimation;
+			sourceTree = "<group>";
+		};
+		F2274E3C1E95B44C00FE8940 /* Family */ = {
+			isa = PBXGroup;
+			children = (
+				F2274E3D1E95B44C00FE8940 /* addSubUser@2x.png */,
+				F2274E3E1E95B44C00FE8940 /* familyAdd@2x.png */,
+				F2274E3F1E95B44C00FE8940 /* familyBoy@2x.png */,
+				F2274E401E95B44C00FE8940 /* familyGirl@2x.png */,
+				F2274E411E95B44C00FE8940 /* familyUser_boy@2x.png */,
+				F2274E421E95B44C00FE8940 /* familyVisitor_boy@2x.png */,
+				F2274E431E95B44C00FE8940 /* YMEditHead@2x.png */,
+				F2274E441E95B44C00FE8940 /* YMRegisterHead@2x.png */,
+			);
+			path = Family;
+			sourceTree = "<group>";
+		};
+		F25CA22F1E91C53F00802425 /* CALayer */ = {
+			isa = PBXGroup;
+			children = (
+				F25CA2301E91C54C00802425 /* CALayer.md */,
+			);
+			path = CALayer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3853,7 +3937,7 @@
 				TargetAttributes = {
 					D1B6D6EA1D7D10C400C3E647 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = TW2KBGCT8Y;
+						DevelopmentTeam = 7TUZGA3GZY;
 						ProvisioningStyle = Automatic;
 					};
 					D1B6D7031D7D10C500C3E647 = {
@@ -3896,6 +3980,7 @@
 				D1FDDA7C1DD30FA200203B91 /* bbs_moreAction@2x.png in Resources */,
 				D1AD502E1E8A7C5E00682EA8 /* YMHomeBackground.png in Resources */,
 				D17A28EB1D940B1100C00B3F /* defaultImage@2x.png in Resources */,
+				F2274E4C1E95B44C00FE8940 /* YMRegisterHead@2x.png in Resources */,
 				D17A28A91D9404CC00C00B3F /* UMS_wechat_timeline_on@2x.png in Resources */,
 				D17A28581D9400E000C00B3F /* privateCard_Lock@2x.png in Resources */,
 				D17A28551D9400E000C00B3F /* privateCard_badge@2x.png in Resources */,
@@ -3917,6 +4002,7 @@
 				D11F302C1E0BF28200ED620C /* store_sub_normal@2x.png in Resources */,
 				D11C44A21D9A5F020051BD31 /* DelayBtnHighGray@2x.png in Resources */,
 				D1932ADF1E7B88360037FC00 /* buy_success@2x.png in Resources */,
+				F2274E481E95B44C00FE8940 /* familyGirl@2x.png in Resources */,
 				D11F30291E0BF28100ED620C /* store_color_selected@2x.png in Resources */,
 				D11558731E8B9CFA00AD40B9 /* Spoon-Bold.otf in Resources */,
 				D11F301B1E0BF28100ED620C /* address_ texture@2x.png in Resources */,
@@ -3926,8 +4012,10 @@
 				D13B58D81D7FFA6F005D89FA /* Localizable.strings in Resources */,
 				D17A28C81D94083200C00B3F /* edit_girl_selected@2x.png in Resources */,
 				D17A28AF1D9404CC00C00B3F /* UMS_sina_on@2x.png in Resources */,
+				F2274E4A1E95B44C00FE8940 /* familyVisitor_boy@2x.png in Resources */,
 				D17A28DF1D94091600C00B3F /* type_1@3x.png in Resources */,
 				D178CBB41DCC90C400D14560 /* MsgList.plist in Resources */,
+				F2274E491E95B44C00FE8940 /* familyUser_boy@2x.png in Resources */,
 				D17A28DE1D94091600C00B3F /* type_1@2x.png in Resources */,
 				D1F04FE51E8F44A600FBC1EF /* sb_home_cell_type04@2x.png in Resources */,
 				D12C34971DC772150025252C /* ArrowIcon@2x.png in Resources */,
@@ -3952,12 +4040,14 @@
 				D1F04FEE1E8F44A600FBC1EF /* sb_home_time@2x.png in Resources */,
 				D17A289C1D9404CC00C00B3F /* UMS_wechat_favorite_icon@2x.png in Resources */,
 				D1AD50301E8A819F00682EA8 /* YMHomeCenterView.png in Resources */,
+				F2274E4E1E95B50A00FE8940 /* sb_home_unconnect@2x.png in Resources */,
 				D1FDDA7F1DD30FA200203B91 /* bbs_videoIcon@2x.png in Resources */,
 				D11F30201E0BF28100ED620C /* pay_unselected@2x.png in Resources */,
 				D11F30261E0BF28100ED620C /* price_place_icon@2x.png in Resources */,
 				D1F04FEC1E8F44A600FBC1EF /* sb_home_star@2x.png in Resources */,
 				D103BB9F1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png in Resources */,
 				D11F30301E0BF28200ED620C /* stror_color_unselected@2x.png in Resources */,
+				F2274E471E95B44C00FE8940 /* familyBoy@2x.png in Resources */,
 				D17A28E31D94091600C00B3F /* type_3@3x.png in Resources */,
 				D11558751E8B9CFA00AD40B9 /* HelveticaNeueLTPro-ThEx.otf in Resources */,
 				D11F30381E0BF28200ED620C /* zhifubao_pay@2x.png in Resources */,
@@ -3983,6 +4073,8 @@
 				D1F04FE81E8F44A600FBC1EF /* sb_home_electric@2x.png in Resources */,
 				D17A28AB1D9404CC00C00B3F /* UMS_sina_icon@2x.png in Resources */,
 				D1FDDA831DD30FA200203B91 /* bbs_zanPerson@2x.png in Resources */,
+				F20A66E51E95EF200060EB34 /* sb_home_syn_icon@2x.png in Resources */,
+				F2274E4B1E95B44C00FE8940 /* YMEditHead@2x.png in Resources */,
 				D17A28A61D9404CC00C00B3F /* UMS_wechat_timeline_off.png in Resources */,
 				D1FDDA811DD30FA200203B91 /* bbs_zanClicked@2x.png in Resources */,
 				D11F302D1E0BF28200ED620C /* store_sub_selected@2x.png in Resources */,
@@ -3995,6 +4087,7 @@
 				D17A28E51D94091600C00B3F /* type_4@3x.png in Resources */,
 				D17A28AE1D9404CC00C00B3F /* UMS_sina_on.png in Resources */,
 				D17A28591D9400E000C00B3F /* privateCard_unLock@2x.png in Resources */,
+				F2274E461E95B44C00FE8940 /* familyAdd@2x.png in Resources */,
 				D1FDDA7E1DD30FA200203B91 /* bbs_shareIcon@2x.png in Resources */,
 				D17A28A01D9404CC00C00B3F /* UMS_wechat_off@2x.png in Resources */,
 				D11F30351E0BF28200ED620C /* tab_stroe_order_selected@2x.png in Resources */,
@@ -4006,9 +4099,11 @@
 				D11F30281E0BF28100ED620C /* store_add_selected@2x.png in Resources */,
 				D11F30221E0BF28100ED620C /* place_goods_normal@2x.png in Resources */,
 				D1F04FE41E8F44A600FBC1EF /* sb_home_cell_type03@2x.png in Resources */,
+				F2274E3B1E95AFAA00FE8940 /* sb_home_battery_icon@2x.png in Resources */,
 				D11558761E8B9CFA00AD40B9 /* miso-bold.ttf in Resources */,
 				D15E55581D9BA67A0027634B /* RecodeButton@2x.png in Resources */,
 				D17A28E01D94091600C00B3F /* type_2@2x.png in Resources */,
+				F2274E451E95B44C00FE8940 /* addSubUser@2x.png in Resources */,
 				D11C44A81D9A61740051BD31 /* CameraChange@2x.png in Resources */,
 				D1BA1E5A1E1E435E00FE4DCB /* tapbar_top_line@2x.png in Resources */,
 				D11F30241E0BF28100ED620C /* place_icon-price@2x.png in Resources */,
@@ -4027,6 +4122,7 @@
 				D146024E1E8546890065E127 /* back_icon@2x.png in Resources */,
 				D1B6D6F91D7D10C500C3E647 /* Main.storyboard in Resources */,
 				D17A28A41D9404CC00C00B3F /* UMS_wechat_timeline_icon.png in Resources */,
+				F20A66E71E9601D10060EB34 /* sb_home_syn_success@2x.png in Resources */,
 				D17A28E11D94091600C00B3F /* type_2@3x.png in Resources */,
 				D103BBA21DAF8BA20009DF88 /* RecordIcoMackup@2x.png in Resources */,
 				D1FDDA851DD3118400203B91 /* headImageDefault@2x.png in Resources */,
@@ -4209,6 +4305,7 @@
 				D1F1443D1E30F93900238223 /* YMActionSheet.m in Sources */,
 				D17A28121D93F89900C00B3F /* YYClassInfo.m in Sources */,
 				D1A5D8581E8CDD7500455F0C /* CircleProgressView.m in Sources */,
+				F2274E331E959BEC00FE8940 /* UIViewAnimation.md in Sources */,
 				D17A28041D93F89900C00B3F /* _YYWebImageSetter.m in Sources */,
 				D1A5D8991E8CF50F00455F0C /* POPGeometry.mm in Sources */,
 				D17A282D1D93F89900C00B3F /* YYSentinel.m in Sources */,
@@ -4240,6 +4337,7 @@
 				D13DDC8D1DD181C900B3AD5B /* TimeFormatTool.m in Sources */,
 				D17A28321D93F89900C00B3F /* YYWeakProxy.m in Sources */,
 				D17A27FC1D93F89900C00B3F /* UIScrollView+YYAdd.m in Sources */,
+				F20A66ED1E960BDC0060EB34 /* HomePopViewController.m in Sources */,
 				D1AD502C1E8A7AF000682EA8 /* SBHomeViewCell.m in Sources */,
 				D17A28271D93F89900C00B3F /* YYAsyncLayer.m in Sources */,
 				D13B58961D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
@@ -4275,6 +4373,7 @@
 				D13DDC861DD16F5300B3AD5B /* UIImageView+HighlightedWebCache.m in Sources */,
 				D12F02971E8F7BBB00E9276F /* UIColor+Extensions.m in Sources */,
 				D17A28131D93F89900C00B3F /* YYTextContainerView.m in Sources */,
+				F2274E361E959C0800FE8940 /* UIViewAnimationDemo.m in Sources */,
 				D17A28011D93F89900C00B3F /* YYDiskCache.m in Sources */,
 				D1932B091E7D3C6C0037FC00 /* ExtensibleCellViewController.m in Sources */,
 				D1B6D7741D7D154700C3E647 /* MASViewConstraint.m in Sources */,
@@ -4331,10 +4430,12 @@
 				D15E557F1D9CCE8B0027634B /* EditVideoViewController.m in Sources */,
 				D14602891E854CC00065E127 /* JHShowInfoView.m in Sources */,
 				D17A280A1D93F89900C00B3F /* YYFrameImage.m in Sources */,
+				F2274E391E95A40100FE8940 /* SBStatusView.m in Sources */,
 				D13B58B01D7EF1F3005D89FA /* ConfigTabBarController.m in Sources */,
 				D1F144511E31A7D200238223 /* CustomTipsView.m in Sources */,
 				D1F04F941E8D4E5A00FBC1EF /* FillCircleLayerConfigure.m in Sources */,
 				D1A5D89D1E8CF50F00455F0C /* POPSpringAnimation.mm in Sources */,
+				D128BB9D1E90A96B004E8307 /* CAAnimation.md in Sources */,
 				D17A27E31D93F89900C00B3F /* NSBundle+YYAdd.m in Sources */,
 				D1A5D8951E8CF50F00455F0C /* POPBasicAnimation.mm in Sources */,
 				D1283B5F1E8108B100376B91 /* FMDatabaseAdditions.m in Sources */,
@@ -4353,6 +4454,7 @@
 				D140C9141DCDDEC100EF48EA /* PasteTagModel.m in Sources */,
 				D12A2E7A1DD323AC00D12F4A /* BBSCellOperateView.m in Sources */,
 				D14602811E854CC00065E127 /* JHColumnChart.m in Sources */,
+				F25CA2311E91C54C00802425 /* CALayer.md in Sources */,
 				D1AA484C1E83AF8F00C532EF /* YTKKeyValueStore.m in Sources */,
 				D17A280D1D93F89900C00B3F /* YYImageCoder.m in Sources */,
 				D1B6D7941D7D159600C3E647 /* MJPropertyKey.m in Sources */,
@@ -4561,9 +4663,10 @@
 			baseConfigurationReference = 865E625F464706EDC96996DD /* Pods-HBMobileProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = TW2KBGCT8Y;
+				DEVELOPMENT_TEAM = 7TUZGA3GZY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBMobileProject/Vender",
@@ -4571,7 +4674,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBMobileProject/Expand/Macros/PchFile.pch";
 				INFOPLIST_FILE = HBMobileProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4590,9 +4693,10 @@
 			baseConfigurationReference = BC4B7EBFF99B5F97ABCBDFE2 /* Pods-HBMobileProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = TW2KBGCT8Y;
+				DEVELOPMENT_TEAM = 7TUZGA3GZY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HBMobileProject/Vender",
@@ -4600,7 +4704,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HBMobileProject/Expand/Macros/PchFile.pch";
 				INFOPLIST_FILE = HBMobileProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

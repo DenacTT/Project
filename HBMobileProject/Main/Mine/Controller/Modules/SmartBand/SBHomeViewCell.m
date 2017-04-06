@@ -18,9 +18,9 @@
 
 @interface SBHomeViewCell ()
 
-@property (nonatomic, strong) UIView  *exeProgs;    //锻炼Progress
-@property (nonatomic, strong) UILabel *progressLab; //显示当前进度
-@property (nonatomic, strong) SBSleepInfoView *sleProgs;//睡眠进度
+@property (nonatomic, strong) UIView  *exeProgs;          //锻炼进度
+@property (nonatomic, strong) UILabel *progressLab;       //显示当前进度
+@property (nonatomic, strong) SBSleepInfoView  *sleProgs; //睡眠进度
 @property (nonatomic, strong) SBWeightInfoView *weigProgs;//体重进度
 
 @end

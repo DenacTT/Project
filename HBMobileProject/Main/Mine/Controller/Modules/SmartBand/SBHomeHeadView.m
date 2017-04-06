@@ -120,7 +120,6 @@
 //        _calsProgress.endAngle = 2*M_PI;
 //        _calsProgress.lineWidth = 8.f;
 //        _calsProgress.bgLineWidth = 7.f;
-        _calsProgress.isNeedCallBack   = YES;
         _calsProgress.isNeedBackground = YES;
         [_calsProgress makeConfigEffective];
     }
