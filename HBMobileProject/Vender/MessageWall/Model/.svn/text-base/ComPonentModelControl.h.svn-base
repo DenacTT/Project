@@ -1,0 +1,32 @@
+//
+//  ComPonentModelControl.h
+//  scale
+//
+//  Created by solf on 15/8/13.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "BodyState.h"
+// ++
+#import "ComponentModel.h"
+@interface ComPonentModelControl : NSObject
+
+ - (NSDictionary *) getMyScoreAndWeightDatasWithUserId:(NSString *)userId;
+
+//- (BodyState *)getBodyWithUserId:(NSString *)userId;
+- (ComponentModel *)getBodyWithUserId:(NSString *)userId;
+- (NSDictionary *) getWeightInfoAndUserInfoWithUserId:(NSString *)userId;
+
++ (ComPonentModelControl *)sharedInstance;
+
+
+//获取八项数据
+- (NSArray *) getMyWeightDatasWithUserId:(NSString *) userId;
+
+//
+//获取bmi数据
+- (NSArray *) getMyWeightDatasOfBmiWithUserId:(NSString *) userId;
+
+
+@end

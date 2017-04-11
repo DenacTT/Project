@@ -1,0 +1,15 @@
+//
+//  CommunityCard.h
+//  scale
+//
+//  Created by cza on 15/10/29.
+//  Copyright © 2015年 cza. All rights reserved.
+//
+
+#import "MsgWallCommonRowData.h"
+
+@interface CommunityCard : MsgWallCommonRowData
+
+@property (nonatomic,strong) NSArray *news;
+
+@end

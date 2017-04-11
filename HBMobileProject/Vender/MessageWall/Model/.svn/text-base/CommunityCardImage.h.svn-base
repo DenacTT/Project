@@ -1,0 +1,17 @@
+//
+//  CommunityCardImage.h
+//  scale
+//
+//  Created by cza on 15/10/29.
+//  Copyright © 2015年 cza. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface CommunityCardImage : NSObject
+
+@property (nonatomic,copy) NSString *newsBigImgUrl;
+
+@property (nonatomic,copy) NSString *newsImgUrl;
+
+@end

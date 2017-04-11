@@ -1,0 +1,77 @@
+//
+//  AddWeightManuallyCell.m
+//  scale
+//
+//  Created by Vincent on 16/11/16.
+//  Copyright © 2016年 Vincent. All rights reserved.
+//
+
+#import "AddWeightManuallyCell.h"
+#import "NSString+Extend.h"
+#import "WeightDB.h"
+@implementation AddWeightManuallyCell
+{
+    UIImageView * _iconImage;//图标
+    UILabel     * _descLabel;//描述文案
+}
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self layoutCellViews];
+    }
+    return self;
+}
+
+- (void) layoutCellViews{
+
+    self.height = 55;
+    //图片icon
+    if (nil == _iconImage) {
+        _iconImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed: @"YMMessageWall_NoFatIcon"]];
+        [self addSubview: _iconImage];
+        _iconImage.width = _iconImage.image.size.width;
+        _iconImage.height = _iconImage.image.size.height;
+        _iconImage.top = 13;
+        _iconImage.left = 15.f;
+    }
+    
+    //描述文字
+    if (nil == _descLabel) {
+        _descLabel = [[UILabel alloc] init];
+        _descLabel.font = [UIFont systemFontOfSize: 12.f];
+        _descLabel.textColor = RGB(102, 102, 102);
+        _descLabel.numberOfLines = 0;
+        _descLabel.backgroundColor = [UIColor clearColor];
+        _descLabel.text = self.titleStr;
+        CGSize descSize = [_descLabel.text YMSizeWithFont:_descLabel.font constrainedToSize:CGSizeMake(ScreenWidth-_iconImage.right -7.f-15, self.height)];
+        _descLabel.width = descSize.width;
+        _descLabel.height = descSize.height;
+        _descLabel.left = _iconImage.right +7.f;
+        _descLabel.top = 13;
+        [self addSubview: _descLabel];
+    }
+    
+    /*
+     1.手动输入
+     本次数据为手动输入，无法显示其他身体数据
+     2.仅检测到体重
+     本次只检测到体重，获取更多身体数据请您赤脚称重！
+     3.未成年
+     您属于未成年人，无法显示其他身体数据
+     4.SE&other——使用好轻SE称重，但同时有记录使用其他硬件称重的情况
+     本条数据来自好轻SE，无法显示更多身体数据
+     */
+}
+
+@end

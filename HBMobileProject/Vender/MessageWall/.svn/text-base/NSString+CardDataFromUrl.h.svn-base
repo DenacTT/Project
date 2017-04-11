@@ -1,0 +1,17 @@
+//
+//  NSString+CardDataFromUrl.h
+//  scale
+//
+//  Created by solf on 15/9/15.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "SCCardDataModel.h"
+
+@interface NSString (CardDataFromUrl)
+
+
++(SCCardDataModel *)cardDataFromUrl:(NSString *)url;
+
+@end

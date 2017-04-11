@@ -1,0 +1,102 @@
+
+//
+//  CircleBtn.m
+//  CircleBtn
+//
+//  Created by cza on 15/8/18.
+//  Copyright (c) 2015年 cza. All rights reserved.
+//
+
+#import "CircleBtn.h"
+
+@implementation CircleBtn
+
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+
+    if (self.isSelected) {
+        [self drawE];
+        [self drawF];
+    }else{
+        [self drawA];
+        [self drawB];
+        [self drawC];
+    }
+
+
+}
+
+-(void)drawA{
+    UIColor *color = [UIColor whiteColor];
+    [color set]; //设置线条颜色
+    UIBezierPath* aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
+                                                         radius:self.frame.size.width/2
+                                                     startAngle:0
+                                                       endAngle:M_PI*2
+                                                      clockwise:YES];
+    aPath.lineWidth = 1.0;
+    aPath.lineCapStyle = kCGLineCapRound; //线条拐角
+    aPath.lineJoinStyle = kCGLineCapRound; //终点处理
+    [aPath fill];
+}
+
+-(void)drawB{
+    UIColor *color = RGB(0, 197, 186);
+    [color set]; //设置线条颜色
+    UIBezierPath* aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
+                                                         radius:2.5
+                                                     startAngle:0
+                                                       endAngle:M_PI*2
+                                                      clockwise:YES];
+    aPath.lineWidth = 1.0;
+    aPath.lineCapStyle = kCGLineCapRound; //线条拐角
+    aPath.lineJoinStyle = kCGLineCapRound; //终点处理
+    [aPath fill];
+}
+
+-(void)drawC{
+    UIColor *color = [UIColor whiteColor];
+    [color set]; //设置线条颜色
+    UIBezierPath* aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
+                                                         radius:1.5
+                                                     startAngle:0
+                                                       endAngle:M_PI*2
+                                                      clockwise:YES];
+    aPath.lineWidth = 1.0;
+    aPath.lineCapStyle = kCGLineCapRound; //线条拐角
+    aPath.lineJoinStyle = kCGLineCapRound; //终点处理
+    [aPath fill];
+}
+
+-(void)drawE{
+    UIColor *color = [UIColor whiteColor];
+    [color set]; //设置线条颜色
+    UIBezierPath* aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
+                                                         radius:self.frame.size.width/2
+                                                     startAngle:0
+                                                       endAngle:M_PI*2
+                                                      clockwise:YES];
+    aPath.lineWidth = 1.0;
+    aPath.lineCapStyle = kCGLineCapRound; //线条拐角
+    aPath.lineJoinStyle = kCGLineCapRound; //终点处理
+    [aPath fill];
+}
+
+-(void)drawF{
+    UIColor *color = RGB(0, 197, 186);
+    [color set]; //设置线条颜色
+    UIBezierPath* aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
+                                                         radius:3.5
+                                                     startAngle:0
+                                                       endAngle:M_PI*2
+                                                      clockwise:YES];
+    aPath.lineWidth = 1.0;
+    aPath.lineCapStyle = kCGLineCapRound; //线条拐角
+    aPath.lineJoinStyle = kCGLineCapRound; //终点处理
+    [aPath fill];
+}
+
+
+
+
+@end

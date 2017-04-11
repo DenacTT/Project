@@ -1,0 +1,96 @@
+//
+//  ComponentAdapter.m
+//  scale
+//
+//  Created by solf on 16/5/9.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import "ComponentAdapter.h"
+#import "ComPonentModelControl.h"
+#import "LoginConst.h"
+
+@interface ComponentAdapter ()
+
+@property (nonatomic,strong) NSMutableArray *arr;
+
+@end
+
+@implementation ComponentAdapter
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self initDatas];
+    }
+    return self;
+}
+
+- (NSArray *)itemTitle
+{
+    if (!_itemTitle)
+    {
+//        _itemTitle = [NSArray arrayWithObjects:STR(@"com.item.bmi"),STR(@"com.item.fat"),STR(@"com.item.muscle"),STR(@"com.item.water"),STR(@"com.item.protein"),STR(@"com.item.visFat"),STR(@"com.item.bone"),STR(@"com.item.bmr"),STR(@"com.item.bodyAge"), nil];
+       
+        _itemTitle = [NSArray arrayWithObjects:STR(@"STAD_BMI"),STR(@"STAD_fat"),STR(@"STAD_muscle"),STR(@"STAD_water"),STR(@"STAD_protein"),STR(@"STAD_VisceralFat"),STR(@"STAD_bone"),STR(@"STAD_BMR"),STR(@"STAD_bodyAge"), nil];
+        
+    }
+    return _itemTitle;
+}
+
+- (void)initDatas
+{
+    NSArray *comModelArr = [[[ComPonentModelControl alloc]init] getMyWeightDatasWithUserId:@([[LoginConst sharedInstance] currentId]).description];
+    //    NSArray *comModelArr = [dic objectForKey:@"Component"];
+    
+    if (comModelArr && [comModelArr count]>0) {
+        
+        _arr = [NSMutableArray arrayWithArray:comModelArr];
+        
+        for (ComponentModel *comModel in _arr)
+        {
+            comModel.comImgStr = [self getComImgStrWithData:[comModel.comValue boolValue] andImgStr:comModel.comImgStr];
+            
+        }
+        
+        
+    }else{
+        _arr = [NSMutableArray arrayWithCapacity:9];
+    }
+}
+
+- (ComponentModel *)getComDataWithIndex:(NSInteger)comIndex
+{
+    if (!_arr || ![_arr isKindOfClass:[NSArray class]])
+    {
+        return nil;
+    }
+    
+    if (comIndex < [_arr count])
+    {
+        return [_arr objectAtIndex:comIndex];
+    }
+    return nil;
+}
+
+- (NSInteger)itemCount
+{
+    return  [_arr count];
+}
+
+- (NSString *)getComImgStrWithData:(BOOL)hasData andImgStr:(NSString *)imgStr
+{
+    if ([String isBlankString:imgStr])
+    {
+        return imgStr;
+    }
+    
+//    NSString *lastImgStr = hasData ? @"_sMin" : @"_sMax";
+//    
+//    return [imgStr stringByAppendingString:lastImgStr];
+
+    return imgStr;
+}
+
+@end

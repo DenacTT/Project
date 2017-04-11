@@ -1,0 +1,36 @@
+//
+//  NHealthContentView.h
+//  HealthConsulting
+//
+//  Created by 叶威廷 on 15/8/13.
+//  Copyright (c) 2015年 叶威廷. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "News.h"
+
+@protocol NHealthContentViewDelegate <NSObject>
+
+@optional
+- (void)contentCheckNow:(News *) news;
+- (void)clickImage:(News *) news;
+
+@end
+
+@interface NHealthContentView : UIView
+
+- (void)addSubview;
+- (void)addHotNewsSubview;
+
+@property(strong, nonatomic) UIImageView *imgView;
+@property(strong, nonatomic) UILabel *text;
+@property(strong, nonatomic) UITextView *details;
+
+@property(strong, nonatomic) UIButton *check;
+@property(strong, nonatomic) UILabel *watchOut;
+@property(weak, nonatomic) id <NHealthContentViewDelegate> delegate;
+
+@property(strong, nonatomic) News *news;
+
+
+@end

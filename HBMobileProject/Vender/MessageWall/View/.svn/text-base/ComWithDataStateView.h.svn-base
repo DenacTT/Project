@@ -1,0 +1,19 @@
+//
+//  ComWithDataStateView.h
+//  scale
+//
+//  Created by solf on 16/5/10.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+/*
+ *有数据的成分说明页面
+ */
+
+#import <UIKit/UIKit.h>
+
+@interface ComWithDataStateView : UIView
+
+- (void)layoutViewsTitle:(NSString *)comTtile value:(NSString *)comValue img:(NSString *)comImg andInfo:(NSString *)comInfo;
+
+@end

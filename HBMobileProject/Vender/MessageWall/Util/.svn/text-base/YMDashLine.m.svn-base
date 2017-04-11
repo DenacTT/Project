@@ -1,0 +1,46 @@
+//
+//  YMDashLine.m
+//  scale
+//
+//  Created by KiraSu on 15/9/14.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "YMDashLine.h"
+
+@implementation YMDashLine
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    _pointPerCount = 1.f;
+    _pointAglinCount = 2.f;
+    return self;
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    CGContextRef kContext = UIGraphicsGetCurrentContext();
+    CGContextSetLineCap(kContext, kCGLineCapRound);
+    
+    //线宽
+    CGContextSetLineWidth(kContext, [self lineWidth]);
+    
+    //设置该CGContextRef是否允许抗锯齿
+    CGContextSetAllowsAntialiasing(kContext, YES);
+    CGContextSetStrokeColorWithColor(kContext, [self strokeColor].CGColor);
+    
+    //细线块粒大小
+    CGFloat lengths[] = {_pointPerCount, _pointAglinCount};
+    CGContextSetLineDash(kContext, 0, lengths,2);
+    
+    //起点坐标
+    CGContextMoveToPoint(kContext, 0,  self.height);
+    CGFloat width = self.frame.size.width;
+    CGContextAddLineToPoint(kContext, width,self.height);
+    
+    CGContextStrokePath(kContext);
+}
+
+
+@end

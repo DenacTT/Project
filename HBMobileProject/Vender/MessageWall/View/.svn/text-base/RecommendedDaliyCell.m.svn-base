@@ -1,0 +1,172 @@
+//
+//  RecommendedDaliyCell.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/27.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "RecommendedDaliyCell.h"
+#import "RecommendedDaliyView.h"
+#import "YMUtil.h"
+#import "HealthyNewsRowData.h"
+#import "News.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+Scale.h"
+
+
+@interface RecommendedDaliyCell()
+
+@property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) RecommendedDaliyView *recommendView;
+@property (nonatomic) HealthyNewsRowData *newsData;
+@property (nonatomic) UIView *shadowView;
+
+@end
+
+@implementation RecommendedDaliyCell
+
+- (void)layoutCellView
+{
+    
+    [super layoutCellView];
+    self.newsData = (HealthyNewsRowData *)[super commonRowData];
+    if (0 == self.newsData.news) {
+        return;
+    }
+    
+    BOOL isDescendantView = NO;
+    if (self.shadowCellView.subviews.count > 0) {
+        UIView *temp = self.shadowCellView.subviews[0];
+        if ([temp class] == [UILabel class]) {
+            isDescendantView = [temp isDescendantOfView:self.shadowCellView];
+        }
+    }
+    if (isDescendantView) {
+        return;
+    }
+    
+    CGFloat commonWidth = self.shadowCellView.width*0.035;
+    self.titleLabel.text = self.newsData.messageTitle;
+    self.titleLabel.origin = CGPointMake(commonWidth, 16);
+    self.titleLabel.size = CGSizeMake(70, 16);
+    
+    CGFloat space = self.titleLabel.left;
+    CGFloat imgWidth = (self.shadowView.width - commonWidth*2 - 7)/2;
+    
+    int nMaxNews = [self.newsData.news count] > 2? 2:(int)[self.newsData.news count];
+    for (int i = 0; i < nMaxNews; i++) {
+        News *news = nil;
+        if ([self.newsData.news[i] isKindOfClass:[NSDictionary class]]) {
+            news = [News mj_objectWithKeyValues:[self.newsData.news objectAtIndex:i]];
+        }else{
+            news = self.newsData.news[i];
+        }
+        RecommendedDaliyView *recommendView = [[RecommendedDaliyView alloc] initWithFrame:CGRectMake(space, self.titleLabel.bottom + 16, imgWidth, 231)];
+        NSURL *url = nil;
+        
+        if (![String isBlankString:news.squareImgUrl]) {
+            url = [NSURL URLWithString:news.squareImgUrl];
+        }else{
+            url = [NSURL URLWithString:news.newsImgUrl];
+        }
+        
+        [recommendView.consultImgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"]   options:SDWebImageRetryFailed | SDWebImageContinueInBackground | SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (nil == image) {
+                
+                recommendView.consultImgView.image = [UIImage imageNamed: @"HealthDefaultNew"];
+            }else{
+                
+                recommendView.consultImgView.image = image;//[image getSquareImage];
+            }
+        }];
+        recommendView.tag = i;
+        
+        UIImageView *imgView = recommendView.consultImgView;
+        UILabel *consultLabel = recommendView.consultLabel;
+        UILabel *contentLabel = recommendView.introduceLabel;
+        UILabel *checkLabel = recommendView.checkOutLabel;
+        
+        consultLabel.backgroundColor = RGBA(0, 0, 0, 0.6);
+        
+        imgView.origin = CGPointMake(0, 0);
+        imgView.size = CGSizeMake([XMTools getAutoNumberWithIphone6Number:165], [XMTools getAutoNumberWithIphone6Number:165]);
+        
+        if (i==0) {
+             consultLabel.text = STR(@"RDC_message");
+        }else{
+            consultLabel.text = STR(@"RDC_diet");
+        }
+        
+//        CGSize consultSize = [consultLabel.text YMSizeWithFont:consultLabel.font];
+        consultLabel.origin = CGPointMake(5, imgView.bottom - 20);
+        consultLabel.size = CGSizeMake(30, 14);
+        
+        contentLabel.text = news.newsTitle;
+        CGSize contentSize = [contentLabel.text YMSizeWithFont:contentLabel.font];
+        contentLabel.numberOfLines = 2;
+        NSMutableParagraphStyle *PargraphStyle = [[NSMutableParagraphStyle alloc] init];
+        PargraphStyle.lineSpacing = 6;
+        NSDictionary *attribute = @{NSFontAttributeName:contentLabel.font,NSParagraphStyleAttributeName:PargraphStyle};
+        contentLabel.attributedText = [[NSAttributedString alloc] initWithString:contentLabel.text attributes:attribute];
+//        contentLabel.layer.borderColor = [UIColor redColor].CGColor;
+//        contentLabel.layer.borderWidth = 1;
+        contentLabel.origin = CGPointMake(5, imgView.bottom + 10);
+        contentLabel.size = CGSizeMake(imgView.width - 5, contentSize.height * 2 + 6);
+        [contentLabel sizeToFit];
+        
+        checkLabel.text = [NSString stringWithFormat:STR(@"RDC_readPerson"),(long)news.newsreadNum];
+        CGSize checkSize = [checkLabel.text YMSizeWithFont:checkLabel.font];
+        checkLabel.origin = CGPointMake(contentLabel.left, imgView.bottom + contentSize.height*2 + 23);
+        checkLabel.size = CGSizeMake(checkSize.width, checkSize.height);
+        
+        space += recommendView.width + 7;
+        
+        UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skip:)];
+        singleRecognizer.numberOfTouchesRequired = 1;
+        singleRecognizer.numberOfTapsRequired = 1;
+        [recommendView addGestureRecognizer:singleRecognizer];
+//        recommendView.backgroundColor = [UIColor redColor];
+        [self.shadowView addSubview:recommendView];
+    }
+}
+
+- (void)skip:(UITapGestureRecognizer *)gesture
+{
+    UIView *view = gesture.view;
+    if (view.tag == 0) {
+        [MobClick event:c_info_12_recommended_1];
+    }else{
+        [MobClick event:c_info_12_recommended_2];
+    }
+    News *news = nil;
+    if ([self.newsData.news[view.tag] isKindOfClass:[NSDictionary class]]) {
+        news = [News mj_objectWithKeyValues:[self.newsData.news objectAtIndex:view.tag]];
+    }else{
+        news = self.newsData.news[view.tag];
+    }
+    [self.delegate clickElement:news];
+
+}
+
+- (UILabel *)titleLabel
+{
+    if (nil == _titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.textColor = [UIColor commonTitleColor];
+        _titleLabel.font = [UIFont systemFontOfSize:14];
+        [self.shadowView addSubview:self.titleLabel];
+    }
+    return _titleLabel;
+}
+
+
+- (UIView *)shadowView
+{
+    if (nil == _shadowView) {
+        _shadowView = [super shadowCellView];
+    }
+    return _shadowView;
+}
+
+@end

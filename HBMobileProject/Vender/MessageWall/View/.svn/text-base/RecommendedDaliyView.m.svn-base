@@ -1,0 +1,75 @@
+//
+//  RecommendedDaliyView.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/27.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "RecommendedDaliyView.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+Extend.h"
+#import "YMUtil.h"
+#import "MsgWallDef.h"
+
+@interface RecommendedDaliyView()
+
+
+
+@end
+
+@implementation RecommendedDaliyView
+
+- (void)layoutSubviews
+{
+
+}
+
+- (UIImageView *)consultImgView
+{
+    if (nil == _consultImgView) {
+        _consultImgView = [[UIImageView alloc] init];
+//        _consultImgView.backgroundColor = [UIColor lightGrayColor];
+        [self addSubview:_consultImgView];
+    }
+    return _consultImgView;
+}
+
+- (UILabel *)consultLabel
+{
+    if (nil == _consultLabel) {
+        _consultLabel = [[UILabel alloc] init];
+        _consultLabel.font = [UIFont systemFontOfSize:10];
+//        _consultLabel.backgroundColor = [UIColor grayColor];
+        _consultLabel.textColor = RGB(255, 255, 255);
+        _consultLabel.textAlignment = NSTextAlignmentCenter;
+//        [self addSubview:_consultLabel];
+    }
+    return _consultLabel;
+}
+
+- (UILabel *)introduceLabel
+{
+    if (nil == _introduceLabel) {
+        _introduceLabel = [[UILabel alloc] init];
+        _introduceLabel.font = [UIFont systemFontOfSize:14];
+//        _introduceLabel.backgroundColor = [UIColor yellowColor];
+        [self addSubview:_introduceLabel];
+    }
+    return _introduceLabel;
+}
+
+- (UILabel *)checkOutLabel
+{
+    if (nil == _checkOutLabel) {
+        _checkOutLabel = [[UILabel alloc] init];
+        _checkOutLabel.font = [UIFont systemFontOfSize:12];
+//        _checkOutLabel.backgroundColor = [UIColor purpleColor];
+        _checkOutLabel.textColor = RGB(136, 136, 136);
+        [self addSubview:_checkOutLabel];
+    }
+    return _checkOutLabel;
+}
+
+
+@end

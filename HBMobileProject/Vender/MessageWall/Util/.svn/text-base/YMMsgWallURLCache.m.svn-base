@@ -1,0 +1,200 @@
+//
+//  YMURLCache.m
+//  scale
+//
+//  Created by KiraSu on 15/8/21.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "YMMsgWallURLCache.h"
+#import "YMUtil.h"
+
+#define CACHE_FILE_NAME                 @"MsgWallURL.cache"
+#define CACHE_PLIST_NAME                @"MsgWallURLCacheTime"
+
+#define CACHE_LAST_REG_CARD_INFO        @"UserLastRegCardInfo"
+    #define LAST_REG_CARD_USER_ID           @"userId"
+    #define LAST_REG_CARD_DATE              @"lastRegCardDate"
+#define CACHE_INVALIDATE_TIME           (45)
+
+@implementation YMMsgWallURLCache
+{
+    NSString*               _cacheFilePath;
+    NSString*               _infoPList;
+    NSData*                 _cacheData;
+    NSDate*                 _cacheTime;
+    
+    NSMutableDictionary*    _infoDic;
+    NSMutableDictionary*    _userLastRegCardInfo;
+    NSUserDefaults*         _userDefault;
+}
+
++ (id)single
+{
+    static YMMsgWallURLCache* singleton = nil;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        singleton = [[YMMsgWallURLCache alloc] init];
+    });
+    
+    return singleton;
+}
+
+- (void)initUserDefault
+{
+    if (nil == _userDefault)
+    {
+        _userDefault = [NSUserDefaults standardUserDefaults];
+        _userLastRegCardInfo = [_userDefault valueForKey: CACHE_LAST_REG_CARD_INFO];
+    }
+}
+
+- (void)initLoadCache
+{
+    if (nil == _cacheTime)
+    {
+        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString* basePath = paths.firstObject;
+        _cacheFilePath = [NSString stringWithFormat: @"%@/%@", basePath, CACHE_FILE_NAME];
+        _cacheData = [NSData dataWithContentsOfFile: _cacheFilePath];
+        
+        _infoPList = [[NSBundle mainBundle] pathForResource: @"scale-Info" ofType: @"plist"];
+        _infoDic = [[NSMutableDictionary alloc] initWithContentsOfFile: _infoPList];
+        _cacheTime = [_infoDic objectForKey: CACHE_PLIST_NAME];
+        
+        [self initUserDefault];
+    }
+}
+
+- (void)updateMsgWallURLCache: (NSData*)cacheData
+{
+    NSDate* futureDate = [_cacheTime dateByAddingTimeInterval: CACHE_INVALIDATE_TIME];
+    NSDate* now = [NSDate date];
+    if (nil == _cacheTime ||
+        [futureDate compare: now] == NSOrderedAscending)
+    {
+        _cacheData = cacheData;
+        [NSThread runInBackground:^{
+            [_cacheData writeToFile: _cacheFilePath atomically: YES];
+            _cacheTime = [NSDate date];
+            [_infoDic setObject: _cacheTime forKey: CACHE_PLIST_NAME];
+            [_infoDic writeToFile: _infoPList atomically: YES];
+        }];
+    }
+}
+
+- (NSData*)getMsgWallURLCache
+{
+    NSDate* futureDate = [_cacheTime dateByAddingTimeInterval: CACHE_INVALIDATE_TIME];
+    NSDate* now = [NSDate date];
+    if (nil == _cacheTime || [futureDate compare: now] == NSOrderedAscending)
+    {
+        return nil;
+    }
+    
+    return _cacheData;
+}
+
+- (NSData*)getCacheIgnoreDate
+{
+    return _cacheData;
+}
+
+
+/*
+- (NSDate*)getUserLastRegInfoDate: (NSString*)userId
+{
+    NSDate* retDate = nil;
+    if (nil == _userLastRegCardInfo)
+    {
+        return retDate;
+    }
+    
+    NSDictionary* userLastRegCardInfo = (NSDictionary*)[_userLastRegCardInfo objectForKey: userId];
+    if (nil != userLastRegCardInfo)
+    {
+        retDate = (NSDate*)[userLastRegCardInfo objectForKey: LAST_REG_CARD_DATE];
+    }
+    
+    return retDate;
+}
+
+- (void)updateUserLastRegCardInfo: (NSString*)userId andDate: (NSDate*)date
+{
+    if (nil == _userLastRegCardInfo)
+    {
+        //[_userDefault setValue: [[NSMutableDictionary alloc] init] forKey: CACHE_LAST_REG_CARD_INFO];
+        _userLastRegCardInfo = [[NSMutableDictionary alloc] init];
+    }
+    
+    if (nil == _userLastRegCardInfo)
+    {
+        return ;
+    }
+    
+    // 是否已经存在对应用户的id
+    NSMutableDictionary* lastRegCardInfo = (NSMutableDictionary*)[_userLastRegCardInfo valueForKey: userId];
+    if (nil == lastRegCardInfo)
+    {
+        // 不存在对应用户的打卡记录
+        lastRegCardInfo = [[NSMutableDictionary alloc] init];
+    }
+    
+    // 更新打卡日期
+    [lastRegCardInfo setObject: date forKey: LAST_REG_CARD_DATE];
+    
+    [_userLastRegCardInfo setObject: lastRegCardInfo forKey: userId];
+    [_userDefault setValue: _userLastRegCardInfo forKey: CACHE_LAST_REG_CARD_INFO];
+    [_userDefault synchronize];
+}
+*/
+
+
+- (NSDate*)getUserLastRegInfoDate: (NSString*)userId
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userLastRegCardInfoTemp = [userDefault valueForKey: CACHE_LAST_REG_CARD_INFO];
+    
+    NSDate* retDate = nil;
+    if (nil == userLastRegCardInfoTemp)
+    {
+        return retDate;
+    }
+    NSDictionary* userLastRegCardInfo = (NSDictionary*)[userLastRegCardInfoTemp objectForKey: userId];
+    if (nil != userLastRegCardInfo)
+    {
+        retDate = (NSDate*)[userLastRegCardInfo objectForKey: LAST_REG_CARD_DATE];
+    }
+    return retDate;
+}
+
+- (void)updateUserLastRegCardInfo: (NSString*)userId andDate: (NSDate*)date
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *userLastRegCardInfo =  [NSMutableDictionary dictionaryWithDictionary:[userDefault valueForKey: CACHE_LAST_REG_CARD_INFO]];
+    if (nil == userLastRegCardInfo)
+    {
+        userLastRegCardInfo = [[NSMutableDictionary alloc] init];
+    }
+    
+    // 是否已经存在对应用户的id
+    NSMutableDictionary* lastRegCardInfo = (NSMutableDictionary*)[userLastRegCardInfo valueForKey: userId];
+    if (nil == lastRegCardInfo)
+    {
+        // 不存在对应用户的打卡记录
+        lastRegCardInfo = [[NSMutableDictionary alloc] init];
+    }
+    else
+    {
+        lastRegCardInfo = [NSMutableDictionary dictionaryWithDictionary:[userLastRegCardInfo valueForKey: userId]];
+    }
+    
+    // 更新打卡日期
+    [lastRegCardInfo setObject: date forKey: LAST_REG_CARD_DATE];
+    [userLastRegCardInfo setObject: lastRegCardInfo forKey: userId];
+    [userDefault setValue: userLastRegCardInfo forKey: CACHE_LAST_REG_CARD_INFO];
+    [userDefault synchronize];
+}
+
+@end

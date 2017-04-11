@@ -62,6 +62,5 @@
  *
  *  @return CircleView instance.
  */
-+ (instancetype)circleViewWithFrame:(CGRect)frame lineWidth:(CGFloat)width lineColor:(UIColor *)color
-                          clockWise:(BOOL)clockWise startAngle:(CGFloat)angle;
++ (instancetype)circleViewWithFrame:(CGRect)frame lineWidth:(CGFloat)width lineColor:(UIColor *)color clockWise:(BOOL)clockWise startAngle:(CGFloat)angle;
 @end

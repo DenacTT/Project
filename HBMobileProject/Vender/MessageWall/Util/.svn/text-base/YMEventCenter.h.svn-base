@@ -1,0 +1,18 @@
+#import <Foundation/Foundation.h>
+
+@protocol YMEventCallback <NSObject>
+
+- (void)onYMEventHappen: (NSString*)key withObject: (id)obj;
+
+@end
+
+@interface YMEventCenter : NSObject
+
++ (id)single;
+
+- (void)listenToEvent: (NSString*)eventKey delegate: (id<YMEventCallback>)cb;
+- (void)unbindEvent: (NSString*)eventKey delegate: (id<YMEventCallback>)cb;
+- (void)clearEvent: (NSString*)eventKey;
+- (void)callEvent: (NSString*)eventKey withObject: (id)obj;
+
+@end

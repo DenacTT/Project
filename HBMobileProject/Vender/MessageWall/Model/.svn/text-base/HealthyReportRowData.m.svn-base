@@ -1,0 +1,657 @@
+//
+//  HealthyReportRowData.m
+//  scale
+//
+//  Created by KiraSu on 15/8/13.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "HealthyReportRowData.h"
+#import "BMIPercentDB.h"
+#import "UserDB.h"
+#import "Enum.h"
+#import "WeightDB.h"
+#import "Standard.h"
+#import "MsgWallScorePercentDB.h"
+#import "YMUtil.h"
+#import "NSDate+DateTools.h"
+#import "LoginConst.h"
+
+@implementation HealthyReportViewData
+@end
+#define DEFAULT_CELL_HEIGHT    (240.f) //216.f 200+40
+
+@implementation HealthyReportRowData
+{
+    HealthyReportViewData*  _viewData;
+    CGFloat                 _fViewHeight;
+    BOOL _noChange;
+    BOOL _lianxu;
+}
+
+- (CGFloat)cellViewHeight
+{
+    return _fViewHeight;
+}
+#pragma mark ---initLoadData
+-(void) initLoadData
+{
+    NSMutableArray *retWeightInfoList = [NSMutableArray array];
+    
+    UserInfo* userInfo = [[LoginConst sharedInstance] getLoginUserInfo];
+    WeightDB *weightDB = [WeightDB shareInstance];
+    //获取目标体重
+    if (nil == _viewData)
+    {
+        _viewData = [[HealthyReportViewData alloc] init];
+    }
+    if ([userInfo.sex integerValue] == ENUM_MALE) {
+        _viewData.gender = ENUM_MALE;
+    }else{
+        _viewData.gender = ENUM_FEMALE;
+    }
+    // 获取目标体重
+    [_viewData setGoalWeight:[XMUserDefault getGoalWeight:[XMUserDefault currentUserId]]];
+    // 获取今天的数据
+    NSArray* allData = [weightDB getWeightInfoDataByUserId: [userInfo userId] withLimit: 100];
+    // 最新称重记录
+    WeightInfo *lastWeight = allData[0];
+    NSDate *lastWeightDate = [XMTools getDateWithStr:lastWeight.createTime andFommater:nil];
+    /*
+    if ([lastWeightDate isToday]) {
+        
+         //今天有数据
+        
+        NSMutableArray *tenMinuteDatas = [NSMutableArray array];
+        // 获取今天十分钟内的数据
+        for (int i= 0 ; i< allData.count; i++) {
+            WeightInfo *weight = allData[i];
+            double minutes = [lastWeightDate minutesFrom:[XMTools getDateWithStr:weight.createTime andFommater:nil]];
+            if (minutes <= 10) {
+                
+                [tenMinuteDatas addObject:weight];
+                if (i == 1 ) {
+                    WeightInfo *weightT = allData[0];
+                    if ([weight.weight floatValue] - [weightT.weight floatValue] != 0) {
+                        _lianxu = YES;
+                    }
+                    
+                }
+            }else{
+                break;
+            }
+        }
+        
+        
+         //如果十分钟之内有数据
+        
+        if (tenMinuteDatas.count>=2) {
+            
+             WeightInfo *lastTenMinuteWeight = tenMinuteDatas[0];
+            // 十分钟之内的有不同的
+            BOOL haveData  = NO;
+            for (int i = 0; i< tenMinuteDatas.count; i++) {
+                
+                WeightInfo *weight = tenMinuteDatas[i];
+                float temp = [lastTenMinuteWeight.weight floatValue] - [weight.weight floatValue];
+                 // 有不同
+                if (temp != 0) {
+                    
+                    [retWeightInfoList addObject:lastTenMinuteWeight];
+                    [retWeightInfoList addObject:weight];
+                    haveData = YES;
+                    break;
+                }
+            }
+            // 十分钟内的数据完全相同
+            if (!haveData) {
+                
+                // 取一条十分钟外的直接对比
+                for (int i =0 ; i < allData.count; i++) {
+                    
+                    WeightInfo *weight = allData[i];
+                    double minutes = [lastWeightDate minutesFrom:[XMTools getDateWithStr:weight.createTime andFommater:nil]];
+                    if ( minutes > 10) {
+                        ////[weight.weight floatValue] - [lastTenMinuteWeight.weight floatValue] != 0 &&
+                        [retWeightInfoList addObject:lastTenMinuteWeight];
+                        [retWeightInfoList addObject:weight];
+                        break;
+                    }
+                }
+            }
+            
+        }else{
+            if (allData.count > 1) {
+                
+                // 如果十分钟之内没有数据直接取最新的两条
+                
+                [retWeightInfoList addObject:allData[0]];
+                [retWeightInfoList addObject:allData[1]];
+            }
+        }
+    }else{
+        if (allData.count > 1) {
+            
+             //如果今天没有数据直接取最新的两条
+            [retWeightInfoList addObject:allData[0]];
+            [retWeightInfoList addObject:allData[1]];
+        }
+        
+    }
+     */
+    
+    if (allData.count > 1) {
+        //直接取最新的两条
+        [retWeightInfoList addObject:allData[0]];
+        [retWeightInfoList addObject:allData[1]];
+    }
+    
+    // 如果今天没有数据按之前的逻辑
+    if (![lastWeightDate isToday]) {
+        
+        [self setViewData:retWeightInfoList andUserInfo:userInfo andResultTips:STR(@"HRRD_contrastLastTime")];
+        return;
+    }
+    NSString *resultTips = @"";
+    if (retWeightInfoList.count > 1) {
+        
+        resultTips = [self getResultTipsLastWeightInfo:retWeightInfoList[0] andBeforeLastWeightInfo:retWeightInfoList[1] andUserId:userInfo.userId];
+    }
+    
+    [self setViewData:retWeightInfoList andUserInfo:userInfo andResultTips:resultTips];
+}
+#pragma mark ---initLoadDataDDDD
+- (void)initLoadDataDDDD
+{
+    
+    UserInfo* userInfo = [[LoginConst sharedInstance] getLoginUserInfo];
+    WeightDB *weightDB = [WeightDB shareInstance];
+    _noChange = NO;
+
+    if (nil == _viewData)
+    {
+        _viewData = [[HealthyReportViewData alloc] init];
+    }
+    if ([userInfo.sex integerValue] == ENUM_MALE) {
+        _viewData.gender = ENUM_MALE;
+    }else{
+        _viewData.gender = ENUM_FEMALE;
+    }
+    
+    //获取目标体重
+    [_viewData setGoalWeight:[XMUserDefault getGoalWeight:[XMUserDefault currentUserId]]];
+    
+    // 获取今天的数据
+    NSArray* tempArray = [weightDB getWeightInfoDataByUserId: [userInfo userId] withLimit: 100];
+    if (!tempArray&& !(tempArray.count > 1)) {
+        return;
+    }
+    
+    WeightInfo *lastWeight = tempArray[0];
+    NSDate *lastWeightDate = [XMTools getDateWithStr:lastWeight.createTime andFommater:nil];
+    
+    // 如果今天没有数据按之前的逻辑
+    if (![lastWeightDate isToday]) {
+        
+        [self setViewData:tempArray andUserInfo:userInfo andResultTips:STR(@"HRRD_contrastLastTime")];
+        return;
+    }
+    
+    
+    // 获取十分钟内的数据
+    NSMutableArray *tenMinutesData = [[NSMutableArray alloc] init];
+    for (int i= 0 ; i < tempArray.count; i++) {
+        WeightInfo *weight = tempArray[i];
+        NSDate *date = [XMTools getDateWithStr:weight.createTime andFommater:nil];
+        double minutes = [lastWeightDate minutesFrom:date];
+        if (minutes <= 10) {
+            [tenMinutesData addObject:weight];
+        }else{
+            
+            break;
+        }
+    }
+    // 对比十分钟内的数据
+    // 被对比对象所处于的时间
+    /*
+     凌晨 00:00 - 4:59
+     早晨 05:00 - 7:59
+     上午 08:00 - 11:59
+     中午 12:00 - 13:59
+     下午 14:00 - 17:59
+     晚上 18:00 - 23:59
+     */
+    // 十分钟之内有数据的
+    NSMutableArray *markChangeData = [[NSMutableArray alloc] init];;
+    if (tenMinutesData.count >= 2) {
+        
+        WeightInfo *temp = nil;
+        NSString *formartStr = nil;
+        NSString *weightLogic = nil;
+        for (int i=0 ; i<tenMinutesData.count; i++) {
+            
+            temp = tenMinutesData[i];
+            WeightInfo *weightBefore = tenMinutesData[i+1>tenMinutesData.count-1?i:i+1];
+            
+            if ([temp.weight floatValue]-[weightBefore.weight floatValue] > 0) {
+                // 增重
+                [markChangeData addObject:temp];
+                [markChangeData addObject:weightBefore];
+                NSDate *createtime = [XMTools getDateWithStr:weightBefore.createTime andFommater:nil];
+                formartStr = [XMTools getToDayTimeFormartStrWithDate:createtime];
+                weightLogic = STR(@"HRRD_dynamiting");
+                break;
+                
+            }else if ([temp.weight floatValue]-[weightBefore.weight floatValue] == 0){
+                [markChangeData removeAllObjects];
+                // 无变化
+                [markChangeData addObject:temp];
+                [markChangeData addObject:temp];
+                weightLogic = STR(@"HRRD_UnChange");
+                
+                _noChange = YES;
+                WeightInfo *weightInfo = markChangeData[0];
+                
+                for (int i=0 ; i < tempArray.count; i++) {
+                    
+                    WeightInfo *tempW = tempArray[i];
+                    
+                    NSDate *beforeLastWeightInfoCreateTime = [XMTools getDateWithStr:tempW.createTime andFommater:nil];
+                    NSDate *lastWeightInfoCreateTime = [XMTools getDateWithStr:weightInfo.createTime andFommater:nil];
+                    double minutes = [lastWeightInfoCreateTime minutesFrom:beforeLastWeightInfoCreateTime];
+                    
+                    if ([weightInfo.weight floatValue] - [tempW.weight floatValue] !=0 && minutes > 10) { //
+                        [markChangeData removeAllObjects];
+                        [markChangeData addObject:weightInfo];
+                        [markChangeData addObject:tempW];
+                        break;
+                    }else if ([weightInfo.weight floatValue] - [tempW.weight floatValue] == 0 && minutes > 10){
+                        [markChangeData removeAllObjects];
+                        // 无变化
+                        [markChangeData addObject:temp];
+                        [markChangeData addObject:temp];
+                        continue;
+                    }else if([weightInfo.weight floatValue] - [tempW.weight floatValue] !=0 && minutes <= 10){
+                        [markChangeData removeAllObjects];
+                        [markChangeData addObject:weightInfo];
+                        [markChangeData addObject:tempW];
+                        break;
+                    }else if ([weightInfo.weight floatValue] - [tempW.weight floatValue] ==0 && minutes <= 10){
+                        
+                        [markChangeData removeAllObjects];
+                        [markChangeData addObject:temp];
+                        [markChangeData addObject:temp];
+                        continue;
+                    }
+                }
+                
+                break;
+            }else{
+                // 减重
+                [markChangeData addObject:temp];
+                [markChangeData addObject:weightBefore];
+                NSDate *createtime = [XMTools getDateWithStr:weightBefore.createTime andFommater:nil];
+                formartStr = [XMTools getToDayTimeFormartStrWithDate:createtime];
+                weightLogic = STR(@"HRRD_loseWeight");
+                break;
+            }
+            
+        }
+        // 获取文案
+        NSString *resultTips = [self getResultTipsLastWeightInfo:markChangeData[0] andBeforeLastWeightInfo:markChangeData[1] andUserId:userInfo.userId];
+        [self setViewData:markChangeData andUserInfo:userInfo andResultTips:resultTips];
+    }else{
+        
+        // 十分钟之内没有数据的
+        // 获取文案
+        NSMutableArray* retWeightInfoList = (NSMutableArray*)[weightDB getWeightInfoDataByUserId: [userInfo userId] withLimit: 2];
+        NSString *resultTips = @"";
+        if (retWeightInfoList.count>1) {
+             resultTips = [self getResultTipsLastWeightInfo:retWeightInfoList[0] andBeforeLastWeightInfo:retWeightInfoList[1] andUserId:userInfo.userId];
+        }
+        
+        [self setViewData:retWeightInfoList andUserInfo:userInfo andResultTips:resultTips];
+    }
+}
+
+-(void) setViewData:(NSArray*)retWeightInfoList andUserInfo:(UserInfo*)userInfo andResultTips:(NSString*) resultTips
+{
+    // 获取近两次的称重数据
+    if (nil != retWeightInfoList && [retWeightInfoList count] >= 2)
+    {
+        WeightInfo* lastWeightInfo = [retWeightInfoList objectAtIndex: 0];
+        WeightInfo* beforeLastWeightInfo = [retWeightInfoList objectAtIndex: 1];
+        if (nil == beforeLastWeightInfo || nil == lastWeightInfo)
+        {
+            return ;
+        }
+
+        // 设置性别
+        [_viewData setIsMale: ([[userInfo sex] intValue] == ENUM_MALE)? YES:NO];
+        
+        // 称重设置的单位
+        [_viewData setWeightUnit: [[userInfo unit] intValue]];
+        
+        // 纪录最近两次称重的变化
+        [_viewData setWeightOffset: [[lastWeightInfo weight] floatValue] - [[beforeLastWeightInfo weight] floatValue]];
+        
+        // 记录上次称重
+        [_viewData setBeforeLastWeight:[beforeLastWeightInfo weight]];
+        
+        // 记录在最后一次的称重
+        [_viewData setLastWeight:[lastWeightInfo weight]];
+        
+        // BMI值所处的阶段(瘦、正常、胖)
+        ComponentModel* bmiModel =
+        [[Standard shareInstance] getComponentModelWithComType: ComponentTypeOfBMI andValue: [NSNumber numberWithFloat: [[beforeLastWeightInfo bmi] floatValue]] andUserInfo: userInfo andWeight: 0.0f andFlagValue:[NSNumber numberWithInt:0]];
+        [_viewData setBmiStage: (int)[bmiModel comIndex]];
+        
+        // 当前BMI stage
+        ComponentModel* lastBmiModel =
+        [[Standard shareInstance] getComponentModelWithComType: ComponentTypeOfBMI andValue: [NSNumber numberWithFloat: [[lastWeightInfo bmi] floatValue]] andUserInfo: userInfo andWeight: 0.0f andFlagValue:[NSNumber numberWithInt:0]];
+        [_viewData setLastBmiStage: (int)[lastBmiModel comIndex]];
+        //
+        [_viewData setLastWeightTime:[lastWeightInfo createTime]];
+        
+        float unit = 1;
+        float fWeightOffset = 0.0f;
+        NSString* strUnit = STR(@"HRRD_Kg");
+        if ([_viewData weightUnit] == 2)
+        {
+            // 磅
+            unit = bang;
+            if ([XMTools getCurrentLanguage] == LangEN) {
+                strUnit = STR(@"HRRD_bangs");
+            }else {
+                strUnit = STR(@"HRRD_bang");
+            }
+        }
+        else if ([_viewData weightUnit] == 3)
+        {
+            // 斤
+            unit = 2;
+            strUnit = STR(@"HRRD_catty");
+        }
+        fWeightOffset = fabs([_viewData weightOffset])*unit;
+        
+        CGFloat sizeOfFont = 16.f;
+        if (ScreenWidth <375)
+        {
+            sizeOfFont = 13.f;
+        }
+        NSString *tempShareStr = @"";
+        
+        if (fWeightOffset > -0.1f && fWeightOffset < 0.1f) // =
+        {
+            tempShareStr = [NSString stringWithFormat:@"%@ %@",STR(@"HRRD_WeightUnChange"),resultTips];
+            if ([XMTools getCurrentLanguage] != LangEN) {
+                tempShareStr = [NSString stringWithFormat:@"%@, %@",resultTips,STR(@"HRRD_WeightUnChange")];
+            }
+        }
+        else
+        {
+            //韩文、中文：对比上次，增重／减重，无变化
+            tempShareStr = [NSString stringWithFormat: @"%@ %@", [resultTips stringByAppendingString:@","],[_viewData weightOffset] < 0.f? STR(@"HRRD_lighten"):STR(@"HRRD_BWG")];
+            
+            if ([XMTools getCurrentLanguage] == LangEN) { //英文
+                tempShareStr = [NSString stringWithFormat: @"%@ %@", [_viewData weightOffset] < 0.f? STR(@"HRRD_lighten"):STR(@"HRRD_BWG"),resultTips];//增重／减重／无变化，对比上次
+            }else if ([XMTools getCurrentLanguage ] == LangJapan) { //日文
+                tempShareStr = [NSString stringWithFormat: @"%@，%@",resultTips,[_viewData weightOffset] < 0.f? STR(@"HRRD_lighten"):STR(@"HRRD_BWG")];
+                
+                //%.1f  fWeightOffset   %@ strUnit
+            }
+        }
+        [_viewData setShareStrWeightDesc:tempShareStr];
+        
+        if (fWeightOffset >= -0.1f && fWeightOffset <= 0.1f)
+        {
+            [_viewData setStrWeightDesc: [NSString stringWithFormat:STR(@"HRRD_UnWeightChange"),sizeOfFont,resultTips]];
+        }
+        else
+        {
+            [_viewData setStrWeightDesc: [NSString stringWithFormat: HEALTHY_REPORT_LAST_WEIGHT_COMPARE, sizeOfFont,resultTips, [_viewData weightOffset] < 0.f? STR(@"HRRD_lighten"):STR(@"HRRD_BWG"), fWeightOffset, strUnit]];
+            
+            if ([XMTools getCurrentLanguage ] == LangJapan) {
+                NSString *fontStr = @"<font size=%f>%@,<font color=#ff0000>%.1f</font> %@ %@</font>";
+                [_viewData setStrWeightDesc: [NSString stringWithFormat: fontStr, sizeOfFont,resultTips, fWeightOffset, strUnit,[_viewData weightOffset] < 0.f? STR(@"HRRD_lighten"):STR(@"HRRD_BWG")]];
+            }
+        }
+        
+        _fViewHeight = DEFAULT_CELL_HEIGHT;
+        
+        // 计算用户的BMI对比全国
+        //[_viewData setBmiPercent: [[BMIPercentDB single] queryWithSex:([[userInfo sex] intValue] == ENUM_MALE)?1:2 BMIValue:[[lastWeightInfo bmi] floatValue]]];
+        
+        int nScore = [[[Standard shareInstance] getMarkNumWith: lastWeightInfo andUserInfo: userInfo] intValue];
+        [_viewData setScorePercent: [[MsgWallScorePercentDB single] queryPercentWithScore: nScore]];
+        if ([_viewData scorePercent] <= 0.f)
+        {
+            // 分数不合理
+            _fViewHeight = DEFAULT_CELL_HEIGHT ;
+        }
+        else
+        {
+            //日文版没有翻译，数据库查询会崩溃。
+            /*
+             [[MsgWallScorePercentDB single] queryDescWithScore: nScore andSex: ([[userInfo sex] intValue] == ENUM_MALE)?1:2];
+             srand((unsigned)time(NULL));
+             NSInteger randIndex = rand()%[scoreDesc count];
+             直接return
+             */
+            return;//直接return
+            
+            NSArray* scoreDesc =
+            [[MsgWallScorePercentDB single] queryDescWithScore: nScore andSex: ([[userInfo sex] intValue] == ENUM_MALE)?1:2];
+            srand((unsigned)time(NULL));
+            NSInteger randIndex = rand()%[scoreDesc count];
+            NSString* strRandom = [scoreDesc objectAtIndex: randIndex];
+            NSString* strBMIDesc =
+            [NSString stringWithFormat: STR(@"HRRD_score"), [_viewData scorePercent]*100, STR(@"HRRD_person"), strRandom];
+            
+            NSMutableParagraphStyle* descStyle = [[NSMutableParagraphStyle alloc] init];
+            descStyle.lineBreakMode = NSLineBreakByWordWrapping;
+            descStyle.headIndent = 0.f;
+            descStyle.lineSpacing = UI_IS_IPHONE5? 2.f : 4.f;
+            
+//            CGFloat width = ScreenWidth - (2*COMMON_SHADOW_ALIGN + COMMON_BOTH_ALIGN +COMMON_BOTH_ALIGN/2);
+            CGFloat width = ScreenWidth * HEALTH_REPORT_WIDTH_BILI;
+            CGSize size =
+            [strBMIDesc YMSizeWithFont: [UIFont healthyReportDesc] andParagraphStyle: descStyle constrainedToSize: CGSizeMake(width, MAXFLOAT)];
+            if (size.height <= ceil(([UIFont healthyReportDesc].height + descStyle.lineSpacing)))
+            {
+                _fViewHeight -= 25.f;
+            }
+            [_viewData setStrScoreDesc: [scoreDesc objectAtIndex: randIndex]];
+        }
+    }
+    else
+    {
+        // 没有近两次的数据
+        _fViewHeight = 0.0f;
+    }
+    
+}
+#pragma mark --- 对比文案
+-(NSString*) getResultTipsLastWeightInfo:(WeightInfo*) lastWeightInfo andBeforeLastWeightInfo:(WeightInfo*)beforeLastWeightInfo andUserId:(NSString*)userId
+{
+//    NSDate *beforeLastWeightInfoCreateTime = [XMTools getDateWithStr:beforeLastWeightInfo.createTime andFommater:nil];
+//    NSDate *lastWeightInfoCreateTime = [XMTools getDateWithStr:lastWeightInfo.createTime andFommater:nil];
+//    double minutes = [lastWeightInfoCreateTime minutesFrom:beforeLastWeightInfoCreateTime];
+    NSString *resultTips = STR(@"HRRD_contrastLastTime");
+    /* 统一 “对比上次”
+    if ([lastWeightInfoCreateTime isToday] && minutes <= 10 && _noChange) {
+        if ([beforeLastWeightInfoCreateTime isToday]) {
+            
+            resultTips = [NSString stringWithFormat:@"%@ %@",STR(@"HRRD_contrastToday"),[XMTools getToDayTimeFormartStrWithDate:beforeLastWeightInfoCreateTime]];
+            
+            WeightDB *weightDB = [WeightDB shareInstance];
+            NSArray* tempArray = [weightDB getWeightInfoDataByUserId: userId withLimit: 10];
+            
+            if (tempArray.count == 2) {
+                resultTips = STR(@"HRRD_contrastLastTime");
+            }
+            
+        }else if ([beforeLastWeightInfoCreateTime isYesterday]){
+            resultTips = STR(@"HRRD_contrastYesterday");
+        }else{
+            resultTips = STR(@"HRRD_contrastLastTime");
+        }
+    }else if([lastWeightInfoCreateTime isToday] && minutes > 10 && !_noChange){
+        
+        if ([beforeLastWeightInfoCreateTime isToday]) {
+            resultTips = [NSString stringWithFormat:@"%@ %@",STR(@"HRRD_contrastToday"),[XMTools getToDayTimeFormartStrWithDate:beforeLastWeightInfoCreateTime]];
+        }else if ([beforeLastWeightInfoCreateTime isYesterday]){
+            resultTips = STR(@"HRRD_contrastYesterday");
+        }else{
+            resultTips = STR(@"HRRD_contrastLastTime");
+        }
+    }else if([lastWeightInfoCreateTime isToday] && minutes > 10 && _noChange){
+        
+        if ([beforeLastWeightInfoCreateTime isToday]) {
+            resultTips = [NSString stringWithFormat:@"%@ %@",STR(@"HRRD_contrastToday"),[XMTools getToDayTimeFormartStrWithDate:beforeLastWeightInfoCreateTime]];
+        }else if ([beforeLastWeightInfoCreateTime isYesterday]){
+            resultTips = STR(@"HRRD_contrastYesterday");
+        }else{
+            resultTips = STR(@"HRRD_contrastLastTime");
+        }
+    }else{
+        
+        if ([beforeLastWeightInfoCreateTime isToday]) {
+            
+            [lastWeightInfoCreateTime minutesFrom:beforeLastWeightInfoCreateTime];
+            if (minutes < 10 && !_noChange && !_lianxu) {
+                resultTips = [NSString stringWithFormat:@"%@ %@",STR(@"HRRD_contrastToday"),[XMTools getToDayTimeFormartStrWithDate:beforeLastWeightInfoCreateTime]];
+            }else if (_noChange) {
+                resultTips = [NSString stringWithFormat:@"%@ %@",STR(@"HRRD_contrastToday"),[XMTools getToDayTimeFormartStrWithDate:beforeLastWeightInfoCreateTime]];
+            }else{
+                resultTips = STR(@"HRRD_contrastLastTime");
+            }
+            
+        }else if ([beforeLastWeightInfoCreateTime isYesterday]){
+            resultTips = STR(@"HRRD_contrastYesterday");
+        }else{
+            
+            int dayResult = (int)[beforeLastWeightInfoCreateTime daysEarlierThan:lastWeightInfoCreateTime];
+            if (dayResult == 1) {
+                resultTips = STR(@"HRRD_contrastYesterday");
+            }else if(dayResult == 0){
+                resultTips = [NSString stringWithFormat:@"%@ %@",STR(@"HRRD_contrastToday"),[XMTools getToDayTimeFormartStrWithDate:beforeLastWeightInfoCreateTime]];
+            }else{
+                resultTips = STR(@"HRRD_contrastLastTime");
+            }
+        }
+    }
+     */
+    return  resultTips;
+}
+- (HealthyReportViewData*)getViewData
+{
+    return _viewData;
+}
+/*
+- (void)initLoadDataBackUp
+{
+    UserInfo* userInfo = [[UserDB shareInstance] findUserInfoByUserId: [XMUserDefault currentUserId]];
+    NSArray* retWeightInfoList =
+    [[WeightDB shareInstance] getWeightInfoDataByUserId: [userInfo userId] withLimit: 2];
+    
+    if (nil == _viewData)
+    {
+        _viewData = [[HealthyReportViewData alloc] init];
+    }
+    
+    // 获取近两次的称重数据
+    if (nil != retWeightInfoList && [retWeightInfoList count] == 2)
+    {
+        WeightInfo* lastWeightInfo = [retWeightInfoList objectAtIndex: 0];
+        WeightInfo* beforeLastWeightInfo = [retWeightInfoList objectAtIndex: 1];
+        if (nil == beforeLastWeightInfo || nil == lastWeightInfo)
+        {
+            return ;
+        }
+        // 设置性别
+        [_viewData setIsMale: ([[userInfo sex] intValue] == ENUM_MALE)? YES:NO];
+        
+        // 称重设置的单位
+        [_viewData setWeightUnit: [[userInfo unit] intValue]];
+        
+        // 纪录最近两次称重的变化
+        [_viewData setWeightOffset: [[lastWeightInfo weight] floatValue] - [[beforeLastWeightInfo weight] floatValue]];
+        
+        // BMI值所处的阶段(瘦、正常、胖)
+        ComponentModel* bmiModel =
+        [[Standard shareInstance] getComponentModelWithComType: ComponentTypeOfBMI andValue: [NSNumber numberWithFloat: [[beforeLastWeightInfo bmi] floatValue]] andUserInfo: userInfo andWeight: 0.0f];
+        [_viewData setBmiStage: (int)[bmiModel comIndex]];
+        
+        float unit = 1;
+        float fWeightOffset = 0.0f;
+        NSString* strUnit = HEALTHY_REPORT_KG;
+        if ([_viewData weightUnit] == 2)
+        {
+            // 磅
+            unit = bang;
+            strUnit = HEALTHY_REPORT_PANG;
+        }
+        else if ([_viewData weightUnit] == 3)
+        {
+            // 斤
+            unit = 2;
+            strUnit = HEALTHY_REPORT_CATTY;
+        }
+        NSString * resultTips = @"对比上次";
+        fWeightOffset = fabs([_viewData weightOffset])*unit;
+        
+        if (fWeightOffset >= -0.1f && fWeightOffset <= 0.1f)
+        {
+            [_viewData setStrWeightDesc: [NSString stringWithFormat:HEALTHY_REPORT_NO_CHANGE_WORDS, 16.f,resultTips]];
+        }
+        else
+        {
+            [_viewData setStrWeightDesc: [NSString stringWithFormat: HEALTHY_REPORT_LAST_WEIGHT_COMPARE, 16.f,resultTips, [_viewData weightOffset] < 0.f? HEALTHY_REPORT_LIGHT_WORDS:HEALTHY_REPORT_HEAVY_WORDS, fWeightOffset, strUnit]];
+        }
+        
+        _fViewHeight = DEFAULT_CELL_HEIGHT;
+        
+        // 计算用户的BMI对比全国
+        //[_viewData setBmiPercent: [[BMIPercentDB single] queryWithSex:([[userInfo sex] intValue] == ENUM_MALE)?1:2 BMIValue:[[lastWeightInfo bmi] floatValue]]];
+        
+        int nScore = [[[Standard shareInstance] getMarkNumWith: lastWeightInfo andUserInfo: userInfo] intValue];
+        [_viewData setScorePercent: [[MsgWallScorePercentDB single] queryPercentWithScore: nScore]];
+        if ([_viewData scorePercent] <= 0.f)
+        {
+            // 分数不合理
+            _fViewHeight = DEFAULT_CELL_HEIGHT - ([UIDevice isIPhone6Plus]? 55:([UIDevice isIPhone6]? 45:40));
+        }
+        else
+        {
+            NSArray* scoreDesc =
+            [[MsgWallScorePercentDB single] queryDescWithScore: nScore andSex: ([[userInfo sex] intValue] == ENUM_MALE)?1:2];
+            srand((unsigned)time(NULL));
+            NSInteger randIndex = rand()%[scoreDesc count];
+            NSString* strRandom = [scoreDesc objectAtIndex: randIndex];
+            NSString* strBMIDesc =
+            [NSString stringWithFormat: HEALTHY_REPORT_BMI_DESC, [_viewData scorePercent]*100, HEALTHY_REPORT_HUMAN, strRandom];
+            
+            NSMutableParagraphStyle* descStyle = [[NSMutableParagraphStyle alloc] init];
+            descStyle.lineBreakMode = NSLineBreakByWordWrapping;
+            descStyle.headIndent = 0.f;
+            descStyle.lineSpacing = UI_IS_IPHONE5? 2.f : 4.f;
+            
+            CGFloat width = ScreenWidth - (2*COMMON_SHADOW_ALIGN + COMMON_BOTH_ALIGN +COMMON_BOTH_ALIGN/2);
+            CGSize size =
+            [strBMIDesc YMSizeWithFont: [UIFont healthyReportDesc] andParagraphStyle: descStyle constrainedToSize: CGSizeMake(width, MAXFLOAT)];
+            if (size.height <= ceil(([UIFont healthyReportDesc].height + descStyle.lineSpacing)))
+            {
+                _fViewHeight -= 25.f;
+            }
+            [_viewData setStrScoreDesc: [scoreDesc objectAtIndex: randIndex]];
+        }
+    }
+    else
+    {
+        // 没有近两次的数据
+        _fViewHeight = 0.0f;
+    }
+}
+*/
+@end

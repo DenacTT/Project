@@ -1,0 +1,30 @@
+//
+//  YMMsgWallCellView.h
+//  scale
+//
+//  Created by KiraSu on 15/8/12.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MsgWallCommonRowData.h"
+
+/*
+ * @brief 公共的Cell类，可以在这里添加公用的代码
+ */
+@interface YMMsgWallCellView : UITableViewCell
+
+@property(nonatomic, weak) id<YMMsgWallViewControllerDelegate>  viewCtrlDelegate;
+@property(nonatomic, weak) MsgWallCommonRowData* commonRowData;
+
+/*
+ * @brief Cell的UI布局
+ */
+- (void)layoutCellView;
+
+/*
+ * @brief 生成Cell的阴影边框
+ */
+- (UIView*)shadowCellView;
+
+@end

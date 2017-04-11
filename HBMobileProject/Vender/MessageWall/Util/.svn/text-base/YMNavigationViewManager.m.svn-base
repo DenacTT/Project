@@ -1,0 +1,964 @@
+//
+//  YMNavigationViewManager.m
+//  YMNavigationViewManager
+//
+//  Created by KiraSu on 15/7/30.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "YMNavigationViewManager.h"
+#import "YMUtil.h"
+
+#define BLACKBOARD_ALPHA 0.7
+
+@implementation YMNavigationViewManager
+{
+    NSMutableArray* _stack;
+    UIPanGestureRecognizer* _pan;
+    CGPoint _lastpoint;
+    YMNavigationSwipeOption _swipeOption;
+    BOOL _animation;
+    BOOL _panBegin;
+    UIView* _blackboard;
+    
+    __weak UIView*              _tabBarContentView;
+}
+
+IMPLEMENT_SINGLE(single)
+
+- (UIView*)blackboard
+{
+    if (! _blackboard)
+    {
+        _blackboard = [[UIView alloc] initWithFrame: self.view.bounds];
+        _blackboard.backgroundColor = [UIColor blackColor];
+        _blackboard.alpha = 0;
+        _blackboard.userInteractionEnabled = NO;
+    }
+    return _blackboard;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        _stack = [[NSMutableArray alloc] initWithCapacity: 5];
+        _pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onGesturePan:)];
+        _pan.delegate = self;
+        _lastpoint.x = _lastpoint.y = -1.f;
+        _animation = NO;
+        _panBegin = NO;
+    }
+    return self;
+}
+
+/*!
+ *  @author George, 16-02-29 16:02:35
+ *
+ *  @brief 屏幕左边1/n处可滑动返回
+ *
+ *  @since 2.0T
+ */
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    int n = 7;
+    CGPoint point = [touch locationInView:gestureRecognizer.view];
+    if (point.x > UI_SCREEN_WIDTH/n) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)onGesturePan: (UIPanGestureRecognizer*)g
+{
+    if (_animation)
+    {
+        return ;
+    }
+    
+    UIView<NavigateViewDelegate>* this = [_stack lastObject];
+    if ([this respondsToSelector: @selector(onGesturePan:)])
+    {
+        [this onGesturePan: g];
+    }
+    
+    if (_stack.count < 2)
+    {
+        return ;
+    }
+    
+    
+    YMNavigationStyle navstyle = [self navigateStyle: this];
+    if (YMNavigationStyleRightToLeft != navstyle)
+    {
+        return ;
+    }
+    
+    if ([this respondsToSelector: @selector(enableDragBack)])
+    {
+        if (! [this enableDragBack])
+        {
+            return ;
+        }
+    }
+    
+    UIView<NavigateViewDelegate>* prev = [_stack objAtIndex:(_stack.count-2)];
+    CGPoint pt = [_pan locationInView:self.view];
+    
+    if (UIGestureRecognizerStateBegan == _pan.state)
+    {
+        _panBegin = YES;
+        _lastpoint = pt;
+        _swipeOption = YMNavigationSwipeOptionNone;
+        
+        // 向右滑动才触发上一个页面的显示
+        CGPoint panPoint = [_pan translationInView: self.view];
+        if (panPoint.x >= 0)
+        {
+            [self pageAppearState: prev appearState: YMNavigationAppearanceWillAppear];
+            [self pageAppearState: prev appearState: YMNavigationAppearanceDidAppear];
+        }
+        
+        return ;
+    }
+    
+    if (! _panBegin)
+    {
+        return ;
+    }
+    
+    if (UIGestureRecognizerStateEnded == _pan.state)
+    {
+        _panBegin = NO;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.2];
+        [UIView setAnimationDelegate:self];
+        if (YMNavigationSwipeOptionNone == _swipeOption)
+        {
+            if (this.left < self.view.width / 4)
+            {
+                _swipeOption = YMNavigationSwipeOptionLeft;
+            }
+            else
+            {
+                _swipeOption = YMNavigationSwipeOptionRight;
+            }
+        }
+        
+        if (YMNavigationSwipeOptionLeft == _swipeOption)
+        {
+            _animation = YES;
+            [UIView setAnimationDidStopSelector:@selector(panStopKeep:finished:)];
+            this.left = 0;
+            prev.left = -self.view.width / 2;
+            
+            if ([prev respondsToSelector: @selector(needHideSysTabBarView)] && ![prev needHideSysTabBarView] &&
+                [self tabBarViewController] != nil)
+            {
+                [self tabBarViewController].tabBar.left = -self.view.width;
+            }
+            
+            [self blackboard].alpha = 0;
+        }
+        else
+        {
+            _animation = YES;
+            [UIView setAnimationDidStopSelector:@selector(panStopBack:finished:)];
+            this.left = self.view.width + 1;
+            prev.left = 0;
+            
+            if ([prev respondsToSelector: @selector(needHideSysTabBarView)] && ![prev needHideSysTabBarView] &&
+                [self tabBarViewController] != nil)
+            {
+                [self tabBarViewController].tabBar.userInteractionEnabled = YES;
+                [self tabBarViewController].tabBar.left = 0;
+            }
+            
+            [self blackboard].alpha = 0;
+        }
+        [UIView commitAnimations];
+    }
+    else if (UIGestureRecognizerStateChanged == _pan.state)
+    {
+        CGFloat lag = pt.x - _lastpoint.x;
+        const CGFloat swipelag = 12.f;
+        if (lag > swipelag)
+        {
+            _swipeOption = YMNavigationSwipeOptionRight;
+        }
+        else if (lag < -swipelag)
+        {
+            _swipeOption = YMNavigationSwipeOptionLeft;
+        }
+        else
+        {
+            _swipeOption = YMNavigationSwipeOptionNone;
+        }
+        
+        if (fabs(lag) < 50.f)
+        {
+            if (this.left + lag < 0 && lag < 0)
+            {
+                this.left = 0;
+                return ;
+            }
+            this.left = this.left + lag;
+            prev.left = prev.left + lag / 2;
+            
+            if ([prev respondsToSelector: @selector(needHideSysTabBarView)] && ![prev needHideSysTabBarView] &&
+                [self tabBarViewController] != nil)
+            {
+                [self tabBarViewController].tabBar.left = [self tabBarViewController].tabBar.left + lag;
+            }
+        }
+        UIView* b = [self blackboard];
+        if (b.superview != prev)
+        {
+            [b removeFromSuperview];
+            [prev addSubview: b];
+        }
+        [[self blackboard] setAlpha: BLACKBOARD_ALPHA*(1-this.left/self.view.width)];
+        _lastpoint = pt;
+    }
+}
+
+- (void)setFrame: (CGRect)frame
+{
+    if (nil == self.view)
+    {
+        self.view = [[UIView alloc] initWithFrame:frame];
+        self.view.backgroundColor = [UIColor whiteColor];
+//        self.view.layer.borderColor = [[UIColor greenColor] CGColor];
+//        self.view.layer.borderWidth = 2;
+        [self.view addGestureRecognizer:_pan];
+    }
+    
+    self.view.frame = frame;
+}
+
+- (void)push: (UIView<NavigateViewDelegate>*)page
+{
+    if (_animation)
+    {
+        return ;
+    }
+    
+    YMNavigationStyle navstyle = [self navigateStyle: page];
+    if ([page respondsToSelector: @selector(needHideStatusBar)] && [page needHideStatusBar])
+    {
+        [[UIApplication sharedApplication] setStatusBarHidden: YES];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] setStatusBarHidden: NO];
+    }
+    
+    if (YMNavigationStyleRightToLeft == navstyle)
+    {
+        UIView<NavigateViewDelegate>* last = [_stack lastObject];
+        page.frame = self.view.frame;
+        page.top = 0;
+        [page loadView];
+        [_stack addObject: page];
+        if (last)
+        {
+            page.left = self.view.width + 1;
+            
+            [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+            [self pageAppearState: page appearState: YMNavigationAppearanceWillAppear];
+            
+            BOOL bNeedHideSysTabBarView = NO;
+            if ([page respondsToSelector: @selector(needHideSysTabBarView)])
+            {
+                bNeedHideSysTabBarView = [page needHideSysTabBarView];
+            }
+            
+            /*
+            UIImageView* im = [[UIImageView alloc] initWithImage: IMAGENAME(@"fav_right_shadow")];
+            im.height = page.height;
+            im.left = -im.width;
+            im.top = 0;
+            [page addSubview: im];
+            */
+            
+            UIView* blackboard = [self blackboard];
+            [last addSubview: blackboard];
+            blackboard.alpha = 0;
+            
+            _animation = YES;
+            
+            if ([page respondsToSelector: @selector(barstyle)])
+            {
+                [UIApplication setYMStatusBarStyle: page.barstyle Animation:YES];
+            }
+            
+            [self.view addSubview: page];
+            [UIView beginAnimations: nil context: NULL];
+            [UIView setAnimationDuration: 0.4];
+            [UIView setAnimationDelegate: self];
+            [UIView setAnimationDidStopSelector: @selector(pushDidStop:finished:)];
+            
+            if ([page respondsToSelector: @selector(needHideSysTabBarView)] && bNeedHideSysTabBarView)
+            {
+                [self tabBarViewController].tabBar.userInteractionEnabled = NO;
+                [self tabBarViewController].tabBar.left = - (last.width);
+            }
+            
+            page.left = 0.f;
+            last.left = - (last.width / 2);
+            blackboard.alpha = BLACKBOARD_ALPHA;
+            [UIView commitAnimations];
+        }
+        else
+        {
+            [self pushFirstView: page];
+        }
+    }
+    else if (YMNavigationStyleDownToTop == navstyle)
+    {
+        UIView<NavigateViewDelegate>* last = [_stack lastObject];
+        page.frame = self.view.frame;
+        page.left = 0;
+        [page loadView];
+        [_stack addObject: page];
+        if (last)
+        {
+//            CGFloat ws = (last.width - 22.5f*2.f) / last.width;
+//            CGFloat wh = ws;//(last.height - 22.f*2.f) / last.height;
+            page.top = self.view.height + 1;
+            [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+            [self pageAppearState: page appearState: YMNavigationAppearanceWillAppear];
+            
+            _animation = YES;
+            if ([page respondsToSelector: @selector(barstyle)])
+            {
+                [UIApplication setYMStatusBarStyle: page.barstyle Animation:YES];
+            }
+            [self.view addSubview: page];
+            [UIView beginAnimations: nil context: NULL];
+            [UIView setAnimationDuration: 0.4];
+            [UIView setAnimationDelegate: self];
+            [UIView setAnimationDidStopSelector: @selector(pushDidStop:finished:)];
+            page.top = 0.f;
+//            last.transform = CGAffineTransformMakeScale(ws, wh);
+            if ([page respondsToSelector:@selector(appearDurationAnimation)])
+            {
+                [page appearDurationAnimation];
+            }
+            if ([last respondsToSelector: @selector(dismissingDurationAnimation)])
+            {
+                [last dismissingDurationAnimation];
+            }
+            [UIView commitAnimations];
+        }
+        else
+        {
+            [self pushFirstView: page];
+        }
+    }
+    else if (YMNavigationStylePopupCards == navstyle)
+    {
+        UIView<NavigateViewDelegate>* last = [_stack lastObject];
+        page.frame = self.view.frame;
+        page.left = 0;
+        [page loadView];
+        [_stack addObject: page];
+        if (last)
+        {
+            CGFloat ws = (last.width - 22.5*2.f) / last.width;
+            CGFloat wh = ws;//(last.height - 22.f*2.f) / last.height;
+            [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+            [self pageAppearState: page appearState: YMNavigationAppearanceWillAppear];
+            
+            _animation = YES;
+            if ([page respondsToSelector: @selector(barstyle)])
+            {
+                [UIApplication setYMStatusBarStyle: page.barstyle Animation:YES];
+            }
+            [self.view addSubview: page];
+            [UIView beginAnimations: nil context: NULL];
+            [UIView setAnimationDuration: 0.4];
+            [UIView setAnimationDelegate: self];
+            [UIView setAnimationDidStopSelector: @selector(pushDidStop:finished:)];
+            last.transform = CGAffineTransformMakeScale(ws, wh);
+            if ([page respondsToSelector:@selector(appearDurationAnimation)])
+            {
+                [page appearDurationAnimation];
+            }
+            if ([last respondsToSelector: @selector(dismissingDurationAnimation)])
+            {
+                [last dismissingDurationAnimation];
+            }
+            [UIView commitAnimations];
+        }
+        else
+        {
+            [self pushFirstView: page];
+        }
+    }
+    else if (YMNavigationStyleEaseInOut == navstyle)
+    {
+        UIView<NavigateViewDelegate>* last = [_stack lastObject];
+        page.frame = self.view.frame;
+        
+        // 设置毛玻璃背景
+        if (nil != last && [page respondsToSelector:@selector(lastBgBlur:)])
+        {
+            UIImage* bgImage = [[last toUIImage] blurWithRadius:10 iteration:4 tintColor:[UIColor blackColor]];
+            [page lastBgBlur:bgImage];
+        }
+        
+        [page loadView];
+        [_stack addObject: page];
+        if (last)
+        {
+            [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+            [self pageAppearState: page appearState: YMNavigationAppearanceWillAppear];
+            
+            _animation = YES;
+            page.alpha = 0;
+            if ([page respondsToSelector: @selector(barstyle)])
+            {
+                [UIApplication setYMStatusBarStyle: page.barstyle Animation:YES];
+            }
+            [self.view addSubview: page];
+            [UIView beginAnimations: nil context: NULL];
+            [UIView setAnimationDuration: 0.1];
+            [UIView setAnimationDelegate: self];
+            [UIView setAnimationDidStopSelector: @selector(pushDidStop:finished:)];
+            page.alpha = 1;
+            if ([page respondsToSelector:@selector(appearDurationAnimation)])
+            {
+                [page appearDurationAnimation];
+            }
+            if ([last respondsToSelector: @selector(dismissingDurationAnimation)])
+            {
+                [last dismissingDurationAnimation];
+            }
+            [UIView commitAnimations];
+        }
+        else
+        {
+            [self pushFirstView: page];
+        }
+    }else if (YMNavigationStyleDownToTopMin == navstyle)
+    {
+        UIView<NavigateViewDelegate>* last = [_stack lastObject];
+        page.frame = self.view.frame;
+        page.left = 0;
+        [page loadView];
+        [_stack addObject: page];
+        if (last)
+        {
+            //            CGFloat ws = (last.width - 22.5f*2.f) / last.width;
+            //            CGFloat wh = ws;//(last.height - 22.f*2.f) / last.height;
+            page.top = self.view.height + 1;
+            [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+            [self pageAppearState: page appearState: YMNavigationAppearanceWillAppear];
+            
+            _animation = YES;
+            if ([page respondsToSelector: @selector(barstyle)])
+            {
+                [UIApplication setYMStatusBarStyle: page.barstyle Animation:YES];
+            }
+            [self.view addSubview: page];
+            [UIView beginAnimations: nil context: NULL];
+            [UIView setAnimationDuration: 0.01];
+            [UIView setAnimationDelegate: self];
+            [UIView setAnimationDidStopSelector: @selector(pushDidStop:finished:)];
+            page.top = 0.f;
+            //            last.transform = CGAffineTransformMakeScale(ws, wh);
+            if ([page respondsToSelector:@selector(appearDurationAnimation)])
+            {
+                [page appearDurationAnimation];
+            }
+            if ([last respondsToSelector: @selector(dismissingDurationAnimation)])
+            {
+                [last dismissingDurationAnimation];
+            }
+            [UIView commitAnimations];
+        }
+        else
+        {
+            [self pushFirstView: page];
+        }
+    }
+}
+
+
+- (void)pushWithoutAnimation: (UIView<NavigateViewDelegate>*)page
+{
+    if (_animation)
+    {
+        return ;
+    }
+    
+    UIView<NavigateViewDelegate>* last = [_stack lastObject];
+    
+    [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+    [self pageAppearState: page appearState: YMNavigationAppearanceWillAppear];
+    if ([page respondsToSelector: @selector(needHideStatusBar)] && [page needHideStatusBar])
+    {
+        [[UIApplication sharedApplication] setStatusBarHidden: YES];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] setStatusBarHidden: NO];
+    }
+    page.frame = self.view.frame;
+    page.top = 0;
+    [page loadView];
+    [_stack addObject: page];
+    [self.view addSubview: page];
+    
+    [self pageAppearState: last appearState: YMNavigationAppearanceDidDissappear];
+    [self pageAppearState: page appearState: YMNavigationAppearanceDidAppear];
+}
+
+- (void)popWithoutAnimation
+{
+    if (_animation)
+    {
+        return ;
+    }
+    
+    if (_stack.count < 2)
+    {
+        return ;
+    }
+    UIView<NavigateViewDelegate>* last = [_stack lastObject];
+    UIView<NavigateViewDelegate>* lastprev = [_stack objAtIndex:_stack.count-2];
+    
+    [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+    [self pageAppearState: lastprev appearState: YMNavigationAppearanceWillAppear];
+    
+    [_stack removeLastObject];
+    
+    [self pageAppearState: last appearState: YMNavigationAppearanceDidDissappear];
+    if ([last respondsToSelector: @selector(willDestroy)])
+    {
+        [last willDestroy];
+    }
+    [last removeFromSuperview];
+    
+    lastprev.transform = CGAffineTransformMakeScale(1, 1);
+    lastprev.left = 0;
+    lastprev.top = 0;
+    [self blackboard].alpha = 0.f;
+    
+    if ([lastprev respondsToSelector: @selector(barstyle)])
+    {
+        [UIApplication setYMStatusBarStyle: lastprev.barstyle Animation:YES];
+    }
+    [self pageAppearState: lastprev appearState: YMNavigationAppearanceDidAppear];
+}
+
+- (void)pop
+{
+    if (_animation)
+    {
+        return ;
+    }
+    
+    if (_stack.count < 2)
+    {
+        return ;
+    }
+    
+    UIView<NavigateViewDelegate>* last = [_stack lastObject];
+    YMNavigationStyle navstyle = [self navigateStyle: last];
+    UIView<NavigateViewDelegate>* lastprev = [_stack objAtIndex:_stack.count-2];
+    
+    if ([lastprev respondsToSelector: @selector(needHideStatusBar)] && [lastprev needHideStatusBar])
+    {
+        [[UIApplication sharedApplication] setStatusBarHidden: YES];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] setStatusBarHidden: NO];
+    }
+    
+    if (YMNavigationStyleRightToLeft == navstyle)
+    {
+        [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+        [self pageAppearState: lastprev appearState: YMNavigationAppearanceWillAppear];
+        
+        BOOL bNeedHideSysTabBarView = NO;
+        if ([lastprev respondsToSelector: @selector(needHideSysTabBarView)])
+        {
+            bNeedHideSysTabBarView = [lastprev needHideSysTabBarView];
+        }
+        
+        _animation = YES;
+        UIView* b = [self blackboard];
+        if (b.superview != lastprev)
+        {
+            [b removeFromSuperview];
+            [lastprev addSubview: b];
+        }
+        b.alpha = BLACKBOARD_ALPHA;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(popDidStop:finished:)];
+        
+        if ([lastprev respondsToSelector: @selector(needHideSysTabBarView)] && !bNeedHideSysTabBarView && [self tabBarViewController] != nil)
+        {
+            [self tabBarViewController].tabBar.userInteractionEnabled = YES;
+            [self tabBarViewController].tabBar.left = 0.f;
+        }
+        
+        last.left = self.view.width + 1.f;
+        lastprev.left = 0.f;
+        b.alpha = 0;
+        [UIView commitAnimations];
+    }
+    else if (YMNavigationStyleDownToTop == navstyle)
+    {
+        [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+        [self pageAppearState: lastprev appearState: YMNavigationAppearanceWillAppear];
+        
+        _animation = YES;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(popDidStop:finished:)];
+        last.top = self.view.height + 1;
+        lastprev.transform = CGAffineTransformMakeScale(1, 1);
+        lastprev.top = 0.f;
+        lastprev.left = 0.f;
+        if ([last respondsToSelector:@selector(dismissingDurationAnimation)])
+        {
+            [last dismissingDurationAnimation];
+        }
+        if ([lastprev respondsToSelector: @selector(appearDurationAnimation)])
+        {
+            [lastprev appearDurationAnimation];
+        }
+        [UIView commitAnimations];
+    }
+    else if (YMNavigationStylePopupCards == navstyle)
+    {
+        [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+        [self pageAppearState: lastprev appearState: YMNavigationAppearanceWillAppear];
+        
+        _animation = YES;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(popDidStop:finished:)];
+        lastprev.transform = CGAffineTransformMakeScale(1, 1);
+        lastprev.top = 0.f;
+        lastprev.left = 0.f;
+        if ([last respondsToSelector:@selector(dismissingDurationAnimation)])
+        {
+            [last dismissingDurationAnimation];
+        }
+        if ([lastprev respondsToSelector: @selector(appearDurationAnimation)])
+        {
+            [lastprev appearDurationAnimation];
+        }
+        [UIView commitAnimations];
+    }
+    else if (YMNavigationStyleEaseInOut == navstyle)
+    {
+        [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+        [self pageAppearState: lastprev appearState: YMNavigationAppearanceWillAppear];
+        
+        _animation = YES;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.2];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(popDidStop:finished:)];
+        last.alpha = 0;
+        if ([last respondsToSelector:@selector(dismissingDurationAnimation)])
+        {
+            [last dismissingDurationAnimation];
+        }
+        if ([lastprev respondsToSelector: @selector(appearDurationAnimation)])
+        {
+            [lastprev appearDurationAnimation];
+        }
+        [UIView commitAnimations];
+    }else if (YMNavigationStyleDownToTopMin == navstyle)
+    {
+        [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+        [self pageAppearState: lastprev appearState: YMNavigationAppearanceWillAppear];
+        
+        _animation = YES;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(popDidStop:finished:)];
+        last.top = self.view.height + 1;
+        lastprev.transform = CGAffineTransformMakeScale(1, 1);
+        lastprev.top = 0.f;
+        lastprev.left = 0.f;
+        if ([last respondsToSelector:@selector(dismissingDurationAnimation)])
+        {
+            [last dismissingDurationAnimation];
+        }
+        if ([lastprev respondsToSelector: @selector(appearDurationAnimation)])
+        {
+            [lastprev appearDurationAnimation];
+        }
+        [UIView commitAnimations];
+    }
+    
+}
+
+- (void)pushFirstView: (UIView<NavigateViewDelegate>*)page
+{
+    [self pageAppearState: page appearState: YMNavigationAppearanceWillAppear];
+    [self pageAppearState: page appearState: YMNavigationAppearanceDidAppear];
+    if ([page respondsToSelector: @selector(barstyle)])
+    {
+        [UIApplication setYMStatusBarStyle: page.barstyle Animation:YES];
+    }
+    [self.view addSubview: page];
+}
+
+- (UIView<NavigateViewDelegate>*)frontPage
+{
+    return [_stack lastObject];
+}
+
+- (NSMutableArray*)setStackViews: (NSMutableArray*)stack
+{
+    NSMutableArray* retValue = _stack;
+    _stack = stack;
+    
+    NSArray* subViews = [[[YMNavigationViewManager single] view] subviews];
+    for (int nIndex = 0; nIndex < [subViews count]; nIndex++)
+    {
+        [[subViews objAtIndex: nIndex] removeFromSuperview];
+    }
+    
+    return retValue;
+}
+
+- (CGRect)sysTabBarFrame
+{
+    return [self tabBarViewController].tabBar.frame;
+}
+
+- (void)cleanCache
+{
+    NSLog(@"%s", __func__);
+}
+
+#pragma mark animation delegate / related
+- (void)popDidStop: (CAAnimation *)anim finished: (BOOL)flag
+{
+    UIView<NavigateViewDelegate>* last = [_stack lastObject];
+    UIView<NavigateViewDelegate>* page = [_stack objAtIndex:_stack.count-2];
+    [_stack removeLastObject];
+    _animation = NO;
+    
+    [self pageAppearState: last appearState: YMNavigationAppearanceDidDissappear];
+    if ([last respondsToSelector: @selector(willDestroy)])
+    {
+        [last willDestroy];
+    }
+    [last removeFromSuperview];
+    if ([page respondsToSelector: @selector(barstyle)])
+    {
+        [UIApplication setYMStatusBarStyle: page.barstyle Animation:YES];
+    }
+    [self pageAppearState: page appearState: YMNavigationAppearanceDidAppear];
+    
+}
+
+- (void)pushDidStop: (CAAnimation *)anim finished: (BOOL)flag
+{
+    UIView<NavigateViewDelegate>* page = [_stack lastObject];
+    UIView<NavigateViewDelegate>* last = [_stack objAtIndex:_stack.count-2];
+    _animation = NO;
+    
+    YMNavigationAppearance ap = YMNavigationAppearanceDidDissappear;
+    if ([page respondsToSelector: @selector(navigationStyle)] &&
+        page.navigationStyle != YMNavigationStyleRightToLeft)
+    {
+        ap = YMNavigationAppearanceDidDissappearNoHidden;
+    }
+    
+    [self pageAppearState: last appearState: ap];
+    [self pageAppearState: page appearState: YMNavigationAppearanceDidAppear];
+}
+
+- (void)panStopKeep: (CAAnimation *)anim finished: (BOOL)flag
+{
+    UIView<NavigateViewDelegate>* prev = [_stack objAtIndex:_stack.count-2];
+    UIView<NavigateViewDelegate>* page = [_stack lastObject];
+    _animation = NO;
+    
+    [self pageAppearState: prev appearState: YMNavigationAppearanceWillDissappear];
+    [self pageAppearState: prev appearState: YMNavigationAppearanceDidDissappear];
+    if ([page respondsToSelector: @selector(barstyle)])
+    {
+        [UIApplication setYMStatusBarStyle: page.barstyle Animation:YES];
+    }
+}
+
+- (void)panStopBack: (CAAnimation *)anim finished: (BOOL)flag
+{
+    UIView<NavigateViewDelegate>* last = [_stack lastObject];
+    UIView<NavigateViewDelegate>* page = [_stack objAtIndex:_stack.count-2];
+    [_stack removeLastObject];
+    _animation = NO;
+    
+    [self pageAppearState: last appearState: YMNavigationAppearanceWillDissappear];
+    [self pageAppearState: last appearState: YMNavigationAppearanceDidDissappear];
+    if ([last respondsToSelector: @selector(willDestroy)])
+    {
+        [last willDestroy];
+    }
+    [last removeFromSuperview];
+    if ([page respondsToSelector: @selector(barstyle)])
+    {
+        [UIApplication setYMStatusBarStyle: page.barstyle Animation:YES];
+    }
+}
+
+- (NSInteger) getStackCount
+{
+    if (_stack)
+    {
+        return [_stack count];
+    }
+    return 0;
+}
+
+#pragma mark view appear/dissapear wrap
+- (void)pageAppearState: (UIView<NavigateViewDelegate>*)page appearState: (YMNavigationAppearance)state
+{
+    switch (state)
+    {
+        case YMNavigationAppearanceWillAppear :
+        {
+            page.hidden = NO;
+            page.userInteractionEnabled = NO;
+            [page viewWillAppear];
+            break ;
+        }
+            
+        case YMNavigationAppearanceDidAppear :
+        {
+            page.userInteractionEnabled = YES;
+            [page viewDidAppear];
+            break ;
+        }
+            
+        case YMNavigationAppearanceWillDissappear :
+        {
+            page.userInteractionEnabled = NO;
+            [page viewWillDisappear];
+            break ;
+        }
+            
+        case YMNavigationAppearanceDidDissappear :
+        {
+            page.hidden = YES;
+            page.userInteractionEnabled = NO;
+            [page viewDidDisappear];
+            break ;
+        }
+            
+        case YMNavigationAppearanceDidDissappearNoHidden :
+        {
+            page.userInteractionEnabled = NO;
+            [page viewDidDisappear];
+            break ;
+        }
+            
+        default:
+            break;
+    }
+}
+
+-(void)hideTabbar{
+    [self tabBarViewController].tabBar.hidden = YES;
+}
+
+-(void)showTabbar{
+    [self tabBarViewController].tabBar.hidden = NO;
+}
+
+/*
+#pragma mark YMEventCallback
+- (void)onYMEventHappen: (NSString*)key withObject: (id)obj
+{
+    if (! [BUKA_EVENT_SHOW_TIPS isEqualToString: key] || ![obj isKindOfClass: [NSString class]])
+    {
+        return ;
+    }
+    NSString* t = obj;
+    if (0 == t.length)
+    {
+        return ;
+    }
+    
+    YMGlobalTipsView* tips;
+    id guessview = [self.view viewWithTag:79];
+    if (guessview && [guessview isKindOfClass:[YMGlobalTipsView class]] && [((YMGlobalTipsView *)guessview).labelText isEqualToString:obj]) {
+        return;
+    }else
+    {
+        tips= [YMGlobalTipsView objectWithTips: t];
+        tips.tag = 79;
+        tips.left = self.view.width;
+        tips.top = 70;
+        [self.view addSubview: tips];
+        [self.view bringSubviewToFront: tips];
+    }
+    
+    [UIView animateWithDuration: 0.2 animations: ^{
+        tips.right = self.view.width - 10;
+    } completion: ^(BOOL finished) {
+        [UIView animateWithDuration: 0.2 delay: 1.6 options: UIViewAnimationOptionLayoutSubviews
+                         animations: ^{
+                             tips.left = self.view.width;
+                         } completion: ^(BOOL finished) {
+                             [tips removeFromSuperview];
+                         }];
+    }];
+}
+ */
+
+#pragma mark helper
+- (YMNavigationStyle)navigateStyle: (UIView<NavigateViewDelegate>*)page
+{
+    YMNavigationStyle navstyle = YMNavigationStyleRightToLeft;
+    if ([page respondsToSelector: @selector(navigationStyle)])
+    {
+        navstyle = page.navigationStyle;
+    }
+    return navstyle;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+        shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if( [[otherGestureRecognizer.view class] isSubclassOfClass:[UITableViewCell class]] ||
+       [NSStringFromClass([otherGestureRecognizer.view class]) isEqualToString:@"UITableViewCellScrollView"] ||
+       [NSStringFromClass([otherGestureRecognizer.view class]) isEqualToString:@"UITableViewWrapperView"]) {
+        
+        return YES;
+    }
+    return NO;
+}
+
+-(void)openPanGesture{
+    _pan.enabled = YES;
+}
+-(void)banPanGesture{
+    _pan.enabled = NO;
+}
+
+@end
+
+
+
+
+

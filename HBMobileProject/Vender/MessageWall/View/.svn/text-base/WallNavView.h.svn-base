@@ -1,0 +1,28 @@
+//
+//  WallNavView.h
+//  scale
+//
+//  Created by solf on 15/8/20.
+//  Copyright (c) 2015年 solf. All rights reserved.
+
+typedef int(^block)();//
+
+
+#import <UIKit/UIKit.h>
+
+@protocol wallMessageNavDelegate <NSObject>
+
+@optional
+
+- (void) wallNavCloseAction;
+
+- (void) wallNavBackAction;
+
+@end
+
+@interface WallNavView : UIView
+
+@property (nonatomic,weak) id <wallMessageNavDelegate> wallNavDelegate;
+
+-(void) setNavWithTitle:(NSString *)title closeEnable:(BOOL) close backEnable:(BOOL) back;
+@end

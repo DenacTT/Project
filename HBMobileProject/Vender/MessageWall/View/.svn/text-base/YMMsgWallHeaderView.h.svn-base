@@ -1,0 +1,24 @@
+//
+//  YMMsgWallHeaderView.h
+//  scale
+//
+//  Created by KiraSu on 15/8/12.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ScoreModel.h"
+
+@interface YMMsgWallHeaderView : UIView
+
+@property(nonatomic, weak) UITableView*     tableView;
+@property (nonatomic,strong) UIView *bg;
+@property (nonatomic,strong) ScoreModel *scoreModel;
+
+- (void)reloadHeadData;
+
+//根据滑动距离位置动画
+- (void) headViewAnimateWithOffectY:(CGFloat) y;
+- (void)handleScrollView: (CGPoint)offset;
+
+@end

@@ -1,0 +1,20 @@
+//
+//  ComWithDataView.h
+//  scale
+//
+//  Created by solf on 16/5/9.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+/*
+ * 用于有数据时成分页面
+ */
+#import <UIKit/UIKit.h>
+#import "ComponentModel.h"
+
+@interface ComWithDataView : UIView
+
+- (void)layoutViewWithComModel:(ComponentModel *)comModel;
+
+- (void)locationCursor;
+
+@end

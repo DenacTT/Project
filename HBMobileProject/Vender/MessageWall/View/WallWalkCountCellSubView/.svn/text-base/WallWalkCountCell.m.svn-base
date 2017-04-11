@@ -1,0 +1,587 @@
+//
+//  WallWalkCountCell.m
+//  scale
+//
+//  Created by yzz on 15/8/17.
+//  Copyright (c) 2015年 yzz. All rights reserved.
+//
+
+#import "WallWalkCountCell.h"
+#import "WallWalkRowData.h"
+#import "WallStepCountModel.h"
+#import "NSThread+Extend.h"
+#import "RTLabel.h"
+#import "YMUtil.h"
+#import "StepCountTargetSelectorView.h"
+#import "DACircularProgressView.h"
+#import "UIFont+Extend.h"
+
+#import "BiggerBtn.h"
+#import "WallWalkShareView.h"
+#import "UserDB.h"
+#import "LoginConst.h"
+
+//#define RTStepTipsStrFormart    @"<font size=16 color=#323232>今天你行走约<font size=16 color=#25C997>%@</font>步</font>"     
+
+
+#pragma mark - 食品名字常量
+static NSString * const SHARE_VIEW_SHOW_FOOD_CHOCOLATE   = @"wall_walk_share_chocolate";
+static NSString * const SHARE_VIEW_SHOW_FOOD_COOKIE      = @"wall_walk_share_cookie";
+static NSString * const SHARE_VIEW_SHOW_FOOD_COLA        = @"wall_walk_share_cola";
+static NSString * const SHARE_VIEW_SHOW_FOOD_CHICKEN_LEG = @"wall_walk_share_chickenLeg";
+
+@interface WallWalkCountCell()
+
+#pragma mark - Data
+@property (nonatomic) WallStepCountModel *walkInfo;
+@property (nonatomic) WallWalkRowData    *walkServer;
+
+#pragma mark - UI
+@property (nonatomic) UILabel *title;                               // 标题
+@property (nonatomic) UIImageView *titleIcon;                       // 标题icon
+@property (nonatomic) RTLabel *donePercent;                         // 目标与步数百分比
+@property (nonatomic) DACircularProgressView *progressView;         // 进度条
+@property (nonatomic) BiggerBtn *btnSetTargat;                      // 设置目标
+@property (nonatomic) StepCountTargetSelectorView *targetSelector;  // 选着器
+@property (nonatomic) UIImageView *nodataDefaultImg;                // 没有计步数据默认图
+
+@property (nonatomic) UILabel *walkTitle;                           // 步数标题
+@property (nonatomic) UILabel *walkValue;                           // 步数值
+@property (nonatomic) UILabel *walkResidue;                         // 剩余步数
+
+@property (nonatomic) UILabel *calorieTitle;                        // 卡路里标题
+@property (nonatomic) UILabel *calorieValue;                        // 燃烧的开路里
+
+@property (nonatomic) UILabel *line;                                // 分割线
+
+@property (nonatomic) UIImageView *foodImageView;                   // 食物图片
+@property (nonatomic,copy) NSString *foodImageName;                 // 食物图片名
+@property (nonatomic) UIButton *shareBtn;                           // 分享按钮
+
+@property (nonatomic) UILabel *healthTipsForSport;                  // 消耗的运动
+@property (nonatomic) UILabel *healthTipsForFood;                   // 消耗的食品
+
+@end
+
+@implementation WallWalkCountCell
+{
+    BOOL _insteredSubView; // 是否需要再次addview
+    BOOL _isOpen;
+}
+
+- (void)layoutCellView
+{
+    
+    [MobClick event:c_info_set_walklook];
+    
+    [super layoutCellView];
+    UIView *shadowView = [super shadowCellView];
+    shadowView.top = 36;
+    if (!_isOpen)
+    {
+        shadowView.height = shadowView.height - shadowView.top +6;
+        _isOpen = !_isOpen;
+    }
+    
+    [self.progressView setProgress:0.01 animated:NO];
+    if (self.commonRowData.messageType == MSG_WALL_CELL_WALK_COUNT_JSON_TYPE)
+    {
+        [self.walkServer.stepCountData getToDayData];
+        __weak WallStepCountModel *obj = self.walkInfo;
+        // 几步讯息
+        [self.walkServer.stepCountData toDayStepInfoData:^(NSInteger myCount, float distance, float kcal, NSError *error) {
+            
+            obj.count    = myCount;
+            obj.distance = distance;
+            obj.kcal     = kcal;
+            obj.stepTarget = [XMUserDefault getUserStepCountTargetWithUserId:[XMUserDefault currentUserId]];
+            obj.percent4Target = (obj.stepTarget >0) ? (float)obj.count/(float)obj.stepTarget : 0;
+                        
+            [NSThread runInMain:^{
+                if (!_insteredSubView) {
+                    [self initView];
+                }
+                [self reload];
+            }];
+
+            
+        }];
+    }
+}
+#pragma mark 加载
+-(void) reload
+{
+    NSInteger target = [XMUserDefault getUserStepCountTargetWithUserId:[XMUserDefault currentUserId]];
+
+    
+    // 数据设置
+    CGFloat progress = (CGFloat)self.walkInfo.count/(CGFloat)self.walkInfo.stepTarget;
+    if (progress>1) {
+        [self.progressView setProgress:1 animated:YES initialDelay:0.1];
+    }else{
+        [self.progressView setProgress:progress animated:YES initialDelay:0.3];
+    }
+    // 完成度
+    self.donePercent.text = [NSString stringWithFormat:STR(@"WWCC_completeness"),self.walkInfo.percent4Target>=1?100:self.walkInfo.percent4Target*100];
+    // 步数
+    self.walkValue.text = @(self.walkInfo.count).description;
+    self.calorieValue.text = [NSString stringWithFormat:@"%.0f",self.walkInfo.kcal];
+    // 运动 食品 展示逻辑
+    self.healthTipsForSport.text = [NSString stringWithFormat:STR(@"WWCC_walk"),self.walkInfo.distance/1000];
+    self.healthTipsForFood.text  = [self getFoodTypeByKcal:self.walkInfo.kcal];
+    self.foodImageView.image = [UIImage imageNamed:self.foodImageName];
+    // 剩余步数
+    NSInteger temp = target - self.walkInfo.count > 0 ? target - self.walkInfo.count : 0;
+    if (temp > 0) {
+
+        [self.walkResidue removeFromSuperview];
+        self.walkResidue.text = [self countLoseStep];
+        [self.shadowCellView addSubview:self.walkResidue];
+
+    }else{
+        
+        [self.walkResidue removeFromSuperview];
+    }
+    if (target > 0) {
+        // 有目标
+        [self.nodataDefaultImg removeFromSuperview];
+        [self.progressView removeFromSuperview];
+        [self.donePercent removeFromSuperview];
+        [self.shadowCellView addSubview:self.progressView];
+        [self.shadowCellView addSubview:self.donePercent];
+    }else{
+        // 没有目标
+        [self.progressView removeFromSuperview];
+        [self.donePercent removeFromSuperview];
+        [self.shadowCellView addSubview:self.nodataDefaultImg];
+    }
+    
+}
+-(NSString*) countLoseStep
+{
+    NSString *result = @"";
+    // 目标
+    NSInteger target = [XMUserDefault getUserStepCountTargetWithUserId:[XMUserDefault currentUserId]];
+    // 当前步数
+    NSInteger currentStep = self.walkInfo.count;
+    NSInteger temp = target - currentStep > 0 ? target - currentStep : 0;
+    // 拼接
+    result = [NSString stringWithFormat:STR(@"WWCC_surplus"),(long)temp];
+    return result;
+}
+
+-(NSString*)getFoodTypeByKcal:(float)kcal
+{
+    
+    NSString *result = nil;
+    if (kcal <= 300) {
+        
+        if (kcal < 26) {
+            // 饼干 26
+             result = [NSString stringWithFormat:STR(@"WWCC_cookie")];
+        }else{
+            // 巧克力29 饼干26
+            if (self.foodImageName == SHARE_VIEW_SHOW_FOOD_COOKIE) {
+                result = [NSString stringWithFormat:STR(@"WWCC_cookies"),kcal/26];
+            }else{
+                result = [NSString stringWithFormat:STR(@"WWCC_heatChocolates"),kcal/29];
+            }
+        }
+    }else{
+        // 鸡腿 可乐
+        if (self.foodImageName == SHARE_VIEW_SHOW_FOOD_CHICKEN_LEG) {
+            result = [NSString stringWithFormat:STR(@"WWCC_heatDrumsticks"),kcal/150];
+        }else{
+            result = [NSString stringWithFormat:STR(@"WWCC_heatCokes"),kcal/153];
+        }
+    }
+    return result;
+    
+}
+
+
+
+-(NSString*)getFoodImgNameByKcal:(float)kcal
+{
+    
+    if (kcal <= 300) {
+        if (kcal < 26) {
+            // 饼干 26
+            return SHARE_VIEW_SHOW_FOOD_COOKIE;//@"wall_walk_share_cookie";
+        }else{
+            // 巧克力 饼干
+            NSArray *array = @[SHARE_VIEW_SHOW_FOOD_CHOCOLATE,SHARE_VIEW_SHOW_FOOD_COOKIE];
+            NSString *imageName = [self randomOneDataByArray:array];
+            return imageName;
+        }
+    }else{
+        // 鸡腿 可乐
+        NSArray *array = @[SHARE_VIEW_SHOW_FOOD_COLA,SHARE_VIEW_SHOW_FOOD_CHICKEN_LEG];
+        NSString *imageName = [self randomOneDataByArray:array];
+        return imageName;
+    }
+}
+
+-(id) randomOneDataByArray:(NSArray*)array
+{
+    id comment = nil;
+    if (array)
+    {
+        int one = arc4random_uniform((int)array.count);
+        comment = (id)array[one];
+    }
+    return comment;
+}
+
+
+-(void) initView
+{
+    // 如果没有计步数据
+    if ([XMUserDefault getUserStepCountTargetWithUserId:[XMUserDefault currentUserId]]<=0) {
+        [self.nodataDefaultImg removeFromSuperview];
+        [self addSubview:self.nodataDefaultImg];
+
+    }else{
+        [self.nodataDefaultImg removeFromSuperview];
+        [self.progressView removeFromSuperview];
+        [self addSubview:self.progressView];
+    }
+    // 添加
+    [self addSubview:self.titleIcon];
+    [self addSubview:self.title];
+    [self.shadowCellView addSubview:self.btnSetTargat];
+    [self.shadowCellView addSubview:self.walkTitle];
+    [self.shadowCellView addSubview:self.walkValue];
+    [self.shadowCellView addSubview:self.walkResidue];
+    [self.shadowCellView addSubview:self.calorieTitle];
+    [self.shadowCellView addSubview:self.calorieValue];
+    [self.shadowCellView addSubview:self.line];
+    [self.shadowCellView addSubview:self.foodImageView];
+    [self.shadowCellView addSubview:self.healthTipsForSport];
+    [self.shadowCellView addSubview:self.healthTipsForFood];
+    [self.shadowCellView addSubview:self.donePercent];
+    [self.shadowCellView addSubview:self.targetSelector];
+    [self.shadowCellView addSubview:self.shareBtn];
+
+    _insteredSubView = YES;
+}
+
+
+#pragma mark - Helper Method
+
+-(void) progressChange
+{
+
+}
+
+-(void) setTargetAction:(id) sender
+{
+    [self.deletage showSelector];
+}
+// 分享
+-(void) shareClick:(id)sender
+{
+
+
+    
+    if (nil == [self viewCtrlDelegate] || ![[self viewCtrlDelegate] respondsToSelector: @selector(shareWith:andDesc:)])
+    {
+        return;
+    }else{
+        
+        [MobClick event:c_info_6_share_walk];
+        
+        // 步数
+        NSInteger count = self.walkInfo.count;
+        // 公里
+        float kl = self.walkInfo.distance/1000;
+        // 卡路里
+        NSInteger kcal = self.walkInfo.kcal;
+        // 食物
+        NSString *food = [self getFoodTypeByKcal:self.walkInfo.kcal];
+        // 目标
+        float target = self.walkInfo.percent4Target>=1?100:self.walkInfo.percent4Target*100;
+        // 分享文案逻辑处理
+        NSString *strDesc = STR(@"WWCC_explainA");
+        // 所有数据都有的时候
+        if (count>0 && kl > 0 && kcal>0 && target>0) {
+            strDesc = [NSString stringWithFormat:STR(@"WWCC_explainB"),(int)count,kl,(int)kcal,food,target];
+        }else if (target < 1 && count > 0 && kcal > 0) {// 没有设置目标时
+            strDesc = [NSString stringWithFormat:STR(@"WWCC_explainC"),(int)count,kl,(int)kcal,food];
+        }else{
+            strDesc = [NSString stringWithFormat:STR(@"WWCC_explainD")];
+        }
+        
+        
+        
+        WallWalkShareView *shareView = [[WallWalkShareView alloc] init];
+        shareView.userInfo = [[LoginConst sharedInstance] getLoginUserInfo];
+        shareView.walkModel = self.walkInfo;
+        shareView.foodImageName = self.foodImageName;
+        [shareView addView];
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
+        imgView.image = [shareView toUIImage];
+        
+        [[self viewCtrlDelegate] shareWith: imgView.image  andDesc: strDesc];
+    }
+}
+
+
+#pragma mark - getter
+
+-(WallWalkRowData *)walkServer
+{
+    if (!_walkServer) {
+        _walkServer = (WallWalkRowData*)self.commonRowData;
+    }
+    return _walkServer;
+}
+
+-(WallStepCountModel *)walkInfo
+{
+    if (!_walkInfo) {
+        _walkInfo = [[WallStepCountModel alloc] init];
+    }
+    return _walkInfo;
+}
+
+-(UIImageView *)titleIcon
+{
+    if (!_titleIcon) {
+        UIImage *img     = [UIImage imageNamed:@"wallStep"];
+        _titleIcon       = [[UIImageView alloc] init];
+        _titleIcon.frame = CGRectMake(self.width*0.024, 10, img.size.width, img.size.height);
+        _titleIcon.image = img;
+    }
+    return _titleIcon;
+}
+
+-(UILabel *)title
+{
+
+    if (!_title) {
+        _title = [[UILabel alloc] init];
+        _title.frame         = CGRectMake(self.titleIcon.right+4, 10, 70, self.titleIcon.frame.size.height);
+//        _title.center        = CGPointMake(_title.center.x, self.titleIcon.center.y);
+        _title.textColor     = [UIColor commonTitleColor];
+        _title.font          = [UIFont commonCellViewTitle];
+        _title.text          = self.walkServer.messageTitle;
+        _title.textAlignment = NSTextAlignmentLeft;
+    }
+    return _title;
+}
+
+-(BiggerBtn *)btnSetTargat
+{
+    if (!_btnSetTargat) {
+        _btnSetTargat = [BiggerBtn buttonWithType:UIButtonTypeCustom];
+        UIImage *img = [UIImage imageNamed:@"wall_walk_settingicon"];
+        _btnSetTargat.frame = CGRectMake(self.shadowCellView.width*(1-0.035) - 16, 22, img.size.width, img.size.height);
+        [_btnSetTargat setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_btnSetTargat addTarget:self action:@selector(setTargetAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnSetTargat setBackgroundImage:img forState: UIControlStateNormal];
+//        NSLog(@"%f----%f",img.size.width, img.size.height);
+//        _btnSetTargat.layer.borderColor = [UIColor redColor].CGColor;
+//        _btnSetTargat.layer.borderWidth = 1.0f;
+    }
+    return _btnSetTargat;
+}
+
+-(UILabel *)walkTitle
+{
+    if (!_walkTitle) {
+        _walkTitle = [[UILabel alloc] initWithFrame:CGRectMake(self.shadowCellView.width*0.075, 22, 100, 12)];
+        _walkTitle.font          = [UIFont systemFontOfSize:12];
+        _walkTitle.textAlignment = NSTextAlignmentLeft;
+        _walkTitle.textColor     = RGB(50, 50, 50);
+        _walkTitle.text          = STR(@"WWCC_walkToday");
+    }
+    return _walkTitle;
+}
+
+-(UILabel *)walkValue
+{
+    if (!_walkValue) {
+        CGRect frame = self.walkTitle.frame;
+        _walkValue               = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame) + 7, 120, 30)];
+        _walkValue.font          = [UIFont systemFontOfSize:30];
+        _walkValue.textAlignment = NSTextAlignmentLeft;
+        _walkValue.textColor     = RGB(255, 116, 4);
+        _walkValue.text          = @"0";
+    }
+    return _walkValue;
+}
+
+-(UILabel *)walkResidue
+{
+    if (!_walkResidue) {
+        CGRect frame = self.progressView.frame;
+        _walkResidue = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame) + 7, 120, 12)];
+        _walkResidue.font          = [UIFont systemFontOfSize:12];
+        _walkResidue.textAlignment = NSTextAlignmentCenter;
+        _walkResidue.textColor     = RGB(136, 136, 136);
+        _walkResidue.text          = STR(@"WWCC_surplusText");
+        _walkResidue.center        = CGPointMake(self.progressView.center.x, _walkResidue.center.y);
+//        _walkResidue.layer.borderWidth = 1.0f;
+//        _walkResidue.layer.borderColor = [UIColor redColor].CGColor;
+    }
+    return _walkResidue;
+}
+-(UILabel *)calorieTitle
+{
+    if (!_calorieTitle) {
+        CGRect frame = self.walkValue.frame;
+        _calorieTitle = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame) + 15, 120, 12)];
+        _calorieTitle.font          = [UIFont systemFontOfSize:12];
+        _calorieTitle.textAlignment = NSTextAlignmentLeft;
+        _calorieTitle.textColor     = RGB(102, 102, 102);
+        _calorieTitle.text          = STR(@"WWCC_burnCalorie");
+        
+    }
+    return _calorieTitle;
+}
+-(UILabel *)calorieValue
+{
+    if (!_calorieValue) {
+        CGRect frame = self.calorieTitle.frame;
+        _calorieValue = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame) + 7, 120, 30)];
+        _calorieValue.font          = [UIFont systemFontOfSize:30];
+        _calorieValue.textAlignment = NSTextAlignmentLeft;
+        _calorieValue.textColor     = RGB(255, 116, 4);
+        _calorieValue.text          = @"0";
+        
+    }
+    return _calorieValue;
+}
+
+-(UILabel *)line
+{
+    if (!_line) {
+        CGRect frame = self.walkResidue.frame;
+        _line = [[UILabel alloc] initWithFrame:CGRectMake(self.shadowCellView.width*0.035, CGRectGetMaxY(frame)+13, self.shadowCellView.width*(1-0.035*2), 1)];
+        _line.backgroundColor = RGB(203, 203, 203);
+    }
+    return _line;
+}
+
+-(UIImageView *)foodImageView
+{
+    if (!_foodImageView) {
+        CGRect frame = self.line.frame;
+        UIImage *img = [UIImage imageNamed:@"wall_walk_cookie"];
+        _foodImageView = [[UIImageView alloc] initWithFrame:CGRectMake(frame.origin.x + 5, CGRectGetMaxY(frame)+6, img.size.width, img.size.height )];
+        _foodImageView.image = img;
+//        _foodImageView.layer.borderColor = [UIColor redColor].CGColor;
+//        _foodImageView.layer.borderWidth = 1.0f;
+//        NSLog(@"%f----%f",img.size.width, img.size.height);
+        
+    }
+    return _foodImageView;
+}
+
+-(UILabel *)healthTipsForSport
+{
+    if (!_healthTipsForSport) {
+        CGRect frame = self.foodImageView.frame;
+        _healthTipsForSport = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(frame) + self.shadowCellView.width*0.109, CGRectGetMaxY(self.line.frame)+32, self.shadowCellView.width - _healthTipsForSport.frame.origin.x-10, 12)];
+        _healthTipsForSport.font          = [UIFont systemFontOfSize:12];
+        _healthTipsForSport.textAlignment = NSTextAlignmentLeft;
+        _healthTipsForSport.textColor     = RGB(102, 102, 102);
+        _healthTipsForSport.text          = STR(@"WWCC_kilometres");
+//        _healthTipsForSport.layer.borderColor = [UIColor blackColor].CGColor;
+//        _healthTipsForSport.layer.borderWidth = 1.0f;
+    }
+    return _healthTipsForSport;
+}
+
+-(UILabel *)healthTipsForFood
+{
+    if (!_healthTipsForFood) {
+        CGRect frame = self.healthTipsForSport.frame;
+        _healthTipsForFood = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame) + 10, self.shadowCellView.width - frame.origin.x, 20)];
+        _healthTipsForFood.font          = [UIFont systemFontOfSize:20];
+        _healthTipsForFood.textAlignment = NSTextAlignmentLeft;
+        _healthTipsForFood.textColor     = RGB(102, 102, 102);
+        _healthTipsForFood.text          = STR(@"WWCC_fiftyCookies");
+//        _healthTipsForFood.layer.borderWidth = 1.0f;
+//        _healthTipsForFood.layer.borderColor = [UIColor redColor].CGColor;
+    }
+    return _healthTipsForFood;
+}
+
+-(DACircularProgressView *)progressView
+{
+    if (!_progressView) {
+        _progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(self.shadowCellView.width - 100 - self.shadowCellView.width*0.075, self.walkTitle.top, 100, 100)];
+        _progressView.roundedCorners    = YES;
+        _progressView.trackTintColor    = RGB(235, 235, 235);// 进度底层颜色
+        _progressView.progressTintColor = RGB(255, 116, 4);// 进度颜色
+        _progressView.thicknessRatio    = 0.2 ;// 进度条宽度比例
+        _progressView.progress          = 0.01;
+    }
+    return _progressView;
+}
+
+-(RTLabel *)donePercent
+{
+    if (!_donePercent) {
+        CGRect temp = self.progressView.frame;
+        _donePercent = [[RTLabel alloc] init];
+//        _donePercent.backgroundColor = [UIColor grayColor];
+        _donePercent.frame         = CGRectMake(temp.origin.x - 9, temp.origin.y+20, temp.size.width, 45);
+        _donePercent.textAlignment = RTTextAlignmentCenter;
+        _donePercent.textColor     = RGB(50, 50, 50);
+        _donePercent.center = self.progressView.center;
+    }
+    return _donePercent;
+}
+
+-(UIButton *)shareBtn
+{
+    if (!_shareBtn) {
+        _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _shareBtn.frame = CGRectMake(self.shadowCellView.width*0.035, CGRectGetMaxY(self.foodImageView.frame) + 5, self.shadowCellView.width - (self.shadowCellView.width*0.035)*2, 45);
+        _shareBtn.backgroundColor = [UIColor commonViewCellBtn];
+        [_shareBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _shareBtn.layer.cornerRadius = 3.0f;
+        [_shareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_shareBtn setTitle:STR(@"WWCC_faunt") forState:UIControlStateNormal];
+        _btnSetTargat.titleLabel.font = [UIFont systemFontOfSize:16];
+        UIImage *img = [UIImage imageWithColor:[UIColor commonViewCellPressBtn]
+                                   andBordRect:CGRectMake(0, 0, _btnSetTargat.width, _btnSetTargat.height)
+                                  andBordColor: [UIColor commonViewCellPressBtn]//[UIColor colorWithRed:0.145 green:0.609 blue:0.549 alpha:1.000]
+                               andCornerRadius: _btnSetTargat.layer.cornerRadius];
+        [_btnSetTargat setBackgroundImage:img forState: UIControlStateHighlighted];
+        NSLog(@"%f",_btnSetTargat.frame.origin.x+45);
+        
+    }
+    return _shareBtn;
+}
+
+-(UIImageView *)nodataDefaultImg
+{
+    if (!_nodataDefaultImg) {
+        UIImage *img = [UIImage imageNamed:@"wall_notarget_shoes"];
+        _nodataDefaultImg = [[UIImageView alloc] initWithImage:img];
+        CGRect temp              = self.titleIcon.frame;
+        _nodataDefaultImg.frame  = CGRectMake(temp.origin.x, temp.origin.y+temp.size.height+10, img.size.width, img.size.height);
+        _nodataDefaultImg.center = self.progressView.center;
+    }
+    return _nodataDefaultImg;
+}
+
+-(NSString *)foodImageName
+{
+    if (!_foodImageName) {
+        _foodImageName = [self getFoodImgNameByKcal:self.walkInfo.kcal];
+    }
+    return _foodImageName;
+}
+
+
+
+
+
+
+@end

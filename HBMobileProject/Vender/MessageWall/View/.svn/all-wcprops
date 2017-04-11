@@ -1,0 +1,611 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View
+END
+PromoteCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/PromoteCell.m
+END
+ComWithDataView.h
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComWithDataView.h
+END
+NewsHotConsultCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/NewsHotConsultCell.h
+END
+erweima@2x.png
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/erweima@2x.png
+END
+ComNoDataView.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComNoDataView.h
+END
+RecommendedDaliyView.h
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/RecommendedDaliyView.h
+END
+WallWeightCell.xib
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallWeightCell.xib
+END
+MainComponentView.h
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/MainComponentView.h
+END
+ComWithDataView.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComWithDataView.m
+END
+NewsHotConsultCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/NewsHotConsultCell.m
+END
+ComNoDataView.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComNoDataView.m
+END
+EatAdviseCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/EatAdviseCell.h
+END
+RecommendedDaliyView.m
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/RecommendedDaliyView.m
+END
+ComDataCursor.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComDataCursor.h
+END
+MainComponentView.m
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/MainComponentView.m
+END
+RegCardCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/RegCardCell.h
+END
+ComTopBarTools.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComTopBarTools.h
+END
+WallWeightCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallWeightCell.h
+END
+EatAdviseCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/EatAdviseCell.m
+END
+ComDataCursor.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComDataCursor.m
+END
+RegCardCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/RegCardCell.m
+END
+ComTopBarTools.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComTopBarTools.m
+END
+WallWeightCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallWeightCell.m
+END
+BmiTipView.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/BmiTipView.h
+END
+YMMsgWallHeaderView.h
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/YMMsgWallHeaderView.h
+END
+WallChartCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallChartCell.h
+END
+ShowOffCollectionView.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ShowOffCollectionView.h
+END
+BmiTipView.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/BmiTipView.m
+END
+YMMsgWallHeaderView.m
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/YMMsgWallHeaderView.m
+END
+WallChartCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallChartCell.m
+END
+erweima.png
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/erweima.png
+END
+ConsultCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ConsultCell.h
+END
+ShowOffCollectionView.m
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ShowOffCollectionView.m
+END
+VideoTutorialCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/VideoTutorialCell.h
+END
+ConsultCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ConsultCell.m
+END
+VideoTutorialCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/VideoTutorialCell.m
+END
+ComWithDataStateView.h
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComWithDataStateView.h
+END
+WallWeightView.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallWeightView.h
+END
+WallHeaderTipsView.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallHeaderTipsView.h
+END
+AddWeightManuallyCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/AddWeightManuallyCell.h
+END
+ComWithDataStateView.m
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComWithDataStateView.m
+END
+erweima6P@3x.png
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/erweima6P@3x.png
+END
+YMMsgWallCellView.h
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/YMMsgWallCellView.h
+END
+WallWeightView.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallWeightView.m
+END
+WallHeaderTipsView.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallHeaderTipsView.m
+END
+AddWeightManuallyCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/AddWeightManuallyCell.m
+END
+YMMsgWallCellView.m
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/YMMsgWallCellView.m
+END
+HealthyReportShowOffView.h
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/HealthyReportShowOffView.h
+END
+HealthyReportShowOffView.m
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/HealthyReportShowOffView.m
+END
+WallWeightCellShare.h
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallWeightCellShare.h
+END
+WallWeightCellShare.m
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallWeightCellShare.m
+END
+WallNavView.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallNavView.h
+END
+ComNoDataStateView.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComNoDataStateView.h
+END
+RegCardHolder.png
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/RegCardHolder.png
+END
+WallNavView.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallNavView.m
+END
+ComNoDataStateView.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComNoDataStateView.m
+END
+WeightDataCell.xib
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WeightDataCell.xib
+END
+shareImage_2_man.png
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/shareImage_2_man.png
+END
+shareImage_4_man.png
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/shareImage_4_man.png
+END
+ComSuComView.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComSuComView.h
+END
+WeightDataCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WeightDataCell.h
+END
+KGicon@2x.png
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/KGicon@2x.png
+END
+shareImage_6_man.png
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/shareImage_6_man.png
+END
+shareImage_8_man.png
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/shareImage_8_man.png
+END
+HealthyReportShowOffViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/HealthyReportShowOffViewController.h
+END
+HealthyReportCellView.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/HealthyReportCellView.h
+END
+ComSuComView.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComSuComView.m
+END
+WallScoreView.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallScoreView.h
+END
+WeightDataCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WeightDataCell.m
+END
+shareImage_2_women.png
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/shareImage_2_women.png
+END
+HealthyReportShowOffViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/HealthyReportShowOffViewController.m
+END
+HealthyReportCellView.m
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/HealthyReportCellView.m
+END
+CZAChartView.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/CZAChartView.h
+END
+shareImage_4_women.png
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/shareImage_4_women.png
+END
+WallScoreView.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallScoreView.m
+END
+shareImage_6_women.png
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/shareImage_6_women.png
+END
+ComCursorModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComCursorModel.h
+END
+shareImage_8_women.png
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/shareImage_8_women.png
+END
+CZAChartView.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/CZAChartView.m
+END
+ComCursorModel.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComCursorModel.m
+END
+ComponentAdapter.h
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComponentAdapter.h
+END
+RecommendedDaliyCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/RecommendedDaliyCell.h
+END
+CircleBtn.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/CircleBtn.h
+END
+YMMessageWallView.h
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/YMMessageWallView.h
+END
+MainComponentViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/MainComponentViewController.h
+END
+ThreeRowHotNewsCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ThreeRowHotNewsCell.h
+END
+ComponentAdapter.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComponentAdapter.m
+END
+RecommendedDaliyCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/RecommendedDaliyCell.m
+END
+CircleBtn.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/CircleBtn.m
+END
+YMMessageWallView.m
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/YMMessageWallView.m
+END
+MainComponentViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/MainComponentViewController.m
+END
+ComSuggestView.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComSuggestView.h
+END
+ThreeRowHotNewsCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ThreeRowHotNewsCell.m
+END
+ComDetailsView.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComDetailsView.h
+END
+ComSuggestView.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComSuggestView.m
+END
+BodyCompositionCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/BodyCompositionCell.h
+END
+ComDetailsView.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/ComDetailsView.m
+END
+PromoteCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/PromoteCell.h
+END
+WallWeightCellShare.xib
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/WallWeightCellShare.xib
+END
+BodyCompositionCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/BodyCompositionCell.m
+END
+bmiicon@2x.png
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/yunmai-ios/!svn/ver/7000/yunmai-ios-en/branches/20170327SmartBand/XiaoMai-IOS/MessageWall/View/bmiicon@2x.png
+END

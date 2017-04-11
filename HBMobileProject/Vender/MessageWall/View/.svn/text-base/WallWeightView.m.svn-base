@@ -1,0 +1,283 @@
+//
+//  WallWeightView.m
+//  scale
+//
+//  Created by solf on 15/8/12.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import "WallWeightView.h"
+#import "RTLabel.h"
+#import "ScoreModel.h"
+#import "UIFont+Extend.h"
+#import "UICountingLabel.h"
+#import "NSString+Extend.h"
+#import "YMWeightView.h"
+//分数
+#import "PersonModel.h"
+#import "YMHomeDataAdapter.h"
+#import "UserInfo.h"
+#import "LoginConst.h"
+#import "MsgWallDef.h"
+#import "UIColor+Extend.h"
+#import "HomeViewDef.h"
+#import "UIDevice+Extend.h"
+@interface WallWeightView ()
+
+
+
+//@property (nonatomic,strong) YMWeightView *viewWeight;
+
+@property (nonatomic, strong) UILabel* weightLabel;// 体重数字
+@property (nonatomic,strong) UILabel *unitLabel;
+
+//@property (nonatomic,strong) UILabel *bmiLabel;// 干掉BMI显示
+
+
+@end
+@implementation WallWeightView{
+    YMHomeDataAdapter * _dataAdapter;
+}
+
+- (id) initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+//        CAGradientLayer * _layer = [CAGradientLayer layer];
+//        _layer.frame = self.bounds;
+//        _layer.colors = [NSArray arrayWithObjects:(id)RGBA(48, 192, 174, 1.0f).CGColor,(id)RGBA(73, 202, 190, 1.0f).CGColor,nil];
+//        [self.layer addSublayer:_layer];
+        
+        [self initViews];
+      
+    }
+    return self;
+}
+
+#pragma mark -overwrite
+
+- (void) setScoreModel:(ScoreModel *)scoreModel
+{
+    if (_scoreModel != scoreModel)
+    {
+        _scoreModel = scoreModel;
+    }
+    
+    [self initController];
+}
+
+- (void) initViews
+{
+
+    _weightLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _unitLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    
+//    _viewWeight = [[YMWeightView alloc]initWithFrame:CGRectZero];
+//    _bmiLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+//    _bmiLabel.alpha = 0.9f;
+//    [self addSubview:_viewWeight];
+//    [self addSubview:_bmiLabel];
+//    [_viewWeight addSubview:_unitLabel];
+    
+    [self addSubview:_weightLabel];
+    [self addSubview:_unitLabel];
+
+    if (nil == _dataAdapter) {
+        _dataAdapter = [[YMHomeDataAdapter alloc]init];
+    }
+}
+
+- (void) initController
+{
+    /****************  信息壁头部view  *******************/
+//    // 体重label
+//    _weightLabel.text = [NSString stringWithFormat: @"%.1f", _scoreModel.weight.floatValue];
+//    _weightLabel.font = [UIFont systemFontOfSize:40];
+//    _weightLabel.textColor = [UIColor colorWithHexString:@"ffffff"];
+//    CGSize sizeWeight = [_weightLabel.text YMSizeWithFont:_weightLabel.font];
+//    _weightLabel.width = sizeWeight.width;
+//    _weightLabel.height = sizeWeight.height;
+//    _weightLabel.left = (ScreenWidth-_weightLabel.width)/2;
+//    _weightLabel.top = (self.height-_weightLabel.height)/2;
+//    
+//    
+//    // 单位label
+//    _unitLabel.textColor = [UIColor colorWithHexString:@"ffffff"];
+//    _unitLabel.font = [UIFont boldSystemFontOfSize: 16];
+//    _unitLabel.text = [NSString stringWithFormat:@"%@",_scoreModel.myWeightUnit];
+//    CGSize sizeUnit = [_unitLabel.text YMSizeWithFont:_unitLabel.font];
+//    _unitLabel.width = sizeUnit.width;
+//    _unitLabel.height = sizeUnit.height;
+//    _unitLabel.top = _weightLabel.top+22;
+//    _unitLabel.left = _weightLabel.right+8;
+    
+    
+    // 体重label
+    _weightLabel.text = [NSString stringWithFormat:@"%.1f",_scoreModel.weight.floatValue];
+    _weightLabel.font = [UIFont fontWithName:KFont_HomeWeight_Regular size:78];
+    CGSize sizeWeight = [_weightLabel.text YMSizeWithFont:_weightLabel.font];
+    _weightLabel.width = sizeWeight.width;
+    _weightLabel.height = sizeWeight.height;
+    _weightLabel.left = (ScreenWidth-_weightLabel.width)/2;
+    _weightLabel.top = (self.height-_weightLabel.height)/2 + 2;
+    _weightLabel.textAlignment = NSTextAlignmentCenter;
+    _weightLabel.textColor = [UIColor whiteColor];
+    
+    NSArray * tmepArr = [_weightLabel.text componentsSeparatedByString:@"."];
+    NSString * str1 = [NSString stringWithFormat:@"%@",tmepArr[0]];
+    NSString * str2 = [NSString stringWithFormat:@"%@%@",@".",tmepArr[1]];
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:[str1 stringByAppendingString:str2]];
+    [AttributedStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:KFont_HomeWeight_Regular size:78] range:NSMakeRange(0, str1.length)];
+    [AttributedStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:KFont_HomeWeight_Regular size:40] range:NSMakeRange(str1.length, str2.length)];
+    _weightLabel.attributedText = AttributedStr;
+    
+    //阴影效果
+//    _weightLabel.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
+//    _weightLabel.layer.shadowOffset = CGSizeMake(0,3);//阴影偏移,x向右偏移4，y向下偏移4，默认(0, -3),这个跟shadowRadius配合使用
+//    _weightLabel.layer.shadowOpacity = 0.1;//阴影透明度，默认0
+//    _weightLabel.layer.shadowRadius = 3;//阴影半径，默认3
+    
+    
+    // 单位label
+    _unitLabel.textColor = [UIColor whiteColor];
+    _unitLabel.font = [UIFont systemFontOfSize: 16];
+//    _unitLabel.alpha = 0.8;
+    _unitLabel.text = [NSString stringWithFormat:@"%@",_scoreModel.myWeightUnit];
+    CGSize sizeUnit = [_unitLabel.text YMSizeWithFont:_unitLabel.font];
+    _unitLabel.width = sizeUnit.width;
+    _unitLabel.height = sizeUnit.height;
+    _unitLabel.top = _weightLabel.top + 10;
+    _unitLabel.left = _weightLabel.right - _unitLabel.width - 13;
+    _weightLabel.top = 16.0f;
+    _unitLabel.top = 29.0f;
+
+//    self.backgroundColor = [UIColor redColor];
+//    NSLog(@"_weightLabel   %f",_weightLabel.top);
+//    NSLog(@"unitLabel   %f",_unitLabel.top);
+    /*
+    //    CGFloat scoreTop = 14.0f;
+    CGFloat scoreTop = [UIDevice isIPhone6Plus]?15.f:([UIDevice isIPhone4]?13.f:5.0f);
+    //    CGFloat scoreHeight = 60.0f;
+    //    CGFloat scoreFontSize = 70.0f;
+    //    CGFloat unitFontSize = 13.0f;
+    //    CGFloat bmiFontSize = 14.0f;
+    
+    //    _scoreLabel.frame = CGRectMake(0, (self.height - scoreTop)/2, self.width/2, scoreHeight);
+    //    UIFont *font = [UIFont wallScore];
+    //    _weightLabel.font = font;
+    // 根据字体得到NSString的尺寸
+    NSString *weightStr = [NSString stringWithFormat:@"%.1f",[_scoreModel.weight floatValue]];
+    
+    if ([String isBlankString:weightStr])
+    {
+        weightStr = @"888.8";
+    }
+    
+    if (weightStr.length == 4)
+    {
+        weightStr  = @"88.8";
+    }else
+    {
+        weightStr = @"888.8";
+    }
+    
+//    CGSize size = [weightStr sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+//    // 名字的H
+//    //    CGFloat scoreH = size.height;
+//    // 名字的W
+//    CGFloat scoreW = size.width;
+    //    _weightLabel.frame = CGRectMake((self.width - scoreW)/2, scoreTop*2 , scoreW+2, 65);
+    ////    _weightLabel.text = [NSString stringWithFormat:@"%.1f",_scoreModel.weight.floatValue];
+    //    _weightLabel.textAlignment = NSTextAlignmentCenter;
+    //    _weightLabel.textColor = [UIColor whiteColor];
+    //
+    //    _weightLabel.layer.shadowOpacity = 0.1;
+    //    _weightLabel.layer.shadowColor = [UIColor blackColor].CGColor;
+    //    _weightLabel.layer.shadowOffset = CGSizeMake(0, 8.0);
+    //
+    //    _weightLabel.format = @"%.1f";
+//    _viewWeight.frame = CGRectMake((self.width - scoreW)/2, scoreTop , scoreW+2, 65);
+    
+    
+     // 屏蔽原来的数字显示体重view
+    [_viewWeight resetWeightViewWithWeight:[NSString stringWithFormat: @"%.1f", _scoreModel.weight.floatValue]];
+    _viewWeight.top = scoreTop;
+    _viewWeight.layer.borderWidth = 1.0f;
+    _viewWeight.layer.borderColor = [UIColor redColor].CGColor;
+     
+    
+    
+    
+    if ([self disableCounting])
+    {
+        //        [_weightLabel setText: [NSString stringWithFormat: @"%.1f", _scoreModel.weight.floatValue]];
+    }
+    else
+    {
+        //        [_weightLabel countFromZeroTo:_scoreModel.weight.floatValue];
+    }
+    
+    //    _unitLabel.frame = CGRectMake(_weightLabel.right, _weightLabel.top + 3, 100, scoreH/3);
+    
+    CGFloat unitFont = HOME_HEAD_UNIT_FONT;
+    _unitLabel.textColor = [UIColor whiteColor];
+    _unitLabel.font = [UIFont boldSystemFontOfSize: unitFont];
+    _unitLabel.text = [NSString stringWithFormat:@"%@",_scoreModel.myWeightUnit];
+    _unitLabel.textAlignment = NSTextAlignmentRight;
+    _unitLabel.width = HOME_HEAD_UNIT_WIDTH;
+    _unitLabel.height = HOME_HEAD_UNIT_FONT;
+    _unitLabel.top = HOME_HEAD_UNIT_TOP;
+    
+    _unitLabel.left = _viewWeight.width - _unitLabel.width;
+    
+    
+    
+   
+     // 屏蔽BMI显示
+    _bmiLabel.frame = CGRectMake(0, _viewWeight.bottom + YM_MSG_WALL_HEAD_BMI_TOP, self.width, 16);
+    CGFloat bmiFont = [UIDevice isIPhone6Plus]?18.f:16.f;
+    _bmiLabel.font = [UIFont systemFontOfSize:bmiFont];
+    _bmiLabel.textAlignment = NSTextAlignmentCenter;
+    _bmiLabel.textColor = [UIColor whiteColor];
+    
+    
+     // 屏蔽评分
+    //2.0 scor bmi bodystandstr
+    UserInfo * userInfo = [[LoginConst sharedInstance] getLoginUserInfo];
+    PersonModel * personModel = [_dataAdapter getLastWeightModelWithUserId:[userInfo.userId integerValue]];
+    _bmiLabel.attributedText = [NSString getBMIForAnimationBMI:_scoreModel.bmiValue.floatValue andBodyStand:_scoreModel.BodyStandStr];
+    if (personModel.score > 0) {
+        _bmiLabel.text = [NSString stringWithFormat: @"%@ %@",[_viewWeight getWeightNumber],_unitLabel.text];
+        [_viewWeight resetScoreViewWithScore: [NSString stringWithFormat: @"%d",(int)personModel.score]];
+        _unitLabel.text = STR(@"WWV_score");
+        _unitLabel.width = _unitLabel.font.height;
+        _unitLabel.left = _viewWeight.width - _unitLabel.width;
+        _bmiLabel.width = _viewWeight.width - unitFont/2;
+        _bmiLabel.left = _viewWeight.left;
+    }
+    
+    
+    
+   
+    CGAffineTransform trans = CGAffineTransformMakeScale(YM_MSG_WALL_HEAD_WEIGHT_MSG_SIZE, YM_MSG_WALL_HEAD_WEIGHT_MSG_SIZE);
+    _viewWeight.transform = trans;
+    _viewWeight.top = scoreTop;
+    
+    
+    
+    // 屏蔽BMI显示
+    _bmiLabel.top = _viewWeight.bottom + YM_MSG_WALL_HEAD_BMI_TOP;
+     */
+
+}
+
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
+
+@end

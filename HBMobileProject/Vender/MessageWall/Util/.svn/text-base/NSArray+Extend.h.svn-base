@@ -1,0 +1,12 @@
+
+#import <Foundation/Foundation.h>
+
+@interface NSArray(Extend)
+- (id)objAtLoopIndex: (NSInteger)index;
+- (id)objAtIndex:(NSUInteger)index;
+- (NSArray*)arrayBySplitIntoArrays: (NSUInteger)block;
+
+//数组按照日期排序
+- (NSArray *)orderByDate;
+
+@end

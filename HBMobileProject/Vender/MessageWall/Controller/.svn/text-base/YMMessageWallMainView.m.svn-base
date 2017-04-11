@@ -1,0 +1,603 @@
+//
+//  YMMessageWallViewControl.m
+//  scale
+//
+//  Created by KiraSu on 15/8/12.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "YMMessageWallMainView.h"
+#import "YMMsgWallDataAdapter.h"
+#import "YMMsgWallHeaderView.h"
+#import "YMMsgWallCellView.h"
+#import "NSThread+Extend.h"
+#import "WallWalkCountCell.h" // 计步
+#import "StepCountTargetSelectorView.h"
+#import "NSThread+Extend.h"
+#import "WallChartCell.h"
+#import "HealthyReportCellView.h"
+#import "ComPonentModelControl.h"
+#import "YMUtil.h"
+#import "WeightDataCell.h"
+#import "YMShare.h"
+#import "WallNewsCell.h"
+#import "BrokenLineRoportViewController.h"
+#import "WallChartCell.h"
+#import "WallNewsVCViewController.h"
+#import "YMEventCenter.h"
+#import "YMSocialCommunityView.h"
+#import "TabBarCommunityView.h"
+#import "YMNavigationViewManager.h"
+#import "RegCardCell.h"
+#import "VideoTutorialCell.h"
+#import "PromoteCell.h"
+#import "CommunityCardView.h"
+#import "NewsHotConsultCell.h"
+#import "EatAdviseCell.h"
+#import "RecommendedDaliyCell.h"
+#import "PromoteModel.h"
+#import "ThreeRowHotNewsCell.h"
+#import "SDImageCache.h"
+#import "YMTopbar.h"
+#import "UITableView+Wave.h"
+#import "YMMsgWallURLCache.h"
+#import "UIView+Plus.h"
+@interface YMMessageWallMainView ()< WallWalkCountCellDelegate,StepCountTargetSelectorViewDelegate,WallNewsCellDelegate,
+                                        WallChartCellDelegate,UIScrollViewDelegate,YMEventCallback,
+                                        ThreeRowHotNewsDelegte,WallPromoteDelegate,WallEatAdviseDelegate>
+
+@end
+
+@implementation YMMessageWallMainView
+{
+    UITableView*                        _msgTableView;
+    YMMsgWallHeaderView*                _msgTableHeaderView;
+    YMMsgWallDataAdapter*               _msgWallAdapter;
+    StepCountTargetSelectorView*        _targetSelector;
+    YMTopbar*                           _topBar;
+    CAGradientLayer *                   _layerHead ;
+    CAGradientLayer *                   _layerBg ;
+
+}
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame: frame];
+    if (self) {
+        [self loadView];
+        // 清除图片缓存
+        [self cleanImageCache];
+        [MobClick event:c_info_pv];
+        [MobClick beginLogPageView:@"信息壁"];
+    }
+    return self;
+}
+- (void)notifyAnimateViewDone
+{
+    [_topBar setHidden: NO];
+    [_msgTableHeaderView setHidden: NO];
+//    _msgTableView.backgroundColor = [UIColor commonViewCellBg];
+//    [_msgTableView reloadData];
+    if ([_msgWallAdapter getCount] == 0)
+    {
+        [_msgWallAdapter requestNetworkData];
+    }
+}
+
+- (void)startLayer{
+    _layerHead.hidden = NO;
+    _layerBg.hidden = NO;
+}
+
+- (void)loadView
+{
+    self.backgroundColor = [UIColor commonViewCellBg];
+
+    _topBar = [YMTopbar objectWithParam: STR(@"YMMWMV_bodyReport") frame: CGRectMake(0, 0, self.width, COMMON_TOP_BAR_HEIGHT)];
+    [_topBar setHidden: NO];
+//    _topBar.backgroundColor = [UIColor homeHeadViewBgColor];
+    _topBar.backgroundColor = RGBA(50, 147, 230, 1.0f);
+    [_topBar.titleLabel setTextColor: [UIColor whiteColor]];
+    [_topBar.titleLabel setFont: [UIFont systemFontOfSize:16]];
+    [_topBar setTitle: STR(@"YMMWMV_bodyReport")];
+    [_topBar setBarBackgroundAlpha: 0];
+    [self addSubview: _topBar];
+
+    
+    UIButton* closeButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    UIImage* imgCloseBtn = [UIImage imageNamed:@"YM_CloseMessageWall.png"];
+    [closeButton setImage: imgCloseBtn forState: UIControlStateNormal];
+    [closeButton addTarget: self action: @selector(onCloseBtn:) forControlEvents: UIControlEventTouchUpInside];
+    closeButton.width = imgCloseBtn.size.width + COMMON_BOTH_ALIGN*3;
+    closeButton.height = imgCloseBtn.size.height + COMMON_BOTH_ALIGN;
+    closeButton.left = self.width - closeButton.width-1.f;
+    closeButton.top = [UIDevice sysStatusBarFrame].size.height + COMMON_BOTH_ALIGN/2 + 2.5f;
+    [_topBar addSubview: closeButton];
+    
+    [[YMEventCenter single] listenToEvent:YM_NOTIFY_EVENT_CHART_DATA_CHANGED delegate: self];
+    _msgTableHeaderView =
+                [[YMMsgWallHeaderView alloc] initWithFrame: CGRectMake(0, 0, ScreenWidth, YM_MSG_WALL_HEAD_VIEW_HEIGHT - COMMON_TOP_BAR_HEIGHT)];
+    [_msgTableHeaderView setHidden: NO];
+    
+    _msgTableView = [[UITableView alloc] initWithFrame: CGRectMake(0, COMMON_TOP_BAR_HEIGHT, self.width, self.height-COMMON_TOP_BAR_HEIGHT)];//-COMMON_TOP_BAR_HEIGHT
+    _msgTableView.tableHeaderView = _msgTableHeaderView;
+    [_msgTableHeaderView setTableView: _msgTableView];
+    _msgTableView.delegate = self;
+    _msgTableView.dataSource = self;
+    _msgTableView.alwaysBounceVertical = YES;
+    _msgTableView.scrollsToTop = YES;
+    _msgTableView.showsVerticalScrollIndicator = NO;
+    _msgTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _msgTableView.backgroundColor = [UIColor commonViewCellBg];
+//    _msgTableView.backgroundColor = RGBA(50, 147, 230, 1.0f);
+    [self addSubview: _msgTableView];
+
+//    [_msgTableView registerClass: [WeightDataInfoCellView class] forCellReuseIdentifier: CELL_WEIGHT_DATA_CLASS_ID];
+    [_msgTableView registerClass: [WallWalkCountCell class] forCellReuseIdentifier:CELL_WALL_WALK_COUNT_CLASS_ID];
+    [_msgTableView registerClass: [HealthyReportCellView class] forCellReuseIdentifier: CELL_HEALTHY_REPORT_CLASS_ID];//健康报告
+    [_msgTableView registerClass: [YMMsgWallCellView class] forCellReuseIdentifier: DEFAULT_CELL_CLASS_ID];
+    [_msgTableView registerClass: [WallChartCell class] forCellReuseIdentifier: DEFAULT_WallChartCell_ID];//体重简报(曲线图)
+    [_msgTableView registerClass: [WallNewsCell class] forCellReuseIdentifier: CELL_News_CLASS_ID];
+    
+    //身体成分数据cell
+    [_msgTableView registerClass: [WeightDataCell class] forCellReuseIdentifier: CELL_WEIGHT_DATA_CLASS_ID];//身体成分
+    
+    [_msgTableView registerClass: [RegCardCell class] forCellReuseIdentifier:CELL_REG_CARD_ID];//打卡(不带图片)
+    [_msgTableView registerClass: [VideoTutorialCell class] forCellReuseIdentifier:CELL_VIDEO_CLASS_ID];
+    [_msgTableView registerClass: [PromoteCell class] forCellReuseIdentifier:CELL_PROMOTE_CLASS_ID];
+    [_msgTableView registerClass: [CommunityCardView class] forCellReuseIdentifier:CELL_CommunityCard_ID];//健身打卡(带图片)
+    [_msgTableView registerClass: [NewsHotConsultCell class] forCellReuseIdentifier:CELL_HOT_NEWS_SUB_CLASS_ID];
+    [_msgTableView registerClass: [EatAdviseCell class] forCellReuseIdentifier: CELL_EAT_ADVISE_CLASS_ID];//知识社区
+    [_msgTableView registerClass: [RecommendedDaliyCell class] forCellReuseIdentifier:CELL_RECOMMEND_CLASS_ID];//图标下面的每日推荐资讯
+    [_msgTableView registerClass: [ThreeRowHotNewsCell class] forCellReuseIdentifier:CELL_THREE_ROW_NEWS_CLASS_ID];//健康资讯
+    
+    if (nil == _msgWallAdapter)
+    {
+        _msgWallAdapter = [[YMMsgWallDataAdapter alloc] initRowDataMap];
+        [_msgWallAdapter setViewControllerDelegate: self];
+    }
+    [_msgWallAdapter requestNetworkData];
+//    if (![self animationMode])
+//    {
+//        [self notifyAnimateViewDone];
+//    }
+    
+//    if (nil == [[YMMsgWallURLCache single] getMsgWallURLCache])
+//    {
+//        [_msgWallAdapter requestNetworkData];
+//    }
+  
+}
+
+#pragma mark UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_msgWallAdapter getCount];
+}
+
+#pragma mark UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [_msgWallAdapter getSpecCellHeightWithIndex: indexPath.row];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MsgWallInfoCellType cellType = [_msgWallAdapter getCellTypeWithIndex: indexPath.row];
+    YMMsgWallCellView* rawCellObj = nil;
+    MsgWallCommonRowData* rawCellData = nil;
+    
+    switch (cellType) {
+            
+        case MsgWallRegCardCellType:
+            {
+                // 打卡
+                rawCellObj = [_msgTableView dequeueReusableCellWithIdentifier:CELL_REG_CARD_ID];
+            }
+            break;
+        case MsgWallHealthyReportInfoCellType:
+            {
+                // 健康报告
+                rawCellObj = [_msgTableView dequeueReusableCellWithIdentifier: CELL_HEALTHY_REPORT_CLASS_ID];
+            }
+            break;
+        case MsgWallWeightDataInfoCellType:
+            {
+                // 身体十项数据
+              rawCellObj = [_msgTableView dequeueReusableCellWithIdentifier: CELL_WEIGHT_DATA_CLASS_ID];
+            }
+            break;
+        case MsgWallHealthyNewsInfoCellType:
+            {
+                MsgWallCommonRowData * data = [_msgWallAdapter getRowDataWithIndex:indexPath.row];
+                
+                if (data.messageShowType == CELL_SHOW_TYPE_HOT_NEWS_SUB) { // 热点资讯
+                    // 健康新闻资讯
+                    ThreeRowHotNewsCell *cell = [_msgTableView dequeueReusableCellWithIdentifier:CELL_THREE_ROW_NEWS_CLASS_ID];
+                    cell.delegate = self;
+                    rawCellObj = cell;
+                    
+                }else if (data.messageShowType == CELL_SHOW_TYPE_HEALTH_NEWS){ // 健康资讯
+
+                    // 热点资讯
+                    // 云端 懒人减肥
+                    NewsHotConsultCell *cell = [_msgTableView dequeueReusableCellWithIdentifier:CELL_HOT_NEWS_SUB_CLASS_ID];
+                    cell.delegate = self;
+                    rawCellObj = cell;
+                }else if (data.messageShowType == CELL_SHOW_TYPE_RECOMMEND){ // 每日推荐
+
+                    // 每日推荐
+                    RecommendedDaliyCell *cell = [_msgTableView dequeueReusableCellWithIdentifier:CELL_RECOMMEND_CLASS_ID];
+                    cell.delegate = self;
+                    rawCellObj = cell;
+                }else if (data.messageShowType == CELL_SHOW_TYPE_EAT){ // 饮食建议
+                    
+                    // 饮食建议
+                    EatAdviseCell *cell = [_msgTableView dequeueReusableCellWithIdentifier:CELL_EAT_ADVISE_CLASS_ID];
+                    cell.delegate = self;
+                    rawCellObj = cell;
+                    
+                }else if (data.messageShowType == CELL_SHOW_TYPE_HOT_NEWS){ // 热点资讯 做运动更健康
+                    // 健康新闻资讯
+                    WallNewsCell *cell = [_msgTableView dequeueReusableCellWithIdentifier:CELL_News_CLASS_ID];
+                    cell.delegate = self;
+                    rawCellObj = cell;
+                     
+                }
+            }
+            break;
+        case MsgWallWeightChangeInfoCellType:
+            {
+                // 简报
+              WallChartCell *cell = [_msgTableView dequeueReusableCellWithIdentifier:DEFAULT_WallChartCell_ID];
+                cell.delegate = self;
+                cell.backgroundColor = [UIColor redColor];
+                rawCellObj = cell;
+            }
+            break;
+        case MsgWallWalkCountInfoCellType:
+            {
+                // 计步
+                WallWalkCountCell *cell =  [_msgTableView dequeueReusableCellWithIdentifier: CELL_WALL_WALK_COUNT_CLASS_ID];
+                cell.deletage = self;
+                rawCellObj = cell;
+            }
+            break;
+        case MsgWallVideoCellType:
+            {
+                // 视频
+                VideoTutorialCell *cell = [_msgTableView dequeueReusableCellWithIdentifier:CELL_VIDEO_CLASS_ID];
+                cell.delegate = self;
+                rawCellObj = cell;
+            }
+            break;
+        case MsgWallPromoteCellType:
+            {
+                // 推广
+                PromoteCell *cell = [_msgTableView dequeueReusableCellWithIdentifier:CELL_PROMOTE_CLASS_ID];
+                cell.delegate = self;
+                rawCellObj = cell;
+            }
+            break;
+        case MsgWallCommunityCardCellType:// 健身打卡
+            {
+                rawCellObj = [_msgTableView dequeueReusableCellWithIdentifier:CELL_CommunityCard_ID];
+            }
+
+        default:
+            break;
+    }
+    
+    if (nil == rawCellObj)
+    {
+        rawCellObj = [_msgTableView dequeueReusableCellWithIdentifier: DEFAULT_CELL_CLASS_ID];
+    }
+    
+    rawCellObj.width = _msgTableView.frame.size.width;
+    rawCellData = [_msgWallAdapter getRowDataWithIndex: indexPath.row];
+    [rawCellObj setCommonRowData: rawCellData];
+    [rawCellObj setViewCtrlDelegate: self];
+    rawCellObj.selectionStyle = UITableViewCellSelectionStyleNone;
+    [rawCellObj layoutCellView];
+    
+    // 从右到左滑动动画
+    if ([rawCellData doAnimation])
+    {
+        if (0 != [rawCellData cellViewHeight])
+        {
+            rawCellObj.hidden = YES;
+            [_msgTableView performSelector:@selector(animationStart:) withObject: @[indexPath, [NSNumber numberWithLong: RightToLeftWaveAnimation]] afterDelay: 0.1f * indexPath.row];
+        }
+        [rawCellData setDoAnimation: NO];
+    }
+    return rawCellObj;
+}
+
+#pragma mark 资讯类公共跳转公共方法
+-(void) goToViewByObj:(News *)news
+{
+    WallNewsVCViewController *wallNewsVC = [[WallNewsVCViewController alloc]init];
+    [wallNewsVC loadNewsTitle:news.newsTitle andUrl:news.newsUrl OurUrl:NO];
+    RootNavigationPushController(wallNewsVC);
+}
+#pragma mark WallPromoteDelegate
+// 推广跳转代理
+- (void) goToView:(PromoteModel *)data
+{
+    WallNewsVCViewController *wallNewsVC = [[WallNewsVCViewController alloc] init];
+    [wallNewsVC loadNewsTitle:data.newsTitle andUrl:data.newsUrl OurUrl:NO];
+    RootNavigationPushController(wallNewsVC);
+}
+
+- (void)clickPromote:(PromoteModel *)data
+{
+    [self goToView:data];
+}
+
+#pragma mark  ThreeRowHotNewsDelegate
+// 点击单条
+-(void)click:(News *)news
+{
+    [self goToViewByObj:news];
+}
+// 点击更多
+-(void)click:(NSString *)url andTitle:(NSString *)title
+{
+    WallNewsVCViewController *wallNewsVC = [[WallNewsVCViewController alloc]init];
+    [wallNewsVC loadNewsTitle:title andUrl:url OurUrl:NO];
+    RootNavigationPushController(wallNewsVC);
+}
+
+#pragma mark  WallNewsCellDelegate
+ // 点击单条
+-(void)checkNowClick:(News *)news
+{
+    [self goToViewByObj:news];
+}
+ // 点击更多
+-(void)checkMoreClick:(NSString *)url andTitle:(NSString *)title
+{
+    WallNewsVCViewController *wallNewsVC = [[WallNewsVCViewController alloc]init];
+    [wallNewsVC loadNewsTitle:title andUrl:url OurUrl:NO];
+    RootNavigationPushController(wallNewsVC);
+}
+#pragma mark  WallEatAdviseDelegate
+
+- (void)clickElement:(News *)news
+{
+    [self goToViewByObj:news];
+}
+
+
+#pragma mark WallWalkCountCellDelegate
+-(void)showSelector
+{
+    [self addSubview: [self targetSelector]];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self targetSelector].alpha = 1.0f;
+    }];
+    
+}
+#pragma mark StepCountTargetSelectorViewDelegate
+-(void)didSelected:(NSInteger)selectedNumber
+{
+    [MobClick event:c_info_set_walktarget];
+    // 保存本地
+    [XMUserDefault setUserStepCountTarget:selectedNumber andUserId:[XMUserDefault currentUserId]];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [self targetSelector].alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        [[self targetSelector] removeFromSuperview];
+        [NSThread runInMain:^{
+            [_msgTableView reloadData];
+        }];
+    }];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat y = scrollView.contentOffset.y;
+   
+    [_msgTableHeaderView headViewAnimateWithOffectY:y];
+    [_msgTableHeaderView handleScrollView: scrollView.contentOffset];
+
+   CGFloat height = self.height - 180;
+    CGFloat distance = scrollView.contentSize.height - y - scrollView.height - height;
+    if (distance < 0) {
+        _layerBg.hidden = YES;
+    }else if(y <= height){
+         _layerBg.hidden = NO;
+    }
+}
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+        _layerHead.hidden = NO;
+        _msgTableView.backgroundColor = [UIColor clearColor];
+//        _layerBg.hidden = NO;
+}
+
+- (void)shareWith: (UIImage*)image andDesc: (NSString*)desc
+{
+//    [[YMShare single] shareWithViewCtrl: [[YMNavigationViewManager single] rootViewController] andImage: image andDesc: desc];
+    [[YMShare single] shareWithViewCtrl: [[LoginConst sharedInstance] YMTabVC] andImage: image andDesc: desc];
+}
+
+- (void)goToRegCardView
+{
+    TabBarCommunityView* view = [[TabBarCommunityView alloc] initWithFrame: CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    [view setIsPushMode: YES];
+    [[YMNavigationViewManager single] push: view];
+//    YMSCView *view = [[YMNavigationViewManager single] scMyView];
+//    if (view) {
+//        [[YMNavigationViewManager single]push:view.scView];
+//    }
+}
+
+- (void)redirect: (NSString*)title andURL: (NSString*)url
+{
+    WallNewsVCViewController* wallNewsVC = [[WallNewsVCViewController alloc]init];
+    [wallNewsVC loadNewsTitle: title andUrl: url OurUrl:NO];
+    RootNavigationPushController(wallNewsVC);
+}
+
+- (void)onYMEventHappen: (NSString*)key withObject: (id)obj
+{
+    if ([key compare: YM_NOTIFY_EVENT_CHART_DATA_CHANGED] == NSOrderedSame)
+    {
+        // 处理简报删除的操作
+//        [_msgTableView reloadData];
+        [_msgTableHeaderView reloadHeadData];
+        [_msgWallAdapter requestNetworkData];
+    }
+}
+
+#pragma mark - WallChartCellDelegate
+-(void)clickDetailReport{
+    BrokenLineRoportViewController *vc = [[BrokenLineRoportViewController alloc] init];
+    RootNavigationPushController(vc);
+}
+#pragma mark - geter
+-(StepCountTargetSelectorView *)targetSelector
+{
+    if (!_targetSelector) {
+        
+        _targetSelector = [[StepCountTargetSelectorView alloc] init];
+        _targetSelector.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT);
+        _targetSelector.center = self.center;
+        _targetSelector.alpha = 0;
+        _targetSelector.delegate = self;
+        
+    }
+    return _targetSelector;
+}
+
+#pragma mark YMMsgWallDataAdapterDelegate
+- (void)onNetworkRequestDone
+{
+//    [_msgTableView reloadDataAnimateWithWave: RightToLeftWaveAnimation];
+//    if ([self animateDelegate] != nil)
+//    {
+//        [[self animateDelegate] onNetworkRequestDone];
+//    }
+//    if ([self animationReload]) {//animationReload只在动画结束改为yes 如果为yes说明动画结束刷新前数据源为空 需重新刷新数据源
+        [_msgTableView reloadData];
+//    }
+    [self performSelector:@selector(startLayer) withObject:nil afterDelay:0.8f];
+
+}
+
+- (void) viewWillAppear
+{
+    // 清除图片缓存
+    [self cleanImageCache];
+    [MobClick event:c_info_pv];
+    [MobClick beginLogPageView:@"信息壁"];
+}
+
+- (void) viewWillDisappear
+{
+    [MobClick endLogPageView:@"信息壁"];
+    
+}
+
+- (void)setOnChangeViewMode: (void(^)(id))cb
+{
+    
+}
+
+- (void)resize: (CGSize)rect
+{
+    
+}
+
+- (void)viewDidAppear
+{
+    if ([_msgWallAdapter getCount] == 0)
+    {
+        [_msgWallAdapter requestNetworkData];
+    }
+}
+
+- (void)viewDidDisappear
+{
+    
+}
+
+- (UIStatusBarStyle)barstyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+- (YMNavigationStyle)navigationStyle
+{
+//    return YMNavigationStyleDownToTop;
+    return YMNavigationStyleDownToTopMin;
+}
+
+#pragma mark - Healper
+/**
+ *  @author George, 15-11-12 17:11:41
+ *
+ *  @brief  如果图片缓存大于50M就执行清除操作
+ */
+-(void) cleanImageCache
+{
+    SDImageCache *imgCache = [SDImageCache sharedImageCache];
+    float tmpSize = [imgCache checkTmpSize];
+    if (tmpSize > 50) {
+        [[SDImageCache sharedImageCache] clearDisk];
+        NSLog(@"SDImageCache 清理缓存 %@",[NSString stringWithFormat:@"(%.2fM)",tmpSize]);
+    }
+}
+#pragma mark ---关闭信息壁
+- (void)onCloseBtn: (id)sender
+{
+//    [[self animateDelegate] onNetworkRequestDone];
+     //点击了信息壁消失按钮,准备显示身体报告引导图
+    if ([self.closeDelegate respondsToSelector:@selector(closeMessageWall)])
+    {
+        [self.closeDelegate closeMessageWall];
+    }
+    
+    if (self.dissmissVcblock) {
+        self.dissmissVcblock();
+    }
+
+    [UIView animateWithDuration: 0.4f animations:^{
+        self.top = ScreenHeight;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+    
+    [XMUserDefault setAnimationState: NO];//动画运行时不再开启动画
+}
+- (void) removeFromSuperview
+{
+    [[YMEventCenter single] unbindEvent:YM_NOTIFY_EVENT_CHART_DATA_CHANGED delegate:self];
+    [super removeFromSuperview];
+}
+
+- (void)dealloc
+{
+    NSLog(@"sdsf");
+}
+
+//信息壁动画
+- (void)msgWallDismiss
+{
+    [MobClick endLogPageView:@"信息壁"];
+    // 点击了信息壁消失按钮,准备显示身体报告引导图
+    if ([self.closeDelegate respondsToSelector:@selector(closeMessageWall)])
+    {
+        [self.closeDelegate closeMessageWall];
+    }
+    
+    if (self.dissmissVcblock) {
+        self.dissmissVcblock();
+    }
+    [XMUserDefault setAnimationState: NO];//动画运行时不再开启动画
+    [XMUserDefault setWeightDetailsBtnTag];
+    
+    [self removeFromSuperview];
+}
+
+@end

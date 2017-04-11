@@ -1,0 +1,198 @@
+//
+//  MsgWallDef.h
+//  scale
+//
+//  Created by KiraSu on 15/8/12.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#ifndef scale_MsgWallDef_h
+#define scale_MsgWallDef_h
+
+//#define MSG_WALL_API_VERSION_CODE_INTERNATIONAL                    (@"2")
+
+#define DEFAULT_WallChartCell_ID            @"WallChartCell"
+#define CELL_WEIGHT_DATA_CLASS_ID           @"WeightDataInfoCellView"
+#define CELL_HEALTHY_REPORT_CLASS_ID        @"HealthyReportCellView"
+#define CELL_WALL_WALK_COUNT_CLASS_ID       @"WallWalkCountCell"
+#define DEFAULT_CELL_CLASS_ID               @"YMMsgWallCellView"
+#define CELL_News_CLASS_ID                  @"WallNewsCell"
+#define CELL_REG_CARD_ID                    @"RegCardCellView"
+#define CELL_ATTENTIONORFAN_CLASS_ID        @"YMAttentionOrFanCell"
+#define CELL_YMNOTMY_CLASS_ID               @"YMNotMyCell"
+// ywt
+#define CELL_VIDEO_CLASS_ID                 @"VideoTutorialCell" // 视频
+#define CELL_PROMOTE_CLASS_ID               @"PromoteCell" // 推广
+#define CELL_RECOMMEND_CLASS_ID             @"RecommendedDaliyCell" // 每日推荐
+#define CELL_EAT_ADVISE_CLASS_ID            @"EatAdviseCell" // 每日推荐
+#define CELL_HOT_NEWS_SUB_CLASS_ID              @"NewsHotConsultCell" // 热点资讯
+#define CELL_THREE_ROW_NEWS_CLASS_ID        @"ThreeRowHotNewsCell"
+
+// end
+#define CELL_CommunityCard_ID               @"CommunityCardView"
+
+
+//（1000 称重结果；1001 健康报告；1002 8项数据；1003 健康资讯；1004 周体重变化 ；1005 计步卡片；1006 热门资讯）
+#define MSG_WALL_CELL_WEIGHT_RESULT_JSON_TYPE       (1000)
+#define MSG_WALL_CELL_HEALTHY_REPORT_JSON_TYPE      (1001)
+#define MSG_WALL_CELL_WEIGHT_DATA_JSON_TYPE         (1002)
+#define MSG_WALL_CELL_HEALTHY_NEWS_JSON_TYPE        (1003)
+#define MSG_WALL_CELL_WEIGHT_CHANGE_JSON_TYPE       (1004)
+#define MSG_WALL_CELL_WALK_COUNT_JSON_TYPE          (1005)
+//#define MSG_WALL_CELL_HOT_NEWS_JSON_TYPE            (1006)
+#define MSG_WALL_CELL_AD_JSON_TYPE                  (1006)
+#define MSG_WALL_CELL_VIDEO_JSON_TYPE               (1007)
+#define MSG_WALL_CELL_PROMOTE_JSON_TYPE             (1008)
+#define MSG_WALL_CELL_RECOMMEND_JSON_TYPE           (1009)//健身打卡
+
+#define HEALTH_REPORT_WIDTH_BILI     (0.54f)
+#define COMMON_SHADOW_ALIGNT         (6.0f)
+
+#define HOME_HEAD_HEALTHBTN_TOP_VIEWCENTER          ([XMTools getAutoNumberWithIphone6Number:15])
+#define HOME_HEAD_CENTERVIEW_TOP_VIEWLEFT           ([XMTools getAutoNumberWithIphone6Number:52])
+#define HOME_HEAD_BMI_TOP_WEIGHT                    ([XMTools getAutoNumberWithIphone6Number:8])
+#define COMMON_SHADOW_ALIGN_HEAD_IMG                ([XMTools getAutoNumberWithIphone6Number:6])
+#define COMMON_SHADOW_ALIGN                         ([XMTools getAutoNumberWithIphone6Number:10])
+#define COMMON_BOTH_ALIGN                           ([XMTools getAutoNumberWithIphone6Number:15])
+#define COMMON_IMAGE_TXT_ALIGN                      ([XMTools getAutoNumberWithIphone6Number:6])
+#define SC_REG_MAIN_SHADOW_ALIGN                    ([XMTools getAutoNumberWithIphone6Number:14])
+#define HOME_HEAD_HEALTHY_REPORT_BTN_BOTTOM_ALIGN   ([XMTools getAutoNumberWithIphone6Number:31])
+#define HOME_HEAD_USER_CENTER_LEFT_AGLIN            ([XMTools getAutoNumberWithIphone6Number:6.5])
+#define HOME_HEAD_USER_CENTER_ICON_WIDTH            32.f
+#define HOME_HEAD_WEIGHT_SCORE_INTERVAL_ALIGN   ([XMTools getAutoNumberWithIphone6Number:8])
+#define HOME_HEAD_WEIGHT_SCORE_ALIGN   ([XMTools getAutoNumberWithIphone6Number:100])
+#define COMMON_2PX_AGLIN                            ([XMTools getAutoNumberWithIphone6Number:2])
+#define ATTENTION_FAN_PAG_NUMS                      20  // 关注列表或者粉丝列表每页条数
+#define HOME_HEAD_WEIGHT_UNIT_WIDTH                 28.f  // 主页面单位label的宽度
+// 资讯类别
+
+#define CELL_SHOW_TYPE_HOT_NEWS_SUB                         (1) // 热点资讯
+#define CELL_SHOW_TYPE_HEALTH_NEWS                          (2) // 健康咨询 懒人减肥
+#define CELL_SHOW_TYPE_RECOMMEND                            (3) // 每日推荐
+#define CELL_SHOW_TYPE_EAT                                  (4) // 饮食建议
+#define CELL_SHOW_TYPE_HOT_NEWS                             (5) // 热点资讯 做运动更健康
+#define CELL_SHOW_TYPE_DEFAULT                              (0) // 默认
+
+
+
+#define ACTION_MSG_WALL_CELL_GO_TO_WEB_VIEW                 (1)
+#define ACTION_MSG_WALL_CELL_GO_TO_REG_CARD_VIEW            (2)
+
+// 简报数据变化时通知信息流重绘界面
+#define YM_NOTIFY_EVENT_CHART_DATA_CHANGED          @"YM_NOTIFY_EVENT_CHART_DATA_CHANGED"
+// 详情回到关注页
+#define YM_NOTIFY_EVENT_GO_TO_FOLLOW_VIEW       @"YM_NOTIFY_EVENT_GO_TO_FOLLOW_VIEW"
+// 点赞通知
+#define YM_NOTIFY_EVENT_LIKE_REG_INFO               @"YM_NOTIFY_EVENT_LIKE_REG_INFO"
+// 关注页面的点赞操作
+#define YM_NOTIFY_EVENT_FOLLOW_LIKE                 @"YM_NOTIFY_EVENT_FOLLOW_LIKE"
+// 举报
+#define YM_NOTIFY_EVENT_JUSTICE_CARD                @"YM_NOTIFY_EVENT_JUSTICE_CARD"
+// 关注页面的举报操作
+#define YM_NOTIFY_EVENT_FOLLOW_JUSTICE              @"YM_NOTIFY_EVENT_FOLLOW_JUSTICE"
+// 详情页删除卡片的操作
+#define YM_NOTIGY_EVENT_DELETE_REG_CARD             @"YM_NOTIGY_EVENT_DELETE_REG_CARD"
+// 拍照图片上传成功通知
+#define YM_NOTIFY_EVENT_TAKE_PHOTO_SUCCESS          @"YM_NOTIGY_EVENT_TAKE_PHOTO_SUCCESS"
+// 列表上传成功
+#define YM_NOTIGY_EVENT_TAKE_PHOTO_SUCCESS_FOR_PAGE_LIST          @"YM_NOTIGY_EVENT_TAKE_PHOTO_SUCCESS_FOR_PAGE_LIST"
+// 详情页面 点赞通知
+#define YM_CLICK_LIKE_CALL_BACK                     @"YM_CLICK_LIKE_CALL_BACK"
+// 详情页面 评论通知
+#define YM_CLICK_COMMENT_SEND_CALL_BACK             @"YM_CLICK_COMMENT_SEND_CALL_BACK"
+// 详情页面 关注通知
+//#define YM_DETAIL_CLICK_FOLLOW_CALL_BACK            @"YM_DETAIL_CLICK_FOLLOW_CALL_BACK"
+// 他人主页 关注通知
+#define YM_OTHER_CLICK_FOLLOW_CALL_BACK             @"YM_OTHER_CLICK_FOLLOW_CALL_BACK"
+
+#define YM_NOTIFY_CLICK_MASTER_FLLOW_BTN            @"YM_NOTIFY_CLICK_MASTER_FLLOW_BTN" //打卡达人关注按钮监听
+
+//个人介绍编辑成功通知
+#define YM_NOTIFY_EVENT_Edit_User_Descible_Success      @"YM_NOTIFY_EVENT_Edit_User_Descible_Success"
+//个人介绍编辑资料通知
+#define YM_NOTIFY_EVENT_Edit_User_BaseUserInfo_Success      @"YM_NOTIFY_EVENT_Edit_User_BaseUserInfo_Success"
+//个人头像编辑成功通知
+#define YM_NOTIFY_EVENT_Edit_User_Head_Success      @"YM_NOTIFY_EVENT_Edit_User_Head_Success"
+//个人姓名编辑成功通知
+#define YM_NOTIFY_EVENT_Edit_User_Name_Success      @"YM_NOTIFY_EVENT_Edit_User_Name_Success"
+// 关注页面的分享操作
+#define YM_NOTIFY_EVENT_FOLLOW_SHARE                @"YM_NOTIFY_EVENT_FOLLOW_SHARE"
+// 活动删除打卡通知
+#define YM_NOTIGY_EVENT_DELETE_REG_CARD_TO_UPDATE_ACTIVITY_VIEW @"YM_NOTIGY_EVENT_DELETE_REG_CARD_TO_UPDATE_ACTIVITY_VIEW"
+
+// 跳转第3个Tab页面。
+#define YM_NOTIFY_EVENT_GO_TO_USER_SETTING_VIEW       @"YM_NOTIFY_EVENT_GO_TO_USER_SETTING_VIEW"
+
+#define YM_LOGIN_DONE_EVENT                                 @"YM_LOGIN_DONE_EVENT"
+
+#define YM_NOTIFY_EVENT_FOLLOW_BTN_TOUCH                    @"YM_NOTIFY_EVENT_FOLLOW_BTN_TOUCH"
+
+#define YM_MSG_WALL_HEAD_VIEW_HEIGHT                (UI_IS_IPHONE6P ? 200.f : 180.f)//180.f
+
+#define COMMON_TOP_BAR_HEIGHT                       (64.f)
+#define YM_MSG_WALL_HEAD_WEIGHT_MAX_SIZE            (1.3f)
+#define YM_MSG_WALL_HEAD_WEIGHT_MSG_SIZE            (0.786f)
+#define YM_MSG_WALL_HEAD_WEIGHT_HOMEHEAD_SIZE       (1.f)
+#define YM_MSG_WALL_HEAD_BMI_TOP                    (5.0f)
+#define YM_MSG_WALL_HEAD_SCORE_TOP                  (8.0f)
+typedef NS_OPTIONS(NSUInteger, MsgWallInfoCellType)
+{
+    MsgWallWeightResultInfoCellType = 0,    // 称重结果
+    MsgWallHealthyReportInfoCellType,       // 健康报告
+    MsgWallWeightDataInfoCellType,          // 8项数据
+    MsgWallHealthyNewsInfoCellType,         // 健康新闻资讯
+    MsgWallWeightChangeInfoCellType,        // 体重变化（简报）
+    MsgWallWalkCountInfoCellType,           // 计步
+    MsgWallRegCardCellType,                 // 打卡
+    MsgWallVideoCellType,                   // 视频
+    MsgWallPromoteCellType,                 // 推广
+    MsgWallCommunityCardCellType,           // 健身打卡
+    MsgWallRecommendCellType,               // 每日推荐
+
+    MsgWallUnknowCellType,
+};
+
+typedef NS_OPTIONS(NSUInteger, YMTopbarStyle)
+{
+    YMTopNormalBarStyle = 0,                // 正常的topbar; 由返回按钮、标题、以及右边自定义按钮组成
+    YMTopSocialCommBarStyle,                // 适用于SocialCommunity的topbar
+};
+
+@protocol YMMsgWallViewControllerDelegate <NSObject>
+
+@optional
+- (void)shareWith: (UIImage*)image andDesc: (NSString*)desc;
+- (void)goToRegCardView;
+- (void)redirect: (NSString*)title andURL: (NSString*)url;
+
+@end
+
+
+@protocol YMMsgWallDataAdapterDelegate <NSObject>
+
+@optional
+/*
+ * @brief 数据层网络请求完成后通知界面更新
+ */
+- (void)onNetworkRequestDone;
+
+@end
+
+#import "News.h"
+
+@protocol WallEatAdviseDelegate <NSObject>
+
+@optional
+- (void)clickElement:(News *)news;
+@end
+
+#import "PromoteModel.h"
+
+@protocol WallPromoteDelegate <NSObject>
+@optional
+- (void)clickPromote:(PromoteModel *)data;
+
+@end
+
+
+#endif

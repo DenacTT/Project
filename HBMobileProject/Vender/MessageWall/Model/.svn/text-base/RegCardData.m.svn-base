@@ -1,0 +1,38 @@
+//
+//  RegCardData.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/14.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "RegCardData.h"
+#import "AFManagerParmer.h"
+#import "NSDate+DateTools.h"
+#import "NSDate+Week.h"
+#import "SigninRecord.h"
+#import "YMMsgWallURLCache.h"
+
+@implementation RegCardData
+{
+    CGFloat _viewHeight;
+}
+
+- (void)initLoadData
+{
+    _viewHeight = 0.f;
+    
+    NSString *userId = [XMUserDefault getParentUserIdWithUserId:[XMUserDefault currentUserId]];
+    NSDate* regDate = [[YMMsgWallURLCache single] getUserLastRegInfoDate: userId];
+    if (![regDate isToday])
+    {
+        _viewHeight = 67.f;
+    }
+}
+
+- (CGFloat)cellViewHeight
+{
+    return _viewHeight;
+}
+
+@end

@@ -1,0 +1,285 @@
+//
+//  ComCursorModel.m
+//  scale
+//
+//  Created by solf on 16/5/11.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import "ComCursorModel.h"
+#import "Standard.h"
+#import "UserInfo.h"
+#import "LoginConst.h"
+
+#define kComEndDataSql  "sql"
+#define kComEndDataParam  "param"
+
+@implementation ComCursorModel
+
+
+- (void)comModelChangeCursorModel:(ComponentModel *)comModel
+{
+    self.comType = comModel.compositionType;
+    self.comValue = comModel.comValue;
+    self.comCount = comModel.comCount;
+    self.comIndex = comModel.comIndex;
+    self.comMinValue = comModel.comMinData;
+    
+    if (comModel.compositionType == ComponentTypeOfBMI)
+    {
+        self.comMaxValue = ([comModel.comMaxData floatValue] >60.f) ? [NSNumber numberWithDouble:60.f] : comModel.comMaxData;
+    }else
+    {
+        self.comMaxValue = comModel.comMaxData;
+    }
+    
+    self.comTitle = comModel.comTitle;
+    self.comWeight = comModel.comWeight;
+    self.comUnit = comModel.comUnit;
+    
+    if ([self.comMaxValue floatValue] < [comModel.comValue floatValue])
+    {
+        self.comMaxValue = self.comValue;
+    }
+}
+
+- (void)initDatas
+{
+    NSDictionary *comDic = [self getSqlWithType:self.comType];
+    NSString * sql = [comDic objectForKey:@kComEndDataSql];
+    NSArray *paramArr = [comDic objectForKey:@kComEndDataParam];
+    
+    
+    Standard *stanard = [Standard shareInstance];
+    if (sql && paramArr)
+    {
+        //查询
+        NSArray *endData = [stanard selectComRangeWithSql:sql andParams:paramArr];
+        if (endData && [endData count]>0)
+        {
+            NSMutableArray *strArr = [[NSMutableArray alloc] initWithCapacity:5];
+            NSMutableArray *rangArr = [[NSMutableArray alloc] initWithCapacity:5];
+            
+            for (NSDictionary *dic in endData)
+            {
+                NSString *str = [NSString stringWithFormat:@"%@",[dic objectForKey:@"Name"]];
+                NSString *rangeValue = [NSString stringWithFormat:@"%@",[dic objectForKey:@"EndData"]];
+                
+                [strArr addObject:str];
+                [rangArr addObject:rangeValue];
+            }
+            
+            self.comStateValueArr = [NSArray arrayWithArray:rangArr];
+            //self.comStateStrArr = [NSArray arrayWithArray:strArr];
+            
+        }
+    }
+    
+    switch (self.comType) {
+        case ComponentTypeOfBMI:
+        {
+            self.comStateStrArr =  [NSArray arrayWithObjects:
+                                    STR(@"lb_str_bmiLean"), //偏瘦
+                                    STR(@"lb_str_bmiNormal"),//正常
+                                    STR(@"lb_str_bmiChubby"),//偏胖
+                                    STR(@"lb_str_bmiObesity"),//肥胖
+                                    STR(@"lb_str_bmiVarFat"),//极胖
+                                    nil];
+            self.comCount = [self.comStateValueArr count];
+        }
+            break;
+        case ComponentTypeOfFat:
+        {
+            self.comStateStrArr =  [NSArray arrayWithObjects:
+                                    STR(@"lb_str_fatLow"),//偏低
+                                    STR(@"lb_str_fatNormal"),//正常
+                                    STR(@"lb_str_fatChubby"),//偏胖
+                                    STR(@"lb_str_fatObesity"),//肥胖
+                                    nil];
+            self.comCount = [self.comStateValueArr count];
+        }
+        break;
+        case ComponentTypeOfWater:
+        {
+            self.comStateStrArr =  [NSArray arrayWithObjects:
+                                    STR(@"lb_str_muscleOrMoistureLow"),//偏低
+                                    STR(@"lb_str_muscleOrMoistureNormal"),//标准
+                                    STR(@"lb_str_muscleOrMoistureHigh"),//偏高
+                                    nil];
+            self.comCount = [self.comStateValueArr count];
+        }
+            break;
+        case ComponentTypeOfMuscle:
+        {
+            self.comStateStrArr =  [NSArray arrayWithObjects:
+                                    STR(@"lb_str_muscleOrMoistureLow"),//偏低
+                                    STR(@"lb_str_muscleOrMoistureNormal"),//标准
+                                    nil];
+            self.comCount = [self.comStateValueArr count];
+        }
+            break;
+        case ComponentTypeOfProtein:
+        {
+            self.comStateStrArr =  [NSArray arrayWithObjects:
+                                    STR(@"lb_str_muscleOrMoistureLow"),//偏低
+                                    STR(@"lb_str_muscleOrMoistureNormal"),//标准
+                                    STR(@"lb_str_muscleOrMoistureHigh"),//偏高
+                                    nil];
+            self.comCount = [self.comStateValueArr count];
+        }
+            break;
+
+        case ComponentTypeOfVisFat:
+        {
+            self.comStateStrArr =  [NSArray arrayWithObjects:
+                                    STR(@"lb_str_fatNormal"),//正常
+                                    STR(@"lb_str_muscleOrMoistureHigh"),//偏高
+                                    STR(@"lb_str_moreHightStand"),//超高
+                                    nil];
+            self.comCount = [self.comStateValueArr count];
+        }
+            break;
+        case ComponentTypeOfWeight:
+        {
+            self.comCount = 1;
+        }
+            break;
+        case ComponentTypeOfBodyAge:
+        {
+            
+            self.comCount = 1;
+        }
+            break;
+        case ComponentTypeOfUnKnow:
+        {
+            self.comCount = 1;
+        }
+            break;
+        case ComponentTypeOfBone:
+        {
+            self.comCount = 1;
+        }
+            break;
+        case ComponentTypeOfBMR:
+        {
+            self.comCount = 1;
+        }
+            break;
+            
+        default:self.comCount = 1;
+            break;
+    }
+}
+
+- (NSDictionary *)getSqlWithType:(ComponentType)comType
+{
+    UserInfo *userInfo = [[LoginConst sharedInstance] getLoginUserInfo];
+    NSString *sql;
+    NSArray *param;
+    
+    switch (comType) {
+        case ComponentTypeOfBMI:
+        {
+            sql = @"select EndData,Name from Standard where Type=?";
+            //总范围
+            param = @[@"1"];
+        }
+            break;
+        case ComponentTypeOfFat:
+        {
+            sql = @"select EndData,Name from Standard where Type=? and Sex=? and StartAge<=? and EndAge>=?";
+            
+            if ([userInfo.age integerValue] < 18)
+            {
+                param =  @[@(comType).description,userInfo.sex,@(18),@(18)];
+            }else
+            {
+                param =  @[@(comType).description,userInfo.sex,userInfo.age,userInfo.age];
+            }
+
+        }
+            break;
+        case ComponentTypeOfBone:
+        {
+            
+        }
+            break;
+        case ComponentTypeOfBMR:
+        {
+            
+        }
+            break;
+        case ComponentTypeOfWater:
+        {
+            sql = @"select EndData,Name from Standard where Type=? and Sex=?";
+            //总范围
+            param = @[@"3",userInfo.sex];
+        }
+            break;
+        case ComponentTypeOfMuscle:
+        {
+            sql = @"select EndData,Name from Standard where Type=? and Sex=?";
+            //总范围
+            param = @[@"4",userInfo.sex];
+        }
+            break;
+        case ComponentTypeOfProtein:
+        {
+            sql = @"select EndData,Name from Standard where Type=? and Sex=?";
+            //总范围
+            param = @[@"8",userInfo.sex];
+        }
+            break;
+        case ComponentTypeOfVisFat:
+        {
+            sql = @"select EndData,Name from Standard where Type=?";
+            //总范围
+            param = @[@"7"];
+        }
+            break;
+        case ComponentTypeOfWeight:
+        {
+            
+        }
+            break;
+        case ComponentTypeOfBodyAge:
+        {
+            
+        }
+            break;
+            case ComponentTypeOfUnKnow:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    if (sql && param)
+    {
+      return [NSDictionary dictionaryWithObjectsAndKeys:sql,@kComEndDataSql,param,@kComEndDataParam, nil];
+    }else
+    {
+        return nil;
+    }
+}
+
+- (CGFloat)locationWithWidth:(CGFloat)width
+{
+    if (width <=0)
+    {
+        return 0.f;
+    }
+    
+    if ([self.comMaxValue floatValue] == [self.comMinValue floatValue])
+    {
+        return 0.f;
+    }
+    
+ return  width * ([self.comValue floatValue] - [self.comMinValue floatValue]) / ([self.comMaxValue floatValue] - [self.comMinValue floatValue]);
+    
+}
+
+@end

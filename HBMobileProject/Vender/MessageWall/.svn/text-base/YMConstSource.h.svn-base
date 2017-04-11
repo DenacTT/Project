@@ -1,0 +1,17 @@
+//
+//  YMConstSource.h
+//  scale
+//
+//  Created by solf on 15/8/20.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface YMConstSource : NSObject
+
+@property (nonatomic) BOOL scalIsMini;
+
++ (YMConstSource *)sharedInstance;
+
+@end

@@ -1,0 +1,39 @@
+//
+//  MsgWallHotNewsRowData.m
+//  scale
+//
+//  Created by KiraSu on 15/8/26.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "MsgWallHotNewsRowData.h"
+#import "News.h"
+
+@implementation MsgWallHotNewsRowData
+
+- (CGFloat)cellViewHeight
+{
+//    if ([[self getData] count] >= 3)
+//    {
+//        return  420;
+//    }
+//    else if ([[self getData] count] == 2)
+//    {
+//        return  305;
+//    }
+//    else
+//    {
+//        return 210;
+//    }
+//    
+//    return 420;
+    
+    return 0;
+}
+
+- (void)initLoadData
+{
+    
+}
+
+@end

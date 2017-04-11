@@ -1,0 +1,31 @@
+//
+//  WallNewsCell.h
+//  scale
+//
+//  Created by 叶威廷 on 15/8/20.
+//  Copyright (c) 2015年 叶威廷. All rights reserved.
+//
+
+#import "YMMsgWallCellView.h"
+#import "News.h"
+
+
+
+
+
+
+@protocol WallNewsCellDelegate <NSObject>
+
+@optional
+- (void)checkNowClick:(News *)news;
+- (void)checkMoreClick:(NSString*) url andTitle:(NSString*)title;
+
+@end
+
+@interface WallNewsCell : YMMsgWallCellView
+
+@property(weak, nonatomic) id <WallNewsCellDelegate> delegate;
+
+@end
+
+

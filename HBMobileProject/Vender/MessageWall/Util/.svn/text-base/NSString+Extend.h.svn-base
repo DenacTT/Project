@@ -1,0 +1,91 @@
+//
+//  NSString+YM.h
+//  YunmaiLink
+//
+//  Created by KiraSu on 15/7/30.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+#import <Foundation/Foundation.h>
+
+//#define HEALTHY_REPORT_TITLE                    @"健康报告"
+#define HEALTHY_REPORT_LAST_WEIGHT_COMPARE      @"<font size=%f>%@，%@<font color=#ff0000> %.1f </font>%@</font>"
+//#define HEALTHY_REPORT_LIGHT_WORDS              @"减轻"
+//#define HEALTHY_REPORT_HEAVY_WORDS              @"增重"
+//#define HEALTHY_REPORT_NO_CHANGE_WORDS          @"<font size=%f>%@，无体重变化</font>"
+//#define HEALTHY_REPORT_CATTY                    @"斤"
+//#define HEALTHY_REPORT_KG                       @"公斤"
+//#define HEALTHY_REPORT_PANG                     @"磅"
+//#define HEALTHY_REPORT_BMI_DESC                 @"本次分数超过全国%.0f%%的%@，%@"
+//#define HEALTHY_REPORT_MALE                     @"男性"
+//#define HEALTHY_REPORT_FEMALE                   @"女性"
+//#define HEALTHY_REPORT_HUMAN                    @"人"
+//#define HEALTHY_REPORT_SHOW_PRIDE_TXT           @"炫耀一下"
+//#define YM_MSG_WALL_TITLE_TEXT                  @"身体报告"
+
+//#define SOCIAL_COMMUNITY_HOT_GROUP_TITLE        @"热门"
+//#define SOCIAL_COMMUNITY_FOLLOW_TITLE           @"关注"
+//#define SOCIAL_COMMUNITY_VIDEO_TITLE            @"视频"
+//#define SOCAIL_COMMUNITY_REG_MASTER_MORE        @"显示更多"
+//#define SOCAIL_COMMUNITY_REG_NEW_MORE           @"显示全部"
+//#define SC_REG_DETAIL_COMM_LABEL_TITLE          @"回复"
+//#define SC_REG_DETAIL_COMM_TITILE_DESC          @"%d条评论"
+//#define SC_REG_DETAIL_COMM_NICK_NAME_FORMAT     @"%@ 回复 %@"
+//#define SC_REG_DETAIL_COMM_SEND_TXT             @"发送"
+//#define SC_REG_DETAIL_COMM_SEND_DEFAULT_TXT     @"说点什么练练嘴吧~"  
+//#define SC_REG_DETAIL_COMM_JUSTICE_TXT          @"举报"
+//#define SC_REG_DETAIL_DELETE_CARD_TXT           @"删除"
+//#define SC_REG_DETAIL_COMM_CANCEL_TXT           @"取消"
+//#define SC_REG_DETAIL_COMM_SHARE_TXT            @"分享"
+
+
+//#define SC_REG_DETAIL_SOON_TXT                  @"刚刚"
+//#define SC_REG_DETAIL_MINITES_BEFORE_TXT        @"%d分钟前"
+//#define SC_REG_DETAIL_HOURS_BEFORE_TXT          @"%d小时前"
+#define SC_REG_DETAIL_DAYS_BEFORE_TXT             @"M月d日"
+#define SC_REG_DETAIL_DAYS_BEFORE_TXT_NOCHINAESE  @"M-d"
+#define SC_TIMESTAMP_DESC                       @"yyyy-MM-dd"
+#define SC_TIME_YYMMDDHHMMSS                    @"yyyy-MM-dd HH:mm:ss"
+//#define SC_REG_DETAIL_TIP_TITLE                 @"提示"
+//#define SC_REG_DETAIL_JUSTICE_TXT               @"举报成功"
+//#define SC_REG_DELETE_CARD_OK_TXT               @"删除成功"
+//#define SC_REG_DETAIL_SURE_TXT                  @"确定"
+
+//#define SC_REG_DETAIL_CARD_NOT_EXIST_TXT        @"该打卡不存在"
+//#define SC_REG_DETAIL_CARD_DELETED_TXT          @"该打卡已被删除"
+//#define SC_REG_DETAIL_CARD_REPORTED_TXT         @"该打卡被举报下架"
+//#define SC_REG_DETAIL_CARD_NETWORK_FAIL_TXT     @"网络傲娇了～(╯°Д°)╯︵ ┻━┻"
+//#define SC_REG_FOLLOW_NETWORK_FAIL_TXT          @"网络不给力(╯°Д°)╯︵ ┻━┻"
+
+//<font size=14 color=#666666></font>
+
+@interface NSString(Extend)
+
+- (CGSize)YMSizeWithFont: (UIFont*)font;
+- (CGSize)YMSizeWithFont: (UIFont *)font constrainedToSize: (CGSize)size;
+- (CGSize)YMSizeWithFont: (UIFont *)font andParagraphStyle: (NSParagraphStyle*)style constrainedToSize: (CGSize)size;
+- (CGFloat)countTextHeightWithFont:(UIFont *)font width:(CGFloat)width;
+
+
+//2.0统一修改weightlabel和unitlabel的frame
+- (void)YMResetWeightLabel:(UILabel *)weightlabel andUnitlabel:(UILabel *)unitlabel andSuperview:(UIView *)view;
++ (NSMutableAttributedString *)getBMILabelTextByBMI:(CGFloat)bmi andBodyStand:(NSString *)body;
++ (NSMutableAttributedString *)getBMIForAnimationBMI:(CGFloat)bmi andBodyStand:(NSString *)body;
+- (BOOL)checkPhoneNumInput;
+/**
+ *  邮箱验证
+ *  邮箱地址的正则表达式
+ */
++ (BOOL)isValidateEmail:(NSString *)email;
++ (NSString *)basicInfoBirthdayFormat:(NSString *)birthday;
++ (NSString *)exceptSpaceString:(NSString *)str;//过滤前后空格
+// 用于与前端JS通信时的转换
+- (id)toJSONObject;
++ (NSString*)stringWithJSONObject:(id)obj;
++ (NSString*)stringUrlWithJSONObject:(id)obj;
+-(NSDictionary*)stringToJson;
+
+//wifi
+-(YMDeviceType)stringToDeviceType;//字符串转设备类型
++ (NSMutableAttributedString *)getFatForAnimationFat:(CGFloat)fat andBodyStand:(NSString *)body;
+
+@end

@@ -1,0 +1,20 @@
+//
+//  ComSuComView.h
+//  scale
+//
+//  Created by solf on 16/5/11.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+/*
+ * 建议通用页面
+ */
+
+
+#import <UIKit/UIKit.h>
+
+@interface ComSuComView : UIView
+
+- (void)layoutViewsWithTitle:(NSString *)title titleColor:(UIColor *)titleColor img:(NSString *)imgStr andSuggest:(NSString *)suggest;
+
+@end

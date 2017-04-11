@@ -1,0 +1,18 @@
+//
+//  PromoteModel.h
+//  scale
+//
+//  Created by 叶威廷 on 15/10/29.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface PromoteModel : NSObject
+
+@property (nonatomic) NSString *newsBigImgUrl;
+@property (nonatomic) NSString *newsImgUrl;
+@property (nonatomic) NSString *newsUrl;
+@property (nonatomic) NSString *newsTitle;
+
+@end

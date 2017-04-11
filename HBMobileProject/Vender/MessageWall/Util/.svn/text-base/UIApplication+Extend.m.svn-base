@@ -1,0 +1,15 @@
+
+#import "UIApplication+Extend.h"
+
+@implementation UIApplication(Extend)
+
++ (NSString*)buildVersion
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
++ (void)setYMStatusBarStyle: (UIStatusBarStyle)style Animation:(BOOL)animate
+{
+    [[UIApplication sharedApplication] setStatusBarStyle: style animated: animate];
+}
+@end

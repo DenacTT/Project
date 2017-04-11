@@ -1,0 +1,16 @@
+//
+//  WallStepCountModel.m
+//  scale
+//
+//  Created by yzz on 15/8/17.
+//  Copyright (c) 2015年 yzz. All rights reserved.
+//
+
+#import "WallStepCountModel.h"
+
+@implementation WallStepCountModel
+
+
+
+
+@end

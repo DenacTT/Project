@@ -1,0 +1,46 @@
+//
+//  HealthyReportRowData.h
+//  scale
+//
+//  Created by KiraSu on 15/8/13.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "MsgWallCommonRowData.h"
+
+#define NORMAL_BMI_STAGE                (2)
+
+/*
+ * @brief 界面需要显示的数据
+ */
+@interface HealthyReportViewData : NSObject
+
+@property(nonatomic, assign) BOOL           isMale;
+@property(nonatomic, assign) float          bmiPercent;
+@property(nonatomic, assign) float          weightOffset;
+@property(nonatomic, assign) float          scorePercent;
+@property(nonatomic, assign) int            bmiStage;
+@property(nonatomic, assign) int            lastBmiStage;
+@property(nonatomic, assign) int            weightUnit;
+@property(nonatomic, strong) NSString*      strWeightDesc;
+@property(nonatomic, strong) NSString*      strScoreDesc;
+@property(nonatomic, assign)  Gender         gender;
+@property(nonatomic, strong) NSString*      goalWeight;
+@property(nonatomic, strong) NSString*      lastWeight;
+@property(nonatomic, strong) NSString*      beforeLastWeight;
+@property(nonatomic, strong) NSString*      lastWeightTime;
+
+@property (nonatomic) NSString *shareStrWeightDesc;
+
+@end
+
+/*
+ * @brief 健康报告
+ */
+@interface HealthyReportRowData : MsgWallCommonRowData
+
+- (HealthyReportViewData*)getViewData;
+
+
+
+@end

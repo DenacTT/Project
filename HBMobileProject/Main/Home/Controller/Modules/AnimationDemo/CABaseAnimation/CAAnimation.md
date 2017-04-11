@@ -83,6 +83,26 @@ kCAFillModeBoth        //这个是上面两个的合成.动画动画加入后开
 | transform.translation.y | 沿y轴方向平移
 | transform.translation.z | 沿z轴方向平移
 | transform.translation   | 默认沿x轴和y轴同时移动，设置值时应为NSSize或者CGSize
+|                         |
+| opacity                 | 透明度
+| margin                  | 
+| zPosition               | 
+| backgroundColor         | 背景颜色
+| cornerRadius            | 圆角
+| borderWidth             | 
+| bounds                  | 
+| contents                | 
+| contentsRect            | 
+| cornerRadius            | 
+| frame                   | 
+| hidden                  | 
+| mask                    | 
+| masksToBounds           | 
+| position                | 
+| shadowColor             | 
+| shadowOffset            | 
+| shadowOpacity           | 
+| shadowRadius            | 
 
 > ##### 1. CAPropertyAnimation
 
@@ -130,9 +150,17 @@ CAKeyFrameAnimation：关键帧动画 继承于CAPropertyAnimation 可以设置�
 | path     | 可以设置一个CGPathRef、CGMutablePathRef，让图层按照路径轨迹移动,也就是动画执行的点路径. path只对CALayer的anchorPoint和position起作用。如果设置了path，那么values将被忽略
 | keyTimes | 关键帧动画每帧动画开始执行时间点的数组,取值区间是[0,1]. \n 数组中相邻两个值必须遵循后一个值大于或等于前一个值，并且最后的值不能为大于1。设置的时候与 calculationMode 有关，具体请查看文档。未设置时默认每帧动画执行时间平均（公式：总时间/(总帧数-1)）。
 | timingFunctions | 动画执行效果数组
-| calculationMode | 关键帧时间计算方法，每帧动画之间如何过渡，类似与UIView的keyframeAnimation。有kCAAnimationLinear、kCAAnimationDiscrete、 kCAAnimationPaced、 kCAAnimationCubic、 kCAAnimationCubicPaced等选项,各项效果如下表
+| calculationMode | 关键帧时间计算模式，每帧动画之间如何过渡
 | rotationMode    | 设置路径旋转，当设置path有不同角度时，会自动旋转layer角度与path相切
+
+//caculationMode：动画计算模式
+kCAAnimationLinear: 线性模式，默认值
+kCAAnimationDiscrete: 离散模式
+kCAAnimationPaced:均匀处理，会忽略keyTimes
+kCAAnimationCubic:平滑执行，对于位置变动关键帧动画运行轨迹更平滑
+kCAAnimationCubicPaced:平滑均匀执行
 ```
+
 摇一摇动画:
 CAKeyframeAnimation *shakeAnimation = [CAKeyframeAnimation animation];
 //默认绕 z 轴转动

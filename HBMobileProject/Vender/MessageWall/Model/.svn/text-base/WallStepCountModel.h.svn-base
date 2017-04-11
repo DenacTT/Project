@@ -1,0 +1,20 @@
+//
+//  WallStepCountModel.h
+//  scale
+//
+//  Created by yzz on 15/8/17.
+//  Copyright (c) 2015年 yzz. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface WallStepCountModel : NSObject
+
+@property (nonatomic) NSInteger count;
+@property (nonatomic) float distance;
+@property (nonatomic) float kcal;
+@property (nonatomic) float percent4Target;
+@property (nonatomic) NSInteger stepTarget;
+
+
+@end

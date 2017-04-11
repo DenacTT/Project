@@ -1,0 +1,181 @@
+//
+//  NSFont+Extend.m
+//  scale
+//
+//  Created by KiraSu on 15/8/18.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "UIFont+Extend.h"
+#import "UIDevice+Extend.h"
+#import "NSString+Extend.h"
+
+#define FONT_NAME_DEFAULT       @"STHeitiSC-Light"
+#define FONTNAME_LIGHT          @"KannadaSangamMN"
+#define FONTSCALE 0.63
+
+@implementation UIFont(Extend)
+/*
+ size与PX字高对照表
+ 
+ font:5.4   height:8
+ font:6.1   height:9
+ font:6.8   height:10
+ font:7.4   height:11
+ font:8.1   height:12
+ font:8.8   height:13
+ font:9.4   height:14
+ font:10.1  height:15
+ font:10.8  height:16
+ font:11.5  height:17
+ font:12.1  height:18
+ font:12.8  height:19
+ font:13.5  height:20
+ font:14.1  height:21
+ font:14.8  height:22
+ font:15.5  height:23
+ font:16.1  height:24
+ font:16.8  height:25
+ font:17.5  height:26
+ font:18.2  height:27
+ font:18.8  height:28
+ font:19.5  height:29
+ font:20.2  height:30
+ font:20.8  height:31
+ font:21.5  height:32
+ font:22.2  height:33
+ font:22.9  height:34
+ font:23.5  height:35
+ font:26.9  height:40
+ font:27.5  height:41
+ font:28.2  height:42
+ */
+
++ (UIFont*)commonCellViewTitle
+{
+    float fontSize = 14;
+//    if ([UIDevice isIPhone6Plus]) {
+//        fontSize = 21;
+//    }
+    return [self fontWithSize:fontSize];
+}
+
++ (UIFont*)socailRegTitleFont
+{
+    return [self fontWithSize: 16.f];
+}
+
++ (UIFont*)commonCellViewBtn
+{
+    return [self fontWithSize: 16.f];
+}
+
++ (UIFont*)healthyReportWeigthCompare
+{
+    return [self fontWithSize:18.f];
+}
+
++ (UIFont *) wallTitle
+{
+    return [self fontWithSize:18.0f];
+}
+
++ (UIFont*)healthyReportDesc
+{
+    return [self fontWithSize:12.f];
+}
+
++ (UIFont *) wallScore
+{
+    return [self fontWithSize:65.0f];
+}
+
++ (UIFont *) headUnit
+{
+    return [self fontWithSize:16.0f];
+}
+
++ (UIFont *) headBmi
+{
+//    return [self fontWithSize:16.0f];
+    return [UIFont systemFontOfSize:16.0f];
+}
+
++ (UIFont *) headWeight
+{
+//    return [self fontWithSize:15.0f];
+    return [UIFont systemFontOfSize:18.0f];
+}
+
++ (UIFont*) socailRegDetailCommentNickName
+{
+    return [UIFont systemFontOfSize: 13.f];
+}
+
++ (UIFont*) socailRegDetailCommentDesc
+{
+    return [UIFont systemFontOfSize: 10.f];
+}
+
++ (UIFont*) socailRegDetailHeadCellDesc
+{
+    return [UIFont systemFontOfSize: 9.f];
+}
+
++ (UIFont*) socailRegDetailFailFont
+{
+    return [UIFont systemFontOfSize: 30.f];
+}
++ (UIFont*)homeHeadBMIFont
+{
+    return [UIFont systemFontOfSize:20.f];
+}
++(UIFont *) fontWithSize:(CGFloat)size
+{
+//    return [UIFont fontWithName:FONT_NAME_DEFAULT size:[XMTools getAutoNumberWithIphone6Number:size]];
+//    return [UIFont fontWithName:FONT_NAME_DEFAULT size: size];
+    return [UIFont systemFontOfSize: size];
+}
+
++ (UIFont*) common28pxFont
+{
+    return [UIFont systemFontOfSize: [UIDevice isIPhone6Plus]? 16.f:17.f];
+}
+
++ (UIFont*) common30pxFont
+{
+    return [UIFont systemFontOfSize: 16.f];
+}
+
+- (CGFloat)height
+{
+    NSString* s = @"云麦";
+    if ([UIDevice isIOS7orLater])
+    {
+        return [s sizeWithAttributes:@{NSFontAttributeName: self}].height;
+    }
+    else
+    {
+        return [s YMSizeWithFont:self].height;
+    }
+    return 0.f;
+}
+
++ (UIFont*)loadFailLabel
+{
+    //加载失败时的显示字体
+    return [UIFont fontWithName:FONTNAME_LIGHT size:[UIFont changeFontWithSize:10.8]];
+}
+
++ (UIFont*)loadFailFlush
+{
+    //加载失败重试字体
+    return [UIFont fontWithName:FONTNAME_LIGHT size:[UIFont changeFontWithSize:9.4]];
+}
+
+//对字体等比例修改的方法
++ (CGFloat)changeFontWithSize:(CGFloat)size
+{
+    return size / FONTSCALE;
+}
+@end

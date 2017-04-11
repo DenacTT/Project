@@ -1,0 +1,18 @@
+//
+//  ComDetailsView.h
+//  scale
+//
+//  Created by solf on 16/5/9.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ComponentModel.h"
+
+@interface ComDetailsView : UIView
+
+- (void)layoutViewWithComModel:(ComponentModel *)comModel;
+
+- (void)locationCursor;
+
+@end

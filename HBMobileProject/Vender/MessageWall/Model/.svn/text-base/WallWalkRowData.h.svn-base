@@ -1,0 +1,17 @@
+//
+//  WallWalkRowData.h
+//  scale
+//
+//  Created by yzz on 15/8/17.
+//  Copyright (c) 2015年 yzz. All rights reserved.
+//
+
+#import "MsgWallCommonRowData.h"
+#import "StepCount.h"
+#import "WallStepCountModel.h"
+
+
+@interface WallWalkRowData : MsgWallCommonRowData
+@property (nonatomic,strong) StepCount* stepCountData;
+
+@end

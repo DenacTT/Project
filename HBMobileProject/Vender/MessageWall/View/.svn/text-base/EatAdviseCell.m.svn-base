@@ -1,0 +1,467 @@
+//
+//  EatAdviseCell.m
+//  scale
+//
+//  Created by yzz on 15/10/30.
+//  Copyright © 2015年 yzz. All rights reserved.
+//
+
+#import "EatAdviseCell.h"
+#import "HealthyNewsRowData.h"
+#import "News.h"
+#import "UIImage+Scale.h"
+#import "UIImageView+WebCache.h"
+#import "UIColor+Extend.h"
+#import "CutImageSize.h"
+
+//#import "news"
+
+
+
+#define titleFontSize 12.0
+#define ReadCountFontSize 12.0
+
+@interface EatAdviseCell()
+
+@property HealthyNewsRowData *data;
+
+
+@property (nonatomic) UIImageView *eatIcon;
+@property (nonatomic) UILabel     *title;
+
+
+@property (nonatomic) UIImageView *headImageView;
+@property (nonatomic) UILabel     *headTitleForImage;
+@property (nonatomic) UILabel     *headReadCountForImage;
+@property (nonatomic) UILabel     *headLineForImage;
+
+@property (nonatomic) UIImageView *rowOneImage;
+@property (nonatomic) UILabel     *rowOneTitle;
+@property (nonatomic) UILabel     *rowOneReadCount;
+
+@property (nonatomic) UILabel     *lineForRowOne;
+
+@property (nonatomic) UIImageView *rowTwoImage;
+@property (nonatomic) UILabel     *rowTwoTitle;
+@property (nonatomic) UILabel     *rowTwoReadCount;
+
+@property (nonatomic) UILabel     *lineForRowTwo;
+
+@property (nonatomic) UIImageView *rowThreeImage;
+@property (nonatomic) UILabel     *rowThreeTitle;
+@property (nonatomic) UILabel     *rowThreeReadCount;
+
+@property (nonatomic) UIView      *headClickView;
+@property (nonatomic) UIView      *rowOneClickView;
+@property (nonatomic) UIView      *rowTwoClickView;
+@property (nonatomic) UIView      *rowThreeClickView;
+
+@property (nonatomic,strong) CAGradientLayer *myLayer;
+
+@end
+
+@implementation EatAdviseCell
+{
+    BOOL              _isOpen;
+}
+
+- (void)layoutCellView
+{
+    [super shadowCellView];
+    [super layoutCellView];
+    UIView *shadowView = [super shadowCellView];
+    shadowView.top = 36;
+    if (_isOpen == NO)
+    {
+        shadowView.height = shadowView.height - shadowView.top + 6;
+        _isOpen = !_isOpen;
+    }
+
+    self.data = (HealthyNewsRowData*)[super commonRowData];
+    BOOL isDescendantView = NO;
+    if (shadowView.subviews.count > 0) {
+        UIView *temp = shadowView.subviews[0];
+        if ([temp class] == [UIImageView class]) {
+            isDescendantView = [temp isDescendantOfView:shadowView];
+        }
+    }
+    if (!isDescendantView) {
+        [self addSubview:self.eatIcon];
+        [self addSubview:self.title];
+        [shadowView addSubview:self.headImageView];
+        [self.headImageView.layer addSublayer:self.myLayer];
+        [shadowView addSubview:self.headTitleForImage];
+        [shadowView addSubview:self.headReadCountForImage];
+        [shadowView addSubview:self.headLineForImage];
+        [shadowView addSubview:self.headClickView];
+        // 行1
+        [shadowView addSubview:self.rowOneImage];
+        [shadowView addSubview:self.rowOneTitle];
+        [shadowView addSubview:self.rowOneReadCount];
+        [shadowView addSubview:self.lineForRowOne];
+        [shadowView addSubview:self.rowOneClickView];
+        // 行2
+        [shadowView addSubview:self.rowTwoImage];
+        [shadowView addSubview:self.rowTwoTitle];
+        [shadowView addSubview:self.rowTwoReadCount];
+        [shadowView addSubview:self.lineForRowTwo];
+        [shadowView addSubview:self.rowTwoClickView];
+        // 行3
+        [shadowView addSubview:self.rowThreeImage];
+        [shadowView addSubview:self.rowThreeTitle];
+        [shadowView addSubview:self.rowThreeReadCount];
+        [shadowView addSubview:self.rowThreeClickView];
+    }
+    [self layoutCellViewData];
+}
+
+
+-(NSString*) getImageNameUrlWithNews:(News*)news
+{
+    if (![String isBlankString:news.squareImgUrl]) {
+        return news.squareImgUrl;
+    }else{
+        return news.newsImgUrl;
+    }
+}
+- (void)layoutCellViewData
+{
+    HealthyNewsRowData *temp = self.data;
+    if (temp.news.count < 3) {
+        return;
+    }
+    // head
+    News *newsHead = temp.news[0];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:newsHead.newsBigImgUrl] placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground | SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        if (image == nil) {
+            _headImageView.image = [UIImage imageNamed:@"HealthDefaultNew"];
+        }else {
+//            UIImage *portraitImg = [CutImageSize image:image centerInSize:CGSizeMake(self.headImageView.width *2, self.headImageView.height *2)];
+//            _headImageView.image = portraitImg;
+            _headImageView.image = image;
+            _headImageView.contentScaleFactor = [[UIScreen mainScreen] scale];
+            _headImageView.contentMode = UIViewContentModeScaleAspectFill;
+            _headImageView.clipsToBounds = YES;
+        }
+    }];
+    self.headTitleForImage.text     = newsHead.newsTitle;
+    self.headReadCountForImage.text = [NSString stringWithFormat:STR(@"EAC_readPreson"),@(newsHead.newsreadNum).description];
+    // one
+    News *newsRowOne = temp.news[1];
+    [self.rowOneImage sd_setImageWithURL:[NSURL URLWithString:[self getImageNameUrlWithNews:newsRowOne]] placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground | SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        if (image == nil) {
+            self.rowOneImage.image = [UIImage imageNamed:@"HealthDefaultNew"];
+        }else {
+            UIImage *newImg        = [image getSquareImage];
+            self.rowOneImage.image = newImg;
+        }
+    }];
+    self.rowOneTitle.text     = newsRowOne.newsTitle;
+    self.rowOneReadCount.text = [NSString stringWithFormat:STR(@"EAC_readPreson"),@(newsRowOne.newsreadNum).description];
+    // two
+    News *newsRowTwo = temp.news[2];
+    [self.rowTwoImage sd_setImageWithURL:[NSURL URLWithString:[self getImageNameUrlWithNews:newsRowTwo]] placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground | SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image == nil) {
+            self.rowTwoImage.image = [UIImage imageNamed:@"HealthDefaultNew"];
+        }else {
+            UIImage *newImg        = [image getSquareImage];
+            self.rowTwoImage.image = newImg;
+        }
+        
+    }];
+    self.rowTwoTitle.text     = newsRowTwo.newsTitle;
+    self.rowTwoReadCount.text = [NSString stringWithFormat:STR(@"EAC_readPreson"),@(newsRowTwo.newsreadNum).description];
+    // three
+    News *newsRowThree = temp.news[3];
+    [self.rowThreeImage sd_setImageWithURL:[NSURL URLWithString:[self getImageNameUrlWithNews:newsRowThree]] placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground | SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        if (image == nil) {
+            self.rowThreeImage.image = [UIImage imageNamed:@"HealthDefaultNew"];
+        }else {
+            UIImage *newImg          = [image getSquareImage];
+            self.rowThreeImage.image = newImg;
+        }
+        
+    }];
+    self.rowThreeTitle.text     = newsRowThree.newsTitle;
+    self.rowThreeReadCount.text = [NSString stringWithFormat:STR(@"EAC_readPreson"),@(newsRowThree.newsreadNum).description];
+    
+}
+#pragma mark - delegate
+-(void) elementClick:(UITapGestureRecognizer *)gesture
+{
+    UIView *view = gesture.view;
+    NSString *key = [NSString stringWithFormat:c_info_13_foot_row,@(view.tag+1).description];
+    [MobClick event:key];
+    [self.delegate clickElement:self.data.news[view.tag]];
+}
+
+#pragma mark - getter
+-(UIImageView *)eatIcon
+{
+    if (!_eatIcon) {
+        UIImage *img = [UIImage imageNamed:@"wall_eat_advise"];
+        _eatIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.width*0.024, 10, img.size.width, img.size.height)];
+        _eatIcon.image = img;
+    }
+    return _eatIcon;
+}
+
+-(UILabel *)title
+{
+    if (!_title) {
+        CGRect frame = self.eatIcon.frame;
+        _title = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(frame)+4, frame.origin.y, 120, frame.size.height)];
+        _title.text          = self.data.messageTitle;
+        _title.textColor     = [UIColor r:50 g:50 b:50];
+        _title.textAlignment = NSTextAlignmentLeft;
+        _title.font          = [UIFont systemFontOfSize:14];
+        
+    }
+    return _title;
+}
+
+-(UIImageView *)headImageView
+{
+    if (!_headImageView) {
+        _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.shadowCellView.width*0.035,16, self.shadowCellView.width*(1-0.035*2), 140)];
+    }
+    return _headImageView;
+}
+
+-(UILabel *)headTitleForImage
+{
+    if (!_headTitleForImage) {
+        CGRect frame = self.headImageView.frame;
+        _headTitleForImage = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x+5, CGRectGetMaxY(frame) - 17, frame.size.width/2 + 42, 14)];
+        _headTitleForImage.textAlignment = NSTextAlignmentLeft;
+        _headTitleForImage.font          = [UIFont systemFontOfSize:14];
+        _headTitleForImage.textColor     = [UIColor whiteColor];
+        _headTitleForImage.text          = STR(@"EAC_lunch");
+    }
+    return _headTitleForImage;
+}
+
+-(UILabel *)headReadCountForImage
+{
+    if (!_headReadCountForImage) {
+        CGRect frame = self.headImageView.frame;
+        _headReadCountForImage = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(frame) - frame.size.width/2 - 5, CGRectGetMaxY(frame) - 17, frame.size.width/2, 14)];
+        _headReadCountForImage.textAlignment = NSTextAlignmentRight;
+        _headReadCountForImage.font          = [UIFont systemFontOfSize:14];
+        _headReadCountForImage.textColor     = [UIColor whiteColor];
+        _headReadCountForImage.text          = STR(@"EAC_readText");
+        _headReadCountForImage.center        = CGPointMake(_headReadCountForImage.center.x, self.headTitleForImage.center.y);
+    }
+    return _headReadCountForImage;
+}
+
+-(UILabel *)headLineForImage
+{
+    if (!_headLineForImage) {
+        CGRect frame = self.headImageView.frame;
+        _headLineForImage = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame)+10, frame.size.width, 1)];
+        _headLineForImage.backgroundColor = [UIColor commonViewLine];
+    }
+    return _headLineForImage;
+}
+
+-(UIImageView *)rowOneImage
+{
+    if (!_rowOneImage) {
+        CGRect frame = self.headLineForImage.frame;
+        _rowOneImage = [[UIImageView alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame) + 10, 64, 64)];
+        _rowOneImage.backgroundColor = [UIColor grayColor];
+        
+    }
+    return _rowOneImage;
+}
+
+-(UILabel *)rowOneTitle
+{
+    if (!_rowOneTitle) {
+        CGRect frame = self.rowOneImage.frame;
+        float width = self.shadowCellView.width - CGRectGetMaxX(frame) - 20 ;
+        _rowOneTitle = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(frame) + 10, CGRectGetMaxY(self.headLineForImage.frame)+22, width, 14)];
+        _rowOneTitle.textAlignment = NSTextAlignmentLeft;
+        _rowOneTitle.font          = [UIFont systemFontOfSize:14];
+        _rowOneTitle.text          = STR(@"EAC_breakfast");
+    }
+    return _rowOneTitle;
+}
+
+-(UILabel *)rowOneReadCount
+{
+    if (!_rowOneReadCount) {
+        
+        CGRect frame = self.rowOneTitle.frame;
+        _rowOneReadCount = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame)+7, frame.size.width, 12)];
+        _rowOneReadCount.textAlignment = NSTextAlignmentLeft;
+        _rowOneReadCount.font          = [UIFont systemFontOfSize:12];
+        _rowOneReadCount.textColor     = RGB(136, 136, 136);
+        _rowOneReadCount.text          = STR(@"EAC_lookText");
+    }
+    return _rowOneReadCount;
+}
+
+-(UILabel *)lineForRowOne
+{
+    if (!_lineForRowOne) {
+        CGRect frame = self.rowOneImage.frame;
+        _lineForRowOne = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame)+10, self.headLineForImage.width, 1)];
+        _lineForRowOne.backgroundColor = [UIColor commonViewLine];
+    }
+    return _lineForRowOne;
+}
+
+-(UIImageView *)rowTwoImage
+{
+    if (!_rowTwoImage) {
+        CGRect frame = self.lineForRowOne.frame;
+        _rowTwoImage = [[UIImageView alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame) + 10, 64, 64)];
+        _rowTwoImage.backgroundColor = [UIColor grayColor];
+    }
+    return _rowTwoImage;
+}
+
+-(UILabel *)rowTwoTitle
+{
+    if (!_rowTwoTitle) {
+        CGRect frame = self.rowOneImage.frame;
+        float width  = self.rowOneTitle.width ;
+        _rowTwoTitle = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(frame) + 10, CGRectGetMaxY(self.lineForRowOne.frame)+22, width, 14)];
+        _rowTwoTitle.textAlignment = NSTextAlignmentLeft;
+        _rowTwoTitle.font = [UIFont systemFontOfSize:14];
+        _rowTwoTitle.text = STR(@"EAC_breakfast");
+    }
+    return _rowTwoTitle;
+}
+
+-(UILabel *)rowTwoReadCount
+{
+    if (!_rowTwoReadCount) {
+        
+        CGRect frame = self.rowTwoTitle.frame;
+        _rowTwoReadCount = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame)+7, frame.size.width, 12)];
+        _rowTwoReadCount.textAlignment = NSTextAlignmentLeft;
+        _rowTwoReadCount.font = [UIFont systemFontOfSize:12];
+        _rowTwoReadCount.textColor = RGB(136, 136, 136);
+        _rowTwoReadCount.text = STR(@"EAC_lookText");
+    }
+    
+    return _rowTwoReadCount;
+}
+
+-(UILabel *)lineForRowTwo
+{
+    if (!_lineForRowTwo) {
+        CGRect frame = self.rowTwoImage.frame;
+        _lineForRowTwo = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame)+10, self.headLineForImage.width, 1)];
+        _lineForRowTwo.backgroundColor = [UIColor commonViewLine];
+    }
+    return _lineForRowTwo;
+}
+
+
+-(UIImageView *)rowThreeImage
+{
+    if (!_rowThreeImage) {
+        CGRect frame = self.lineForRowTwo.frame;
+        _rowThreeImage = [[UIImageView alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame) + 10, 64, 64)];
+    }
+    return _rowThreeImage;
+}
+
+-(UILabel *)rowThreeTitle
+{
+    if (!_rowThreeTitle) {
+        CGRect frame = self.rowThreeImage.frame;
+        float width  = self.rowOneTitle.width ;
+        _rowThreeTitle = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(frame) + 10, CGRectGetMaxY(self.lineForRowTwo.frame)+22, width, 14)];
+        _rowThreeTitle.textAlignment = NSTextAlignmentLeft;
+        _rowThreeTitle.font          = [UIFont systemFontOfSize:14];
+        _rowThreeTitle.text          = STR(@"EAC_breakfast");
+    }
+    return _rowThreeTitle;
+}
+
+-(UILabel *)rowThreeReadCount
+{
+    if (!_rowThreeReadCount) {
+        
+        CGRect frame = self.rowThreeTitle.frame;
+        _rowThreeReadCount = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, CGRectGetMaxY(frame)+7, frame.size.width, 12)];
+        _rowThreeReadCount.textAlignment = NSTextAlignmentLeft;
+        _rowThreeReadCount.font          = [UIFont systemFontOfSize:12];
+        _rowThreeReadCount.textColor     = RGB(136, 136, 136);
+        _rowThreeReadCount.text          = STR(@"EAC_lookText");
+    }
+    
+    return _rowThreeReadCount;
+}
+
+
+-(UIView *)headClickView
+{
+    if (!_headClickView) {
+        _headClickView = [[UIView alloc] initWithFrame:self.headImageView.frame];
+        UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(elementClick:)];
+        [_headClickView addGestureRecognizer:tapGesture];
+        _headClickView.tag = 0;
+    }
+    return _headClickView;
+}
+
+-(UIView *)rowOneClickView
+{
+    if (!_rowOneClickView) {
+        CGRect frame = self.rowOneImage.frame;
+        _rowOneClickView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, CGRectGetMaxX(self.rowOneTitle.frame), frame.size.height)];
+        UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(elementClick:)];
+        [_rowOneClickView addGestureRecognizer:tapGesture];
+        _rowOneClickView.tag = 1;
+    }
+    return _rowOneClickView;
+}
+
+-(UIView *)rowTwoClickView
+{
+    if (!_rowTwoClickView) {
+        CGRect frame = self.rowTwoImage.frame;
+        _rowTwoClickView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, CGRectGetMaxX(self.rowTwoTitle.frame), frame.size.height)];
+        UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(elementClick:)];
+        [_rowTwoClickView addGestureRecognizer:tapGesture];
+        _rowTwoClickView.tag = 2;
+    }
+    return _rowTwoClickView;
+    
+}
+
+-(UIView *)rowThreeClickView
+{
+    if (!_rowThreeClickView) {
+        CGRect frame = self.rowThreeImage.frame;
+        _rowThreeClickView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, CGRectGetMaxX(self.rowThreeTitle.frame), frame.size.height)];
+        UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(elementClick:)];
+        [_rowThreeClickView addGestureRecognizer:tapGesture];
+        _rowThreeClickView.tag = 3;
+    }
+    return _rowThreeClickView;
+}
+
+
+- (CAGradientLayer *)myLayer
+{
+    if (!_myLayer)
+    {
+        _myLayer        = [CAGradientLayer layer];
+        _myLayer.frame  = CGRectMake(0, self.headImageView.height - 30.f, self.headImageView.width, 30.f);
+        _myLayer.colors = [NSArray arrayWithObjects:(id)RGBA(0, 0, 0, 0).CGColor,(id)RGBA(0, 0, 0, 0.1f).CGColor,(id)RGBA(0, 0, 0, 0.2f).CGColor,(id)RGBA(0, 0, 0, 0.4f).CGColor,(id)RGBA(0, 0, 0, 0.5f).CGColor,(id)RGBA(0, 0, 0, 0.7f).CGColor,nil];
+    }
+    return _myLayer;
+}
+
+
+@end

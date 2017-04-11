@@ -1,0 +1,33 @@
+//
+//  YMConstSource.m
+//  scale
+//
+//  Created by solf on 15/8/20.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import "YMConstSource.h"
+
+@implementation YMConstSource
+
++ (YMConstSource *)sharedInstance {
+    
+    static id ymConstSource = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        ymConstSource = [[self alloc] init];
+        
+    });
+    return ymConstSource;
+}
+
+- (id)init
+{
+    if (self) {
+        self.scalIsMini = YES;
+    }
+    return self;
+}
+
+@end

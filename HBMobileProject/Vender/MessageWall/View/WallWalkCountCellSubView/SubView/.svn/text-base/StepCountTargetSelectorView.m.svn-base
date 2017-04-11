@@ -1,0 +1,303 @@
+//
+//  StepCountTargetSelectorView.m
+//  scale
+//
+//  Created by yzz on 15/8/19.
+//  Copyright (c) 2015年 yzz. All rights reserved.
+//
+
+#import "StepCountTargetSelectorView.h"
+#import "UIFont+Extend.h"
+#import "YMUtil.h"
+#import "StepCount.h"
+#import "NSThread+Extend.h"
+
+#import "BiggerBtn.h"
+
+@interface StepCountTargetSelectorView()<UIPickerViewDelegate,UIPickerViewDataSource>
+
+@property (nonatomic) UILabel *title;
+@property (nonatomic) UIView *targetSelector;
+@property (nonatomic) UIView *bgView;
+@property (nonatomic) UIPickerView *targatePickerView;
+@property (nonatomic) UIButton *btnSure;
+@property (nonatomic) UILabel *tips;
+@property (nonatomic) UILabel *stepUnit;
+@property (nonatomic) NSMutableArray *dataArray;
+@property (nonatomic) BiggerBtn *closeBtn;
+
+
+@property (nonatomic) StepCount *stepCount;
+
+
+@end
+
+
+@implementation StepCountTargetSelectorView
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+    [self setUp];
+}
+
+
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+//        self.backgroundColor = [UIColor colorWithWhite:0.500 alpha:0.800];
+        self.backgroundColor = RGBA(0, 0, 0, 0.8);
+    }
+    return self;
+}
+
+
+-(void) setUp
+{
+    [self addSubview:self.targetSelector];
+    
+    [self.targetSelector insertSubview:self.targatePickerView atIndex:0];
+    [self.targetSelector insertSubview:self.bgView atIndex:1];
+    
+    [self.targetSelector addSubview:self.title];
+    [self.targetSelector addSubview:self.btnSure];
+    [self.targetSelector addSubview:self.tips];
+    [self.targetSelector addSubview:self.stepUnit];
+    [self.targetSelector addSubview:self.closeBtn];
+    
+    // 设置pickerview 分割线
+    [[self.targatePickerView.subviews objectAtIndex:1] setHidden:YES];
+    [[self.targatePickerView.subviews objectAtIndex:2] setHidden:YES];
+    
+    // 没有设置目标设置默认值 8000步
+    float stepCountTarget = [XMUserDefault getUserStepCountTargetWithUserId:[XMUserDefault currentUserId]];
+    if (stepCountTarget>0) {
+        for (int i=0; i<self.dataArray.count; i++) {
+            if ([self.dataArray[i] integerValue] == stepCountTarget) {
+                [self.targatePickerView selectRow:i inComponent:0 animated:NO];
+                break;
+            }
+        }
+    }else{
+        for (int i=0; i<self.dataArray.count; i++) {
+            if ([self.dataArray[i] integerValue] == 8000) {
+                [self.targatePickerView selectRow:i inComponent:0 animated:NO];
+                break;
+            }
+        }
+    }
+    
+}
+
+
+#pragma mark dataSouce Methods
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 73.0f;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.dataArray.count;
+}
+
+#pragma mark delegate Methods
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)componen{
+    NSString *temp = self.dataArray[row];
+    
+    return temp;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    
+    UILabel *label = nil;
+    
+    if (component == 0) {
+        
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 110, 50)];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        label.text = [self.dataArray objectAtIndex:row];
+        label.font = [UIFont systemFontOfSize:33];
+        label.backgroundColor = [UIColor clearColor];
+        
+    }
+//    [self.stepCount getDistanceAndKcalWithStepCount:[[self.dataArray objectAtIndex:row] integerValue] withResult:^(float distance, float kcal, NSError *error) {
+//        
+//        [NSThread runInMain:^{
+//            self.tips.text = [NSString stringWithFormat:@"相当于%.1f公里，消耗了%.1f卡路里",distance/1000,kcal];
+//        }];
+//        
+//    }];
+    
+    return label;
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    [self.stepCount getDistanceAndKcalWithStepCount:[[self.dataArray objectAtIndex:row] integerValue] withResult:^(float distance, float kcal, NSError *error) {
+        
+        [NSThread runInMain:^{
+            self.tips.text = [NSString stringWithFormat:STR(@"SCTSV_KGCalorie"),distance/1000,kcal];
+        }];
+        
+    }];
+}
+
+
+-(UILabel *)title
+{
+    if (!_title) {
+        
+        _title = [[UILabel alloc] init];
+        _title.frame = CGRectMake(10,10, 150, 20);
+        _title.textColor = [UIColor whiteColor];
+        _title.font = [UIFont systemFontOfSize:18];
+        _title.text = STR(@"SCTSV_setTarget");
+        _title.textAlignment = NSTextAlignmentLeft;
+        
+    }
+    return _title;
+}
+-(UIView *)targetSelector
+{
+    if (!_targetSelector) {
+        
+        _targetSelector = [[UIView alloc] init];
+        _targetSelector.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH-20, 320);
+        _targetSelector.backgroundColor =  [UIColor colorWithRed:0.145 green:0.788 blue:0.592 alpha:1.000];
+        _targetSelector.center = self.center;
+        _targetSelector.layer.cornerRadius = 3.0f;
+        _targetSelector.backgroundColor = RGB(32, 188, 173);
+        
+    }
+    return _targetSelector;
+}
+
+
+-(UIPickerView *)targatePickerView
+{
+    if (!_targatePickerView) {
+        
+        _targatePickerView = [[UIPickerView alloc] init];
+        _targatePickerView.frame = CGRectMake(25, 0, self.targetSelector.width - 50, 216);
+        _targatePickerView.dataSource = self;
+        _targatePickerView.delegate = self;
+        _targatePickerView.showsSelectionIndicator=YES;
+        _targatePickerView.backgroundColor = RGB(32, 188, 173);
+    }
+    return _targatePickerView;
+}
+-(UIView *)bgView
+{
+    if (!_bgView) {
+        
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.targatePickerView.frame.size.height, self.targetSelector.frame.size.width, self.targetSelector.frame.size.height-self.targatePickerView.frame.size.height)];
+        _bgView.backgroundColor = [UIColor whiteColor];
+        _bgView.layer.cornerRadius = 3.0f;
+        
+    }
+    return _bgView;
+}
+-(UILabel *)tips
+{
+    if (!_tips) {
+        _tips = [[UILabel alloc] init];
+        _tips.frame = CGRectMake((self.targetSelector.size.width-[XMTools getAutoNumberWithIphone6Number:325])/2.0, self.targatePickerView.origin.y + self.targatePickerView.size.height + 10, [XMTools getAutoNumberWithIphone6Number:325], 20);
+        _tips.font = [UIFont systemFontOfSize:16];
+        _tips.text = STR(@"SCTSV_fiveKg");
+        _tips.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
+        _tips.textAlignment = NSTextAlignmentLeft;
+    }
+    return _tips;
+}
+-(UILabel *)stepUnit
+{
+    if (!_stepUnit) {
+        _stepUnit = [[UILabel alloc] init];
+        _stepUnit.frame = CGRectMake(self.targetSelector.size.width-70,self.targatePickerView.frame.size.height/2-10,50, 20);
+        _stepUnit.font = [UIFont systemFontOfSize:20];
+        _stepUnit.text = STR(@"SCTSV_walk");
+        _stepUnit.textColor = [UIColor whiteColor];
+        _stepUnit.textAlignment = NSTextAlignmentLeft;
+    }
+    return _stepUnit;
+}
+
+-(NSMutableArray *)dataArray
+{
+    if (!_dataArray) {
+        
+        _dataArray = [NSMutableArray array];
+        int temp = 1000;
+        for (int i = 0; i< 39; i++) {
+            [_dataArray addObject:@(temp).description];
+            temp += 500;
+        }
+        
+    }
+    return _dataArray;
+}
+-(UIButton *)btnSure
+{
+    if (!_btnSure) {
+        _btnSure = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btnSure.frame = CGRectMake(self.tips.frame.origin.x, self.tips.frame.origin.y+ self.tips.frame.size.height + 10, [XMTools getAutoNumberWithIphone6Number:325], 45);
+        [_btnSure setBackgroundColor:[UIColor colorWithRed:0.145 green:0.788 blue:0.592 alpha:1.000]];
+        [_btnSure setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_btnSure setTitle:STR(@"SCTSV_sure") forState:UIControlStateNormal];
+        _btnSure.layer.cornerRadius = 3.0f;
+        [_btnSure addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIImage *img = [UIImage imageWithColor:[UIColor colorWithRed:0.145 green:0.609 blue:0.549 alpha:1.000]
+                                   andBordRect:CGRectMake(0, 0, _btnSure.width, _btnSure.height)
+                                  andBordColor:[UIColor colorWithRed:0.145 green:0.609 blue:0.549 alpha:1.000]
+                               andCornerRadius: _btnSure.layer.cornerRadius];
+        
+        [_btnSure setBackgroundImage:img forState: UIControlStateHighlighted];
+    }
+    return _btnSure;
+}
+-(BiggerBtn *)closeBtn
+{
+    if (!_closeBtn) {
+        UIImage *btnImg = [UIImage imageNamed:@"Body_CloseIcon.png"];
+        _closeBtn = [BiggerBtn buttonWithType:UIButtonTypeCustom];
+        _closeBtn.frame = CGRectMake(self.targetSelector.frame.size.width-btnImg.size.height-5, 5, btnImg.size.width, btnImg.size.height);
+        [_closeBtn addTarget:self action:@selector(colseSelf:) forControlEvents:UIControlEventTouchUpInside];
+        [_closeBtn setImage:btnImg forState:UIControlStateNormal];
+    }
+    return _closeBtn;
+}
+-(StepCount *)stepCount{
+    if (!_stepCount) {
+        
+        _stepCount = [StepCount sharedInstance];
+    }
+    return _stepCount;
+}
+
+-(void) doneAction:(id) sender
+{
+    NSInteger row=[self.targatePickerView selectedRowInComponent:0];
+    NSInteger val = [self.dataArray[row] integerValue];
+    [self.delegate didSelected:val];
+}
+
+-(void) colseSelf:(id) sender
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+
+
+
+@end

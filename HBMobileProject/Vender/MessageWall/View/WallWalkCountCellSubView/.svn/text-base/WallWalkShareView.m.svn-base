@@ -1,0 +1,460 @@
+//
+//  WallWalkShareView.m
+//  scale
+//
+//  Created by GeorgeYe on 15/11/5.
+//  Copyright © 2015年 GeorgeYe. All rights reserved.
+//
+
+#import "WallWalkShareView.h"
+#import "UIImageView+WebCache.h"
+#import "NSString+Extend.h"
+#import "UIImage+Extend.h"
+
+#define COMMON_LABEL_ADD_HEIGHT  2
+
+
+#pragma mark - 食品名字常量
+static NSString * const SHARE_VIEW_SHOW_FOOD_CHOCOLATE   = @"wall_walk_share_chocolate";
+static NSString * const SHARE_VIEW_SHOW_FOOD_COOKIE      = @"wall_walk_share_cookie";
+static NSString * const SHARE_VIEW_SHOW_FOOD_COLA        = @"wall_walk_share_cola";
+static NSString * const SHARE_VIEW_SHOW_FOOD_CHICKEN_LEG = @"wall_walk_share_chickenLeg";
+
+@interface WallWalkShareView()
+
+@property (nonatomic) UIImageView *bgImageView;
+@property (nonatomic) UIImageView *headImageView;
+@property (nonatomic) UILabel *userNameLable;
+@property (nonatomic) UILabel *dateLable;
+@property (nonatomic) UILabel *dateTimeLabel;
+@property (nonatomic) UIView *dateView;
+@property (nonatomic) UIImageView *sexImageView;
+@property (nonatomic) UILabel *walkTitle;
+@property (nonatomic) UILabel *walkValLable;
+@property (nonatomic) UILabel *walkValSubLable;
+@property (nonatomic) UILabel *walkValComparisonTargetLable;
+@property (nonatomic) UIImageView *lineImgView;
+@property (nonatomic) UIImageView *foodImageView;
+
+@property (nonatomic) UILabel *calLabel;
+@property (nonatomic) UILabel *matchCocaCola;
+@property (nonatomic) UIImageView *QRCodeImageView;
+@property (nonatomic) UILabel *comeFromYMAPP;
+@property (nonatomic) UIImageView *bottomImageView;
+@property (nonatomic) UIView *QRCodeAndTextView;
+
+@end
+
+
+@implementation WallWalkShareView
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:CGRectMake(0, -44, UI_WIDTH_IPHONE6, UI_HEIGHT_IPHONE6)];
+    if (self) {
+        
+    }
+    return self;
+}
+
+-(void) addView
+{
+    [self bgImageView];
+    [self headImageView];
+    [self userNameLable];
+    [self dateView];
+    [self sexImageView];
+    [self walkTitle];
+    [self walkValLable];
+    [self walkValSubLable];
+    [self walkValComparisonTargetLable];
+    [self lineImgView];
+    [self foodImageView];
+    [self calLabel];
+    [self matchCocaCola];
+    [self bottomImageView];
+    [self QRCodeAndTextView];
+    
+    [self loadData];
+}
+-(void) loadData
+{
+    // 数据处理
+
+}
+
+-(NSString*) countLoseStep
+{
+    NSString *result = @"";
+    // 目标
+    NSInteger target = self.walkModel.stepTarget;
+    // 当前步数
+    NSInteger currentStep = self.walkModel.count;
+    NSInteger temp = target - currentStep > 0 ? target - currentStep : 0;
+    // 拼接
+    if (!(target > 0)) {
+        result = [NSString stringWithFormat:STR(@"WWSV_km"),self.walkModel.distance/1000];
+    }else{
+        if (temp == 0) {
+            result = STR(@"WWSV_targetFinish");
+        }else{
+            result = [NSString stringWithFormat:STR(@"WWSV_NoTargetFinish"),(long)temp];
+        }
+    }
+    
+    return result;
+}
+
+-(NSString*)getFoodTypeByKcal:(float)kcal
+{
+    
+    NSString *result = nil;
+    if (kcal <= 300) {
+        
+        if (kcal < 26) {
+            // 饼干 26
+            result = [NSString stringWithFormat:STR(@"WWSV_cookie")];
+        }else{
+            // 巧克力29 饼干26
+            if (self.foodImageName == SHARE_VIEW_SHOW_FOOD_COOKIE) {
+                result = [NSString stringWithFormat:STR(@"WWSV_cookies"),kcal/26];
+            }else{
+                result = [NSString stringWithFormat:STR(@"WWSV_chocolates"),kcal/29];
+            }
+        }
+    }else{
+        // 鸡腿 可乐
+        if (self.foodImageName == SHARE_VIEW_SHOW_FOOD_CHICKEN_LEG) {
+            result = [NSString stringWithFormat:STR(@"WWSV_drumsticks"),kcal/150];
+        }else{
+            result = [NSString stringWithFormat:STR(@"WWSV_cokes"),kcal/153];
+        }
+    }
+    return result;
+    
+}
+
+
+#pragma mark - geters
+
+- (UIImageView *)bgImageView
+{
+    if (nil == _bgImageView) {
+        _bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UI_WIDTH_IPHONE6, UI_HEIGHT_IPHONE6)];
+        _bgImageView.image = [UIImage imageNamed:@"WalkCountShareBG"];
+        [self addSubview:_bgImageView];
+    }
+    return _bgImageView;
+}
+
+- (UIImageView *)headImageView
+{
+    if (nil == _headImageView) {
+        _headImageView = [[UIImageView alloc] init];
+        _headImageView.frame = CGRectMake(15, 15, 44, 44);
+        _headImageView.layer.cornerRadius = _headImageView.width/2;
+        _headImageView.layer.borderColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5].CGColor;
+        _headImageView.layer.borderWidth = 2;
+        _headImageView.clipsToBounds = YES;
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+        NSString * filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@avatar.png",self.userInfo.userId]];
+        UIImage *img = [UIImage imageWithContentsOfFile:filePath];
+        if (!img) {
+            img = [UIImage imageNamed:@"userDefaultHeadMax"];
+        }
+        _headImageView.image = img;
+        /*
+        [_headImageView sd_setImageWithURL:[NSURL URLWithString:self.userInfo.avatarUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+        }];
+         */
+        [self addSubview:_headImageView];
+    }
+    return _headImageView;
+}
+
+- (UILabel *)userNameLable
+{
+    if (nil == _userNameLable) {
+        _userNameLable = [[UILabel alloc] init];
+        _userNameLable.text = self.userInfo.realName;
+        _userNameLable.textColor = [UIColor whiteColor];
+        _userNameLable.font = [UIFont systemFontOfSize:18];
+        CGSize nameSize = [_userNameLable.text YMSizeWithFont:_userNameLable.font];
+        _userNameLable.frame = CGRectMake(self.headImageView.right + 6, self.headImageView.center.y - nameSize.height/2, 100, 18 + COMMON_LABEL_ADD_HEIGHT);
+        [self addSubview:_userNameLable];
+    }
+    return _userNameLable;
+}
+
+- (UILabel *)dateLable
+{
+    if (nil == _dateLable) {
+        _dateLable = [[UILabel alloc] init];
+        _dateLable.text = [XMTools getCurrentDate:nil andFommater:@"yyyy年MM月dd日"];
+        _dateLable.textColor = [UIColor whiteColor];
+        _dateLable.font = [UIFont systemFontOfSize:14];
+        CGSize dateSize = [_dateLable.text YMSizeWithFont:_dateLable.font];
+        _dateLable.origin = CGPointMake(0,0);
+        _dateLable.size = CGSizeMake(dateSize.width, 14 + COMMON_LABEL_ADD_HEIGHT);
+    }
+    return _dateLable;
+}
+
+- (UILabel *)dateTimeLabel
+{
+    if (nil == _dateTimeLabel) {
+        _dateTimeLabel = [[UILabel alloc] init];
+        NSMutableString * stringM = [NSMutableString stringWithString:[XMTools getCurrentDate:nil andFommater:@"hh:mm"]];
+        [stringM insertString:[XMTools getToDayTimeFormartStrWithDate:[NSDate date]] atIndex:0];
+        NSString *string = [NSString stringWithString:stringM];
+        _dateTimeLabel.textColor = [UIColor whiteColor];
+        _dateTimeLabel.text = string;
+        _dateTimeLabel.font = [UIFont systemFontOfSize:14];
+        _dateTimeLabel.size = CGSizeMake([_dateTimeLabel.text YMSizeWithFont:_dateTimeLabel.font].width, 14 + COMMON_LABEL_ADD_HEIGHT);
+        _dateTimeLabel.origin = CGPointMake(self.dateLable.right - _dateTimeLabel.size.width, self.dateLable.bottom);
+    }
+    return _dateTimeLabel;
+}
+
+- (UIView *)dateView
+{
+    if (nil == _dateView) {
+        _dateView = [[UIView alloc] init];
+        [_dateView addSubview:self.dateLable];
+        [_dateView addSubview:self.dateTimeLabel];
+        _dateView.size = CGSizeMake(self.dateLable.width, self.dateTimeLabel.bottom - self.dateLable.top);
+        _dateView.origin = CGPointMake(UI_WIDTH_IPHONE6 - 15 - self.dateLable.width, self.userNameLable.center.y - _dateView.height/2);
+        [self addSubview:_dateView];
+    }
+    return _dateView;
+}
+
+- (UIImageView *)sexImageView
+{
+    if (nil == _sexImageView) {
+        _sexImageView = [[UIImageView alloc] init];
+        CGSize sexImgSize = CGSizeMake(180, 180);
+//        _sexImageView.frame = CGRectMake((UI_WIDTH_IPHONE6 - sexImgSize.width)/2, [XMTools getHeightAutoNumberWithIphone6Number:79], sexImgSize.width, sexImgSize.height);
+//        if (UI_IS_IPHONE5) {
+        _sexImageView.frame = CGRectMake((UI_WIDTH_IPHONE6 - sexImgSize.width)/2, 79 - 10, sexImgSize.width, sexImgSize.height);
+//        }
+//        _sexImageView.backgroundColor = [UIColor lightGrayColor];
+        if (ENUM_MALE == [self.userInfo.sex integerValue]) {
+            _sexImageView.image = [UIImage imageNamed:@"runboy"];
+        }else {
+            _sexImageView.image = [UIImage imageNamed:@"rungirl"];
+        }
+        [self addSubview:_sexImageView];
+    }
+    return _sexImageView;
+}
+
+- (UILabel *)walkTitle
+{
+    if (nil == _walkTitle) {
+        _walkTitle = [[UILabel alloc] init];
+        _walkTitle.text = STR(@"WWSV_walk");
+        _walkTitle.textColor = [UIColor whiteColor];
+        _walkTitle.font = [UIFont systemFontOfSize:18];
+        CGSize walkTitleSize = [_walkTitle.text YMSizeWithFont:_walkTitle.font];
+        _walkTitle.size = CGSizeMake(walkTitleSize.width, 18 + COMMON_LABEL_ADD_HEIGHT);
+        _walkTitle.origin = CGPointMake((UI_WIDTH_IPHONE6 - walkTitleSize.width)/2, self.sexImageView.bottom + 9);
+        _walkTitle.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_walkTitle];
+    }
+    return _walkTitle;
+}
+
+- (UILabel *)walkValLable
+{
+    if (nil == _walkValLable) {
+        _walkValLable = [[UILabel alloc] init];
+        _walkValLable.font = [UIFont systemFontOfSize:40];
+        _walkValLable.textColor = [UIColor whiteColor];
+        _walkValLable.text = [NSString stringWithFormat:@"%ld",(long)self.walkModel.count];
+//        _walkValLable.layer.borderWidth = 1;
+//        _walkValLable.layer.borderColor = [UIColor greenColor].CGColor;
+        CGSize walkSize = [_walkValLable.text YMSizeWithFont:_walkValLable.font];
+        _walkValLable.size = CGSizeMake(walkSize.width, 40 + COMMON_LABEL_ADD_HEIGHT);
+        _walkValLable.center = CGPointMake(UI_WIDTH_IPHONE6/2, self.walkTitle.bottom + /*[XMTools getHeightAutoNumberWithIphone6Number:3] + */walkSize.height/2);
+        [self addSubview:_walkValLable];
+    }
+    return _walkValLable;
+}
+
+- (UILabel *)walkValSubLable
+{
+    if (nil == _walkValSubLable) {
+        _walkValSubLable = [[UILabel alloc] init];
+        _walkValSubLable.font = [UIFont systemFontOfSize:14];
+        _walkValSubLable.text = [NSString stringWithFormat:@" ≈%.1fkm",self.walkModel.distance/1000];
+        
+        NSInteger target = self.walkModel.stepTarget;
+        if (!(target > 0)) {
+            _walkValSubLable.alpha = 0;
+        }
+        
+        _walkValSubLable.textColor = [UIColor whiteColor];
+        CGSize walkSubSize = [_walkValSubLable.text YMSizeWithFont:_walkValSubLable.font];
+        _walkValSubLable.size = CGSizeMake(walkSubSize.width, 14 + COMMON_LABEL_ADD_HEIGHT);
+        _walkValSubLable.center = CGPointMake(self.walkValLable.right + walkSubSize.width/2, self.walkValLable.center.y);
+        [self addSubview:_walkValSubLable];
+    }
+    return _walkValSubLable;
+}
+
+- (UILabel *)walkValComparisonTargetLable
+{
+    if (nil == _walkValComparisonTargetLable) {
+        _walkValComparisonTargetLable = [[UILabel alloc] init];
+        _walkValComparisonTargetLable.text = [self countLoseStep];
+        _walkValComparisonTargetLable.textColor = [UIColor whiteColor];
+        _walkValComparisonTargetLable.font = [UIFont systemFontOfSize:14];
+        CGSize walkCompareSize = [_walkValComparisonTargetLable.text YMSizeWithFont:_walkValComparisonTargetLable.font];
+        _walkValComparisonTargetLable.size = CGSizeMake(walkCompareSize.width, 14 + COMMON_LABEL_ADD_HEIGHT);
+        _walkValComparisonTargetLable.center = CGPointMake(self.walkValLable.center.x, self.walkValLable.bottom + 7 + walkCompareSize.height/2);
+        [self addSubview:_walkValComparisonTargetLable];
+    }
+    return _walkValComparisonTargetLable;
+}
+
+- (UIImageView *)lineImgView
+{
+    if (nil == _lineImgView) {
+        _lineImgView = [[UIImageView alloc] init];
+        [self addSubview:_lineImgView];
+        _lineImgView.size = CGSizeMake(110, 1);
+//        if (UI_IS_IPHONE5) {
+//             _lineImgView.center = CGPointMake(self.walkValComparisonTargetLable.center.x, self.walkValComparisonTargetLable.bottom + [XMTools getHeightAutoNumberWithIphone6Number:15] + _lineImgView.height/2);
+//            
+//        }else{
+        _lineImgView.center = CGPointMake(self.walkValComparisonTargetLable.center.x, self.walkValComparisonTargetLable.bottom + 29 + _lineImgView.height/2);
+
+//        }
+
+        UIGraphicsBeginImageContext(_lineImgView.size);
+        [_lineImgView.image drawInRect:CGRectMake(0, 0, _lineImgView.frame.size.width, _lineImgView.frame.size.height)];
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+        CGContextRef line = UIGraphicsGetCurrentContext();
+        CGContextSetStrokeColorWithColor(line, [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5].CGColor);
+        
+        CGFloat lengths[] = {2,1};
+        CGContextSetLineDash(line, 0, lengths, 2);
+        CGContextMoveToPoint(line, 0, _lineImgView.height);
+        CGContextAddLineToPoint(line, _lineImgView.width, _lineImgView.height);
+        CGContextStrokePath(line);
+        
+        _lineImgView.image = UIGraphicsGetImageFromCurrentImageContext();
+        
+        
+    }
+    return _lineImgView;
+}
+
+- (UIImageView *)foodImageView
+{
+    if (nil == _foodImageView) {
+        _foodImageView = [[UIImageView alloc] init];
+//        _foodImageView.backgroundColor = [UIColor grayColor];
+        _foodImageView.image = [UIImage imageNamed:self.foodImageName];
+        CGSize foodImgSize = CGSizeMake(_foodImageView.image.size.width, _foodImageView.image.size.height);
+        _foodImageView.size = foodImgSize;
+//        if (UI_IS_IPHONE5) {
+//            _foodImageView.center = CGPointMake(self.lineImgView.center.x, self.lineImgView.bottom /*+ [XMTools getHeightAutoNumberWithIphone6Number:25]*/ + foodImgSize.height/2);
+//        }else{
+        _foodImageView.center = CGPointMake(self.lineImgView.center.x, self.lineImgView.bottom + 25 + foodImgSize.height/2);
+//        }
+        [self addSubview:_foodImageView];
+    }
+    return _foodImageView;
+}
+
+- (UILabel *)calLabel
+{
+    if (nil == _calLabel) {
+        _calLabel = [[UILabel alloc] init];
+        _calLabel.text = [NSString stringWithFormat:STR(@"WWSV_calories"),self.walkModel.kcal];
+        _calLabel.textColor = [UIColor whiteColor];
+        _calLabel.font = [UIFont systemFontOfSize:18];
+        CGSize calSize = [_calLabel.text YMSizeWithFont:_calLabel.font];
+        _calLabel.size = CGSizeMake(calSize.width, 18 + COMMON_LABEL_ADD_HEIGHT);
+        
+//        if (UI_IS_IPHONE5) {
+//            _calLabel.center = CGPointMake(self.foodImageView.center.x, self.foodImageView.bottom /*+ [XMTools getHeightAutoNumberWithIphone6Number:10]*/ + calSize.height/2 - 3);
+//        }else{
+        _calLabel.center = CGPointMake(self.foodImageView.center.x, self.foodImageView.bottom + 10 + calSize.height/2);
+//        }
+        
+        [self addSubview:_calLabel];
+    }
+    return _calLabel;
+}
+
+- (UILabel *)matchCocaCola
+{
+    if (nil == _matchCocaCola) {
+        _matchCocaCola = [[UILabel alloc] init];
+        _matchCocaCola.text = [self getFoodTypeByKcal:self.walkModel.kcal];
+        _matchCocaCola.textColor = [UIColor whiteColor];
+        _matchCocaCola.font = [UIFont systemFontOfSize:22];
+        CGSize cocaColaSize = [_matchCocaCola.text YMSizeWithFont:_matchCocaCola.font];
+        _matchCocaCola.size = CGSizeMake(cocaColaSize.width, 22 + COMMON_LABEL_ADD_HEIGHT);
+        _matchCocaCola.center = CGPointMake(self.calLabel.center.x, self.calLabel.bottom + 7 + cocaColaSize.height/2);
+        [self addSubview:_matchCocaCola];
+    }
+    return _matchCocaCola;
+}
+
+- (UIImageView *)bottomImageView
+{
+    if (nil == _bottomImageView) {
+        _bottomImageView = [[UIImageView alloc] init];
+        _bottomImageView.frame = CGRectMake(0, UI_HEIGHT_IPHONE6 - 60, UI_WIDTH_IPHONE6, 60);
+        _bottomImageView.image = [UIImage imageWithColor: RGBA(255, 255, 255, 0.2) andBordRect:CGRectMake(0, 0, _bottomImageView.width, _bottomImageView.height) andBordColor:[UIColor clearColor] andCornerRadius:0];
+        [self addSubview:_bottomImageView];
+    }
+    return _bottomImageView;
+}
+
+
+- (UIImageView *)QRCodeImageView
+{
+    if (nil == _QRCodeImageView) {
+        _QRCodeImageView = [[UIImageView alloc] init];
+        _QRCodeImageView.image = [UIImage imageNamed:@"appIconShare"];
+        _QRCodeImageView.size = CGSizeMake(_QRCodeImageView.image.size.width, _QRCodeImageView.image.size.height);
+        _QRCodeImageView.origin = CGPointMake(0, 0);
+        _QRCodeImageView.layer.cornerRadius = 6;
+        _QRCodeImageView.layer.masksToBounds = YES;
+    }
+    return _QRCodeImageView;
+}
+
+- (UILabel *)comeFromYMAPP
+{
+    if (nil == _comeFromYMAPP) {
+        _comeFromYMAPP = [[UILabel alloc] init];
+        _comeFromYMAPP.text = STR(@"WWSV_comeFrom");
+        _comeFromYMAPP.textColor = [UIColor whiteColor];
+        _comeFromYMAPP.font = [UIFont systemFontOfSize:14];
+        CGSize textSize = [_comeFromYMAPP.text YMSizeWithFont:_comeFromYMAPP.font];
+        _comeFromYMAPP.size = CGSizeMake(textSize.width, 14 + COMMON_LABEL_ADD_HEIGHT);
+        _comeFromYMAPP.center = CGPointMake(self.QRCodeImageView.right + 13 + textSize.width/2, _QRCodeImageView.center.y);
+    }
+    return _comeFromYMAPP;
+}
+
+- (UIView *)QRCodeAndTextView
+{
+    if (nil == _QRCodeAndTextView) {
+        _QRCodeAndTextView = [[UIView alloc] init];
+        [_QRCodeAndTextView addSubview:self.QRCodeImageView];
+        [_QRCodeAndTextView addSubview:self.comeFromYMAPP];
+        _QRCodeAndTextView.size = CGSizeMake(self.comeFromYMAPP.right, self.QRCodeImageView.height);
+        _QRCodeAndTextView.center = CGPointMake(UI_WIDTH_IPHONE6/2, self.bottomImageView.center.y);
+        [self addSubview:_QRCodeAndTextView];
+    }
+    return _QRCodeAndTextView;
+}
+
+@end

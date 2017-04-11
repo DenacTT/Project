@@ -1,0 +1,76 @@
+//
+//  BriefReportRowData.m
+//  scale
+//
+//  Created by solf on 15/8/17.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import "BriefReportRowData.h"
+#import "WeightDB.h"
+#import "YMUtil.h"
+#import "MsgWallDef.h"
+
+@implementation BriefReportRowData
+
+-(CGFloat)cellViewHeight{
+    return 300;
+}
+
+- (void)initLoadData
+{
+    WeightDB *weightDB = [WeightDB shareInstance];
+    self.trueCount = 0;
+    [weightDB getWeightEveryDayDataWithUserID:[XMUserDefault currentUserId] andCount:7 sucess:^(NSArray *arr)
+     {
+         // 注册简报删除事件
+         [[YMEventCenter single] listenToEvent:YM_NOTIFY_EVENT_CHART_DATA_CHANGED delegate: self];
+         
+         if (arr && [arr count]>0)
+         {
+            _datevalues = [NSMutableArray arrayWithCapacity:7];
+            _weightvalues = [NSMutableArray arrayWithCapacity:7];
+             NSNumber *weight = 0;
+             NSString *dateStr = @"";
+             
+             for (int i = 0; i< [arr count]; i++){
+                 self.trueCount++;
+                 weight = [NSNumber numberWithFloat:[[[arr objectAtIndex:i] objectForKey:@"Weight"] floatValue]];
+                 dateStr  = [NSString stringWithFormat:@"%@",[[arr objectAtIndex:i] objectForKey:@"CreateTime"]];
+                 
+                 if (![String isBlankString:dateStr]){
+                     [_datevalues  addObject:dateStr];
+                     [_weightvalues addObject:weight];
+                 }
+
+             }
+             
+             NSInteger flag = 7 - _datevalues.count;
+             if (flag >0)       //不足七条
+             {
+
+                 NSTimeInterval flagTime = [XMTools getDateSamWith:_datevalues[_datevalues.count-1]];
+                 
+                 for (int i = 0; i< flag; i++){
+                     [_weightvalues insertObject:@0 atIndex:0];
+                     [_datevalues insertObject:[XMTools getDateWithDateSam:(flagTime + (i+1)*3600*24)] atIndex:0];
+                 }
+             }
+       
+         }
+         
+     } error:^{
+         NSLog(@"错误");
+     }];
+}
+
+- (void)onYMEventHappen: (NSString*)key withObject: (id)obj
+{
+    if ([key compare: YM_NOTIFY_EVENT_CHART_DATA_CHANGED] == NSOrderedSame)
+    {
+        // 处理简报删除的操作
+        [self initLoadData];
+    }
+}
+
+@end

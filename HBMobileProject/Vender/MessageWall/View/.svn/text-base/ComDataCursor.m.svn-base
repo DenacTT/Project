@@ -1,0 +1,431 @@
+//
+//  ComDataCursor.m
+//  scale
+//
+//  Created by solf on 16/5/11.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import "ComDataCursor.h"
+#import "UIColor+YYAdd.h"
+#import "LoginConst.h"
+#import "XMTools.h"
+#import "UserDB.h"
+#define comCursorLeft (21.f)
+
+@interface ComDataCursor ()
+
+@property (nonatomic,strong) UIView *lineView;
+
+@property (nonatomic,strong) UIImageView *cursor;
+
+@property (nonatomic) CGFloat cursorWidth;
+@property (nonatomic,assign) WeightUnit weightUnit;//体重单位
+@end
+@implementation ComDataCursor
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    {
+        
+    }
+    return self;
+}
+
+- (void)layoutViews
+{
+    [_cursorModel initDatas]; //转换数据
+    
+    CGFloat allWidth = ScreenWidth - comCursorLeft * 2.f;
+    CGFloat oneWidth;
+    
+    if (_cursorModel.comCount < 2) //有1个或者没有
+    {
+        oneWidth = allWidth;
+    }else
+    {
+        oneWidth = allWidth / _cursorModel.comCount;
+    }
+    
+    self.cursorWidth = oneWidth;
+    
+    if (!_lineView)
+    {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(comCursorLeft, (self.height - 5.f)/2.f, allWidth, 5.f)];
+        
+        [self addSubview:_lineView];
+        if (_cursorModel.comCount <2)
+        {
+            _lineView.backgroundColor = [UIColor colorWithHexString:@"#4bc355"];
+            _lineView.layer.cornerRadius = _lineView.height/2.f;
+            _lineView.layer.masksToBounds = YES;
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, _lineView.bottom + 10.f, self.width, 14.f)];
+            label.textColor = [UIColor colorWithHexString:@"#888888"];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = [UIFont systemFontOfSize:11.f];
+            NSString *flagUnit = @"";
+            
+            if (_cursorModel.comType == ComponentTypeOfBodyAge)
+            {
+                if ([_cursorModel.comValue floatValue] >0 && [[[LoginConst sharedInstance] getLoginUserInfo].age integerValue] >= 18)
+                {
+                    if ([XMTools getCurrentLanguage] == LangEN) {
+                        flagUnit =[NSString stringWithFormat:@"%.0f",[_cursorModel.comValue floatValue] ];
+                    }else{
+                        flagUnit =[NSString stringWithFormat:@"%.0f %@",[_cursorModel.comValue floatValue] ,STR(@"lb_detaiil_str_age")];
+                    }
+                    
+                }else
+                {
+                    flagUnit =[NSString stringWithFormat:@"--"];
+                }
+                
+                
+            }else if (_cursorModel.comType == ComponentTypeOfBone)
+            {
+                if ([_cursorModel.comValue floatValue] > 0 && [[[LoginConst sharedInstance] getLoginUserInfo].age integerValue] >= 18)
+                {
+                    switch (self.weightUnit)
+                    {
+                            /* "lb_str_jinUnit" = "Jin";// "斤";
+                            "lb_str_kgUnit" = "kg";// "公斤";
+                            "lb_str_bangUnit" = "lb";// "磅";
+                            "lb_str_bangUnits" = "lbs";// "磅";
+                             */
+                        case 1://公斤
+                        {
+                            flagUnit = [NSString stringWithFormat:@"%.1f%@，%@： %.1f%@",[_cursorModel.comValue floatValue] / 100 * [_cursorModel.comWeight floatValue],STR(@"lb_str_kgUnit"),STR(@"lb_detaiil_str_weightPer"),[_cursorModel.comValue floatValue],@"%"];///占体重
+                        }
+                            break;
+                        case 2://磅
+                        {
+                            flagUnit = [NSString stringWithFormat:@"%.1f%@，%@： %.1f%@",[_cursorModel.comValue floatValue] * bang / 100 * [_cursorModel.comWeight floatValue],STR(@"lb_str_bangUnit"),STR(@"lb_detaiil_str_weightPer"),[_cursorModel.comValue floatValue],@"%"];
+                        }
+                            break;
+                        case 3://斤
+                        {
+                            flagUnit = [NSString stringWithFormat:@"%.1f%@，%@： %.1f%@",[_cursorModel.comValue floatValue] * 2.f / 100 * [_cursorModel.comWeight floatValue],STR(@"lb_str_jinUnit"),STR(@"lb_detaiil_str_weightPer"),[_cursorModel.comValue floatValue],@"%"];
+                        }
+                            break;
+                            
+                        default:// 斤
+                        {
+                            flagUnit = [NSString stringWithFormat:@"%.1f%@，%@： %.1f%@",[_cursorModel.comValue floatValue] * 2.f / 100 * [_cursorModel.comWeight floatValue],STR(@"lb_str_jinUnit"),STR(@"lb_detaiil_str_weightPer"),[_cursorModel.comValue floatValue],@"%"];
+                        }
+                            break;
+                    }
+                    
+                }else
+                {
+                    flagUnit = [NSString stringWithFormat:@"--，%@： --",STR(@"lb_detaiil_str_weightPer")];
+                }
+                
+            }else if (_cursorModel.comType == ComponentTypeOfBMR)
+            {
+                if ([_cursorModel.comValue floatValue] > 0 && [[[LoginConst sharedInstance] getLoginUserInfo].age integerValue] >= 18)
+                {
+//                    flagUnit =[NSString stringWithFormat:@"%d %@",[_cursorModel.comValue intValue], @"大卡/天"];
+                    flagUnit =[NSString stringWithFormat:@"%d %@",[_cursorModel.comValue intValue], STR(@"lb_detaiil_str_calorie")];
+                    
+                }else
+                {
+                    flagUnit =[NSString stringWithFormat:@"--"];
+                }
+                
+            }else
+            {
+                flagUnit = @"--";
+            }
+            
+//            label.text = [NSString stringWithFormat:@"你的%@：%@",_cursorModel.comTitle,flagUnit];
+            label.text = [NSString stringWithFormat:@"%@ %@：%@",STR(@"lb_detaiil_str_your"),_cursorModel.comTitle,flagUnit];
+            if ([XMTools getCurrentLanguage] == LangJapan) {
+                label.text = [NSString stringWithFormat:@"%@：%@",_cursorModel.comTitle,flagUnit];
+            }
+            
+            [self addSubview:label];
+            
+        }else
+        {
+            
+            for (int i = 0; i< _cursorModel.comCount; i++)
+            {
+                UIView *stateView = [[UIView alloc] initWithFrame:CGRectMake(i * oneWidth, 0, oneWidth, _lineView.height)];
+                
+                switch (i)
+                {
+                    case 0:
+                    {
+                        if (_cursorModel.comType == ComponentTypeOfVisFat)
+                        {
+                            stateView.backgroundColor = [UIColor colorWithHexString:@"#4bc355"];
+                        }else
+                        {
+                            stateView.backgroundColor = [UIColor colorWithHexString:@"#6ed7a0"];
+                        }
+                        
+                        //设置圆角
+                        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:stateView.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerTopLeft cornerRadii:CGSizeMake(stateView.height/2.f, stateView.height/2.f)];
+                        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+                        maskLayer.frame = stateView.bounds;
+                        maskLayer.path = maskPath.CGPath;
+                        stateView.layer.mask = maskLayer;
+                    }
+                        break;
+                    case 1:
+                    {
+                        if (_cursorModel.comType == ComponentTypeOfVisFat)
+                        {
+                            stateView.backgroundColor = [UIColor colorWithHexString:@"#feba4d"];
+                        }else
+                        {
+                            stateView.backgroundColor = [UIColor colorWithHexString:@"#4bc355"];
+                        }
+                    }
+                        break;
+                    case 2:
+                    {
+                        if (_cursorModel.comType == ComponentTypeOfVisFat)
+                        {
+                            stateView.backgroundColor = [UIColor colorWithHexString:@"#f57a6b"];
+                        }else
+                        {
+                            stateView.backgroundColor = [UIColor colorWithHexString:@"#feba4d"];
+                        }
+                    }
+                        break;
+                    case 3:
+                    {
+                        if (_cursorModel.comType == ComponentTypeOfVisFat)
+                        {
+                            stateView.backgroundColor = [UIColor colorWithHexString:@"#f5523e"];
+                        }else
+                        {
+                            stateView.backgroundColor = [UIColor colorWithHexString:@"#f57a6b"];
+                        }
+                    }
+                        break;
+                    case 4:
+                    {
+                        stateView.backgroundColor = [UIColor colorWithHexString:@"#f5523e"];
+                    }
+                        break;
+                        
+                    default:
+                    {
+                        stateView.backgroundColor = [UIColor colorWithHexString:@"#6ed7a0"];
+                    }
+                        break;
+                }
+                
+                if (i == _cursorModel.comCount - 1)
+                {
+                    //设置圆角
+                    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:stateView.bounds byRoundingCorners:UIRectCornerBottomRight | UIRectCornerTopRight cornerRadii:CGSizeMake(stateView.height/2.f, stateView.height/2.f)];
+                    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+                    maskLayer.frame = stateView.bounds;
+                    maskLayer.path = maskPath.CGPath;
+                    stateView.layer.mask = maskLayer;
+                }
+                
+                [_lineView addSubview:stateView];
+                
+                if (i < (_cursorModel.comCount - 1)) //数值label
+                {
+                    UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(stateView.right, _lineView.top - 10.f - 12.f, 10.f, 12.f)];
+                    valueLabel.textColor = [UIColor colorWithHexString:@"#888888"];
+                    valueLabel.textAlignment = NSTextAlignmentCenter;
+                    valueLabel.font = [UIFont systemFontOfSize:12.f];
+                    
+                    NSString *comValueStr = @"";
+                    
+                    switch (_cursorModel.comType)
+                    {
+                        case ComponentTypeOfBMI:
+                        {
+                            comValueStr = [NSString stringWithFormat:@"%.1f",[[_cursorModel.comStateValueArr objectAtIndex:i] floatValue]];
+                            
+                        }
+                            break;
+                        case ComponentTypeOfFat:
+                        case ComponentTypeOfWater:
+                        case ComponentTypeOfMuscle:
+                        case ComponentTypeOfBone:
+                        case ComponentTypeOfProtein:
+                        {
+                            comValueStr = [NSString stringWithFormat:@"%.1f%@",[[_cursorModel.comStateValueArr objectAtIndex:i] floatValue],@"%"];
+                        }
+                            break;
+                        case ComponentTypeOfBodyAge:
+                        case ComponentTypeOfBMR:
+                        case ComponentTypeOfVisFat:
+                        {
+                            comValueStr = [NSString stringWithFormat:@"%.0f",[[_cursorModel.comStateValueArr objectAtIndex:i] floatValue]];
+                        }
+                            break;
+                            
+                        default:
+                        {
+                            comValueStr = [NSString stringWithFormat:@"%.1f",[[_cursorModel.comStateValueArr objectAtIndex:i] floatValue]];
+                        }
+                            break;
+                    }
+                    
+                    valueLabel.text =[NSString stringWithFormat:@"%@",comValueStr];
+                    
+                    [valueLabel sizeToFit];
+                    
+                    valueLabel.center = CGPointMake(stateView.right + _lineView.left, valueLabel.center.y);
+                    
+                    [self addSubview:valueLabel];
+                }
+                
+                UILabel *strLabel = [[UILabel alloc] initWithFrame:CGRectMake(_lineView.left + stateView.left, _lineView.bottom + 10.f , oneWidth, 12.f)];
+                strLabel.textColor = [UIColor colorWithHexString:@"#888888"];
+                strLabel.textAlignment = NSTextAlignmentCenter;
+                strLabel.font = [UIFont systemFontOfSize:11.f];
+                if ([XMTools getCurrentLanguage] == LangEN) {
+                    //英文   strLabel.text崩溃？？？
+                }else{
+                    strLabel.text =[NSString stringWithFormat:@"%@", [_cursorModel.comStateStrArr objectAtIndex:i]];
+                }
+                [strLabel sizeToFit];
+                
+                strLabel.center = CGPointMake(stateView.center.x + _lineView.left, strLabel.center.y);
+               
+//                [self addSubview:strLabel];
+                
+                if ([XMTools getCurrentLanguage] == LangEN) {
+                }else{
+                    [self addSubview:strLabel];
+                }
+            }
+        }
+        
+    }
+}
+-(WeightUnit)weightUnit
+{
+    if (!_weightUnit) {
+        UserDB *db = [UserDB shareInstance];
+        UserInfo *userInfo = [db findUserInfoByUserId:[XMUserDefault currentUserId]];
+        _weightUnit = [userInfo.unit intValue];
+    }
+    return _weightUnit;
+}
+
+//设置游标位置
+- (void)setCursorLocation
+{
+    //计算游标位置
+    
+    ////没有值  不显示游标
+    if (_cursorModel.comCount < 2 || _cursorModel.comIndex < 1 || [_cursorModel.comValue floatValue] == 0.0f)
+    {
+        return;
+    }
+    
+    [self.cursor setImage:[UIImage imageNamed:[self getStateImg:_cursorModel]]];
+    
+    NSInteger other = 1;
+    if (ComponentTypeOfVisFat == _cursorModel.comType)
+    {
+        other = 2;
+    }
+    
+    if ((_cursorModel.comIndex - other) >= 0)
+    {
+        CGFloat left = (_cursorModel.comIndex - other) * self.cursorWidth + [_cursorModel locationWithWidth:_cursorWidth] + _lineView.left;
+        __weak typeof(self) weakSelf = self;
+        [UIView animateWithDuration:1 animations:^{
+            _cursor.center = CGPointMake(left, weakSelf.cursor.center.y);
+        } completion:^(BOOL finished) {
+            _cursor.center = CGPointMake(left, weakSelf.cursor.center.y);
+        }];
+    }
+    
+}
+
+//获取指标图片(笑，哭)
+- (NSString *)getStateImg:(ComCursorModel *)cursorModel
+{
+    
+    //国际版不区分笑、哭
+//    if (cursorModel.comIndex == 2)
+//    {
+//        return @"ComDataCursor";
+//    }else
+//    {
+//        if (cursorModel.comType == ComponentTypeOfBodyAge)
+//        {
+//            if (cursorModel.comIndex <2)
+//            {
+//                return @"ComDataCursor";
+//            }
+//        }
+//        return @"ComNoDataCursor";
+//    }
+    
+    
+    return @"body_detail_emoji";
+}
+
+#pragma mark - 懒加载
+
+- (ComCursorModel *)cursorModel
+{
+    if (!_cursorModel)
+    {
+        _cursorModel = [[ComCursorModel alloc] init];
+    }
+    return _cursorModel;
+}
+
+- (UIImageView *)cursor
+{
+    if (!_cursor)
+    {
+        _cursor = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18.f, 18.f)];
+        _cursor.center = CGPointMake(0, _lineView.center.y);
+        [self addSubview:_cursor];
+    }
+    
+    return _cursor;
+}
+
+- (NSString *)unitChangeStr:(NSInteger)unit
+{
+    switch (unit) {
+        case 1:
+        {
+            return  STR(@"lb_str_kgUnit"); //@"公斤"
+        }
+            break;
+        case 2:
+        {
+            return STR(@"lb_str_bangUnit");  //@"磅"
+        }
+            break;
+        case 3:
+        {
+            return STR(@"lb_str_jinUnit"); //@"斤"
+        }
+            break;
+            
+        default:
+        {
+            return STR(@"lb_str_jinUnit"); //@"斤"
+        }
+            break;
+
+    }
+    /*
+     "lb_str_jinUnit" = "Jin";// "斤";
+     "lb_str_kgUnit" = "kg";// "公斤";
+     "lb_str_bangUnit" = "lb";// "磅";
+     "lb_str_bangUnits" = "lbs";// "磅";
+     */
+}
+
+@end

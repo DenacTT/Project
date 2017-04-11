@@ -10,6 +10,12 @@
 
 @interface CircleProgressView : UIView
 
+// 背景层layer
+@property (nonatomic, strong) CAShapeLayer *bgCircleLayer;
+
+// 进度层layer
+@property (nonatomic, strong) CAShapeLayer *circleLayer;
+
 // 线条宽度,默认4.f
 @property (nonatomic, assign) CGFloat lineWidth;
 
@@ -42,6 +48,12 @@
 // 背景图片name
 @property (nonatomic, strong) NSString *bgImgName;
 
+// 背景图片
+@property (nonatomic, strong) UIImageView  *bgImageView;
+
+
+// 是否需要动画完成后的回调 (需要 - setStrokeEnd:animated: 的 animated 设置为 YES)
+@property (nonatomic, assign) BOOL isNeedCallBack;
 
 // 动画完成回调 block
 @property (nonatomic, copy) void (^finishedBlock)();

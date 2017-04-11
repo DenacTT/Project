@@ -1,0 +1,130 @@
+//
+//  WallScoreView.m
+//  scale
+//
+//  Created by solf on 15/8/11.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import "WallScoreView.h"
+#import "RTLabel.h"
+#import "ScoreModel.h"
+#import "UIFont+Extend.h"
+#import "UICountingLabel.h"
+#import "NSString+Extend.h"
+@interface WallScoreView ()
+
+@property (nonatomic,strong) UICountingLabel *scoreLabel;
+@property (nonatomic,strong) UILabel *unitLabel;
+@property (nonatomic,strong) UILabel *bmiLabel;
+@property (nonatomic,strong) RTLabel *weightLabel;
+
+@end
+
+@implementation WallScoreView
+
+-(id) initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    
+    if (self)
+    {
+        [self initViews];
+    }
+    return self;
+}
+- (void) setScoreModel:(ScoreModel *)scoreModel
+{
+    if (_scoreModel != scoreModel)
+    {
+        _scoreModel = scoreModel;
+    }
+    [self initController];
+}
+
+-(void) initViews
+{
+    _scoreLabel = [[UICountingLabel alloc]initWithFrame:CGRectZero];
+    _unitLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    _bmiLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    _weightLabel = [[RTLabel alloc]initWithFrame:CGRectZero];
+    
+    [self addSubview:_scoreLabel];
+    [self addSubview:_unitLabel];
+//    [self addSubview:_bmiLabel];//bmi
+//    [self addSubview:_weightLabel]; //体重
+    
+}
+
+-(void) initController
+{
+    CGFloat scoreTop = 30; //14.0f; +16+8
+//    UIFont *font = [UIFont wallScore];
+    UIFont *font = [UIFont fontWithName:KFont_HomeWeight_Regular size:78];
+    // 根据字体得到NSString的尺寸
+    CGSize size = [[NSString stringWithFormat:@"%d",88] sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    CGFloat scoreH = size.height;
+    CGFloat scoreW = size.width;
+    
+    //分数
+    _scoreLabel.frame = CGRectMake((self.width - scoreW)/2-2, scoreTop, scoreW+1, 65);
+    _scoreLabel.textAlignment = NSTextAlignmentRight;
+    _scoreLabel.textColor = [UIColor whiteColor];
+    _scoreLabel.font = font;
+    //分数阴影效果
+//    _scoreLabel.layer.shadowOpacity = 0.1;
+//    _scoreLabel.layer.shadowColor = [UIColor blackColor].CGColor;
+//    _scoreLabel.layer.shadowOffset = CGSizeMake(0, 8.0);
+    
+//    _scoreModel.score = @(80);//测试
+    _scoreLabel.text = [NSString stringWithFormat:@"%d",_scoreModel.score.intValue];
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = kCFNumberFormatterDecimalStyle;
+    _scoreLabel.formatBlock = ^NSString* (float value)
+    {
+        NSString* formatted = [formatter stringFromNumber:@((int)value)];
+        return [NSString stringWithFormat:@"%@",formatted];
+    };
+//    _scoreLabel.method = UILabelCountingMethodEaseInOut;
+    if ([self disableCounting]){
+        [_scoreLabel setText: [NSString stringWithFormat: @"%d", [_scoreModel.score intValue]]];
+        
+    }else{
+        [_scoreLabel countFrom:0 to:[_scoreModel.score intValue] withDuration:2.5];
+    }
+    
+    
+    //分
+    _unitLabel.frame = CGRectMake(_scoreLabel.right, _scoreLabel.top + 3, 100, scoreH/4);
+    _unitLabel.textColor = [UIColor whiteColor];
+    _unitLabel.font = [UIFont headUnit];
+    _unitLabel.text = [NSString stringWithFormat:STR(@"WSV_score")];
+    
+    //单位label显示分
+    CGSize sizeUnit = [_unitLabel.text YMSizeWithFont:_unitLabel.font];
+    _unitLabel.width = sizeUnit.width;
+    _unitLabel.height = sizeUnit.height;
+    _unitLabel.top = _scoreLabel.top -1;
+    _unitLabel.left = _scoreLabel.right + 3; //+5
+    
+    if ([XMTools getCurrentLanguage] == LangJapan || [XMTools getCurrentLanguage] == LangKorean) {
+       _unitLabel.left = _scoreLabel.right + 5;
+    }
+    
+    /*
+    _bmiLabel.frame = CGRectMake(0, _scoreLabel.bottom + 6, self.width, 20);
+    _bmiLabel.font = [UIFont headBmi];
+    _bmiLabel.textAlignment = NSTextAlignmentCenter;
+    _bmiLabel.textColor = [UIColor whiteColor];
+    _bmiLabel.text = [NSString stringWithFormat:@"BMI %.1f | %@ ",_scoreModel.bmiValue.floatValue,_scoreModel.BodyStandStr];
+    _weightLabel.frame = CGRectMake(0, _bmiLabel.bottom+6, self.width , 26);
+    _weightLabel.textAlignment = RTTextAlignmentCenter;
+    _weightLabel.textColor = [UIColor whiteColor];
+    _weightLabel.font = [UIFont headWeight];
+    
+    _weightLabel.text = [NSString stringWithFormat:@"%.1f%@",_scoreModel.weight.floatValue,_scoreModel.myWeightUnit];
+     */
+}
+
+@end

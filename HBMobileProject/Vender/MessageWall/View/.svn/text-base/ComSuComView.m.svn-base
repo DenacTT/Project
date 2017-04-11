@@ -1,0 +1,60 @@
+//
+//  ComSuComView.m
+//  scale
+//
+//  Created by solf on 16/5/11.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import "ComSuComView.h"
+#import "UIColor+YYAdd.h"
+
+@interface ComSuComView ()
+
+@property (nonatomic,strong) UIImageView *imgView;
+
+@property (nonatomic,strong) UILabel *titleLabel;
+
+@property (nonatomic,strong) UILabel *comLabel;
+
+@end
+
+@implementation ComSuComView
+
+- (void)layoutViewsWithTitle:(NSString *)title titleColor:(UIColor *)titleColor img:(NSString *)imgStr andSuggest:(NSString *)suggest
+{
+    CGFloat myTop = ((ScreenWidth == 320.f) ? 12.f : 21.f);
+    
+    if (!_imgView)
+    {
+        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(((ScreenWidth == 320.f) ? 8.f : 19.f), myTop, 34.f, 34.f)];
+        
+        [self addSubview:_imgView];
+    }
+    [_imgView setImage:[UIImage imageNamed:imgStr]];
+    
+    if (!_titleLabel)
+    {
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(_imgView.right + 13.f,myTop, self.width - _imgView.width - _imgView.left * 2.f - 11.f, 30.f)];
+        _titleLabel.font = [UIFont systemFontOfSize:((ScreenWidth == 320.f) ? 13.f : 14.f)];
+        _titleLabel.textColor = titleColor;
+        [self addSubview:_titleLabel];
+    }
+    [_titleLabel setText:title];
+    [_titleLabel sizeToFit];
+    
+    if (!_comLabel)
+    {
+        _comLabel = [[UILabel alloc] initWithFrame:CGRectMake(_titleLabel.left, _titleLabel.bottom + ((ScreenWidth == 320.f) ? 2.f : 6.f), self.width - _imgView.width - _imgView.left * 2.f - 11.f, 54.f)];
+        _comLabel.textColor = [UIColor colorWithHexString:@"#666666"];
+        _comLabel.font = [UIFont systemFontOfSize:((ScreenWidth == 320.f) ? 13.f : 14.f)];
+        _comLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _comLabel.numberOfLines = 0;
+        [self addSubview:_comLabel];
+    }
+    
+    [_comLabel setText:suggest];
+    [_comLabel sizeToFit];
+}
+
+@end

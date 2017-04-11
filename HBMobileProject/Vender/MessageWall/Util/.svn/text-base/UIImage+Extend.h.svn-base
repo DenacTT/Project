@@ -1,0 +1,16 @@
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@interface UIImage (Extend)
+
+- (UIImage*)getRectImage: (CGRect)rect;
+- (UIImage *)convertImageToGrayScale;
+
+- (id)blur;
+- (id)blurWithRadius: (int)radius iteration: (int)iter tintColor: (UIColor*)color;
+- (id)scaleToSize: (CGSize)scaleSize;
+
++ (id)imageWithColor: (UIColor*)color andBordRect: (CGRect)rect andBordColor: (UIColor*)bordColor andCornerRadius: (CGFloat)radius;
+
+@end

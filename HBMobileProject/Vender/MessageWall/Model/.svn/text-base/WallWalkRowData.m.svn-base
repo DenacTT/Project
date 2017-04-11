@@ -1,0 +1,56 @@
+//
+//  WallWalkRowData.m
+//  scale
+//
+//  Created by yzz on 15/8/17.
+//  Copyright (c) 2015年 yzz. All rights reserved.
+//
+
+#import "WallWalkRowData.h"
+#import "StepCount.h"
+#import "UserDB.h"
+#import "User.h"
+
+@interface WallWalkRowData ()
+@end
+
+@implementation WallWalkRowData
+{
+    float _height;
+}
+
+- (CGFloat)cellViewHeight
+{
+    return  _height;
+}
+
+- (void)initLoadData
+{
+    // 子账户
+    UserDB *db = [UserDB shareInstance];
+    User *user = [db findUsersWithId:[XMUserDefault currentUserId]];
+    if ([user.puid integerValue]>0) {
+        _height =  0;
+    }else{
+        _height =  [self.stepCountData canStep]?353:0;
+    }
+}
+
+-(StepCount *)stepCountData
+{
+    if (!_stepCountData) {
+        _stepCountData = [StepCount sharedInstance];
+    }
+    return _stepCountData;
+}
+
+
+
+
+
+
+
+
+
+
+@end

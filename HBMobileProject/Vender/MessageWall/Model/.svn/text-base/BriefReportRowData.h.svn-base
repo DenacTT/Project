@@ -1,0 +1,18 @@
+//
+//  BriefReportRowData.h
+//  scale
+//
+//  Created by solf on 15/8/17.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import "MsgWallCommonRowData.h"
+#import "YMEventCenter.h"
+
+@interface BriefReportRowData : MsgWallCommonRowData<YMEventCallback>
+
+@property (nonatomic,strong) NSMutableArray *datevalues;
+@property (nonatomic,strong) NSMutableArray *weightvalues;
+@property (nonatomic,assign) NSInteger trueCount;
+
+@end

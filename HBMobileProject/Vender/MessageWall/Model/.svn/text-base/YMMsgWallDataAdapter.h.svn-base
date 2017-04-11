@@ -1,0 +1,24 @@
+//
+//  YMMsgWallDataAdapter.h
+//  scale
+//
+//  Created by KiraSu on 15/8/12.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "MsgWallDef.h"
+#import "MsgWallCommonRowData.h"
+
+@interface YMMsgWallDataAdapter : NSObject
+
+@property(nonatomic, weak) id<YMMsgWallDataAdapterDelegate> viewControllerDelegate;
+
+- (id)initRowDataMap;
+- (void)requestNetworkData;
+- (MsgWallInfoCellType) getCellTypeWithIndex: (NSInteger)nIndex;
+- (CGFloat)getSpecCellHeightWithIndex: (NSInteger)nIndex;
+- (MsgWallCommonRowData*)getRowDataWithIndex: (NSInteger)nIndex;
+- (NSInteger)getCount;
+
+@end

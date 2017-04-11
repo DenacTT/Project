@@ -1,0 +1,52 @@
+//
+//  YMMessageWallView.m
+//  scale
+//
+//  Created by KiraSu on 15/12/24.
+//  Copyright © 2015年 KiraSu. All rights reserved.
+//
+
+#import "YMMessageWallView.h"
+
+@implementation YMMessageWallView
+
+- (void)setOnChangeViewMode: (void(^)(id))cb
+{
+    
+}
+
+- (void)resize: (CGSize)rect
+{
+    
+}
+
+- (void)loadView
+{
+    
+}
+
+- (void)viewWillAppear
+{
+    
+}
+
+- (void)viewDidAppear
+{
+    
+}
+
+- (void)viewWillDisappear
+{
+    
+}
+
+- (void)viewDidDisappear
+{
+    
+}
+
+- (UIStatusBarStyle)barstyle
+{
+    return UIStatusBarStyleLightContent;
+}
+@end

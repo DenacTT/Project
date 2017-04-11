@@ -1,0 +1,34 @@
+//
+//  YMUtil.h
+//  scale
+//
+//  Created by KiraSu on 15/8/17.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#ifndef scale_YMUtil_h
+#define scale_YMUtil_h
+
+#define IMPLEMENT_SINGLE(funcname) \
+                                + (id)funcname \
+                                { \
+                                    static id i = nil; \
+                                    static dispatch_once_t once; \
+                                    dispatch_once(&once, ^{ \
+                                    i = [[self alloc] init]; \
+                                    }); \
+                                    return i; \
+                                }
+
+#import "UIColor+Extend.h"
+#import "UIDevice+Extend.h"
+#import "UIView+Extend.h"
+#import "NSThread+Extend.h"
+#import "UIFont+Extend.h"
+#import "NSString+Extend.h"
+#import "UIImage+Extend.h"
+#import "UITableView+Extend.h"
+#import "UIApplication+Extend.h"
+#import "NSArray+Extend.h"
+
+#endif

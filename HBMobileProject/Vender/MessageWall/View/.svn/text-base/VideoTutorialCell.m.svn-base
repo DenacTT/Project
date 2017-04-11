@@ -1,0 +1,203 @@
+//
+//  VideoTutorialCell.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/27.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "VideoTutorialCell.h"
+#import "YMUtil.h"
+#import "VideoTutorialData.h"
+#import "News.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+Scale.h"
+
+@interface VideoTutorialCell()
+
+@property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) UIImageView *videoImgView;
+@property (nonatomic) UILabel *introduceLabel;
+
+@property (nonatomic) UILabel *tutorialLabel;
+@property (nonatomic) UILabel *readNum;
+
+@property (nonatomic) UIView *shadowView;
+
+@property (nonatomic) VideoTutorialData *videoData;
+
+@property (nonatomic,strong) CAGradientLayer *myLayer;
+
+@property (nonatomic,strong) UIImageView *playView;
+
+@end
+
+@implementation VideoTutorialCell
+
+- (void)layoutCellView
+{
+    if (self.videoData.newsData.count == 0) {
+        return;
+    }
+    [super layoutCellView];
+    
+    if (0 == self.videoData.newsData.count) {
+        return;
+    }
+    
+//    BOOL isDescendantView;
+//    if (self.shadowView.subviews.count > 0) {
+//        UIView *temp = self.shadowView.subviews[0];
+//        if ([temp class] == [UILabel class]) {
+//            isDescendantView = [temp isDescendantOfView:self.shadowView];
+//        }
+//    }
+//    if (isDescendantView) {
+//        return;
+//    }
+    News *news = [self.videoData.newsData objectAtIndex: 0];
+    self.backgroundColor = [UIColor commonViewCellBg];
+    
+    CGFloat commonWidth = self.shadowView.width * 0.035;
+    self.titleLabel.origin = CGPointMake(commonWidth, 16);
+    self.titleLabel.size = CGSizeMake(self.shadowView.width - commonWidth, 16);
+    self.titleLabel.text = self.videoData.messageTitle;
+    
+    self.videoImgView.origin = CGPointMake(self.titleLabel.left, self.titleLabel.bottom + 16);
+    self.videoImgView.size = CGSizeMake(self.shadowView.width - commonWidth*2, 140);
+    NSURL *url = [NSURL URLWithString:news.newsImgUrl];
+    self.videoImgView.image = [UIImage imageNamed: @"HealthDefaultNew"];
+    [self.videoImgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground | SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (nil == image) {
+            self.videoImgView.image = [UIImage imageNamed: @"HealthDefaultNew"];
+        }else{
+//            self.videoImgView.image = [image getCenterImageWithUIRect:self.videoImgView.frame andIsNetWorkImg:YES];
+            self.videoImgView.image = image;
+            self.videoImgView.contentScaleFactor = [[UIScreen mainScreen] scale];
+            self.videoImgView.contentMode = UIViewContentModeScaleAspectFill;
+            self.videoImgView.clipsToBounds = YES;
+
+        }
+    }];
+    self.videoImgView.tag = 0;
+    
+    if (!_myLayer)
+    {
+        _myLayer = [CAGradientLayer layer];
+        _myLayer.frame = CGRectMake(0, self.videoImgView.height - 30, self.videoImgView.width, 30);
+        _myLayer.colors = [NSArray arrayWithObjects:(id)RGBA(0, 0, 0, 0).CGColor,(id)RGBA(0, 0, 0, 0.1f).CGColor,(id)RGBA(0, 0, 0, 0.2f).CGColor,(id)RGBA(0, 0, 0, 0.4f).CGColor,(id)RGBA(0, 0, 0, 0.5f).CGColor,(id)RGBA(0, 0, 0, 0.7f).CGColor,nil];
+        [self.videoImgView.layer addSublayer:self.myLayer];
+    }
+    
+    if (!_playView)
+    {
+        UIImage *playImg = [UIImage imageNamed:@"MsgPlayBtn"];
+        _playView = [[UIImageView alloc]initWithFrame:CGRectMake((self.videoImgView.width - playImg.size.width)/2, (self.videoImgView.height - playImg.size.height)/2, playImg.size.width, playImg.size.height)];
+        [_playView setImage:playImg];
+        [self.videoImgView addSubview:_playView];
+    }
+//    self.videoImgView.backgroundColor = [UIColor yellowColor];
+    
+    self.tutorialLabel.text = news.newsTitle;
+    CGSize tutorialLabelSize = [self.tutorialLabel.text YMSizeWithFont:self.tutorialLabel.font];
+    self.tutorialLabel.origin = CGPointMake(self.videoImgView.left + 6, self.videoImgView.bottom - tutorialLabelSize.height - 7);
+    self.tutorialLabel.size = tutorialLabelSize;
+    
+    self.readNum.text = [NSString stringWithFormat:STR(@"VTC_readPerson"),(long)news.newsreadNum];
+    CGSize readSize = [self.readNum.text YMSizeWithFont:self.readNum.font];
+    self.readNum.origin = CGPointMake(self.videoImgView.right - readSize.width - 6, self.tutorialLabel.top);
+    self.readNum.size = readSize;
+    self.readNum.center = CGPointMake(self.readNum.center.x, self.tutorialLabel.center.y);
+    
+    self.introduceLabel.text = news.shortDesc;
+    self.introduceLabel.numberOfLines = 2;
+    self.introduceLabel.origin = CGPointMake(self.videoImgView.left, self.videoImgView.bottom + 9);
+    self.introduceLabel.size = CGSizeMake(self.videoImgView.width, self.introduceLabel.font.height*2+20);
+    [self.introduceLabel sizeToFit];
+//    self.introduceLabel.backgroundColor = [UIColor orangeColor];
+    
+    UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skip:)];
+    singleRecognizer.numberOfTapsRequired = 1;
+    singleRecognizer.numberOfTouchesRequired = 1;
+    [self.shadowView addGestureRecognizer:singleRecognizer];
+}
+
+- (void)skip:(UIGestureRecognizer *)tap
+{
+    
+    [MobClick event:c_info_9_video];
+    UIView *view = tap.view;
+    [self.delegate clickElement:self.videoData.newsData[view.tag]];
+}
+
+- (UILabel *)titleLabel
+{
+    if (nil == _titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.textColor = [UIColor commonTitleColor];
+        _titleLabel.font = [UIFont systemFontOfSize:14];
+        [self.shadowView addSubview:_titleLabel];
+    }
+    return _titleLabel;
+}
+
+- (UIImageView *)videoImgView
+{
+    if (nil == _videoImgView) {
+        _videoImgView = [[UIImageView alloc] init];
+        [self.shadowView addSubview:_videoImgView];
+    }
+    return _videoImgView;
+}
+
+- (UILabel *)introduceLabel
+{
+    if (nil == _introduceLabel) {
+        _introduceLabel = [[UILabel alloc] init];
+        _introduceLabel.textColor = [UIColor commonTitleColor];
+        _introduceLabel.font = [UIFont systemFontOfSize:12];
+        [self.shadowView addSubview:_introduceLabel];
+    }
+    return _introduceLabel;
+}
+
+- (UILabel *)tutorialLabel
+{
+    if (nil == _tutorialLabel) {
+        _tutorialLabel = [[UILabel alloc] init];
+        _tutorialLabel.font = [UIFont systemFontOfSize:12];
+        _tutorialLabel.textColor = [UIColor whiteColor];
+        [self.shadowView addSubview:_tutorialLabel];
+    }
+    return _tutorialLabel;
+}
+
+- (UILabel *)readNum
+{
+    if (nil == _readNum) {
+        _readNum = [[UILabel alloc] init];
+        _readNum.font = [UIFont systemFontOfSize:12];
+        _readNum.textColor = [UIColor whiteColor];
+        [self.shadowView addSubview:_readNum];
+    }
+    return _readNum;
+}
+
+- (VideoTutorialData *)videoData
+{
+    if (nil == _videoData) {
+        _videoData = (VideoTutorialData *)[super commonRowData];
+    }
+    return _videoData;
+}
+
+- (UIView *)shadowView
+{
+    if (nil == _shadowView) {
+        _shadowView = [super shadowCellView];
+    }
+    return _shadowView;
+}
+
+
+@end

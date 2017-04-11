@@ -1,0 +1,24 @@
+//
+//  ComponentAdapter.h
+//  scale
+//
+//  Created by solf on 16/5/9.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "ComponentModel.h"
+
+@interface ComponentAdapter : NSObject
+
+@property (nonatomic,strong) NSArray *itemTitle; //标题
+
+
+- (void)initDatas; //加载数据
+
+- (ComponentModel *)getComDataWithIndex:(NSInteger)comIndex; //获取成分model
+
+- (NSInteger)itemCount;
+
+
+@end

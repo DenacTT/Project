@@ -1,0 +1,401 @@
+//
+//  WeightDataCell.m
+//  scale
+//
+//  Created by cza on 15/8/18.
+//  Copyright (c) 2015年 cza. All rights reserved.
+//
+
+#import "WeightDataCell.h"
+#import "BodyCompositionCell.h"
+#import "WeightDataRowData.h"
+#import "YMUtil.h"
+#import "YMConstSource.h"
+#import "UIFont+AdjustScreen.h"
+#import "BasNavViewController.h"
+#import "WallNewsVCViewController.h"
+#import "ComPonentModelControl.h"
+#import "YMNavigationViewManager.h"
+#import "XMTools.h"
+#import "MainComponentView.h" //新简报
+#import "ComDataCursor.h"
+#import "UIColor+YYAdd.h"
+#import "BiggerBtn.h"
+#import "BmiTipView.h"
+#import "weightDetailsCell.h"
+#import "AddWeightManuallyCell.h"
+#import "MainComponentViewController.h"
+#import "WeightDB.h"
+@interface WeightDataCell ()<UITableViewDelegate,UITableViewDataSource> //UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
+
+@property (nonatomic,strong) NSMutableArray *dataArr;
+@property (nonatomic,assign) BOOL isAnimal;
+@property (nonatomic,strong) ComDataCursor *cursorView; //游标页面
+@property (nonatomic,strong) ComponentModel *bmiModel;
+
+@property(nonatomic,strong) NSString *bottomTitle;
+@property(nonatomic,strong) NSString *maxStandString;
+@end
+@implementation WeightDataCell
+{
+    BOOL                        _initCellView;
+    UICollectionView*           _collectionView; // 九宫格形式
+    UITableView *               _newTableView; //列表形式
+    
+    UILabel*                    _bodyLabel;
+    UIImageView*                _topImageView;
+    WeightDataRowData*          _weightData;
+    BOOL                        _isOpen;
+    
+    //11.11
+    UIImageView *       _comImgView; //成分图标
+    UILabel *           _comTitleLabel;//成分名称
+    UILabel *           _comStateLabel; //成分状态
+    UILabel *           _comInfoLabel;//成分状态解释
+    
+}
+static NSString * const CompositionCellReuseIdentifier = @"NewBodyCompositionCell";
+static NSString * const AddWeightReuseIdentifier = @"AddWeightManuallyCell";
+
+#pragma mark-UI 布局
+- (void)layoutCellView
+{
+    [super layoutCellView];
+    if (!_initCellView)
+    {
+        _initCellView = YES;
+        if (MSG_WALL_CELL_WEIGHT_DATA_JSON_TYPE == [[super commonRowData] messageType])
+        {
+            _weightData = (WeightDataRowData*)[super commonRowData];
+        }
+        else
+        {
+            return;
+        }
+        
+        if (UI_IS_IPHONE6P) {
+            [_topImageView layoutIfNeeded];
+        }
+        UIView* shadowView = [super shadowCellView];
+        shadowView.top = 40.0f; //36
+        shadowView.height = [[self commonRowData] cellViewHeight]- shadowView.top;
+        // 只要对应类型一致json解析时commonRowData本身就是WeightDataRowData对象
+        WeightDataRowData  *weightData = (WeightDataRowData*)[super commonRowData];
+        _dataArr = [NSMutableArray arrayWithArray:weightData.weightDataArr];
+        
+        if (!_dataArr || [_dataArr count] == 0)
+        {
+            return;
+        }
+        
+        if (_dataArr != nil) {
+            //最长的字符串
+            _maxStandString = [self maxStandStringWith:_dataArr];
+        }
+        
+        UIImage* image = [UIImage imageNamed: @"wallComponent"];
+        _topImageView = [[UIImageView alloc] initWithImage: image];
+        _topImageView.left = self.width*0.024f;
+        _topImageView.top = 10;
+        _topImageView.width = image.size.width;
+        _topImageView.height = image.size.height;
+        _topImageView.center = CGPointMake(_topImageView.width/2 + _topImageView.left, _topImageView.height/2 + _topImageView.top);
+        [self addSubview: _topImageView];
+
+        _bodyLabel = [[UILabel alloc] init];
+        _bodyLabel.font = [UIFont commonCellViewTitle];
+        _bodyLabel.textColor = [UIColor commonTitleColor];
+//      [_bodyLabel setText: [_weightData messageTitle]];// 身体成分
+        _bodyLabel.text = STR(@"lb_str_componentNtroduced");
+        _bodyLabel.top = _topImageView.top;
+        _bodyLabel.left = _topImageView.right + 4;
+        _bodyLabel.width = [_bodyLabel.text YMSizeWithFont: _bodyLabel.font].width;
+        _bodyLabel.height = [_bodyLabel.text YMSizeWithFont: _bodyLabel.font].height;
+        _bodyLabel.center = CGPointMake(_bodyLabel.width/2 + _bodyLabel.left, _topImageView.center.y);
+        [self addSubview: _bodyLabel];
+        
+        if (weightData.haoqingSE) {
+            ComponentModel *bmiComModel =   [[ComPonentModelControl sharedInstance] getBodyWithUserId:[XMUserDefault currentUserId]];
+            self.bmiModel = bmiComModel;
+            _comImgView = [[UIImageView alloc] initWithFrame:CGRectMake(25, 29, 55, 55)];//34, 34, 55, 55
+            _comImgView.clipsToBounds = YES;
+            _comImgView.contentMode = UIViewContentModeScaleToFill;
+            [shadowView addSubview:_comImgView];
+            [_comImgView setImage:[UIImage imageNamed:@"messageWall_bmi_icon"]];
+            
+            _comTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(_comImgView.right+20,30, 75, 15)]; //30
+            _comTitleLabel.textColor = RGB(50, 50, 50);
+            _comTitleLabel.font = [UIFont systemFontOfSize:16];
+            [shadowView addSubview:_comTitleLabel];
+            NSString *comValueStr = [NSString stringWithFormat:@"%.1f",[bmiComModel.comValue floatValue]];;
+            _comTitleLabel.text = [NSString stringWithFormat:@"%@ %@",bmiComModel.comTitle,comValueStr];
+            [_comTitleLabel sizeToFit]; //%@(%@)
+            _comTitleLabel.center = CGPointMake(0, _comImgView.center.y);
+            _comTitleLabel.left =  _comImgView.right+20;
+            
+            
+            _comStateLabel = [[UILabel alloc] initWithFrame:CGRectMake(_comTitleLabel.right+6, 30, 45, 20)];
+            _comStateLabel.textColor = [UIColor whiteColor];
+            _comStateLabel.font = [UIFont systemFontOfSize:14];
+            _comStateLabel.layer.cornerRadius = 2;
+            _comStateLabel.layer.masksToBounds = YES;
+            _comStateLabel.textAlignment = NSTextAlignmentCenter;
+            [shadowView addSubview:_comStateLabel];
+            _comStateLabel.text = bmiComModel.comStand;
+            _comStateLabel.center = CGPointMake(0, _comImgView.center.y);
+            _comStateLabel.left =  _comTitleLabel.right+6;
+            if ([XMTools getCurrentLanguage] == LangEN) {
+                _comStateLabel.hidden = YES;
+            }
+            
+            _comInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(_comTitleLabel.left, _comTitleLabel.bottom+10, 220, 40)];
+            if(ScreenWidth==320){
+                _comInfoLabel.width=190;
+                _comInfoLabel.height=60;
+            }
+            
+            if (bmiComModel.comStateStr) {
+                NSMutableDictionary *arrts = [NSMutableDictionary dictionary];
+                NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:bmiComModel.comStateStr attributes:arrts];
+                NSMutableParagraphStyle *muParagraph = [[NSMutableParagraphStyle alloc]init];
+                muParagraph.lineSpacing = 4; // 行距
+                [attStr setAttributes:@{NSForegroundColorAttributeName : RGB(102, 102, 102)} range:NSMakeRange(0, bmiComModel.comStateStr.length)];
+                [attStr addAttribute:NSParagraphStyleAttributeName value:muParagraph range:NSMakeRange(0, bmiComModel.comStateStr.length)];
+                _comInfoLabel.font = [UIFont systemFontOfSize:14];
+                _comInfoLabel.numberOfLines=0;
+//                [shadowView addSubview:_comInfoLabel];// 不显示bmi描述
+                _comInfoLabel.attributedText = attStr;
+            }
+
+//            _cursorView = [[ComDataCursor alloc] initWithFrame:CGRectMake(-ScreenWidth*0.016, _comInfoLabel.bottom+25, ScreenWidth, 78)];
+            _cursorView = [[ComDataCursor alloc] initWithFrame:CGRectMake(-ScreenWidth*0.016, _comImgView.bottom+30, ScreenWidth, 40)];//78
+            [shadowView addSubview:_cursorView];
+            [_cursorView.cursorModel comModelChangeCursorModel:bmiComModel];
+            [_cursorView layoutViews];
+            [_cursorView setCursorLocation];
+            
+            switch (_cursorView.cursorModel.comIndex) {
+                case 1:
+                    _comStateLabel.backgroundColor =  UIColorHex(6ed7a0);
+                    break;
+                case 2:
+                    _comStateLabel.backgroundColor =  UIColorHex(4bc355);
+                    break;
+                case 3:
+                    _comStateLabel.backgroundColor =  UIColorHex(feba4d);
+                    break;
+                case 4:
+                    _comStateLabel.backgroundColor =  UIColorHex(f57a6b);
+                    break;
+                case 5:
+                    _comStateLabel.backgroundColor =  UIColorHex(f5523e);
+                    break;
+                default:
+                    _comStateLabel.backgroundColor =  UIColorHex(6ed7a0);
+                    break;
+            }
+            
+            BiggerBtn *bmiWhatBtn = [BiggerBtn buttonWithType:UIButtonTypeCustom];
+            bmiWhatBtn.frame = CGRectMake(shadowView.width-15-15, 15, 15, 15);
+            [bmiWhatBtn addTarget:self action:@selector(clickWhatBmi) forControlEvents:UIControlEventTouchUpInside];
+            [bmiWhatBtn setImage:Image(@"what_bmi") forState:UIControlStateNormal];
+            [shadowView addSubview:bmiWhatBtn];
+            
+        }else{
+            /*
+            UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+            _collectionView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, 0, shadowView.width, shadowView.height) collectionViewLayout: layout];
+            _collectionView.backgroundColor = [UIColor whiteColor];
+            _collectionView.dataSource = self;
+            _collectionView.delegate = self;
+            _collectionView.scrollEnabled = NO;
+            
+            [_collectionView registerClass:[BodyCompositionCell class] forCellWithReuseIdentifier:reuseIdentifier];
+            [shadowView addSubview: _collectionView];
+            [_collectionView reloadData];
+            */
+            
+            CGFloat tableHeight = weightData.onlyWeight?(_dataArr.count +1) * [self getRowHeight]:_dataArr.count*[self getRowHeight];
+            
+            _newTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, shadowView.width, tableHeight) style:UITableViewStylePlain];
+            _newTableView.delegate = self;
+            _newTableView.dataSource = self;
+            _newTableView.backgroundColor = [UIColor whiteColor];
+            _newTableView.showsVerticalScrollIndicator = NO;
+            _newTableView.scrollEnabled = NO;
+            [_newTableView registerClass:[BodyCompositionCell class] forCellReuseIdentifier:CompositionCellReuseIdentifier];
+            [_newTableView registerClass:[AddWeightManuallyCell class] forCellReuseIdentifier:AddWeightReuseIdentifier];
+            _newTableView.separatorStyle = UITableViewCellSelectionStyleNone; //不要分割线
+            [shadowView addSubview: _newTableView];
+            [_newTableView reloadData];
+        }
+//        _initCellView = YES;
+    }
+}
+#pragma mark-SE模式下的问号点击
+-(void)clickWhatBmi{
+    BmiTipView *tipView = [[BmiTipView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) withComponentModel:self.bmiModel];
+    [[UIApplication sharedApplication].keyWindow addSubview:tipView];
+}
+
+#pragma mark-tableViewDelegate && tableViewDataSource
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+    WeightDataRowData  *weightData = (WeightDataRowData*)[super commonRowData];
+    if (weightData.onlyWeight) { //只有体重，显示10行
+        return _dataArr.count + 1;
+    }
+    return _dataArr.count;
+    
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+   
+    UITableViewCell * cell = nil;
+
+    if (indexPath.row < _dataArr.count) {
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:CompositionCellReuseIdentifier];
+        BodyCompositionCell * bodyCell = (BodyCompositionCell *)cell;
+        [bodyCell setSelectionStyle:UITableViewCellSelectionStyleNone]; //点击效果
+        bodyCell.mondel = _dataArr[indexPath.item];
+        bodyCell.maxStandString = _maxStandString;//最长字符串
+        [bodyCell layoutCellViews];
+
+    }else{
+        cell = [tableView dequeueReusableCellWithIdentifier:AddWeightReuseIdentifier];
+        AddWeightManuallyCell * addWeightCell = (AddWeightManuallyCell *)cell;
+        [addWeightCell setSelectionStyle:UITableViewCellSelectionStyleNone]; //点击效果
+        addWeightCell.titleStr = self.bottomTitle;
+        [addWeightCell layoutCellViews];
+    }
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    return  [self getRowHeight];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row < _dataArr.count) {
+        MainComponentViewController *componentViewVC = [[MainComponentViewController alloc] init];
+        [componentViewVC setScrollTo:indexPath.row];
+        RootNavigationPushController(componentViewVC);
+        
+        //埋点
+        if (indexPath.row < [_dataArr count])
+        {
+            [self markClickWithComponentModel:_dataArr[indexPath.row]];
+        }
+    }
+}
+-(NSString *)maxStandStringWith:(NSMutableArray *)array{
+    
+    if (array == nil || array.count == 0) {
+        return @"标准";
+    }
+    ComponentModel * model = array[0];
+    NSString * maxString = model.comStand;
+    //最长的字符串
+    for (int i = 0; i < array.count; i ++) {
+        ComponentModel * modeli = array[i];
+        if (![modeli.comStand isEqualToString:@"--"]) {
+            maxString = modeli.comStand;
+            for (int j = 0; j < i; j ++) {
+                ComponentModel * modelj = array[j];
+                if (modelj.comStand.length > maxString.length) {
+                    maxString = modelj.comStand;
+                }
+            }
+        }
+    }
+    
+    return maxString;
+}
+
+-(NSString *)bottomTitle{
+
+    /*
+     1.手动输入
+     本次数据为手动输入，无法显示其他身体数据
+     2.仅检测到体重
+     本次只检测到体重，获取更多身体数据请您赤脚称重！
+     3.未成年
+     您属于未成年人，无法显示其他身体数据
+     4.SE&other——使用好轻SE称重，但同时有记录使用其他硬件称重的情况
+     本条数据来自好轻SE，无法显示更多身体数据
+     */
+    
+    WeightInfo *weightInfo = [[WeightDB shareInstance] getOneWeightInfoDataByUserId:[XMUserDefault currentUserId]];
+    UserInfo *userInfo = [[LoginConst sharedInstance] getLoginUserInfo];
+    
+    NSInteger age = [[XMTools getAgeWithbirthday:userInfo.birthday] integerValue];
+
+    NSString * bottomTitleStr = nil;
+    if ([weightInfo.dataType integerValue]== 3) { //手动输入  1
+        bottomTitleStr = STR(@"WeightDataCell_setWeight");
+    }else{
+        if (age < 18){ //未成年 3
+            bottomTitleStr = STR(@"WeightDataCell_under18");//@"您属于未成年人，无法显示其他身体数据";
+        }else{
+            if (_weightData.onlyWeight){ //仅检测到体重  2
+                bottomTitleStr = STR(@"WeightDataCell_onlyWeight"); //@"本次只检测到体重，获取更多身体数据请您赤脚称重！"
+            }
+        }
+    }
+    return bottomTitleStr;
+}
+-(CGFloat) getRowHeight{
+    
+    return 55.0f;
+}
+-(void)runAnimal
+{
+    [_collectionView reloadData];
+}
+#pragma mark -成分埋点处理
+-(void) markClickWithComponentModel:(ComponentModel*)model
+{
+    if (model.compositionType == ComponentTypeOfFat) {
+        
+        [MobClick event:c_info_fat];
+        
+    }else if (model.compositionType == ComponentTypeOfBMI){
+        
+        [MobClick event:c_info_bmi];
+        
+    }else if (model.compositionType == ComponentTypeOfBMR){
+        
+        [MobClick event:c_info_bmr];
+        
+    }else if (model.compositionType == ComponentTypeOfBodyAge){
+        
+        [MobClick event:c_info_age];
+        
+    }else if (model.compositionType == ComponentTypeOfMuscle){
+        
+        [MobClick event:c_info_muscle];
+        
+    }else if (model.compositionType == ComponentTypeOfWater){
+        
+        [MobClick event:c_info_water];
+        
+    }else if (model.compositionType == ComponentTypeOfProtein){
+        
+        [MobClick event:c_info_protein];
+        
+    }else if (model.compositionType == ComponentTypeOfBone){
+        
+        [MobClick event:c_info_bone];
+        
+    }else if (model.compositionType == ComponentTypeOfVisFat){
+        
+        [MobClick event:c_info_visfat];
+    }
+}
+@end

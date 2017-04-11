@@ -1,0 +1,15 @@
+//
+//  VideoTutorialData.h
+//  scale
+//
+//  Created by 叶威廷 on 15/10/27.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "MsgWallNewsCommonRowData.h"
+
+@interface VideoTutorialData : MsgWallNewsCommonRowData
+
+@property (nonatomic) NSMutableArray *newsData;
+
+@end

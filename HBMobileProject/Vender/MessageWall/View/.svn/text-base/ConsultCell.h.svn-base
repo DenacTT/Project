@@ -1,0 +1,13 @@
+//
+//  ConsultCell.h
+//  scale
+//
+//  Created by 叶威廷 on 15/10/27.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "YMMsgWallCellView.h"
+
+@interface ConsultCell : YMMsgWallCellView
+
+@end

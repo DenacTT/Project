@@ -1,0 +1,18 @@
+//
+//  ComNoDataStateView.h
+//  scale
+//
+//  Created by solf on 16/5/10.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface ComNoDataStateView : UIView
+
+- (void)layoutViewsTitle:(NSString *)comTtile img:(NSString *)comImg andInfo:(NSString *)comInfo;
+
+////带上数值
+//- (void)layoutViewsTitle:(NSString *)comTtile img:(NSString *)comImg andInfo:(NSString *)comInfo andcomValue: (NSString *)comValue;
+
+@end

@@ -1,0 +1,80 @@
+//
+//  WeightDataRowData.m
+//  scale
+//
+//  Created by KiraSu on 15/8/13.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "WeightDataRowData.h"
+#import "ComPonentModelControl.h"
+#import "YMConstSource.h"
+#import "WeightDB.h"
+@implementation WeightDataRowData
+
+- (CGFloat)cellViewHeight
+{
+//    if (_weightDataArr.count == 0) {
+//        return 0;
+//    }else if([YMConstSource sharedInstance].scalIsMini){
+//        return UI_IS_IPHONE6P?380: 290;
+//    }else{
+//        return UI_IS_IPHONE6P?280: 230;
+//    }
+//    if (_weightDataArr.count == 0) {
+//        return 0;
+//    }else if([YMConstSource sharedInstance].scalIsMini){
+//        return UI_IS_IPHONE6P?380: 256;
+//    }else{
+//        return UI_IS_IPHONE6P?280: 256;
+//    }
+    
+        if (_weightDataArr.count == 0) {
+            return 0;
+        }else{
+            if (self.haoqingSE) {
+//                CGFloat h = 215+40; //显示bmi对比描述
+                CGFloat h = 170+40;   //不显示bmi对比描述
+                return h;
+            }
+//                return 357.f; //九宫格样式
+            
+            if (self.onlyWeight) {
+                return 10*55+40; // 只有体重，多显示一行cell
+            }
+            return 9*55+40; //列表样式(46 cell高度，40 标题高度)
+        }
+}
+- (void)initLoadData
+{
+//    if ([weightInfo weightDeviceType]==DeviceType_haoqing_se && [weightInfo.dataType integerValue] != 3) {
+//        self.haoqingSE = YES;
+//     }else{
+//        self.haoqingSE = NO;
+//        ComPonentModelControl *comPonent = [[ComPonentModelControl alloc]init];
+//        NSDictionary *dic = [comPonent getMyScoreAndWeightDatasWithUserId:[XMUserDefault currentUserId]];
+//            if (dic && [dic count]>1){
+//            _weightDataArr = [dic objectForKey:@"Component"];
+//            _onlyWeight = [[dic objectForKey:@"onlyWeight"] boolValue];
+//            }
+//        }
+//   
+//    }
+    //好轻SE
+    WeightInfo *weightInfo = [[WeightDB shareInstance] getOneWeightInfoDataByUserId:[XMUserDefault currentUserId]];
+    // [[WeightDB shareInstance] setCurrentDeviceType] == DeviceType_haoqing_se
+    NSLog(@"weightDeviceType ==>> %zi",[weightInfo weightDeviceType] );
+    if ([weightInfo weightDeviceType]==DeviceType_haoqing_se && [weightInfo.dataType integerValue] != 3) {
+        self.haoqingSE = YES;
+    }else{
+        self.haoqingSE = NO;
+    }
+    ComPonentModelControl *comPonent = [[ComPonentModelControl alloc]init];
+    NSDictionary *dic = [comPonent getMyScoreAndWeightDatasWithUserId:[XMUserDefault currentUserId]];
+    if (dic && [dic count]>1){
+        _weightDataArr = [dic objectForKey:@"Component"];
+        _onlyWeight = [[dic objectForKey:@"onlyWeight"] boolValue];
+    }
+}
+
+@end

@@ -1,0 +1,288 @@
+//
+//  NSString+YM.m
+//  YunmaiLink
+//
+//  Created by KiraSu on 15/7/30.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "NSString+Extend.h"
+#import "UIFont+Extend.h"
+#import "HomeViewDef.h"
+#import "UIDevice+Extend.h"
+@implementation NSString(Extend)
+
+- (CGSize)YMSizeWithFont:(UIFont *)font
+{
+    CGSize retSize;
+    retSize = [self sizeWithAttributes: @{NSFontAttributeName: font}];
+    return retSize;
+}
+
+- (CGSize)YMSizeWithFont: (UIFont *)font constrainedToSize: (CGSize)size
+{
+    CGSize retSize;
+    NSMutableParagraphStyle* paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    retSize = [self boundingRectWithSize: size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraph.copy} context:nil].size;
+    return retSize;
+}
+
+- (CGSize)YMSizeWithFont: (UIFont *)font andParagraphStyle: (NSParagraphStyle*)style constrainedToSize: (CGSize)size
+{
+    CGSize retSize;
+    retSize = [self boundingRectWithSize: size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font, NSParagraphStyleAttributeName: style} context:nil].size;
+    return retSize;
+}
+
+-(CGFloat)countTextHeightWithFont:(UIFont *)font width:(CGFloat)width{
+    CGRect rectToFit = [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil];
+    return rectToFit.size.height;
+}
+
+
+//YM2.0 统一主页体重和单位的frame
+-(void)YMResetWeightLabel:(UILabel *)weightlabel andUnitlabel:(UILabel *)unitlabel andSuperview:(UIView *)view{
+    NSString * tailString = [weightlabel.text substringFromIndex:weightlabel.text.length -2];
+    
+    CGSize tailSize = [tailString YMSizeWithFont:[UIFont systemFontOfSize:33] constrainedToSize:CGSizeMake(view.width, 33)];
+    NSString* textSub = [weightlabel.text substringToIndex:weightlabel.text.length-2];
+    CGSize size = [textSub YMSizeWithFont:weightlabel.font constrainedToSize:CGSizeMake(view.width, weightlabel.font.height)];
+    CGFloat scoreW = size.width;
+//    CGFloat scoreH = size.height;
+    weightlabel.width = scoreW+tailSize.width;
+//    weightlabel.height = scoreH;
+    weightlabel.height = 65;
+    weightlabel.left = (view.width - weightlabel.width)/2;
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:weightlabel.text];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:33] range:NSMakeRange([weightlabel.text length]-2, 2)];
+    weightlabel.attributedText = attrString;
+    
+    CGSize unitSize = [unitlabel.text YMSizeWithFont: unitlabel.font
+                                    constrainedToSize: CGSizeMake(view.width, unitlabel.font.height)];
+    if (tailSize.width >= unitSize.width) {
+        unitlabel.width = tailSize.width;
+    }
+    unitlabel.width = unitSize.width;
+    unitlabel.height = unitSize.height;
+    unitlabel.left = weightlabel.width - unitlabel.width;
+//    unitlabel.top = 15.0;
+        unitlabel.top = 10.0;
+}
+
++ (NSMutableAttributedString *)getBMILabelTextByBMI:(CGFloat)bmi andBodyStand:(NSString *)body{
+    NSString * text = nil;
+    text = [NSString stringWithFormat:HOME_HEAD_SCORE_AND_BMI_FORMAT_TEXT,bmi,body];
+    CGFloat bmiFont = [UIDevice isIPhone4]?13.f:([UIDevice isIPhone6Plus]?20.f:18.f);
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize: bmiFont] range:NSMakeRange([text length]-2, 2)];
+    return attrString;
+}
+
++ (NSMutableAttributedString *)getBMIForAnimationBMI:(CGFloat)bmi andBodyStand:(NSString *)body{
+    NSString * text = nil;
+    text = [NSString stringWithFormat:HOME_HEAD_SCORE_AND_BMI_FORMAT_TEXT,bmi,body];
+    CGFloat bmiFont = [UIDevice isIPhone4]?10.f:([UIDevice isIPhone6Plus]?17.f:15.f);
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize: bmiFont] range:NSMakeRange([text length]-2, 2)];
+    return attrString;
+}
+
+-(BOOL)checkPhoneNumInput
+{
+    NSString * MOBILE = @"^1([0-9][0-9]|5[0-35-9]|8[025-9])\\d{8}$";
+    NSString * CM = @"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d)\\d{7}$";
+    NSString * CU = @"^1(3[0-2]|5[256]|8[56])\\d{8}$";
+    NSString * CT = @"^1((33|53|8[09])[0-9]|349)\\d{7}$";
+    // NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
+    
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM];
+    NSPredicate *regextestcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CU];
+    NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT];
+    BOOL res1 = [regextestmobile evaluateWithObject:self];
+    BOOL res2 = [regextestcm evaluateWithObject:self];
+    BOOL res3 = [regextestcu evaluateWithObject:self];
+    BOOL res4 = [regextestct evaluateWithObject:self];
+    if (res1 || res2 || res3 || res4 )
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+    
+}
+
+/**
+ *  邮箱验证
+ *  邮箱地址的正则表达式:可能有问题,现在直接判断是否有 @ 字符
+ */
++ (BOOL)isValidateEmail:(NSString *)email
+{
+    if([email rangeOfString:@"@"].location !=NSNotFound)//_roaldSearchText
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+    
+//    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+//    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+//    return [emailTest evaluateWithObject:email];
+}
++ (NSString *)basicInfoBirthdayFormat:(NSString *)birthday
+{
+    NSString * newBirthday = nil;
+    NSString * year = [birthday substringToIndex: 4];
+    NSString * month = [birthday substringWithRange:NSMakeRange (4, 2)];
+    NSString * leftMonth = [month substringToIndex: 1];
+    if ([leftMonth integerValue] == 0) {
+        month = [month substringFromIndex: 1];
+    }
+    newBirthday = [NSString stringWithFormat:@"%@ 年 %@ 月",year,month];
+    return newBirthday;
+}
++ (NSString *)exceptSpaceString:(NSString *)str
+{
+    str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    str = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
+    return str;
+}
+- (id)toJSONObject
+{
+    NSError *error;
+    
+    // 与stringWithJSONObject的反向操作
+    NSString* strFormat = nil;
+    strFormat = [self stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
+    strFormat = [strFormat stringByReplacingOccurrencesOfString:@"\\\"" withString:@"\""];
+    strFormat = [strFormat stringByReplacingOccurrencesOfString:@"\\\'" withString:@"\'"];
+    strFormat = [strFormat stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+    strFormat = [strFormat stringByReplacingOccurrencesOfString:@"\\r" withString:@"\r"];
+    strFormat = [strFormat stringByReplacingOccurrencesOfString:@"\\f" withString:@"\f"];
+    strFormat = [strFormat stringByReplacingOccurrencesOfString:@"\\u2028" withString:@"\u2028"];
+    strFormat = [strFormat stringByReplacingOccurrencesOfString:@"\\u2029" withString:@"\u2029"];
+    
+    NSData *data = [strFormat dataUsingEncoding:NSUTF8StringEncoding];
+    if (!data || ![data length])
+    {
+        return @{};
+    }
+    
+    id retval = [NSJSONSerialization JSONObjectWithData:data
+                                                options:NSJSONReadingMutableContainers
+                                                  error:&error];
+    if (error)
+    {
+        NSLog(@"[NSString toJsonDict]: %@", error);
+    }
+    
+    return retval;
+}
+
++ (NSString*)stringWithJSONObject:(id)obj
+{
+    if (!obj)
+    {
+        obj = @{};
+    }
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:obj
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    NSString *json =[[NSString alloc] initWithData:data
+                                          encoding:NSUTF8StringEncoding];
+    json = [json stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+    json = [json stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    json = [json stringByReplacingOccurrencesOfString:@"\'" withString:@"\\\'"];
+    json = [json stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
+    json = [json stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"];
+    json = [json stringByReplacingOccurrencesOfString:@"\f" withString:@"\\f"];
+    json = [json stringByReplacingOccurrencesOfString:@"\u2028" withString:@"\\u2028"];
+    json = [json stringByReplacingOccurrencesOfString:@"\u2029" withString:@"\\u2029"];
+    return json;
+}
+
++ (NSString*)stringUrlWithJSONObject:(id)obj
+{
+    if (!obj)
+    {
+        obj = @{};
+    }
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:obj
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    NSString *json =[[NSString alloc] initWithData:data
+                                          encoding:NSUTF8StringEncoding];
+    json = [json stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    json = [json stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    json = [json stringByReplacingOccurrencesOfString:@"\f" withString:@""];
+    json = [json stringByReplacingOccurrencesOfString:@" " withString:@""];
+    //json = [json stringByReplacingOccurrencesOfString:@"\"" withString:@"\""];
+    return json;
+}
+
+/*!
+ * @brief 把格式化的JSON格式的字符串转换成字典
+ * @param jsonString JSON格式的字符串
+ * @return 返回字典
+ */
+-(NSDictionary*)stringToJson{
+    if (self == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
+
+//wifi
+
+-(YMDeviceType)stringToDeviceType{
+    
+    //
+    //    //test
+    //    return DeviceType_haoqing_pro;
+    //    //test
+    //
+    
+    if ([self hasPrefix:@"YUNMAI-SIGNAL-C"]){
+        return DeviceType_haoqing_color;
+    }else if ([self hasPrefix:@"YUNMAI-SIGNAL-M"]){
+        return DeviceType_haoqing_mini;
+    }else if ([self hasPrefix:@"YUNMAI-IS2P"]){
+        return DeviceType_haoqing_pro;
+    }else if ([self hasPrefix:@"YUNMAI-SIGNAL"]) {
+        return DeviceType_haoqing;
+    }else if ([self hasPrefix:@"YUNMAI-ISSE"]){
+        return DeviceType_haoqing_se;
+    }
+    return DeviceType_unknow;
+}
+
+//脂肪
++ (NSMutableAttributedString *)getFatForAnimationFat:(CGFloat)fat andBodyStand:(NSString *)body
+{
+    NSString * text = nil;
+    text = [NSString stringWithFormat: @"脂肪%.1f％ | %@",fat,body];
+    CGFloat fatFont = [UIDevice isIPhone4]?10.f:([UIDevice isIPhone6Plus]?17.f:15.f);
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize: fatFont] range:NSMakeRange([text length]-2, 2)];
+    return attrString;
+}
+
+@end

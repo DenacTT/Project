@@ -1,0 +1,18 @@
+//
+//  RegCardCell.h
+//  scale
+//
+//  Created by 叶威廷 on 15/10/14.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "YMMsgWallCellView.h"
+
+@interface RegCardCell : YMMsgWallCellView
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event;
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event;
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event;
+
+@end

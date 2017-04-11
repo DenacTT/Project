@@ -1,0 +1,34 @@
+//
+//  YMMsgWallItemData.h
+//  scale
+//
+//  Created by KiraSu on 15/8/12.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "MsgWallDef.h"
+
+@interface MsgWallCommonRowData : NSObject
+
+@property(nonatomic) NSInteger id;
+@property(nonatomic) NSInteger messageType;
+@property(nonatomic, strong) NSString* messageTitle;
+@property(nonatomic, strong) NSString* messageDetail;
+@property(nonatomic) BOOL isLocal;
+@property(nonatomic) NSInteger createTime;
+@property(nonatomic) NSInteger categoryId;
+@property(nonatomic) NSInteger messageShowType;
+@property(nonatomic, assign) BOOL doAnimation;
+
+/*
+ * @brief 需要各个子Cell根据数据计算出所需要占用的height值
+ */
+- (CGFloat)cellViewHeight;
+
+/*
+ * @brief 每个派生类需要构造自己的特有的数据
+ */
+- (void)initLoadData;
+
+@end

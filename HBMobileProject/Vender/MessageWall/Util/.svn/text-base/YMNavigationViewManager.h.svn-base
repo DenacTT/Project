@@ -1,0 +1,47 @@
+//
+//  YMNavigationViewManager.m
+//  YMNavigationViewManager
+//
+//  Created by KiraSu on 15/7/30.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "NavigateViewDelegate.h"
+#import "YMTabBar.h"
+
+#import "YMSCView.h"
+
+@interface YMNavigationViewManager : NSObject<UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong) UIView* view;
+@property (nonatomic, weak) UIViewController* rootViewController;
+@property (nonatomic, weak) UITabBarController* tabBarViewController;
+
+@property (nonatomic,weak) YMTabBar *ymTabBar;
+
+@property (nonatomic,weak) YMSCView *scMyView;
+
++ (in)single;
+
+- (NSMutableArray*)setStackViews: (NSMutableArray*)stack;
+- (CGRect)sysTabBarFrame;
+
+- (void)cleanCache;
+- (void)setFrame: (CGRect)frame;
+- (void)pushFirstView: (UIView<NavigateViewDelegate>*)page;
+- (void)push: (UIView<NavigateViewDelegate>*)page;
+- (void)pushWithoutAnimation: (UIView<NavigateViewDelegate>*)page;
+- (void)popWithoutAnimation;
+- (void)pop;
+- (UIView<NavigateViewDelegate>*)frontPage;
+
+- (NSInteger) getStackCount;
+
+//-(void)hideTabbar;
+//-(void)showTabbar;
+-(void)openPanGesture;
+-(void)banPanGesture;
+
+@end

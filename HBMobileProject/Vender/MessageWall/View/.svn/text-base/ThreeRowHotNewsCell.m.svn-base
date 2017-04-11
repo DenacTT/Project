@@ -1,0 +1,191 @@
+//
+//  ThreeRowHotNewsCell.m
+//  scale
+//
+//  Created by 叶威廷 on 15/11/6.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "ThreeRowHotNewsCell.h"
+#import "HealthyNewsRowData.h"
+#import "UIColor+Extend.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+Scale.h"
+#import "UIFont+Extend.h"
+#import "UIImage+Extend.h"
+#import "NSString+Extend.h"
+
+@interface ThreeRowHotNewsCell()
+
+@property (nonatomic) UIView *shadowView;
+@property (nonatomic) HealthyNewsRowData *data;
+
+@property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) CGFloat padding;
+
+@end
+
+@implementation ThreeRowHotNewsCell
+
+
+- (void)layoutCellView
+{
+    [super layoutCellView];
+    self.shadowView = [super shadowCellView];
+    self.data = (HealthyNewsRowData *)[super commonRowData];
+    
+    if (self.data.news.count < 3) {
+        return;
+    }
+    int nMaxNews = [self.data.news count] > 3? 3:(int)[self.data.news count];
+    
+    CGFloat commonWidth = self.width * 0.035;
+    
+    CGFloat space = 48;
+    
+    BOOL isDescendantView = NO;
+    if (self.shadowView.subviews.count > 0) {
+        UIView *temp = self.shadowView.subviews[0];
+        if ([temp class] == [UILabel class]) {
+            isDescendantView = [temp isDescendantOfView:self.shadowView];
+        }
+    }
+    if (isDescendantView) {
+        return;
+    }
+    
+    self.titleLabel.text = self.data.messageTitle;
+    CGSize titleSize = [self.titleLabel.text YMSizeWithFont:self.titleLabel.font];
+    self.titleLabel.frame = CGRectMake(commonWidth, (48 - titleSize.height)/2, titleSize.width, titleSize.height);
+    for (int i = 0; i < nMaxNews; i++) {
+        UIView *totalView = [[UIView alloc] initWithFrame:CGRectMake(commonWidth, space, self.shadowView.frame.size.width - commonWidth*2, 90)];
+        [self.shadowView addSubview:totalView];
+        News *news = [News mj_objectWithKeyValues:self.data.news[i]];
+        news.clickNumber = i+1;
+        
+        UIImageView *leftImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 165 , 90)];
+        [totalView addSubview:leftImgView];
+        
+        
+        CGFloat textX = CGRectGetMaxX(leftImgView.frame) + self.padding;
+        CGFloat textW = 0;
+        textW = self.shadowView.frame.size.width - textX - commonWidth * 2;
+        UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(textX, leftImgView.frame.origin.y + 15, textW, [XMTools getAutoNumberWithIphone6Number:14] + 3)];
+        text.font = [UIFont commonCellViewTitle];
+        text.textAlignment = NSTextAlignmentLeft;
+        text.textColor = [UIColor colorWithRed: 0.1961 green: 0.1961 blue: 0.1961 alpha: 1.0];
+        text.text = news.newsTitle;
+        [totalView addSubview:text];
+        
+        
+        UILabel *watchOut = [[UILabel alloc] init];
+        watchOut.frame = CGRectMake(text.frame.origin.x, CGRectGetMaxY(text.frame) + 17 / 2, text.frame.size.width, 12);
+        watchOut.textColor = [UIColor colorWithRed: 0.5333 green: 0.5333 blue: 0.5333 alpha: 1.0];
+        watchOut.font = [UIFont systemFontOfSize:12.0];
+        watchOut.textAlignment = NSTextAlignmentLeft;
+        watchOut.text = [NSString stringWithFormat:STR(@"TRHNC_readPreson"),(long)news.newsreadNum];
+        [totalView addSubview:watchOut];
+        
+        UIButton *check = [UIButton buttonWithType: UIButtonTypeCustom];
+        check.frame = CGRectMake(watchOut.left, watchOut.bottom + 7,80, 25);
+        [check setTitle:STR(@"TRHNC_readAtOnce") forState:UIControlStateNormal];
+        check.titleLabel.font = [UIFont systemFontOfSize:12];
+        [check setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        check.layer.cornerRadius = 2.5;
+        check.backgroundColor = [UIColor commonViewCellBtn];
+        [check setBackgroundImage: [UIImage imageWithColor: [UIColor commonViewCellPressBtn] andBordRect:CGRectMake(0, 0, check.width, check.height) andBordColor:[UIColor commonViewCellPressBtn] andCornerRadius:2.5f] forState: UIControlStateHighlighted];
+        [check addTarget:self action:@selector(clickNow:) forControlEvents:UIControlEventTouchUpInside];
+        [totalView addSubview:check];
+        check.tag = i;
+        
+        
+        [leftImgView sd_setImageWithURL:[NSURL URLWithString:news.newsImgUrl] placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground | SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+            if (image == nil) {
+                
+                leftImgView.image = [UIImage imageNamed:@"HealthDefaultNew"];
+            }else {
+                leftImgView.image = image;//[image getSquareImage];// [image getCenterImageWithUIRect:leftImgView.frame andIsNetWorkImg:YES];
+            }
+            
+        }];
+        
+        space += totalView.frame.size.height + 15;
+        
+        totalView.tag = check.tag;
+        UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickNow:)];
+        singleRecognizer.numberOfTapsRequired = 1;
+        singleRecognizer.numberOfTouchesRequired = 1;
+        [totalView addGestureRecognizer:singleRecognizer];
+    }
+    UILabel *line = [[UILabel alloc] init];
+    line.frame = CGRectMake(commonWidth, 363, self.shadowView.width - commonWidth*2, 1);
+    line.backgroundColor = [UIColor commonViewLine];
+    [self.shadowView addSubview:line];
+    
+    UIButton *checkMore = [UIButton buttonWithType:UIButtonTypeCustom];
+    checkMore.frame = CGRectMake(0, line.bottom, self.shadowView.width, 44);
+    [checkMore setTitle:STR(@"TRHNC_lookMore") forState:UIControlStateNormal];
+    [checkMore setTitleColor:[UIColor colorWithRed: 0.1451 green: 0.7882 blue: 0.5922 alpha: 1.0] forState:UIControlStateNormal];
+    [checkMore setBackgroundImage: [UIImage imageWithColor: [UIColor commonViewPressBg] andBordRect: CGRectMake(0, 0, checkMore.width, checkMore.height) andBordColor: [UIColor commonViewPressBg] andCornerRadius: 0.f] forState:UIControlStateHighlighted];
+    checkMore.titleLabel.font = [UIFont systemFontOfSize:16];
+    [checkMore addTarget:self action:@selector(clickMore:) forControlEvents:UIControlEventTouchUpInside];
+    [self.shadowView addSubview:checkMore];
+    
+}
+
+- (void)clickNow:(id)reg
+{
+    /*
+    if ([reg class] == [UITapGestureRecognizer class]) {
+        UITapGestureRecognizer *temp = reg;
+        UIView *view = temp.view;
+        [self.delegate click:self.data.news[view.tag]];
+    }else if([reg class] == [UIButton class]){
+        UIButton *btn = reg;
+        [self.delegate click:self.data.news[btn.tag]];
+    }
+    */
+    
+    if ([reg class] == [UITapGestureRecognizer class]) {
+        UITapGestureRecognizer *temp = reg;
+        UIView *view = temp.view;
+        [self.delegate click:self.data.news[view.tag]];
+        
+        NSString* repKey = [NSString stringWithFormat: c_info_info, (int)self.data.id, (int)view.tag+1];
+        [MobClick event: repKey];
+        
+    }else if([reg class] == [UIButton class]){
+        UIButton *btn = reg;
+        [self.delegate click:self.data.news[btn.tag]];
+        
+        NSString* repKey = [NSString stringWithFormat: c_info_info, (int)self.data.id, (int)btn.tag+1];
+        [MobClick event: repKey];
+    }
+
+}
+
+- (void)clickMore:(News*)news
+{
+    [self.delegate click:self.data.moreInfo andTitle:self.data.messageTitle];
+}
+
+-(CGFloat)padding
+{
+    return [XMTools getAutoNumberWithIphone6Number:15];
+}
+
+
+- (UILabel *)titleLabel
+{
+    if (nil == _titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.font = [UIFont systemFontOfSize:14];
+        [self.shadowView addSubview:_titleLabel];
+    }
+    return _titleLabel;
+}
+
+
+
+@end

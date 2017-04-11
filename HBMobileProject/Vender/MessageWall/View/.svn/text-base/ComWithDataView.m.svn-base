@@ -1,0 +1,114 @@
+//
+//  ComWithDataView.m
+//  scale
+//
+//  Created by solf on 16/5/9.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import "ComWithDataView.h"
+#import "ComWithDataStateView.h"
+#import "ComDataCursor.h"
+#import "ComSuggestView.h"
+
+
+
+@interface ComWithDataView ()
+
+@property (nonatomic,strong) ComWithDataStateView *stateView; //成分说明页
+
+@property (nonatomic,strong) ComDataCursor *cursorView; //游标页面
+
+@property (nonatomic,strong) ComSuggestView *comSuggestView; //建议页面
+
+@end
+
+@implementation ComWithDataView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initViews];
+    }
+    return self;
+}
+
+-(void)initViews
+{
+    self.backgroundColor = [UIColor clearColor];
+    
+    _stateView = [[ComWithDataStateView alloc] initWithFrame:CGRectZero];
+    
+    _cursorView = [[ComDataCursor alloc] initWithFrame:CGRectZero];
+    
+    _comSuggestView = [[ComSuggestView alloc] initWithFrame:CGRectZero];
+    
+    [self addSubview:_stateView];
+    [self addSubview:_cursorView];
+    
+//    [self addSubview:_comSuggestView];
+}
+
+- (void)layoutViewWithComModel:(ComponentModel *)comModel
+{
+    _stateView.frame  = CGRectMake(0, 0, ScreenWidth, ((ScreenWidth == 320.f) ? 130.f : 150.f));
+    
+    NSString *comValueStr;
+    
+    switch (comModel.compositionType)
+    {
+        case ComponentTypeOfBMI:
+        {
+            comValueStr = [NSString stringWithFormat:@"%.1f",[comModel.comValue floatValue]];
+        }
+            break;
+        case ComponentTypeOfFat:
+        case ComponentTypeOfWater:
+        case ComponentTypeOfMuscle:
+        case ComponentTypeOfBone:
+        case ComponentTypeOfProtein:
+        {
+            comValueStr = [NSString stringWithFormat:@"%.1f%@",[comModel.comValue floatValue],@"%"];
+        }
+            break;
+        case ComponentTypeOfBodyAge:
+        case ComponentTypeOfBMR:
+        case ComponentTypeOfVisFat:
+        {
+            comValueStr = [NSString stringWithFormat:@"%.0f",[comModel.comValue floatValue]];
+        }
+            break;
+            
+        default:
+        {
+            comValueStr = [NSString stringWithFormat:@"%.1f",[comModel.comValue floatValue]];
+        }
+            break;
+    }
+    
+    [_stateView layoutViewsTitle:comModel.comTitle value:comValueStr img:comModel.comImgStr andInfo:comModel.comInfo];
+    
+//    _cursorView.frame = CGRectMake(0, _stateView.bottom + ((ScreenWidth == 320.f) ? 0 : 30.f), ScreenWidth, 78.f);
+    _cursorView.frame = CGRectMake(0, ScreenHeight - 78.f - 150, self.width, 78.f);
+    
+    [_cursorView.cursorModel comModelChangeCursorModel:comModel];
+    [_cursorView layoutViews];
+    
+    
+    CGFloat fWidth = ScreenWidth * 333.f / 375.f;
+    CGFloat fHeight = 231.f * ScreenWidth / 375.f;
+    
+    
+    _comSuggestView.frame = CGRectMake((ScreenWidth - fWidth)/2.f, _cursorView.bottom + ((ScreenWidth == 320.f) ? 10 : 49.f), fWidth, fHeight);
+    _comSuggestView.comModel = comModel;
+    [_comSuggestView layoutViews];
+    
+}
+
+- (void)locationCursor
+{
+    [_cursorView setCursorLocation];
+}
+
+@end

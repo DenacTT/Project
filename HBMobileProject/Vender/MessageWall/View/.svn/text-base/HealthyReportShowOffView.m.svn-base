@@ -1,0 +1,699 @@
+//
+//  HealthyReportShowOffView.m
+//  scale
+//
+//  Created by 叶威廷 on 15/11/9.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "HealthyReportShowOffView.h"
+#import "UIImageView+WebCache.h"
+#import "NSString+Extend.h"
+#import "UIImage+Extend.h"
+#import "ScoreModel.h"
+#import "ComPonentModelControl.h"
+#import "UserDB.h"
+#import "RTLabel.h"
+#import "ShowOffCollectionView.h"
+#import "YMConstSource.h"
+#import "UserInfo.h"
+#import "UIView+Extend.h"
+#import "LoginConst.h"
+
+#import "UIColor+Extend.h"
+
+#define COMMON_LABEL_ADD_HEIGHT  2
+
+// BMI Stage
+typedef enum : NSUInteger {
+    // 偏瘦
+    ENUM_BMI_THINER = 1,
+    // 标准
+    ENUM_BMI_STANDARD,
+    // 偏胖
+    ENUM_BMI_FATTER,
+    // 肥胖
+    ENUM_BMI_FATTEST,
+    // 极胖
+    ENUM_BMI_THE_FATTEST,
+} ENUM_BMI_STAGE;
+
+@interface HealthyReportShowOffView()
+
+
+@property (nonatomic) UserInfo *userInfo;
+
+// 渐变层
+@property (nonatomic) CAGradientLayer *gradientLayer;
+
+@property (nonatomic) UIImageView *bgImageView;
+@property (nonatomic) UIImageView *headImageView;
+@property (nonatomic) UILabel *userNameLable;
+@property (nonatomic) UILabel *dateLable;
+@property (nonatomic) UILabel *dateTimeLabel;
+@property (nonatomic) UIView *dateView;
+@property (nonatomic) UIImageView *sexImageView;
+
+
+@property (nonatomic) UILabel *scoreLabel;
+@property (nonatomic) UILabel *scoreValueLabel;
+@property (nonatomic) UILabel *fenLabel;
+@property (nonatomic) UILabel *compareLabel;
+@property (nonatomic) UIView *scoreBgView;
+
+//@property (nonatomic) UIImageView *jinImageView;
+//@property (nonatomic) UILabel *jinLabel;
+//@property (nonatomic) UIView *valueAndImgView;
+//@property (nonatomic) UILabel *verticalLineLabel;
+@property (nonatomic) UIImageView *bmiImageView;
+@property (nonatomic) UILabel *bmiLabel;
+@property (nonatomic) UIView *bmiAndImgView;
+@property (nonatomic) UIView *bgView;
+
+@property (nonatomic) UIImageView *QRCodeImageView;
+@property (nonatomic) UILabel *comeFromYMAPP;
+@property (nonatomic) UIImageView *bottomImageView;
+@property (nonatomic) UIView *QRCodeAndTextView;
+
+@property (nonatomic) ShowOffCollectionView *collectionView;
+
+@property (nonatomic) ScoreModel *scoreModel;
+
+
+@end
+
+@implementation HealthyReportShowOffView
+
+- (id)init
+{
+    self = [super initWithFrame:CGRectMake(0, 0, UI_WIDTH_IPHONE6, UI_HEIGHT_IPHONE6)];
+    if (self) {
+        self.backgroundColor = [UIColor whiteColor];
+        self.userInfo = [[LoginConst sharedInstance] getLoginUserInfo];
+        
+//        self.layer.borderWidth = 1.0f;
+//        self.layer.borderColor = [UIColor redColor].CGColor;
+    }
+    return self;
+}
+
+- (void)addSubView
+{
+    [self loadData];
+    
+    [self gradientLayer];
+    [self bgImageView];
+    [self headImageView];
+    [self userNameLable];
+    [self dateView];
+    [self sexImageView];
+    
+    [self setFrame];
+//    
+//    [self jinImageView];
+//    [self jinLabel];
+//    [self valueAndImgView];
+//    
+//    [self verticalLineLabel];
+    
+    
+    [self addSubview:self.bgView];
+    [self bmiImageView];
+    [self bmiLabel];
+    [self bmiAndImgView];
+    
+    
+    [self bottomImageView];
+    [self QRCodeAndTextView];
+    
+    [self collectionView];
+    [self setLayer];
+}
+
+
+- (void)loadData
+{
+    [self data];
+    
+    self.sexImageView.image = [self weightCompareImage]; //Compared with yesterday,you lost 10.0 lbs
+    
+    [self.compareLabel setText:self.data.shareStrWeightDesc];
+    
+    if (!([self.scoreModel.score integerValue] == 0)) {
+        self.scoreValueLabel.text = @([self.scoreModel.score integerValue]).description;
+        
+        self.fenLabel.text = NSLocalizedString(@"HRSOV_score", @"分");
+        
+        self.scoreLabel.text = NSLocalizedString(@"HRSOV_bodyScore", @"身体评分");
+    }else{
+        self.scoreValueLabel.text = [NSString stringWithFormat:@"%.1f",[self.scoreModel.weight floatValue]];
+        
+        self.fenLabel.text = self.scoreModel.myWeightUnit;
+        
+        self.scoreLabel.text = [NSString stringWithFormat:@"BMI %.1f",[self.scoreModel.bmiValue floatValue]];
+    }
+}
+
+- (void)setLayer
+{
+//    if (!([self.scoreModel.score integerValue] == 0)) {
+//        self.gradientLayer.bounds = CGRectMake(0, 0, UI_WIDTH_IPHONE6, self.bgView.bottom);
+//        self.gradientLayer.borderWidth = 0;
+//        
+//        self.gradientLayer.frame = self.gradientLayer.bounds;
+//        self.gradientLayer.colors = [NSArray arrayWithObjects:(id)RGB(0, 197, 183).CGColor,(id)RGB(0, 174, 196).CGColor, nil];
+//        
+//        self.gradientLayer.startPoint = CGPointMake(0.5, 0.5);
+//        self.gradientLayer.endPoint = CGPointMake(0.5, 1.0);
+//    }else{
+//        self.gradientLayer.bounds = self.bounds;
+//        self.gradientLayer.borderWidth = 0;
+//        
+//        self.gradientLayer.frame = self.bounds;
+//        self.gradientLayer.colors = [NSArray arrayWithObjects:(id)RGB(0, 197, 183).CGColor,(id)RGB(0, 174, 196).CGColor, nil];
+//        
+//        self.gradientLayer.startPoint = CGPointMake(0.5, 0.5);
+//        self.gradientLayer.endPoint = CGPointMake(0.5, 1.0);
+//    }
+    if (!([self.scoreModel.score integerValue] == 0)) {
+        self.gradientLayer.bounds = CGRectMake(0, 0, UI_WIDTH_IPHONE6, self.bgView.bottom);
+        self.gradientLayer.borderWidth = 0;
+        
+        self.gradientLayer.frame = self.gradientLayer.bounds;
+        self.gradientLayer.backgroundColor = RGB(0, 185, 197).CGColor;
+    }else{
+        self.gradientLayer.bounds = CGRectMake(0, 0, UI_WIDTH_IPHONE6, UI_HEIGHT_IPHONE6);
+        self.gradientLayer.borderWidth = 0;
+        
+        self.gradientLayer.frame = self.gradientLayer.bounds;
+        self.gradientLayer.backgroundColor = RGB(0, 185, 197).CGColor;
+    }
+
+}
+
+- (void)setFrame
+{
+    CGSize sexImgSize = CGSizeMake(180, 180);
+    self.sexImageView.frame = CGRectMake((UI_WIDTH_IPHONE6-sexImgSize.width)/2, self.headImageView.bottom+21, sexImgSize.width, sexImgSize.height);
+//    self.sexImageView.layer.borderWidth = 1.0f;
+//    self.sexImageView.layer.borderColor = [UIColor redColor].CGColor;
+    
+    self.compareLabel.font = [UIFont systemFontOfSize:14];
+    self.compareLabel.frame = CGRectMake(0, self.sexImageView.bottom + 10, UI_WIDTH_IPHONE6, 14+2);
+    
+    self.compareLabel.textColor = [UIColor colorWithHexString:@"ffffff"];
+    self.bottomImageView.backgroundColor = RGB(249, 249, 249);
+    
+    [self addSubview:self.compareLabel];
+    
+    self.collectionView.hidden = NO;
+    self.bgView.hidden = NO;
+
+    /*
+    if (!([self.scoreModel.score integerValue] == 0)) {
+        CGSize sexImgSize = CGSizeMake(180, 180);
+        self.sexImageView.frame = CGRectMake(15, [XMTools getHeightAutoNumberWithIphone6Number:85], sexImgSize.width, sexImgSize.height);
+        
+        self.scoreLabel.frame = CGRectMake(0, 0, 120, 14 + COMMON_LABEL_ADD_HEIGHT);
+        self.scoreLabel.font = [UIFont systemFontOfSize:14];
+        
+        self.scoreValueLabel.font = [UIFont systemFontOfSize:60];
+        self.scoreValueLabel.frame = CGRectMake(self.scoreLabel.left - 1, self.scoreLabel.bottom + 7, 0, 48);
+        CGSize scoreValueSize = [self.scoreValueLabel.text YMSizeWithFont:_scoreValueLabel.font];
+        self.scoreValueLabel.width = scoreValueSize.width;
+        
+        self.fenLabel.font = [UIFont systemFontOfSize:22];
+        self.fenLabel.frame = CGRectMake(self.scoreValueLabel.right, 0, 0, 22 + COMMON_LABEL_ADD_HEIGHT);
+        CGSize fenSize = [_fenLabel.text YMSizeWithFont:_fenLabel.font];
+        _fenLabel.top = self.scoreValueLabel.bottom - _fenLabel.height - 1;
+        _fenLabel.width = fenSize.width;
+        
+        self.compareLabel.font = [UIFont systemFontOfSize:14];
+        self.compareLabel.frame = CGRectMake(self.scoreValueLabel.left, self.scoreValueLabel.bottom + 12, UI_WIDTH_IPHONE6 - self.sexImageView.right - 3 - 15, 35);
+        _compareLabel.numberOfLines = 0;
+        _compareLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        
+        self.comeFromYMAPP.textColor = [UIColor blackColor];
+        self.bottomImageView.backgroundColor = RGB(249, 249, 249);
+        
+        [self scoreBgView];
+        
+        self.collectionView.hidden = NO;
+        self.bgView.hidden = NO;
+    }else*/
+    if (([self.scoreModel.score integerValue] == 0))
+    {
+        CGSize sexImgSize = CGSizeMake(180, 180);
+        self.sexImageView.frame = CGRectMake((UI_WIDTH_IPHONE6 - sexImgSize.width)/2, 138, sexImgSize.width, sexImgSize.height);
+        
+        self.scoreValueLabel.font = [UIFont systemFontOfSize:50];
+        self.scoreValueLabel.frame = CGRectMake(0, 0, 0, 38);
+        CGSize scoreValueSize = [self.scoreValueLabel.text YMSizeWithFont:_scoreValueLabel.font];
+        self.scoreValueLabel.width = scoreValueSize.width;
+        
+        self.fenLabel.font = [UIFont systemFontOfSize:22];
+        self.fenLabel.frame = CGRectMake(self.scoreValueLabel.right, 0, 0, 22 + COMMON_LABEL_ADD_HEIGHT);
+        CGSize fenSize = [_fenLabel.text YMSizeWithFont:_fenLabel.font];
+        _fenLabel.top = self.scoreValueLabel.bottom - _fenLabel.height - 1;
+        _fenLabel.width = fenSize.width;
+        
+        UIView *scoreFenView = [[UIView alloc] initWithFrame:CGRectMake((UI_WIDTH_IPHONE6 - self.fenLabel.right)/2, self.sexImageView.bottom + 23, self.fenLabel.right, self.scoreValueLabel.height)];
+        [scoreFenView addSubview:self.scoreValueLabel];
+        [scoreFenView addSubview:self.fenLabel];
+        [self addSubview:scoreFenView];
+        
+        self.scoreLabel.font = [UIFont systemFontOfSize:22];
+        CGSize scoreSize = [self.scoreLabel.text YMSizeWithFont:self.scoreLabel.font];
+        self.scoreLabel.frame = CGRectMake((UI_WIDTH_IPHONE6 - scoreSize.width)/2, scoreFenView.bottom + 4, scoreSize.width, 22 + COMMON_LABEL_ADD_HEIGHT);
+        
+        self.compareLabel.font = [UIFont systemFontOfSize:14];
+        CGSize compareSize = [self.compareLabel.text YMSizeWithFont:self.compareLabel.font];
+        self.compareLabel.frame = CGRectMake((UI_WIDTH_IPHONE6 - compareSize.width)/2, self.scoreLabel.bottom + 10, compareSize.width, 14 + COMMON_LABEL_ADD_HEIGHT);
+        
+        [self addSubview:self.scoreLabel];
+        [self addSubview:self.compareLabel];
+        
+        self.comeFromYMAPP.textColor = [UIColor whiteColor];
+        self.bottomImageView.backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.2];
+        
+        self.collectionView.hidden = YES;
+        self.bgView.hidden = YES;
+    }
+     
+     
+}
+
+
+- (UIImage *)weightCompareImage
+{
+    int nStage = 0;
+    switch (self.data.lastBmiStage) {
+        // 偏瘦
+        case ENUM_BMI_THINER:
+            nStage = 2;
+            break;
+        // 标准
+        case ENUM_BMI_STANDARD:
+            nStage = 4;
+            break;
+        // 偏胖
+        case ENUM_BMI_FATTER:
+            nStage = 6;
+            break;
+        // 肥胖
+        case ENUM_BMI_FATTEST:
+            nStage = 8;
+            break;
+        // 极胖
+        case ENUM_BMI_THE_FATTEST:
+            nStage = 8;
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    
+    NSString *imageString = nil;
+    if (ENUM_MALE == [self.data gender]) {
+        imageString = [NSString stringWithFormat:@"shareImage_%d_%@",nStage,@"man"];
+    }else{
+        imageString = [NSString stringWithFormat:@"shareImage_%d_%@",nStage,@"women"];
+    }
+    return [UIImage imageNamed:imageString];
+}
+
+//- (NSString *)setCompareLabelText
+//{
+//    NSString *unit = self.scoreModel.myWeightUnit;
+//    NSString *weightStatus = nil;
+//    NSString *compareValue = nil;
+//    if ([self.data weightOffset] > 0) {
+//        weightStatus = @"增重";
+//        compareValue = [NSString stringWithFormat:@"%.1f",[self weightChangeUnit]];
+//        return [NSString stringWithFormat:@"对比上次体重%@%@%@",weightStatus,compareValue,unit];//@"体重较1天前增重1.3斤";
+//    }else if([self.data weightOffset] < 0){
+//        weightStatus = @"减轻";
+//        compareValue = [NSString stringWithFormat:@"%.1f",[self weightChangeUnit]];
+//        return [NSString stringWithFormat:@"对比上次体重%@%@%@",weightStatus,compareValue,unit];//@"体重较1天前增重1.3斤";
+//    }else{
+//        weightStatus = @"无变化";
+//        compareValue = nil;
+//        unit = nil;
+//        return [NSString stringWithFormat:@"对比上次体重%@",weightStatus];//@"体重较1天前增重1.3斤";
+//    }
+//}
+
+- (ScoreModel *)scoreModel
+{
+    if (nil == _scoreModel) {
+        ComPonentModelControl *comModel = [[ComPonentModelControl alloc]init];
+        
+        _scoreModel = [[comModel getMyScoreAndWeightDatasWithUserId:[XMUserDefault currentUserId]] objectForKey:@"Score"];
+    }
+    return _scoreModel;
+}
+
+- (CAGradientLayer *)gradientLayer
+{
+    if (nil == _gradientLayer) {
+        _gradientLayer = [CAGradientLayer layer];
+        [self.layer insertSublayer:_gradientLayer atIndex:0];
+    }
+    return _gradientLayer;
+}
+
+- (UIImageView *)bgImageView
+{
+    if (nil == _bgImageView) {
+        _bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UI_WIDTH_IPHONE6, UI_HEIGHT_IPHONE6)];
+        [self addSubview:_bgImageView];
+    }
+    return _bgImageView;
+}
+
+- (UIImageView *)headImageView
+{
+    if (nil == _headImageView) {
+        _headImageView = [[UIImageView alloc] init];
+        _headImageView.frame = CGRectMake(15, 15, 44, 44);
+        _headImageView.layer.cornerRadius = _headImageView.width/2;
+        _headImageView.layer.borderColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5].CGColor;
+        _headImageView.layer.borderWidth = 2;
+        _headImageView.clipsToBounds = YES;
+//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+//        NSString * filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@avatar.png",self.userInfo.userId]];
+//        UIImage *img = [UIImage imageWithContentsOfFile:filePath];
+        UIImage *img = [XMTools getUserHeadImg:[[LoginConst sharedInstance] currentId]];
+        if (!img) {
+            img = [UIImage imageNamed:@"userDefaultHeadMax"];
+        }
+        _headImageView.image = img;
+        /*
+         [_headImageView sd_setImageWithURL:[NSURL URLWithString:self.userInfo.avatarUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+         
+         }];
+         */
+        [self addSubview:_headImageView];
+    }
+    return _headImageView;
+}
+
+- (UILabel *)userNameLable
+{
+    if (nil == _userNameLable) {
+        _userNameLable = [[UILabel alloc] init];
+        _userNameLable.text = self.userInfo.realName;
+        _userNameLable.textColor = [UIColor whiteColor];
+        _userNameLable.font = [UIFont systemFontOfSize:18];
+        CGSize nameSize = [_userNameLable.text YMSizeWithFont:_userNameLable.font];
+        _userNameLable.frame = CGRectMake(self.headImageView.right + 6, self.headImageView.center.y - nameSize.height/2, 100, 18 + COMMON_LABEL_ADD_HEIGHT);
+        [self addSubview:_userNameLable];
+    }
+    return _userNameLable;
+}
+
+- (UILabel *)dateLable
+{
+    if (nil == _dateLable) {
+        _dateLable = [[UILabel alloc] init];
+        _dateLable.text = [XMTools getCurrentDate:[XMTools getDateWithStr:self.data.lastWeightTime andFommater:nil] andFommater:@"yyyy/MM/dd"];
+        _dateLable.textColor = [UIColor whiteColor];
+        _dateLable.font = [UIFont systemFontOfSize:14];
+        CGSize dateSize = [_dateLable.text YMSizeWithFont:_dateLable.font];
+        _dateLable.origin = CGPointMake(0,0);
+        _dateLable.size = CGSizeMake(dateSize.width, 14 + COMMON_LABEL_ADD_HEIGHT);
+    }
+    return _dateLable;
+}
+
+- (UILabel *)dateTimeLabel
+{
+    if (nil == _dateTimeLabel) {
+        _dateTimeLabel = [[UILabel alloc] init];
+        NSMutableString * stringM = [NSMutableString stringWithString:[XMTools getCurrentDate:[XMTools getDateWithStr:self.data.lastWeightTime andFommater:nil] andFommater:@"hh:mm"]];
+        [stringM insertString:[XMTools getToDayTimeFormartStrWithDate:[XMTools getDateWithStr:self.data.lastWeightTime andFommater:nil]] atIndex:0];
+        NSString *string = [NSString stringWithString:stringM];
+        _dateTimeLabel.text = string;
+        _dateTimeLabel.font = [UIFont systemFontOfSize:14];
+        _dateTimeLabel.textColor = [UIColor whiteColor];
+        _dateTimeLabel.size = CGSizeMake([_dateTimeLabel.text YMSizeWithFont:_dateTimeLabel.font].width, 14 + COMMON_LABEL_ADD_HEIGHT);
+        _dateTimeLabel.origin = CGPointMake(self.dateLable.right - _dateTimeLabel.size.width, self.dateLable.bottom);
+    }
+    return _dateTimeLabel;
+}
+
+- (UIView *)dateView
+{
+    if (nil == _dateView) {
+        _dateView = [[UIView alloc] init];
+        [_dateView addSubview:self.dateLable];
+        [_dateView addSubview:self.dateTimeLabel];
+        _dateView.size = CGSizeMake(self.dateLable.width, self.dateTimeLabel.bottom - self.dateLable.top);
+        _dateView.origin = CGPointMake(UI_WIDTH_IPHONE6 - 15 - self.dateLable.width, self.userNameLable.center.y - _dateView.height/2);
+        [self addSubview:_dateView];
+    }
+    return _dateView;
+}
+
+- (UIImageView *)sexImageView
+{
+    if (nil == _sexImageView) {
+        _sexImageView = [[UIImageView alloc] init];
+        [self addSubview:_sexImageView];
+    }
+    return _sexImageView;
+}
+
+- (UILabel *)scoreLabel
+{
+    if (nil == _scoreLabel) {
+        _scoreLabel = [[UILabel alloc] init];
+        _scoreLabel.textColor = [UIColor whiteColor];
+    }
+    return _scoreLabel;
+}
+
+- (UILabel *)scoreValueLabel
+{
+    if (nil == _scoreValueLabel) {
+        _scoreValueLabel = [[UILabel alloc] init];
+        _scoreValueLabel.textColor = [UIColor whiteColor];
+    }
+    return _scoreValueLabel;
+}
+
+- (UILabel *)fenLabel
+{
+    if (nil == _fenLabel) {
+        _fenLabel = [[UILabel alloc] init];
+        _fenLabel.textColor = [UIColor whiteColor];
+    }
+    return _fenLabel;
+}
+
+- (UILabel *)compareLabel
+{
+    if (nil == _compareLabel) {
+        _compareLabel = [[UILabel alloc] init];
+        _compareLabel.textColor = [UIColor whiteColor];
+        [_compareLabel setTextAlignment:NSTextAlignmentCenter];
+//        _compareLabel.layer.borderWidth = 1.0f;
+//        _compareLabel.layer.borderColor = [UIColor redColor].CGColor;
+    }
+    return _compareLabel;
+}
+
+- (UIView *)scoreBgView
+{
+    if (nil == _scoreBgView) {
+        _scoreBgView = [[UIView alloc] init];
+        [_scoreBgView addSubview:self.scoreLabel];
+        [_scoreBgView addSubview:self.scoreValueLabel];
+        [_scoreBgView addSubview:self.fenLabel];
+        [_scoreBgView addSubview:self.compareLabel];
+        _scoreBgView.size = CGSizeMake(self.compareLabel.width, self.compareLabel.bottom);
+        _scoreBgView.center = CGPointMake(self.sexImageView.right + 3 + _scoreBgView.width/2, self.sexImageView.center.y);
+        [self addSubview:_scoreBgView];
+    }
+    return _scoreBgView;
+}
+/*
+- (UIImageView *)jinImageView
+{
+    if (nil == _jinImageView) {
+        _jinImageView = [[UIImageView alloc] init];
+        _jinImageView.image = [UIImage imageNamed:@"KGicon"];
+        _jinImageView.size = _jinImageView.image.size;
+        _jinImageView.origin = CGPointMake(0, 0);
+    }
+    return _jinImageView;
+}
+
+- (UILabel *)jinLabel
+{
+    if (nil == _jinLabel) {
+        _jinLabel = [[UILabel alloc] init];
+        _jinLabel.text = [NSString stringWithFormat:@"%.1f%@",[self.scoreModel.weight floatValue],self.scoreModel.myWeightUnit];
+        _jinLabel.font = [UIFont systemFontOfSize:16];
+        CGSize jinSize = [_jinLabel.text YMSizeWithFont:_jinLabel.font];
+        _jinLabel.textColor = [UIColor whiteColor];
+        _jinLabel.size = CGSizeMake(jinSize.width, 16 + COMMON_LABEL_ADD_HEIGHT);
+        _jinLabel.center = CGPointMake(self.jinImageView.right + 5 + jinSize.width/2, self.jinImageView.center.y);
+    }
+    return _jinLabel;
+}
+
+- (UIView *)valueAndImgView
+{
+    if (nil == _valueAndImgView) {
+        _valueAndImgView = [[UIView alloc] init];
+        [_valueAndImgView addSubview:self.jinImageView];
+        [_valueAndImgView addSubview:self.jinLabel];
+        _valueAndImgView.size = CGSizeMake(self.jinLabel.right, self.jinLabel.height);
+        _valueAndImgView.center = CGPointMake(((UI_WIDTH_IPHONE6 - 1)/2)/2, 22);
+    }
+    return _valueAndImgView;
+}
+
+- (UILabel *)verticalLineLabel
+{
+    if (nil == _verticalLineLabel) {
+        _verticalLineLabel = [[UILabel alloc] init];
+        _verticalLineLabel.size = CGSizeMake(1, 22);
+        _verticalLineLabel.center = CGPointMake(UI_WIDTH_IPHONE6/2, 22);
+        _verticalLineLabel.backgroundColor = RGBA(255, 255, 255, 0.5);
+    }
+    return _verticalLineLabel;
+}
+*/
+- (UIImageView *)bmiImageView
+{
+    if (nil == _bmiImageView) {
+        _bmiImageView = [[UIImageView alloc] init];
+        _bmiImageView.image = [UIImage imageNamed:@"bmiicon"];
+        _bmiImageView.size = _bmiImageView.image.size;
+        _bmiImageView.origin = CGPointMake(0, 0);
+    }
+    return _bmiImageView;
+}
+
+- (UILabel *)bmiLabel
+{
+    if (nil == _bmiLabel) {
+        _bmiLabel = [[UILabel alloc] init];
+        _bmiLabel.text = [NSString stringWithFormat:@"BMI %.1f",[self.scoreModel.bmiValue floatValue]];
+        _bmiLabel.font = [UIFont systemFontOfSize:16];
+        CGSize bmiSize = [_bmiLabel.text YMSizeWithFont:_bmiLabel.font];
+        _bmiLabel.textColor = [UIColor whiteColor];
+        _bmiLabel.size = CGSizeMake(bmiSize.width, 16 + COMMON_LABEL_ADD_HEIGHT);
+        _bmiLabel.center = CGPointMake(self.bmiImageView.right + 5 + bmiSize.width/2, self.bmiImageView.center.y);
+    }
+    return _bmiLabel;
+}
+
+- (UIView *)bmiAndImgView
+{
+    if (nil == _bmiAndImgView) {
+        _bmiAndImgView = [[UIView alloc] init];
+        [_bmiAndImgView addSubview:self.bmiImageView];
+        [_bmiAndImgView addSubview:self.bmiLabel];
+        _bmiAndImgView.size = CGSizeMake(UI_WIDTH_IPHONE6, self.bmiLabel.height);
+        _bmiAndImgView.origin = CGPointMake((UI_WIDTH_IPHONE6-_bmiLabel.right)/2, (self.bgView.height-_bmiAndImgView.height)/2);
+        [self.bgView addSubview:_bmiAndImgView];
+//        _bmiAndImgView.center = CGPointMake(self.verticalLineLabel.right + ((UI_WIDTH_IPHONE6 - 1)/2)/2, self.valueAndImgView.center.y);
+    }
+    return _bmiAndImgView;
+}
+
+- (UIView *)bgView
+{
+    if (nil == _bgView) {
+        _bgView = [[UIView alloc] init];
+//        [_bgView addSubview:self.valueAndImgView];
+//        [_bgView addSubview:self.verticalLineLabel];
+//        [_bgView addSubview:self.bmiAndImgView];
+        _bgView.size = CGSizeMake(UI_WIDTH_IPHONE6, 44);
+        _bgView.origin = CGPointMake(0, self.compareLabel.bottom + 16);
+//        _bgView.center = CGPointMake(UI_WIDTH_IPHONE6/2, self.compareLabel.bottom + 16);
+        _bgView.backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.3];
+//        _bgView.layer.borderWidth = 1.0f;
+//        _bgView.layer.borderColor = [UIColor redColor].CGColor;
+    }
+    return _bgView;
+}
+
+- (UIImageView *)bottomImageView
+{
+    if (nil == _bottomImageView) {
+        _bottomImageView = [[UIImageView alloc] init];
+        _bottomImageView.frame = CGRectMake(0, UI_HEIGHT_IPHONE6 - 60, UI_WIDTH_IPHONE6, 60);
+        [self addSubview:_bottomImageView];
+    }
+    return _bottomImageView;
+}
+
+
+- (UIImageView *)QRCodeImageView
+{
+    if (nil == _QRCodeImageView) {
+        _QRCodeImageView = [[UIImageView alloc] init];
+        _QRCodeImageView.image = [UIImage imageNamed:@"appIconShare"];
+        _QRCodeImageView.size = CGSizeMake(_QRCodeImageView.image.size.width, _QRCodeImageView.image.size.height);
+        _QRCodeImageView.origin = CGPointMake(0, 0);
+        _QRCodeImageView.layer.cornerRadius = 6;
+        _QRCodeImageView.layer.masksToBounds = YES;
+    }
+    return _QRCodeImageView;
+}
+
+- (UILabel *)comeFromYMAPP
+{
+    if (nil == _comeFromYMAPP) {
+        _comeFromYMAPP = [[UILabel alloc] init];
+        _comeFromYMAPP.text = STR(@"HRSOV_comeFrom");
+        _comeFromYMAPP.font = [UIFont systemFontOfSize:14];
+        CGSize textSize = [_comeFromYMAPP.text YMSizeWithFont:_comeFromYMAPP.font];
+        _comeFromYMAPP.size = CGSizeMake(textSize.width, 14 + COMMON_LABEL_ADD_HEIGHT);
+        _comeFromYMAPP.center = CGPointMake(self.QRCodeImageView.right + 13 + textSize.width/2, _QRCodeImageView.center.y);
+    }
+    return _comeFromYMAPP;
+}
+
+- (UIView *)QRCodeAndTextView
+{
+    if (nil == _QRCodeAndTextView) {
+        _QRCodeAndTextView = [[UIView alloc] init];
+        [_QRCodeAndTextView addSubview:self.QRCodeImageView];
+        [_QRCodeAndTextView addSubview:self.comeFromYMAPP];
+        _QRCodeAndTextView.size = CGSizeMake(self.comeFromYMAPP.right, self.QRCodeImageView.height);
+        _QRCodeAndTextView.center = CGPointMake(UI_WIDTH_IPHONE6/2, self.bottomImageView.center.y);
+        [self addSubview:_QRCodeAndTextView];
+    }
+    return _QRCodeAndTextView;
+}
+
+- (ShowOffCollectionView *)collectionView
+{
+    if (nil == _collectionView) {
+       _collectionView = [[ShowOffCollectionView alloc] initWithFrame:CGRectMake(self.bgView.left, self.bgView.bottom, self.bgView.width, self.bottomImageView.top - self.bgView.bottom)];
+//        if (![YMConstSource sharedInstance].scalIsMini) {
+//            _collectionView.top += 10;
+//            _collectionView.height -= 10;
+//        }
+        [self addSubview:_collectionView];
+    }
+    return _collectionView;
+}
+
+- (HomeShareData *)data
+{
+    if (nil == _data) {
+        _data = [[HomeShareData alloc] init];
+        [_data initLoadData];
+    }
+    return _data;
+}
+
+@end

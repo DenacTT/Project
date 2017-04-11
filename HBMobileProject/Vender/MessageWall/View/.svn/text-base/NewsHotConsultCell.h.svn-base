@@ -1,0 +1,16 @@
+//
+//  NewsHotConsultCell.h
+//  scale
+//
+//  Created by 叶威廷 on 15/10/30.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "YMMsgWallCellView.h"
+#import "MsgWallDef.h"
+
+@interface NewsHotConsultCell : YMMsgWallCellView<WallEatAdviseDelegate>
+
+@property (nonatomic,weak) id<WallEatAdviseDelegate> delegate;
+
+@end

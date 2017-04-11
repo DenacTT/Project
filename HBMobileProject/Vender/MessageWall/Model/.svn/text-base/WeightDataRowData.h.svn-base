@@ -1,0 +1,24 @@
+//
+//  WeightDataRowData.h
+//  scale
+//
+//  Created by KiraSu on 15/8/13.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "MsgWallCommonRowData.h"
+
+/*
+ * @brief 体重8项数据
+ */
+@interface WeightDataRowData : MsgWallCommonRowData
+
+//8项数据
+@property (nonatomic,strong) NSArray *weightDataArr;
+
+//
+@property (nonatomic,assign) BOOL onlyWeight; //只有体重
+@property (nonatomic,assign) BOOL haoqingSE;//是否是好轻SE
+
+
+@end

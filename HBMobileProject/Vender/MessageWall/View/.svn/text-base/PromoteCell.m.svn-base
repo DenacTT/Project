@@ -1,0 +1,136 @@
+//
+//  PromoteCell.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/27.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "PromoteCell.h"
+#import "PromoteData.h"
+#import "YMUtil.h"
+#import "UIImageView+WebCache.h"
+#import "PromoteModel.h"
+#import "UIImage+Scale.h"
+
+@interface PromoteCell()
+
+@property (nonatomic) UIImageView *promoteImgView;
+
+@property (nonatomic) UIView *shadowView;
+
+@property (nonatomic) PromoteData *promoteData;
+
+@property (nonatomic,strong) UIImageView *titleImgView;
+
+@property (nonatomic,strong) UILabel *titleLabel;
+
+@end
+
+@implementation PromoteCell
+{
+    BOOL           _isOpen;
+}
+- (void)layoutCellView
+{
+    if (0 == self.promoteData.newsData.count) {
+        return;
+    }
+    self.backgroundColor = [UIColor commonViewCellBg];
+    self.promoteData = (PromoteData*)[super commonRowData];
+    PromoteModel *model = [self.promoteData.newsData objectAtIndex:0];
+    
+    CGFloat commonWidth = self.shadowView.width * 0.035;
+    self.promoteImgView.origin = CGPointMake(commonWidth, commonWidth);
+    self.promoteImgView.size = CGSizeMake(self.shadowView.width - commonWidth*2, 125);
+    NSURL *url = [NSURL URLWithString:model.newsImgUrl];
+    self.promoteImgView.image = [UIImage imageNamed: @"HealthDefaultNew"];
+    [self.promoteImgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground | SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (nil == image) {
+            self.promoteImgView.image = [UIImage imageNamed: @"HealthDefaultNew"];
+        }else{
+//            self.promoteImgView.image = [image getCenterImageWithUIRect:self.promoteImgView.frame andIsNetWorkImg:YES];
+            self.promoteImgView.image = image;
+            self.promoteImgView.contentScaleFactor = [[UIScreen mainScreen] scale];
+            self.promoteImgView.contentMode = UIViewContentModeScaleAspectFill;
+            self.promoteImgView.clipsToBounds = YES;
+
+        }
+    }];
+    
+    self.shadowView.tag = 0;
+    UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skip:)];
+    singleRecognizer.numberOfTapsRequired = 1;
+    singleRecognizer.numberOfTouchesRequired = 1;
+    [self.shadowView addGestureRecognizer:singleRecognizer];
+    
+    if (!_titleImgView)
+    {
+        UIImage *img = [UIImage imageNamed:@"wall_walk_adicon"];
+        _titleImgView = [[UIImageView alloc]initWithFrame:CGRectMake(self.shadowView.width*0.035, 10, img.size.width, img.size.height)];
+        _titleImgView.image = img;
+        [self.contentView addSubview:_titleImgView];
+    }
+    if (!_titleLabel)
+    {
+        CGRect frame = self.titleImgView.frame;
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.text = self.promoteData.messageTitle;
+        _titleLabel.textColor = [UIColor colorWithWhite:0.196 alpha:1.000];
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
+        _titleLabel.font = [UIFont systemFontOfSize:14];
+        CGSize size = [_titleLabel.text YMSizeWithFont:_titleLabel.font];
+        _titleLabel.frame = CGRectMake(CGRectGetMaxX(frame)+4, frame.origin.y, size.width, frame.size.height);
+        
+        [self.contentView addSubview:_titleLabel];
+    }
+
+    if (0 == self.promoteData.newsData.count) {
+        return;
+    }
+    self.shadowView.top = 36;
+    if (_isOpen == NO)
+    {
+        self.shadowView.height = self.shadowView.height - self.shadowView.top + 6;
+        _isOpen =!_isOpen;
+    }
+    
+}
+
+- (void)skip:(UITapGestureRecognizer *)tap
+{
+    UIView *view = tap.view;
+    PromoteModel *model = self.promoteData.newsData[view.tag];
+    model.newsTitle = self.promoteData.messageTitle;
+    [self.delegate clickPromote:model];
+}
+
+- (UIImageView *)promoteImgView
+{
+    if (nil == _promoteImgView) {
+        _promoteImgView = [[UIImageView alloc] init];
+        [self.shadowView addSubview:_promoteImgView];
+    }
+    return _promoteImgView;
+}
+
+
+- (UIView *)shadowView
+{
+    if (nil == _shadowView) {
+        _shadowView = [super shadowCellView];
+    }
+    return _shadowView;
+}
+
+- (PromoteData *)promoteData
+{
+    if (nil == _promoteData) {
+        _promoteData = (PromoteData *)[super commonRowData];
+    }
+    return _promoteData;
+}
+
+
+
+@end

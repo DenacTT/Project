@@ -1,0 +1,18 @@
+//
+//  AnimationBtn.h
+//  scale
+//
+//  Created by 李钰 on 16/3/7.
+//  Copyright © 2016年 李钰. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+@protocol AnimationBtnDelegate<NSObject>
+@optional
+-(void)animationBtnClick;
+@end
+@interface AnimationBtn : UIButton
++ (id)loadWithUrl:(NSString *)url;
+- (void)addTargets;
+@property (nonatomic, weak)id<AnimationBtnDelegate>delegate;
+@end

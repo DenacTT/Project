@@ -1,0 +1,14 @@
+//
+//  YMMessageWallView.h
+//  scale
+//
+//  Created by KiraSu on 15/12/24.
+//  Copyright © 2015年 KiraSu. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "NavigateViewDelegate.h"
+
+@interface YMMessageWallView : UIView<NavigateViewDelegate>
+
+@end

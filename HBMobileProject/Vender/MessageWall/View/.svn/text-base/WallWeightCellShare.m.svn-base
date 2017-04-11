@@ -1,0 +1,119 @@
+//
+//  WallWeightCell.m
+//  scale
+//
+//  Created by cza on 15/8/18.
+//  Copyright (c) 2015年 cza. All rights reserved.
+//
+
+#define KRtFormat @"<font size=%zi color=black>%.1f</font><font size=%zi color=black>%@</font>"
+#define KRtString(A,B,C,D) [NSString stringWithFormat:KRtFormat,A,B,C,D]
+
+#import "WallWeightCellShare.h"
+#import "UIColor+Extend.h"
+#import "UICountingLabel.h"
+#import "UIFont+AdjustScreen.h"
+#import "RTLabel.h"
+
+
+
+@interface WallWeightCellShare ()
+
+@property (weak, nonatomic) IBOutlet UILabel *fatLabel;
+@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
+@property (weak, nonatomic) IBOutlet RTLabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UIView *colorView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *widthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelViewConstraintHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelTopConstraint;
+
+@end
+
+
+@implementation WallWeightCellShare
+
+- (void)awakeFromNib {
+    // Initialization code
+    [super awakeFromNib];
+}
+
+-(void)setMondel:(ComponentModel *)mondel{
+    
+    if ([XMTools getCurrentLanguage] == LangEN) {
+        self.stateLabel.hidden = YES;
+    }else{
+        self.stateLabel.hidden = NO;
+    }
+    
+    _mondel = mondel;
+    _fatLabel.text = mondel.comTitle;
+    _stateLabel.text = mondel.comStand;
+    
+    if (IOS_VERSION>=9.0) {
+        self.labelTopConstraint.constant = -1;
+        [self layoutIfNeeded];
+    }else{
+        self.labelTopConstraint.constant = -2;
+        [self layoutIfNeeded];
+    }
+    
+    self.labelTopConstraint.constant = 0;
+    [self layoutIfNeeded];
+    
+
+    self.fatLabel.font = [UIFont systemFontOfSize:12];
+    self.stateLabel.font = [UIFont systemFontOfSize:12];
+    self.scoreLabel.font = [UIFont systemFontOfSize:18];
+    self.scoreLabel.textAlignment =  RTTextAlignmentRight;
+    self.stateLabel.height = 18;
+    self.scoreLabel.center = CGPointMake(self.scoreLabel.center.x, (self.stateLabel.bottom - self.fatLabel.top)/2);
+    NSInteger font = 23;
+//    if (UI_IS_IPHONE6P) {
+//        font = 23;
+//    }
+    
+    if (mondel.compositionType == ComponentTypeOfBMR || mondel.compositionType == ComponentTypeOfVisFat) {
+//        self.scoreLabel.format = @"%.ld";
+        
+//        [self.scoreLabel setCompletionBlock:^{
+//            self.scoreLabel.text = [NSString stringWithFormat:@"%ld",(long)[mondel.comValue integerValue]];
+//        }];
+        _scoreLabel.text = [NSString stringWithFormat:@"<font size=%zi color=black>%.0f</font>",font,[mondel.comValue floatValue]];
+
+    }else if (mondel.compositionType == ComponentTypeOfBodyAge){
+//        self.scoreLabel.format = @"%.f";
+//         [self.scoreLabel setCompletionBlock:^{
+//               _scoreLabel.text = [NSString stringWithFormat:@"%@",mondel.comValue];
+        _scoreLabel.text = [NSString stringWithFormat:@"<font size=%zi color=black>%@</font>",font,mondel.comValue];
+//         }];
+        
+    }else{
+//        self.scoreLabel.format = @"%.1f";
+//        [self.scoreLabel setCompletionBlock:^{
+//                  _scoreLabel.text = [NSString stringWithFormat:@"%.1f%@",[mondel.comValue floatValue],@"%"];
+//        self.scoreLabel.font
+        
+       
+        _scoreLabel.text = KRtString(font,[mondel.comValue floatValue],font/2,@"%");
+//        }];
+    }
+    
+    _colorView.backgroundColor = RGB(75, 214, 99); //正常
+    
+    /*
+    if (mondel.comIndex == 2 || (mondel.compositionType == ComponentTypeOfBodyAge && mondel.comIndex == 1)) {
+        _colorView.backgroundColor = RGB(75, 214, 99); //正常
+    }else{
+        _colorView.backgroundColor = [UIColor colorWithRed:0.9686 green:0.8078 blue:0.0078 alpha:1.0];
+    }
+     */
+}
+
+-(void)animalLabel{
+    if (!self.mondel.isAnimal) {
+//        [self.scoreLabel countFromZeroTo:[self.mondel.comValue floatValue] withDuration:1.0f];
+        self.mondel.isAnimal = YES;
+    }
+}
+
+@end

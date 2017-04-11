@@ -1,0 +1,51 @@
+//
+//  CommunityCard.m
+//  scale
+//
+//  Created by cza on 15/10/29.
+//  Copyright © 2015年 cza. All rights reserved.
+//
+
+#import "CommunityCard.h"
+
+@implementation CommunityCard
+
+- (CGFloat)cellViewHeight{
+    if (self.news.count==0) {
+        return 0;
+    }
+    CGFloat h=225;
+    if (ScreenWidth<=320) {
+        h = 210;
+    }else if (UI_IS_IPHONE6P){
+        h = 240;
+    }
+    return h;
+}
+
+- (void)initLoadData
+{
+    if (self.news.count > 3)
+    {
+        // 大于3个新闻时才随机展示，否则顺序展示
+        self.news  = [self randomizedArrayWithArray:self.news];
+    }
+}
+
+- (NSMutableArray *) randomizedArrayWithArray:(NSArray *)array
+{
+    NSMutableArray *results = [[NSMutableArray alloc]initWithArray:array];
+    int i = (int)[results count];
+    
+    while(--i > 0)
+    {
+        int j = rand() % (i+1);
+        [results exchangeObjectAtIndex:i withObjectAtIndex:j];
+        //        NSLog(@"%d",j);
+    }
+    
+    return results;
+}
+
+
+@end

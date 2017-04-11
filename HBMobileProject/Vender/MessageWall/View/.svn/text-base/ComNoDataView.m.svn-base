@@ -1,0 +1,46 @@
+//
+//  ComNoDataView.m
+//  scale
+//
+//  Created by solf on 16/5/9.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import "ComNoDataView.h"
+#import "ComNoDataStateView.h"
+#import "ComDataCursor.h"
+
+
+@interface ComNoDataView ()
+
+@property (nonatomic,strong) ComNoDataStateView *stateView; //成分简介视图
+
+@property (nonatomic,strong) ComDataCursor*      cursorView; //游标视图
+
+@end
+
+@implementation ComNoDataView
+
+- (void)layoutViewWithComModel:(ComponentModel*)comModel
+{
+    if (!_stateView)
+    {
+        _stateView = [[ComNoDataStateView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 323.f)];
+        
+        [self addSubview:_stateView];
+    }
+    ///Body_Fat_good_sMax
+    [_stateView layoutViewsTitle:comModel.comTitle img:comModel.comImgStr andInfo:comModel.comInfo];
+    [_stateView layoutViewsTitle:comModel.comTitle img:comModel.comImgStr andInfo:comModel.comInfo];
+    if (!_cursorView)
+    {
+        _cursorView = [[ComDataCursor alloc] initWithFrame:CGRectMake(0, _stateView.bottom, self.width, 78.f)];
+        
+        [self addSubview:_cursorView];
+    }
+    
+    [_cursorView.cursorModel comModelChangeCursorModel:comModel];
+    [_cursorView layoutViews];
+}
+
+@end

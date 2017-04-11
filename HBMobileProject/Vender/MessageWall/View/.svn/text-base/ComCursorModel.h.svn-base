@@ -1,0 +1,44 @@
+//
+//  ComCursorModel.h
+//  scale
+//
+//  Created by solf on 16/5/11.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "BodyCompositionDef.h"
+#import "ComponentModel.h"
+
+@interface ComCursorModel : NSObject
+
+@property (nonatomic) ComponentType comType;
+
+@property (nonatomic,strong) NSNumber *comValue;  //值
+
+@property (nonatomic,strong) NSNumber *comWeight;
+
+@property (nonatomic) NSInteger  comUnit; //单位
+
+@property (nonatomic) NSInteger      comCount; //数量
+
+@property (nonatomic,strong) NSArray *      comStateValueArr; //界限数组
+
+@property (nonatomic,strong) NSArray *      comStateStrArr;  //描述数组
+
+@property (nonatomic) NSInteger           comIndex; //当前处于第几个区间
+
+@property (nonatomic,strong) NSNumber *   comMinValue; //当前区间小值
+
+@property (nonatomic,strong) NSNumber *   comMaxValue; //当前区间大值
+
+@property (nonatomic,strong) NSString * comTitle; //标题
+
+
+- (void)comModelChangeCursorModel:(ComponentModel *)comModel;
+
+- (void)initDatas;
+
+- (CGFloat)locationWithWidth:(CGFloat)width;
+
+@end

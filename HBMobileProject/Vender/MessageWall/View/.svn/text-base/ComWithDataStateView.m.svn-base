@@ -1,0 +1,159 @@
+//
+//  ComWithDataStateView.m
+//  scale
+//
+//  Created by solf on 16/5/10.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import "ComWithDataStateView.h"
+#import "UIColor+YYAdd.h"
+#import "NSString+Extend.h"
+
+@interface ComWithDataStateView ()
+{
+    UIImageView *       _comImgView; //成分图标
+    UILabel *           _comTitleLabel;//成分名称
+    UILabel *           _comValueLabel;//成分数值
+    UILabel *           _comInfoLabel; //成分简介
+
+}
+///
+@property (nonatomic,strong) UIImageView *comImgView;
+
+@property (nonatomic,strong) UILabel *titleLabel;
+
+@property (nonatomic,strong) UILabel *comInfoLabel;
+
+@end
+
+@implementation ComWithDataStateView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initViews];
+    }
+    return self;
+}
+
+- (void)initViews
+{
+//    _comImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
+//    _comTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+//    _comValueLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+//    _comInfoLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+//    
+//    
+//    [self addSubview:_comImgView];
+//    [self addSubview:_comTitleLabel];
+//    [self addSubview:_comValueLabel];
+//    [self addSubview:_comInfoLabel];
+    
+    
+    ////
+    _comImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    _comInfoLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    _comValueLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    [self addSubview:_comImgView];
+    [self addSubview:_titleLabel];
+    [self addSubview:_comInfoLabel];
+    
+    //数值
+    [self addSubview:_comValueLabel];
+}
+
+- (void)layoutViewsTitle:(NSString *)comTtile value:(NSString *)comValue img:(NSString *)comImg andInfo:(NSString *)comInfo
+{
+    
+    _comImgView.frame = CGRectMake((self.width - 66.f)/2.f, 40.f, 66.f, 66.f);
+    [_comImgView setImage:[UIImage imageNamed:comImg]];
+    
+    _titleLabel.frame = CGRectMake(0, _comImgView.bottom, self.width, 40.f);
+    _titleLabel.textColor = [UIColor colorWithHexString:@"#323232"];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.font = [UIFont systemFontOfSize:18.f];
+    _titleLabel.text = [NSString stringWithFormat:@"%@",comTtile];
+    
+    [_titleLabel sizeToFit];
+    _titleLabel.center = CGPointMake(self.width/2.f, _comImgView.bottom + 14.f + _titleLabel.height/2.f);
+    
+    
+    //////成分数值
+//    _comValueLabel.frame = CGRectMake(_comTitleLabel.left, _comTitleLabel.bottom + 3.f, _comTitleLabel.width, 30.f);
+    _comValueLabel.frame = CGRectMake(_titleLabel.left, _titleLabel.bottom + 3.f, _titleLabel.width, 30.f);
+    _comValueLabel.textColor = [UIColor colorWithHexString:@"#323232"];
+    _comValueLabel.font = [UIFont systemFontOfSize:14.f];
+    _comValueLabel.textAlignment = NSTextAlignmentCenter;
+    _comValueLabel.text =[NSString stringWithFormat:@"(%@)",comValue];
+    [_comValueLabel sizeToFit];
+    _comValueLabel.center = CGPointMake(_comImgView.center.x, _comValueLabel.center.y);
+    
+    if ([comValue isEqualToString:@"0"] ||[comValue isEqualToString:@"0.0%"]) {
+        _comValueLabel.hidden = YES;
+    }
+    
+    ///成分描述
+    _comInfoLabel.frame = CGRectMake(21.f, _comValueLabel.bottom + 10.f, self.width - 42.f, 150.f);
+    _comInfoLabel.textColor = [UIColor colorWithHexString:@"#666666"];
+    _comInfoLabel.font = [UIFont systemFontOfSize:16.f];
+    //    _comInfoLabel.text = [NSString stringWithFormat:@"%@",comInfo];
+    _comInfoLabel.numberOfLines = 0;
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:comInfo];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:3]; //间距
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [comInfo length])];
+    _comInfoLabel.attributedText = attributedString;
+    [_comInfoLabel sizeToFit];
+    
+    CGSize labelSize = [_comInfoLabel.text YMSizeWithFont:_comInfoLabel.font constrainedToSize:CGSizeMake(_comInfoLabel.width, MAXFLOAT)];
+    if (labelSize.height < 20) {
+        _comInfoLabel.left = (ScreenWidth - labelSize.width) / 2;
+    }
+    
+    /*
+    _comImgView.frame = CGRectMake(21.f, ((ScreenWidth == 320.f) ? 26.f : 46.f), 42.f, 42.f);
+    _comImgView.clipsToBounds = YES;
+    _comImgView.contentMode = UIViewContentModeScaleToFill;
+    [_comImgView setImage:[UIImage imageNamed:comImg]];
+    
+    _comTitleLabel.frame = CGRectMake(5.f, _comImgView.bottom + 6.f, _comImgView.width + 30.f*2, 30.f);
+    _comTitleLabel.textColor = [UIColor colorWithHexString:@"#323232"];
+    _comTitleLabel.font = [UIFont systemFontOfSize:14.f];
+    _comTitleLabel.textAlignment = NSTextAlignmentCenter;
+    _comTitleLabel.text = comTtile;
+    [_comTitleLabel sizeToFit];
+    _comTitleLabel.center = CGPointMake(_comImgView.center.x, _comTitleLabel.center.y);
+    
+    _comValueLabel.frame = CGRectMake(_comTitleLabel.left, _comTitleLabel.bottom + 3.f, _comTitleLabel.width, 30.f);
+    _comValueLabel.textColor = [UIColor colorWithHexString:@"#323232"];
+    _comValueLabel.font = [UIFont systemFontOfSize:14.f];
+    _comValueLabel.textAlignment = NSTextAlignmentCenter;
+    _comValueLabel.text =[NSString stringWithFormat:@"(%@)",comValue];
+    [_comValueLabel sizeToFit];
+    _comValueLabel.center = CGPointMake(_comImgView.center.x, _comValueLabel.center.y);
+
+    
+    _comInfoLabel.frame = CGRectMake(_comImgView.right + 20.f, 58.f, self.width - _comImgView.right - 20.f - 21.f, 58.f);
+    _comInfoLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _comInfoLabel.numberOfLines = 0;
+    _comInfoLabel.textColor = [UIColor colorWithHexString:@"#666666"];
+    _comInfoLabel.font = [UIFont systemFontOfSize:14.f];
+    _comInfoLabel.textAlignment = NSTextAlignmentLeft;
+    _comInfoLabel.text = comInfo;
+    [_comInfoLabel sizeToFit];
+    
+    _comInfoLabel.center = CGPointMake(_comInfoLabel.center.x, self.height/2.f);
+    
+//    self.backgroundColor = [UIColor redColor];
+     */
+}
+
+@end

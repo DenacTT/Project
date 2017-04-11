@@ -1,0 +1,62 @@
+//
+//  YMMessageWallMainViewController.m
+//  scale
+//
+//  Created by Vincent on 16/11/23.
+//  Copyright © 2016年 Vincent. All rights reserved.
+//
+
+#import "YMMessageWallMainViewController.h"
+#import "YMMessageWallMainView.h"
+@interface YMMessageWallMainViewController ()
+
+@end
+
+@implementation YMMessageWallMainViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    _messageWallMainView = [[YMMessageWallMainView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    [self.view addSubview:_messageWallMainView];
+    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    [_messageWallMainView viewWillAppear];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    [_messageWallMainView viewDidAppear];
+    
+}
+-(void)viewWillDisappear:(BOOL)animated{
+
+    [super viewWillDisappear:animated];
+    [_messageWallMainView viewWillDisappear];
+    
+}
+-(void)viewDidDisappear:(BOOL)animated{
+
+    [super viewDidDisappear:animated];
+    [_messageWallMainView viewDidDisappear];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

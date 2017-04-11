@@ -1,0 +1,184 @@
+//
+//  NewsHotConsultCell.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/30.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "NewsHotConsultCell.h"
+#import "YMUtil.h"
+#import "UIImageView+WebCache.h"
+#import "News.h"
+#import "HealthyNewsRowData.h"
+#import "UIImage+Scale.h"
+
+@interface NewsHotConsultCell()
+
+@property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) UIImageView *contentImgView;
+@property (nonatomic) UILabel *detailLabel;
+@property (nonatomic) UILabel *readNumLabel;
+@property (nonatomic) UIButton *checkBtn;
+@property (nonatomic) UIView *shadowView;
+@property (nonatomic) HealthyNewsRowData *newsData;
+
+
+@end
+
+@implementation NewsHotConsultCell
+
+- (void)layoutCellView
+{
+    
+    [super layoutCellView];
+    self.newsData = (HealthyNewsRowData *)[super commonRowData];
+    if (0 == self.newsData.news.count) {
+        return;
+    }
+    
+    BOOL isDescendantView = NO;
+    if (self.shadowView.subviews.count > 0) {
+        UIView *temp = self.shadowView.subviews[0];
+        if ([temp class] == [UILabel class]) {
+            isDescendantView = [temp isDescendantOfView:self.shadowView];
+        }
+    }
+    if (isDescendantView) {
+        return;
+    }
+    
+    CGFloat commonWidth = self.shadowView.width * 0.035;
+    News *news = nil;
+    if ([self.newsData.news[0] isKindOfClass:[NSDictionary class]]) {
+        news = [News mj_objectWithKeyValues:self.newsData.news[0]];
+    }else{
+        news = self.newsData.news[0];
+    }
+    
+    self.titleLabel.text = news.newsTitle;
+    CGSize titleSize = [self.titleLabel.text YMSizeWithFont:self.titleLabel.font];
+    self.titleLabel.origin = CGPointMake(commonWidth, 16);
+    self.titleLabel.size = CGSizeMake(titleSize.width, titleSize.height);
+    
+    self.readNumLabel.text = [NSString stringWithFormat:STR(@"NHCC_readPreson"),(long)news.newsreadNum];
+    CGSize readSize = [self.readNumLabel.text YMSizeWithFont:self.readNumLabel.font];
+    self.readNumLabel.origin = CGPointMake(self.shadowView.width - readSize.width - commonWidth - 2, self.titleLabel.top);
+    self.readNumLabel.size = CGSizeMake(readSize.width, readSize.height);
+    self.readNumLabel.center = CGPointMake(self.readNumLabel.center.x, self.titleLabel.center.y);
+    
+    NSURL *url = [NSURL URLWithString:news.newsImgUrl];
+    self.contentImgView.image = [UIImage imageNamed: @"HealthDefaultNew"];
+    [self.contentImgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground | SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (nil == image) {
+            self.contentImgView.image = [UIImage imageNamed: @"HealthDefaultNew"];
+        }else{
+            
+            self.contentImgView.image = [image getCenterImageWithUIRect:self.contentImgView.frame andIsNetWorkImg:YES];
+        }
+    }];
+    self.contentImgView.origin = CGPointMake(self.titleLabel.left, self.titleLabel.bottom + 16);
+    
+    
+    self.detailLabel.text = news.shortDesc;
+    self.detailLabel.numberOfLines = 3;
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 3;
+    NSDictionary *attribute = @{NSFontAttributeName:self.detailLabel.font, NSParagraphStyleAttributeName:paragraphStyle};
+    self.detailLabel.attributedText = [[NSAttributedString alloc] initWithString:self.detailLabel.text attributes:attribute];
+ 
+    self.detailLabel.origin = CGPointMake(self.contentImgView.right + self.shadowView.width * 0.04, self.contentImgView.top);
+    self.detailLabel.size = CGSizeMake(self.shadowView.width - self.contentImgView.width - commonWidth * 2 - self.shadowView.width * 0.04, 45);
+    [self.detailLabel sizeToFit];
+    
+    [self.checkBtn setTitle:STR(@"NHCC_lookAtOnce") forState:UIControlStateNormal];
+    self.checkBtn.layer.cornerRadius = 4;
+    self.checkBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.checkBtn.origin = CGPointMake(self.detailLabel.left, self.contentImgView.bottom - 35);
+    self.checkBtn.size = CGSizeMake(80, 25);
+    [self.checkBtn setBackgroundImage: [UIImage imageWithColor:[UIColor commonViewCellPressBtn] andBordRect:CGRectMake(0, 0, self.checkBtn.width, self.checkBtn.height) andBordColor:[UIColor commonViewCellPressBtn] andCornerRadius:4] forState:UIControlStateHighlighted];
+//    [self.checkBtn setShowsTouchWhenHighlighted:YES];
+    
+    [self.checkBtn addTarget:self action:@selector(skip) forControlEvents:UIControlEventTouchUpInside];
+    
+    UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skip)];
+    singleRecognizer.numberOfTapsRequired = 1;
+    singleRecognizer.numberOfTouchesRequired = 1;
+    [self.shadowView addGestureRecognizer:singleRecognizer];
+    
+    
+}
+
+- (void)skip
+{
+    [MobClick event:c_info_7_reduceweight];
+    News *news = nil;
+    if ([self.newsData.news[0] isKindOfClass:[NSDictionary class]]) {
+        news = [News mj_objectWithKeyValues:self.newsData.news[0]];
+    }else{
+        news = self.newsData.news[0];
+    }
+    [self.delegate clickElement:news];
+}
+
+- (UILabel *)titleLabel
+{
+    if (nil == _titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.font = [UIFont systemFontOfSize:14];
+        [self.shadowView addSubview:_titleLabel];
+    }
+    return _titleLabel;
+}
+
+- (UILabel *)readNumLabel
+{
+    if (nil == _readNumLabel) {
+        _readNumLabel = [[UILabel alloc] init];
+        _readNumLabel.font = [UIFont systemFontOfSize:12];
+        _readNumLabel.textColor = RGB(136, 136, 136);
+        [self.shadowView addSubview:_readNumLabel];
+    }
+    return _readNumLabel;
+}
+
+- (UIImageView *)contentImgView
+{
+    if (nil == _contentImgView) {
+        _contentImgView = [[UIImageView alloc] init];
+        _contentImgView.size = CGSizeMake(155, 90);
+        [self.shadowView addSubview:_contentImgView];
+    }
+    return _contentImgView;
+}
+
+- (UILabel *)detailLabel
+{
+    if (nil == _detailLabel) {
+        _detailLabel = [[UILabel alloc] init];
+        _detailLabel.font = [UIFont systemFontOfSize:12];
+        _detailLabel.textColor = RGB(136, 136, 136);
+        [self.shadowView addSubview:_detailLabel];
+    }
+    return _detailLabel;
+}
+
+- (UIButton *)checkBtn
+{
+    if (nil == _checkBtn) {
+        _checkBtn = [UIButton buttonWithType: UIButtonTypeCustom];
+        _checkBtn.backgroundColor = [UIColor commonViewCellBtn];
+        [self.shadowView addSubview:_checkBtn];
+    }
+    return _checkBtn;
+}
+
+- (UIView *)shadowView
+{
+    if (nil == _shadowView) {
+        _shadowView = [super shadowCellView];
+    }
+    return _shadowView;
+}
+@end

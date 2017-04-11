@@ -1,0 +1,133 @@
+//
+//  ComPonentModelControl.m
+//  scale
+//
+//  Created by solf on 15/8/13.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import "ComPonentModelControl.h"
+#import "WeightInfo.h"
+#import "UserInfo.h"
+#import "UserDB.h"
+#import "WeightDB.h"
+#import "MJExtension.h"
+#import "ComponentModel.h"
+#import "Standard.h"
+#import "LoginConst.h"
+
+@interface ComPonentModelControl ()
+
+@end
+@implementation ComPonentModelControl
+
+/**
+ *  获取称重数据
+ *
+ *  @param userId 当前登录用户id 没有则拿当前登录的id
+ *
+ *  @return 称重模块数据(model)，八项数据(arr)
+ */
++ (ComPonentModelControl *)sharedInstance {
+    
+    static id comPonentModel = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        comPonentModel = [[self alloc] init];
+        
+    });
+    return comPonentModel;
+}
+-(NSDictionary *)getMyScoreAndWeightDatasWithUserId:(NSString *)userId
+{
+    NSString *myUserId = [String isBlankString:userId] ? [XMUserDefault currentUserId] : userId;
+    
+    if ([String isBlankString:myUserId])
+    {
+        return nil;
+    }
+    
+    NSDictionary *dic = [self getWeightInfoAndUserInfoWithUserId:myUserId];
+    WeightInfo *myWeightInfo = [dic objectForKey:@"weightInfo"];
+    UserInfo *userInfo = [dic objectForKey:@"userInfo"];
+   return  [[Standard shareInstance] getBodyStandWithWeightInfo:myWeightInfo userInfo:userInfo];
+    
+}
+
+//获取八项数据
+- (NSArray *) getMyWeightDatasWithUserId:(NSString *) userId{
+    
+    NSString *myUserId =[NSString stringWithFormat:@"%@",userId];
+    
+    if (0 == [myUserId integerValue]) {
+        return [[Standard shareInstance] getNewBodyStandWithWeightInfo:[[WeightInfo alloc]init] userInfo:[[UserInfo alloc] init]];
+    }
+    
+    NSDictionary *dic = [self getWeightInfoAndUserInfoWithUserId:myUserId];
+    WeightInfo *myWeightInfo = [dic objectForKey:@"weightInfo"];
+    UserInfo *userInfo = [dic objectForKey:@"userInfo"];
+    
+   return [[Standard shareInstance] getNewBodyStandWithWeightInfo:myWeightInfo userInfo:userInfo];
+    
+}
+/////
+- (NSArray *) getMyWeightDatasOfBmiWithUserId:(NSString *) userId{
+    
+    NSString *myUserId =[NSString stringWithFormat:@"%@",userId];
+    
+    if (0 == [myUserId integerValue]) {
+        return [[Standard shareInstance] getNewBodyStandWithWeightInfo:[[WeightInfo alloc]init] userInfo:[[UserInfo alloc] init]];
+    }
+    
+    NSDictionary *dic = [self getWeightInfoAndUserInfoWithUserId:myUserId];
+    WeightInfo *myWeightInfo = [dic objectForKey:@"weightInfo"];
+    UserInfo *userInfo = [dic objectForKey:@"userInfo"];
+    
+    return [[Standard shareInstance] getNewBodyStandWithWeightInfo:myWeightInfo userInfo:userInfo];
+    
+}
+
+- (ComponentModel *)getBodyWithUserId:(NSString *)userId //返回 BodyState
+{
+    NSString *myUserId = [String isBlankString:userId] ? [XMUserDefault currentUserId] : userId;
+    
+    if ([String isBlankString:myUserId])
+    {
+        return nil;
+    }
+    
+    NSDictionary *dic = [self getWeightInfoAndUserInfoWithUserId:myUserId];
+    WeightInfo *myWeightInfo = [dic objectForKey:@"weightInfo"];
+    UserInfo *userInfo = [dic objectForKey:@"userInfo"];
+    
+    return [[Standard shareInstance] getBmiWithWeightInfo:myWeightInfo userInfo:userInfo];
+    //return [[Standard shareInstance]getBodyModelWeightInfo:myWeightInfo andUserInfo:userInfo];
+}
+
+- (NSDictionary *) getWeightInfoAndUserInfoWithUserId:(NSString *)userId
+{
+    NSString *myUserId = [String isBlankString:userId] ? [XMUserDefault currentUserId] : userId;
+    
+    if ([String isBlankString:myUserId])
+    {
+        return nil;
+    }
+//    UserDB *userDB = [UserDB shareInstance];
+//    
+//    UserInfo *userInfo = [userDB findUserInfoByUserId:myUserId];
+    UserInfo *userInfo = [[LoginConst sharedInstance] getLoginUserInfo];
+    
+    if (!userInfo)
+    {
+        return nil;
+    }
+    
+    WeightInfo *myWeightInfo = [[WeightDB shareInstance] getOneWeightInfoDataByUserId:myUserId];
+    myWeightInfo.bmr = [NSString stringWithFormat:@"%zi",[myWeightInfo.bmr integerValue]];
+   // WeightInfo *myWeightInfo = [[WeightDB shareInstance] getOneHaveBmrWeightInfoDataByUserId:myUserId];
+    
+    return [NSDictionary dictionaryWithObjectsAndKeys:myWeightInfo,@"weightInfo",userInfo,@"userInfo", nil];
+}
+
+@end

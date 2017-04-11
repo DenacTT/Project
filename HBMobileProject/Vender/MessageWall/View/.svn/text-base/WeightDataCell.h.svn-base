@@ -1,0 +1,18 @@
+//
+//  WeightDataCell.h
+//  scale
+//
+//  Created by cza on 15/8/18.
+//  Copyright (c) 2015年 cza. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "YMMsgWallCellView.h"
+
+@interface WeightDataCell : YMMsgWallCellView
+
+-(void)runAnimal;
+
+-(CGFloat) getRowHeight;
+
+@end

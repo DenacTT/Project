@@ -1,0 +1,14 @@
+//
+//  News.m
+//  scale
+//
+//  Created by 叶威廷 on 15/8/20.
+//  Copyright (c) 2015年 叶威廷. All rights reserved.
+//
+
+#import "News.h"
+
+@implementation News
+
+
+@end

@@ -1,0 +1,26 @@
+//
+//  MsgWallNewsCommonRowData.h
+//  scale
+//
+//  Created by KiraSu on 15/8/26.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+
+#import "MsgWallCommonRowData.h"
+
+@interface MsgWallNewsCommonRowData : MsgWallCommonRowData
+
+@property (nonatomic, strong) NSArray*      news;
+@property (nonatomic, copy) NSString*       newscategoryUrl;
+@property (nonatomic, assign) NSInteger     rank;
+
+
+
+
+- (NSArray*)getData;
+- (NSString*)moreInfo;
+- (NSMutableArray *) randomizedArrayWithArray:(NSArray *)array;
+
+
+@end

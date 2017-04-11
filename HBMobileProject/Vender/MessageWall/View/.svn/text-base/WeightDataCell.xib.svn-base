@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="399" id="KGk-i7-Jjw" customClass="WeightDataCell">
+            <rect key="frame" x="0.0" y="0.0" width="434" height="399"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hdx-C0-EGE">
+                        <rect key="frame" x="10" y="10" width="414" height="388"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallComponent.png" translatesAutoresizingMaskIntoConstraints="NO" id="bXv-iz-3M1">
+                                <rect key="frame" x="15" y="14" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="Szf-9N-iSa"/>
+                                    <constraint firstAttribute="height" constant="16" id="vW4-35-eNT"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身体成分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aR-tK-694">
+                                <rect key="frame" x="37" y="14" width="56" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fIA-XK-ONL">
+                                <rect key="frame" x="0.0" y="31" width="414" height="356"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="epR-g7-TTK">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <connections>
+                                    <outlet property="dataSource" destination="KGk-i7-Jjw" id="oyl-Ny-puf"/>
+                                    <outlet property="delegate" destination="KGk-i7-Jjw" id="KgW-aP-oVQ"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fIA-XK-ONL" secondAttribute="trailing" id="2MX-Ro-Lj7"/>
+                            <constraint firstAttribute="bottom" secondItem="fIA-XK-ONL" secondAttribute="bottom" constant="1" id="3E9-0y-zKl"/>
+                            <constraint firstItem="fIA-XK-ONL" firstAttribute="leading" secondItem="Hdx-C0-EGE" secondAttribute="leading" id="4x4-yg-AGq"/>
+                            <constraint firstItem="bXv-iz-3M1" firstAttribute="bottom" secondItem="7aR-tK-694" secondAttribute="bottom" constant="-1" id="AFV-Sq-sst"/>
+                            <constraint firstItem="fIA-XK-ONL" firstAttribute="top" secondItem="7aR-tK-694" secondAttribute="bottom" id="DBO-wf-LrP"/>
+                            <constraint firstItem="7aR-tK-694" firstAttribute="top" secondItem="Hdx-C0-EGE" secondAttribute="top" constant="16" id="EMj-bY-ZxU"/>
+                            <constraint firstItem="fIA-XK-ONL" firstAttribute="top" secondItem="7aR-tK-694" secondAttribute="bottom" id="NBg-nP-G3L"/>
+                            <constraint firstItem="7aR-tK-694" firstAttribute="leading" secondItem="bXv-iz-3M1" secondAttribute="trailing" constant="6" id="PIk-p4-q9V"/>
+                            <constraint firstItem="bXv-iz-3M1" firstAttribute="top" secondItem="Hdx-C0-EGE" secondAttribute="top" constant="14" id="b1p-co-aXv"/>
+                            <constraint firstItem="bXv-iz-3M1" firstAttribute="leading" secondItem="Hdx-C0-EGE" secondAttribute="leading" constant="15" id="b7N-LZ-ql2"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="DBO-wf-LrP"/>
+                                <exclude reference="EMj-bY-ZxU"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Hdx-C0-EGE" secondAttribute="bottom" id="MTD-Oi-cEM"/>
+                    <constraint firstAttribute="trailing" secondItem="Hdx-C0-EGE" secondAttribute="trailing" constant="10" id="SRe-Ss-7Vd"/>
+                    <constraint firstItem="Hdx-C0-EGE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="aWW-gS-rA9"/>
+                    <constraint firstItem="Hdx-C0-EGE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="zPc-Gs-HWy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bgView" destination="Hdx-C0-EGE" id="SA2-pT-WVb"/>
+                <outlet property="bodyLabel" destination="7aR-tK-694" id="lBk-6x-gxK"/>
+                <outlet property="collectionView" destination="fIA-XK-ONL" id="iPp-18-gxY"/>
+                <outlet property="imageViewHeightConstraint" destination="vW4-35-eNT" id="50O-3g-79e"/>
+                <outlet property="imageViewWidthConstraint" destination="Szf-9N-iSa" id="8zt-fz-KQF"/>
+                <outlet property="topImageView" destination="bXv-iz-3M1" id="ATm-GX-2pP"/>
+            </connections>
+            <point key="canvasLocation" x="558" y="385.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="wallComponent.png" width="16" height="16"/>
+    </resources>
+</document>

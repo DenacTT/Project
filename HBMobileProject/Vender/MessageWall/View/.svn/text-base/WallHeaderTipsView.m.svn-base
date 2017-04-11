@@ -1,0 +1,85 @@
+//
+//  WallHeaderTipsView.m
+//  scale
+//
+//  Created by 叶威廷 on 16/3/3.
+//  Copyright © 2016年 叶威廷. All rights reserved.
+//
+
+#import "WallHeaderTipsView.h"
+#import "YMUtil.h"
+#import "UserInfo.h"
+#import "UserDB.h"
+#import "YMSFAlertView.h"
+#import "LoginConst.h"
+
+@interface WallHeaderTipsView()
+
+@property (nonatomic,strong) UIView *tipsView;
+
+@end
+
+@implementation WallHeaderTipsView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.15];
+        UserInfo *userInfo = [[LoginConst sharedInstance] getLoginUserInfo];
+        NSInteger age = [[XMTools getAgeWithbirthday:userInfo.birthday] integerValue];
+        if (age < 18) {
+            self.tipsView.hidden = NO;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(childrenTipsView:)];
+            [self addGestureRecognizer:tap];
+        }else{
+            self.backgroundColor = [UIColor clearColor];
+            self.tipsView.hidden = YES;
+        }
+    }
+    return self;
+}
+
+- (void)childrenTipsView:(id)sender
+{
+    YMSFAlertView *alertView = [[YMSFAlertView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
+    alertView.titleStr = STR(@"WHTV_Minor");
+    alertView.cancelImgName = @"";
+    alertView.contentStr = STR(@"WHTV_explain");
+    alertView.btnTitle = STR(@"SCTSV_sure"); //确定  //STR(@"WHTV_growUp") 快快长大
+    alertView.imgName = @"massageWallChidrenImg";
+    [alertView layoutChildrenTipsView];
+    [[[[self superview] superview] superview] addSubview:alertView];
+    __block YMSFAlertView *aView;
+    aView = alertView;
+    alertView.pushWeightBlock = ^{
+        [aView hiddenNoWeightTips];
+    };
+}
+
+- (UIView *)tipsView
+{
+    if (!_tipsView) {
+        _tipsView = [[UIView alloc] init];
+        UIImage *warnImg = [UIImage imageNamed:@"YMMessageWall_NoFatIcon"];// wallChildWarn
+        UIImageView *warnImgView = [[UIImageView alloc] initWithImage:warnImg];
+        warnImgView.size = warnImg.size;
+        warnImgView.center = CGPointMake(warnImgView.width/2, self.height/2);
+        UILabel *tipsLabel = [[UILabel alloc] init];
+        tipsLabel.font = [UIFont systemFontOfSize:14];
+        if ([XMTools getCurrentLanguage] == LangJapan && UI_IS_IPHONE5) {
+            tipsLabel.font = [UIFont systemFontOfSize:13];
+        }
+        tipsLabel.textColor = [UIColor whiteColor];
+        tipsLabel.text = STR(@"WHTV_NoData");
+        tipsLabel.size = [tipsLabel.text YMSizeWithFont:tipsLabel.font];
+        tipsLabel.center = CGPointMake(warnImgView.right + tipsLabel.width/2 + 3, warnImgView.center.y);
+        _tipsView.size = CGSizeMake(tipsLabel.right, self.height);
+        _tipsView.center = CGPointMake(UI_SCREEN_WIDTH/2, self.height/2);
+        [_tipsView addSubview:warnImgView];
+        [_tipsView addSubview:tipsLabel];
+        [self addSubview:_tipsView];
+    }
+    return _tipsView;
+}
+
+@end

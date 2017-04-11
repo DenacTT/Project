@@ -1,0 +1,42 @@
+//
+//  UIButton+PlayCard.h
+//  scale
+//
+//  Created by GeorgeYe on 15/12/9.
+//  Copyright © 2015年 GeorgeYe. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "SCCommDef.h"
+
+
+@interface UIButton (PlayCard)
+
+
+/*!
+ *  @author George, 15-12-09 17:12:15
+ *
+ *  @brief  创建关注按钮
+ *
+ *  @param friendShipType friendShipType
+ *  @param rect           rect
+ *  @param radius         radius
+ *
+ *  @return return UIButton
+ *
+ *  @since 1.9.2
+ */
++(UIButton*) followButtonWith:(FriendShipType)friendShipType andFrame:(CGRect)rect andCornerRadius:(CGFloat)radius;
+/*!
+ *  @author George, 15-12-09 17:12:56
+ *
+ *  @brief  改变样式
+ *
+ *  @param type FriendShipType
+ *
+ *  @since 1.9.2
+ */
+-(void) changeStyleWihtFriendShipType:(FriendShipType)type;
+
+
+@end

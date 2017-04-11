@@ -1,0 +1,13 @@
+//
+//  BiggerBtn.h
+//  scale
+//
+//  Created by solf on 15/8/27.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface BiggerBtn : UIButton
+
+@end

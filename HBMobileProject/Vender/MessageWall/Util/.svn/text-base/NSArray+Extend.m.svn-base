@@ -1,0 +1,75 @@
+
+#import "NSArray+Extend.h"
+
+@implementation NSArray(Extend)
+
+- (id)objAtLoopIndex: (NSInteger)index
+{
+    NSUInteger c = self.count;
+    NSUInteger i = 0;
+    if (index >= 0)
+    {
+        i = index % c;
+    }
+    else
+    {
+        i = (c - (-index) % c) % c;
+    }
+    return [self objAtIndex: i];
+}
+
+- (id)objAtIndex: (NSUInteger)index
+{
+    if (index >= self.count)
+    {
+        return nil;
+    }
+    return [self objectAtIndex:index];
+}
+
+- (NSArray*)arrayBySplitIntoArrays: (NSUInteger)block
+{
+    if (self.count < block)
+    {
+        return [NSArray arrayWithObjects: self, nil];
+    }
+    
+    NSMutableArray* res = [[NSMutableArray alloc] init];
+    NSMutableArray* e = [[NSMutableArray alloc] initWithCapacity: block];
+    for (id i in self)
+    {
+        [e addObject: i];
+        if (e.count == block)
+        {
+            [res addObject: e];
+            e = [[NSMutableArray alloc] initWithCapacity: block];
+        }
+    }
+    if (e.count)
+    {
+        [res addObject: e];
+    }
+    return res;
+}
+
+//数组按照日期排序
+- (NSArray *)orderByDate
+{
+    return (NSArray *)[self sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        if (obj1 == [NSNull null]) {
+            obj1 = @"0000-00-00";
+        }
+        if (obj2 == [NSNull null]) {
+            obj2 = @"0000-00-00";
+        }
+        NSDate *date1 = [formatter dateFromString:obj1];
+        NSDate *date2 = [formatter dateFromString:obj2];
+        NSComparisonResult result = [date1 compare:date2];
+        return result == NSOrderedAscending;
+    }];
+}
+
+@end

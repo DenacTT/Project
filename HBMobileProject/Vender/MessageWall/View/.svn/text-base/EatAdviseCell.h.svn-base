@@ -1,0 +1,19 @@
+//
+//  EatAdviseCell.h
+//  scale
+//
+//  Created by yzz on 15/10/30.
+//  Copyright © 2015年 yzz. All rights reserved.
+//
+
+#import "YMMsgWallCellView.h"
+#import "MsgWallDef.h"
+
+
+@interface EatAdviseCell : YMMsgWallCellView
+
+
+@property (nonatomic,weak) id<WallEatAdviseDelegate> delegate;
+
+
+@end

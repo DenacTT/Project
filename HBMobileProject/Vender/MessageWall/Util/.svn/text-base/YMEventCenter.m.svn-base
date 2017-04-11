@@ -1,0 +1,84 @@
+#import "YMEventCenter.h"
+#import "YMUtil.h"
+
+@implementation YMEventCenter
+{
+    NSMutableDictionary* _dict;
+}
+
+IMPLEMENT_SINGLE(single)
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        _dict = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
+
+- (void)listenToEvent: (NSString*)eventKey delegate: (id<YMEventCallback>)cb
+{
+    [NSThread runInMain:^{
+        if (0 == eventKey.length || !cb)
+        {
+            return ;
+        }
+        NSMutableSet* s = [_dict objectForKey: eventKey];
+        if (s)
+        {
+            [s addObject: cb];
+        }
+        else
+        {
+            s = [[NSMutableSet alloc] initWithObjects: cb, nil];
+            [_dict setObject: s forKey: eventKey];
+        }
+    }];
+}
+
+- (void)clearEvent: (NSString*)eventKey
+{
+    [NSThread runInMain: ^{
+        if (! eventKey.length)
+        {
+            return ;
+        }
+        [_dict removeObjectForKey: eventKey];
+    }];
+}
+
+- (void)unbindEvent: (NSString*)eventKey delegate: (id<YMEventCallback>)cb
+{
+    [NSThread runInMain:^{
+        if (0 == eventKey.length || !cb)
+        {
+            return ;
+        }
+        NSMutableSet* s = [_dict objectForKey: eventKey];
+        if (s)
+        {
+            [s removeObject: cb];
+        }
+    }];
+}
+
+- (void)callEvent: (NSString*)eventKey withObject: (id)obj
+{
+    [NSThread runInMain:^{
+        if (0 == eventKey.length)
+        {
+            return ;
+        }
+        NSMutableSet* s = [_dict objectForKey: eventKey];
+        if (s)
+        {
+            [s enumerateObjectsUsingBlock:^(id<YMEventCallback> cb, BOOL *stop) {
+                [cb onYMEventHappen: eventKey withObject: obj];
+            }];
+        }
+    }];
+}
+
+@end

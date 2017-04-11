@@ -1,0 +1,37 @@
+//
+//  YMMessageWallViewControl.h
+//  scale
+//
+//  Created by KiraSu on 15/8/12.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+typedef void(^DissmissVcBlock)();
+
+#import <UIKit/UIKit.h>
+#import "MsgWallDef.h"
+#import "NavigateViewDelegate.h"
+
+//信息壁动画协议
+@protocol YMCloseMessageWallDelegate <NSObject>
+
+- (void)closeMessageWall;
+
+@end
+
+
+@interface YMMessageWallMainView : UIView<  NavigateViewDelegate, UITableViewDelegate, UITableViewDataSource,
+                                        UIScrollViewDelegate, YMMsgWallViewControllerDelegate,
+                                        YMMsgWallDataAdapterDelegate >
+- (void)notifyAnimateViewDone;
+
+@property (nonatomic, weak) id<YMMsgWallDataAdapterDelegate> animateDelegate;
+
+@property (nonatomic,copy) DissmissVcBlock dissmissVcblock;//关闭当前VC回调
+
+//+++
+- (void)msgWallDismiss;//消失信息壁
+//信息壁动画代理
+@property (nonatomic,weak) id<YMCloseMessageWallDelegate> closeDelegate;
+
+@end

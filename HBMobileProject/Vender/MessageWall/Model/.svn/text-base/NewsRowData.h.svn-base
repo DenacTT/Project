@@ -1,0 +1,17 @@
+//
+//  NewsRowData.h
+//  scale
+//
+//  Created by 叶威廷 on 15/8/20.
+//  Copyright (c) 2015年 叶威廷. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "MsgWallCommonRowData.h"
+
+@interface NewsRowData : MsgWallCommonRowData
+
+- (CGFloat)cellViewHeight;
+
+
+@end

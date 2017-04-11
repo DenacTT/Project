@@ -1,0 +1,12 @@
+//
+//  CommunityCardView.h
+//  scale
+//
+//  Created by cza on 15/10/28.
+//  Copyright © 2015年 cza. All rights reserved.
+//
+
+//健康打卡
+#import "YMMsgWallCellView.h"
+@interface CommunityCardView : YMMsgWallCellView
+@end

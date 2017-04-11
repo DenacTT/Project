@@ -1,0 +1,34 @@
+//
+//  VideoTutorialData.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/27.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "VideoTutorialData.h"
+#import "News.h"
+
+@implementation VideoTutorialData
+
+- (void)initLoadData
+{
+    self.newsData = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in [self getData])
+    {
+        News *news = [News mj_objectWithKeyValues:dict];
+        [self.newsData addObject:news];
+    }
+    [self setNewsData:[super randomizedArrayWithArray:self.newsData]];
+}
+
+- (CGFloat)cellViewHeight
+{
+    if (0 == self.newsData.count) {
+        return 0;
+    }else{
+        return 248;
+    }
+}
+
+@end

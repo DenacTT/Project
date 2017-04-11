@@ -1,0 +1,143 @@
+
+//  RegCardCell.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/14.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "RegCardCell.h"
+#import "RegCardData.h"
+#import "UIImageView+WebCache.h"
+#import "UIColor+Extend.h"
+#import "NSString+Extend.h"
+#import "MsgWallDef.h"
+#import "UIImage+Extend.h"
+
+@implementation RegCardCell
+{
+    UIView          *_shadowView;
+    UIImageView     *_cameraImageView;
+    UILabel         *_redcordLabel;
+    UIButton        *_lookOverBtn;
+    RegCardData     *_regData;
+}
+
+//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//{
+//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+//    if (self) {
+//        [self setSelected:NO animated:NO];
+//    }
+//    return self;
+//}
+//
+//- (void)prepareForReuse
+//{
+//    [self setSelected:NO animated:NO];
+//}
+//
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+//{
+//    if (selected)
+//    {
+//        _shadowView.backgroundColor = [UIColor rgba: 0x8888887F];
+//        [UIView animateWithDuration: 0.4f animations:^{
+//            _shadowView.backgroundColor = [UIColor whiteColor];
+//        }];
+//        
+//        [self skipRegCard];
+//    }
+//}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+//    _shadowView.backgroundColor = [UIColor rgba: 0x8888887F];
+    [super touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [super touchesEnded:touches withEvent:event];
+//    _shadowView.backgroundColor = [UIColor rgba: 0x8888887F];
+    [UIView animateWithDuration: 0.4f animations:^{
+        _shadowView.backgroundColor = [UIColor whiteColor];
+    }];
+    [self skipRegCard];
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    _shadowView.backgroundColor = [UIColor whiteColor];
+    [super touchesCancelled:touches withEvent:event];
+}
+
+- (void)layoutCellView
+{
+    [self setBackgroundColor: [UIColor commonViewCellBg]];
+    
+    _shadowView = [super shadowCellView];
+    _shadowView.left = self.width*0.016;
+    _shadowView.width = self.width - _shadowView.left*2;
+    _regData = (RegCardData *)[self commonRowData];
+    
+    CGFloat commonWidth = _shadowView.width * 0.035;
+    
+    if (nil == _cameraImageView) {
+        _cameraImageView = [[UIImageView alloc] init];
+//        _cameraImageView.backgroundColor = [UIColor redColor];
+        [_shadowView addSubview:_cameraImageView];
+    }
+    _cameraImageView.frame = CGRectMake(commonWidth, (_shadowView.height - 36)/2, 36, 36);
+    NSURL *url = [NSURL URLWithString:_regData.iconImgURL];
+    if (nil == _cameraImageView.image) {
+        _cameraImageView.image = [UIImage imageNamed:@"RegCardHolder"];
+    }
+    
+    [_cameraImageView sd_setImageWithURL: url placeholderImage: [UIImage imageNamed:@"RegCardHolder"] options: SDWebImageRetryFailed|SDWebImageContinueInBackground|SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    }];
+    
+    if (nil == _redcordLabel) {
+        _redcordLabel = [[UILabel alloc] init];
+//        _redcordLabel.backgroundColor = [UIColor yellowColor];
+        [_redcordLabel setFont:[UIFont systemFontOfSize:14]];
+        [_shadowView addSubview:_redcordLabel];
+    }
+    _redcordLabel.text = _regData.messageDetail;
+    CGSize redcordLabelSize = [_redcordLabel.text YMSizeWithFont: _redcordLabel.font];
+    CGFloat redcordLabelW = redcordLabelSize.width;
+    CGFloat redcordLabelH = redcordLabelSize.height;
+    _redcordLabel.frame = CGRectMake(_cameraImageView.right + 8, (_shadowView.height - redcordLabelH)/2, redcordLabelW, redcordLabelH);
+    
+    if (nil == _lookOverBtn) {
+        _lookOverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _lookOverBtn.backgroundColor = [UIColor commonViewCellBtn];
+        [_shadowView addSubview:_lookOverBtn];
+    }
+    [_lookOverBtn setTitle: _regData.buttonName forState:UIControlStateNormal];
+    _lookOverBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    CGFloat LookOverBtnW = 52;
+    CGFloat LookOverBtnH = 25;
+    CGFloat LookOverBtnX = _shadowView.right - 20 - LookOverBtnW;
+    CGFloat LookOverBtnY = (_shadowView.height - LookOverBtnH)/2;
+    _lookOverBtn.frame = CGRectMake(LookOverBtnX, LookOverBtnY, LookOverBtnW, LookOverBtnH);
+    _lookOverBtn.layer.cornerRadius = 2.5;
+    [_lookOverBtn setBackgroundImage: [UIImage imageWithColor:[UIColor commonViewCellPressBtn] andBordRect: CGRectMake(0, 0, _lookOverBtn.width, _lookOverBtn.height) andBordColor: [UIColor commonViewCellPressBtn] andCornerRadius:2.5f] forState:UIControlStateHighlighted];
+    
+    [_lookOverBtn addTarget:self action:@selector(skipRegCard) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void) skipRegCard
+{
+    if (ACTION_MSG_WALL_CELL_GO_TO_REG_CARD_VIEW == [_regData action])
+    {
+        [[self viewCtrlDelegate] goToRegCardView];
+        [MobClick event:c_info_hotgroup];
+    }
+    else if (ACTION_MSG_WALL_CELL_GO_TO_WEB_VIEW == [_regData action])
+    {
+        [[self viewCtrlDelegate] redirect: [_regData messageTitle] andURL: [_regData redirectURL]];
+    }
+}
+
+@end

@@ -1,0 +1,84 @@
+//
+//  ComponentModel.m
+//  scale
+//
+//  Created by solf on 15/8/12.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import "ComponentModel.h"
+#import "LoginConst.h"
+
+@implementation ComponentModel
+
+-(instancetype)initBaseModelWithImageName:(NSString *)imageName title:(NSString *)title andType:(ComponentType)type
+{
+    if (self = [self init]) {
+        self.comImgStr = imageName;
+        self.comTitle = title;
+        self.comStand = @"--";
+        self.onlyWeight = YES;
+        self.compositionType = type;
+    }
+    return self;
+}
+
+-(void)initData{
+    
+    if ([_comValue isEqualToNumber:@(0)])
+    {
+        _comValueStr = @"—";
+    }else{
+        _comValueStr = [NSString stringWithFormat:@"%@",_comValue];
+    }
+    
+    if ([[LoginConst sharedInstance] getLoginPersonInfo].age <18) {
+        
+        if ([_comWeight floatValue] > 0) {
+            _comStandImg = @"Main_Statuschilds";
+            _comStand = NSLocalizedString(@"CM_Minor", @"未成年~");
+        }else{
+            _comStandImg = @"Main_StatusNormal";
+        }
+    }else if (2 == _comIndex){
+        _comStandImg = @"Main_StatusNormal";
+    }else if (1 == _comIndex){
+        _comStandImg = @"Main_StatusLow";
+    }else if (_comIndex >2){
+        _comStandImg = @"Main_StatusHigh";
+    }
+//    ComponentTypeOfWeight = 0,
+//    ComponentTypeOfBMI = 1,
+//    ComponentTypeOfFat = 2,
+//    ComponentTypeOfWater = 3,
+//    ComponentTypeOfMuscle = 4,
+//    ComponentTypeOfBone = 5,
+//    ComponentTypeOfBMR = 6,
+//    ComponentTypeOfVisFat = 7,
+//    ComponentTypeOfProtein = 8,
+//    ComponentTypeOfBodyAge = 9,
+//    ComponentTypeOfUnKnow = 10
+    
+    if ([_comValue floatValue] > 0) {
+        switch (_compositionType) {
+            case ComponentTypeOfFat:
+            case ComponentTypeOfMuscle:
+            case ComponentTypeOfBone:
+            case ComponentTypeOfProtein:
+            case ComponentTypeOfWater:{
+                _comValueStr = [NSString stringWithFormat:@"%.1f",[_comValue floatValue]];
+            }
+                break;
+                case ComponentTypeOfBMR:
+                case ComponentTypeOfBodyAge:
+            case ComponentTypeOfVisFat:{
+                _comValueStr = [NSString stringWithFormat:@"%zi",[_comValue integerValue]];
+            }
+                break;
+            default:_comValueStr = @"—";
+                break;
+        }
+    }
+}
+
+@end

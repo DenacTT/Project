@@ -1,0 +1,26 @@
+//
+//  UITableView+Extend.m
+//  scale
+//
+//  Created by KiraSu on 15/8/22.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "UITableView+Extend.h"
+
+@implementation UITableView(Extend)
+
+- (void)reloadDataWithAnimate: (BOOL)animate
+{
+    [self reloadData];
+    
+    if (animate) {
+        CATransition *animation = [CATransition animation];
+        [animation setType:kCATransitionFade];
+        [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+        [animation setDuration: 0.5];
+        [[self layer] addAnimation:animation forKey:@"UITableViewReloadDataAnimationKey"];
+    }
+}
+
+@end

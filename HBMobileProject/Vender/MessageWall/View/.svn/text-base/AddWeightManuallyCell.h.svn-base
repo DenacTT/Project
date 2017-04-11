@@ -1,0 +1,16 @@
+//
+//  AddWeightManuallyCell.h
+//  scale
+//
+//  Created by Vincent on 16/11/16.
+//  Copyright © 2016年 Vincent. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface AddWeightManuallyCell : UITableViewCell
+
+@property(nonatomic,copy) NSString * titleStr;
+- (void) layoutCellViews;
+
+@end

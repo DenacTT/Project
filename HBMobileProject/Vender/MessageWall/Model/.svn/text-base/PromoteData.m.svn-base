@@ -1,0 +1,34 @@
+//
+//  PromoteData.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/27.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "PromoteData.h"
+#import "PromoteModel.h"
+
+@implementation PromoteData
+
+- (void)initLoadData
+{
+    self.newsData = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in [self getData]) {
+        PromoteModel *model = [PromoteModel mj_objectWithKeyValues:dict];
+        [self.newsData addObject:model];
+    }
+    [self setNewsData: [super randomizedArrayWithArray:self.newsData]];
+}
+
+- (CGFloat)cellViewHeight
+{
+    if (0 == self.newsData.count) {
+        return 0;
+    }else{
+        return 187;
+    }
+    return 166;
+}
+
+@end

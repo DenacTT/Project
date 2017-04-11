@@ -1,0 +1,11 @@
+
+#import <Foundation/Foundation.h>
+
+@interface NSThread (Extend)
+
++ (void)runInBackground: (void (^)(void))func afterSecond: (float)second;
++ (void)runInBackground: (void (^)(void))func;
++ (void)runInMain: (void (^)(void))func;
++ (void)runAfter: (void (^)(void))func second: (float)second;
+
+@end

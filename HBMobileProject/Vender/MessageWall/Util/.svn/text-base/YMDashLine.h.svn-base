@@ -1,0 +1,18 @@
+//
+//  YMDashLine.h
+//  scale
+//
+//  Created by KiraSu on 15/9/14.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface YMDashLine : UIView
+
+@property(nonatomic, assign) CGFloat        lineWidth;
+@property(nonatomic, strong) UIColor*       strokeColor;
+@property(nonatomic, assign) CGFloat        pointPerCount;
+@property(nonatomic, assign) CGFloat        pointAglinCount;
+
+@end

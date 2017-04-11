@@ -1,0 +1,16 @@
+//
+//  BmiTipView.h
+//  scale
+//
+//  Created by cza on 16/10/11.
+//  Copyright © 2016年 cza. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ComponentModel.h"
+
+@interface BmiTipView : UIView
+
+-(instancetype)initWithFrame:(CGRect)frame withComponentModel:(ComponentModel*)componentModel;
+
+@end

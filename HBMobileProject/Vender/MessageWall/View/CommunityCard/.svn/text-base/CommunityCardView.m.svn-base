@@ -1,0 +1,275 @@
+//
+//  CommunityCardView.m
+//  scale
+//
+//  Created by cza on 15/10/28.
+//  Copyright © 2015年 cza. All rights reserved.
+//
+
+#import "CommunityCardView.h"
+#import "ColorChangeView.h"
+#import "CommunityCard.h"
+#import "CommunityCardImage.h"
+#import "MJExtension.h"
+#import "SCCardDataModel.h"
+#import "NSString+CardDataFromUrl.h"
+#import "UIImageView+WebCache.h"
+#import "NSString+Extend.h"
+
+@interface CommunityCardView ()
+
+@property (nonatomic,strong) UIView *topView;
+
+@property (nonatomic,strong) UIView *myContentView;
+
+@property (nonatomic,strong) UIImageView *topImageView;
+
+@property (nonatomic,strong) UILabel *titleLabel;
+
+@property (nonatomic,strong) UILabel *headLabel;
+@property (nonatomic,strong) UILabel *descLabel;
+@property (nonatomic,strong) UIButton *takePhotoBtn;
+@property (nonatomic,assign) BOOL initCellView;
+
+@property (nonatomic,strong) CommunityCard *communityCardData;
+
+@property (nonatomic,strong) NSArray *imageDataArr;
+
+@property (nonatomic,strong) NSMutableArray *imageCardArr;
+
+@property (nonatomic,assign) CGFloat imageViewWidth;
+
+@property (nonatomic,strong) NSMutableArray *colorChangeViewArr;
+
+@end
+
+@implementation CommunityCardView
+
+-(void)layoutCellView{
+    if (!_initCellView) {
+    
+        self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        //添加上部分内容
+        [self addSubview:self.topView];
+        [self.topView addSubview:self.topImageView];
+        [self.topView addSubview:self.titleLabel];
+        
+        //添加中间层内容
+//        [self addSubview:self.myContentView];
+
+        
+        [self.myContentView addSubview:self.headLabel];
+        [self.myContentView addSubview:self.descLabel];
+        [self.myContentView addSubview:self.takePhotoBtn];
+        
+        
+        
+        [self inintImageContentView];
+        
+        //网络数据配置
+        if ([self.commonRowData messageType] == MSG_WALL_CELL_RECOMMEND_JSON_TYPE){
+            self.communityCardData = (CommunityCard *)self.commonRowData;
+            self.titleLabel.text = self.commonRowData.messageTitle;
+            self.descLabel.text = self.commonRowData.messageDetail;
+            self.imageDataArr = [CommunityCardImage mj_objectArrayWithKeyValuesArray:self.communityCardData.news];
+            [self setUpCardImageView];
+        }
+        
+        
+        
+        _initCellView = YES;
+    }
+    
+
+}
+
+-(void)setUpCardImageView{
+    if (0 == self.imageDataArr.count) {
+        return;
+    }
+    
+    if (!_imageDataArr)
+    {
+        return;
+    }
+    
+    NSInteger count = [_imageDataArr count] >=3 ? 3 : [_imageDataArr count];
+    
+    for (int i = 0 ; i < count; i++) {
+        CommunityCardImage *imageModel  = self.imageDataArr[i];
+        NSString *url = imageModel.newsImgUrl;
+        SCCardDataModel *cardModel = [NSString cardDataFromUrl:url];
+        UIImageView *imageCardView = self.imageCardArr[i];
+        if (![String isBlankString:url])
+        {
+            url = [url stringByAppendingString:[NSString stringWithFormat:@"@%.0fw_%.0fh_1e_1c",self.imageViewWidth*2,self.imageViewWidth*2]];
+        }
+        
+        [imageCardView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"YMLoadDefaultMini"]options:SDWebImageContinueInBackground completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+            ColorChangeView *chageView = self.colorChangeViewArr[i];
+            [chageView loadCount:cardModel.dayNum waterMarkType:SCWaterMarkNumImgTypeMin];
+//            [chageView loadCardDataModel:cardModel waterMarkNumType:SCWaterMarkNumImgTypeMin];
+//            chageView.layer.borderWidth = 1.0f;
+//            chageView.layer.borderColor = [UIColor redColor].CGColor;
+        }];
+    }
+}
+
+//拍照
+-(void)takePhoto{
+    
+    if ([self.viewCtrlDelegate respondsToSelector:@selector(goToRegCardView)]) {
+        [MobClick event:c_info_11_hotgroup2];
+        [self.viewCtrlDelegate goToRegCardView];
+    }
+}
+
+#pragma mark getter
+-(UIView *)topView{
+    if (!_topView) {
+        _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 36)];
+        _topView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    }
+    return _topView;
+}
+
+-(UIImageView *)topImageView{
+    if (!_topImageView) {
+        CGFloat height = 16;
+        _topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.width*0.024, 10, 16, height)];
+        _topImageView.image = [UIImage imageNamed:@"cardicon"];
+//        _topImageView.layer.borderWidth = 1.0f;
+//        _topImageView.layer.borderColor = [UIColor redColor].CGColor;
+    }
+    return _topImageView;
+}
+
+-(UILabel *)titleLabel{
+    if (!_titleLabel) {
+        CGFloat height =16;
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.topImageView.frame)+4, (self.topView.frame.size.height-height)/2,70, height)];
+        _titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleLabel.textColor = RGB(50, 50, 50);
+        _titleLabel.text = STR(@"CCV_fitnessDaka");
+//        _titleLabel.layer.borderColor = [UIColor greenColor].CGColor;
+//        _titleLabel.layer.borderWidth = 1.0f;
+    }
+    return _titleLabel;
+}
+
+-(UIView *)myContentView{
+    if (!_myContentView) {
+//        CGFloat margin = ScreenWidth*0.016;
+//        CGFloat h=190;
+//        if (ScreenWidth<=320) {
+//            h = 172;
+//        }else if (UI_WIDTH_IPHONE6P){
+//            h = 202;
+//        }
+//        _myContentView = [[UIView alloc] initWithFrame:CGRectMake(margin, CGRectGetMaxY(self.topView.frame), ScreenWidth-2*margin, h)];
+//        _myContentView.layer.cornerRadius = 4;
+//        _myContentView.backgroundColor = [UIColor whiteColor];
+//        _myContentView = [self shadowCellView];
+//        _myContentView.frame = CGRectMake(margin, CGRectGetMaxY(self.topView.frame), ScreenWidth-2*margin, h);
+        
+        _myContentView = [self shadowCellView];
+        
+        CGFloat h = 189;
+        if (ScreenWidth<=320) {
+            h = 172;
+        }else if (UI_IS_IPHONE6P){
+            h = 202;
+        }
+        
+        CGRect frame = _myContentView.frame;
+        frame.origin.y = CGRectGetMaxY(self.topView.frame);
+        frame.size.height = h;
+        _myContentView.frame = frame;
+        
+    }
+    
+    return _myContentView;
+}
+
+-(UILabel *)headLabel{
+    if (!_headLabel) {
+        _headLabel = [[UILabel alloc] init];
+        _headLabel.textColor = RGB(50, 50, 50);
+        _headLabel.font = [UIFont systemFontOfSize:14];
+        _headLabel.text = STR(@"CCV_persistDaka");
+        CGSize size = [_headLabel.text YMSizeWithFont:_headLabel.font];
+        _headLabel.frame = CGRectMake(self.myContentView.width * 0.035, 16, size.width, size.height);
+
+    }
+    return _headLabel;
+}
+    
+-(UILabel *)descLabel{
+    if (!_descLabel) {
+        _descLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headLabel.frame.origin.x, CGRectGetMaxY(self.headLabel.frame)+8,  self.myContentView.frame.size.width-self.headLabel.frame.origin.x-(self.myContentView.frame.size.width-self.takePhotoBtn.frame.origin.x), 12)];
+        _descLabel.textColor = RGB(136, 136, 136);
+        _descLabel.font = [UIFont systemFontOfSize:12];
+        _descLabel.text = STR(@"CCV_record");
+    }
+    return _descLabel;
+}
+
+-(UIButton *)takePhotoBtn{
+    if (!_takePhotoBtn) {
+        _takePhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _takePhotoBtn.frame = CGRectMake(self.myContentView.frame.size.width-self.myContentView.frame.size.width*0.035-80, 19, 80, 25);
+        _takePhotoBtn.backgroundColor = RGB(37, 201, 151);
+        [_takePhotoBtn addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchUpInside];
+        [_takePhotoBtn setImage:[UIImage imageNamed:@"CM_camera-icon"] forState:UIControlStateNormal];
+        [_takePhotoBtn setTitle:STR(@"CCV_goDaka") forState:UIControlStateNormal];
+        _takePhotoBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        _takePhotoBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -8, 0, 0);
+        _takePhotoBtn.layer.cornerRadius = 3;
+    }
+    return _takePhotoBtn;
+}
+
+-(void)inintImageContentView{
+    CGFloat leftMargin = 9;
+    CGFloat centerMargin = 6;
+    CGFloat x = leftMargin;
+    CGFloat w = (self.myContentView.frame.size.width-leftMargin*2-centerMargin*2)/3;
+    self.imageViewWidth = w;
+    CGFloat h = w;
+    CGFloat y = CGRectGetMaxY(self.descLabel.frame)+15;
+    for (int i = 0; i<3; i++) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(x+i*(w+centerMargin), y, w, h)];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = imageView.frame;
+        btn.backgroundColor = [UIColor clearColor];
+        [btn addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchUpInside];
+//        imageView.backgroundColor = [UIColor redColor];
+        [self.myContentView addSubview:imageView];
+        [self.myContentView addSubview:btn];
+        [self.imageCardArr addObject:imageView];
+    }
+}
+
+-(NSArray *)imageCardArr{
+    if (!_imageCardArr) {
+        _imageCardArr = [NSMutableArray arrayWithCapacity:3];
+    }
+    return _imageCardArr;
+}
+
+-(NSMutableArray *)colorChangeViewArr{
+    if (!_colorChangeViewArr) {
+        _colorChangeViewArr = [NSMutableArray array];
+        for (int i=0; i<3; i++) {
+            UIImageView *imageView = self.imageCardArr[i];
+            ColorChangeView *colorChangeView = [[ColorChangeView alloc]initWithFrame:CGRectMake(0, imageView.height-20, imageView.frame.size.width, 20)];
+            [imageView addSubview:colorChangeView];
+            [_colorChangeViewArr addObject:colorChangeView];
+        }
+    }
+    return _colorChangeViewArr;
+}
+
+@end

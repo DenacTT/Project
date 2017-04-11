@@ -1,0 +1,191 @@
+//
+//  UIImage+Scale.m
+//  scale
+//
+//  Created by 叶威廷 on 15/8/21.
+//  Copyright (c) 2015年 叶威廷. All rights reserved.
+//
+
+#import "UIImage+Scale.h"
+
+@implementation UIImage (Scale)
+//截取部分图像
+-(UIImage*)getSubImage:(CGRect)rect
+{
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
+    CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
+    
+    UIGraphicsBeginImageContext(smallBounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, smallBounds, subImageRef);
+    UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+    CGImageRelease(subImageRef);
+    
+    return smallImage;
+}
+
+//截取中间部分图像
+-(UIImage*) getCenterImageWithUIRect:(CGRect)rect andIsNetWorkImg:(BOOL)isNetWorkImg
+{
+    
+    CGSize size = CGSizeMake(rect.size.width, rect.size.height);
+    CGRect newRect = CGRectZero;
+    NSInteger temp = 1;
+    if (isNetWorkImg) {
+        temp  = 2;
+    }
+    float te = size.width*temp;
+    float dd = self.size.width;
+    if ( te > dd) {
+        newRect = CGRectMake(0, 0,  size.width, size.height);
+    }else{
+        float x = (self.size.width - size.width*temp)/2;
+        float y = (self.size.height - size.height*temp)/2;
+        newRect = CGRectMake(x, y, size.width*temp, size.height*temp);
+        
+    }
+    
+//    newRect = CGRectMake((self.size.width - size.width*temp)/2, 0 , size.width*temp, self.size.height);
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(self.CGImage, newRect);
+    CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
+    
+    UIGraphicsBeginImageContext(smallBounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, smallBounds, subImageRef);
+    UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
+}
+
+//截取中间部分图像
+-(UIImage*) getSquareImage
+{
+    CGRect newRect = CGRectZero;
+
+    float temp = 0;
+    // 从哪里开始截
+    float x = 0;
+    float y = 0;
+    if (self.size.width > self.size.height) {
+        
+        temp = self.size.height;
+        x = (self.size.width - self.size.height)/2;
+        
+    }else{
+        y  = (self.size.height - self.size.width)/2;
+        temp = self.size.width;
+    }
+    
+    newRect = CGRectMake(x, y, temp, temp);
+    
+    //    newRect = CGRectMake((self.size.width - size.width*temp)/2, 0 , size.width*temp, self.size.height);
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(self.CGImage, newRect);
+    CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
+    
+    UIGraphicsBeginImageContext(smallBounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, smallBounds, subImageRef);
+    UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
+}
+
+
+
+
+//等比例缩放
+-(UIImage*)scaleToSize:(CGSize)size
+{
+    CGFloat width = CGImageGetWidth(self.CGImage);
+    CGFloat height = CGImageGetHeight(self.CGImage);
+    
+    float verticalRadio = size.height*1.0/height;
+    float horizontalRadio = size.width*1.0/width;
+    
+    float radio = 1;
+    if(verticalRadio>1 && horizontalRadio>1)
+    {
+        radio = verticalRadio > horizontalRadio ? horizontalRadio : verticalRadio;
+    }
+    else
+    {
+        radio = verticalRadio < horizontalRadio ? verticalRadio : horizontalRadio;
+    }
+    
+    width = width*radio;
+    height = height*radio;
+    
+    int xPos = (size.width - width)/2;
+    int yPos = (size.height-height)/2;
+    
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    UIGraphicsBeginImageContext(size);
+    
+    // 绘制改变大小的图片
+    [self drawInRect:CGRectMake(xPos, yPos, width, height)];
+    
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    
+    // 返回新的改变大小后的图片
+    return scaledImage;
+}
+
+- (UIImage *)getSubImageWithNum:(NSInteger)num andMultiple:(NSInteger)multiple;//根据数字 把图片拼接
+{
+    CGFloat mutil = self.size.width/10*multiple;
+    
+    if (num <=0)
+    {
+        return nil;
+    }
+    NSInteger myNum = num;
+    
+    NSInteger i = 0;
+    
+    NSMutableArray *arr = [[NSMutableArray alloc]initWithCapacity:3];
+    
+    while (myNum)
+    {
+        i = myNum%10;
+        if (!(myNum >0))
+        {
+            break;
+        }
+        [arr insertObject:@(i).description atIndex:0];
+        myNum = myNum /10;
+    }
+    
+    UIGraphicsBeginImageContext(CGSizeMake(mutil * [arr count], self.size.height*multiple));
+    
+    for (int i = 0; i < [arr count]; i++)
+    {
+        [[self getSubImage:CGRectMake([[arr objectAtIndex:i] integerValue]*mutil, 0, mutil, self.size.height*multiple)] drawInRect:CGRectMake(i*mutil, 0, mutil, self.size.height*multiple)];
+    }
+    UIImage *resultImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return resultImg;
+}
+
+
+/*
+ 使用方法
+ 
+ 裁剪图片
+ image = [image getSubImage:CGRectMake(10, 10, 70, 80)];
+ 
+ 等比列缩放
+ image = [image scaleToSize:CGSizeMake(200, 300)];
+ 
+ 
+ */
+
+@end

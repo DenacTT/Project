@@ -1,0 +1,23 @@
+//
+//  NewsRowData.m
+//  scale
+//
+//  Created by 叶威廷 on 15/8/20.
+//  Copyright (c) 2015年 叶威廷. All rights reserved.
+//
+
+#import "NewsRowData.h"
+
+@implementation NewsRowData
+
+- (CGFloat)cellViewHeight
+{
+    return 350;
+}
+
+- (void)initLoadData
+{
+    
+}
+
+@end

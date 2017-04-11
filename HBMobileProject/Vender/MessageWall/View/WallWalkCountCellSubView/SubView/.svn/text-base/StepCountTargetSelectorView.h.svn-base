@@ -1,0 +1,23 @@
+//
+//  StepCountTargetSelectorView.h
+//  scale
+//
+//  Created by yzz on 15/8/19.
+//  Copyright (c) 2015年 yzz. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@protocol StepCountTargetSelectorViewDelegate<NSObject>
+
+-(void)didSelected:(NSInteger)selectedNumber;
+
+@end
+
+
+@interface StepCountTargetSelectorView : UIView
+
+
+@property(nonatomic,weak) id<StepCountTargetSelectorViewDelegate> delegate;
+
+@end

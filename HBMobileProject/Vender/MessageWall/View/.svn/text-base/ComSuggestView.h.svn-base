@@ -1,0 +1,20 @@
+//
+//  ComSuggestView.h
+//  scale
+//
+//  Created by solf on 16/5/11.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+/*
+ *建议页面
+ */
+#import <UIKit/UIKit.h>
+#import "ComponentModel.h"
+
+@interface ComSuggestView : UIView
+
+@property (nonatomic,strong) ComponentModel *comModel;
+
+- (void)layoutViews;
+
+@end

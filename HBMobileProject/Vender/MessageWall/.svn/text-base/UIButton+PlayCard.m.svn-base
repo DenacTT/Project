@@ -1,0 +1,107 @@
+//
+//  UIButton+PlayCard.m
+//  scale
+//
+//  Created by GeorgeYe on 15/12/9.
+//  Copyright © 2015年 GeorgeYe. All rights reserved.
+//
+
+#import "UIButton+PlayCard.h"
+
+
+@implementation UIButton (PlayCard)
+
+
+
+
++(UIButton*) followButtonWith:(FriendShipType)friendShipType andFrame:(CGRect)rect andCornerRadius:(CGFloat)radius
+{
+    UIButton *attentionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    attentionBtn.frame = rect;
+    
+    // 已关注
+    if (friendShipType == FriendShipType_IS_Follow)
+    {
+        [attentionBtn setImage:Image(@"Attention_Already") forState:UIControlStateNormal];
+//        [attentionBtn setTitle:STR(@"BtnPC_alreadyAttention") forState:UIControlStateNormal];
+//        attentionBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+//        [attentionBtn setTitleColor:[UIColor colorWithRed:37/255.0 green:201/255.0 blue:151/255.0 alpha:1.0] forState:UIControlStateNormal];
+//        attentionBtn.backgroundColor = [UIColor clearColor];
+    }
+    else if (friendShipType == FriendShipType_NO_Follow || FriendShipType_BY_Follow == friendShipType) // +关注
+    {
+        [attentionBtn setImage:Image(@"Attention_Add") forState:UIControlStateNormal];
+        attentionBtn.backgroundColor = [UIColor colorWithRed:37/255.0 green:201/255.0 blue:151/255.0 alpha:1.0];
+//        [attentionBtn setImage:[UIImage imageNamed:@"Add_attention"] forState:UIControlStateNormal];
+//        [attentionBtn setTitle:STR(@"BtnPC_attention") forState:UIControlStateNormal];
+//        [attentionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        attentionBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
+//        attentionBtn.backgroundColor = [UIColor colorWithRed:37/255.0 green:201/255.0 blue:151/255.0 alpha:1.0];
+    }
+    else // 互相关注
+    {
+        [attentionBtn setImage:Image(@"Attention_EachOther") forState:UIControlStateNormal];
+//        [attentionBtn setTitle:STR(@"BtnPC_eachOtherAttention") forState:UIControlStateNormal];
+//        attentionBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+//        [attentionBtn setTitleColor:[UIColor colorWithRed:37/255.0 green:201/255.0 blue:151/255.0 alpha:1.0] forState:UIControlStateNormal];
+//        attentionBtn.backgroundColor = [UIColor clearColor];
+    }
+    attentionBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    attentionBtn.layer.cornerRadius = radius;
+    attentionBtn.layer.borderWidth = 0.5;
+    attentionBtn.layer.borderColor = [UIColor colorWithRed:37/255.0 green:201/255.0 blue:151/255.0 alpha:1.0].CGColor;
+    
+    return attentionBtn;
+}
+
+-(void) changeStyleWihtFriendShipType:(FriendShipType)type
+{
+    switch (type) {
+        case FriendShipType_Follow_EachOther:
+            [self changeToFollowEachOther];
+            break;
+        case FriendShipType_IS_Follow:
+            [self changeToIsFollow];
+            break;
+        case FriendShipType_NO_Follow:
+            [self changeToUnFollw];
+            break;
+        default:[self changeToUnFollw];
+            break;
+    }
+}
+
+-(void) changeToIsFollow
+{
+    [self setImage:Image(@"Attention_Already") forState:UIControlStateNormal];
+    self.backgroundColor = [UIColor clearColor];
+//    [self setTitle:STR(@"BtnPC_alreadyAttention") forState:UIControlStateNormal];
+//    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    [self setTitleColor:[UIColor colorWithRed:37/255.0 green:201/255.0 blue:151/255.0 alpha:1.0] forState:UIControlStateNormal];
+//    [self setImage:nil forState:UIControlStateNormal];
+//    self.backgroundColor = [UIColor clearColor];
+}
+-(void) changeToUnFollw
+{
+    [self setImage:Image(@"Attention_Add") forState:UIControlStateNormal];
+    self.backgroundColor = [UIColor colorWithRed:37/255.0 green:201/255.0 blue:151/255.0 alpha:1.0];
+//    [self setImage:[UIImage imageNamed:@"Add_attention"] forState:UIControlStateNormal];
+//    [self setTitle:STR(@"BtnPC_attention") forState:UIControlStateNormal];
+//    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    self.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
+//    self.backgroundColor = [UIColor colorWithRed:37/255.0 green:201/255.0 blue:151/255.0 alpha:1.0];
+}
+-(void) changeToFollowEachOther
+{
+    [self setImage:Image(@"Attention_EachOther") forState:UIControlStateNormal];
+    self.backgroundColor = [UIColor clearColor];
+//    [self setTitle:STR(@"BtnPC_eachOtherAttention") forState:UIControlStateNormal];
+//    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    [self setImage:nil forState:UIControlStateNormal];
+//    [self setTitleColor:[UIColor colorWithRed:37/255.0 green:201/255.0 blue:151/255.0 alpha:1.0] forState:UIControlStateNormal];
+//    self.backgroundColor = [UIColor clearColor];
+    
+}
+
+
+@end

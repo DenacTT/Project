@@ -1,0 +1,64 @@
+//
+//  ComponentModel.h
+//  scale
+//
+//  Created by solf on 15/8/12.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "BodyCompositionDef.h"
+
+@interface ComponentModel : NSObject
+
+//成分名称
+@property (nonatomic,copy) NSString *comTitle;
+
+//成分标准
+@property (nonatomic,copy) NSString *comStand;
+
+//成分数值
+@property (nonatomic,strong) NSNumber * comValue;
+
+@property (nonatomic,strong) NSString *comValueStr;
+
+@property (nonatomic,strong) NSString *comStandImg;
+
+@property (nonatomic,strong) NSNumber *comWeight;
+
+//成分当前区间最大值
+@property (nonatomic,strong) NSNumber *comMaxData;
+
+//成分当前区间最小值
+@property (nonatomic,strong) NSNumber *comMinData;
+
+//成分所在区间
+@property (nonatomic) NSInteger comIndex;
+
+//成分所有区间数
+@property (nonatomic) NSInteger comCount;
+
+@property (nonatomic) ComponentType compositionType;
+
+@property (nonatomic,strong) NSString *comImgStr;
+
+@property (nonatomic,assign) BOOL isAnimal;
+
+- (void)initData;
+
+//国际版
+@property (nonatomic,copy) NSString *comInfo; //成分简介
+
+@property (nonatomic,copy) NSString *comStateStr; //当前数据状态说明
+
+@property (nonatomic,copy) NSString *comSuggest; //针对数据的建议
+
+@property (nonatomic) NSInteger comUnit; //单位
+
+@property (nonatomic,assign) BOOL onlyWeight;
+
+
+-(instancetype)initBaseModelWithImageName:(NSString *)imageName title:(NSString *)title andType:(ComponentType)type;
+
+
+@end

@@ -1,0 +1,64 @@
+//
+//  AnimationBtn.m
+//  scale
+//
+//  Created by 李钰 on 16/3/7.
+//  Copyright © 2016年 李钰. All rights reserved.
+//
+/*使用样式
+ AnimationBtn * btn = [AnimationBtn loadWithUrl: url];
+ btn.delegate = self;
+ [self addSubview: btn];
+ [btn addTargets];
+ */
+#import "AnimationBtn.h"
+
+#define scale 0.9f
+#define speed 0.2f
+@implementation AnimationBtn
+
++ (id)loadWithUrl:(NSString *)url
+{
+    AnimationBtn * btn = [super buttonWithType: UIButtonTypeCustom];
+    UIImage * image = [UIImage imageNamed: url];
+    [btn setBackgroundImage: image
+                   forState: UIControlStateNormal];
+    [btn setBackgroundImage: image
+                   forState: UIControlStateHighlighted];
+    btn.width = image.size.width;
+    btn.height = image.size.height;
+    return btn;
+}
+- (void)addTargets
+{
+    [self addTarget: self action: @selector(onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    [self addTarget: self action: @selector(onDragOutside:) forControlEvents: UIControlEventTouchDragOutside];
+    [self addTarget: self action: @selector(onEventTouchDown:) forControlEvents: UIControlEventTouchDown];
+}
+- (void)onTouchUpInside:(id)sender
+{
+    [UIView animateWithDuration: speed animations:^{
+        self.transform = CGAffineTransformMakeScale(scale, scale);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration: speed animations:^{
+            self.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        }];
+    }];
+    if (self.delegate && [self.delegate respondsToSelector: @selector(animationBtnClick)])
+    {
+        [self.delegate animationBtnClick];
+    }
+}
+- (void)onDragOutside:(id)sender
+{
+    [UIView animateWithDuration: speed animations:^{
+        self.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    }];
+}
+- (void)onEventTouchDown:(id)sender
+{
+    [UIView animateWithDuration: speed animations:^{
+        self.transform = CGAffineTransformMakeScale(scale, scale);
+    }];
+}
+@end

@@ -1,0 +1,39 @@
+//
+//  ScoreModel.h
+//  scale
+//
+//  Created by solf on 15/8/12.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+typedef NS_ENUM(NSInteger, WallWeightUnit)
+{
+    WallWeightUnitKg = 1,   //千克
+    WallWeightUnitLb = 2,   //磅
+    WallWeightUnitJin = 3   //斤
+};
+
+typedef NS_ENUM(NSInteger, WallBodyStand)
+{
+    WallBodyStandLow = 1,       //偏低
+    WallBodyStandNorm = 2,      //正常
+    WallBodyStandHigh = 3,      //偏高
+    WallBodyStandMoreHigh = 4,  //过高
+    WallBodyStandHighlist = 5   //超高
+};
+
+@interface ScoreModel : NSObject
+
+@property (nonatomic,strong) NSNumber *score;
+
+@property (nonatomic,strong) NSNumber *weight;
+
+@property (nonatomic,strong) NSNumber *bmiValue;
+
+@property (nonatomic,copy) NSString *BodyStandStr;
+
+@property (nonatomic,copy) NSString *myWeightUnit;
+
+@end

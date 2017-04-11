@@ -1,0 +1,13 @@
+//
+//  CommunityCardImage.m
+//  scale
+//
+//  Created by cza on 15/10/29.
+//  Copyright © 2015年 cza. All rights reserved.
+//
+
+#import "CommunityCardImage.h"
+
+@implementation CommunityCardImage
+
+@end

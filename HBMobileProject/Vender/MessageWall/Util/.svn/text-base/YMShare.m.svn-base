@@ -1,0 +1,275 @@
+//
+//  YMShare.m
+//  scale
+//
+//  Created by KiraSu on 15/8/19.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "YMShare.h"
+#import "YMUtil.h"
+#import <UMSocialCore/UMSocialCore.h>
+#import <UShareUI/UShareUI.h>
+#import "YMPopupDisappearView.h"
+#import <FBSDKShareKit/FBSDKShareKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "ZYShareView.h"
+@interface YMShare ()<FBSDKSharingDelegate>
+{
+    UIStatusBarStyle _lastStyle;
+    
+    NSString *_des;
+    UIImage *_img;
+}
+@end
+@implementation YMShare
+
+IMPLEMENT_SINGLE(single)
+
+- (void)shareWithViewCtrl: (UIViewController*)viewController
+                 andImage: (UIImage*)image
+                  andDesc: (NSString*)desc
+{
+    _des = desc;
+    _img = image;
+
+//    BOOL hasWX = [WXApi isWXAppInstalled];
+//    
+//    if (!hasWX)
+//    {
+//        [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToWechatFavorite,UMShareToWechatTimeline,UMShareToWechatSession]];
+//    }
+//
+//    [UMSocialSnsService presentSnsIconSheetView:viewController appKey:kUmengAppKey shareText:shareStr shareImage:shareImage shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToWechatSession,UMShareToWechatFavorite,nil] delegate:(id)self];
+//    
+//    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
+    
+//    [UMSocialData defaultData].extConfig.facebookData.title = desc;
+//    [UMSocialData defaultData].extConfig.facebookData.shareImage = image;
+//    [UMSocialData defaultData].extConfig.facebookData.urlResource.resourceType = UMSocialUrlResourceTypeDefault;
+//    
+//    [UMSocialData defaultData].extConfig.twitterData.shareText = desc;
+//    [UMSocialData defaultData].extConfig.twitterData.shareImage = image;
+//    [UMSocialData defaultData].extConfig.twitterData.urlResource.resourceType = UMSocialUrlResourceTypeWeb;
+//    
+//    [UMSocialSnsService presentSnsIconSheetView:viewController appKey:kUmengAppKey shareText:shareStr shareImage:shareImage shareToSnsNames:[NSArray arrayWithObjects:UMShareToFacebook,UMShareToTwitter,nil] delegate:(id)self];
+    
+    
+    //自定义分享面板
+    ZYShareItem *item0 = [ZYShareItem itemWithTitle:@"Facebook"  icon:@"YMShareViewFacebook"  handler:^{ [self itemAction:@"Facebook"]; //Login_Facebook
+    }];
+    
+    ZYShareItem *item1 = [ZYShareItem itemWithTitle:@"Twitter"  icon:@"YMShareTwitter" handler:^{ [self itemAction:@"Twitter"]; //Login_Twitter
+    }];
+    NSArray *shareItemsArray = @[item0, item1];
+    // 创建shareView
+    ZYShareView *shareView = [ZYShareView shareViewWithShareItems:shareItemsArray
+                                                    functionItems:nil];
+    shareView.titleLabel.text = STR(@"YMShareView_share_choosePlatform");  //请选择分享平台
+    shareView.cancelButton.titleLabel.text = STR(@"wifi.searchDevice.cancel");//取消
+    // 弹出shareView
+    [shareView show];
+    
+    
+   // 友盟的分享面板
+//    __weak typeof(self) weakSelf = self;
+//    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        
+//        [strongSelf shareWithType:platformType];
+//    }];
+    
+
+    //调用快速分享接口
+//    
+//    [[UMSocialManager defaultManager] presentSnsIconSheet<#(id)#>View:viewController
+//                                         appKey:kUmengAppKey
+//                                      shareText:shareStr
+//                                     shareImage:shareImage
+//                                shareToSnsNames:@[UMShareToFacebook,UMShareToTwitter]
+//                                       delegate:self];
+//    
+//    
+//        UMSocialSnsPlatform *faceBookPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToFacebook];
+//    
+//    __weak typeof(self) weakSelf = self;
+//    
+//        faceBookPlatform.snsClickHandler = ^(UIViewController *presentingController, UMSocialControllerService * socialControllerService, BOOL isPresentInController)
+//        {
+//            FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
+//            photo.image = image;
+//            
+//            FBSDKSharePhotoContent *photoContent = [[FBSDKSharePhotoContent alloc] init];
+//            photoContent.photos = @[photo];
+//            [FBSDKShareDialog showFromViewController:viewController
+//                                         withContent:photoContent
+//                                            delegate:weakSelf];
+//        };
+}
+
+- (void)itemAction:(NSString *)title
+{
+    NSLog(@"%@", title);
+    
+    if ([title isEqualToString:@"Facebook"]) {
+        [self shareWithType:UMSocialPlatformType_Facebook];
+        [MobClick event:c_info_share_facebook]; //信息墙点facebook分享
+        
+    }else if([title isEqualToString:@"Twitter"]){
+        [self shareWithType:UMSocialPlatformType_Twitter];
+        [MobClick event:c_info_share_twitter]; //信息墙点twitter分享
+    }
+}
+
+//#pragma mark - UMSocialUIDelegate
+// /*
+// 各个页面执行授权完成、分享完成、或者评论完成时的回调函数
+// 
+// @param response 返回`UMSocialResponseEntity`对象，`UMSocialResponseEntity`里面的viewControllerType属性可以获得页面类型
+// */
+//-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+//{
+////    UIAlertView* alert = nil;
+//    /*
+//     #import "YMPopupDisappearView.h"
+//     YMPopupDisappearView* popupView = [[YMPopupDisappearView alloc] init];
+//     [popupView showWithText:NSLocalizedString(@"EIVC_share_success", @"分享成功")];
+//     [popupView showWithText:NSLocalizedString(@"EIVC_share_fail", @"分享失败")];
+//     */
+//    YMPopupDisappearView* popupView = [[YMPopupDisappearView alloc] init];
+//    if (response.responseCode == UMSResponseCodeSuccess) {
+//        NSLog(@"信息壁炫耀一下,分享成功!!!");
+//        
+////        alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"YMS_tips", @"提示") message:NSLocalizedString(@"YMS_share_success", @"分享成功") delegate:nil cancelButtonTitle:NSLocalizedString(@"YMS_share_cancel", @"取消") otherButtonTitles:nil, nil];
+//        
+//        [popupView showWithText:NSLocalizedString(@"YMS_share_success", @"分享成功")];
+//        
+//    }else{
+//        NSLog(@"信息壁炫耀一下,分享失败,失败原因:%u",response.responseCode);
+//        
+////        alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"YMS_tips", @"提示") message:NSLocalizedString(@"YMS_share_fail", @"分享失败") delegate:nil cancelButtonTitle:NSLocalizedString(@"YMS_share_cancel", @"取消") otherButtonTitles:nil, nil];
+//        
+//        [popupView showWithText:NSLocalizedString(@"YMS_share_fail", @"分享失败")];
+//    }
+////    [alert show];
+//    
+//    if (_lastStyle) {
+//        [[UIApplication sharedApplication]setStatusBarStyle:_lastStyle animated:NO];
+//    }else
+//    {
+//        [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+//    }
+//}
+//
+///**
+// 点击分享列表页面，之后的回调方法，你可以通过判断不同的分享平台，来设置分享内容。
+// 例如：
+// 
+// -(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+// {
+// if (platformName == UMShareToSina) {
+// socialData.shareText = @"分享到新浪微博的文字内容";
+// }
+// else{
+// socialData.shareText = @"分享到其他平台的文字内容";
+// }
+// }
+// 
+// @param platformName 点击分享平台
+// 
+// @prarm socialData   分享内容
+// */
+//-(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+//{
+//    if ([String isBlankString:platformName]) {
+//        return;
+//    }
+//    
+//    if ([@"wxsession" isEqualToString:platformName])
+//    {
+//        [MobClick event:c_info_share_weixin];
+//    }else if ([@"sina" isEqualToString:platformName])
+//    {
+//        [MobClick event:c_info_share_weibo];
+//    }else if ([@"wxtimeline" isEqualToString:platformName])
+//    {
+//        [MobClick event:c_info_share_friendcirlce];
+//    }else if ([@"wxfavorite" isEqualToString:platformName])
+//    {
+//        [MobClick event:c_info_share_collection];
+//    }
+//    
+//    _lastStyle = [[UIApplication sharedApplication]statusBarStyle];
+//    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
+//}
+//
+#pragma mark -FBSDKSharingDelegate
+
+- (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results
+{
+    
+}
+
+/*!
+ @abstract Sent to the delegate when the sharer encounters an error.
+ @param sharer The FBSDKSharing that completed.
+ @param error The error.
+ */
+- (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error
+{
+    
+}
+
+/*!
+ @abstract Sent to the delegate when the sharer is cancelled.
+ @param sharer The FBSDKSharing that completed.
+ */
+- (void)sharerDidCancel:(id<FBSDKSharing>)sharer
+{
+    
+}
+
+- (void) shareWithType:(UMSocialPlatformType)type
+{
+    switch (type)
+    {
+        case UMSocialPlatformType_Facebook://facebook
+        {
+            //facebook 采用原生分享
+            FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
+            photo.image = _img;
+            
+            FBSDKSharePhotoContent *photoContent = [[FBSDKSharePhotoContent alloc] init];
+            photoContent.photos = @[photo];
+            [FBSDKShareDialog showFromViewController:GetRootNavigation()
+                                         withContent:photoContent
+                                            delegate:self];
+            
+        }
+            break;
+        case UMSocialPlatformType_Twitter: //twitter
+        {
+            UMShareImageObject *shareObj = [UMShareImageObject shareObjectWithTitle:@"test" descr:_des thumImage:_img];
+            shareObj.shareImage = _img;
+            UMSocialMessageObject *messObj = [UMSocialMessageObject messageObject];
+            messObj.shareObject = shareObj;
+//            messObj.title = @"tests";
+            messObj.text = _des; //@"testYUN"
+            [[UMSocialManager defaultManager] shareToPlatform:type messageObject:messObj currentViewController:GetRootNavigation() completion:^(id result, NSError *error) {
+                NSLog(@"error:%@",error);
+                    YMPopupDisappearView* popupView = [[YMPopupDisappearView alloc] init];
+                if (error) {
+                    //失败
+                    [popupView showWithText:NSLocalizedString(@"YMS_share_fail", @"分享失败")];
+                }else{
+                    [popupView showWithText:NSLocalizedString(@"YMS_share_success", @"分享成功")];
+                }
+                
+            }];
+        }
+        default:
+            break;
+    }
+}
+
+@end

@@ -1,0 +1,136 @@
+//
+//  ShowOffCollectionView.m
+//  scale
+//
+//  Created by 叶威廷 on 15/11/10.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "ShowOffCollectionView.h"
+#import "WallWeightCellShare.h"
+#import "YMConstSource.h"
+#import "WeightDataRowData.h"
+#import "MsgWallCommonRowData.h"
+#import "ComPonentModelControl.h"
+
+@interface ShowOffCollectionView()<UICollectionViewDelegate,UICollectionViewDataSource>
+
+@property (nonatomic) UICollectionView *collectionView;
+
+@property (nonatomic,strong) ComponentModel *mondel;
+
+@property (nonatomic,strong) NSMutableArray *dataArr;
+
+@end
+
+@implementation ShowOffCollectionView
+
+static NSString *const reuseIdentifier = @"cell";
+
+
+
+- (void)layoutSubviews
+{
+    [self loadData];
+    
+    [self loadView];
+}
+
+- (void)loadData
+{
+    ComPonentModelControl *comPonent = [[ComPonentModelControl alloc]init];
+    NSDictionary *dic = [comPonent getMyScoreAndWeightDatasWithUserId:[XMUserDefault currentUserId]];
+    NSMutableArray *arrayM = [[NSMutableArray alloc] init];
+    if (dic && [dic count]>1)
+    {
+        arrayM = [dic objectForKey:@"Component"];
+    }
+    [self setDataArr:[arrayM mutableCopy]];
+    
+    if (!self.dataArr || [self.dataArr count] == 0)
+    {
+        return;
+    }
+    
+    if ([self.dataArr count]>8) {
+        [self.dataArr removeObjectAtIndex:0];
+    }
+    
+//    if (![YMConstSource sharedInstance].scalIsMini)
+//    {
+//        [self.dataArr removeObjectAtIndex:6];
+//        [self.dataArr removeObjectAtIndex:5];
+//    }
+}
+
+
+
+- (void)loadView
+{
+    [self collectionView];
+}
+
+- (UICollectionView *)collectionView
+{
+    if (nil == _collectionView) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height) collectionViewLayout:layout];
+        _collectionView.backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:1];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.scrollEnabled = NO;
+        [_collectionView reloadData];
+        [_collectionView registerNib: [UINib nibWithNibName:@"WallWeightCellShare" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+        [self addSubview:_collectionView];
+//        _collectionView.layer.borderWidth = 1.0f;
+//        _collectionView.layer.borderColor = [UIColor blueColor].CGColor;
+    }
+    return _collectionView;
+}
+
+#pragma mark -- UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
+//定义每个UICollectionView 的大小
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat w = (self.frame.size.width- 75)/2;
+    CGFloat h = 40;
+    return CGSizeMake(w, h);
+}
+
+//总体间距
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    UIEdgeInsets insets = UIEdgeInsetsMake(14, 25, 14, 25);
+    return insets;
+}
+
+//左右间距
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    if (ScreenWidth < 375)
+    {
+        return 0.f;
+    }
+    return ScreenWidth*0.053f;
+}
+
+//上下间距
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return  21;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.dataArr.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    WallWeightCellShare *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    [cell setMondel:self.dataArr[indexPath.item]];
+    return cell;
+}
+
+
+@end

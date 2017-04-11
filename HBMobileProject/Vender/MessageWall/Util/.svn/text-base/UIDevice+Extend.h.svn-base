@@ -1,0 +1,23 @@
+
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@interface UIDevice(Extend)
+
++ (BOOL)isIOS7orLater;
++ (BOOL)isIOS8orLater;
++ (BOOL)isIOS6orLater;
++ (BOOL)isIOS6orEarlier;
++ (BOOL)isIOS9orLater;
++ (CGFloat)screenWidth;
++ (CGFloat)screenHeight;
++ (int64_t)remainSize;
++ (BOOL)isIPhone4;
++ (BOOL)isIPhone5;
++ (BOOL)isIPhone6;
++ (BOOL)isIPhone6Plus;
++ (BOOL)isIpad;
++ (CGRect)sysStatusBarFrame;
+
+@end

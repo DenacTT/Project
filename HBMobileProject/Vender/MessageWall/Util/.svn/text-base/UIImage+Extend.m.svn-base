@@ -1,0 +1,101 @@
+#import "UIImage+Extend.h"
+#import "FXBlurView.h"
+
+@implementation UIImage (Extend)
+
+- (UIImage*)getRectImage: (CGRect)rect
+{
+    CGImageRef imageRef = self.CGImage;
+    CGImageRef imagePart = CGImageCreateWithImageInRect(imageRef, rect);
+    UIImage* retImage = [UIImage imageWithCGImage:imagePart];
+    CGImageRelease(imagePart);
+    return retImage;
+}
+
+- (UIImage *)convertImageToGrayScale
+{
+    // Create image rectangle with current image width/height
+    CGRect imageRect = CGRectMake(0, 0, self.size.width, self.size.height);
+    
+    // Grayscale color space
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+    
+    // Create bitmap content with current image size and grayscale colorspace
+    CGContextRef context = CGBitmapContextCreate(nil, self.size.width, self.size.height, 8, 0, colorSpace, kCGBitmapByteOrderDefault);
+    
+    // Draw image into current context, with specified rectangle
+    // using previously defined context (with grayscale colorspace)
+    CGContextDrawImage(context, imageRect, [self CGImage]);
+    
+    // Create bitmap image info from pixel data in current context
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+    
+    // Create a new UIImage object
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    
+    // Release colorspace, context and bitmap information
+    CGColorSpaceRelease(colorSpace);
+    CGContextRelease(context);
+    CFRelease(imageRef);
+    
+    // Return the new grayscale image
+    return newImage;
+}
+
+- (id)blur
+{
+    return [self blurredImageWithRadius:60 iterations:25 tintColor:[UIColor blackColor]];
+}
+
+- (id)blurWithRadius: (int)radius iteration: (int)iter tintColor: (UIColor*)color
+{
+    return [self blurredImageWithRadius:radius iterations:iter tintColor:color];
+}
+
+- (id)scaleToSize: (CGSize)scaleSize
+{
+    CGFloat width = CGImageGetWidth(self.CGImage);
+    CGFloat height = CGImageGetHeight(self.CGImage);
+    float verticalRadio = scaleSize.height*1.0/height;
+    float horizontalRadio = scaleSize.width*1.0/width;
+    float radio = 1;
+    
+    if(verticalRadio>1 && horizontalRadio>1)
+    {
+        radio = verticalRadio > horizontalRadio ? horizontalRadio : verticalRadio;
+    }
+    else
+    {
+        radio = verticalRadio < horizontalRadio ? verticalRadio : horizontalRadio;
+    }
+    width = width*radio;
+    height = height*radio;
+    int xPos = (scaleSize.width - width)/2;
+    int yPos = (scaleSize.height-height)/2;
+    
+    UIGraphicsBeginImageContext(scaleSize);
+    [self drawInRect:CGRectMake(xPos, yPos, width, height)];
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;
+}
+
++ (id)imageWithColor: (UIColor*)color andBordRect: (CGRect)rect andBordColor: (UIColor*)bordColor andCornerRadius: (CGFloat)radius
+{
+    UIImage* retImage = nil;
+    
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [[UIBezierPath bezierPathWithRoundedRect: rect cornerRadius: radius] addClip];
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    CGContextSetStrokeColorWithColor(context, [bordColor CGColor]);
+    CGContextStrokeRect(context, rect);
+    retImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return retImage;
+}
+
+@end

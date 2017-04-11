@@ -16,13 +16,6 @@
 
 @interface CircleProgressView ()<POPAnimationDelegate>
 
-// 背景层layer
-@property (nonatomic, strong) CAShapeLayer *bgCircleLayer;
-// 进度层layer
-@property (nonatomic, strong) CAShapeLayer *circleLayer;
-// 背景图片
-@property (nonatomic, strong) UIImageView  *bgImageView;
-
 @end
 
 @implementation CircleProgressView
@@ -118,43 +111,30 @@
     POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
     strokeAnimation.delegate = self;
     strokeAnimation.toValue = @(strokeEnd);
-    strokeAnimation.springSpeed = 2;
-    strokeAnimation.springBounciness = 4.f;
+    strokeAnimation.springSpeed = 5;
+//    strokeAnimation.springBounciness = 4.f;//设置弹簧系数
     strokeAnimation.removedOnCompletion = NO;
     [self.circleLayer pop_addAnimation:strokeAnimation forKey:@"layerStrokeAnimation"];
-    
-//    strokeAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-//        if (finished) {
-//        }
-//    };
 }
 
 #pragma mark - POPAnimationDelegate
 // 动画开始
-- (void)pop_animationDidStart:(POPAnimation *)anim
-{
-    NSLog(@"pop_animationDidStart");
-}
+- (void)pop_animationDidStart:(POPAnimation *)anim {}
 
 // 动画值动态改变
-- (void)pop_animationDidApply:(POPAnimation *)anim
-{
-//    NSLog(@"pop_animationDidApply");
-}
+- (void)pop_animationDidApply:(POPAnimation *)anim {}
 
 // 动画到达终点值
-- (void)pop_animationDidReachToValue:(POPAnimation *)anim
-{
-    NSLog(@"pop_animationDidReachToValue");
-}
+- (void)pop_animationDidReachToValue:(POPAnimation *)anim {}
 
 // 动画结束
 - (void)pop_animationDidStop:(POPAnimation *)anim finished:(BOOL)finished
 {
-    NSLog(@"pop_animationDidStop");
     if (finished) {
-        if (self.finishedBlock) {
-            self.finishedBlock();
+        if (self.isNeedCallBack) {
+            if (self.finishedBlock) {
+                self.finishedBlock();
+            }
         }
     }
 }

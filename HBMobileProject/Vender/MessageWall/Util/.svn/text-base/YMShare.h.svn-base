@@ -1,0 +1,26 @@
+//
+//  YMShare.h
+//  scale
+//
+//  Created by KiraSu on 15/8/19.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@protocol YMShareDelegate <NSObject>
+
+@required
+- (void)shareReturn;
+
+@end
+
+@interface YMShare : NSObject
+
+@property(nonatomic, weak) id<YMShareDelegate> shareDelegate;
+
++ (id)single;
+
+- (void)shareWithViewCtrl: (UIViewController*)viewController andImage: (UIImage*)image andDesc: (NSString*)desc;
+
+@end

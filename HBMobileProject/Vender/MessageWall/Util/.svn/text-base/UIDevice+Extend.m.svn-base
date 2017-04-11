@@ -1,0 +1,143 @@
+
+#import "UIDevice+Extend.h"
+#import <sys/sysctl.h>
+#import <sys/param.h>
+#import <sys/mount.h>
+
+@implementation UIDevice(Extend)
+
++ (BOOL)isIOS7orLater
+{
+    return [[[UIDevice currentDevice] systemVersion] floatValue] > 6.99999;
+}
+
++ (BOOL)isIOS6orLater
+{
+    return [[[UIDevice currentDevice] systemVersion] floatValue] > 5.99999;
+}
+
++ (BOOL)isIOS6orEarlier
+{
+    return [[[UIDevice currentDevice] systemVersion] floatValue] < 6.00001;
+}
+
++ (BOOL)isIOS8orLater
+{
+    return [[[UIDevice currentDevice] systemVersion] floatValue] > 7.99999;
+}
++ (BOOL)isIOS9orLater
+{
+    return [[[UIDevice currentDevice] systemVersion] floatValue] > 8.99999;
+}
++ (CGFloat)screenWidth
+{
+    return [[UIScreen mainScreen] bounds].size.width;
+}
+
++ (CGFloat)screenHeight
+{
+    return [[UIScreen mainScreen] bounds].size.height;
+}
+
++ (int64_t)remainSize
+{
+    NSArray* arr = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    if (!arr || arr.count <= 0)
+    {
+        return 0;
+    }
+    NSString* path = [arr objectAtIndex:0];
+    NSError* err = nil;
+    NSDictionary* attr = [[NSFileManager defaultManager] attributesOfFileSystemForPath: path error: &err];
+    NSNumber* freeSpace = [attr objectForKey: NSFileSystemFreeSize];
+    return [freeSpace longLongValue];
+}
+
++ (int)machoneNumber
+{
+    static int number = 0;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        size_t size = 0;
+        const int MAXSIZE = 64;
+        char mch[MAXSIZE] = {0};
+        char* MACHKEY = "hw.machine";
+        char* FLAG = "iPhone";
+        
+        sysctlbyname(MACHKEY, NULL, &size, NULL, 0);
+        if (size > 0 && size < MAXSIZE)
+        {
+            sysctlbyname(MACHKEY, mch, &size, NULL, 0);
+            if ('\0' != mch[size-1] || strlen(mch) == 0)
+            {
+                return;
+            }
+            
+            char* p = strstr(mch, FLAG);
+            if (NULL == p)
+            {
+                return;
+            }
+            
+            char* num = p + (strlen(FLAG));
+            if (NULL == num)
+            {
+                return;
+            }
+            
+            char* dot = strchr(num, ',');
+            if (NULL == dot)
+            {
+                sscanf(num, "%d", &number);
+            }
+            
+            if (dot - num <= 0)
+            {
+                return;
+            }
+            
+            char s[MAXSIZE] = {0};
+            strncpy(s, num, dot - num);
+            sscanf(s, "%d", &number);
+        }
+    });
+    return number;
+}
+
++ (BOOL)isIPhone4
+{
+    return [self screenWidth] == 320 && [self screenHeight] == 480;
+}
+
++ (BOOL)isIPhone5
+{
+    return [self screenWidth] == 320 && [self screenHeight] == 568;
+}
+
++ (BOOL)isIPhone6
+{
+    return [self screenWidth] == 375 && [self screenHeight] == 667;
+}
+
++ (BOOL)isIPhone6Plus
+{
+    return [self screenWidth] == 414 && [self screenHeight] == 736;
+}
+
++ (BOOL)isIpad
+{
+    static BOOL isipad = NO;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        UIDevice* dv = [UIDevice currentDevice];
+        isipad = [dv.model isEqualToString:@"iPad"];
+    });
+    return isipad;
+}
+
++ (CGRect)sysStatusBarFrame
+{
+    return [[UIApplication sharedApplication] statusBarFrame];
+}
+
+@end

@@ -1,0 +1,20 @@
+//
+//  RegCardData.h
+//  scale
+//
+//  Created by 叶威廷 on 15/10/14.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "MsgWallCommonRowData.h"
+
+@interface RegCardData : MsgWallCommonRowData
+
+@property(nonatomic) int action;
+@property(nonatomic) NSString *buttonName;
+@property(nonatomic) NSString *iconBigImgURL;
+@property(nonatomic) NSString *iconImgURL;
+@property(nonatomic, strong) NSString* redirectURL;
+
+@end

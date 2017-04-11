@@ -10,4 +10,6 @@
 
 @interface HomePopViewController : UIViewController
 
+@property (nonatomic, strong) UIImage *bgImage; //背景图
+
 @end

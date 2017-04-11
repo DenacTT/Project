@@ -1,0 +1,219 @@
+//
+//  BmiTipViewm
+//  scale
+//
+//  Created by cza on 16/9/8.
+//  Copyright © 2016年 cza. All rights reserved.
+//
+
+#import "BmiTipView.h"
+#import "BiggerBtn.h"
+#import "UIView+Gesture.h"
+#import "NSString+Extend.h"
+@interface BmiTipView ()
+
+@property (nonatomic,strong) UIView *contentView;
+
+@property (nonatomic,strong) UILabel *titleLabel;
+
+@property (nonatomic,strong) UILabel *contentLabel;
+
+@property (nonatomic,strong) UILabel *tipTitleLabel;
+
+@property (nonatomic,strong) UILabel *tipContentLabel;
+
+@property (nonatomic,strong) BiggerBtn *cancleBtn;
+
+@property (nonatomic,strong) UIImageView *bgImageView;
+
+@property (nonatomic,strong) UIView *bgDashView;
+
+
+@end
+
+@implementation BmiTipView
+
+-(instancetype)initWithFrame:(CGRect)frame withComponentModel:(ComponentModel*)componentModel{
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+        [self addSubview:self.contentView];
+        [self.contentView addSubview:self.titleLabel];
+        [self.contentView addSubview:self.contentLabel];
+        [self.contentView addSubview:self.cancleBtn];
+//        [self.contentView addSubview:self.bgImageView];
+//        [self.contentView addSubview:self.bgDashView];
+        
+        //虚线框内的建议
+//        [self.bgDashView addSubview:self.tipTitleLabel];
+//        [self.bgDashView addSubview:self.tipContentLabel];
+        
+        [self.contentView addTapGesture:^{
+            //禁用父亲视图点击事件
+        }];
+        
+        __weak typeof(self) weakSelf = self;
+        [self addTapGesture:^{
+            [weakSelf cancleClick];
+        }];
+        
+        
+        {
+//            NSMutableDictionary *arrts = [NSMutableDictionary dictionary];
+//            NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:componentModel.comInfo attributes:arrts];
+//            NSMutableParagraphStyle *muParagraph = [[NSMutableParagraphStyle alloc]init];
+//            muParagraph.lineSpacing = 5; // 行距
+//            muParagraph.alignment = NSTextAlignmentJustified;
+//            NSString *firstStrLength = @"BMI（Body Mass Index）是国际上用于衡量人体胖瘦程度的标准。";
+//            [attStr setAttributes:@{NSForegroundColorAttributeName : RGB(50, 50, 50)} range:NSMakeRange(0, firstStrLength.length)];
+//            [attStr setAttributes:@{NSForegroundColorAttributeName : RGB(136, 136, 136)} range:NSMakeRange(firstStrLength.length, componentModel.comInfo.length-firstStrLength.length)];
+//            [attStr addAttribute:NSParagraphStyleAttributeName value:muParagraph range:NSMakeRange(0, componentModel.comInfo.length)];
+            
+            
+            
+            //文字内容写死本地字符串，lb_str_BodyMassIndex_info
+            NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:componentModel.comInfo];
+            NSMutableParagraphStyle *muParagraph = [[NSMutableParagraphStyle alloc]init];
+            muParagraph.lineSpacing = 5; // 行距
+            muParagraph.alignment = NSTextAlignmentJustified;
+            [attStr addAttribute:NSParagraphStyleAttributeName value:muParagraph range:NSMakeRange(0, componentModel.comInfo.length)];
+            self.contentLabel.attributedText = attStr;
+        }
+        
+        {
+            if (componentModel.comSuggest) {
+                NSMutableDictionary *arrts = [NSMutableDictionary dictionary];
+                NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:componentModel.comSuggest attributes:arrts];
+                NSMutableParagraphStyle *muParagraph = [[NSMutableParagraphStyle alloc]init];
+                muParagraph.lineSpacing = 4; // 行距
+                muParagraph.alignment = NSTextAlignmentJustified;
+                [attStr addAttribute:NSParagraphStyleAttributeName value:muParagraph range:NSMakeRange(0, componentModel.comSuggest.length)];
+                self.tipContentLabel.attributedText = attStr;
+            }
+            [self.tipContentLabel sizeToFit];
+            self.tipContentLabel.top = self.tipTitleLabel.bottom+7;
+            
+            //虚线框
+            self.bgDashView.height = self.tipContentLabel.height+15*2+self.tipTitleLabel.bottom-8;
+            UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:_bgDashView.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(5, 5)];
+            CAShapeLayer *layer = [CAShapeLayer layer];
+            layer.path = path.CGPath;
+            layer.lineWidth = 0.5;
+            layer.lineDashPattern = @[@1, @1];
+            layer.frame = _bgDashView.bounds;
+            layer.fillColor = [UIColor clearColor].CGColor;
+            layer.strokeColor = RGB(193, 193, 193).CGColor;
+            [_bgDashView.layer addSublayer:layer];
+            
+            _bgDashView.hidden = YES;
+        }
+        
+        [self showWithAnimation];
+    }
+    return self;
+}
+
+- (void)showWithAnimation{
+    CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    popAnimation.duration = 0.4;
+    popAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f, 0.01f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1f, 1.1f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9f, 0.9f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DIdentity]];
+    popAnimation.keyTimes = @[@0.2f, @0.5f, @0.75f, @1.0f];
+    popAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [self.contentView.layer addAnimation:popAnimation forKey:nil];
+    
+}
+
+-(void)cancleClick{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+
+- (void)removeFromSuperview{
+    [self.contentView.layer removeAllAnimations];
+    [super removeFromSuperview];
+}
+
+-(UIView *)contentView{
+    if (!_contentView) {
+//        _contentView = [[UIView alloc] initWithFrame:CGRectMake(ScreenWidth/2-270/2, ScreenHeight/2-393/2, 270, 385)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(ScreenWidth/2-270/2, ScreenHeight/2-220/2, 270, 220)];
+        _contentView.backgroundColor = [UIColor whiteColor];
+        _contentView.layer.cornerRadius = 10;
+    }
+    return _contentView;
+}
+
+-(UILabel *)titleLabel{
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.contentView.width, 24)];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.font = Font(18);
+        _titleLabel.text = STR(@"BmiTipView_WhatBmi");//@"什么是BMI？";
+        _titleLabel.textColor = RGB(50, 50, 50);
+    }
+    return _titleLabel;
+}
+
+-(UILabel *)contentLabel{
+    if (!_contentLabel) {
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.titleLabel.bottom+7, self.contentView.width-20*2, 150)];//122
+        _contentLabel.font = Font(16);
+        _contentLabel.numberOfLines = 0;
+    }
+    return _contentLabel;
+}
+
+-(UILabel *)tipTitleLabel{
+    if (!_tipTitleLabel) {
+        _tipTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,15,80,15)];
+        _tipTitleLabel.font = Font(14);
+        _tipTitleLabel.text = @"小麦的建议:";
+        _tipTitleLabel.textColor = RGB(74, 144, 226);
+    }
+    return _tipTitleLabel;
+}
+
+-(UILabel *)tipContentLabel{
+    if (!_tipContentLabel) {
+        _tipContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,self.tipTitleLabel.bottom+4,self.bgImageView.width-10*2,120)];
+        _tipContentLabel.font = Font(14);
+        _tipContentLabel.textColor = RGB(136, 136, 136);
+        _tipContentLabel.numberOfLines=0;
+    }
+    return _tipContentLabel;
+}
+
+-(BiggerBtn *)cancleBtn{
+    if (!_cancleBtn) {
+        _cancleBtn = [BiggerBtn buttonWithType:UIButtonTypeCustom];
+        _cancleBtn.frame = CGRectMake(self.contentView.frame.size.width-14-10, 10, 14, 14);
+        //        _cancleBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [_cancleBtn setImage:Image(@"bmiTip_close") forState:UIControlStateNormal];
+        [_cancleBtn addTarget:self action:@selector(cancleClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _cancleBtn;
+}
+
+-(UIImageView *)bgImageView{
+    if (!_bgImageView) {
+        _bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentView.width/2-230/2, self.contentLabel.bottom+30, 230, 169)];
+        [_bgImageView setImage:[UIImage imageNamed:@"ComSuggestLine"]];
+    }
+    return _bgImageView;
+}
+
+-(UIView *)bgDashView{
+    if (!_bgDashView) {
+        _bgDashView = [[UIView alloc] initWithFrame:CGRectMake(self.contentView.width/2-230/2, self.contentLabel.bottom+25, 230, 169)];
+    }
+    return _bgDashView;
+}
+
+@end

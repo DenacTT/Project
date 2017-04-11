@@ -1,0 +1,182 @@
+//
+//  HealthyNewsRowData.m
+//  scale
+//
+//  Created by KiraSu on 15/8/13.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "HealthyNewsRowData.h"
+#import "NHealthView.h"
+#import "News.h"
+
+#define HEALTHY_NEWS_MAX_RAND_COUNT                 (3)
+
+@implementation HealthyNewsRowData
+{
+    
+}
+/*
+if (self.messageShowType == CELL_SHOW_TYPE_HEALTH_NEWS) {
+    if (UI_IS_IPHONE6P) {
+        if ([[self getData] count] >= 3)
+        {
+            return  425;
+        }
+        else if ([[self getData] count] == 2)
+        {
+            return  325;
+        }
+        else if ([[self getData] count] == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 225;
+        }
+        
+        return 425;
+    }else if(UI_IS_IPHONE6)
+    {
+        if ([[self getData] count] >= 3)
+        {
+            return  415;
+        }
+        else if ([[self getData] count] == 2)
+        {
+            return  315;
+        }
+        else if ([[self getData] count] == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 215;
+        }
+        
+        return 415;
+    }else
+    {
+        if ([[self getData] count] >= 3)
+        {
+            return  408;
+        }
+        else if ([[self getData] count] == 2)
+        {
+            return  298;
+        }
+        else if ([[self getData] count] == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 198;
+        }
+        
+        return 408;
+    }
+}else if(self.messageShowType == CELL_SHOW_TYPE_HOT_NEWS){
+    
+    return 20+155*2;
+    
+}
+ if (self.messageShowType == CELL_SHOW_TYPE_HEALTH_NEWS) {
+ if ([[self getData] count] >= 3)
+ {
+ return  420;
+ }
+ else if ([[self getData] count] == 2)
+ {
+ return  305;
+ }
+ else if ([[self getData] count] == 0)
+ {
+ return 0;
+ }
+ else
+ {
+ return 210;
+ }
+ }else if(self.messageShowType == CELL_SHOW_TYPE_HOT_NEWS){
+ 
+ return 20+155*2;
+ 
+ }
+ 
+ 
+ return 420;
+ 
+ */
+
+- (CGFloat)cellViewHeight
+{
+    if (self.messageShowType == CELL_SHOW_TYPE_DEFAULT) {
+        return 0;
+    }else if(self.messageShowType == CELL_SHOW_TYPE_HOT_NEWS){
+        if (0 == self.news.count) {
+            return 0;
+        }
+        if (self.news.count < 3) {
+            return 271/3*self.news.count+(13*self.news.count);
+        }
+        return 271;
+        
+    }else if(self.messageShowType == CELL_SHOW_TYPE_RECOMMEND){
+        if (0 == self.news.count) {
+            return 0;
+        }
+        if (UI_IS_IPHONE5) {
+            return 280;
+        }else if (UI_IS_IPHONE6P){
+            return 318;
+        }
+        return 305;
+    }else if (self.messageShowType == CELL_SHOW_TYPE_EAT){
+        if (0 == self.news.count || self.news.count < 3) {
+            return 0;
+        }
+        return 463;
+    }else if (self.messageShowType == CELL_SHOW_TYPE_HOT_NEWS_SUB){
+        if (0 == self.news.count || self.news.count < 3) {
+            return 0;
+        }
+//        if (self.news.count < 3) {
+//            return 48 + 44 + (316 + UI_SCREEN_WIDTH * 0.016)/3*self.news.count;
+//        }
+        return 408 + UI_SCREEN_WIDTH * 0.016;
+        
+    }else if(self.messageShowType == CELL_SHOW_TYPE_HEALTH_NEWS){
+        if (0 == self.news.count) {
+            return 0;
+        }
+        return 151 + UI_SCREEN_WIDTH * 0.016;
+    }else{
+        return 0;
+    }
+}
+
+- (void)initLoadData
+{
+    if ([[self news] count] >= HEALTHY_NEWS_MAX_RAND_COUNT)
+    {
+        // 大于3个新闻时才随机展示，否则顺序展示
+        self.tempNews = [NSMutableArray array];
+        for (NSDictionary *dict in [self getData]) {
+            News *news = [News mj_objectWithKeyValues:dict];
+            
+            [self.tempNews addObject:news];
+        }
+        [self setNews: [super randomizedArrayWithArray:self.tempNews]];
+    }
+    else if ([[self news] count] == 0)
+    {
+        
+    }
+}
+
+
+
+@end

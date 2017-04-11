@@ -13,4 +13,6 @@
 
 - (void)setValue:(SBHomeModel *)model;
 
+- (void)startCircleAnimation;
+
 @end

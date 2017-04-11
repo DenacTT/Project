@@ -1,0 +1,49 @@
+//
+//  NSString+CardDataFromUrl.m
+//  scale
+//
+//  Created by solf on 15/9/15.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import "NSString+CardDataFromUrl.h"
+#import "MJExtension.h"
+
+@implementation NSString (CardDataFromUrl)
+
++(SCCardDataModel *)cardDataFromUrl:(NSString *)url
+{
+    if (nil == url)
+    {
+        return nil;
+    }
+    NSString *urlStr = [XMTools decodeFromPercentEscapeString:url];
+    
+    NSString *picName = [urlStr.pathComponents lastObject];
+    NSArray *flagArr = [picName componentsSeparatedByString:@"-"];
+    
+    SCCardDataModel *cardModel = [[SCCardDataModel alloc]init];
+    
+    if ([flagArr count] >= 6)
+    {
+        cardModel.createTime = [[flagArr objectAtIndex:0] floatValue];
+        cardModel.dayNum = [[flagArr objectAtIndex:1] integerValue];
+        cardModel.weight = [[flagArr objectAtIndex:2]floatValue];
+        cardModel.bmi = [[flagArr objectAtIndex:3]floatValue];
+        cardModel.fat = [[flagArr objectAtIndex:4]floatValue];
+        
+        cardModel.unit = [[[flagArr objectAtIndex:5] substringToIndex:1] integerValue];
+        
+        if (flagArr.count>=8) {//获取水印标签
+            cardModel.watermark = [[[flagArr objectAtIndex:7] substringToIndex:1] integerValue];
+        }
+        
+        return cardModel;
+        
+    }
+    
+    
+    return nil;
+}
+
+@end

@@ -1,0 +1,21 @@
+//
+//  WallWalkShareView.h
+//  scale
+//
+//  Created by GeorgeYe on 15/11/5.
+//  Copyright © 2015年 GeorgeYe. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "UserInfo.h"
+#import "WallStepCountModel.h"
+
+@interface WallWalkShareView : UIView
+
+@property (nonatomic) UserInfo *userInfo;
+@property (nonatomic) WallStepCountModel *walkModel;
+@property (nonatomic,copy) NSString *foodImageName;                 // 食物图片名
+
+-(void) addView;
+
+@end

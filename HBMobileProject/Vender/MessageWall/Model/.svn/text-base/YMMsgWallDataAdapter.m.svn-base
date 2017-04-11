@@ -1,0 +1,281 @@
+//
+//  YMMsgWallDataAdapter.m
+//  scale
+//
+//  Created by KiraSu on 15/8/12.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "YMMsgWallDataAdapter.h"
+#import "MsgWallCommonRowData.h"
+#import "YMAPIManager.h"
+#import "MsgWallDef.h"
+#import "HealthyNewsRowData.h"
+#import "WeightDataRowData.h"
+#import "HealthyReportRowData.h"
+#import "BriefReportRowData.h"
+#import "MJExtension.h"
+#import "WallWalkRowData.h"
+#import "YMMsgWallURLCache.h"
+#import "MsgWallHotNewsRowData.h"
+#import "YMPlayCardDataAdapter.h"
+#import "RegCardData.h"
+#import "VideoTutorialData.h"
+#import "PromoteData.h"
+#import "CommunityCard.h"
+#import "NSMutableDictionary+MyDic.h"
+//#import "EatAdviseData.h"
+#import "SCCommDef.h"
+
+@implementation YMMsgWallDataAdapter
+{
+    // 存放以MsgWallCommonRowData类为父类的派生类对象
+    NSMutableArray*                 _itemData;
+    // 各个子cell的rowdata类的映射表
+    NSMutableDictionary*            _rowDataMap;
+}
+
+- (id)initRowDataMap
+{
+    self = [super init];
+    
+    _itemData = [[NSMutableArray alloc] initWithCapacity: 7];
+    
+    _rowDataMap = [[NSMutableDictionary alloc] initWithCapacity: 7];
+    [_rowDataMap setObject: [HealthyNewsRowData class] forKey: [NSNumber numberWithInt: MSG_WALL_CELL_HEALTHY_NEWS_JSON_TYPE]];
+    [_rowDataMap setObject: [WeightDataRowData class] forKey: [NSNumber numberWithInt: MSG_WALL_CELL_WEIGHT_DATA_JSON_TYPE]];
+    [_rowDataMap setObject: [HealthyReportRowData class] forKey: [NSNumber numberWithInt: MSG_WALL_CELL_HEALTHY_REPORT_JSON_TYPE]];
+    [_rowDataMap setObject: [WallWalkRowData class] forKey: [NSNumber numberWithInt: MSG_WALL_CELL_WALK_COUNT_JSON_TYPE]];
+    [_rowDataMap setObject: [BriefReportRowData class] forKey:[NSNumber numberWithInt: MSG_WALL_CELL_WEIGHT_CHANGE_JSON_TYPE]];
+    [_rowDataMap setObject: [RegCardData class] forKey:[NSNumber numberWithInt:MSG_WALL_CELL_AD_JSON_TYPE]];
+    [_rowDataMap setObject: [VideoTutorialData class] forKey: [NSNumber numberWithInt: MSG_WALL_CELL_VIDEO_JSON_TYPE]];
+    [_rowDataMap setObject: [PromoteData class] forKey: [NSNumber numberWithInt: MSG_WALL_CELL_PROMOTE_JSON_TYPE]];
+    [_rowDataMap setObject: [CommunityCard class] forKey: [NSNumber numberWithInt: MSG_WALL_CELL_RECOMMEND_JSON_TYPE]];
+    [[YMMsgWallURLCache single] initLoadCache];
+    return self;
+}
+
+- (void)requestNetworkData
+{
+    NSData* dataCache = [[YMMsgWallURLCache single] getMsgWallURLCache];
+    if (nil != dataCache)
+    {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: dataCache options: NSJSONReadingMutableLeaves error: nil];
+        YMAPIResponse *response = [YMAPIResponse mj_objectWithKeyValues: dic];
+        [self onSuccess: nil andResponse: response];
+    }
+    else
+    {
+        NSString* userId = [XMUserDefault currentUserId];
+        NSMutableDictionary* parameters = [NSMutableDictionary initAPIParamWithUserId:[userId integerValue]];
+//        NSString* password = [XMTools randomCodeWidth: 4];
+        [parameters setObject: @(PLAYCARD_VERSION_CODE_APP_VERSION_INTERNATIONAL) forKey: @"versionCode"];
+//        [parameters setObject: userId forKey: @"userId"];
+//        [parameters setObject: password forKey: @"code"];
+//        [parameters setObject: [XMTools getMD5TokenWithUserId: userId andCode: password] forKey: @"token"];
+        
+        __weak YMMsgWallDataAdapter* weakSelf = self;
+        [[YMAPIManager apiManager] baseGETRequest: Config_Msg_Wall_Url
+                                       parameters: parameters
+                                    cacheResponse: ^NSCachedURLResponse *(NSURLConnection* connection, NSCachedURLResponse* cachedRes) {
+            return [weakSelf onCachedConnection: connection andResponse: cachedRes];
+        }
+                                          success: ^(AFHTTPRequestOperation *operation, id obj) {
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:obj options: NSJSONReadingMutableLeaves error: nil];
+            YMAPIResponse *response = [YMAPIResponse mj_objectWithKeyValues: dic];
+            [weakSelf onSuccess: operation andResponse: response];
+            
+            if (nil != obj)
+            {
+                // 更新缓存
+                [[YMMsgWallURLCache single] updateMsgWallURLCache: (NSData*)obj];
+            }
+        }
+                                             fail: ^(AFHTTPRequestOperation *operation, NSError *error) {
+            [weakSelf onFail: operation andError: error];
+        }];
+        
+    }
+}
+
+- (MsgWallInfoCellType)getCellTypeWithIndex: (NSInteger)nIndex
+{
+    if (nIndex < 0 || nIndex >= [_itemData count])
+    {
+        return MsgWallUnknowCellType;
+    }
+    
+    MsgWallInfoCellType retType = MsgWallWeightDataInfoCellType;
+    MsgWallCommonRowData * itemData = [_itemData objectAtIndex: nIndex];
+    retType = (MsgWallInfoCellType)([itemData messageType] - MSG_WALL_CELL_WEIGHT_RESULT_JSON_TYPE);
+    if (retType < MsgWallWeightResultInfoCellType || retType >= MsgWallUnknowCellType)
+    {
+        return MsgWallUnknowCellType;
+    }
+    
+    return retType;
+}
+
+- (CGFloat)getSpecCellHeightWithIndex: (NSInteger)nIndex
+{
+    if (nIndex < 0 || nIndex >= [_itemData count])
+    {
+        return 0;
+    }
+    
+    MsgWallCommonRowData* itemData = [_itemData objectAtIndex: nIndex];
+    
+    return [itemData cellViewHeight];
+}
+
+- (NSInteger)getCount
+{
+    return [_itemData count];
+}
+
+- (MsgWallCommonRowData*)getRowDataWithIndex: (NSInteger)nIndex
+{
+    if (nIndex < 0 || nIndex >= [_itemData count])
+    {
+        return nil;
+    }
+    
+    return [_itemData objectAtIndex: nIndex];
+}
+
+#pragma mark AFHTTPRequestOperation
+- (NSCachedURLResponse*)onCachedConnection: (NSURLConnection*)connection andResponse: (NSCachedURLResponse*) cachedRes
+{
+    return cachedRes;
+}
+
+- (void)onSuccess: (AFHTTPRequestOperation*)operation andResponse: (id)obj
+{
+    YMAPIResponse* response = obj;
+    YMAPIData* jsonNodeData = [response data];
+    if (nil != jsonNodeData)
+    {
+        CGFloat tableViewHeight = ScreenHeight - YM_MSG_WALL_HEAD_VIEW_HEIGHT - COMMON_TOP_BAR_HEIGHT;
+        CGFloat visibleCellViewHeight = 0;
+        [_itemData removeAllObjects];
+        for (NSDictionary* subNode in [jsonNodeData rows])
+        {
+            NSObject* rawTypeObject = [subNode objectForKey: @"messageType"];
+            if (nil != rawTypeObject)
+            {
+                NSNumber* typeObject = (NSNumber*)rawTypeObject;
+                if (nil != [_rowDataMap objectForKey: typeObject])
+                {
+                    Class rowDataClass = [_rowDataMap objectForKey: typeObject];
+                    MsgWallCommonRowData* commonData = [rowDataClass mj_objectWithKeyValues: subNode];
+                    [commonData initLoadData];
+                    [_itemData addObject: commonData];
+                    
+                    visibleCellViewHeight += [commonData cellViewHeight];
+                    if (visibleCellViewHeight < tableViewHeight || (visibleCellViewHeight - [commonData cellViewHeight]) < tableViewHeight)
+                    {
+                        [commonData setDoAnimation: YES];
+                    }
+                }
+            }
+        }
+    }
+    
+    // 通知界面层，数据准备完毕
+    [_viewControllerDelegate onNetworkRequestDone];
+}
+
+- (void)onFail: (AFHTTPRequestOperation*)operation andError: (NSError*)error
+{
+    NSLog(@"%@", error);
+    
+    // 网络出现问题，判断缓存中是否有数据
+    NSData* cacheData = [[YMMsgWallURLCache single] getCacheIgnoreDate];
+    NSString* strBuffer = nil;
+    YMAPIResponse* response = nil;
+    NSDictionary* dic = nil;
+    if (nil != cacheData)
+    {
+        // 使用缓存数据
+        dic = [NSJSONSerialization JSONObjectWithData: cacheData options: NSJSONReadingMutableLeaves error: nil];
+        response = [YMAPIResponse mj_objectWithKeyValues: dic];
+    }
+    else
+    {
+        // 缓存也没有,构造本地数据显示
+        strBuffer = @"{\"result\": {      \
+            \"msgen\": \"OK!\",     \
+            \"msgcn\": \"成功！\",   \
+            \"code\": 0             \
+        },                          \
+        \"data\": {                 \
+            \"total\": 5,           \
+            \"rows\": [             \
+                     {              \
+                         \"id\": 1, \
+                         \"messageType\": 1000,                 \
+                         \"messageTitle\": \"称重结果\",         \
+                         \"messageDetail\": \"称重结果\",       \
+                         \"rank\": 900,                         \
+                         \"news\": null,                        \
+                         \"createTime\": \"2015-08-28 16:41:00\",   \
+                         \"newscategoryUrl\": null,             \
+                         \"categoryId\": 0                      \
+                     },                                         \
+                     {                                          \
+                         \"id\": 2,                             \
+                         \"messageType\": 1001,                 \
+                         \"messageTitle\": \"健康报告\",            \
+                         \"messageDetail\": \"健康报告\",           \
+                         \"rank\": 800,                             \
+                         \"news\": null,                                \
+                         \"createTime\": \"2015-08-28 16:41:02\",       \
+                         \"newscategoryUrl\": null,                     \
+                         \"categoryId\": 0                              \
+                     },                                                 \
+                     {                                                  \
+                         \"id\": 3,                                     \
+                         \"messageType\": 1002,                         \
+                         \"messageTitle\": \"身体成分\",                 \
+                         \"messageDetail\": \"身体成分\",                \
+                         \"rank\": 700,                                 \
+                         \"news\": null,                                \
+                         \"createTime\": \"2015-08-28 16:41:04\",       \
+                         \"newscategoryUrl\": null,                     \
+                         \"categoryId\": 0                              \
+                     },                                                 \
+                     {                                                  \
+                         \"id\": 5,                                     \
+                         \"messageType\": 1004,                         \
+                         \"messageTitle\": \"周体重变化\",                \
+                         \"messageDetail\": \"周体重变化\",               \
+                         \"rank\": 500,                                 \
+                         \"news\": null,                                \
+                         \"createTime\": \"2015-08-28 20:33:16\",       \
+                         \"newscategoryUrl\": null,                     \
+                         \"categoryId\": 0                              \
+                     },                                                 \
+                     {                                                  \
+                         \"id\": 6,                                     \
+                         \"messageType\": 1005,                         \
+                         \"messageTitle\": \"计步卡片\",                  \
+                         \"messageDetail\": \"计步卡片\",                 \
+                         \"rank\": 300,                                 \
+                         \"news\": null,                                \
+                         \"createTime\": \"2015-08-28 16:41:16\",       \
+                         \"newscategoryUrl\": null,                     \
+                         \"categoryId\": 0}]}}";
+        
+        cacheData = [NSData dataWithBytes: [strBuffer UTF8String] length: strlen([strBuffer UTF8String])];
+        dic = [NSJSONSerialization JSONObjectWithData: cacheData options: NSJSONReadingMutableLeaves error: nil];
+    }
+    [XMUserDefault setAnimationState:NO];;//数据请求失败 可以开启动画
+    response = [YMAPIResponse mj_objectWithKeyValues: dic];
+    [self onSuccess: nil andResponse: response];
+}
+
+#pragma mark NSTimer
+//- ()
+
+@end
+

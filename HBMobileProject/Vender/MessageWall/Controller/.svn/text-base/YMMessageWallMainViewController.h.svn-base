@@ -1,0 +1,17 @@
+//
+//  YMMessageWallMainViewController.h
+//  scale
+//
+//  Created by Vincent on 16/11/23.
+//  Copyright © 2016年 Vincent. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
+#import "YMMessageWallMainView.h"
+
+@interface YMMessageWallMainViewController : BaseViewController
+
+@property(nonatomic,strong) YMMessageWallMainView *messageWallMainView;
+
+@end

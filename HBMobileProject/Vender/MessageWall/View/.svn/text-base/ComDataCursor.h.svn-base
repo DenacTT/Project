@@ -1,0 +1,22 @@
+//
+//  ComDataCursor.h
+//  scale
+//
+//  Created by solf on 16/5/11.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ComCursorModel.h"
+
+@interface ComDataCursor : UIView
+
+@property (nonatomic,strong) ComCursorModel *cursorModel;
+
+
+- (void)layoutViews;
+
+//设置游标
+-(void)setCursorLocation;
+
+@end

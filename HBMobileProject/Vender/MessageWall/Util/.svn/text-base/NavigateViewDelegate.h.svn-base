@@ -1,0 +1,65 @@
+//
+//  NavigateViewDelegate.h
+//  NavigateViewDelegate
+//
+//  Created by KiraSu on 15/7/30.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+typedef NS_OPTIONS(NSUInteger, YMNavigationStyle)
+{
+    YMNavigationStyleRightToLeft,
+    YMNavigationStyleDownToTop,
+    YMNavigationStylePopupCards,
+    YMNavigationStyleEaseInOut,
+    
+    YMNavigationStyleDownToTopMin = -1,
+};
+
+typedef NS_OPTIONS(NSUInteger,YMNavigationAppearance)
+{
+    YMNavigationAppearanceWillAppear,
+    YMNavigationAppearanceWillDissappear,
+    YMNavigationAppearanceDidAppear,
+    YMNavigationAppearanceDidDissappear,
+    YMNavigationAppearanceDidDissappearNoHidden, /// 虽然消失了但是view保留不隐藏态
+    
+    YMNavigationAppearanceWillAppearAnyWhere,//无论如何执行willappear
+    YMNavigationAppearanceDidAppearAnyWhere,//无论如何执行didappear
+};
+
+typedef NS_OPTIONS(NSUInteger, YMNavigationSwipeOption)
+{
+    YMNavigationSwipeOptionNone = 0,
+    YMNavigationSwipeOptionLeft,
+    YMNavigationSwipeOptionRight
+};
+
+@protocol NavigateViewDelegate <NSObject>
+
+@required
+- (void)setOnChangeViewMode: (void(^)(id))cb;
+- (void)resize: (CGSize)rect;
+- (void)loadView;
+- (void)viewWillAppear;
+- (void)viewDidAppear;
+- (void)viewWillDisappear;
+- (void)viewDidDisappear;
+
+@optional
+@property (nonatomic, retain) UIView* blackboard;
+- (UIStatusBarStyle)barstyle;
+- (void)willDestroy;
+- (YMNavigationStyle)navigationStyle;
+- (BOOL)enableDragBack;
+- (BOOL)needHideStatusBar; // Default is NO
+- (void)lastBgBlur: (UIImage*)bgBlur;
+- (void)dismissingDurationAnimation;
+- (void)appearDurationAnimation;
+- (BOOL)needHideSysTabBarView;
+- (void)onGesturePan: (UIPanGestureRecognizer*)pan;
+
+@end

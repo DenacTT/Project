@@ -1,0 +1,15 @@
+//
+//  WallWeightView.h
+//  scale
+//
+//  Created by solf on 15/8/12.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+@class ScoreModel;
+@interface WallWeightView : UIView
+
+@property (nonatomic,strong) ScoreModel *scoreModel;
+@property (nonatomic, assign) BOOL      disableCounting;
+@end

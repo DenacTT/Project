@@ -1,0 +1,13 @@
+//
+//  PromoteModel.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/29.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "PromoteModel.h"
+
+@implementation PromoteModel
+
+@end

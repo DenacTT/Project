@@ -1,0 +1,630 @@
+//
+//  WallNewsVCViewController.m
+//  scale
+//
+//  Created by solf on 15/8/20.
+//  Copyright (c) 2015年 solf. All rights reserved.
+//
+
+#import "WallNewsVCViewController.h"
+#import "UserDB.h"
+#import "UIColor+Extend.h"
+#import "WallNavView.h"
+#import "ImagePickerController.h"
+#import "YMPlayCardTagListModel.h"
+#import "ImageStyleViewController.h"
+#import "NSThread+Extend.h"
+#import "YMNotificationName.h"
+#import "YMOnlineConfig.h"
+#import "YMConfigParams.h"
+#import "UIImage+Color.h"
+#import "YMRegDetailShareView.h"
+#import "SDWebImageManager.h"
+#import "NSString+Extend.h"
+
+#define  kLoseWeightKey @"activityId"
+#define  kLoseWeightValue @"1"
+
+@interface WallNewsVCViewController () <UIWebViewDelegate,wallMessageNavDelegate,UIGestureRecognizerDelegate>
+{
+    UIWebView *_webView;
+    
+    UIActivityIndicatorView *_active;
+    
+    NSString *_titleStr;
+    
+    NSString *_myNewsUrl;
+    
+    WallNavView *_topView;
+    
+    BOOL _ourUrl;
+    
+    
+}
+//用户id
+@property (strong,nonatomic) NSString *userId;
+
+//推送的deviceToken
+@property (strong,nonatomic) NSString *deviceToken;
+//时间
+@property (strong,nonatomic) NSString *nowTime;
+//md5 token
+@property (strong,nonatomic) NSString *myToken;
+
+//活动
+@property (strong,nonatomic) ImagePickerController *picker;
+
+@property (nonatomic,strong) UIButton *shareBtn;
+@property (nonatomic,strong) YMRegDetailShareView *shareView;
+
+@property (nonatomic,copy) NSString *shareTitle;
+@property (nonatomic,strong) UIImage *shareImage;
+@property (nonatomic,copy) NSString *shareContent;
+@property (nonatomic,copy) NSString *shareUrl;
+
+@end
+
+@implementation WallNewsVCViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.view.backgroundColor = RGB(32, 188, 173);
+    _topView = [[WallNavView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 64)];
+    _topView.wallNavDelegate = self;
+    [_topView setNavWithTitle:@"" closeEnable:NO backEnable:YES];
+    
+    [self.view addSubview:_topView];
+    //
+    //    _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    _backBtn.frame = CGRectMake(14, 0, 30, _topView.height);
+    //    UIImage *backImg = [UIImage imageNamed:@"Reg_BackIcon.png"];
+    //    [_backBtn setImage:backImg forState:UIControlStateNormal];
+    //    [_backBtn addTarget:self action:@selector(backToLastVC:) forControlEvents:UIControlEventTouchUpInside];
+    //
+    //    _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, _topView.height)];
+    //
+    //    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    //
+    //    [_topView addSubview:_backBtn];
+    //    [self.view addSubview:_topView];
+    
+    self.title = _titleStr;
+    //    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64)];
+    
+    _webView.dataDetectorTypes = UIDataDetectorTypeLink;
+    _webView.scalesPageToFit = YES;// 自动对页面进行缩放以适应屏幕
+    
+    
+    _active = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    _active.frame = CGRectMake((ScreenWidth - 80)/2, (_webView.height - 80)/2, 80, 80);
+    
+    [_webView addSubview:_active];
+    
+    [self.view addSubview:_webView];
+    
+    
+    NSURL* url = [NSURL URLWithString:_myNewsUrl];//创建URL
+    NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
+    [_webView loadRequest:request];
+    _webView.delegate = self;
+    
+//    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+//    
+//    if ([target respondsToSelector:@selector(handleNavigationTransition:)]) {
+//        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:target action:@selector(handleNavigationTransition:)];
+//        pan.delegate = self;
+//        [self.view addGestureRecognizer:pan];
+//        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//    }
+    
+    UISwipeGestureRecognizer *pan = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleNavigationTransitionFlag:)];
+            pan.delegate = self;
+            [self.view addGestureRecognizer:pan];
+    
+}
+
+- (void) handleNavigationTransitionFlag:(UISwipeGestureRecognizer*)sender
+{
+    if (sender.direction == UISwipeGestureRecognizerDirectionRight)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
+
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString *urlEnStr= [[request URL] absoluteString];
+    
+    if ([String isBlankString:urlEnStr])
+    {
+        return NO;
+    }
+    if ([@"about:blank" isEqualToString:urlEnStr]) {
+        return NO;
+    }
+    
+    NSString *urlString = urlEnStr;
+    urlString = [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSArray *urlComps = [urlString componentsSeparatedByString:@"://"];
+    
+    if ([urlString rangeOfString:@"itunes.apple.com"].location!= NSNotFound)
+    {
+        return NO;
+    }
+    
+    if ([urlComps count] && [[urlComps objectAtIndex:0] isEqualToString:@"http"])
+    {
+        if ([urlComps count]>1)
+        {
+            NSString *webStr  = [urlComps objectAtIndex:1];
+            
+//            if ([webStr length]>=11)
+//            {
+                if([webStr rangeOfString:@"iyunmai"].location ==NSNotFound)
+                {
+//                    if (_ourUrl)
+//                    {
+//                        return NO;
+//                    }
+                    return YES;
+                }
+//            }
+        }
+        
+        if ([urlString isEqualToString:_myNewsUrl])
+        {
+            return YES;
+        }else
+        {
+            urlEnStr = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            if ([urlEnStr isEqualToString:_myNewsUrl])
+            {
+                return YES;
+            }
+            
+            WallNewsVCViewController *childVC = [[WallNewsVCViewController alloc]init];
+            
+            [childVC loadNewsTitle:@"" andUrl:urlString OurUrl:_ourUrl];
+            [self.navigationController pushViewController:childVC animated:YES];
+            
+            return NO;
+            
+        }
+        return YES;
+    }
+    
+    
+    if([urlComps count] && [[urlComps objectAtIndex:0] isEqualToString:@"objc"])
+    {
+        NSArray *arrFucnameAndParameter = [(NSString*)[urlComps objectAtIndex:1] componentsSeparatedByString:@"/"];
+        NSString *funcStr = [arrFucnameAndParameter objectAtIndex:0];
+        
+        if (1 == [arrFucnameAndParameter count])
+        {
+            // 没有参数
+            if([funcStr isEqualToString:@"getvalue"])
+            {
+                
+                /*调用本地函数1*/
+                //                NSLog(@"doFunc1");
+                //                [self getvalue];
+                
+            }
+        }else
+        {
+            //有参数的
+            if([funcStr isEqualToString:@"postIos"])
+            {
+                NSString *postUserId = [NSString stringWithFormat:@"%@",[arrFucnameAndParameter objectAtIndex:1]];
+                postUserId = [self getNextStr:postUserId];
+                
+                NSString *deviceNo = [NSString stringWithFormat:@"%@",[arrFucnameAndParameter objectAtIndex:2]];
+                deviceNo = [self getNextStr:deviceNo];
+                
+                NSString *time = [NSString stringWithFormat:@"%@",[arrFucnameAndParameter objectAtIndex:3]];
+                time = [self getNextStr:time];
+                
+                NSString *token = [NSString stringWithFormat:@"%@",[arrFucnameAndParameter objectAtIndex:4]];
+                token = [self getNextStr:token];
+                
+                NSString *token1 = [NSString stringWithFormat:@"%@",[arrFucnameAndParameter objectAtIndex:5]];
+                token1 = [self getNextStr:token1];
+                
+                NSString *tokenFlag = [[[postUserId stringByAppendingString:deviceNo]stringByAppendingString:time]stringByAppendingString:token];
+                
+                NSString *tokenFlag1 = [tokenFlag stringByAppendingString:gkey];
+                tokenFlag1 = [XMTools getMD_5_Str:tokenFlag1];
+                
+                if ([tokenFlag1 isEqualToString:token1])
+                {
+                    NSString *loginType = [self getLoginType];
+                    
+                    NSString *myTime = [NSString stringWithFormat:@"%ld",(long)[XMTools getDateSamWith:[XMTools getCurrentDate:nil andFommater:nil]]];
+                    
+                    NSString *token2 = [[[[[[postUserId stringByAppendingString:deviceNo]stringByAppendingString:loginType]stringByAppendingString:myTime]stringByAppendingString:token]stringByAppendingString:token1] stringByAppendingString:gkey];
+                    
+                    token2 = [XMTools getMD_5_Str:token2];
+                    
+                    
+                    //web.iosLogin(userId,deviceNo,loginType,time,token,token1,token2)
+                    
+                    NSString *resStr = [NSString stringWithFormat:@"appLogin.login('%@','%@','%@','%@','%@','%@','%@');",postUserId,deviceNo,loginType,myTime,token,token1,token2];
+                    
+                    [webView stringByEvaluatingJavaScriptFromString:resStr];
+                    
+                    
+                }
+            }else if ([funcStr isEqualToString:@"wbAuthorize"]) //参与活动
+            {
+//                [self loseWeightActivity:arrFucnameAndParameter];
+            }
+        }
+    }
+    return NO;
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [_active startAnimating];
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [_active stopAnimating];
+    
+    [self beginGetLoginWithWebView:webView];
+    
+    NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if ([String isBlankString:title])
+    {
+        title = _titleStr;
+    }
+    
+    [_topView setNavWithTitle:title closeEnable:NO backEnable:YES];
+
+    id data = [webView stringByEvaluatingJavaScriptFromString:@"web.getShare();"];
+    data = [data stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *strUrl = [data stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
+    NSDictionary *dic = [strUrl stringToJson];
+    if(dic){
+        __weak typeof(self) weakSelf = self;
+        self.shareTitle = title;
+        self.shareContent = dic[@"shareContent"];
+        NSString *newsId = dic[@"shareId"];
+        
+        self.shareUrl = [NSString stringWithFormat:@"https://sq.iyunmai.com/news/share.html?newsId=%@",newsId];
+        [[SDWebImageManager sharedManager] downloadImageWithURL:UrlStr(dic[@"shareImg"]) options:SDWebImageRetryFailed progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            weakSelf.shareImage = image;
+        }];
+        self.shareBtn.hidden = NO;
+    }
+
+}
+
+- (NSDictionary *)objWithNormaelJsonData:(id )jsonData {
+    if (jsonData == nil) {
+        return nil;
+    }
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
+    return dic;
+}
+
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [_active stopAnimating];
+}
+
+
+#pragma mark - Actions
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    // 注意：只有非根控制器才有滑动返回功能，根控制器没有。
+    // 判断导航控制器是否只有一个子控制器，如果只有一个子控制器，肯定是根控制器
+    if (self.childViewControllers.count == 1) {
+        // 表示用户在根控制器界面，就不需要触发滑动手势，
+        return NO;
+    }
+    return YES;
+}
+
+
+- (void) loadNewsTitle:(NSString *)title andUrl:(NSString *)myUrl OurUrl:(BOOL)ourUrl
+{
+    _titleStr = title;
+    _myNewsUrl = myUrl;
+    _ourUrl = ourUrl;
+}
+
+//请求登录(第一步)
+-(void) beginGetLoginWithWebView:(UIWebView *)webView
+{
+    [self setMyTokenValue];
+    
+    NSString *token = [[[_userId stringByAppendingString:_deviceToken]stringByAppendingString:_nowTime]stringByAppendingString:gkey];
+    
+    token = [XMTools getMD_5_Str:token];
+    
+    NSString *myStr = [NSString stringWithFormat:@"appLogin.getToken('%@','%@','%@','%@');",_userId,_deviceToken,_nowTime,token];
+    
+    [webView stringByEvaluatingJavaScriptFromString:myStr];
+}
+
+-(void) setMyTokenValue
+{
+    NSString *oneUserId = [NSString stringWithFormat:@"%@",[XMUserDefault currentUserId]];
+    
+    _userId = [NSString stringWithFormat:@"%@",[XMUserDefault getParentUserIdWithUserId:oneUserId]];
+    
+    _deviceToken = [XMTools getDeviceToken];
+    if (_deviceToken == nil)
+    {
+        _deviceToken = @"0";
+    }
+    
+    _nowTime = [XMTools getCurrentDate:nil andFommater:nil];
+    
+    _nowTime = [NSString stringWithFormat:@"%ld",(long)[XMTools getDateSamWith:_nowTime]];
+}
+
+-(NSString *) getNextStr:(NSString *)str
+{
+    NSArray *strArr = [str componentsSeparatedByString:@":"];
+    
+    if (strArr && [strArr count]>1)
+    {
+        return [strArr objectAtIndex:1];
+    }else
+    {
+        return nil;
+    }
+}
+
+-(NSString *) getLoginType
+{
+    UserDB *userDb = [UserDB shareInstance];
+    NSString *userId = [XMUserDefault currentUserId];
+    
+    if ([String isBlankString:userId])
+    {
+        return @"0";
+    }
+    
+    User *user = [userDb findUsersWithId:userId];
+    
+    NSString *qqNo = [NSString stringWithFormat:@"%@",user.qqNo];
+    
+    if ([String isBlankString:qqNo])
+    {
+        return @"0";
+    }else
+    {
+        return @"1";
+    }
+    
+}
+
+#pragma mark - 懒加载
+-(ImagePickerController *)picker{
+    if (!_picker) {
+        _picker = [[ImagePickerController alloc] init];
+    }
+    return _picker;
+}
+
+#pragma mark - wallMessageNavDelegate
+
+- (void) wallNavBackAction
+{
+    
+    BOOL canGoBack = [_webView canGoBack];
+    if (canGoBack)
+    {
+        [_webView goBack];
+    }else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+////微博活动减肥大作战
+//- (void) loseWeightActivity:(id)obj
+//{
+//    if (!obj) {
+//        return;
+//    }
+//    
+//    if (![obj isKindOfClass:[NSArray class]]) {
+//        return;
+//    }
+//    
+//    if (!([obj count] >1)) {
+//        return;
+//    }
+//    
+//    NSString *actStr = [obj objectAtIndex:1];
+//    if ([String isBlankString:actStr]) {
+//        return;
+//    }
+//    
+//    NSArray *tempArr = [actStr componentsSeparatedByString:@":"];
+//    
+//    if (!tempArr || [tempArr count] <1) {
+//        return;
+//    }
+//    
+//    NSString *key = [tempArr objectAtIndex:0];
+//    NSString *myValue = [tempArr objectAtIndex:1];
+//    if ([String isBlankString:key] || [String isBlankString:myValue]) {
+//        return;
+//    }
+//    
+//    if ([kLoseWeightKey isEqualToString:key] && [kLoseWeightValue isEqualToString:myValue]) {
+//        
+//        AccountBindTool *bindTool = [[AccountBindTool alloc]init];
+//        
+//        BOOL isBindSina = [bindTool isBindSinaAccount];
+//        
+//        if (isBindSina) //已经绑定。不再需要绑定
+//        {
+//            [self playCard];
+//        }else //需要绑定微博
+//        {
+//            __weak typeof(self) weakSelf = self;
+//            [bindTool bindSinaAccountWithVC:self withSuccess:^(YMBindType bindType) {
+//                if (YMBindTypeBind == bindType) {
+//                    [weakSelf playCard];
+//                }else{
+//                    [weakSelf canNotPlayCard:STR(@"WNVCVC_boundSinaFail")];
+//                }
+//            } Fail:^(NSString *str) {
+//                [weakSelf canNotPlayCard:str];
+//            }];
+//        }
+//    }
+//}
+
+- (void) playCard
+{
+    //NSLog(@"可以参加活动");
+    
+    __weak typeof(self) selfVc = self;
+    [self.picker creatSheetViewWithViewController:selfVc withImage:^(UIImage *image) {
+        // EditImageViewController *vc = [[EditImageViewController alloc] init];
+        ImageStyleViewController *imageStyleVc = [[ImageStyleViewController alloc] init];
+        //        imageStyleVc.tagArr = self.tagList;
+        YMPlayCardTagListModel *modle = [[YMPlayCardTagListModel alloc] init];
+        modle.name = STR(@"WNVCVC_loseWeight");
+        modle.id = KSinaLoseWeightId;
+        modle.type = TakePhotTagType_Activity;
+        imageStyleVc.model = modle;
+        UINavigationController *vc = [[UINavigationController alloc] initWithRootViewController:imageStyleVc];
+        imageStyleVc.image = image;
+        if (IOS_VERSION>=8.0) {
+            [selfVc presentViewController:vc animated:YES completion:^{
+                imageStyleVc.takeCardPhotoType = TakeCardPhotoType_Activity;
+            }];
+        }else{
+            [NSThread runAfter:^{
+                [selfVc presentViewController:vc animated:YES completion:^{
+                    imageStyleVc.takeCardPhotoType = TakeCardPhotoType_Activity;
+                }];
+            } second:1];
+        }
+    }];
+}
+
+- (void) canNotPlayCard:(NSString *)str
+{
+    
+    if ([String isBlankString:str]) {
+        return;
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:self cancelButtonTitle:STR(@"WNVCVC_sure") otherButtonTitles:nil, nil];
+    
+    [alert show];
+}
+
+//打卡成功通知web页面
+
+-(void) playCardSucessed
+{
+    NSString *configValue = [NSString stringWithFormat:@"%@",[YMOnlineConfig GetOnlineParamWithKey:YM_Sina_LoseWeight]];
+    NSLog(@"%@",configValue);
+    
+    NSString *resStr = [NSString stringWithFormat:@"web.punchSuccess();"];
+    
+    [_webView stringByEvaluatingJavaScriptFromString:resStr];
+    
+}
+
+-(void)clickShare{
+//    NSError *error;
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:&error];
+//    if (jsonData && [jsonData length] > 0 && nil == error)
+//    {
+//        NSString *myTagsJson = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        return myTagsJson;
+//    }
+//    return nil;
+    self.shareView.shareImg = self.shareImage;
+    self.shareView.jsonStr = self.shareUrl ;
+    self.shareView.shareContent = self.shareContent;
+    self.shareView.shareTitle = self.shareTitle;
+    [self.shareView show];
+}
+
+-(UIButton *)shareBtn{
+    if (!_shareBtn) {
+        _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _shareBtn.frame = CGRectMake(ScreenWidth-44, 20, 44, 44);
+        [_shareBtn setImage:Image(@"wallNewsShare") forState:UIControlStateNormal];
+        [_shareBtn addTarget:self action:@selector(clickShare) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_shareBtn];
+    }
+    return _shareBtn;
+}
+
+-(YMRegDetailShareView *)shareView{
+    if (!_shareView) {
+        _shareView = [[YMRegDetailShareView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+        _shareView.isShareOfWall = YES;
+        [self.view addSubview:_shareView];
+    }
+    return _shareView;
+}
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:YMPlayCardSucessedNotification object:nil];
+    NSLog(@"销毁");
+}
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+
+@end

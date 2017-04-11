@@ -1,0 +1,20 @@
+//
+//  ComNoDataView.h
+//  scale
+//
+//  Created by solf on 16/5/9.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+/*
+ *用于无数据时成分页面
+ */
+
+#import <UIKit/UIKit.h>
+#import "ComponentModel.h"
+
+@interface ComNoDataView : UIView
+
+- (void)layoutViewWithComModel:(ComponentModel*)comModel;
+
+@end

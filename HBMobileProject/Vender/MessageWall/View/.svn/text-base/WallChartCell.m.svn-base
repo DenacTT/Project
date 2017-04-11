@@ -1,0 +1,272 @@
+//
+//  WallChartCell.m
+//  scale
+//
+//  Created by cza on 15/8/17.
+//  Copyright (c) 2015年 cza. All rights reserved.
+//
+
+#import "WallChartCell.h"
+#import "CZAChartView.h"
+#import "BriefReportRowData.h"
+#import "YMUtil.h"
+#import "YMEventCenter.h"
+#import "ReportDataService.h"
+
+@interface WallChartCell ()<YMEventCallback>
+
+@property (nonatomic,strong) NSMutableArray *weightArr;
+@property (nonatomic,strong) NSMutableArray *formetterDateArr;
+@property (nonatomic,strong) BriefReportRowData *datas;
+
+@property (nonatomic,strong) CZAChartView *czaChartView;
+@property (nonatomic,strong) UIImageView *topImageView;
+@property (nonatomic,strong) UILabel *topLabel;
+@property (nonatomic,strong) UILabel *topRighteLabel;
+
+@property (nonatomic,strong) NSMutableArray *labeArr;
+
+@property (nonatomic,strong) UIButton *reportBtn;
+
+@end
+
+@implementation WallChartCell
+{
+    BOOL _initCellView;
+}
+
+- (void)layoutCellView{
+    [super layoutCellView];
+//    [super shadowCellView];
+    self.datas = (BriefReportRowData*)[super commonRowData];
+    self.weightArr = self.datas.weightvalues;
+    [self initView];
+}
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+            [[YMEventCenter single] listenToEvent:YM_NOTIFY_EVENT_CHART_DATA_CHANGED delegate: self];
+    }
+    return self;
+}
+
+- (void)onYMEventHappen: (NSString*)key withObject: (id)obj
+{
+    if ([key compare: YM_NOTIFY_EVENT_CHART_DATA_CHANGED] == NSOrderedSame)
+    {
+        // 处理简报删除的操作
+        [_czaChartView removeFromSuperview];
+        _czaChartView = nil;
+        _initCellView = NO;
+
+    }
+}
+
+-(void)initView{
+
+    if (!_initCellView)
+    {
+        UIView *bgView = [super shadowCellView];
+//        bgView.left = self.width*0.016;
+//        bgView.width = self.width - bgView.left*2;
+        bgView.backgroundColor = [UIColor whiteColor];
+        bgView.top = 8;
+        bgView.left = 0;
+        bgView.width = self.width - bgView.left*2;
+        if(!_topImageView){
+//            [bgView addSubview:self.topImageView];
+        }
+        if (!_topLabel) {
+            [bgView addSubview:self.topLabel];
+        }
+        
+        if (!_topRighteLabel) {
+            [bgView addSubview:self.topRighteLabel];
+        }
+
+        if (!_czaChartView) {
+            [bgView addSubview:self.czaChartView];
+        }
+        NSMutableArray *arr = (NSMutableArray *)[[self.weightArr reverseObjectEnumerator] allObjects];
+//        if (arr.count > 7) {
+          [arr removeObjectsInRange:NSMakeRange(self.datas.trueCount, 7-self.datas.trueCount)];
+//        }
+        self.czaChartView.values =  arr;
+        
+        
+        if (!_reportBtn) {
+            [bgView addSubview:self.reportBtn];
+        }
+        
+        if (self.formetterDateArr.count == 0) {
+            CGRect frame = self.topLabel.frame;
+            frame.origin.x = [super shadowCellView].width * 0.06;
+            self.topLabel.frame = frame;
+            return;
+        }
+        
+        //日期不足7天，后面的日期错误（反转日期，把不足的日期干掉，再给label赋值空）
+        
+        NSMutableArray *dateArr = (NSMutableArray *)[[self.formetterDateArr reverseObjectEnumerator] allObjects];
+//        if (dateArr.count <= 7) {
+            [dateArr removeObjectsInRange:NSMakeRange(self.datas.trueCount, 7-self.datas.trueCount)];
+//        }
+        self.formetterDateArr =  dateArr;
+        int item = -1;
+        for (UILabel *label in self.labeArr) {
+            item++;
+            if (item < self.formetterDateArr.count) {
+                label.text = self.formetterDateArr[item];
+            }else{
+                label.text = @" ";
+            }
+        }
+   
+        
+        _initCellView = YES;
+    }
+}
+
+-(void)click{
+    
+    if ([_delegate respondsToSelector:@selector(clickDetailReport)]) {
+        [MobClick event:c_info_weighttrend];
+        [_delegate clickDetailReport];
+    }
+}
+
+-(UIButton *)reportBtn{
+    if (!_reportBtn) {
+        CGFloat origonX = [super shadowCellView].width * 0.035;
+         CGFloat h = 20;
+        _reportBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
+        _reportBtn.backgroundColor = RGB(37, 201, 151);
+        _reportBtn.layer.cornerRadius = 3.f;
+        [_reportBtn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+        [_reportBtn setTitle: NSLocalizedString(@"WCC_lookAtOnce", @"立即查看") forState:UIControlStateNormal];
+        _reportBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16]; //字体加粗
+        CGFloat height = self.shadowCellView.height;
+        _reportBtn.frame = CGRectMake(origonX,  self.czaChartView.bottom + h + (height - self.czaChartView.bottom - 45 - h)/2, self.czaChartView.frame.size.width, 45);
+        
+        //背景图
+        [_reportBtn setBackgroundImage: [UIImage imageWithColor: [UIColor commonViewCellPressBtn] andBordRect: CGRectMake(0, 0, _reportBtn.width, _reportBtn.height) andBordColor: [UIColor commonViewCellPressBtn] andCornerRadius: 3.f] forState:UIControlStateHighlighted];
+        [_reportBtn setBackgroundImage:[UIImage imageNamed:@"YM_CloseMessageWall_Button"] forState:UIControlStateNormal];
+        
+        //文字阴影
+        _reportBtn.titleLabel.textColor = [UIColor whiteColor];
+        _reportBtn.titleLabel.layer.shadowColor = [UIColor grayColor].CGColor;//shadowColor阴影颜色
+        _reportBtn.titleLabel.layer.shadowOffset = CGSizeMake(0,-1);//阴影偏移,x向右偏移4，y向下偏移4，默认(0, -3),这个跟shadowRadius配合使用
+        _reportBtn.titleLabel.layer.shadowOpacity = 0;//阴影透明度，默认0 //0.8
+        _reportBtn.titleLabel.layer.shadowRadius = 3;//阴影半径，默认3
+        
+        [[super shadowCellView] addSubview:_reportBtn];
+    }
+    return _reportBtn;
+}
+
+-(NSMutableArray *)labeArr{
+    if (!_labeArr) {
+        CGFloat origonX = 15;
+        CGFloat w = (self.czaChartView.frame.size.width-24)/7;
+        CGFloat h = 20;
+        _labeArr = [NSMutableArray array];
+        for (int i = 0; i<7; i++) {
+            UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(origonX + i*w+12, CGRectGetMaxY(self.czaChartView.frame)+6, w, h)];
+            dateLabel.textAlignment = NSTextAlignmentCenter;
+            dateLabel.font = [UIFont systemFontOfSize:14];
+            dateLabel.textColor = RGB(136, 136, 136);
+            dateLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:12];
+            [[super shadowCellView] addSubview:dateLabel];
+            [_labeArr addObject:dateLabel];
+        }
+    }
+    return _labeArr;
+}
+
+-(UILabel *)topLabel{
+    if (!_topLabel) {
+        _topLabel = [[UILabel alloc] initWithFrame:CGRectMake([super shadowCellView].width * 0.035, CGRectGetMaxY(self.topImageView.frame)-17, 160, 20)];
+        _topLabel.center = CGPointMake(_topLabel.width/2 + _topLabel.left, self.topImageView.center.y);
+        _topLabel.text = STR(@"WCC_weightChange");
+        _topLabel.font = [UIFont commonCellViewTitle];
+//        _topLabel.textColor = [UIColor colorWithRed:0.1961 green:0.1961 blue:0.1961 alpha:1.0];
+        _topLabel.textColor = RGB(50, 50, 50);
+    }
+    return _topLabel;
+}
+
+-(UILabel *)topRighteLabel{
+    if (!_topRighteLabel) {
+        NSString *style;
+        switch ([ReportDataService unit]) {// 1 千克 2 磅 3 斤
+            case 1:
+                style = STR(@"lb_str_kgUnit");
+                break;
+            case 2:
+                if ([XMTools getCurrentLanguage] == LangEN) {
+                    style = STR(@"lb_str_bangUnits");
+                }else {
+                    style = STR(@"lb_str_bangUnit");
+                }
+                break;
+            case 3:
+                style = STR(@"lb_str_jinUnit");
+                break;
+                
+            default:
+                break;
+        }
+        _topRighteLabel = [[UILabel alloc] initWithFrame:CGRectMake([super shadowCellView].frame.size.width-80-15, CGRectGetMaxY(self.topImageView.frame)-17, 80, 20)];
+        _topRighteLabel.textAlignment = NSTextAlignmentRight;
+        _topRighteLabel.textColor = [UIColor grayColor];
+        _topRighteLabel.font = [UIFont systemFontOfSize:12];
+        _topRighteLabel.text = [NSString stringWithFormat:STR(@"WCC_unit"),style];
+    
+    }
+    return _topRighteLabel;
+}
+
+
+-(UIImageView *)topImageView{
+    if (!_topImageView) {
+        _topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(COMMON_BOTH_ALIGN, 19, 16, 16)];
+        _topImageView.center = CGPointMake(_topImageView.left + _topImageView.width/2, _topImageView.height/2 + _topImageView.top);
+        _topImageView.image = [UIImage imageNamed:@"wallBriefReport"];
+    }
+    return _topImageView;
+}
+
+-(CZAChartView *)czaChartView{
+    if (!_czaChartView) {
+        CGFloat origonX = [super shadowCellView].width * 0.035;
+        _czaChartView = [[CZAChartView alloc] initWithFrame:CGRectMake(origonX,  CGRectGetMaxY(self.topImageView.frame)+15, [super shadowCellView].frame.size.width-origonX*2, 150)];
+        _czaChartView.curved = YES;
+    }
+    return _czaChartView;
+}
+
+-(NSMutableArray *)formetterDateArr{
+    if (!_formetterDateArr) {
+        _formetterDateArr = [NSMutableArray array];
+        for (NSString *date in self.datas.datevalues) {
+            NSString *momthDate  = [date  substringWithRange:NSMakeRange(5, 2)];
+            if([[momthDate substringToIndex:1] isEqualToString:@"0"]){
+                momthDate = [momthDate substringFromIndex:1];
+            }
+            NSString *dayDate  = [date  substringWithRange:NSMakeRange(8, 2)];
+            if([[dayDate substringToIndex:1] isEqualToString:@"0"]){
+                dayDate = [dayDate substringFromIndex:1];
+            }
+            NSString *day = [NSString stringWithFormat:@"%@.%@",momthDate,dayDate];
+            [_formetterDateArr addObject:day];
+        }
+    }
+    return _formetterDateArr;
+}
+- (void) removeFromSuperview
+{
+    [[YMEventCenter single] unbindEvent:YM_NOTIFY_EVENT_CHART_DATA_CHANGED delegate:self];
+    [super removeFromSuperview];
+}
+
+
+@end

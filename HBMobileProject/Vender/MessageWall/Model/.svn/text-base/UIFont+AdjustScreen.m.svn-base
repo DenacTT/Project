@@ -1,0 +1,23 @@
+//
+//  UIFont+AdjustScreen.m
+//  scale
+//
+//  Created by cza on 15/8/25.
+//  Copyright (c) 2015年 cza. All rights reserved.
+//
+
+#import "UIFont+AdjustScreen.h"
+
+@implementation UIFont (AdjustScreen)
+
++(UIFont *)fontWithFivePone:(NSInteger)fivePonezize sixPhone:(NSInteger)sixPhoneSize sixPlusPhone:(NSInteger)sixPlusPhoneSize{
+    if (UI_IS_IPHONE5 || UI_IS_IPHONE4) {
+        return [UIFont fontWithName:@"STHeitiSC-Light" size:fivePonezize];
+    }else if (UI_IS_IPHONE6){
+        return [UIFont fontWithName:@"STHeitiSC-Light" size:sixPhoneSize];
+    }else{
+        return [UIFont fontWithName:@"STHeitiSC-Light" size:sixPlusPhoneSize];
+    }
+}
+
+@end

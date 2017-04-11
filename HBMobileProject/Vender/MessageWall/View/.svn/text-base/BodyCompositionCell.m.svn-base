@@ -1,0 +1,203 @@
+//
+//  BodyCompositionCell.m
+//  scale
+//
+//  Created by solf on 15/10/27.
+//  Copyright © 2015年 solf. All rights reserved.
+//
+
+#define KRtFormat @"<font size=%zi color=black>%.1f</font><font size=%zi color=black>%@</font>"
+#define KRtString(A,B,C,D) [NSString stringWithFormat:KRtFormat,A,B,C,D]
+
+#import "BodyCompositionCell.h"
+#import "UIColor+Extend.h"
+#import "UICountingLabel.h"
+#import "UIFont+AdjustScreen.h"
+#import "RTLabel.h"
+#import "LYCustomView.h"
+#import "LoginConst.h"
+#import "Standard.h"
+#import "UIView+Plus.h"
+#import "WeightDB.h"
+#import "NSString+Extend.h"
+@interface BodyCompositionCell ()
+
+@property (nonatomic) BOOL frameSet;
+@property (nonatomic,strong)UserInfo * userInfo;
+@end
+
+@implementation BodyCompositionCell
+{
+    UIImageView * _iconImage;//icon
+    UILabel     * _labelStyle;//肌肉、bmi...
+    UILabel     * _labelPercent;//百分比
+    LYCustomView* _statusView;//标准、偏高...
+    LYCustomView* _lineView;//分割线
+    UIButton *    _MoreButton;//更多箭头
+}
+- (id) initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+//        [self layoutCellViews];
+    }
+    return self;
+}
+- (void)layoutCellViews
+{
+    self.height = 55;
+    //图片icon
+    if (nil == _iconImage) {
+        _iconImage = [[UIImageView alloc]init];
+        [self addSubview: _iconImage];
+        UIImage *image = [UIImage imageNamed: @"YM_MessageWall_BMIIcon"];
+        _iconImage.width = image.size.width;
+        _iconImage.height = image.size.height;
+        _iconImage.top = (self.height - _iconImage.height)/2;
+        _iconImage.left = 15.f;
+    }
+    
+    //标题项，肌肉、脂肪...
+    if (nil == _labelStyle) {
+        _labelStyle = [[UILabel alloc] initWithFrame: CGRectMake(_iconImage.right + 8.f, 0, 100, self.height)];
+        [self addSubview: _labelStyle];
+        _labelStyle.font = [UIFont systemFontOfSize: 14.f];
+        _labelStyle.textColor = RGB(102, 102, 102);
+    }
+    
+    //更多箭头
+    if (_MoreButton == nil) {
+        _MoreButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_MoreButton setImage:[UIImage imageNamed:@"YMMessageWall_Composition"] forState:UIControlStateNormal];
+        UIImage *image = [UIImage imageNamed:@"YMMessageWall_Composition"];
+        _MoreButton.width = image.size.width;
+        _MoreButton.height = image.size.height;
+        _MoreButton.center = CGPointMake(0, _iconImage.center.y);
+        _MoreButton.left = ScreenWidth -_MoreButton.width- 15; //self.width
+        [self addSubview:_MoreButton];
+    }
+    
+    //状态
+    if (nil == _statusView) {
+        _statusView = [[LYCustomView alloc] initStandardViewForRadius:3.f TitleColor: [UIColor whiteColor] Font: [UIFont systemFontOfSize: 12.f] TitleStr:self.mondel.comStand];//自适应宽度
+        //根据最长的标准文字长度,确定宽高 self.maxStandString
+         CGSize size = [self.mondel.comStand YMSizeWithFont: [UIFont systemFontOfSize:12]]; //self.maxStandString
+        _statusView.width = size.width+10;
+        _statusView.height = size.height;
+        _statusView.left = _MoreButton.left -7-_statusView.width;
+        _statusView.top = (self.height - _statusView.height)/2;
+        [self addSubview: _statusView];
+    }
+    
+    //数值
+    if (nil == _labelPercent) {
+        _labelPercent = [[UILabel alloc]initWithFrame:CGRectMake(_statusView.left- 12.f - 100, 0, 100, self.height)];
+        _labelPercent.font = [UIFont systemFontOfSize: 14.f];
+        _labelPercent.textColor = RGB(102, 102, 102);
+        _labelPercent.textAlignment = NSTextAlignmentRight;
+        [self addSubview: _labelPercent];
+    }
+    
+    //横线
+    if (nil == _lineView) {
+        _lineView = [[LYCustomView alloc]initLineViewWithWidth: ScreenWidth - _iconImage.left];//self.width
+        _lineView.top = self.height - _lineView.height;
+        _lineView.left = _iconImage.left;
+        [self addSubview: _lineView];
+    }
+    
+    //图片
+    [_iconImage setImage:[UIImage imageNamed:self.mondel.comImgStr]];
+    
+    //名称
+    [_labelStyle setText:[NSString stringWithFormat:@"%@",self.mondel.comTitle]];
+    
+    //标准
+//    [_statusView setTitle:[NSString stringWithFormat:@"%@",self.mondel.comStand]];
+    [_statusView setMaxTitle:[NSString stringWithFormat:@"%@",self.mondel.comStand]];
+    _statusView.backgroundColor = RGB(75, 214, 99);
+    
+    //数值
+        switch (self.mondel.compositionType)
+        {
+            case ComponentTypeOfBMI:
+            {
+                _labelPercent.text = [NSString stringWithFormat:@"%.1f",[self.mondel.comValue floatValue]];
+            }
+                break;
+            case ComponentTypeOfFat:
+            case ComponentTypeOfMuscle:
+            case ComponentTypeOfBone:
+            case ComponentTypeOfWater:
+            case ComponentTypeOfProtein:
+            {
+                if (self.mondel.comValue) {
+                    _labelPercent.text = [[NSString stringWithFormat:@"%.1f",[self.mondel.comValue floatValue]] stringByAppendingString:@"%"];
+                }else{
+                    _labelPercent.text = @"--";
+                    
+                }
+
+            }
+                break;
+            case ComponentTypeOfBMR:
+            case ComponentTypeOfVisFat:
+            {
+                if (self.mondel.comValue) {
+                    _labelPercent.text = [NSString stringWithFormat:@"%.0f",[self.mondel.comValue floatValue]];
+                }else{
+                    _labelPercent.text = @"--";
+                }
+            }
+                break;
+                
+            case ComponentTypeOfBodyAge:
+            {
+                if (self.mondel.comValue) {
+                    _labelPercent.text = [NSString stringWithFormat:@"%.0f",[self.mondel.comValue floatValue]];
+                }else{
+                    _labelPercent.text = @"--";
+                }
+            }
+                break;
+            default:
+                
+                break;
+        }
+    
+    //标准颜色
+        if (self.mondel.compositionType != ComponentTypeOfBodyAge) {
+            if (self.mondel.comIndex == 2) {
+                _statusView.backgroundColor = RGB(75, 214, 99);
+            }else{
+                _statusView.backgroundColor = RGB(255, 187, 24);
+            }
+        }else{
+            if (self.mondel.comIndex <= 2) {
+                _statusView.backgroundColor = RGB(75, 214, 99);
+            }else{
+                _statusView.backgroundColor = RGB(255, 187, 24);
+            }
+        }
+    
+    //1.英文下,不显示标准  2."--"的时候也不显示
+        if ([XMTools getCurrentLanguage] == LangEN || [self.mondel.comStand isEqualToString:@"--"]) {
+            [_statusView setHidden:YES];
+            _labelPercent.left = _MoreButton.left - 12.f - _labelPercent.width;
+        }else{
+            [_statusView setHidden:NO];
+            _labelPercent.left = _statusView.left - 12.f - _labelPercent.width;
+        }
+}
+-(void)setMaxStandString:(NSString *)maxStandString{
+    _maxStandString = maxStandString;
+}
+- (UserInfo *)userInfo
+{
+    if (nil == _userInfo) {
+        _userInfo = [[LoginConst sharedInstance] getLoginUserInfo];
+    }
+    return _userInfo;
+}
+@end

@@ -1,0 +1,10 @@
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@interface UIApplication(Extend)
+
++ (NSString*)buildVersion;
++ (void)setYMStatusBarStyle: (UIStatusBarStyle)style Animation:(BOOL)animate;
+
+@end

@@ -1,0 +1,81 @@
+//
+//  ComNoDataStateView.m
+//  scale
+//
+//  Created by solf on 16/5/10.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import "ComNoDataStateView.h"
+#import "UIColor+YYAdd.h"
+
+@interface ComNoDataStateView ()
+
+@property (nonatomic,strong) UIImageView *comImgView;
+
+@property (nonatomic,strong) UILabel *titleLabel;
+
+@property (nonatomic,strong) UILabel *comInfoLabel;
+
+@end
+
+@implementation ComNoDataStateView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initViews];
+    }
+    return self;
+}
+
+- (void)initViews
+{
+    _comImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    _comInfoLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    [self addSubview:_comImgView];
+    [self addSubview:_titleLabel];
+    [self addSubview:_comInfoLabel];
+}
+
+- (void)layoutViewsTitle:(NSString *)comTtile img:(NSString *)comImg andInfo:(NSString *)comInfo
+{
+    _comImgView.frame = CGRectMake((self.width - 66.f)/2.f, 40.f, 66.f, 66.f);
+    [_comImgView setImage:[UIImage imageNamed:comImg]];
+    
+    _titleLabel.frame = CGRectMake(0, _comImgView.bottom, self.width, 40.f);
+    _titleLabel.textColor = [UIColor colorWithHexString:@"#323232"];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.font = [UIFont systemFontOfSize:18.f];
+    _titleLabel.text = [NSString stringWithFormat:@"%@",comTtile];
+    
+    [_titleLabel sizeToFit];
+    _titleLabel.center = CGPointMake(self.width/2.f, _comImgView.bottom + 14.f + _titleLabel.height/2.f);
+    
+    _comInfoLabel.frame = CGRectMake(21.f, _titleLabel.bottom + 10.f, self.width - 42.f, 150.f);
+    _comInfoLabel.textColor = [UIColor colorWithHexString:@"#666666"];
+    _comInfoLabel.font = [UIFont systemFontOfSize:16.f];
+    
+//    _comInfoLabel.text = [NSString stringWithFormat:@"%@",comInfo];
+
+    
+    _comInfoLabel.numberOfLines = 0;
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:comInfo];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:3];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [comInfo length])];
+    _comInfoLabel.attributedText = attributedString;
+
+    [_comInfoLabel sizeToFit];
+
+}
+//- (void)layoutViewsTitle:(NSString *)comTtile img:(NSString *)comImg andInfo:(NSString *)comInfo andcomValue: (NSString *)comValue{
+//}
+
+@end

@@ -1,0 +1,22 @@
+//
+//  WallWalkCountCell.h
+//  scale
+//
+//  Created by yzz on 15/8/17.
+//  Copyright (c) 2015年 yzz. All rights reserved.
+//
+
+#import "YMMsgWallCellView.h"
+
+
+@protocol WallWalkCountCellDelegate <NSObject>
+
+-(void) showSelector;
+
+@end
+
+@interface WallWalkCountCell : YMMsgWallCellView
+
+@property(nonatomic,weak) id<WallWalkCountCellDelegate> deletage;
+
+@end

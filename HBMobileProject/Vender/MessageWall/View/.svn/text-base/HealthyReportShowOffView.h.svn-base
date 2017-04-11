@@ -1,0 +1,18 @@
+//
+//  HealthyReportShowOffView.h
+//  scale
+//
+//  Created by 叶威廷 on 15/11/9.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "HomeShareData.h"
+
+@interface HealthyReportShowOffView : UIView
+
+@property (nonatomic) HomeShareData *data;
+
+- (void)addSubView;
+
+@end

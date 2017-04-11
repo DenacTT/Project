@@ -1,0 +1,32 @@
+//
+//  RecommendedDaliyData.m
+//  scale
+//
+//  Created by 叶威廷 on 15/10/27.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "RecommendedDaliyData.h"
+#import "News.h"
+
+@implementation RecommendedDaliyData
+
+- (void)initLoadData
+{
+    self.newsData = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in [self getData]) {
+        News *news = [News objectWithKeyValues:dict];
+        [self.newsData addObject:news];
+    }
+}
+
+- (CGFloat)cellViewHeight
+{
+    if (0 == self.newsData.count) {
+        return 0;
+    }else{
+        return 325;
+    }
+}
+
+@end

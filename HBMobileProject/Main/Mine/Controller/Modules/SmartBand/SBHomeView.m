@@ -7,15 +7,16 @@
 //
 
 #import "SBHomeView.h"
-#import "SBStatusView.h"
+#import "SBHeadStatusView.h"
 #import "SBHomeHeadView.h"
 #import "SBHomeViewCell.h"
 #import "SBHomeModel.h"
+#import "HomePopViewController.h"
 
 static NSString * const SBHomeViewCellID = @"SBHomeViewCellID";
 static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
 
-@interface SBHomeView () <UICollectionViewDelegateFlowLayout,UICollectionViewDataSource, UICollectionViewDelegate>
+@interface SBHomeView () <UICollectionViewDelegateFlowLayout,UICollectionViewDataSource, UICollectionViewDelegate, SBHeadStatusViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *sbCollectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
@@ -25,13 +26,17 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
 @property (nonatomic, strong) UIView *horLine;//水平分割线
 @property (nonatomic, strong) UIView *verLine;//垂直分割线
 @property (nonatomic, strong) UIView *bgView; //背景占位图
-@property (nonatomic, strong) SBStatusView *statusView;//顶部状态栏
+@property (nonatomic, strong) SBHeadStatusView *statusView;//顶部状态栏
+
+@property (nonatomic, assign) CGFloat lastOffset; //记录最后一次下拉的偏移量
+@property (nonatomic, assign) BOOL isPull;  //是否已经开始下拉
+@property (nonatomic, assign) BOOL isStart; //是否已经开启同步
 
 @end
 
 @implementation SBHomeView
 
-#pragma mark - LifeCycle
+
 - (void)viewDidLoad {
     [self.view addSubview:self.bgView];
     
@@ -44,17 +49,8 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
     [self.sbCollectionView addSubview:self.verLine];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-}
+#pragma mark - Previate Method
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
 
 #pragma mark - UICollectionViewDelegate,UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -87,10 +83,14 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
     // RootNavigationPushController(vc)
 }
 
-#pragma mark - ScrollViewDidScroll
+#pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
+    // 处理导航栏渐变控制
     CGFloat offsetY = scrollView.contentOffset.y;
+    CGFloat offset  = offsetY-self.lastOffset;
+    self.lastOffset = offsetY;
+    
     if (offsetY <=0) {
         self.topLine.hidden = YES;
         self.sbCollectionView.backgroundColor = RGBA(50, 147, 230, 1.f);
@@ -104,6 +104,76 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
             scrollView.contentOffset = CGPointMake(0, 260); //往上,限制偏移量 280
         }
     }
+    
+    // 手环数据同步行为控制
+    if (offset < 0 && offsetY < 0 && offsetY > -50) {
+        self.isStart = NO;
+        [self.statusView.synText setText:PullToSync];
+        if (!self.isPull) {
+            [self.statusView setSynStatus:SynStatusSynStart];
+            self.isPull = YES;
+            NSLog(@"pull -> offsetY:%.2f , offset:%.2f", offsetY, offset);
+        }
+    }
+    if (offset < 0 && offsetY < 0 && offsetY < -50 && offsetY > -100) {
+        self.isPull = YES;
+        [self.statusView.synText setText:ReleaseToSync];
+        NSLog(@"Release -> offsetY:%.2f , offset:%.2f", offsetY, offset);
+    }
+    if (offset > 0 && offsetY < 0 && offsetY < -45 && offsetY > -100) {//下半段上移
+        if (!self.isStart) {
+            [self.statusView setSynStatus:SynStatusSyning];
+            self.isStart = YES;
+            self.isPull = NO;
+            NSLog(@"上移,同步中.. %.2f", offset);
+        }
+    }
+    if (offsetY == 0) {
+        NSLog(@"top");
+    }
+}
+
+#pragma mark - SBHeadStatusViewDelegate
+// 头像点击
+- (void)userBtnClicked {
+    HomePopViewController *popVC = [[HomePopViewController alloc] init];
+    UIImage *image = [self toUIImage];
+    popVC.bgImage  = image;
+    [self.navigationController presentViewController:popVC animated:NO completion:nil];
+}
+
+// 跑步模式
+- (void)runBtnClicked {
+    
+    
+}
+
+#pragma mark - LifeCycle
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"start" object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"start" object:nil];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Getter
@@ -146,10 +216,11 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
     return _navView;
 }
 
-- (SBStatusView *)statusView {
+- (SBHeadStatusView *)statusView {
     if (!_statusView) {
-        _statusView = [[SBStatusView alloc] initWithFrame:self.navView.bounds];
+        _statusView = [[SBHeadStatusView alloc] initWithFrame:self.navView.bounds];
         _statusView.backgroundColor = [UIColor clearColor];
+        _statusView.delegate = self;
     }
     return _statusView;
 }
@@ -188,6 +259,15 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
         _verLine.backgroundColor = RGB(227, 227, 227);
     }
     return _verLine;
+}
+
+- (UIImage*)toUIImage {
+    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, 0.0);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *retImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return retImage;
 }
 
 @end

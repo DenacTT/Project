@@ -1,0 +1,27 @@
+//
+//  News.h
+//  scale
+//
+//  Created by 叶威廷 on 15/8/20.
+//  Copyright (c) 2015年 叶威廷. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+
+@interface News : NSObject
+@property (nonatomic)      NSInteger    newsId;
+@property (nonatomic,copy) NSString     *newsImgUrl; // 小图
+@property (nonatomic,copy) NSString     *newsUrl;
+@property (nonatomic,copy) NSString     *newsTitle;
+@property (nonatomic)      NSInteger     newsreadNum;
+@property (nonatomic,copy) NSString     *shortDesc;
+@property (nonatomic,copy) NSString     *newsBigImgUrl; // 大图
+@property (nonatomic,copy) NSString     *squareImgUrl; // 方图
+
+@property (nonatomic) NSInteger clickNumber;
+
+
+
+
+@end

@@ -1,0 +1,21 @@
+//
+//  ComTopBarTools.h
+//  scale
+//
+//  Created by solf on 16/5/9.
+//  Copyright © 2016年 solf. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+typedef void(^selectItem)(NSInteger item);
+
+@interface ComTopBarTools : UIView
+
+@property (nonatomic,copy) selectItem selectBlock;
+
+- (id)initWithFrame:(CGRect)frame items:(NSArray*)items selectedIndex:(NSInteger)selectedIndex select:(selectItem)block;
+
+- (void)scrollToIndex:(NSInteger)index;
+
+@end

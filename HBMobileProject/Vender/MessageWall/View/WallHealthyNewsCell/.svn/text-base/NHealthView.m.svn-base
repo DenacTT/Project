@@ -1,0 +1,242 @@
+//
+//  NHealthView.m
+//  HealthConsulting
+//
+//  Created by 叶威廷 on 15/8/13.
+//  Copyright (c) 2015年 叶威廷. All rights reserved.
+//
+
+#import "NHealthView.h"
+#import "NHealthContentView.h"
+#import "HealthyNewsRowData.h"
+#import "News.h"
+#import "NSThread+Extend.h"
+#import "UIImage+Scale.h"
+#import "UIImageView+WebCache.h"
+#import "YMUtil.h"
+
+
+@interface NHealthView()<NHealthContentViewDelegate>
+
+
+@property(strong, nonatomic) UILabel *line;
+
+@property (nonatomic) NHealthContentView *lastContentView;
+
+@property (nonatomic) CGFloat padding;
+
+@property (nonatomic) CGFloat space;
+
+@end
+
+@implementation NHealthView
+
+
+
+- (void)addHealthNewsSubview
+{
+    if (self.news.count < 3) {
+        return;
+    }
+    self.padding = 32 / 2.0;
+//    [self addSubview:self.titleIcon];
+//    [self addSubview:self.titleLabel];
+//    CGFloat space = CGRectGetMaxY(self.titleIcon.frame);
+    self.space = 16;
+    
+    int nMaxNews = [self.news count] > 3? 3:(int)[self.news count];
+    
+    CGFloat commonWidth = self.width * 0.035;
+    for (int i = 0; i < nMaxNews; i++) {
+//        NHealthContentView *contentView = [[NHealthContentView alloc] initWithFrame:CGRectMake(self.titleIcon.frame.origin.x, space + COMMON_BOTH_ALIGN, self.frame.size.width - 30, 90)];
+        NHealthContentView *contentView = [[NHealthContentView alloc] initWithFrame:CGRectMake(commonWidth, self.space, self.frame.size.width - commonWidth*2, 64)];
+        
+        News *news = self.news[i];
+        news.clickNumber = i+1;
+        contentView.text.text = news.newsTitle;
+
+        // 两条线的位置
+        if (nMaxNews == 3) {
+            if (1 == i || 2 == i) {
+                UILabel *lineOne = [[UILabel alloc] initWithFrame:CGRectMake(commonWidth, self.space - 11, contentView.width, 1)];
+                lineOne.backgroundColor = [UIColor commonViewLine];
+                [self addSubview:lineOne];
+            }
+        }
+        
+        contentView.delegate = self;
+        contentView.news = news;
+        
+        [contentView.imgView sd_setImageWithURL:[NSURL URLWithString:news.newsImgUrl] placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"] options:SDWebImageRetryFailed | SDWebImageContinueInBackground | SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+            if (image == nil) {
+                
+                contentView.imgView.image = [UIImage imageNamed:@"HealthDefaultNew"];
+            }else {
+                /*
+                if (UI_IS_IPHONE4||UI_IS_IPHONE5) {
+                    float width = [XMTools getAutoNumberWithIphone6Number:image.size.width];
+                    float cutWidth = image.size.width-width;
+                    UIImage *newImg = [contentView.imgView.image getSubImage:CGRectMake(cutWidth/2, 0, width, image.size.height)];
+                    
+                    contentView.imgView.image = newImg;
+                }
+                 */
+                contentView.imgView.image = [image getSquareImage];
+            }
+            
+        }];
+        /*
+        [NSThread runInBackground:^{
+            NSString *str = news.newsImgUrl;
+            NSURL *url = [NSURL URLWithString:str];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            [NSThread runInMain:^{
+                UIImage *img = [UIImage imageWithData:data];
+                if (img == nil) {
+                    img = [UIImage imageNamed:@"HealthDefaultNew"];
+                }
+                contentView.imgView.image = img;
+                if (UI_IS_IPHONE4||UI_IS_IPHONE5) {
+                    
+                    float width = [XMTools getAutoNumberWithIphone6Number:img.size.width];
+                    float cutWidth = img.size.width-width;
+                    UIImage *newImg = [contentView.imgView.image getSubImage:CGRectMake(cutWidth/2, 0, width, img.size.height)];
+                    
+                    contentView.imgView.image = newImg;
+                }
+            }];
+        }];
+         */
+        
+        contentView.watchOut.text = [NSString stringWithFormat:STR(@"NHV_readPerson"),(long)news.newsreadNum];
+        [contentView addSubview];
+        [self addSubview:contentView];
+        self.space += contentView.frame.size.height + 21;
+        self.lastContentView = contentView;
+
+    }
+    
+    self.checkMore = nil;
+//    [self addSubview:self.checkMore];
+//    [self addSubview:self.line];
+}
+
+
+-(void)addHotNewsSubview
+{
+    
+    int nMaxNews = [self.news count] > 2? 2:(int)[self.news count];
+    CGFloat space = 0;
+    
+    for (int i = 0; i < nMaxNews; i++) {
+        
+        NHealthContentView *contentView = [[NHealthContentView alloc] initWithFrame:CGRectMake(0, space, self.frame.size.width, 155)];
+        
+        [contentView.layer setCornerRadius: 3.0f];
+        contentView.layer.borderColor = [[UIColor commonViewCellShadow] CGColor];
+        contentView.layer.borderWidth = 1;
+        contentView.backgroundColor = [UIColor whiteColor];
+        contentView.clipsToBounds = YES;
+        
+        News *news = self.news[i];
+//        news.clickNumber =i+1;
+        contentView.news = news;
+        contentView.text.text = news.newsTitle;
+        contentView.backgroundColor = [UIColor whiteColor];
+       
+        contentView.delegate = self;
+        contentView.imgView.image = [UIImage imageNamed: @"HealthDefaultNew"];
+        [contentView.imgView sd_setImageWithURL:[NSURL URLWithString:news.newsImgUrl] placeholderImage:[UIImage imageNamed: @"HealthDefaultNew"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+            if (image == nil) {
+                
+                contentView.imgView.image = [UIImage imageNamed:@"HealthDefaultNew"];
+                
+            }else {
+                
+                if (UI_IS_IPHONE4||UI_IS_IPHONE5) {
+                    float width = [XMTools getAutoNumberWithIphone6Number:image.size.width];
+                    float cutWidth = image.size.width-width;
+                    UIImage *newImg = [contentView.imgView.image getSubImage:CGRectMake(cutWidth/2, 0, width, image.size.height)];
+                    
+                    contentView.imgView.image = newImg;
+                }
+            }
+        }];
+        contentView.watchOut.text = [NSString stringWithFormat:STR(@"NHV_readPerson"),(long)news.newsreadNum];
+        
+        [contentView addHotNewsSubview];
+        [self addSubview:contentView];
+        
+        space += contentView.frame.size.height + 10;
+    }
+}
+
+
+- (void)contentCheckNow:(News*)news
+{
+    [self.delegate checkNow:news];
+}
+
+-(CGFloat)padding
+{
+    return 15;
+}
+
+- (UIImageView *)titleIcon
+{
+    if (_titleIcon == nil) {
+        _titleIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wallNews"]];
+        _titleIcon.frame = CGRectMake(COMMON_BOTH_ALIGN, 16, 16, 16);
+        _titleIcon.center = CGPointMake(_titleIcon.width/2 + _titleIcon.left, _titleIcon.height/2 + _titleIcon.top);
+    }
+    return _titleIcon;
+}
+
+- (UILabel *)titleLabel
+{
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.titleIcon.frame) + [XMTools getAutoNumberWithIphone6Number:6], self.titleIcon.frame.origin.y, 100, 14)];
+        _titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleLabel.center = CGPointMake(_titleLabel.width/2 + _titleLabel.left, self.titleIcon.center.y);
+        _titleLabel.textColor = [UIColor commonTitleColor];
+        _titleLabel.text = [self strTtitle];
+        
+    }
+    return _titleLabel;
+}
+
+- (UIButton *)checkMore
+{
+    if (_checkMore == nil) {
+        _checkMore = [UIButton buttonWithType: UIButtonTypeCustom];
+        _checkMore.frame = CGRectMake(1, self.lastContentView.frame.size.height + self.lastContentView.frame.origin.y + 15, self.frame.size.width - 1, self.height - (self.lastContentView.frame.size.height + self.lastContentView.frame.origin.y + 15));
+        _checkMore.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_checkMore setTitle:STR(@"NHV_lookMore") forState:UIControlStateNormal];
+        [_checkMore setTitleColor:[UIColor colorWithRed: 0.1451 green: 0.7882 blue: 0.5922 alpha: 1.0] forState:UIControlStateNormal];
+        [_checkMore setBackgroundImage: [UIImage imageWithColor: [UIColor commonViewPressBg] andBordRect: CGRectMake(0, 0, _checkMore.width, _checkMore.height) andBordColor: [UIColor commonViewPressBg] andCornerRadius: 0.f] forState:UIControlStateHighlighted];
+        [_checkMore addTarget:self action:@selector(loadMore) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _checkMore;
+}
+
+- (void)loadMore
+{
+    [self.delegate checkMore];
+}
+
+- (UILabel *)line
+{
+    if (_line == nil) {
+        _line = [[UILabel alloc] init];
+        _line.frame = CGRectMake(self.titleIcon.frame.origin.x, self.checkMore.frame.origin.y, self.frame.size.width - 30, 1.0);
+        _line.backgroundColor = [UIColor commonViewLine];
+
+    }
+    return _line;
+}
+
+
+@end

@@ -1,0 +1,15 @@
+//
+//  UIFont+AdjustScreen.h
+//  scale
+//
+//  Created by cza on 15/8/25.
+//  Copyright (c) 2015年 cza. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIFont (AdjustScreen)
+
++(UIFont *)fontWithFivePone:(NSInteger)fivePonezize sixPhone:(NSInteger)sixPhoneSize sixPlusPhone:(NSInteger)sixPlusPhoneSize;
+
+@end

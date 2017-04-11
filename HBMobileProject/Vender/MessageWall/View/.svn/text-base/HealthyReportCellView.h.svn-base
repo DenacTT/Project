@@ -1,0 +1,13 @@
+//
+//  HealthyReportCellView.h
+//  scale
+//
+//  Created by KiraSu on 15/8/18.
+//  Copyright (c) 2015年 KiraSu. All rights reserved.
+//
+
+#import "YMMsgWallCellView.h"
+
+@interface HealthyReportCellView : YMMsgWallCellView
+
+@end

@@ -1,0 +1,24 @@
+//
+//  ThreeRowHotNewsCell.h
+//  scale
+//
+//  Created by 叶威廷 on 15/11/6.
+//  Copyright © 2015年 叶威廷. All rights reserved.
+//
+
+#import "YMMsgWallCellView.h"
+#import "MsgWallDef.h"
+
+
+@protocol ThreeRowHotNewsDelegte <NSObject>
+
+@optional
+- (void)click:(News *)news;
+- (void)click:(NSString*) url andTitle:(NSString*)title;
+
+@end
+@interface ThreeRowHotNewsCell : YMMsgWallCellView
+
+@property (nonatomic, weak) id<ThreeRowHotNewsDelegte> delegate;
+
+@end

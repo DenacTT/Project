@@ -1,0 +1,182 @@
+//
+//  MainComponentViewController.m
+//  scale
+//
+//  Created by Vincent on 16/11/17.
+//  Copyright © 2016年 Vincent. All rights reserved.
+//
+
+#import "MainComponentViewController.h"
+#import "MainComponentView.h"
+#import "YMTopbar.h"
+#import "ComTopBarTools.h"
+#import "ComDetailsView.h"
+#import "ComponentAdapter.h"
+#import "WallNavView.h"
+@interface MainComponentViewController ()<UIScrollViewDelegate,wallMessageNavDelegate>
+
+@property (nonatomic,strong) MainComponentView *mainComponentView;
+
+@property (nonatomic,strong) ComTopBarTools *topBarTool; //头部类型条
+
+@property (nonatomic,strong) ComponentAdapter *dataAdapter;
+
+@property (nonatomic,strong) WallNavView *topBar;
+
+@property (nonatomic,strong) UIScrollView *comScrollView;
+
+@property (nonatomic,strong) NSMutableArray *comViewArr;
+
+@property (nonatomic) NSInteger currentIndex;
+@end
+
+@implementation MainComponentViewController
+
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.dataAdapter = [[ComponentAdapter alloc] init];
+        [self initViews];
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+//    self.view.backgroundColor = [UIColor clearColor];
+//    _mainComponentView = [[MainComponentView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+//    [self.view addSubview:_mainComponentView];
+
+}
+-(void) initViews{
+
+    _topBar = [[WallNavView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 64)];
+    _topBar.wallNavDelegate = self;
+    [_topBar setNavWithTitle:NSLocalizedString(@"lb_str_componentNtroduced", @"成分介绍") closeEnable:NO backEnable:YES];
+    [self.view addSubview:_topBar];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    _topBarTool = [[ComTopBarTools alloc] initWithFrame:CGRectMake(0, _topBar.bottom, ScreenWidth, 44.f) items:self.dataAdapter.itemTitle selectedIndex:0 select:^(NSInteger item) {
+        NSLog(@"选中%zi",item);
+        
+        [weakSelf scrollToIndex:item];
+    }];
+    
+    _comScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, _topBarTool.bottom, ScreenWidth, ScreenHeight - _topBarTool.height - _topBar.height)];
+    _comScrollView.delegate = self;
+    _comScrollView.scrollsToTop = NO;
+    _comScrollView.alwaysBounceHorizontal = YES;
+    _comScrollView.pagingEnabled = YES;
+    _comScrollView.showsHorizontalScrollIndicator = NO;
+    _comScrollView.backgroundColor = [UIColor colorWithHexString:@"#f3f3f7"];
+    [_comScrollView setContentSize:CGSizeMake(ScreenWidth * [self.dataAdapter.itemTitle count], _comScrollView.height)];
+    
+    [self.view addSubview:_topBar];
+    [self.view addSubview:_topBarTool];
+    [self.view addSubview:_comScrollView];
+}
+- (void)initDatas
+{
+    NSInteger count = [self.dataAdapter itemCount];
+    
+    if (!_comViewArr) {
+        _comViewArr = [NSMutableArray array];
+    }else
+    {
+        [_comViewArr removeAllObjects];
+        for (UIView *view in _comScrollView.subviews)
+        {
+            [view removeFromSuperview];
+        }
+    }
+    
+    for (int i = 0; i < count; i++)
+    {
+        ComDetailsView *detailsComView = [[ComDetailsView alloc] initWithFrame:CGRectMake(ScreenWidth * i, 0, ScreenWidth, _comScrollView.height)];
+        detailsComView.tag = i;
+        [detailsComView layoutViewWithComModel:[self.dataAdapter getComDataWithIndex:i]];
+        [_comScrollView addSubview:detailsComView];
+        [_comViewArr addObject:detailsComView];
+    }
+    
+    [self scrollToIndex:_currentIndex];
+    [_topBarTool scrollToIndex:_currentIndex];
+}
+- (void) setScrollTo:(NSInteger)index{
+    
+    _currentIndex = index;
+    
+}
+- (void)scrollToIndex:(NSInteger)index
+{
+    if (index < [self.dataAdapter itemCount])
+    {
+        [_comScrollView setContentOffset:CGPointMake(index * ScreenWidth, _comScrollView.contentOffset.y) animated:YES];
+        
+        if (index <[_comViewArr count])
+        {
+            [(ComDetailsView *)[_comViewArr objectAtIndex:index] locationCursor];
+        }
+        
+    }
+}
+#pragma mark - UIScrollViewDelegate
+
+//根据目标offect 决定tool位置
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    NSInteger index = targetContentOffset->x / ScreenWidth;
+    
+    [_topBarTool scrollToIndex:index];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self initDatas];
+    [_mainComponentView viewWillAppear];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [_mainComponentView viewDidDisappear];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_mainComponentView viewWillDisappear];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [_mainComponentView viewDidDisappear];
+}
+- (void) wallNavBackAction
+{
+    //    [[YMNavigationViewManager single] pop];
+    RootNavigationPopController();
+    
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

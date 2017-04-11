@@ -1,0 +1,39 @@
+//
+//  UIImage+Scale.h
+//  scale
+//
+//  Created by 叶威廷 on 15/8/21.
+//  Copyright (c) 2015年 叶威廷. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIImage (Scale)
+
+//截取部分图像
+-(UIImage*)getSubImage:(CGRect)rect;
+
+//等比例缩放
+-(UIImage*)scaleToSize:(CGSize)size;
+
+
+/**
+ *  @author George, 15-11-04 20:11:06
+ *
+ *  @brief  截取图片中间部分
+ *
+ *  @param rect         UIImageView控件的frame
+ *  @param isNetWorkImg 是否网络图片 用于区分2x
+ *
+ *  @return 处理好的UIImage对象
+ */
+-(UIImage*) getCenterImageWithUIRect:(CGRect)rect andIsNetWorkImg:(BOOL)isNetWorkImg;
+
+
+-(UIImage*) getSquareImage;
+
+
+
+
+- (UIImage *)getSubImageWithNum:(NSInteger)num andMultiple:(NSInteger)multiple;
+@end
