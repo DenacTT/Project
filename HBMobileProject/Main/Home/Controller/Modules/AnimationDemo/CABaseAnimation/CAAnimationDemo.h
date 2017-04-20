@@ -1,5 +1,5 @@
 //
-//  CABaseAnimationDemo.h
+//  CAAnimationDemo.h
 //  HBMobileProject
 //
 //  Created by HarbingWang on 17/4/1.
@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface CABaseAnimationDemo : BaseViewController
+@interface CAAnimationDemo : BaseViewController
 
 @end

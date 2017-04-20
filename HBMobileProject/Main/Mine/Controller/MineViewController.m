@@ -44,9 +44,8 @@ static NSString * const TableViewCellID = @"TableViewCellID";
     
     [self addCell:@"TableView01" className:@"MultiViewController"];
     [self addCell:@"TableView02" className:@"BBSListViewController"];
-    [self addCell:@"内置商城" className:@"StroeMainViewController"];
-    
-//    [self addCell:@"Click Cell Expend" className:@"ExtensibleCellViewController"];
+//    [self addCell:@"内置商城" className:@"StroeMainViewController"];
+    [self addCell:@"字符串的处理" className:@"StringOperaterController"];
 }
 
 - (void)addCell:(NSString *)cellTitle className:(NSString *)className

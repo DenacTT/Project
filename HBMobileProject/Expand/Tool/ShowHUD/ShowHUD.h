@@ -10,11 +10,10 @@
 #import "MBProgressHUD.h"
 @class ShowHUD;
 
-// 定义block
 typedef void (^ConfigShowHUDBlock)(ShowHUD *config);
 typedef UIView *(^ConfigShowHUDCustomViewBlock)();
 
-// 定义枚举值
+/// 方向
 typedef enum {
     Fade    = MBProgressHUDAnimationFade,
     Zoom    = MBProgressHUDAnimationZoom,

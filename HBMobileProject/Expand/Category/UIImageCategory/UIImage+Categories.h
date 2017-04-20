@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-/*
- *  水印方向
- */
+/// 图片方向
 typedef enum {
     
     //左上

@@ -127,7 +127,6 @@
     if (!_imageView) {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.bounds)-90/2, 27, 90, 90)];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
-//        _imageView.backgroundColor = RGBA(64, 159, 232, 0.5);
     }
     return _imageView;
 }
@@ -194,6 +193,5 @@
     }
     return _weigProgs;
 }
-
 
 @end

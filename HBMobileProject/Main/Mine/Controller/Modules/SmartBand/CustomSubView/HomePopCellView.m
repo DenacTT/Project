@@ -40,7 +40,12 @@
 }
 
 #pragma mark - Setter
-
+- (void)setModel:(Member *)model {
+    _model = model;
+    if (model) {
+        self.userName.text = model.name;
+    }
+}
 
 #pragma mark - Getter
 - (UIView *)selectView {
@@ -92,6 +97,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+    
     if (self.selected){
         
         self.selectView.alpha = 1.f;

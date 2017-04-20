@@ -51,16 +51,43 @@
      UIImagePickerControllerOriginalImage = "<UIImage: 0x174289b00> size {750, 1334} orientation 0 scale 1.000000";
      UIImagePickerControllerReferenceURL = "assets-library://asset/asset.PNG?id=62F615A2-3650-4334-8F77-42375A7AE4F7&ext=PNG";
      */
-    NSString *urlStr = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
-    [self getExifInfoWithImageData:[NSData dataWithContentsOfFile:urlStr]];
+    
+    /*
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];;
+    NSData *data;
+    if (UIImagePNGRepresentation(image) == nil) {
+        data = UIImageJPEGRepresentation(image, 1);
+    } else {
+        data = UIImagePNGRepresentation(image);
+    }
+    [self getExifInfoWithImageData:data];
+     */
+    
+    NSString *url = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
+    NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:@"YourPic" withExtension:@""];
+//    [self getExifInfoWithImageUrl:url];
 }
 
+// 方法1
 - (NSMutableDictionary *)getExifInfoWithImageData:(NSData *)imageData{
     CGImageSourceRef cImageSource = CGImageSourceCreateWithData((__bridge CFDataRef)imageData, NULL);
     NSDictionary *dict =  (NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(cImageSource, 0, NULL));
     NSMutableDictionary *dictInfo = [NSMutableDictionary dictionaryWithDictionary:dict];
     NSLog(@"ExifInfo: %@", dictInfo);
+    
     return dictInfo;
 }
+
+// 方法2
+- (void)getExifInfoWithImageUrl:(NSURL *)fileUrl {
+    
+    CGImageSourceRef imageSource = CGImageSourceCreateWithURL((CFURLRef)fileUrl, NULL);
+    CFDictionaryRef imageInfo = CGImageSourceCopyPropertiesAtIndex(imageSource, 0,NULL);
+    NSDictionary *exifDic = (__bridge NSDictionary *)CFDictionaryGetValue(imageInfo, kCGImagePropertyExifDictionary) ;
+    NSLog(@"All Exif Info:%@",imageInfo);
+    NSLog(@"EXIF:%@",exifDic);
+}
+
+// http://www.jianshu.com/p/a542751d4ba3#
 
 @end

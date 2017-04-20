@@ -14,7 +14,6 @@
     switch (self.cellType) {
         case SBHomeCellType_Exercise:
         {
-            // test
             self.mainText = @"725 Cals";
             self.subText  = @"3 Workouts";
             self.calsNum  = 725;

@@ -11,9 +11,9 @@
 
 @interface SBWeightInfoView ()
 
-@property (nonatomic, strong) CircleProgressView *weightProgress;  //体重进度
-@property (nonatomic, strong) UILabel *curWeight;       //当前体重
-@property (nonatomic, strong) UILabel *tarWeight;       //目标体重
+@property (nonatomic, strong) CircleProgressView *weightProgress; //体重进度
+@property (nonatomic, strong) UILabel *curWeight; //当前体重
+@property (nonatomic, strong) UILabel *tarWeight; //目标体重
 
 @end
 
@@ -21,8 +21,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-//        self.backgroundColor = [UIColor orangeColor];
-        
         [self addSubview:self.weightProgress];
         [self addSubview:self.curWeight];
         [self addSubview:self.tarWeight];

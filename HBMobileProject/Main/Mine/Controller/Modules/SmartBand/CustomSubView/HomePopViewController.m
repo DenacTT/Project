@@ -11,6 +11,7 @@
 #import "HomePopHeaderView.h"
 #import "HomePopCellView.h"
 #import "POP.h"
+#import "Member.h"
 
 #define CancelBtnCenter CGPointMake(8+32/2, 44/2+20);
 
@@ -20,12 +21,6 @@ typedef enum : NSUInteger {
     DeviceType_Band,
     DeviceType_Scale,
 } DeviceType;
-
-typedef enum : NSUInteger {
-    HomePopCellType_MainUser,
-    HomePopCellType_SubUser,
-    HomePopCellType_More,
-} HomePopCellType;
 
 @interface HomePopViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
@@ -38,6 +33,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UIButton    *cancelBtn;   //取消按钮
 @property (nonatomic, strong) UIView      *popView;     //弹出视图
 @property (nonatomic, strong) UITableView *tableView;   //设备,用户列表
+
+@property (nonatomic, strong) NSMutableArray *bandUsers;//手环用户
+@property (nonatomic, strong) NSMutableArray *scalUsers;//体脂称用户
 
 @end
 
@@ -55,6 +53,29 @@ typedef enum : NSUInteger {
     [self.popView addSubview:self.tableView];
     
     self.blurImgView.image = [self.bgImage blurImageWithRadius:5.f];
+    [self initData];
+}
+
+- (void)initData {
+    
+    Member *m1 = [[Member alloc] init];
+    m1.name = @"HarbingW";
+    m1.userType = MainUser;
+    
+    Member *m2 = [[Member alloc] init];
+    m2.name = @"66666";
+    m2.userType = SubUser;
+    
+    Member *m3 = [[Member alloc] init];
+    m3.name = @"00000";
+    m3.userType = SubUser;
+    
+    Member *m4 = [[Member alloc] init];
+    m4.name = @"22222";
+    m4.userType = SubUser;
+    
+    [self.bandUsers addObject:m1];
+    [self.scalUsers addObjectsFromArray:@[m1, m2, m3, m4]];
 }
 
 #pragma mark - LifeCycle
@@ -88,7 +109,7 @@ typedef enum : NSUInteger {
 - (void)viewDidDisappear:(BOOL)animated {}
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    //设置状态栏style 白字
+    // 设置状态栏style白字
     return UIStatusBarStyleLightContent;
 }
 
@@ -129,12 +150,31 @@ typedef enum : NSUInteger {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HomePopCellView *cell = [tableView dequeueReusableCellWithIdentifier:HomePopCellID forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        cell.model = self.bandUsers[indexPath.row];
+    } else {
+        cell.model = self.scalUsers[indexPath.row];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"%ld", indexPath.row);
+    Member *model = [[Member alloc] init];
+    if (indexPath.section==0) {
+        model = self.bandUsers[indexPath.row];
+    } else {
+        model = self.scalUsers[indexPath.row];
+        [self changeView:indexPath.row];
+    }
+    if (self.dismissBlock) {
+        self.dismissBlock(indexPath);
+    }
+    [self dismissPopView];
+}
+
+- (void)changeView:(NSInteger)row {
+    
 }
 
 #pragma mark - Private Methods
@@ -245,6 +285,20 @@ typedef enum : NSUInteger {
         [_tableView registerClass:[HomePopCellView class] forCellReuseIdentifier:HomePopCellID];
     }
     return _tableView;
+}
+
+- (NSMutableArray *)bandUsers {
+    if (!_bandUsers) {
+        _bandUsers = [NSMutableArray array];
+    }
+    return _bandUsers;
+}
+
+- (NSMutableArray *)scalUsers {
+    if (!_scalUsers) {
+        _scalUsers = [NSMutableArray array];
+    }
+    return _scalUsers;
 }
 
 @end

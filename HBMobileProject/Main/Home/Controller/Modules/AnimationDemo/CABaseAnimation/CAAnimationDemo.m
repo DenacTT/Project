@@ -1,14 +1,14 @@
 //
-//  CABaseAnimationDemo.m
+//  CAAnimationDemo.m
 //  HBMobileProject
 //
 //  Created by HarbingWang on 17/4/1.
 //  Copyright © 2017年 HarbingWang. All rights reserved.
 //
 
-#import "CABaseAnimationDemo.h"
+#import "CAAnimationDemo.h"
 
-@interface CABaseAnimationDemo ()
+@interface CAAnimationDemo ()
 
 @property (nonatomic, strong) UIImageView *imageView1;
 
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation CABaseAnimationDemo
+@implementation CAAnimationDemo
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,6 +68,7 @@
     animation2.repeatCount = 1;
     animation2.autoreverses = NO;
     animation2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    // animation.timingFunction = [CAMediaTimingFunction functionWithControlPoints:0.5:0:0.9:0.7];
     [self.imageView2.layer addAnimation:animation2 forKey:NSInvalidArgumentException];
     ********************/
     

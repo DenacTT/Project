@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Member.h"
 
 @interface HomePopCellView : UITableViewCell
+
+@property (nonatomic, strong) Member *model;
 
 @end

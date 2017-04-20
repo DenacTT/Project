@@ -8,7 +8,6 @@
 
 #import "SBHomeHeadView.h"
 #import "CircleProgressView.h"
-#import "CircleView.h"
 #import "SBHomeCalsView.h"
 #import "SBHomeImageView.h"
 #import "POP.h"
@@ -17,7 +16,7 @@
 
 @interface SBHomeHeadView ()<CAAnimationDelegate>
 
-//卡路里消耗进度
+//卡路里消耗进度 cals
 @property (nonatomic, strong) CircleProgressView *calsProgress;
 @property (nonatomic, strong) UIImageView *circleOne;//外围的小圈1
 @property (nonatomic, strong) UIImageView *circleTwo;//外围的小圈2
@@ -86,6 +85,27 @@
     [self.timeView addSubview:self.timeFinish];
     
     [self addSubview:self.startBtn];
+    
+    __block typeof(self) weakSelf = self;
+    [self.homeCalsView.totalCals addTapGesture:^{
+        [weakSelf headViewClickAction:SBHeadTypeCals];
+    }];
+    [self.stepView addTapGesture:^{
+        [weakSelf headViewClickAction:SBHeadTypeStep];
+    }];
+    [self.mileView addTapGesture:^{
+        [weakSelf headViewClickAction:SBHeadTypeMile];
+    }];
+    [self.timeView addTapGesture:^{
+        [weakSelf headViewClickAction:SBHeadTypeTime];
+    }];
+}
+
+- (void)headViewClickAction:(SBHeadType)type {
+    
+    if ([self.delegate respondsToSelector:@selector(headViewClicked:)]) {
+        [self.delegate headViewClicked:type];
+    }
 }
 
 - (void)setValue:(SBHomeModel *)model {

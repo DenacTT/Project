@@ -16,7 +16,7 @@
 static NSString * const SBHomeViewCellID = @"SBHomeViewCellID";
 static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
 
-@interface SBHomeView () <UICollectionViewDelegateFlowLayout,UICollectionViewDataSource, UICollectionViewDelegate, SBHeadStatusViewDelegate>
+@interface SBHomeView () <UICollectionViewDelegateFlowLayout,UICollectionViewDataSource, UICollectionViewDelegate, SBHeadStatusViewDelegate, SBHomeHeadViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *sbCollectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
@@ -35,7 +35,6 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
 @end
 
 @implementation SBHomeView
-
 
 - (void)viewDidLoad {
     [self.view addSubview:self.bgView];
@@ -57,9 +56,10 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
     return 4;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     SBHomeHeadView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SBHomeHeadViewID forIndexPath:indexPath];
+    headView.delegate = self;
+    
     SBHomeModel *model = [[SBHomeModel alloc] init];
     model.calsNum = 6789;
     model.stepNum = 12078;
@@ -137,13 +137,18 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
 // 头像点击
 - (void)userBtnClicked {
     HomePopViewController *popVC = [[HomePopViewController alloc] init];
-    UIImage *image = [self toUIImage];
+    UIImage *image = [[[self.view superview] superview] toUIImage];
     popVC.bgImage  = image;
     [self.navigationController presentViewController:popVC animated:NO completion:nil];
 }
 
 // 跑步模式
 - (void)runBtnClicked {
+    
+}
+
+#pragma mark - SBHomeHeadViewDelegate
+- (void)headViewClicked:(SBHeadType)type {
     
     
 }
@@ -259,15 +264,6 @@ static NSString * const SBHomeHeadViewID = @"SBHomeHeadViewID";
         _verLine.backgroundColor = RGB(227, 227, 227);
     }
     return _verLine;
-}
-
-- (UIImage*)toUIImage {
-    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, 0.0);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    
-    UIImage *retImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return retImage;
 }
 
 @end

@@ -9,10 +9,27 @@
 #import <UIKit/UIKit.h>
 #import "SBHomeModel.h"
 
+typedef enum : NSUInteger {
+    SBHeadTypeCals = 0, //卡路里
+    SBHeadTypeStep, //步数
+    SBHeadTypeMile, //里程
+    SBHeadTypeTime, //时长
+} SBHeadType;
+
+@protocol SBHomeHeadViewDelegate <NSObject>
+
+- (void)headViewClicked:(SBHeadType)type;
+
+@end
+
 @interface SBHomeHeadView : UICollectionReusableView
 
+@property (nonatomic, weak) id<SBHomeHeadViewDelegate>delegate;
+
+// 赋值
 - (void)setValue:(SBHomeModel *)model;
 
+// 开启两个大圆的动画
 - (void)startCircleAnimation;
 
 @end

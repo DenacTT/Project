@@ -1,4 +1,4 @@
-  动画类继承关系
+动画类类簇:
                                             |--- CASBaseAnimation
                 |--- CAPropertyAnimation ---|
                 |                           |--- CAKeyframeAnimation
@@ -85,24 +85,29 @@ kCAFillModeBoth        //这个是上面两个的合成.动画动画加入后开
 | transform.translation   | 默认沿x轴和y轴同时移动，设置值时应为NSSize或者CGSize
 |                         |
 | opacity                 | 透明度
-| margin                  | 
-| zPosition               | 
+| margin                  | 边距
 | backgroundColor         | 背景颜色
 | cornerRadius            | 圆角
-| borderWidth             | 
-| bounds                  | 
-| contents                | 
-| contentsRect            | 
-| cornerRadius            | 
-| frame                   | 
-| hidden                  | 
-| mask                    | 
-| masksToBounds           | 
-| position                | 
-| shadowColor             | 
-| shadowOffset            | 
-| shadowOpacity           | 
-| shadowRadius            | 
+| borderWidth             | 边框宽度
+| borderColor             | 边框颜色
+| bounds                  | 图层大小,若为UIView的根layer，默认为UIView的bounds；若为新创建layer，默认为CGRectZero
+| contents                | 图层显示内容,例如可以将图片作为图层内容显示
+| contentsRect            | 图层显示内容的大小和位置
+| cornerRadius            | 圆角半径
+| frame                   | 图层大小和位置.不支持隐式动画,所以 CALayer 中很少使用 frame,通常使用 bounds 和 position 代替
+| hidden                  | 是否隐藏
+| mask                    | 图层蒙版
+| masksToBounds           | 子图层是否剪切图层边界,默认为 NO
+| position                | 图层中心点位置,类似于 UIView 的 center
+| anchorPoint             | 锚点,和中心点重合的一个点,默认锚点为layer的中心点.锚点的描述是相对于x, y 位置比例而言的默认在图像中心点(0.5,0.5)的位置
+| shadowColor             | 阴影颜色
+| shadowOffset            | 阴影偏移量
+| shadowOpacity           | 阴影透明度,默认是0.
+| shadowRadius            | 阴影模糊半径
+| shadowPath              | 阴影的形状
+| sublayers               | 子图层
+| sublayerTransform       | 子图层形变
+| transform               | 图层形变
 
 > ##### 1. CAPropertyAnimation
 
@@ -364,3 +369,5 @@ http://www.cnblogs.com/WJJ-Dream/p/5817283.html
 http://www.tuicool.com/articles/nuYnYrj
 http://www.jianshu.com/p/9ce32ea5cb14
 http://www.jianshu.com/u/097ca75cf74a
+
+https://zsisme.gitbooks.io/ios-/content/chapter11/frame-timing.html

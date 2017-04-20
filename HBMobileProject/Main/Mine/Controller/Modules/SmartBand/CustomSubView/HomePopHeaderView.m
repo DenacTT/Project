@@ -25,7 +25,6 @@
 - (UIImageView *)productIcon {
     if (!_productIcon) {
         _productIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, CGRectGetHeight(self.bounds)/2-32/2, 32, 32)];
-//        _productIcon.image = Image(@"sb_home_scale");
     }
     return _productIcon;
 }
