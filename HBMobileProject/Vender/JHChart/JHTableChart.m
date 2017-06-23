@@ -132,7 +132,7 @@
             
             CGFloat wid = (hasSetColWidth?[_colWidthArr[i] floatValue]:_tableWidth / _colTitleArr.count);
             
-            NSLog(@"第%d列 宽度 为 %f\n",i,wid);
+            
             
             CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, _minHeightItems) textFont:14 aimString:_colTitleArr[i]];
             

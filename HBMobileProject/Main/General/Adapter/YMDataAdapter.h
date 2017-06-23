@@ -18,7 +18,7 @@ typedef void(^RequestFail)(id object);
 
 // 获取用户评论数据 
 + (void)requestCommentsDataSuccess:(RequestSuccess)success fail:(RequestFail)fail;
-
++ (void)requestDoctorListSuccess:(RequestSuccess)success fail:(RequestFail)fail;
 // 获取测试数据
 - (NSArray *)getTestData;
 

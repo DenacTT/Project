@@ -20,10 +20,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    AppDelegateHelper *appDelegateHelper = [[AppDelegateHelper alloc] init];
-    /* 配置趣拍 */
-    [appDelegateHelper qupaiSDKSetup];
-    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self setupLoginViewController];
@@ -74,7 +70,7 @@
         textAttributes = @{
                            UITextAttributeFont: [UIFont boldSystemFontOfSize:18],
                            UITextAttributeTextColor: [UIColor blackColor],
-                           UITextAttributeTextShadowColor: [UIColor clearColor],
+                           UITextAttributeTextShadowColor: [UIColor redColor],
                            UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetZero],
                            };
 #endif

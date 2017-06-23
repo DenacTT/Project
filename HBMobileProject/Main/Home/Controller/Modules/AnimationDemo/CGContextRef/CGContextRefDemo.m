@@ -17,12 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
     // http://blog.sina.com.cn/s/blog_9693f61a0101deko.html
     // http://www.devstore.cn/essay/essayInfo/116.html
     // 绘图（CGContext）  http://www.tuicool.com/articles/FfEBRf7
-    
+
 }
 
 

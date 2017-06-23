@@ -36,12 +36,7 @@ static NSString * const TableViewCellID = @"TableViewCellID";
     self.titleArr = @[].mutableCopy;
     self.classNameArr = @[].mutableCopy;
     
-//    [self addCell:@"GPUImage Test" className:@"GUPImageTestController"];
-//    [self addCell:@"GPUImage Video" className:@"GUPImageVideoController"];
-//    [self addCell:@"GPUImage Beauty" className:@"GPUImageBeautifyController"];
 //    [self addCell:@"RecordVideo Exapmle" className:@"MakeVideoTestController"];
-//    [self addCell:@"GPUImage VideoRecord" className:@"GPUVideoTestController"];
-    
     [self addCell:@"TableView01" className:@"MultiViewController"];
     [self addCell:@"TableView02" className:@"BBSListViewController"];
 //    [self addCell:@"内置商城" className:@"StroeMainViewController"];
@@ -60,7 +55,7 @@ static NSString * const TableViewCellID = @"TableViewCellID";
 {
     NSString *className = self.classNameArr[indexPath.row];
     Class class = NSClassFromString(className);
-    
+
     if (class) {
         UIViewController *vc = [class new];
         vc.title = _titleArr[indexPath.row];

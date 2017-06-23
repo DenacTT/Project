@@ -47,4 +47,11 @@ static NSString * const ReleaseToSync   = @"Release to Sync";
 - (void)setSynStatus:(SynStatus)synStatus;
 - (void)setSynProgress:(CGFloat)progress;
 
+/// 开启同步进行中的动画
+- (void)synIconCircleAnimation;
+/// 暂停动画.保存当前位置和时间
+- (void)pauseSynAnimation;
+/// 恢复动画
+- (void)resumeSynLayer;
+
 @end

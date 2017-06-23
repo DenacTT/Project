@@ -29,9 +29,9 @@ static NSString * const HomeStoreHeadViewID = @"HomeStoreHeadViewID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBarController.tabBar.backgroundColor = RGBA(255, 255, 255, 0.1);
-    self.titleLabel.text = STR(@"store.homeStore.title");
-    self.titleLabel.textColor = [UIColor whiteColor];
-    self.isUseBackBtn    = YES;
+    self.titleLabel.text = STR(@"商城");
+//    self.titleLabel.textColor = [UIColor whiteColor];
+//    self.isUseBackBtn    = YES;
     
     [self.view addSubview:self.collectionView];
 }

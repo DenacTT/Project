@@ -47,15 +47,17 @@
 @end
 
 @implementation SBHomeHeadView
-
+{
+    CABasicAnimation *circleAnimationOne;
+    CABasicAnimation *circleAnimationTwo;
+}
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         NSString *path = [[NSBundle mainBundle]pathForResource:@"YMHomeCenterView"ofType:@"png"];
         UIImage *image = [UIImage imageWithContentsOfFile:path];
         self.layer.contents = (id)image.CGImage;
-        
         [self setupSubView];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startCircleAnimation) name:@"start" object:nil];
+        [self startCircleAnimation];
     }
     return self;
 }
@@ -124,13 +126,18 @@
     [attStr addAttribute:NSFontAttributeName value:SBSpoonBoldFont range:NSMakeRange(0, timeStr.length)];
     [attStr addAttribute:NSFontAttributeName value:SBSpoonBoldFont range:NSMakeRange(timeStr.length, 2)];
     [self.mileNum setAttributedText:attStr];
+    
+//    CGFloat endValue = (float)(1+arc4random()%99)/100;
+//    NSLog(@"progress %.2f", endValue);
+//    [self.calsProgress setStrokeEnd:endValue animated:NO];
 }
 
 - (void)startAnimation {
     
     //test
     CGFloat endValue = (float)(1+arc4random()%99)/100;
-    [self.calsProgress setStrokeEnd:endValue animated:YES];
+    NSLog(@"progress %.2f", endValue);
+    [self.calsProgress setStrokeEnd:endValue animated:NO];
     [self.stepProgress setStrokeEnd:endValue animated:YES];
     [self.mileProgress setStrokeEnd:endValue/2 animated:YES];
     [self.timeProgress setStrokeEnd:endValue/3 animated:YES];
@@ -152,7 +159,26 @@
     [self.timeProgress setFinishedBlock:^{
         [weakSelf targetDidFinish:weakSelf.timeProgress];
     }];
+}
+
+//暂停动画.保存当前位置和时间
+- (void)pauseCircleAnimation {
+    CFTimeInterval pausedTimeOne = [self.circleOne.layer convertTime:CACurrentMediaTime() fromLayer:nil];
+    self.circleOne.layer.timeOffset = pausedTimeOne;
     
+    CFTimeInterval pausedTimeTwo = [self.circleTwo.layer convertTime:CACurrentMediaTime() fromLayer:nil];
+    self.circleTwo.layer.timeOffset = pausedTimeTwo;
+}
+
+//恢复动画
+- (void)resumeCircleLayer {
+    [self.circleOne.layer removeAllAnimations];
+    circleAnimationOne.timeOffset = [self.circleOne.layer convertTime:CACurrentMediaTime() fromLayer:nil] - self.circleOne.layer.timeOffset;
+    [self.circleOne.layer addAnimation:circleAnimationOne forKey:nil];
+    
+    [self.circleTwo.layer removeAllAnimations];
+    circleAnimationTwo.timeOffset = [self.circleTwo.layer convertTime:CACurrentMediaTime() fromLayer:nil] - self.circleTwo.layer.timeOffset;
+    [self.circleTwo.layer addAnimation:circleAnimationTwo forKey:nil];
 }
 
 - (void)targetDidFinish:(CircleProgressView *)view {
@@ -316,21 +342,23 @@
 
  #pragma mark - 外围两个圆的动画
 - (void)startCircleAnimation {
-    CABasicAnimation *circleOne = [CABasicAnimation animation];
-    circleOne = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    circleOne.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
-    circleOne.speed = 0.5f;
-    circleOne.duration = 3.f;
-    circleOne.repeatCount = MAXFLOAT;
-    [self.circleOne.layer addAnimation:circleOne forKey:@"circleOneAnimation"];
+    circleAnimationOne = [CABasicAnimation animation];
+    circleAnimationOne = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    circleAnimationOne.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
+    circleAnimationOne.speed = 0.5f;
+    circleAnimationOne.duration = 3.f;
+    circleAnimationOne.repeatCount = MAXFLOAT;
+    circleAnimationOne.removedOnCompletion = NO;
+    circleAnimationOne.fillMode = kCAFillModeForwards;
+    [self.circleOne.layer addAnimation:circleAnimationOne forKey:@"circleOneAnimation"];
     
-    CABasicAnimation *circleTwo = [CABasicAnimation animation];
-    circleTwo = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    circleTwo.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
-    circleTwo.speed = 1.f;
-    circleTwo.duration = 5.f;
-    circleTwo.repeatCount = MAXFLOAT;
-    [self.circleTwo.layer addAnimation:circleTwo forKey:@"circleTwoAnimation"];
+    circleAnimationTwo = [CABasicAnimation animation];
+    circleAnimationTwo = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    circleAnimationTwo.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
+    circleAnimationTwo.speed = 1.f;
+    circleAnimationTwo.duration = 5.f;
+    circleAnimationTwo.repeatCount = MAXFLOAT;
+    [self.circleTwo.layer addAnimation:circleAnimationTwo forKey:@"circleTwoAnimation"];
 }
 
 #pragma mark - Getter(卡路里消耗等子控件)

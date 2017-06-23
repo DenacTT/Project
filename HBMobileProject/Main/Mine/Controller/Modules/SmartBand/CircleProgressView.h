@@ -12,13 +12,11 @@
 
 // 背景层layer
 @property (nonatomic, strong) CAShapeLayer *bgCircleLayer;
-
 // 进度层layer
 @property (nonatomic, strong) CAShapeLayer *circleLayer;
 
 // 线条宽度,默认4.f
 @property (nonatomic, assign) CGFloat lineWidth;
-
 // 线条颜色,默认白色
 @property (nonatomic, strong) UIColor *lineColor;
 
@@ -27,34 +25,28 @@
 
 // 起始角度,默认12点钟位置开始,1.5*M_PI
 @property (nonatomic, assign) CGFloat startAngle;
-
 // 停止角度,默认12点钟方向结束,1.5*M_PI+2*M_PI
 @property (nonatomic, assign) CGFloat endAngle;
 
 
 // 是否需要底部背景
 @property (nonatomic, assign) BOOL isNeedBackground;
-
 // 背景线条宽度,默认2.f
 @property (nonatomic, assign) CGFloat bgLineWidth;
-
 // 背景线条颜色
 @property (nonatomic, strong) UIColor *bgLineColor;
 
 
 // 是否需要背景图片
 @property (nonatomic, assign) BOOL isNeedBgImg;
-
 // 背景图片name
 @property (nonatomic, strong) NSString *bgImgName;
-
 // 背景图片
 @property (nonatomic, strong) UIImageView  *bgImageView;
 
 
 // 是否需要动画完成后的回调 (需要 - setStrokeEnd:animated: 的 animated 设置为 YES)
 @property (nonatomic, assign) BOOL isNeedCallBack;
-
 // 动画完成回调 block
 @property (nonatomic, copy) void (^finishedBlock)();
 

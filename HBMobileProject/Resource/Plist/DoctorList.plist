@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>殷鸿雁</string>
+		<key>desc</key>
+		<string>河南大学第一附属医院 妇产科 </string>
+		<key>url</key>
+		<string>http://3g.zhuanjia.xywy.com/doctor-197546.htm</string>
+		<key>avatarName</key>
+		<string>yinhongyan</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>郭秀琴</string>
+		<key>desc</key>
+		<string>河南大学第一附属医院 妇产科 </string>
+		<key>url</key>
+		<string>http://3g.zhuanjia.xywy.com/doctor-112095.htm</string>
+		<key>avatarName</key>
+		<string>郭秀琴</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>邢允光</string>
+		<key>desc</key>
+		<string>河南大学第一附属医院 妇产科 </string>
+		<key>url</key>
+		<string>http://3g.zhuanjia.xywy.com/doctor-112081.htm</string>
+		<key>avatarName</key>
+		<string>doctor_b</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>高泽玲</string>
+		<key>desc</key>
+		<string>河南大学第一附属医院 妇产科 </string>
+		<key>url</key>
+		<string>http://3g.zhuanjia.xywy.com/doctor-112090.htm</string>
+		<key>avatarName</key>
+		<string>doctor_b</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>张淑芬</string>
+		<key>desc</key>
+		<string>河南大学第一附属医院 妇产科 </string>
+		<key>url</key>
+		<string>http://3g.zhuanjia.xywy.com/doctor-112109.htm</string>
+		<key>avatarName</key>
+		<string>张淑芬</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>张雅瑞</string>
+		<key>desc</key>
+		<string>河南大学第一附属医院 妇产科 </string>
+		<key>url</key>
+		<string>http://3g.zhuanjia.xywy.com/doctor-112123.htm</string>
+		<key>avatarName</key>
+		<string>doctor_b</string>
+	</dict>
+</array>
+</plist>

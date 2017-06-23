@@ -34,6 +34,13 @@
     success(arr);
 }
 
++ (void)requestDoctorListSuccess:(RequestSuccess)success fail:(RequestFail)fail {
+    
+    NSString *commentsPlist = [[NSBundle mainBundle] pathForResource:@"DoctorList" ofType:@"plist"];
+    NSArray *arr = [[NSArray alloc] initWithContentsOfFile:commentsPlist];
+    success(arr);
+}
+
 - (NSArray *)getTestData {
     
     int x = arc4random() % 100;

@@ -60,11 +60,11 @@
     HomeViewController *homeViewController = [[HomeViewController alloc] init];
     UIViewController *homeNavigationController = [[BaseNavigationController alloc] initWithRootViewController:homeViewController];
     
-//    DiscoverViewController *discoverViewController = [[DiscoverViewController alloc] init];
-//    UIViewController *discoverNavigationController = [[BaseNavigationController alloc] initWithRootViewController:discoverViewController];
+    DiscoverViewController *discoverViewController = [[DiscoverViewController alloc] init];
+    UIViewController *discoverNavigationController = [[BaseNavigationController alloc] initWithRootViewController:discoverViewController];
     
-    SBHomeView *sbHomeViewController = [[SBHomeView  alloc] init];
-    UIViewController *discoverNavigationController = [[BaseNavigationController alloc] initWithRootViewController:sbHomeViewController];
+//    SBHomeView *sbHomeViewController = [[SBHomeView  alloc] init];
+//    UIViewController *discoverNavigationController = [[BaseNavigationController alloc] initWithRootViewController:sbHomeViewController];
     
     MessageViewController *messageViewConreoller = [[MessageViewController alloc] init];
     UIViewController *messageNavigationController = [[BaseNavigationController alloc] initWithRootViewController:messageViewConreoller];
@@ -72,8 +72,7 @@
     MineViewController *mineViewController = [[MineViewController alloc] init];
     UIViewController *mineNavigationController = [[BaseNavigationController alloc] initWithRootViewController:mineViewController];
     
-    NSArray *viewControllers = @[
-                                 homeNavigationController,
+    NSArray *viewControllers = @[homeNavigationController,
                                  discoverNavigationController,
                                  messageNavigationController,
                                  mineNavigationController
@@ -107,8 +106,7 @@
                                                CYLTabBarItemSelectedImage : @"tabbar_profile_selected_os7"
                                                };
     
-    NSArray *tabBarItemsAttributes = @[
-                                       homeTabBarItemAttributes,
+    NSArray *tabBarItemsAttributes = @[homeTabBarItemAttributes,
                                        discoverTabBarItemAttributes,
                                        messageTabBarItemAttributes,
                                        mineTabBarItemAttributes

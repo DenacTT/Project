@@ -105,6 +105,7 @@
     bezierAnimation.repeatCount = MAXFLOAT;
     bezierAnimation.autoreverses = YES;
     [self.imageView1.layer addAnimation:bezierAnimation forKey:nil];
+    *****************/
     
     //缩放动画
     CAKeyframeAnimation *scaleAnimation = [CAKeyframeAnimation animation];
@@ -114,11 +115,11 @@
     scaleAnimation.autoreverses = YES;
     scaleAnimation.repeatCount = MAXFLOAT;
     [self.imageView2.layer addAnimation:scaleAnimation forKey:nil];
-    *****************/
+    
     
     
     //CAAnimationGroup
-    
+    /******************
     CAKeyframeAnimation *starAnimation = [CAKeyframeAnimation animation];
     starAnimation.keyPath  = @"transform.scale";
     starAnimation.values   = @[@0.0, @0.1, @1.05, @0.1, @0.0];
@@ -142,7 +143,7 @@
     animationGroup.animations = @[starAnimation, scaleAnimation];
     animationGroup.repeatCount = MAXFLOAT;
     [self.bgView.layer addAnimation:animationGroup forKey:nil];
-    
+    *****************/
     
     // CATransition
     /********************
@@ -171,7 +172,7 @@
     if (!_imageView1) {
         _imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
         _imageView1.center = self.view.center;
-        _imageView1.image = Image(@"sb_home_star");
+        _imageView1.image = Image(@"sb_home_finish_star");
     }
     return _imageView1;
 }
@@ -180,7 +181,7 @@
     if (!_imageView2) {
         _imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
         _imageView2.center = self.view.center;
-        _imageView2.image = Image(@"sb_home_finish_yuan");
+        _imageView2.image = Image(@"sb_home_finish_star");
     }
     return _imageView2;
 }

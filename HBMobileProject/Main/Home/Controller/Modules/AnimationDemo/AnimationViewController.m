@@ -9,16 +9,11 @@
 #import "AnimationViewController.h"
 #import "UIBezierPathDemo.h"
 
-@interface AnimationViewController ()
-
-@end
-
 static NSString * const AnimaitonViewCell = @"AnimaitonViewCell";
 
 @interface AnimationViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @property (nonatomic, strong) NSMutableArray *titleArr;
 
@@ -40,7 +35,7 @@ static NSString * const AnimaitonViewCell = @"AnimaitonViewCell";
     [self addClassName:@"UIBezierPathDemo" withTitle:@"UIBezierPath"];
     [self addClassName:@"CAShapeLayerDemo" withTitle:@"CAShapeLayer"];
     [self addClassName:@"CAAnimationDemo" withTitle:@"CAAnimation"];
-    
+    [self addClassName:@"CountingLabelController" withTitle:@"CountingLabel"];
     
 }
 

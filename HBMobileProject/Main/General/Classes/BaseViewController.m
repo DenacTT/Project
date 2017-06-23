@@ -87,7 +87,7 @@
         _rightBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         _rightBtn.frame = CGRectMake(ScreenWidth-60, 20, 60, 44);
         _rightBtn.titleLabel.font = Font(16.f);
-
+        
         [_rightBtn setTitle:@"完成" forState:UIControlStateNormal];
         [_rightBtn setTitleColor:RGB(18, 196, 190) forState:(UIControlStateNormal)];
 

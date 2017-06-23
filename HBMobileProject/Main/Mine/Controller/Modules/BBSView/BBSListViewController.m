@@ -31,7 +31,7 @@ static NSString * const BBSCellID = @"BBSCell";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.isUseBackBtn = YES;
-    self.titleLabel.text = @"热门";
+    //self.titleLabel.text = @"热门";
     _heartSize = 36;
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.indictorView];

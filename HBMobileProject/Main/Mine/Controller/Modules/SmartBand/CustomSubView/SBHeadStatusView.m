@@ -34,7 +34,9 @@
 @end
 
 @implementation SBHeadStatusView
-
+{
+    CABasicAnimation *synAnimation;
+}
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         
@@ -122,13 +124,32 @@
 // 同步正在进行中的旋转动画
 - (void)synIconCircleAnimation {
     
-    CABasicAnimation *synAnimation = [CABasicAnimation animation];
+    synAnimation = [CABasicAnimation animation];
     synAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     synAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
     synAnimation.duration = 1.2f;
-    synAnimation.repeatCount = 30;
-    synAnimation.delegate = self;
+    synAnimation.repeatCount = MAXFLOAT;
+    //    synAnimation.delegate = self;
+    //    synAnimation.removedOnCompletion = NO;
+    //    synAnimation.fillMode = kCAFillModeForwards;
+    //    synAnimation.autoreverses = NO;
+    //    synAnimation.additive = YES;//在原来的基础上添加动画
+    synAnimation.timeOffset = 0.0f;
     [self.synCircIcon.layer addAnimation:synAnimation forKey:@"synAnimation"];
+}
+
+//暂停动画.保存当前位置和时间
+- (void)pauseSynAnimation
+{
+    CFTimeInterval pausedTime = [self.synCircIcon.layer convertTime:CACurrentMediaTime() fromLayer:nil];
+    self.synCircIcon.layer.timeOffset = pausedTime;
+}
+//恢复动画
+- (void)resumeSynLayer
+{
+    [self.synCircIcon.layer removeAllAnimations];
+    synAnimation.timeOffset = [self.synCircIcon.layer convertTime:CACurrentMediaTime() fromLayer:nil] - self.synCircIcon.layer.timeOffset;
+    [self.synCircIcon.layer addAnimation:synAnimation forKey:nil];
 }
 
 #pragma mark - CAAnimationDelegate
@@ -163,12 +184,14 @@
     self.unConneIcon.alpha = 0.f;
     self.synCircIcon.alpha = 1.f;
 
+    
+    
+    
     [UIView animateWithDuration:AniDuration animations:^{
         self.productIcon.alpha = 1.f;
         self.unConneIcon.alpha = 1.f;
         self.synCircIcon.alpha = 0.f;
     } completion:^(BOOL finished) {
-        
         [UIView animateWithDuration:AniDuration delay:AniDelay options:UIViewAnimationOptionCurveLinear animations:^{
             self.synText.alpha = 0.f;
         } completion:^(BOOL finished) {
@@ -179,6 +202,8 @@
 // 状态切换至开始同步
 - (void)synStatusChangeToSynStart {
     
+    // 停掉所有还在进行中的动画
+    [self stopSynAnimation:self.layer];
     if ([self.synText.text isEqualToString:ReleaseToSync]) {
         self.synText.hidden = NO;
         self.synText.alpha = 1.f;

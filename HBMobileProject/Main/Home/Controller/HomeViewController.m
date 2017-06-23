@@ -33,7 +33,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 
 - (void)initData {
     
-    [self addClassName:@"AnimationViewController" withTitle:@"AnimationDemo"];
+    //[self addClassName:@"AnimationViewController" withTitle:@"AnimationDemo"];
     [self addClassName:@"ChartViewController" withTitle:@"ChartView"];
     [self addClassName:@"DataFilterViewController" withTitle:@"DataFilter"];
     [self addClassName:@"FMDBViewController" withTitle:@"FMDBStudyDemo"];

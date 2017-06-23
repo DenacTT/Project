@@ -39,6 +39,21 @@
 
 #define RandomNumber (arc4random() % 501) + 500
 
+#define ZDApp [UIApplication sharedApplication]
+
+#define ZDScreenSize [UIScreen mainScreen].bounds.size
+
+#define ZDColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+#define ZDSameColor(r) ZDColor(r, r, r)
+
+#define ZDFont(s) [UIFont fontWithName:@"FZLTXHK--GBK1-0" size:(s)]
+
+#define ZDScreenSize [UIScreen mainScreen].bounds.size
+
+#define isiOS7 ([UIDevice currentDevice].systemVersion.doubleValue >= 7.0)
+
+
 typedef NS_ENUM(NSInteger, OrderStatus) {
     OrderStatusWaitPay = 1,     // 待支付
     OrderStatusWaitRec = 2,     // 待收货

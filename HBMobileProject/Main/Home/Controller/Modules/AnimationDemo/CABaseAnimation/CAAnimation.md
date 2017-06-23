@@ -22,7 +22,7 @@ timingFunction
 //动画代理
 delegate       	
 //默认为 YES, 代表动画执行完毕后就从图层上移除,图形会恢复到动画执行前的状态. 如果想让图层保持显示动画执行后的状态,那就设置为NO,不过还要设置 fillMode 为 kCAFillModeForwards.
-removeOnCompletion
+removedOnCompletion
 ```
 
 **dalegate方法**:
@@ -309,6 +309,20 @@ animation.endProgress = 0.7;
 - (void)stopSynAnimation:(CALayer *)layer {
     
     [layer removeAllAnimations];
+}
+
+// 或者可以这样写: 
+//暂停动画.保存当前位置和时间
+- (void)pauseSynAnimation
+{
+    CFTimeInterval pausedTime = [self.synCircIcon.layer convertTime:CACurrentMediaTime() fromLayer:nil];
+    self.synCircIcon.layer.timeOffset = pausedTime;
+}
+//恢复动画
+- (void)resumeSynLayer {
+    [self.synCircIcon.layer removeAllAnimations];
+    synAnimation.timeOffset = [self.synCircIcon.layer convertTime:CACurrentMediaTime() fromLayer:nil] - self.synCircIcon.layer.timeOffset;
+    [self.synCircIcon.layer addAnimation:synAnimation forKey:nil];
 }
 
 ```

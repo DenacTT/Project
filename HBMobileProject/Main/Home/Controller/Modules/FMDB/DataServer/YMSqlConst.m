@@ -12,7 +12,7 @@
 
 NSString * const Create_CommentsTable = @"CREATE TABLE IF NOT EXISTS YMCommentDB (Id integer NOT NULL primary key autoincrement,myUserId integer DEFAULT 0,userId integer DEFAULT 0,realName text DEFAULT 0,avatarUrl text DEFAULT 0,content text DEFAULT 0,createTime integer DEFAULT 0,smallImgUrl text DEFAULT 0,messageType integer DEFAULT 0,readType integer DEFAULT 0,t1 text default 0,t2 text default 0,t3 text default 0,t4 text default 0)";
 
-NSString * const Insert_CommentsTable = @"INSERT OR REPLACE INTO YMCommentDB (myUserId,userId,realName,avatarUrl,content,createTime,smallImgUrl,messageType,readType) values (?,?,?,?,?,?,?,?,?)";
+NSString * const Insert_CommentsTable = @"INSERT OR REPLACE INTO YM0CommentDB (myUserId,userId,realName,avatarUrl,content,createTime,smallImgUrl,messageType,readType) values (?,?,?,?,?,?,?,?,?)";
 
 NSString * const Select_AllData_CommentsTable = @"SELECT * from YMCommentDB";
 

@@ -31,5 +31,9 @@ typedef enum : NSUInteger {
 
 // 开启两个大圆的动画
 - (void)startCircleAnimation;
+/// 暂停动画.保存当前位置和时间
+- (void)pauseCircleAnimation;
+/// 恢复动画
+- (void)resumeCircleLayer;
 
 @end

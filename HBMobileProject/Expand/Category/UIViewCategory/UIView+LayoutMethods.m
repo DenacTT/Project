@@ -358,7 +358,7 @@
 
 -(void) debugBorderWithWidth:(CGFloat)width
 {
-    self.layer.borderColor = [UIColor redColor].CGColor;
+    //self.layer.borderColor = [UIColor redColor].CGColor;
     self.layer.borderWidth = width;
 }
 

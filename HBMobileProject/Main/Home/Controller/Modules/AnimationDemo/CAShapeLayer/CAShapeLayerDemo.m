@@ -114,11 +114,11 @@
 //    _shapLayer.strokeStart = 0;
 //    _shapLayer.strokeEnd = 0.75;
     
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor orangeColor];
     self.circleProgressView = [[LXCircleAnimationView alloc] initWithFrame:CGRectMake(40.f, 70.f, ScreenWidth - 80.f, ScreenWidth - 80.f)];
     self.circleProgressView.bgImage = [UIImage imageNamed:@"sb_home_star@2x"];
     //调用此方法
-    self.circleProgressView.percent = 88.f;
+    self.circleProgressView.percent = 90.f;
     [self.view addSubview:self.circleProgressView];
     
     
@@ -139,6 +139,9 @@
     CGFloat anotherPercent = arc4random() % 100 / 100.f;
     CGFloat largePercent   = (percent < anotherPercent ? anotherPercent : percent);
     [self.circleView strokeEnd:largePercent animationType:ElasticEaseInOut animated:YES duration:2.f];
+    
+    
+    [self.circleProgressView setPercent:60.0];
 }
 
 - (void)repeatCycle {

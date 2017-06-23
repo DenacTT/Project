@@ -81,7 +81,7 @@
 #import "YMUITipsView.h"
 #import "CuttingLine.h"//分割线
 #import "AppDelegateHelper.h"
-#import "GPUImage.h"
+//#import "GPUImage.h"
 #import "Masonry.h"
 #import "YMDataAdapter.h"//数据请求类
 #import "UIImageView+WebCache.h"
