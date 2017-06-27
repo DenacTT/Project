@@ -9,6 +9,7 @@
 #import "MessageViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <ImageIO/ImageIO.h>
+#import "RecordVideoController.h"
 
 @interface MessageViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -25,7 +26,12 @@
     
     self.title = @"消息";
     self.isUseRightBtn = YES;
+    self.isUseBackBtn = YES;
     [self.rightBtn setTitle:@"读取" forState:UIControlStateNormal];
+    [self.rightBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [self.backBtn setTitle:@"录制" forState:UIControlStateNormal];
+    [self.backBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [self.backBtn setImage:Image(@"") forState:(UIControlStateNormal)];
     
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.navView.bottom, ScreenWidth, ScreenHeight-200)];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -38,6 +44,12 @@
     self.imagePickerVC = [[UIImagePickerController alloc] init];
     self.imagePickerVC.delegate = self;
     [self presentViewController:_imagePickerVC animated:YES completion:nil];
+}
+
+- (void)clickBackBtn {
+    RecordVideoController *recordVC = [[RecordVideoController alloc] init];
+    [self presentViewController:recordVC animated:YES completion:^{
+    }];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -65,7 +77,7 @@
     
     NSString *url = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
     NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:@"YourPic" withExtension:@""];
-//    [self getExifInfoWithImageUrl:url];
+    [self getExifInfoWithImageUrl:fileUrl];
 }
 
 // 方法1
