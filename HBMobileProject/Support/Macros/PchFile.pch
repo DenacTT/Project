@@ -75,17 +75,16 @@
 #import "UITableView+Extend.h"
 
 #pragma mark - Tools
-#import "CustomTipsView.h"//自定义提示框
-#import "LoopProgressView.h"//圆形进度条
+#import "CustomTipsView.h"  //自定义提示框
 #import "StatusBarHUD.h"
 #import "YMUITipsView.h"
-#import "CuttingLine.h"//分割线
+#import "CuttingLine.h"     //分割线
 #import "AppDelegateHelper.h"
 #import "Masonry.h"
-#import "YMDataAdapter.h"//数据请求类
+#import "YMDataAdapter.h"   //数据请求类
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
-#import "TimeFormatTool.h"//时间转换工具类
+#import "TimeFormatTool.h"  //时间转换工具类
 
 //环信
 //#import "EMSDK.h"

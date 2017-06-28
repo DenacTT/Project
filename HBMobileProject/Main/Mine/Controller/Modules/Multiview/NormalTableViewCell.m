@@ -9,6 +9,7 @@
 #import "NormalTableViewCell.h"
 #import "UILabel+Multiline.h"
 #import "TimeFormatTool.h"
+#import "PlaceholderImageView.h"
 
 @interface NormalTableViewCell ()
 
@@ -19,8 +20,9 @@
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UILabel *descLabel;
 @property (nonatomic, strong) UIButton *moreBtn;
-@property (nonatomic, strong) UIImageView *descImage;
+//@property (nonatomic, strong) UIImageView *descImage;
 @property (nonatomic, strong) UIView *bottomLine;
+@property (nonatomic, strong) PlaceholderImageView *descImage;
 
 @end
 
@@ -78,7 +80,9 @@
         self.moreBtn.top = self.descLabel.bottom+13;
         self.descImage.top = self.moreBtn.bottom+13;
         
-        [self.descImage sd_setImageWithURL:[NSURL URLWithString:groupModel.imgUrl] placeholderImage:Image(@"test")];
+//        [self.descImage sd_setImageWithURL:[NSURL URLWithString:groupModel.imgUrl] placeholderImage:Image(@"test")];
+        
+        self.descImage.urlString = groupModel.imgUrl;
         
         self.bottomLine.top = self.descImage.bottom+30;
     }
@@ -179,15 +183,12 @@
     return _moreBtn;
 }
 
-- (UIImageView *)descImage
+- (PlaceholderImageView *)descImage
 {
     if (!_descImage) {
         
-        _descImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, _moreBtn.bottom+13, ScreenWidth-15*2, ScreenWidth-15*2)];
-        _descImage.image = Image(@"test");
-        
-        [_descImage setContentMode:(UIViewContentModeScaleAspectFill)];
-        [_descImage.layer setMasksToBounds:YES];
+        _descImage = [PlaceholderImageView placeholderImageViewWithFrame:CGRectMake(15, _moreBtn.bottom+13, ScreenWidth-15*2, ScreenWidth-15*2) placeholderImage:Image(@"loading")];
+        _descImage.placeholderImage = Image(@"loading");
     }
     return _descImage;
 }

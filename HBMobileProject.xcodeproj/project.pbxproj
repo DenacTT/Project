@@ -48,7 +48,6 @@
 		681DF27C1F02345100A81652 /* YMCommentDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF27B1F02345100A81652 /* YMCommentDB.m */; };
 		681DF27F1F02345E00A81652 /* YMSqlConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF27E1F02345E00A81652 /* YMSqlConst.m */; };
 		681DF2821F02350300A81652 /* YMUITipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF2811F02350300A81652 /* YMUITipsView.m */; };
-		681DF2881F0236A400A81652 /* LoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF2871F0236A400A81652 /* LoopProgressView.m */; };
 		681DF2921F02379600A81652 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF28B1F02379600A81652 /* CircleProgressView.m */; };
 		681DF2931F02379600A81652 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF28D1F02379600A81652 /* CircleView.m */; };
 		681DF2941F02379600A81652 /* FillCircleLayerConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF28F1F02379600A81652 /* FillCircleLayerConfigure.m */; };
@@ -67,6 +66,9 @@
 		681DF2BE1F02382500A81652 /* SBHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF2B21F02382500A81652 /* SBHomeModel.m */; };
 		681DF2C41F025AD700A81652 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF2C31F025AD700A81652 /* Member.m */; };
 		681DF2C71F025B8A00A81652 /* CAShapeLayerConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF2C61F025B8A00A81652 /* CAShapeLayerConfigure.m */; };
+		681DF2CD1F0281F700A81652 /* PlaceholderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF2CC1F0281F700A81652 /* PlaceholderImageView.m */; };
+		681DF2D11F028CD700A81652 /* ImageLodingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF2D01F028CD700A81652 /* ImageLodingViewController.m */; };
+		681DF2D41F028E2E00A81652 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DF2D31F028E2E00A81652 /* ImageCell.m */; };
 		684C62B61EFCC74B001A40ED /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 684C62B51EFCC74B001A40ED /* UICountingLabel.m */; };
 		684C62C11EFCC7CC001A40ED /* CountingLabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 684C62C01EFCC7CC001A40ED /* CountingLabelController.m */; };
 		68502FB61EE8F7AF00795416 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68502FB51EE8F7AF00795416 /* BaseTableViewController.m */; };
@@ -598,8 +600,6 @@
 		681DF27E1F02345E00A81652 /* YMSqlConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSqlConst.m; sourceTree = "<group>"; };
 		681DF2801F02350300A81652 /* YMUITipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMUITipsView.h; sourceTree = "<group>"; };
 		681DF2811F02350300A81652 /* YMUITipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMUITipsView.m; sourceTree = "<group>"; };
-		681DF2861F0236A400A81652 /* LoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopProgressView.h; sourceTree = "<group>"; };
-		681DF2871F0236A400A81652 /* LoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopProgressView.m; sourceTree = "<group>"; };
 		681DF28A1F02379600A81652 /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
 		681DF28B1F02379600A81652 /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
 		681DF28C1F02379600A81652 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
@@ -636,6 +636,12 @@
 		681DF2C31F025AD700A81652 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
 		681DF2C51F025B8A00A81652 /* CAShapeLayerConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAShapeLayerConfigure.h; sourceTree = "<group>"; };
 		681DF2C61F025B8A00A81652 /* CAShapeLayerConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAShapeLayerConfigure.m; sourceTree = "<group>"; };
+		681DF2CB1F0281F700A81652 /* PlaceholderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderImageView.h; sourceTree = "<group>"; };
+		681DF2CC1F0281F700A81652 /* PlaceholderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderImageView.m; sourceTree = "<group>"; };
+		681DF2CF1F028CD700A81652 /* ImageLodingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLodingViewController.h; sourceTree = "<group>"; };
+		681DF2D01F028CD700A81652 /* ImageLodingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLodingViewController.m; sourceTree = "<group>"; };
+		681DF2D21F028E2E00A81652 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
+		681DF2D31F028E2E00A81652 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
 		684C62B41EFCC74B001A40ED /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		684C62B51EFCC74B001A40ED /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		684C62BF1EFCC7CC001A40ED /* CountingLabelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountingLabelController.h; sourceTree = "<group>"; };
@@ -1605,6 +1611,7 @@
 				681DF2481F02328300A81652 /* TimeCountView */,
 				681DF24B1F02328300A81652 /* TimeFormatTool */,
 				681DF2501F02328300A81652 /* YMActionSheet */,
+				681DF2CA1F02815C00A81652 /* SDWebImageViewPlaceHorder */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1632,7 +1639,6 @@
 			isa = PBXGroup;
 			children = (
 				681DF2891F02379600A81652 /* CircleProgressView */,
-				681DF2851F0236A400A81652 /* LoopProgressView */,
 			);
 			path = ProgressView;
 			sourceTree = "<group>";
@@ -1697,15 +1703,6 @@
 			children = (
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		681DF2851F0236A400A81652 /* LoopProgressView */ = {
-			isa = PBXGroup;
-			children = (
-				681DF2861F0236A400A81652 /* LoopProgressView.h */,
-				681DF2871F0236A400A81652 /* LoopProgressView.m */,
-			);
-			path = LoopProgressView;
 			sourceTree = "<group>";
 		};
 		681DF2891F02379600A81652 /* CircleProgressView */ = {
@@ -1788,6 +1785,26 @@
 				681DF2C31F025AD700A81652 /* Member.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		681DF2CA1F02815C00A81652 /* SDWebImageViewPlaceHorder */ = {
+			isa = PBXGroup;
+			children = (
+				681DF2CB1F0281F700A81652 /* PlaceholderImageView.h */,
+				681DF2CC1F0281F700A81652 /* PlaceholderImageView.m */,
+			);
+			path = SDWebImageViewPlaceHorder;
+			sourceTree = "<group>";
+		};
+		681DF2CE1F028C5100A81652 /* PlaceholderImageView */ = {
+			isa = PBXGroup;
+			children = (
+				681DF2CF1F028CD700A81652 /* ImageLodingViewController.h */,
+				681DF2D01F028CD700A81652 /* ImageLodingViewController.m */,
+				681DF2D21F028E2E00A81652 /* ImageCell.h */,
+				681DF2D31F028E2E00A81652 /* ImageCell.m */,
+			);
+			path = PlaceholderImageView;
 			sourceTree = "<group>";
 		};
 		684C62B31EFCC743001A40ED /* UICountingLabel */ = {
@@ -2887,6 +2904,7 @@
 				D1932AFB1E7D3C6C0037FC00 /* DataRepeatFilter */,
 				D1932B031E7D3C6C0037FC00 /* YMActionSheet */,
 				D1EE00A71E9FC7380032CED3 /* ScrollViewAnimation */,
+				681DF2CE1F028C5100A81652 /* PlaceholderImageView */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -3904,8 +3922,10 @@
 				D17A28161D93F89900C00B3F /* YYTextInput.m in Sources */,
 				D17A27FA1D93F89900C00B3F /* UIImage+YYAdd.m in Sources */,
 				D17A27E21D93F89900C00B3F /* NSArray+YYAdd.m in Sources */,
+				681DF2D41F028E2E00A81652 /* ImageCell.m in Sources */,
 				D17A27F41D93F89900C00B3F /* UIBezierPath+YYAdd.m in Sources */,
 				D14AA4701DD2CBF800E1A46D /* BBSListViewController.m in Sources */,
+				681DF2D11F028CD700A81652 /* ImageLodingViewController.m in Sources */,
 				684C62C11EFCC7CC001A40ED /* CountingLabelController.m in Sources */,
 				D17A281E1D93F89900C00B3F /* UIPasteboard+YYText.m in Sources */,
 				D17A28081D93F89900C00B3F /* UIImageView+YYWebImage.m in Sources */,
@@ -3923,6 +3943,7 @@
 				D16CDD7F1ED450A700DF2575 /* CXCarouselView.m in Sources */,
 				D17A280E1D93F89900C00B3F /* YYSpriteSheetImage.m in Sources */,
 				D17A28171D93F89900C00B3F /* YYTextKeyboardManager.m in Sources */,
+				681DF2CD1F0281F700A81652 /* PlaceholderImageView.m in Sources */,
 				D1B6D7981D7D159600C3E647 /* NSObject+MJKeyValue.m in Sources */,
 				D11798111EA8BDBD0084F137 /* StringOperaterController.m in Sources */,
 				D17A27E71D93F89900C00B3F /* NSKeyedUnarchiver+YYAdd.m in Sources */,
@@ -4133,7 +4154,6 @@
 				D1A5D8961E8CF50F00455F0C /* POPCGUtils.mm in Sources */,
 				D12F02961E8F7BBB00E9276F /* LXCircleAnimationView.m in Sources */,
 				D12A85D11DC725E9004834E0 /* MultiViewController.m in Sources */,
-				681DF2881F0236A400A81652 /* LoopProgressView.m in Sources */,
 				D1B6D6F01D7D10C500C3E647 /* main.m in Sources */,
 				D17A28231D93F89900C00B3F /* YYTextRunDelegate.m in Sources */,
 				D1F1157F1DF69FE9001288FB /* HomeStoreViewCell.m in Sources */,

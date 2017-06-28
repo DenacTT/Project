@@ -94,8 +94,6 @@ const CGFloat kMargin = 10;
             [button setImage:Image(@"defaultImage") forState:(UIControlStateNormal)];
             [button setContentMode:(UIViewContentModeScaleAspectFill)];
             
-            
-            
             [button addTarget:self action:@selector(selectButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
             [_scrollView addSubview:button];
             
