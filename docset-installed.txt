@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /Users/whb/Library/Developer/Shared/Documentation/DocSets/com.26duphoto.hbmobileproject.HBMobileProject.docset
+Time: 2017-06-29 07:29:34 +0000

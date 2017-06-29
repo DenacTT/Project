@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>26DUPHOTO.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>HBMobileProject.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>688CA86B1F04BC1C00C92380</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>689124CE1F04D84500A475B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D1B6D6EA1D7D10C400C3E647</key>
 		<dict>
 			<key>primary</key>

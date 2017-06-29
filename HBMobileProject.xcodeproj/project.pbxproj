@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		689124CE1F04D84500A475B6 /* 26DUPHOTO */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 689124D11F04D84500A475B6 /* Build configuration list for PBXAggregateTarget "26DUPHOTO" */;
+			buildPhases = (
+				689124D21F04D85D00A475B6 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = 26DUPHOTO;
+			productName = 26DUPHOTO;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		6811A4441EE837CE005FB316 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6811A4431EE837CE005FB316 /* Photos.framework */; };
 		6818AB451ED921A400F53D1B /* sb_home_band@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6818AB441ED921A400F53D1B /* sb_home_band@2x.png */; };
@@ -3607,6 +3621,10 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = HarbingWang;
 				TargetAttributes = {
+					689124CE1F04D84500A475B6 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
 					D1B6D6EA1D7D10C400C3E647 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 7TUZGA3GZY;
@@ -3638,6 +3656,7 @@
 				D1B6D6EA1D7D10C400C3E647 /* HBMobileProject */,
 				D1B6D7031D7D10C500C3E647 /* HBMobileProjectTests */,
 				D1B6D70E1D7D10C500C3E647 /* HBMobileProjectUITests */,
+				689124CE1F04D84500A475B6 /* 26DUPHOTO */,
 			);
 		};
 /* End PBXProject section */
@@ -3844,6 +3863,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		689124D21F04D85D00A475B6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"26DUPHOTO\";\ncompanyID=\"com.26duphoto.hbmobileproject\";\ncompanyURL=\"https://github.com/HarbingWang\";\ntarget=\"HBMobileproject\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
 		};
 		E7E8FFA2959438F41BD4897F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4247,6 +4279,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		689124CF1F04D84500A475B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		689124D01F04D84500A475B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		D1B6D7161D7D10C500C3E647 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4474,6 +4520,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		689124D11F04D84500A475B6 /* Build configuration list for PBXAggregateTarget "26DUPHOTO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				689124CF1F04D84500A475B6 /* Debug */,
+				689124D01F04D84500A475B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D1B6D6E61D7D10C400C3E647 /* Build configuration list for PBXProject "HBMobileProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

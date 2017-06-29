@@ -9,7 +9,7 @@
 #import "ImageLodingViewController.h"
 #import "ImageCell.h"
 
-@interface ImageLodingViewController ()
+@interface ImageLodingViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView  *tableView;
 @property (nonatomic, strong) NSArray      *pictures;

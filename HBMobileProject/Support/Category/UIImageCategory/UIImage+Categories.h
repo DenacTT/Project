@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
 /// 图片方向
-typedef enum {
-    
+typedef NS_ENUM(NSInteger, ImageWaterDirect) {
     //左上
     ImageWaterDirectTopLeft=0,
     //右上
@@ -21,8 +19,7 @@ typedef enum {
     ImageWaterDirectBottomRight,
     //正中
     ImageWaterDirectCenter
-}ImageWaterDirect;
-
+};
 
 @interface UIImage (Cateogries)
 

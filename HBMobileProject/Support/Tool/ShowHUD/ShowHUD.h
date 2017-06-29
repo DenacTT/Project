@@ -14,12 +14,12 @@ typedef void (^ConfigShowHUDBlock)(ShowHUD *config);
 typedef UIView *(^ConfigShowHUDCustomViewBlock)();
 
 /// 方向
-typedef enum {
+typedef NS_ENUM(NSInteger, HUDAnimationType) {
     Fade    = MBProgressHUDAnimationFade,
     Zoom    = MBProgressHUDAnimationZoom,
     ZoomOut = MBProgressHUDAnimationZoomOut,
     ZoomIn  = MBProgressHUDAnimationZoomIn,
-} HUDAnimationType;
+};
 
 @interface ShowHUD : NSObject
 
