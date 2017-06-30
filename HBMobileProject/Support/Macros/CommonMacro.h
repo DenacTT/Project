@@ -24,6 +24,8 @@
 
 // 字体
 #define Font(fontSize) [UIFont systemFontOfSize:fontSize]
+#define HYQiHeiFont(size) [UIFont fontWithName:@"HYQiHei-BEJF" size:size]
+#define HeitiFont(size) [UIFont fontWithName:@"Heiti SC" size:size]
 
 // 图片
 #define Image(imageName) [UIImage imageNamed:imageName]
@@ -60,13 +62,6 @@ typedef NS_ENUM(NSInteger, OrderStatus) {
     OrderStatusHaveRec = 3,     // 已收货
     OrderStatusHaveCel = 4,     // 已取消
 };
-
-//typedef enum : NSInteger {
-//    OrderStatusWaitPay = 1,     // 待支付
-//    OrderStatusWaitRec = 2,     // 待收货
-//    OrderStatusHaveRec = 3,     // 已收货
-//    OrderStatusHaveCel = 4,     // 已取消
-//}OrderStatus;
 
 
 // 当前是否debug模式

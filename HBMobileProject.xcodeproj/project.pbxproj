@@ -135,6 +135,7 @@
 		689125351F05009D00A475B6 /* tapbar_top_line_noshow_plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689125181F05009D00A475B6 /* tapbar_top_line_noshow_plus@3x.png */; };
 		689125361F05009D00A475B6 /* wechat_pay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689125191F05009D00A475B6 /* wechat_pay@2x.png */; };
 		689125371F05009D00A475B6 /* zhifubao_pay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6891251A1F05009D00A475B6 /* zhifubao_pay@2x.png */; };
+		6891253A1F0505E900A475B6 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 689125391F0505E900A475B6 /* BaseTableViewCell.m */; };
 		D103BB9F1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D103BB9D1DAF89AF0009DF88 /* RecordIcoMackup_1@2x.png */; };
 		D103BBA21DAF8BA20009DF88 /* RecordIcoMackup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D103BBA11DAF8BA20009DF88 /* RecordIcoMackup@2x.png */; };
 		D1052DFB1E694E5300BCA261 /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1052DFA1E694E5300BCA261 /* UserDetailViewController.m */; };
@@ -732,6 +733,8 @@
 		689125181F05009D00A475B6 /* tapbar_top_line_noshow_plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tapbar_top_line_noshow_plus@3x.png"; sourceTree = "<group>"; };
 		689125191F05009D00A475B6 /* wechat_pay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_pay@2x.png"; sourceTree = "<group>"; };
 		6891251A1F05009D00A475B6 /* zhifubao_pay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhifubao_pay@2x.png"; sourceTree = "<group>"; };
+		689125381F0505E900A475B6 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		689125391F0505E900A475B6 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		865E625F464706EDC96996DD /* Pods-HBMobileProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBMobileProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBMobileProject/Pods-HBMobileProject.debug.xcconfig"; sourceTree = "<group>"; };
 		BC4B7EBFF99B5F97ABCBDFE2 /* Pods-HBMobileProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBMobileProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-HBMobileProject/Pods-HBMobileProject.release.xcconfig"; sourceTree = "<group>"; };
 		D027696519CAB0C2B7F18ACF /* libPods-HBMobileProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HBMobileProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1899,6 +1902,8 @@
 		689124FA1F05005000A475B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				689125381F0505E900A475B6 /* BaseTableViewCell.h */,
+				689125391F0505E900A475B6 /* BaseTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4049,6 +4054,7 @@
 				D17A27FC1D93F89900C00B3F /* UIScrollView+YYAdd.m in Sources */,
 				681DF25E1F02328300A81652 /* UIImage+fixOrientation.m in Sources */,
 				D17A28271D93F89900C00B3F /* YYAsyncLayer.m in Sources */,
+				6891253A1F0505E900A475B6 /* BaseTableViewCell.m in Sources */,
 				D13B58961D7EEBAA005D89FA /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				D17A28051D93F89900C00B3F /* CALayer+YYWebImage.m in Sources */,
 				D1B6D7931D7D159600C3E647 /* MJProperty.m in Sources */,

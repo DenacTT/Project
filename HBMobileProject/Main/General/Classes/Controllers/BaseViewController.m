@@ -25,7 +25,7 @@
 
 - (void)clickRightBtn
 {
-    //右侧按钮需要添加其他点击按钮时可在子类中重写该方法实现;
+    //右侧按钮需要添加其他点击按钮时可在子类中重写该方法实现
     //示例见: MoreMusicViewController
 }
 
