@@ -25,13 +25,17 @@
     [self setupLoginViewController];
     [self setupNavigationBarAppearance];
     
+    // 设置启动页时间
+    [NSThread sleepForTimeInterval:1.5f];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
 #pragma mark - setUpLoginViewController
 //登录页
-- (void)setupLoginViewController
-{
+- (void)setupLoginViewController {
+    
     LogInViewController *logInViewController = [[LogInViewController alloc] init];
     [self.window setRootViewController:logInViewController];
     [self.window setBackgroundColor:[UIColor whiteColor]];
@@ -39,8 +43,8 @@
 }
 
 //首页
-- (void)setupHomeViewController
-{
+- (void)setupHomeViewController {
+    
     ConfigTabBarController *tabBarController = [[ConfigTabBarController alloc] init];
     [self.window setRootViewController:tabBarController.tabBarController];
     [self.window setBackgroundColor:[UIColor whiteColor]];
@@ -50,8 +54,8 @@
 /**
  *  设置 navigationBar 样式
  */
-- (void)setupNavigationBarAppearance
-{
+- (void)setupNavigationBarAppearance {
+    
 //    UINavigationBar *navigationBarApppearance = [UINavigationBar appearance];
     
     UIImage *backgroundImage = nil;

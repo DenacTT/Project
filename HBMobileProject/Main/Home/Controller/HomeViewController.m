@@ -7,8 +7,10 @@
 //
 
 #import "HomeViewController.h"
+#import "HomeViewCell.h"
+#import "HomeItem.h"
 
-static NSString * const HomeViewCell = @"HomeViewCell";
+static NSString * const HomeViewCellID = @"HomeViewCellID";
 
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -24,8 +26,6 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"首页";
-//    self.isUseBackBtn = YES;
-//    self.isUseRightBtn = YES;
     [self.view addSubview:self.tableView];
     
     [self initData];
@@ -34,19 +34,20 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 - (void)initData {
     
     //[self addClassName:@"AnimationViewController" withTitle:@"AnimationDemo"];
-    [self addClassName:@"ChartViewController" withTitle:@"ChartView"];
+    //[self addClassName:@"ChartViewController" withTitle:@"ChartView"];
     [self addClassName:@"DataFilterViewController" withTitle:@"DataFilter"];
     [self addClassName:@"FMDBViewController" withTitle:@"FMDBStudyDemo"];
     [self addClassName:@"KVCCollectionOperators" withTitle:@"KVCCollectionOperators"];
     [self addClassName:@"YMActionSheetViewController" withTitle:@"CustomActionSheet"];
     [self addClassName:@"ScrollViewAnimation" withTitle:@"ScrollViewAnimation"];
     [self addClassName:@"ImageLodingViewController" withTitle:@"ImageLoding"];
-    
+    [self addClassName:@"TransitionFirstController" withTitle:@"控制器转场(放大缩小)"];
+    [self addClassName:@"VCTransitionDemoOne" withTitle:@"控制器转场(线性渐隐渐现)"];
 }
 
 - (void)addClassName:(NSString *)className withTitle:(NSString *)title {
     
-    [self.dataArr addObject:className];
+    [self.dataArr  addObject:className];
     [self.titleArr addObject:title];
 }
 
@@ -60,7 +61,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HomeViewCell forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HomeViewCellID forIndexPath:indexPath];
     cell.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = self.titleArr[indexPath.row];
     return cell;
@@ -87,7 +88,7 @@ static NSString * const HomeViewCell = @"HomeViewCell";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:HomeViewCell];
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:HomeViewCellID];
     }
     return _tableView;
 }

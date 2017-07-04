@@ -10,15 +10,19 @@
 
 @implementation BaseTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        [self setupCell];
+        [self setupSubView];
+    }
+    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)setupCell {}
 
-    // Configure the view for the selected state
-}
+- (void)setupSubView {}
+
+- (void)loadContent {}
 
 @end
