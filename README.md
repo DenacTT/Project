@@ -19,7 +19,11 @@
 
 [YMTimeCountView](https://github.com/HarbingWang/Project/tree/master/HBMobileProject/Expand/Tool/TimeCountView "YMTimeCountView") 封装的抢购活动倒计时View
 
-[![倒计时](https://github.com/HarbingWang/ImgaeRepo/blob/master/store.gif "商城倒计时动画")](http://harbingwang.github.io/)
+[控制器转场效果](https://github.com/HarbingWang/Project/tree/master/HBMobileProject/Support/Tool/ControllerTransition) PingTransition & PingInvertTransition 一个放大缩小的控制器转场特效; VCPushPopManager 淡入淡出的转场效果
+
+[SD加载图片渐现效果](https://github.com/HarbingWang/Project/tree/master/HBMobileProject/Support/Tool/SDWebImageViewPlaceHorder) PlaceholderImageView
+
+[圆形进度条](https://github.com/HarbingWang/Project/tree/master/HBMobileProject/Support/Tool/ProgressView/CircleProgressView) CircleProgressView
 
 分类目录
 -----------
