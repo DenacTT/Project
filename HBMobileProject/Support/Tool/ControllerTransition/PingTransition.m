@@ -70,7 +70,6 @@
     maskLayer.path = maskFinalPath.CGPath;//将它的 path 指定为最终的 path 来避免在动画完成后会回弹
     toVC.view.layer.mask = maskLayer;
     
-    
     CABasicAnimation *maskLayerAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
     maskLayerAnimation.fromValue = (__bridge id)(maskStartPath.CGPath);
     maskLayerAnimation.toValue = (__bridge id)((maskFinalPath.CGPath));
