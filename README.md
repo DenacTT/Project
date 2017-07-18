@@ -33,4 +33,6 @@ SD加载图片渐现效果:[PlaceholderImageView](https://github.com/HarbingWang
 
 > `MarkDown`语法请参考:[README](https://github.com/guodongxiaren/README)
 
+> `Swift `学习网站: [swiftv](http://www.swiftv.cn/)
+
 [回到顶部](#readme)
